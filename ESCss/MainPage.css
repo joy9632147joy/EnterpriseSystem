@@ -1,0 +1,84 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+/*上方導覽列*/
+.navbar{
+    background: #2A3F54;
+    margin-left: 250px;
+    transition: all 0.3s;
+}
+
+.navbar.expand {
+    margin-left: 0;
+}
+
+
+/* 漢堡按鈕 信封按鈕*/
+.hamburger-btn , .envelope-btn{
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.hamburger-btn:hover , .envelope-btn:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 側邊欄 */
+.sidebar {
+    top: 0;
+    height: 100% ;
+    width: 250px;
+    position: fixed;
+    background: #2A3F54; 
+    transition: all 0.3s; 
+}
+
+
+#sidebarN.toggled {
+    margin-left: 0;
+    width: 65px;
+}
+
+#sidebarN.toggled span,            
+#sidebarN.toggled .menu-category,   
+#sidebarN.toggled .sidebar-user {
+    display: none;    
+}
+
+
+/* 選單分類標題 */
+.menu-category {
+    padding: 15px 20px 8px;
+    color: #8a9aa8;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.sidebar li a {
+    padding: 15px 20px;
+    display: flex;
+    color: #EDEDED;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.sidebar ul li.active > a, .sidebar ul li a:hover{
+    background: #3E5367;
+    border-right: 5px solid #1ABB9C; 
+}
+
+
+/* 主內容 */
+#content {
+    background-color: #F7F7F7;
+    margin-left: 250px; /* 預設被推開 */
+    transition: all 0.3s;
+    flex-grow: 1;
+}
+
+#content.expand {
+    margin-left: 70px; 
+}
+

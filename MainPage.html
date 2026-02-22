@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="./ESCss/MainPage.css">
+    <script src="./ESJS/MainPage.js"></script>
+
+    <title>Enterprise System</title>
+</head>
+
+<body>
+
+    <!-- 上方導覽列 -->
+    <nav class="navbar navbar-dark sticky-top">
+
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+            <!-- 通知 -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <button class="btn envelope-btn me-1" id="envelope">
+                    <i class="bi bi-envelope"></i>
+                </button>
+
+                <!-- 右上角使用者選單 -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <img src="Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                        <span class="d-none d-sm-inline">Joy</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="Login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                                Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 側邊欄 -->
+    <div class="d-flex" id="sidebarD">
+
+        <nav class="list-unstyled sidebar" id="sidebarN">
+
+            <!-- LOGO -->
+            <div class="d-flex align-items-center justify-content-center"
+                style="height: 58px; background-color: #1f2d3a;">
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="MainPage.html">Admin ES</a>
+            </div>
+
+            <!-- 使用者資訊 -->
+            <div class="sidebar-user">
+                <div class="d-flex align-items-center p-3">
+                    <img src="Img/smile.jpg" class="rounded-circle me-3" width="50" height="50">
+                    <div class="text-white">
+                        <small class=" d-block opacity-75">Welcome, <strong>Joy</strong></small>
+                        <small>LV</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 選單 -->
+            <ul class="d-flex flex-column list-unstyled">
+                <li class="menu-category fw-bold">GENERAL</li>
+                <li class="active"><a href="MainPage.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                </li>
+                <li><a href="SignInOut.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
+                <li><a href="#"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
+                <li><a href="#"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
+                <li><a href="#"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
+                <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
+                <li><a href="#"><i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="#"><i class="bi bi-gear-fill me-3"></i><span>帳號設定</span></a></li>
+            </ul>
+        </nav>
+
+
+        <!-- 公佈欄 -->
+        <section id="content" class="p-4 ">
+            <div class="container-fluid">
+                <h2 class="mb-4">系統主頁面</h2>
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="card mb-4">
+                            <div class="card-header fw-bold">
+                                <i class="bi bi-megaphone me-2"></i>公司公布欄
+                            </div>
+
+                            <div class="card-body" style="min-height: 300px;">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        2026 年度員工旅遊報名開始 <span class="badge bg-secondary rounded-pill">2024-05-20</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        端午節連假出勤調查 <span class="badge bg-secondary rounded-pill">2024-05-18</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        系統維護通知 (週六凌晨) <span class="badge bg-danger rounded-pill">重要</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        <!-- 代辦事項 -->
+                        <div class="card ">
+                            <div class="card-header fw-bold">
+                                <i class="bi bi-check2-square me-2"></i>待接任務
+                            </div>
+                            <div class="card-body" style="min-height: 300px;">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="task1">
+                                    <label class="form-check-label" for="task1">核准 5 月份加班申請單</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="task2">
+                                    <label class="form-check-label" for="task2">回覆客戶 A 公司報價郵件</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="task3">
+                                    <label class="form-check-label" for="task3">整理週會報告</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- 行事曆 -->
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-header fw-bold d-flex justify-content-between align-items-center">
+                                <span><i class="bi bi-calendar3 me-2"></i>公司內部行事曆</span>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <h5 class="mb-0">2026年 2月</h5>
+                                </div>
+
+                                <table class="table table-bordered text-center calendar-table mb-0">
+                                    <thead>
+                                        <tr class="table-light">
+                                            <th class="text-danger border-0">日</th>
+                                            <th class="border-0">一</th>
+                                            <th class="border-0">二</th>
+                                            <th class="border-0">三</th>
+                                            <th class="border-0">四</th>
+                                            <th class="border-0">五</th>
+                                            <th class="text-primary border-0">六</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-muted opacity-50">25</td>
+                                            <td class="text-muted opacity-50">26</td>
+                                            <td class="text-muted opacity-50">27</td>
+                                            <td class="text-muted opacity-50">28</td>
+                                            <td class="text-muted opacity-50">29</td>
+                                            <td class="text-muted opacity-50">30</td>
+                                            <td class="text-muted opacity-50">31</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                            <td>6</td>
+                                            <td>7</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>9</td>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>12</td>
+                                            <td>13</td>
+                                            <td>14</td>
+                                        </tr>
+                                        <tr>
+                                            <td>15</td>
+                                            <td>16</td>
+                                            <td>17</td>
+                                            <td>18</td>
+                                            <td>19</td>
+                                            <td>20</td>
+                                            <td>21</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-primary fw-bold">22</td>
+                                            <td>23</td>
+                                            <td>24</td>
+                                            <td>25</td>
+                                            <td>26</td>
+                                            <td>27</td>
+                                            <td>28</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="mt-4 pt-3 border-top">
+                                    <h6 class="fw-bold"><i class="bi bi-info-circle me-2"></i>本日活動</h6>
+                                    <ul class="small list-unstyled mb-0">
+                                        <li><span class="text-primary">●</span> 14:00 專案進度會議</li>
+                                        <li><span class="text-success">●</span> 17:00 系統資料備份</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+        </section>
+
+    </div>
+
+
+
+</body>
+
+</html>
