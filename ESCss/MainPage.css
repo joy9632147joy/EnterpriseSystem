@@ -175,3 +175,45 @@ body, html {
     margin-left: 70px; 
 }
 
+
+
+.bento-card {
+        transition: all 0.3s ease;
+        border-radius: 20px !important;
+    }
+    .bento-card:hover {
+        transform: translateY(-5px);
+    }
+    .bg-soft-primary {
+        background-color: #e7f1ff;
+    }
+    .extra-small {
+        font-size: 0.75rem;
+    }
+    /* 任務完成後的樣式 */
+    .task-completed {
+        background-color: #f8f9fa !important;
+        border-color: #e9ecef !important;
+    }
+    .task-completed label {
+        text-decoration: line-through;
+        color: #adb5bd;
+    }
+    .task-completed .badge {
+        display: none;
+    }
+
+
+
+
+    /* 公佈欄 */
+    .announcement-row {
+        transition: background-color 0.2s;
+        cursor: pointer;
+    }
+    .announcement-row:hover {
+        background-color: #f8f9fa !important;
+    }
+    .bg-soft-success { background-color: #e6f7ed; }
+    .bg-soft-primary { background-color: #e7f1ff; }
+    .extra-small { font-size: 0.72rem; }

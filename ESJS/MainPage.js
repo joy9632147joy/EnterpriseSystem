@@ -32,3 +32,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+function toggleTask(checkbox) {
+        const taskItem = checkbox.closest('.task-item');
+        const statusLabel = taskItem.querySelector('.completed-status');
+        const badge = taskItem.querySelector('.badge');
+
+        if (checkbox.checked) {
+            taskItem.classList.add('task-completed');
+            statusLabel.classList.remove('d-none');
+        } else {
+            taskItem.classList.remove('task-completed');
+            statusLabel.classList.add('d-none');
+        }
+    }
