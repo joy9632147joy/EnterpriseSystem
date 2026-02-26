@@ -41,9 +41,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center">
-                </div>
-
+                <div class="d-flex align-items-center"></div>
                 <button class="btn envelope-btn me-1" id="envelope">
                     <i class="bi bi-envelope"></i>
                 </button>
@@ -58,12 +56,8 @@
                         <span class="d-none d-sm-inline">Joy</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                        <li><a class="dropdown-item text-danger" href="login.html"><i
+                                    class="bi bi-box-arrow-right me-2"></i>Log
                                 Out</a></li>
                     </ul>
                 </div>
@@ -118,7 +112,8 @@
             <!-- 選單 -->
             <ul class="d-flex flex-column list-unstyled">
                 <li class="menu-category fw-bold">一般功能</li>
-                <li class="active"><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                <li class="active"><a href="main_page.html"><i
+                            class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
                 </li>
                 <li><a href="signIn_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
                 <li><a href="#"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
@@ -150,6 +145,7 @@
                     <p class="text-muted small mb-0">早安，Joy！這裡是您今天的業務概況。</p>
                 </div>
 
+                <!-- 打卡 -->
                 <div class="row g-4">
                     <div class="col-md-4">
                         <div class="card h-100 bento-card border-0 shadow-sm p-2">
@@ -175,8 +171,8 @@
                                     </div>
                                     <div class="col-6">
                                         <button
-                                            class="btn btn-light w-100 py-3 rounded-3 d-flex flex-column align-items-center text-muted border shadow-sm">
-                                            <i class="bi bi-box-arrow-right mb-1 fs-5"></i>
+                                            class="btn btn-light w-100 py-3 rounded-3 d-flex flex-column align-items-center text-muted shadow-sm">
+                                            <i class="bi bi-box-arrow-right mb-1 fs-5 text-danger"></i>
                                             <span class="small fw-bold">下班打卡</span>
                                         </button>
                                     </div>
@@ -203,8 +199,7 @@
                             <div class="card-body px-0 pb-0">
                                 <div class="list-group list-group-flush">
 
-                                    <div
-                                        class="list-group-item bg-transparent border-0 py-3 px-4 announcement-row border-start border-4 border-danger">
+                                    <div class="list-group-item bg-transparent border-0 py-3 px-4 announcement-row">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="badge bg-danger rounded-pill extra-small">重要</span>
@@ -215,17 +210,15 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="extra-small text-muted">
                                                 <span class="me-3"><i class="bi bi-person me-1"></i>發布人：系統管理員</span>
-                                                <span><i class="bi bi-diagram-3 me-1"></i>部門：#維運組</span>
+                                                <span><i class="bi bi-diagram-3 me-1"></i>部門：維運組</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div
-                                        class="list-group-item bg-transparent border-0 py-3 px-4 announcement-row border-start border-4 border-success">
+                                    <div class="list-group-item bg-transparent border-0 py-3 px-4 announcement-row">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <div class="d-flex align-items-center gap-2">
-                                                <span
-                                                    class="badge bg-success rounded-pill text-white extra-small">行政事務</span>
+                                                <span class="badge bg-soft-success text-success extra-small">行政事務</span>
                                                 <span class="fw-bold small text-dark">2026 年度員工旅遊報名開始</span>
                                             </div>
                                             <span class="text-muted extra-small">2026-05-20</span>
@@ -233,13 +226,12 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="extra-small text-muted">
                                                 <span class="me-3"><i class="bi bi-person me-1"></i>發布人：王大同</span>
-                                                <span><i class="bi bi-diagram-3 me-1"></i>部門：#人事部</span>
+                                                <span><i class="bi bi-diagram-3 me-1"></i>部門：人事部</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div
-                                        class="list-group-item bg-transparent border-0 py-3 px-4 announcement-row border-start border-4 border-primary">
+                                    <div class="list-group-item bg-transparent border-0 py-3 px-4 announcement-row">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <div class="d-flex align-items-center gap-2">
                                                 <span
@@ -251,7 +243,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="extra-small text-muted">
                                                 <span class="me-3"><i class="bi bi-person me-1"></i>發布人：李曉明</span>
-                                                <span><i class="bi bi-diagram-3 me-1"></i>部門：#資訊組</span>
+                                                <span><i class="bi bi-diagram-3 me-1"></i>部門：資訊組</span>
                                             </div>
                                         </div>
                                     </div>
@@ -289,7 +281,7 @@
                                                     <option value="SYSTEM">系統通知</option>
                                                     <option value="ADMIN">行政事務</option>
                                                     <option value="EMERGENCY">緊急公告</option>
-                                                     <option value="EMERGENCY">其他</option>
+                                                    <option value="EMERGENCY">其他</option>
                                                 </select>
                                             </div>
                                             <div class="col-6">
@@ -328,6 +320,8 @@
                         </div>
                     </div>
 
+
+                    <!-- 本周動態 -->
                     <div class="col-md-7">
                         <div class="card bento-card border-0 shadow-sm p-2 h-100">
                             <div
@@ -395,50 +389,59 @@
                         </div>
                     </div>
 
+
+                    <!-- 待辦事項 -->
                     <div class="col-md-5">
-                        <div class="card bento-card border-0 shadow-sm p-2 h-100">
+                        <div class="card bento-card border-0 shadow-sm h-100">
                             <div
                                 class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
-                                <div class="fw-bold small text-success"><i class="bi bi-check-circle-fill me-2"></i>待辦事項
+                                <div class="fw-bold small text-success"><i class="bi bi-journal-check me-2"></i>待辦任務
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <span class="badge bg-light text-muted me-2 extra-small">3 剩餘</span>
-                                    <button class="btn btn-primary btn-sm rounded-circle p-0"
-                                        style="width: 24px; height: 24px;"><i class="bi bi-plus"></i></button>
-                                </div>
+                                <span class="badge bg-light text-muted extra-small">5 剩餘</span>
                             </div>
-                            <div class="card-body p-0 mt-3 px-2">
-                                <div
-                                    class="task-card border rounded-3 p-3 mb-3 d-flex align-items-center bg-white shadow-none">
-                                    <div class="form-check m-0 me-3">
-                                        <input class="form-check-input rounded-circle p-2" type="checkbox">
+                            <div class="card-body">
+                                <div class="task-card border rounded-3 p-3 mb-2 bg-white">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="small fw-bold text-dark">核准 5 月份加班申請單</div>
+                                        <span class="badge bg-soft-primary text-primary extra-small">+500 XP</span>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <div class="d-flex justify-content-between align-items-start">
-                                            <div class="fw-bold small">核准 5 月份加班申請</div>
-                                            <span class="badge bg-soft-primary text-primary extra-small">+500 XP</span>
-                                        </div>
-                                        <div class="text-muted extra-small mt-1"><i class="bi bi-clock me-1"></i> 2小時內
-                                        </div>
+                                    <div class="extra-small text-muted mt-2">
+                                        <i class="bi bi-person me-1"></i> Rose 老師 · 人事部
                                     </div>
                                 </div>
-                                <div
-                                    class="task-card border rounded-3 p-3 mb-3 d-flex align-items-center bg-white shadow-none">
-                                    <div class="form-check m-0 me-3">
-                                        <input class="form-check-input rounded-circle p-2" type="checkbox">
+
+                                <div class="task-card border rounded-3 p-3 mb-2 bg-white">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="small fw-bold text-dark">整理週會報告內容</div>
+                                        <span class="badge bg-soft-primary text-primary extra-small">+100 XP</span>
                                     </div>
-                                    <div class="flex-grow-1">
-                                        <div class="d-flex justify-content-between align-items-start">
-                                            <div class="fw-bold small">回覆客戶 A 公司報價</div>
-                                            <span class="badge bg-soft-primary text-primary extra-small">+200 XP</span>
-                                        </div>
-                                        <div class="text-muted extra-small mt-1"><i
-                                                class="bi bi-flag-fill text-danger me-1"></i> 高優先度</div>
+                                    <div class="extra-small text-muted mt-2">
+                                        <i class="bi bi-person me-1"></i> 組長 · 資訊組
                                     </div>
+                                </div>
+
+                                <div class="task-card border rounded-3 p-3 mb-3 bg-white">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="small fw-bold text-dark">回覆客戶 A 公司報價</div>
+                                        <span class="badge bg-soft-primary text-primary extra-small">+200 XP</span>
+                                    </div>
+                                    <div class="extra-small text-muted mt-2">
+                                        <i class="bi bi-person me-1"></i> 業務經理 · 業務部
+                                    </div>
+                                </div>
+
+                                <div class="text-center mt-3 pt-2 border-top">
+                                    <a href="quest_staff.html" class="text-decoration-none small text-muted fw-bold">
+                                        查看更多任務 <i class="bi bi-arrow-right-short"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
+
 
                 </div>
             </div>

@@ -33,16 +33,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function toggleTask(checkbox) {
-        const taskItem = checkbox.closest('.task-item');
-        const statusLabel = taskItem.querySelector('.completed-status');
-        const badge = taskItem.querySelector('.badge');
 
-        if (checkbox.checked) {
-            taskItem.classList.add('task-completed');
-            statusLabel.classList.remove('d-none');
-        } else {
-            taskItem.classList.remove('task-completed');
-            statusLabel.classList.add('d-none');
-        }
+
+
+
+    function showMoreTasks() {
+    const extraTasks = document.querySelectorAll('.extra-tasks');
+    const btnMore = document.getElementById('btn-more');
+    
+    extraTasks.forEach(task => {
+        task.classList.toggle('d-none');
+    });
+
+    if (btnMore.innerText.includes('查看更多')) {
+        btnMore.innerHTML = '收合內容 <i class="bi bi-chevron-up"></i>';
+    } else {
+        btnMore.innerHTML = '查看更多 <i class="bi bi-chevron-down"></i>';
     }
+}
