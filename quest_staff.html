@@ -15,6 +15,75 @@
     <title>Enterprise System</title>
 </head>
 
+<!-- 任務詳情 -->
+<div class="modal fade" id="taskDetailModal" tabindex="-1" aria-labelledby="taskDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title w-100 text-center fw-bold" id="taskDetailModalLabel">範例任務 1</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row g-0 border border-secondary mb-3 text-center">
+                            <div class="col-6 border-end border-secondary p-2">
+                                2026-01-01 ~ 2026-05-10
+                            </div>
+                            <div class="col-3 border-end border-secondary p-2">發布人</div>
+                            <div class="col-3 p-2">積分</div>
+                        </div>
+
+                        <div class="border border-secondary p-3" style="min-height: 200px;">
+                            <p class="fw-bold mb-2">任務詳情：</p>
+                            <p class="text-secondary">劈哩卡劈哩拉拉貝貝魯多，唸完這段咒語再去抽卡</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 d-flex flex-column">
+                        <div class="border border-secondary flex-grow-1 p-2 text-center mb-3">
+                            <p class="border-bottom border-secondary pb-2 mb-2">隊員</p>
+                            <div class="d-grid gap-2">
+                                <div class="border border-secondary py-1">丁丁</div>
+                                <div class="border border-secondary py-1">拉拉</div>
+                                <div class="border border-secondary py-1">迪西</div>
+                                <div class="border border-secondary py-1">小波</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex border border-secondary">
+                            <button class="btn btn-dark w-100 rounded-0 border-end border-secondary" id="taskMainBtn">
+                                完成任務
+                            </button>
+
+                            <div class="dropdown">
+                                <button class="btn btn-dark h-100 rounded-0 dropdown-toggle dropdown-toggle-split px-3"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
+                                    <li><a class="dropdown-item" href="#" onclick="updateTaskAction('完成任務')">完成任務</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateTaskAction('任務延期')">任務延期</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider border-secondary">
+                                    </li>
+                                    <li><a class="dropdown-item text-danger" href="#"
+                                            onclick="updateTaskAction('放棄任務')">放棄任務</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <body>
 
     <!-- 上方導覽列 -->
@@ -95,152 +164,114 @@
         </nav>
 
 
-        <!-- 公佈欄 -->
-        <section id="content" class="p-4 ">
+        <!-- 主頁內容 -->
+        <section id="content" class="p-4 w-100">
             <div class="container-fluid">
-                <h2 class="mb-4">系統主頁面</h2>
+                <h2 class="mb-4">任務管理</h2>
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-md-5">
                         <div class="card mb-4">
-                            <div class="card-header fw-bold">
-                                <i class="bi bi-megaphone me-2"></i>公司公布欄
+                            <div class="card-header fw-bold bg-dark text-white text-center">
+                                進行中任務
                             </div>
-
-                            <div class="card-body" style="min-height: 300px;">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        2026 年度員工旅遊報名開始 <span class="badge bg-secondary rounded-pill">2024-05-20</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        端午節連假出勤調查 <span class="badge bg-secondary rounded-pill">2024-05-18</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        系統維護通知 (週六凌晨) <span class="badge bg-danger rounded-pill">重要</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-
-                        <!-- 代辦事項 -->
-                        <div class="card ">
-                            <div class="card-header fw-bold">
-                                <i class="bi bi-check2-square me-2"></i>待接任務
-                            </div>
-                            <div class="card-body" style="min-height: 300px;">
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" id="task1">
-                                    <label class="form-check-label" for="task1">核准 5 月份加班申請單</label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" id="task2">
-                                    <label class="form-check-label" for="task2">回覆客戶 A 公司報價郵件</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="task3">
-                                    <label class="form-check-label" for="task3">整理週會報告</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- 行事曆 -->
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header fw-bold d-flex justify-content-between align-items-center">
-                                <span><i class="bi bi-calendar3 me-2"></i>公司內部行事曆</span>
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-outline-secondary">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-secondary">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="text-center mb-3">
-                                    <h5 class="mb-0">2026年 2月</h5>
-                                </div>
-
-                                <table class="table table-bordered text-center calendar-table mb-0">
-                                    <thead>
-                                        <tr class="table-light">
-                                            <th class="text-danger border-0">日</th>
-                                            <th class="border-0">一</th>
-                                            <th class="border-0">二</th>
-                                            <th class="border-0">三</th>
-                                            <th class="border-0">四</th>
-                                            <th class="border-0">五</th>
-                                            <th class="text-primary border-0">六</th>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>任務名稱</th>
+                                            <th>任務概要</th>
+                                            <th>截止時間</th>
+                                            <th>更多</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-muted opacity-50">25</td>
-                                            <td class="text-muted opacity-50">26</td>
-                                            <td class="text-muted opacity-50">27</td>
-                                            <td class="text-muted opacity-50">28</td>
-                                            <td class="text-muted opacity-50">29</td>
-                                            <td class="text-muted opacity-50">30</td>
-                                            <td class="text-muted opacity-50">31</td>
+                                            <td>範例任務 1</td>
+                                            <td>任務概要 1</td>
+                                            <td>2026-02-26</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskDetailModal">
+                                                    ...
+                                                </button>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>5</td>
-                                            <td>6</td>
-                                            <td>7</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>9</td>
-                                            <td>10</td>
-                                            <td>11</td>
-                                            <td>12</td>
-                                            <td>13</td>
-                                            <td>14</td>
-                                        </tr>
-                                        <tr>
-                                            <td>15</td>
-                                            <td>16</td>
-                                            <td>17</td>
-                                            <td>18</td>
-                                            <td>19</td>
-                                            <td>20</td>
-                                            <td>21</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-primary fw-bold">22</td>
-                                            <td>23</td>
-                                            <td>24</td>
-                                            <td>25</td>
-                                            <td>26</td>
-                                            <td>27</td>
-                                            <td>28</td>
+                                            <td>範例任務 2</td>
+                                            <td>任務概要 2</td>
+                                            <td>2026-07-01</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskDetailModal">
+                                                    ...
+                                                </button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <div class="mt-4 pt-3 border-top">
-                                    <h6 class="fw-bold"><i class="bi bi-info-circle me-2"></i>本日活動</h6>
-                                    <ul class="small list-unstyled mb-0">
-                                        <li><span class="text-primary">●</span> 14:00 專案進度會議</li>
-                                        <li><span class="text-success">●</span> 17:00 系統資料備份</li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
-
                     </div>
 
+                    <div class="col-md-7">
+                        <div class="card mb-4">
+                            <div class="card-header fw-bold bg-dark text-white text-center">
+                                可領取任務
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>任務名稱</th>
+                                            <th>任務概要</th>
+                                            <th>截止時間</th>
+                                            <th>積分</th>
+                                            <th>更多</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>待接任務 1</td>
+                                            <td>任務概要 1</td>
+                                            <td>2026-03-03</td>
+                                            <td><span class="badge bg-primary">積分</span></td>
+                                            <td><button class="btn btn-sm btn-outline-secondary">...</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>待接任務 2</td>
+                                            <td>任務概要 2</td>
+                                            <td>2026-05-26</td>
+                                            <td><span class="badge bg-primary">積分</span></td>
+                                            <td><button class="btn btn-sm btn-outline-secondary">...</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>待接任務 3</td>
+                                            <td>任務概要 3</td>
+                                            <td>2026-10-26</td>
+                                            <td><span class="badge bg-primary">積分</span></td>
+                                            <td><button class="btn btn-sm btn-outline-secondary">...</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header fw-bold bg-dark text-white text-center">
+                                歷史紀錄
+                            </div>
+                            <div class="card-body" style="min-height: 150px;">
+                                <p class="text-center text-muted mt-4">暫無歷史紀錄</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </div>
@@ -248,5 +279,23 @@
 
 
 </body>
+<script>
+    function updateTaskAction(actionName) {
+        // 取得主按鈕元素
+        const mainBtn = document.getElementById('taskMainBtn');
+
+        // 更新按鈕文字
+        mainBtn.innerText = actionName;
+
+        // 根據動作執行邏輯 (這裡可以依需求擴充)
+        console.log("當前選擇動作：" + actionName);
+
+        if (actionName === '放棄任務') {
+            mainBtn.classList.add('text-danger');
+        } else {
+            mainBtn.classList.remove('text-danger');
+        }
+    }
+</script>
 
 </html>
