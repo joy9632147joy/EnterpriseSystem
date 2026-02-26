@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="./ESCss/MainPage.css">
+    <script src="./ESJS/MainPage.js"></script>
+
+    <title>Enterprise System</title>
+</head>
+
+<body>
+
+    <!-- 上方導覽列 -->
+    <nav class="navbar navbar-dark sticky-top">
+
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+            <!-- 通知 -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <button class="btn envelope-btn me-1" id="envelope">
+                    <i class="bi bi-envelope"></i>
+                </button>
+
+                <!-- 右上角使用者選單 -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <img src="Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                        <span class="d-none d-sm-inline">Joy</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="Login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                                Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 側邊欄 -->
+    <div class="d-flex" id="sidebarD">
+
+        <nav class="list-unstyled sidebar" id="sidebarN">
+
+            <!-- LOGO -->
+            <div class="d-flex align-items-center justify-content-center"
+                style="height: 58px; background-color: #1f2d3a;">
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="MainPage.html">Admin ES</a>
+            </div>
+
+            <!-- 使用者資訊 -->
+            <div class="sidebar-user">
+                <div class="d-flex align-items-center p-3">
+                    <img src="Img/smile.jpg" class="rounded-circle me-3" width="50" height="50">
+                    <div class="text-white">
+                        <small class=" d-block opacity-75">Welcome, <strong>Joy</strong></small>
+                        <small>LV</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 選單 -->
+            <ul class="d-flex flex-column list-unstyled">
+                <li class="menu-category fw-bold">GENERAL</li>
+                <li><a href="MainPage.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                </li>
+                <li><a href="SignInOut.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
+                <li><a href="#"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
+                <li><a href="#"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
+                <li class="active"><a href="FileSys.html"><i
+                            class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
+                <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
+                <li><a href="#"><i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="#"><i class="bi bi-gear-fill me-3"></i><span>帳號設定</span></a></li>
+            </ul>
+        </nav>
+
+
+        <!-- 公佈欄 -->
+        <section id="content" class="p-4 w-100 bg-light">
+            <div class="container-fluid h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="mb-0">文件管理</h2>
+                    <div class="d-flex gap-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="搜尋文件...">
+                            <button class="btn btn-outline-secondary" type="button"><i
+                                    class="bi bi-search"></i></button>
+                        </div>
+                        <button class="btn btn-primary text-nowrap"><i
+                                class="bi bi-cloud-arrow-up me-2"></i>上傳檔案</button>
+                    </div>
+                </div>
+
+                <div class="row h-100">
+                    <div class="col-md-3 col-lg-2 mb-3">
+                        <div class="card shadow-sm h-100 d-flex flex-column">
+                            <div class="card-header bg-white fw-bold">
+                                <i class="bi bi-folder-fill text-warning me-2"></i>部門分類
+                            </div>
+                            <div class="card-body p-0 flex-grow-1">
+                                <div class="list-group list-group-flush border-0">
+                                    <button class="list-group-item list-group-item-action active border-0"><i
+                                            class="bi bi-building me-2"></i>總管理處</button>
+                                    <button class="list-group-item list-group-item-action border-0"><i
+                                            class="bi bi-laptop me-2"></i>研發部</button>
+                                    <button class="list-group-item list-group-item-action border-0"><i
+                                            class="bi bi-people me-2"></i>人資部</button>
+                                    <button class="list-group-item list-group-item-action border-0"><i
+                                            class="bi bi-graph-up-arrow me-2"></i>業務部</button>
+                                    <button class="list-group-item list-group-item-action border-0"><i
+                                            class="bi bi-calculator me-2"></i>財務部</button>
+                                </div>
+                            </div>
+
+                            <div class="card-footer bg-light border-top pt-3 pb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small fw-bold text-secondary"><i
+                                            class="bi bi-cloud-check me-1"></i>儲存空間</span>
+                                    <span class="small text-secondary fw-bold">75%</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="small text-muted mt-2 text-end">已使用 75 GB / 100 GB</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-lg-10">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header bg-white d-flex align-items-center">
+                                <nav aria-label="breadcrumb" class="mb-0">
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item"><a href="#" class="text-decoration-none">首頁</a></li>
+                                        <li class="breadcrumb-item"><a href="#" class="text-decoration-none">總管理處</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">2026年度規章</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col" class="ps-4">檔案名稱</th>
+                                                <th scope="col">擁有者</th>
+                                                <th scope="col">最後修改時間</th>
+                                                <th scope="col">大小</th>
+                                                <th scope="col" class="text-end pe-4">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <i class="bi bi-folder-fill text-warning fs-5 me-2"></i>
+                                                    <a href="#" class="text-dark text-decoration-none">Q1 董事會會議紀錄</a>
+                                                </td>
+                                                <td>系統管理員</td>
+                                                <td>2026-02-20</td>
+                                                <td>--</td>
+                                                <td class="text-end pe-4">
+                                                    <button class="btn btn-sm btn-light"><i
+                                                            class="bi bi-three-dots-vertical"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-bs-toggle="offcanvas" data-bs-target="#filePreviewPane"
+                                                style="cursor: pointer;">
+                                                <td class="ps-4">
+                                                    <i class="bi bi-file-earmark-pdf-fill text-danger fs-5 me-2"></i>
+                                                    員工績效考核辦法_v2.pdf
+                                                </td>
+                                                <td>HR-王小明</td>
+                                                <td>2026-02-24</td>
+                                                <td>2.4 MB</td>
+                                                <td class="text-end pe-4">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"><i
+                                                            class="bi bi-download"></i></button>
+                                                    <button class="btn btn-sm btn-light"><i
+                                                            class="bi bi-three-dots-vertical"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr data-bs-toggle="offcanvas" data-bs-target="#filePreviewPane"
+                                                style="cursor: pointer;">
+                                                <td class="ps-4">
+                                                    <i class="bi bi-file-earmark-excel-fill text-success fs-5 me-2"></i>
+                                                    2026_差勤統計表_02月.xlsx
+                                                </td>
+                                                <td>Admin</td>
+                                                <td>2026-02-25</td>
+                                                <td>850 KB</td>
+                                                <td class="text-end pe-4">
+                                                    <button class="btn btn-sm btn-outline-primary me-1"><i
+                                                            class="bi bi-download"></i></button>
+                                                    <button class="btn btn-sm btn-light"><i
+                                                            class="bi bi-three-dots-vertical"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="filePreviewPane" style="width: 400px;">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title text-truncate"><i
+                        class="bi bi-file-earmark-pdf-fill text-danger me-2"></i>員工績效考核辦法_v2.pdf</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column">
+                <div class="bg-light border rounded d-flex align-items-center justify-content-center mb-4"
+                    style="height: 250px;">
+                    <span class="text-muted"><i class="bi bi-eye text-secondary me-2"></i>檔案預覽區域</span>
+                </div>
+
+                <h6 class="fw-bold mb-3">詳細資訊</h6>
+                <ul class="list-group list-group-flush text-secondary small mb-auto">
+                    <li class="list-group-item d-flex justify-content-between px-0"><span>類型</span> <span>PDF 文件</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between px-0"><span>大小</span> <span>2.4 MB</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between px-0"><span>建立者</span> <span>HR-王小明</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between px-0"><span>建立時間</span> <span>2026-02-24
+                            10:30 AM</span></li>
+                    <li class="list-group-item d-flex justify-content-between px-0"><span>權限</span> <span
+                            class="badge bg-info">僅限內部員工</span></li>
+                </ul>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button class="btn btn-primary"><i class="bi bi-download me-2"></i>下載檔案</button>
+                    <button class="btn btn-outline-danger"><i class="bi bi-trash me-2"></i>刪除檔案</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

@@ -27,29 +27,12 @@
                 </button>
             </div>
 
-
-
             <!-- 通知 -->
             <div class="d-flex align-items-center ms-auto">
-
-                <div class="ms-auto d-none d-md-block me-3">
-                    <div class="input-group search-box">
-                        <span class="input-group-text ">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="搜尋..."
-                            aria-label="Search">
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center">
-                </div>
 
                 <button class="btn envelope-btn me-1" id="envelope">
                     <i class="bi bi-envelope"></i>
                 </button>
-
-
 
                 <!-- 右上角使用者選單 -->
                 <div class="dropdown">
@@ -79,42 +62,22 @@
 
         <nav class="list-unstyled sidebar" id="sidebarN">
 
-            <!-- LOGO 圖文-->
+            <!-- LOGO -->
             <div class="d-flex align-items-center justify-content-center"
                 style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="MainPage.html">ES<span> Admin</span></a>
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="MainPage.html">Admin ES</a>
             </div>
 
             <!-- 使用者資訊 -->
-            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="position-relative">
-                        <img src="Img/smile.jpg" class="rounded-circle" width="55" height="55"
-                            style="object-fit: cover; ">
-                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
-                        </span>
-                    </div>
-
-                    <div class="ms-3 text-white">
-                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
-                        <div class="d-flex align-items-center">
-                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
-                            <small class="xp-text">6850 XP</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="px-1">
-                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
-                        <span class="opacity-75">Level</span>
-                        <span class="fw-bold">69%</span>
-                    </div>
-                    <div class="progress custom-progress">
-                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
+            <div class="sidebar-user">
+                <div class="d-flex align-items-center p-3">
+                    <img src="Img/smile.jpg" class="rounded-circle me-3" width="50" height="50">
+                    <div class="text-white">
+                        <small class=" d-block opacity-75">Welcome, <strong>Joy</strong></small>
+                        <small>LV</small>
                     </div>
                 </div>
             </div>
-
 
             <!-- 選單 -->
             <ul class="d-flex flex-column list-unstyled">
@@ -126,17 +89,7 @@
                 <li><a href="#"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
                 <li><a href="FileSys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
                 <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
-                <li>
-                    <button class="dropdown-btn">
-                        <i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span>
-                        <i class="bi bi-chevron-left ms-auto dropdown-caret" style="display: hidden;"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="#">業務部</a>
-                        <a href="#">財務部</a>
-                        <a href="#">企業部</a>
-                    </div>
-                </li>
+                <li><a href="#"><i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span></a></li>
                 <li><a href="#"><i class="bi bi-gear-fill me-3"></i><span>帳號設定</span></a></li>
             </ul>
         </nav>
