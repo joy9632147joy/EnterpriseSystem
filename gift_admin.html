@@ -123,16 +123,40 @@
     </div>
 </div>
 <!-- 兌換確認 -->
-<div class="modal fade" id="confirmModal" tabindex="-1">
+<div class="modal fade" id="confirmApprovalModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-secondary" style="max-width: 400px; margin: auto;">
+            <div class="modal-body text-center p-4">
+                <h5 class="mb-3 fw-bold">確認送出簽核？</h5>
+                <div class="text-start bg-black p-3 border border-secondary mb-3">
+                    <p class="mb-1 small">對象：<span id="modal-emp-name"></span></p>
+                    <p class="mb-1 small">項目：<span id="modal-reward-item"></span></p>
+                    <p class="mb-0 small">結果：<span id="modal-action-result" class="fw-bold"></span></p>
+                </div>
+                <div class="row g-0 border border-secondary">
+                    <div class="col-6 border-end border-secondary">
+                        <button class="btn btn-dark w-100 py-3 rounded-0" data-bs-dismiss="modal">確定</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-dark w-100 py-3 rounded-0" data-bs-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmExchangeModal" tabindex="-1">
     <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content bg-dark text-white border-secondary">
             <div class="modal-body text-center p-4 border-bottom border-secondary">
-                <h5 class="mb-0">確認兌換？</h5>
+                <h5 class="mb-2">確認兌換？</h5>
+                <p class="small text-secondary mb-0" id="exchange-item-info"></p>
             </div>
             <div class="d-flex">
-                <button type="button" class="btn btn-dark w-50 rounded-0 border-end border-secondary py-3"
+                <button class="btn btn-dark w-50 rounded-0 border-end border-secondary py-3"
                     data-bs-dismiss="modal">確認</button>
-                <button type="button" class="btn btn-dark w-50 rounded-0 py-3" data-bs-dismiss="modal">取消</button>
+                <button class="btn btn-dark w-50 rounded-0 py-3" data-bs-dismiss="modal">取消</button>
             </div>
         </div>
     </div>
@@ -206,15 +230,15 @@
             <!-- 選單 -->
             <ul class="d-flex flex-column list-unstyled">
                 <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="mainPage.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                <li class="active"><a href="main_page.html"><i
+                            class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
                 </li>
                 <li><a href="signin_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
                 <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
-                <li class="active"><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a>
-                </li>
+                <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
                 <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
                 <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
                 <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
             </ul>
@@ -222,10 +246,10 @@
 
 
         <!-- 主頁內容 -->
-        <section id="content" class="p-4 w-100 flex-grow-1 bg-dark text-white">
+        <section id="content" class="p-4 w-100 bg-dark text-white flex-grow-1">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between align-items-start mb-4">
-                    <h2 class="mb-0">獎勵兌換</h2>
+                    <h2 class="mb-0">獎勵兌換 <span class="badge bg-danger fs-6">管理端</span></h2>
 
                     <div class="border border-secondary p-3 bg-black" style="min-width: 280px;">
                         <div class="d-flex align-items-center mb-2">
@@ -233,71 +257,78 @@
                                 height="60">
                             <div>
                                 <p class="mb-0 fw-bold">Joy</p>
-                                <small class="text-secondary">員工名稱</small>
+                                <small class="text-secondary">部門主管</small>
                             </div>
                         </div>
-
-                        <div class="mt-2 py-2 border-top border-secondary">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <small class="text-secondary">總積分：</small>
-                                <span class="fw-bold text-white">1,500 pt</span>
+                        <div class="mt-2 py-2 border-top border-secondary small">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-secondary small">擁有積分 (含審核)：</span>
+                                <span>1,500 pt</span>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <small class="text-secondary">可使用積分：</small>
-                                <span class="fw-bold text-primary">1,250 pt</span>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="text-secondary small">可使用積分：</span>
+                                <span class="text-primary fw-bold">1,250 pt</span>
                             </div>
                             <button class="btn btn-sm btn-outline-light w-100" data-bs-toggle="modal"
-                                data-bs-target="#historyModal">
-                                兌換紀錄
-                            </button>
+                                data-bs-target="#historyModal">兌換紀錄</button>
                         </div>
                     </div>
                 </div>
 
-                <ul class="nav nav-tabs border-secondary mb-4" id="rewardTabs" role="tablist">
+                <div class="card bg-black border-secondary mb-5">
+                    <div class="card-header border-secondary text-center fw-bold bg-dark text-white">簽核清單</div>
+                    <div class="card-body p-0">
+                        <table class="table table-dark table-hover mb-0 text-center align-middle border-secondary">
+                            <thead class="small text-secondary">
+                                <tr>
+                                    <th>申請時間</th>
+                                    <th>員工姓名</th>
+                                    <th>獎勵名稱</th>
+                                    <th>處理動作</th>
+                                    <th>確認</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="row-1">
+                                    <td>2026-02-26 14:00</td>
+                                    <td class="emp-name">小明</td>
+                                    <td class="reward-name">範例獎勵 A</td>
+                                    <td style="width: 150px;">
+                                        <select
+                                            class="form-select form-select-sm bg-dark text-white border-secondary action-select">
+                                            <option value="核准">核准</option>
+                                            <option value="駁回">駁回</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary"
+                                            onclick="openApprovalModal(this)">提交</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs border-secondary mb-4" id="rewardTabs">
                     <li class="nav-item">
                         <button class="nav-link active bg-dark text-white border-secondary" data-bs-toggle="tab"
                             data-bs-target="#cat1">獎勵類別 1</button>
                     </li>
-                    <li class="nav-item">
-                        <button class="nav-link bg-dark text-white border-secondary" data-bs-toggle="tab"
-                            data-bs-target="#cat2">獎勵類別 2</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link bg-dark text-white border-secondary" data-bs-toggle="tab"
-                            data-bs-target="#cat3">獎勵類別 3</button>
-                    </li>
                 </ul>
-
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cat1">
                         <div class="row g-4">
                             <div class="col-md-6 col-lg-4">
                                 <div class="d-flex border border-secondary bg-black align-items-stretch"
-                                    style="height: 120px;">
+                                    style="height: 100px;">
                                     <div
                                         class="p-3 flex-grow-1 border-end border-secondary d-flex flex-column justify-content-center">
-                                        <h5 class="mb-1">獎勵範例 1</h5>
-                                        <small class="text-secondary">剩餘數量：10</small>
+                                        <h6 class="mb-1">獎勵範例 1</h6>
+                                        <small class="text-secondary">剩餘：10</small>
                                     </div>
-                                    <button class="btn btn-dark px-4 rounded-0 hover-pt" data-bs-toggle="modal"
-                                        data-bs-target="#confirmModal">
-                                        50pt
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="d-flex border border-secondary bg-black align-items-stretch"
-                                    style="height: 120px;">
-                                    <div
-                                        class="p-3 flex-grow-1 border-end border-secondary d-flex flex-column justify-content-center">
-                                        <h5 class="mb-1">獎勵範例 2</h5>
-                                        <small class="text-secondary">剩餘數量：5</small>
-                                    </div>
-                                    <button class="btn btn-dark px-4 rounded-0 hover-pt" data-bs-toggle="modal"
-                                        data-bs-target="#confirmModal">
-                                        50pt
-                                    </button>
+                                    <button class="btn btn-dark px-4 rounded-0 exchange-btn"
+                                        onclick="openExchangeModal('獎勵範例 1', '50pt')">50pt</button>
                                 </div>
                             </div>
                         </div>
@@ -308,6 +339,37 @@
 
     </div>
 
+    <script>
+        // 處理簽核清單的彈窗資訊
+        function openApprovalModal(btn) {
+            const row = btn.closest('tr');
+            const empName = row.querySelector('.emp-name').innerText;
+            const rewardName = row.querySelector('.reward-name').innerText;
+            const action = row.querySelector('.action-select').value;
+            const resultSpan = document.getElementById('modal-action-result');
+
+            // 填入資料
+            document.getElementById('modal-emp-name').innerText = empName;
+            document.getElementById('modal-reward-item').innerText = rewardName;
+            resultSpan.innerText = action;
+
+            // 根據結果改變顏色
+            if (action === '核准') {
+                resultSpan.className = 'fw-bold text-info';
+            } else {
+                resultSpan.className = 'fw-bold text-danger';
+            }
+
+            // 顯示彈窗
+            new bootstrap.Modal(document.getElementById('confirmApprovalModal')).show();
+        }
+
+        // 處理主管個人兌換的彈窗資訊
+        function openExchangeModal(name, cost) {
+            document.getElementById('exchange-item-info').innerText = `${name} (消耗 ${cost})`;
+            new bootstrap.Modal(document.getElementById('confirmExchangeModal')).show();
+        }
+    </script>
 
 
 </body>
