@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="./ESCss/MainPage.css">
+    <script src="./ESJS/MainPage.js"></script>
+
+    <title>Enterprise System</title>
+    <style>
+        /* 內容區塊背景 */
+        #content {
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        /* 頂部 Hero 卡片 */
+        .profile-hero {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 85px;
+            height: 85px;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #f1f5f9;
+        }
+
+        .camera-trigger {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #64748b;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            border: 2px solid white;
+        }
+
+        /* 狀態標籤 */
+        .badge-status {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .badge-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-fulltime {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        /* 資訊卡片 */
+        .info-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .card-header-custom {
+            padding: 12px 20px;
+            background: #fafafa;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .btn-edit-text {
+            background: #f0f9ff;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            font-size: 0.8rem;
+            padding: 2px 10px;
+            border-radius: 6px;
+        }
+
+        /* 左側人員清單 Hover 與漸變效果 */
+        .accordion-collapse .list-group-item-action {
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* 未選取狀態的 hover 效果 (淺藍灰色底) */
+        .accordion-collapse .list-group-item-action:not(.active):hover {
+            background-color: #f1f5f9 !important;
+            transform: translateX(4px);
+            /* 滑鼠游標靠近時微微向右浮動 */
+        }
+
+        /* 選取狀態 (Active) 的確保設定 */
+        .accordion-collapse .list-group-item-action.active {
+            background-color: #f8fafc !important;
+            color: #000 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 上方導覽列 -->
+    <nav class="navbar navbar-dark sticky-top">
+
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+
+
+            <!-- 通知 -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <div class="ms-auto d-none d-md-block me-3">
+                    <div class="input-group search-box">
+                        <span class="input-group-text ">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center">
+                </div>
+
+                <button class="btn envelope-btn me-1" id="envelope">
+                    <i class="bi bi-envelope"></i>
+                </button>
+
+
+
+                <!-- 右上角使用者選單 -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <img src="Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                        <span class="d-none d-sm-inline">Joy</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="Login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                                Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 側邊欄 -->
+    <div class="d-flex" id="sidebarD">
+
+        <nav class="list-unstyled sidebar" id="sidebarN">
+
+            <!-- LOGO 圖文-->
+            <div class="d-flex align-items-center justify-content-center"
+                style="height: 58px; background-color: #1f2d3a;">
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="MainPage.html">ES<span> Admin</span></a>
+            </div>
+
+            <!-- 使用者資訊 -->
+            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="position-relative">
+                        <img src="Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                            style="object-fit: cover; ">
+                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
+                        </span>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
+                        <div class="d-flex align-items-center">
+                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
+                            <small class="xp-text">6850 XP</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-1">
+                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
+                        <span class="opacity-75">Level</span>
+                        <span class="fw-bold">69%</span>
+                    </div>
+                    <div class="progress custom-progress">
+                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 選單 -->
+            <ul class="d-flex flex-column list-unstyled">
+                <li class="menu-category fw-bold">GENERAL</li>
+                <li><a href="MainPage.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                </li>
+                <li><a href="signin_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
+                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
+                <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
+                <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
+                <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
+                <li class="active"><a href="contacts.html"><i
+                            class="bi bi-calendar-check-fill me-3"></i><span>通訊錄</span></a></li>
+                <li class="menu-category fw-bold">系統設定</li>
+                <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
+            </ul>
+        </nav>
+
+        <section id="content" class="p-4 flex-grow-1 bg-light">
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+                <h4 class="fw-bold mb-0">企業通訊錄</h4>
+            </div>
+
+            <div class="row h-100" style="min-height: 70vh;">
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="card shadow-sm h-100 border-0 rounded-3">
+                        <div class="card-header bg-white border-bottom p-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i
+                                        class="bi bi-search text-muted"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0"
+                                    placeholder="搜尋姓名、分機或部門...">
+                            </div>
+                        </div>
+
+                        <div class="card-body p-0 overflow-auto" style="max-height: 65vh;">
+                            <div class="accordion accordion-flush" id="departmentAccordion">
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button fw-bold bg-light" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#dept-rd">
+                                            <i class="bi bi-laptop me-2 text-primary"></i> 研發部 (2)
+                                        </button>
+                                    </h2>
+                                    <div id="dept-rd" class="accordion-collapse collapse show"
+                                        data-bs-parent="#departmentAccordion">
+                                        <div class="list-group list-group-flush">
+                                            <button
+                                                class="list-group-item list-group-item-action d-flex align-items-center p-3"
+                                                onclick="loadProfile('joy', this)">
+                                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joy"
+                                                    class="rounded-circle me-3 bg-white" width="40" height="40">
+                                                <div>
+                                                    <div class="fw-bold">Joy Chen</div>
+                                                    <small class="opacity-75">Full-stack Developer</small>
+                                                </div>
+                                            </button>
+                                            <button
+                                                class="list-group-item list-group-item-action d-flex align-items-center p-3"
+                                                onclick="loadProfile('alex', this)">
+                                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"
+                                                    class="rounded-circle me-3 bg-light" width="40" height="40">
+                                                <div>
+                                                    <div class="fw-bold">Alex Lin</div>
+                                                    <small class="text-muted">Backend Engineer</small>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fw-bold bg-light" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#dept-hr">
+                                            <i class="bi bi-people me-2 text-success"></i> 人資部 (1)
+                                        </button>
+                                    </h2>
+                                    <div id="dept-hr" class="accordion-collapse collapse"
+                                        data-bs-parent="#departmentAccordion">
+                                        <div class="list-group list-group-flush">
+                                            <button
+                                                class="list-group-item list-group-item-action d-flex align-items-center p-3"
+                                                onclick="loadProfile('sarah', this)">
+                                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+                                                    class="rounded-circle me-3 bg-light" width="40" height="40">
+                                                <div>
+                                                    <div class="fw-bold">Sarah Wang</div>
+                                                    <small class="text-muted">HR Manager</small>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+
+                    <div id="empty-state"
+                        class="card shadow-sm border-0 h-100 rounded-3 d-none d-flex align-items-center justify-content-center bg-white"
+                        style="min-height: 500px;">
+                        <div class="text-center text-muted">
+                            <i class="bi bi-person-vcard text-secondary opacity-25" style="font-size: 6rem;"></i>
+                            <h5 class="mt-3 text-secondary">請點選左側人員以檢視詳細資料</h5>
+                            <p class="small opacity-75">您可以使用上方搜尋列快速尋找同事</p>
+                        </div>
+                    </div>
+
+                    <div id="profile-card" class="card shadow-sm border-0 h-100 rounded-3 d-none">
+                        <div class="card-header bg-white border-0 pt-4 pb-0 px-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="d-flex align-items-center">
+                                    <img id="profile-avatar" src=""
+                                        class="rounded-circle border shadow-sm me-4 bg-light" width="100" height="100">
+                                    <div>
+                                        <h3 class="fw-bold mb-1"><span id="profile-name-en"></span> <span
+                                                class="fs-5 text-muted" id="profile-name-zh"></span></h3>
+                                        <p id="profile-role" class="text-primary fw-bold mb-2"></p>
+                                        <span
+                                            class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1"><i
+                                                class="bi bi-circle-fill small me-1"></i>在職 (Active)</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                    <i class="bi bi-chat-dots me-1"></i> 發送訊息
+                                </button>
+                            </div>
+                            <hr class="mt-4 mb-0 text-secondary opacity-25">
+                        </div>
+
+                        <div class="card-body p-4">
+                            <div class="row g-4">
+                                <div class="col-12">
+                                    <h6 class="fw-bold text-secondary mb-3"><i
+                                            class="bi bi-telephone-fill me-2"></i>聯絡資訊</h6>
+                                    <div class="row gy-3 bg-light p-3 rounded-3">
+                                        <div class="col-sm-6">
+                                            <div class="text-muted small mb-1">公司分機</div>
+                                            <div id="profile-ext" class="fw-bold fs-5 text-dark"></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-muted small mb-1">公務手機</div>
+                                            <div id="profile-phone" class="fw-bold text-dark"></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-muted small mb-1">電子郵件</div>
+                                            <a id="profile-email" href="#" class="text-decoration-none fw-bold"></a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-muted small mb-1">辦公室位置</div>
+                                            <div id="profile-location" class="fw-bold text-dark"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <h6 class="fw-bold text-secondary mb-3"><i
+                                            class="bi bi-diagram-3-fill me-2"></i>組織與職務</h6>
+                                    <div class="row gy-3">
+                                        <div class="col-sm-6 border-end">
+                                            <div class="text-muted small mb-1">所屬部門</div>
+                                            <div id="profile-dept" class="fw-bold"></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-muted small mb-1">直屬主管</div>
+                                            <div id="profile-manager" class="fw-bold"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // 模擬從後端資料庫撈出來的員工資料 (JSON格式)
+            const employeeData = {
+                'joy': {
+                    nameEn: 'Joy Chen', nameZh: '(陳喬伊)', role: 'Full-stack Developer',
+                    avatarSeed: 'Joy', ext: '#8801', phone: '0912-345-678', email: 'joy.chen@company.com',
+                    location: '台北總部 - A棟 8樓 (座位 8A-12)', dept: '研發部 (R&D Department)', manager: '王大明 (技術總監)'
+                },
+                'alex': {
+                    nameEn: 'Alex Lin', nameZh: '(林亞歷)', role: 'Backend Engineer',
+                    avatarSeed: 'Alex', ext: '#8802', phone: '0922-111-222', email: 'alex.lin@company.com',
+                    location: '台北總部 - A棟 8樓 (座位 8A-15)', dept: '研發部 (R&D Department)', manager: '王大明 (技術總監)'
+                },
+                'sarah': {
+                    nameEn: 'Sarah Wang', nameZh: '(王莎拉)', role: 'HR Manager',
+                    avatarSeed: 'Sarah', ext: '#8101', phone: '0933-444-555', email: 'sarah.wang@company.com',
+                    location: '台北總部 - B棟 3樓 (座位 3B-01)', dept: '人資部 (HR Department)', manager: '李總經理'
+                }
+            };
+
+            // 點擊人員時觸發的函數
+            function loadProfile(empId, element) {
+                // 1. 處理左側選單的 Active (選取) 樣式切換
+                document.querySelectorAll('.accordion-collapse .list-group-item-action').forEach(item => {
+                    item.classList.remove('active', 'border-start', 'border-4', 'border-primary');
+                });
+
+                // 給當前點擊的目標加上 active 樣式
+                if (element) {
+                    element.classList.add('active', 'border-start', 'border-4', 'border-primary');
+                }
+
+                // 2. 獲取對應的員工資料
+                const data = employeeData[empId];
+                if (!data) return;
+
+                // 3. 把資料塞進右側對應的 HTML ID 欄位中
+                document.getElementById('profile-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.avatarSeed}`;
+                document.getElementById('profile-name-en').innerText = data.nameEn;
+                document.getElementById('profile-name-zh').innerText = data.nameZh;
+                document.getElementById('profile-role').innerText = data.role;
+
+                document.getElementById('profile-ext').innerHTML = `<i class="bi bi-telephone text-primary me-2"></i>${data.ext}`;
+                document.getElementById('profile-phone').innerText = data.phone;
+
+                const emailEl = document.getElementById('profile-email');
+                emailEl.innerText = data.email;
+                emailEl.href = `mailto:${data.email}`;
+
+                document.getElementById('profile-location').innerText = data.location;
+                document.getElementById('profile-dept').innerText = data.dept;
+                document.getElementById('profile-manager').innerText = data.manager;
+
+                // 4. 切換顯示畫面：隱藏空白提示，顯示詳細資料卡片
+                document.getElementById('empty-state').classList.add('d-none');
+                document.getElementById('profile-card').classList.remove('d-none');
+
+                // 為了確保一開始進入頁面是預設「無選擇狀態」，我在上面的HTML已經把 profile-card 加上 d-none 屬性了。
+            }
+        </script>
+
+    </div>
+
+
+
+</body>
+
+</html>
