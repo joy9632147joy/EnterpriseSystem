@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="./ESCss/MainPage.css" defer>
+    <link rel="stylesheet" href="./ESCss/SignInOut.css" defer>
     <script src="./ESJS/MainPage.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="./HolinJS/HolinProject.js" defer></script>
-
     <title>Enterprise System</title>
 </head>
 
@@ -146,10 +144,12 @@
 
                                 <div class="d-grid gap-3">
                                     <button
-                                        class="btn btn-success btn-lg fw-bold rounded-pill shadow-sm btn-hover-effect">
+                                        class="btn btn-success btn-lg fw-bold rounded-pill shadow-sm btn-hover-effect"
+                                        id="clockInBtn">
                                         <i class="bi bi-box-arrow-in-right me-2"></i>上班打卡
                                     </button>
-                                    <button class="btn btn-outline-danger btn-lg fw-bold rounded-pill btn-hover-effect">
+                                    <button class="btn btn-outline-danger btn-lg fw-bold rounded-pill btn-hover-effect"
+                                        id="clockOutBtn">
                                         <i class="bi bi-box-arrow-right me-2"></i>下班打卡
                                     </button>
                                 </div>
@@ -268,8 +268,74 @@
                                                 <div class="text-end mb-1 text-primary">7</div>
                                             </td>
                                         </tr>
+                                        <tr style="height: 110px;">
+                                            <td>
+                                                <div class="text-end mb-1 text-danger">8</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-end mb-1">9</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-end mb-1">10</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-end mb-1">11</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-end mb-1">12</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-end mb-1">13</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-end mb-1 text-primary">14</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
+    </div>
+
+    <div class="modal fade" id="clockConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+                <div class="modal-header border-bottom-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold">
+                        <i class="bi bi-clock-history text-primary me-2"></i>系統確認
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 text-center">
+                    <p class="mb-1 text-muted">打卡時間</p>
+                    <h2 class="fw-bold text-dark mb-3" id="clockConfirmTime">00:00</h2>
+                    <p class="mb-0 fw-bold" id="clockConfirmText">確定要進行打卡嗎？</p>
+                </div>
+                <div class="modal-footer border-top-0 pb-4 px-4 justify-content-center">
+                    <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-sm px-4 shadow-sm"
+                        id="confirmSubmitBtn">確定送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+        <div id="clockToast" class="toast shadow-lg border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header text-white" id="toastHeader">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <strong class="me-auto" id="toastTitle">系統通知</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body fw-bold bg-white text-dark" id="toastMessage">
+                打卡成功！
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="leaveRequestModal" tabindex="-1" aria-hidden="true">
@@ -342,8 +408,92 @@
     </div>
 
     <!-- Bootstrap JS (下拉選單需要) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./MainPage.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 按鈕與 Toast 元素
+            const clockInBtn = document.getElementById('clockInBtn');
+            const clockOutBtn = document.getElementById('clockOutBtn');
+            const clockToastElement = document.getElementById('clockToast');
+            const toastHeader = document.getElementById('toastHeader');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+
+            // Modal 元素
+            const clockConfirmModalEl = document.getElementById('clockConfirmModal');
+            const clockConfirmTime = document.getElementById('clockConfirmTime');
+            const clockConfirmText = document.getElementById('clockConfirmText');
+            const confirmSubmitBtn = document.getElementById('confirmSubmitBtn');
+
+            if (clockConfirmModalEl && clockToastElement) {
+                // 初始化 Bootstrap 元件
+                const clockConfirmModal = new bootstrap.Modal(clockConfirmModalEl);
+                const toast = new bootstrap.Toast(clockToastElement, { delay: 3000 });
+
+                // 用來記錄目前是按上班還是下班
+                let currentAction = '';
+
+                // 1. 打開確認 Modal 的函數
+                function openConfirmModal(type) {
+                    currentAction = type;
+
+                    // 取得現在時間並格式化
+                    const now = new Date();
+                    const timeString = now.getHours().toString().padStart(2, '0') + ':' +
+                        now.getMinutes().toString().padStart(2, '0');
+
+                    // 將時間寫入 Modal
+                    clockConfirmTime.innerText = timeString;
+
+                    // 根據打卡類型改變 Modal 的文字與按鈕顏色
+                    if (type === 'in') {
+                        clockConfirmText.innerText = '確定要進行上班打卡嗎？';
+                        confirmSubmitBtn.className = 'btn btn-success btn-sm px-4 shadow-sm';
+                    } else {
+                        clockConfirmText.innerText = '確定要進行下班打卡嗎？';
+                        confirmSubmitBtn.className = 'btn btn-danger btn-sm px-4 shadow-sm';
+                    }
+
+                    // 顯示 Modal
+                    clockConfirmModal.show();
+                }
+
+                // 2. 顯示成功 Toast 的函數
+                function showClockToast(type) {
+                    const timeString = clockConfirmTime.innerText;
+
+                    if (type === 'in') {
+                        toastHeader.className = 'toast-header text-white bg-success';
+                        toastTitle.innerText = '上班打卡成功';
+                        toastMessage.innerHTML = `您已於 <span class="text-success">${timeString}</span> 完成上班打卡！`;
+                    } else {
+                        toastHeader.className = 'toast-header text-white bg-danger';
+                        toastTitle.innerText = '下班打卡成功';
+                        toastMessage.innerHTML = `您已於 <span class="text-danger">${timeString}</span> 完成下班打卡！`;
+                    }
+                    toast.show();
+                }
+
+                // 綁定「首頁打卡按鈕」點擊事件 -> 打開 Modal
+                if (clockInBtn) clockInBtn.addEventListener('click', () => openConfirmModal('in'));
+                if (clockOutBtn) clockOutBtn.addEventListener('click', () => openConfirmModal('out'));
+
+                // 綁定「Modal 內的確定送出按鈕」點擊事件
+                if (confirmSubmitBtn) {
+                    confirmSubmitBtn.addEventListener('click', () => {
+                        // 關閉 Modal
+                        clockConfirmModal.hide();
+
+                        // 這裡未來可以放 fetch API 去跟 Java 後端溝通
+                        // 等待 Modal 關閉動畫跑完 (約 300ms) 後再顯示 Toast
+                        setTimeout(() => {
+                            showClockToast(currentAction);
+                        }, 300);
+                    });
+                }
+            }
+        });
+    </script>
 
 </body>
 
