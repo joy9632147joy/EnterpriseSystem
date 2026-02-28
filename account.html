@@ -292,26 +292,16 @@
             <!-- 選單 -->
             <ul class="d-flex flex-column list-unstyled">
                 <li class="menu-category fw-bold">GENERAL</li>
-                <li class="active"><a href="MainPage.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
                 </li>
-                <li><a href="signin_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
+                <li><a href="sign_in_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
                 <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
                 <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
-                <li><a href="FileSys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
-                <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
-                <li>
-                    <button class="dropdown-btn">
-                        <i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span>
-                        <i class="bi bi-chevron-left ms-auto dropdown-caret" style="display: hidden;"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="#">業務部</a>
-                        <a href="#">財務部</a>
-                        <a href="#">企業部</a>
-                    </div>
-                </li>
+                <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
+                <li><a href="leave_sys.html"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>通訊錄</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
-                <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
+                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
             </ul>
         </nav>
 
@@ -465,65 +455,74 @@
             </div>
 
             <div class="info-card" id="card-contact">
-    <div class="card-header-custom d-flex justify-content-between align-items-center p-3">
-        <h6 class="mb-0"><i class="bi bi-telephone me-2 text-primary"></i>聯絡資訊</h6>
-        <div class="edit-actions">
-            <button class="btn btn-sm btn-edit-text border view-mode-btn" onclick="toggleEdit('card-contact')">
-                <i class="bi bi-pencil-square me-1"></i>修改資料
-            </button>
-            <button class="btn btn-sm btn-success edit-mode-btn d-none me-1" onclick="saveEdit('card-contact')">儲存</button>
-            <button class="btn btn-sm btn-light edit-mode-btn d-none" onclick="toggleEdit('card-contact')">取消</button>
-        </div>
-    </div>
-
-    <div class="card-body p-4">
-        <div class="row gy-4">
-            <div class="col-md-7">
-                <div class="mb-4">
-                    <label class="info-label text-muted small d-block mb-1">手機號碼</label>
-                    <div class="info-value fw-bold view-text">0912-234566</div>
-                    <input type="text" class="form-control form-control-sm edit-input d-none" value="0912-234566">
+                <div class="card-header-custom d-flex justify-content-between align-items-center p-3">
+                    <h6 class="mb-0"><i class="bi bi-telephone me-2 text-primary"></i>聯絡資訊</h6>
+                    <div class="edit-actions">
+                        <button class="btn btn-sm btn-edit-text border view-mode-btn"
+                            onclick="toggleEdit('card-contact')">
+                            <i class="bi bi-pencil-square me-1"></i>修改資料
+                        </button>
+                        <button class="btn btn-sm btn-success edit-mode-btn d-none me-1"
+                            onclick="saveEdit('card-contact')">儲存</button>
+                        <button class="btn btn-sm btn-light edit-mode-btn d-none"
+                            onclick="toggleEdit('card-contact')">取消</button>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label class="info-label text-muted small d-block mb-1">電子郵件</label>
-                    <div class="info-value fw-bold view-text">joy.chen@company.com</div>
-                    <input type="email" class="form-control form-control-sm edit-input d-none" value="joy.chen@company.com">
-                </div>
-                <div class="mb-0">
-                    <label class="info-label text-muted small d-block mb-1">通訊地址</label>
-                    <div class="info-value fw-bold view-text">台中市公益路二段51號</div>
-                    <input type="text" class="form-control form-control-sm edit-input d-none" value="台中市公益路二段51號">
-                </div>
-            </div>
 
-            <div class="col-md-5">
-                <div class="p-3 rounded-3" style="background-color: #fffaf5; border: 1px solid #ffe8cc;">
-                    <label class="small d-block mb-3 fw-bold" style="color: #fd7e14;">
-                        <i class="bi bi-asterisk me-1"></i>緊急聯絡人
-                    </label>
-
-                    <div class="row">
-                        <div class="col-6 mb-3">
-                            <label class="text-muted small d-block">姓名</label>
-                            <div class="info-value view-text">陳大明</div>
-                            <input type="text" class="form-control form-control-sm edit-input d-none" value="陳大明">
+                <div class="card-body p-4">
+                    <div class="row gy-4">
+                        <div class="col-md-7">
+                            <div class="mb-4">
+                                <label class="info-label text-muted small d-block mb-1">手機號碼</label>
+                                <div class="info-value fw-bold view-text">0912-234566</div>
+                                <input type="text" class="form-control form-control-sm edit-input d-none"
+                                    value="0912-234566">
+                            </div>
+                            <div class="mb-4">
+                                <label class="info-label text-muted small d-block mb-1">電子郵件</label>
+                                <div class="info-value fw-bold view-text">joy.chen@company.com</div>
+                                <input type="email" class="form-control form-control-sm edit-input d-none"
+                                    value="joy.chen@company.com">
+                            </div>
+                            <div class="mb-0">
+                                <label class="info-label text-muted small d-block mb-1">通訊地址</label>
+                                <div class="info-value fw-bold view-text">台中市公益路二段51號</div>
+                                <input type="text" class="form-control form-control-sm edit-input d-none"
+                                    value="台中市公益路二段51號">
+                            </div>
                         </div>
-                        <div class="col-6 mb-3">
-                            <label class="text-muted small d-block">關係</label>
-                            <div class="info-value view-text">父親</div>
-                            <input type="text" class="form-control form-control-sm edit-input d-none" value="父親">
-                        </div>
-                        <div class="col-12">
-                            <label class="text-muted small d-block">聯絡電話</label>
-                            <div class="info-value fw-bold view-text">0988-123456</div>
-                            <input type="text" class="form-control form-control-sm edit-input d-none" value="0988-123456">
+
+                        <div class="col-md-5">
+                            <div class="p-3 rounded-3" style="background-color: #fffaf5; border: 1px solid #ffe8cc;">
+                                <label class="small d-block mb-3 fw-bold" style="color: #fd7e14;">
+                                    <i class="bi bi-asterisk me-1"></i>緊急聯絡人
+                                </label>
+
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label class="text-muted small d-block">姓名</label>
+                                        <div class="info-value view-text">陳大明</div>
+                                        <input type="text" class="form-control form-control-sm edit-input d-none"
+                                            value="陳大明">
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="text-muted small d-block">關係</label>
+                                        <div class="info-value view-text">父親</div>
+                                        <input type="text" class="form-control form-control-sm edit-input d-none"
+                                            value="父親">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="text-muted small d-block">聯絡電話</label>
+                                        <div class="info-value fw-bold view-text">0988-123456</div>
+                                        <input type="text" class="form-control form-control-sm edit-input d-none"
+                                            value="0988-123456">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
         </section>
 
     </div>

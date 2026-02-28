@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="./ESCss/SignInOut.css" defer>
+    <script src="./ESJS/MainPage.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Enterprise System</title>
+
+</head>
+
+<body>
+
+    <!-- 上方導覽列 -->
+    <nav class="navbar navbar-dark sticky-top">
+
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+
+
+            <!-- 通知 -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <div class="ms-auto d-none d-md-block me-3">
+                    <div class="input-group search-box">
+                        <span class="input-group-text ">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center">
+                </div>
+
+                <button class="btn envelope-btn me-1" id="envelope">
+                    <i class="bi bi-envelope"></i>
+                </button>
+
+
+
+                <!-- 右上角使用者選單 -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown">
+                        <img src="Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                        <span class="d-none d-sm-inline">Joy</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                                Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 側邊欄 -->
+    <div class="d-flex" id="sidebarD">
+
+        <nav class="list-unstyled sidebar" id="sidebarN">
+
+            <!-- LOGO 圖文-->
+            <div class="d-flex align-items-center justify-content-center"
+                style="height: 58px; background-color: #1f2d3a;">
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
+            </div>
+
+            <!-- 使用者資訊 -->
+            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="position-relative">
+                        <img src="Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                            style="object-fit: cover; ">
+                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
+                        </span>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
+                        <div class="d-flex align-items-center">
+                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
+                            <small class="xp-text">6850 XP</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-1">
+                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
+                        <span class="opacity-75">Level</span>
+                        <span class="fw-bold">69%</span>
+                    </div>
+                    <div class="progress custom-progress">
+                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 選單 -->
+            <ul class="d-flex flex-column list-unstyled">
+                <li class="menu-category fw-bold">GENERAL</li>
+                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                </li>
+                <li class="active"><a href="#"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a>
+                </li>
+                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
+                <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
+                <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
+                <li><a href="leave_sys.html"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-people-fill me-3"></i><span>通訊錄</span></a></li>
+                <li class="menu-category fw-bold">系統設定</li>
+                <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
+            </ul>
+        </nav>
+
+
+        <main id="content" class="p-4 w-100 bg-light">
+            <div class="container-fluid">
+                <h3 class="mb-4 fw-bold"><i class="bi bi-clock-history me-2 text-primary"></i>簽到簽退與出勤紀錄</h3>
+                <div class="row g-4">
+                    <div class="col-lg-4">
+
+                        <div class="card bento-card shadow-sm mb-4 border-0">
+                            <div class="card-body text-center p-4">
+                                <h5 class="card-title text-secondary mb-3">今日出勤狀態</h5>
+                                <h1 class="display-3 fw-bold text-dark mb-1" id="currentTime">08:55</h1>
+                                <p class="text-muted mb-4">2026年 2月 24日 星期二</p>
+
+                                <div class="d-grid gap-3">
+                                    <button
+                                        class="btn btn-success btn-lg fw-bold rounded-pill shadow-sm btn-hover-effect"
+                                        id="clockInBtn">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i>上班打卡
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-lg fw-bold rounded-pill btn-hover-effect"
+                                        id="clockOutBtn">
+                                        <i class="bi bi-box-arrow-right me-2"></i>下班打卡
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card bento-card shadow-sm border-0">
+                            <div class="card-header bg-white fw-bold py-3 border-bottom-0">
+                                <i class="bi bi-bar-chart-fill me-2 text-primary"></i>本月出勤統計
+                            </div>
+                            <div class="card-body pt-0">
+                                <ul class="list-group list-group-flush mb-4">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <span class="text-secondary">正常出勤</span>
+                                        <span class="badge bg-success rounded-pill px-3">15 天</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <span class="text-secondary">遲到/早退</span>
+                                        <span class="badge bg-warning text-dark rounded-pill px-3">1 次</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <span class="text-secondary">可用特休餘額</span>
+                                        <span class="badge bg-info rounded-pill px-3">10 天</span>
+                                    </li>
+                                </ul>
+                                <div class="d-grid">
+                                    <button class="btn btn-primary fw-bold shadow-sm px-4 btn-hover-effect"
+                                        data-bs-toggle="modal" data-bs-target="#leaveRequestModal">
+                                        <i class="bi bi-plus-lg me-2"></i>填寫請假單
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="card bento-card shadow-sm border-0 h-100">
+                            <div
+                                class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom-0">
+                                <h5 class="mb-0 fw-bold"><i class="bi bi-calendar-check me-2"></i>個人行事曆</h5>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-secondary btn-sm"><i
+                                            class="bi bi-chevron-left"></i></button>
+                                    <button class="btn btn-outline-secondary btn-sm fw-bold px-3">2026 年 2 月</button>
+                                    <button class="btn btn-outline-secondary btn-sm"><i
+                                            class="bi bi-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="card-body p-0">
+                                <table class="table table-bordered text-center mb-0" style="table-layout: fixed;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="text-danger py-2">日</th>
+                                            <th class="py-2">一</th>
+                                            <th class="py-2">二</th>
+                                            <th class="py-2">三</th>
+                                            <th class="py-2">四</th>
+                                            <th class="py-2">五</th>
+                                            <th class="text-primary py-2">六</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="height: 110px;">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-25">
+                                                <div class="text-end mb-1">25</div>
+                                            </td>
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-26">
+                                                <div class="text-end mb-1">26</div>
+                                            </td>
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-27">
+                                                <div class="text-end mb-1">27</div>
+                                            </td>
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-28">
+                                                <div class="text-end mb-1">28</div>
+                                            </td>
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-29">
+                                                <div class="text-end mb-1">29</div>
+                                            </td>
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-30">
+                                                <div class="text-end mb-1">30</div>
+                                            </td>
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-31">
+                                                <div class="text-end mb-1">31</div>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 110px;">
+                                            <td class="calendar-day" data-date="2026-02-01">
+                                                <div class="text-end mb-1 text-danger">1</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-02" data-clock-in="08:50"
+                                                data-clock-out="18:05">
+                                                <div class="text-end mb-1">2</div>
+                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
+                                                </div>
+                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
+                                                </div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-03" data-clock-in="08:55">
+                                                <div class="text-end mb-1">3</div>
+                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
+                                                </div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-04" data-leave-type="ANNUAL"
+                                                data-start-time="09:00" data-end-time="18:00" data-reason="個人休假安排">
+                                                <div class="text-end mb-1">4</div>
+                                                <div class="badge bg-info w-100 text-start px-2 py-1 text-dark"><i
+                                                        class="bi bi-airplane me-1"></i>特休</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-05">
+                                                <div class="text-end mb-1">5</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-06">
+                                                <div class="text-end mb-1">6</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-07">
+                                                <div class="text-end mb-1 text-primary">7</div>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 110px;">
+                                            <td class="calendar-day" data-date="2026-02-08">
+                                                <div class="text-end mb-1 text-danger">8</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-09">
+                                                <div class="text-end mb-1">9</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-10">
+                                                <div class="text-end mb-1">10</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-11">
+                                                <div class="text-end mb-1">11</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-12">
+                                                <div class="text-end mb-1">12</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-13">
+                                                <div class="text-end mb-1">13</div>
+                                            </td>
+                                            <td class="calendar-day" data-date="2026-02-14">
+                                                <div class="text-end mb-1 text-primary">14</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="clockConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+                <div class="modal-header border-bottom-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold">
+                        <i class="bi bi-clock-history text-primary me-2"></i>系統確認
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 text-center">
+                    <p class="mb-1 text-muted">打卡時間</p>
+                    <h2 class="fw-bold text-dark mb-3" id="clockConfirmTime">00:00</h2>
+                    <p class="mb-0 fw-bold" id="clockConfirmText">確定要進行打卡嗎？</p>
+                </div>
+                <div class="modal-footer border-top-0 pb-4 px-4 justify-content-center">
+                    <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-sm px-4 shadow-sm"
+                        id="confirmSubmitBtn">確定送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+        <div id="clockToast" class="toast shadow-lg border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header text-white" id="toastHeader">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <strong class="me-auto" id="toastTitle">系統通知</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body fw-bold bg-white text-dark" id="toastMessage">
+                打卡成功！
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dailyAttendanceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+                <div class="modal-header border-bottom-0 pt-4 px-4 bg-light" style="border-radius: 12px 12px 0 0;">
+                    <h5 class="modal-title fw-bold" style="color: #1a233a;">
+                        <i class="bi bi-calendar-event text-primary me-2"></i><span id="dailyModalTitle">2026/02/02
+                            出勤管理</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body px-0 py-0">
+                    <!-- 導籤 (Tabs) -->
+                    <ul class="nav nav-tabs nav-justified px-4 pt-3 border-bottom-0 shadow-sm" id="dailyTab"
+                        role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active fw-bold border-0 text-dark" id="clock-tab"
+                                data-bs-toggle="tab" data-bs-target="#clock-pane" type="button" role="tab"
+                                aria-selected="true" style="background-color: transparent;">修改打卡紀錄</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link fw-bold border-0 text-muted" id="leave-tab" data-bs-toggle="tab"
+                                data-bs-target="#leave-pane" type="button" role="tab" aria-selected="false"
+                                style="background-color: transparent;">請假/補休申請</button>
+                        </li>
+                    </ul>
+
+                    <!-- 導籤內容 -->
+                    <div class="tab-content bg-white px-4 py-4" id="dailyTabContent"
+                        style="border-radius: 0 0 12px 12px;">
+
+                        <!-- 區塊 A：打卡紀錄 -->
+                        <div class="tab-pane fade show active" id="clock-pane" role="tabpanel" tabindex="0">
+                            <form id="modifyClockForm">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold text-success">上班時間</label>
+                                        <input type="time" class="form-control form-control-sm" id="modalClockIn"
+                                            name="clock_in">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold text-secondary">下班時間</label>
+                                        <input type="time" class="form-control form-control-sm" id="modalClockOut"
+                                            name="clock_out">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">修改/補登事由 <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control form-control-sm" name="clock_reason" rows="2"
+                                        placeholder="例：忘記打卡、系統異常..." required></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-sm px-4 shadow-sm w-100">送出打卡修改申請</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 區塊 B：請假申請 -->
+                        <div class="tab-pane fade" id="leave-pane" role="tabpanel" tabindex="0">
+                            <form id="dailyLeaveForm">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">假別 <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-select form-select-sm" id="modalLeaveType" name="leave_type"
+                                            required>
+                                            <option value="" selected disabled>請選擇假別</option>
+                                            <option value="ANNUAL">特休 (剩餘 10 天)</option>
+                                            <option value="SICK">普通傷病假 (半薪)</option>
+                                            <option value="PERSONAL">事假 (無薪)</option>
+                                            <option value="MARRIAGE">婚假 (有薪)</option>
+                                            <option value="BEREAVEMENT">喪假 (有薪)</option>
+                                            <option value="PUBLIC">公假 (有薪)</option>
+                                            <option value="MENSTRUAL">生理假 (半薪)</option>
+                                            <option value="MATERNITY">產假/陪產假</option>
+                                            <option value="COMPENSATORY">加班補休</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">職務代理人</label>
+                                        <select class="form-select form-select-sm" name="agent_id">
+                                            <option value="" selected>無代理人</option>
+                                            <option value="2">王大同</option>
+                                            <option value="3">李曉明</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">起始時間 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="time" class="form-control form-control-sm" id="modalLeaveStart"
+                                            name="start_time" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">結束時間 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="time" class="form-control form-control-sm" id="modalLeaveEnd"
+                                            name="end_time" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">請假事由 <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control form-control-sm" id="modalLeaveReason" name="reason"
+                                        rows="2" placeholder="請簡述請假原因..." required></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit"
+                                        class="btn btn-info text-white fw-bold btn-sm px-4 shadow-sm w-100">送出請假申請</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 原本的 modal fade... 略去不用刪 -->
+    <div class="modal fade" id="leaveRequestModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+                <div class="modal-header border-bottom-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold" style="color: #1a233a;">
+                        <i class="bi bi-pencil-square text-primary me-2"></i>填寫請假單
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form id="leaveForm">
+                    <div class="modal-body px-4">
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">假別 <span class="text-danger">*</span></label>
+                                <select class="form-select form-select-sm" name="leave_type" required>
+                                    <option value="" selected disabled>請選擇假別</option>
+                                    <option value="ANNUAL">特休 (剩餘 10 天)</option>
+                                    <option value="SICK">普通傷病假 (半薪)</option>
+                                    <option value="PERSONAL">事假 (無薪)</option>
+                                    <option value="MARRIAGE">婚假 (有薪)</option>
+                                    <option value="BEREAVEMENT">喪假 (有薪)</option>
+                                    <option value="PUBLIC">公假 (有薪)</option>
+                                    <option value="MENSTRUAL">生理假 (半薪)</option>
+                                    <option value="MATERNITY">產假/陪產假</option>
+                                    <option value="COMPENSATORY">補休</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">職務代理人</label>
+                                <select class="form-select form-select-sm" name="agent_id">
+                                    <option value="" selected>無代理人</option>
+                                    <option value="2">王大同</option>
+                                    <option value="3">李曉明</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">起始時間 <span class="text-danger">*</span></label>
+                                <input type="datetime-local" class="form-control form-control-sm" name="start_time"
+                                    required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">結束時間 <span class="text-danger">*</span></label>
+                                <input type="datetime-local" class="form-control form-control-sm" name="end_time"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">請假事由 <span class="text-danger">*</span></label>
+                            <textarea class="form-control form-control-sm" name="reason" rows="3"
+                                placeholder="請簡述請假原因..." required></textarea>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold">附件證明 <span
+                                    class="text-muted fw-normal">(選填)</span></label>
+                            <input class="form-control form-control-sm" type="file" id="formFile">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer border-top-0 pb-4 px-4">
+                        <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary btn-sm px-4 shadow-sm">送出申請</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 按鈕與 Toast 元素
+            const clockInBtn = document.getElementById('clockInBtn');
+            const clockOutBtn = document.getElementById('clockOutBtn');
+            const clockToastElement = document.getElementById('clockToast');
+            const toastHeader = document.getElementById('toastHeader');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+
+            // Modal 元素
+            const clockConfirmModalEl = document.getElementById('clockConfirmModal');
+            const clockConfirmTime = document.getElementById('clockConfirmTime');
+            const clockConfirmText = document.getElementById('clockConfirmText');
+            const confirmSubmitBtn = document.getElementById('confirmSubmitBtn');
+
+            if (clockConfirmModalEl && clockToastElement) {
+                // 初始化 Bootstrap 元件
+                const clockConfirmModal = new bootstrap.Modal(clockConfirmModalEl);
+                const toast = new bootstrap.Toast(clockToastElement, { delay: 3000 });
+                const dailyModalElement = document.getElementById('dailyAttendanceModal');
+                const dailyModal = new bootstrap.Modal(dailyModalElement);
+
+                // 日曆點擊邏輯
+                const calendarDays = document.querySelectorAll('.calendar-day');
+                const dailyModalTitle = document.getElementById('dailyModalTitle');
+                const modalClockIn = document.getElementById('modalClockIn');
+                const modalClockOut = document.getElementById('modalClockOut');
+                const modalLeaveType = document.getElementById('modalLeaveType');
+                const modalLeaveStart = document.getElementById('modalLeaveStart');
+                const modalLeaveEnd = document.getElementById('modalLeaveEnd');
+                const modalLeaveReason = document.getElementById('modalLeaveReason');
+
+                // Tab 切換
+                const clockTab = new bootstrap.Tab(document.getElementById('clock-tab'));
+                const leaveTab = new bootstrap.Tab(document.getElementById('leave-tab'));
+
+                calendarDays.forEach(day => {
+                    day.addEventListener('click', function () {
+                        const dateStr = this.dataset.date;
+                        if (!dateStr) return;
+
+                        // 格式化標題
+                        const d = new Date(dateStr);
+                        dailyModalTitle.innerText = `${d.getFullYear()}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')} 出勤管理`;
+
+                        // 抓取該格子的打卡資料 (如果有)
+                        const clockIn = this.dataset.clockIn || '';
+                        const clockOut = this.dataset.clockOut || '';
+
+                        // 抓取請假資料 (如果有)
+                        const leaveType = this.dataset.leaveType || '';
+                        const leaveStart = this.dataset.startTime || '';
+                        const leaveEnd = this.dataset.endTime || '';
+                        const leaveReason = this.dataset.reason || '';
+
+                        // 填入表單
+                        modalClockIn.value = clockIn;
+                        modalClockOut.value = clockOut;
+
+                        modalLeaveType.value = leaveType;
+                        modalLeaveStart.value = leaveStart;
+                        modalLeaveEnd.value = leaveEnd;
+                        modalLeaveReason.value = leaveReason;
+
+                        // 清空事由
+                        document.querySelector('#modifyClockForm textarea[name="clock_reason"]').value = '';
+                        if (!leaveReason) document.querySelector('#dailyLeaveForm textarea[name="reason"]').value = '';
+
+                        // 智能切換 Tab: 如果有上班紀錄就預設停在打卡，如果有請假紀錄就翻到請假
+                        if (leaveType) {
+                            leaveTab.show();
+                        } else {
+                            clockTab.show();
+                        }
+
+                        // 顯示 Modal
+                        dailyModal.show();
+                    });
+                });
+
+                // 綁定修改打卡事件
+                document.getElementById('modifyClockForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    dailyModal.hide();
+                    setTimeout(() => {
+                        toastHeader.className = 'toast-header text-white bg-primary';
+                        toastTitle.innerText = '系統通知';
+                        toastMessage.innerHTML = '打卡修正申請已送出，待主管簽核！';
+                        toast.show();
+                    }, 300);
+                });
+
+                // 綁定請假事件
+                document.getElementById('dailyLeaveForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    dailyModal.hide();
+                    setTimeout(() => {
+                        toastHeader.className = 'toast-header text-white bg-info';
+                        toastTitle.innerText = '系統通知';
+                        toastMessage.innerHTML = '請假申請已送出，待主管簽核！';
+                        toast.show();
+                    }, 300);
+                });
+
+                // 用來記錄目前是按上班還是下班
+                let currentAction = '';
+
+                // 1. 打開確認 Modal 的函數
+                function openConfirmModal(type) {
+                    currentAction = type;
+
+                    // 取得現在時間並格式化
+                    const now = new Date();
+                    const timeString = now.getHours().toString().padStart(2, '0') + ':' +
+                        now.getMinutes().toString().padStart(2, '0');
+
+                    // 將時間寫入 Modal
+                    clockConfirmTime.innerText = timeString;
+
+                    // 根據打卡類型改變 Modal 的文字與按鈕顏色
+                    if (type === 'in') {
+                        clockConfirmText.innerText = '確定要進行上班打卡嗎？';
+                        confirmSubmitBtn.className = 'btn btn-success btn-sm px-4 shadow-sm';
+                    } else {
+                        clockConfirmText.innerText = '確定要進行下班打卡嗎？';
+                        confirmSubmitBtn.className = 'btn btn-danger btn-sm px-4 shadow-sm';
+                    }
+
+                    // 顯示 Modal
+                    clockConfirmModal.show();
+                }
+
+                // 2. 顯示成功 Toast 的函數
+                function showClockToast(type) {
+                    const timeString = clockConfirmTime.innerText;
+
+                    if (type === 'in') {
+                        toastHeader.className = 'toast-header text-white bg-success';
+                        toastTitle.innerText = '上班打卡成功';
+                        toastMessage.innerHTML = `您已於 <span class="text-success">${timeString}</span> 完成上班打卡！`;
+                    } else {
+                        toastHeader.className = 'toast-header text-white bg-danger';
+                        toastTitle.innerText = '下班打卡成功';
+                        toastMessage.innerHTML = `您已於 <span class="text-danger">${timeString}</span> 完成下班打卡！`;
+                    }
+                    toast.show();
+                }
+
+                // 綁定「首頁打卡按鈕」點擊事件 -> 打開 Modal
+                if (clockInBtn) clockInBtn.addEventListener('click', () => openConfirmModal('in'));
+                if (clockOutBtn) clockOutBtn.addEventListener('click', () => openConfirmModal('out'));
+
+                // 綁定「Modal 內的確定送出按鈕」點擊事件
+                if (confirmSubmitBtn) {
+                    confirmSubmitBtn.addEventListener('click', () => {
+                        // 關閉 Modal
+                        clockConfirmModal.hide();
+
+                        // 這裡未來可以放 fetch API 去跟 Java 後端溝通
+                        // 等待 Modal 關閉動畫跑完 (約 300ms) 後再顯示 Toast
+                        setTimeout(() => {
+                            showClockToast(currentAction);
+                        }, 300);
+                    });
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
