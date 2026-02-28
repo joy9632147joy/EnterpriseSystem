@@ -1,10 +1,11 @@
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
 }
 
 /*上方導覽列*/
-.navbar{
+.navbar {
     background: #2A3F54;
     margin-left: 250px;
     transition: all 0.3s;
@@ -14,25 +15,118 @@ body, html {
     margin-left: 65px;
 }
 
+/*通知*/
+.notification-dropdown {
+    width: 320px;
+    border-radius: 20px;
+    border: none;
+    padding: 1rem 0;
+    margin-top: 10px;
+}
+
+.notif-item {
+    padding: 12px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-decoration: none;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.notif-item:last-child {
+    border-bottom: none;
+}
+
+.notif-item:hover {
+    background-color: #f8f9fa;
+}
+
+
+.icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+.bg-soft-green {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+
+.bg-soft-blue {
+    background-color: #e3f2fd;
+    color: #2196f3;
+}
+
+.bg-soft-yellow {
+    background-color: #fffde7;
+    color: #fbc02d;
+}
+
+.extra-small {
+    font-size: 0.7rem;
+}
+
+
+/*搜尋框*/
+.search-box {
+    max-width: 280px;
+    transition: all 0.3s ease;
+}
+
+.search-box .input-group {
+    background-color: #f1f3f9;
+    border-radius: 50px;
+    border: 1px solid transparent;
+}
+
+
+.search-box .input-group-text {
+    background: transparent;
+    border: none;
+    color: #6c757d;
+    padding-left: 12px;
+}
+
+.search-box .form-control {
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    color: #1a233a;
+    box-shadow: none !important;
+    /* 去掉原本藍色的外框 */
+}
+
+.search-box .form-control::placeholder {
+    color: #adb5bd;
+}
+
 
 /* 漢堡按鈕 */
-.hamburger-btn , .envelope-btn{
+.hamburger-btn,
+.envelope-btn {
     color: #fff;
     font-size: 1.2em;
 }
 
-.hamburger-btn:hover , .envelope-btn:hover{
+.hamburger-btn:hover,
+.envelope-btn:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* 側邊欄 */
 .sidebar {
     top: 0;
-    height: 100% ;
+    height: 100%;
     width: 250px;
     position: fixed;
-    background: #2A3F54; 
-    transition: all 0.3s; 
+    background: #2A3F54;
+    transition: all 0.3s;
 }
 
 
@@ -41,41 +135,74 @@ body, html {
     width: 65px;
 }
 
-#sidebarN.toggled span,            
-#sidebarN.toggled .menu-category,   
-#sidebarN.toggled .sidebar-user,
-#sidebarN.toggled .dropdown-caret {
-    display: none;    
+#sidebarN.toggled span,
+#sidebarN.toggled .menu-category,
+#sidebarN.toggled .sidebar-user {
+    display: none;
 }
 
-.status{
+
+/*右側使用者*/
+.status {
     width: 12px;
-    height: 12px; 
+    height: 12px;
     transform: translate(-2px, -2px);
 }
 
-.lv-badge {
-    background-color: #213345;
-    color: #fff ;
+.user-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(135deg, rgba(99, 179, 237, 0.18), rgba(159, 122, 234, 0.18));
+    border: 1px solid rgba(99, 179, 237, 0.3);
+    color: #90cdf4;
     font-size: 0.7rem;
-
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
 }
 
-.xp-text {
-    font-size: 0.75rem;
-    color: #8a9aa8;
+.user-title::before {
+    font-size: 0.55rem;
+    color: #f6ad55;
 }
 
-/* 經驗條(進度條) */
-.custom-progress {
-    background-color: rgba(255, 255, 255, 0.1);
+.points-row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    overflow: hidden;
-    height: 6px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.custom-progress .progress-bar {
-    background-color:white; 
+.points-label {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.points-value {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #f6e05e;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.coin-icon {
+    font-size: 1rem;
+}
+
+.points-unit {
+    font-size: 0.65rem;
+    color: rgba(246, 224, 94, 0.7);
+    font-weight: 400;
+    margin-left: 1px;
 }
 
 
@@ -97,123 +224,105 @@ body, html {
     text-decoration: none;
 }
 
-.sidebar ul li.active > a, .sidebar ul li a:hover,
-.sidebar ul li.active > button, .sidebar ul li button:hover{
+.sidebar ul li.active>a,
+.sidebar ul li a:hover,
+.sidebar ul li.active>button,
+.sidebar ul li button:hover {
     background: #3E5367;
-    border-right: 5px solid #1ABB9C; 
+    border-right: 5px solid #1ABB9C;
 }
 
 
-/* 通訊錄 */
-.sidebar li button.dropdown-btn {
-    width: 100%;
-    border: none;
-    background: none;
-    padding: 15px 20px;
-    color: #EDEDED;
-    cursor: pointer;
-}
 
-.sidebar li button.dropdown-btn:hover {
-    background: #3E5367;
-}
-
-/* 垂直線 */
-.dropdown-container {
-    display: none;
-    background-color: #213345;
-    position: relative; 
-}
-
-.dropdown-container::before {
-    content: "";
-    position: absolute;
-    left: 28px; 
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.2); 
-    z-index: 1;
-}
-
-/* 小圓點節點 */
-.dropdown-container a {
-    display: block;
-    padding: 10px 20px 10px 55px !important; 
-    text-decoration: none;
-    position: relative;
-}
-
-.dropdown-container a::before {
-    content: "";
-    position: absolute; /*用絕對位置抓點點位置*/
-    left: 25px; 
-    top: 17px; 
-    width: 7px;
-    height: 7px;
-    background: #2A3F54; 
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-    border-radius: 50%;
-    z-index: 2;
-}
-
-/*箭頭*/
-.dropdown-btn.active .dropdown-caret {
-    transform: rotate(270deg);
-}
 
 
 /* 主內容 */
 #content {
     background-color: #F7F7F7;
-    margin-left: 250px; /* 預設被推開 */
+    margin-left: 250px;
+    /* 預設被推開 */
     transition: all 0.3s;
     flex-grow: 1;
 }
 
 #content.expand {
-    margin-left: 70px; 
+    margin-left: 70px;
 }
 
 
 
-.bento-card {
-        transition: all 0.3s ease;
-        border-radius: 20px !important;
-    }
-    .bento-card:hover {
-        transform: translateY(-5px);
-    }
-    .bg-soft-primary {
-        background-color: #e7f1ff;
-    }
-    .extra-small {
-        font-size: 0.75rem;
-    }
-    /* 任務完成後的樣式 */
-    .task-completed {
-        background-color: #f8f9fa !important;
-        border-color: #e9ecef !important;
-    }
-    .task-completed label {
-        text-decoration: line-through;
-        color: #adb5bd;
-    }
-    .task-completed .badge {
-        display: none;
-    }
+/* 打卡 */
+.checkInOutcard {
+    border-radius: 20px !important;
+    background: #ffffff;
+    padding: 1.5rem 2rem !important;
+}
+
+.bg-soft-primary {
+    background-color: #e7f1ff ;
+    color: #0d6efd;
+}
+
+.bg-soft-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.text-dark-navy {
+    color: #1a233a;
+}
 
 
 
 
-    /* 公佈欄 */
-    .announcement-row {
-        transition: background-color 0.2s;
-        cursor: pointer;
-    }
-    .announcement-row:hover {
-        background-color: #f8f9fa !important;
-    }
-    .bg-soft-success { background-color: #e6f7ed; }
-    .bg-soft-primary { background-color: #e7f1ff; }
-    .extra-small { font-size: 0.72rem; }
+/* 公佈欄 */
+.announcement-row {
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.announcement-row:hover {
+    background-color: #f8f9fa !important;
+}
+
+.bg-soft-success {
+    background-color: #e6f7ed;
+}
+
+.bg-soft-primary {
+    background-color: #e7f1ff;
+}
+
+.extra-small {
+    font-size: 0.72rem;
+}
+
+/*新增公告彈窗*/
+.form-control,
+.form-select{
+    border-radius: 12px;
+    border: 1px solid #dee2e6; 
+    background-color: #f8f9fa;
+}
+
+
+/* 待辦任務 */
+.bg-soft-purple {
+    background-color: #f3e5f5 ;
+}
+
+.text-purple {
+    color: #9c27b0;
+}
+
+.bg-soft-primary {
+    background-color: #e3f2fd;
+}
+
+.extra-small {
+    font-size: 0.7rem;
+}
