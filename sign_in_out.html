@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="./ESCss/MainPage.css" defer>
+    <link rel="stylesheet" href="./ESCss/SignInOut.css" defer>
     <script src="./ESJS/MainPage.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Enterprise System</title>
+
 </head>
 
 <body>
@@ -215,79 +216,81 @@
                                     </thead>
                                     <tbody>
                                         <tr style="height: 110px;">
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-25">
                                                 <div class="text-end mb-1">25</div>
                                             </td>
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-26">
                                                 <div class="text-end mb-1">26</div>
                                             </td>
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-27">
                                                 <div class="text-end mb-1">27</div>
                                             </td>
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-28">
                                                 <div class="text-end mb-1">28</div>
                                             </td>
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-29">
                                                 <div class="text-end mb-1">29</div>
                                             </td>
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-30">
                                                 <div class="text-end mb-1">30</div>
                                             </td>
-                                            <td class="text-muted bg-light">
+                                            <td class="text-muted bg-light calendar-day" data-date="2026-01-31">
                                                 <div class="text-end mb-1">31</div>
                                             </td>
                                         </tr>
                                         <tr style="height: 110px;">
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-01">
                                                 <div class="text-end mb-1 text-danger">1</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-02" data-clock-in="08:50"
+                                                data-clock-out="18:05">
                                                 <div class="text-end mb-1">2</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
                                                 </div>
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-03" data-clock-in="08:55">
                                                 <div class="text-end mb-1">3</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-04" data-leave-type="ANNUAL"
+                                                data-start-time="09:00" data-end-time="18:00" data-reason="個人休假安排">
                                                 <div class="text-end mb-1">4</div>
                                                 <div class="badge bg-info w-100 text-start px-2 py-1 text-dark"><i
                                                         class="bi bi-airplane me-1"></i>特休</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-05">
                                                 <div class="text-end mb-1">5</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-06">
                                                 <div class="text-end mb-1">6</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-07">
                                                 <div class="text-end mb-1 text-primary">7</div>
                                             </td>
                                         </tr>
                                         <tr style="height: 110px;">
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-08">
                                                 <div class="text-end mb-1 text-danger">8</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-09">
                                                 <div class="text-end mb-1">9</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-10">
                                                 <div class="text-end mb-1">10</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-11">
                                                 <div class="text-end mb-1">11</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-12">
                                                 <div class="text-end mb-1">12</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-13">
                                                 <div class="text-end mb-1">13</div>
                                             </td>
-                                            <td>
+                                            <td class="calendar-day" data-date="2026-02-14">
                                                 <div class="text-end mb-1 text-primary">14</div>
                                             </td>
                                         </tr>
@@ -338,6 +341,129 @@
         </div>
     </div>
 
+    <div class="modal fade" id="dailyAttendanceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+                <div class="modal-header border-bottom-0 pt-4 px-4 bg-light" style="border-radius: 12px 12px 0 0;">
+                    <h5 class="modal-title fw-bold" style="color: #1a233a;">
+                        <i class="bi bi-calendar-event text-primary me-2"></i><span id="dailyModalTitle">2026/02/02
+                            出勤管理</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body px-0 py-0">
+                    <!-- 導籤 (Tabs) -->
+                    <ul class="nav nav-tabs nav-justified px-4 pt-3 border-bottom-0 shadow-sm" id="dailyTab"
+                        role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active fw-bold border-0 text-dark" id="clock-tab"
+                                data-bs-toggle="tab" data-bs-target="#clock-pane" type="button" role="tab"
+                                aria-selected="true" style="background-color: transparent;">修改打卡紀錄</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link fw-bold border-0 text-muted" id="leave-tab" data-bs-toggle="tab"
+                                data-bs-target="#leave-pane" type="button" role="tab" aria-selected="false"
+                                style="background-color: transparent;">請假/補休申請</button>
+                        </li>
+                    </ul>
+
+                    <!-- 導籤內容 -->
+                    <div class="tab-content bg-white px-4 py-4" id="dailyTabContent"
+                        style="border-radius: 0 0 12px 12px;">
+
+                        <!-- 區塊 A：打卡紀錄 -->
+                        <div class="tab-pane fade show active" id="clock-pane" role="tabpanel" tabindex="0">
+                            <form id="modifyClockForm">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold text-success">上班時間</label>
+                                        <input type="time" class="form-control form-control-sm" id="modalClockIn"
+                                            name="clock_in">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold text-secondary">下班時間</label>
+                                        <input type="time" class="form-control form-control-sm" id="modalClockOut"
+                                            name="clock_out">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">修改/補登事由 <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control form-control-sm" name="clock_reason" rows="2"
+                                        placeholder="例：忘記打卡、系統異常..." required></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit"
+                                        class="btn btn-primary btn-sm px-4 shadow-sm w-100">送出打卡修改申請</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 區塊 B：請假申請 -->
+                        <div class="tab-pane fade" id="leave-pane" role="tabpanel" tabindex="0">
+                            <form id="dailyLeaveForm">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">假別 <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-select form-select-sm" id="modalLeaveType" name="leave_type"
+                                            required>
+                                            <option value="" selected disabled>請選擇假別</option>
+                                            <option value="ANNUAL">特休 (剩餘 10 天)</option>
+                                            <option value="SICK">普通傷病假 (半薪)</option>
+                                            <option value="PERSONAL">事假 (無薪)</option>
+                                            <option value="MARRIAGE">婚假 (有薪)</option>
+                                            <option value="BEREAVEMENT">喪假 (有薪)</option>
+                                            <option value="PUBLIC">公假 (有薪)</option>
+                                            <option value="MENSTRUAL">生理假 (半薪)</option>
+                                            <option value="MATERNITY">產假/陪產假</option>
+                                            <option value="COMPENSATORY">加班補休</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">職務代理人</label>
+                                        <select class="form-select form-select-sm" name="agent_id">
+                                            <option value="" selected>無代理人</option>
+                                            <option value="2">王大同</option>
+                                            <option value="3">李曉明</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">起始時間 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="time" class="form-control form-control-sm" id="modalLeaveStart"
+                                            name="start_time" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-bold">結束時間 <span
+                                                class="text-danger">*</span></label>
+                                        <input type="time" class="form-control form-control-sm" id="modalLeaveEnd"
+                                            name="end_time" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">請假事由 <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control form-control-sm" id="modalLeaveReason" name="reason"
+                                        rows="2" placeholder="請簡述請假原因..." required></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit"
+                                        class="btn btn-info text-white fw-bold btn-sm px-4 shadow-sm w-100">送出請假申請</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 原本的 modal fade... 略去不用刪 -->
     <div class="modal fade" id="leaveRequestModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
@@ -357,8 +483,14 @@
                                 <select class="form-select form-select-sm" name="leave_type" required>
                                     <option value="" selected disabled>請選擇假別</option>
                                     <option value="ANNUAL">特休 (剩餘 10 天)</option>
-                                    <option value="SICK">病假 (需附證明)</option>
+                                    <option value="SICK">普通傷病假 (半薪)</option>
                                     <option value="PERSONAL">事假 (無薪)</option>
+                                    <option value="MARRIAGE">婚假 (有薪)</option>
+                                    <option value="BEREAVEMENT">喪假 (有薪)</option>
+                                    <option value="PUBLIC">公假 (有薪)</option>
+                                    <option value="MENSTRUAL">生理假 (半薪)</option>
+                                    <option value="MATERNITY">產假/陪產假</option>
+                                    <option value="COMPENSATORY">補休</option>
                                 </select>
                             </div>
                             <div class="col-6">
@@ -407,7 +539,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS (下拉選單需要) -->
     <script src="js/bootstrap.bundle.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -429,6 +560,90 @@
                 // 初始化 Bootstrap 元件
                 const clockConfirmModal = new bootstrap.Modal(clockConfirmModalEl);
                 const toast = new bootstrap.Toast(clockToastElement, { delay: 3000 });
+                const dailyModalElement = document.getElementById('dailyAttendanceModal');
+                const dailyModal = new bootstrap.Modal(dailyModalElement);
+
+                // 日曆點擊邏輯
+                const calendarDays = document.querySelectorAll('.calendar-day');
+                const dailyModalTitle = document.getElementById('dailyModalTitle');
+                const modalClockIn = document.getElementById('modalClockIn');
+                const modalClockOut = document.getElementById('modalClockOut');
+                const modalLeaveType = document.getElementById('modalLeaveType');
+                const modalLeaveStart = document.getElementById('modalLeaveStart');
+                const modalLeaveEnd = document.getElementById('modalLeaveEnd');
+                const modalLeaveReason = document.getElementById('modalLeaveReason');
+
+                // Tab 切換
+                const clockTab = new bootstrap.Tab(document.getElementById('clock-tab'));
+                const leaveTab = new bootstrap.Tab(document.getElementById('leave-tab'));
+
+                calendarDays.forEach(day => {
+                    day.addEventListener('click', function () {
+                        const dateStr = this.dataset.date;
+                        if (!dateStr) return;
+
+                        // 格式化標題
+                        const d = new Date(dateStr);
+                        dailyModalTitle.innerText = `${d.getFullYear()}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')} 出勤管理`;
+
+                        // 抓取該格子的打卡資料 (如果有)
+                        const clockIn = this.dataset.clockIn || '';
+                        const clockOut = this.dataset.clockOut || '';
+
+                        // 抓取請假資料 (如果有)
+                        const leaveType = this.dataset.leaveType || '';
+                        const leaveStart = this.dataset.startTime || '';
+                        const leaveEnd = this.dataset.endTime || '';
+                        const leaveReason = this.dataset.reason || '';
+
+                        // 填入表單
+                        modalClockIn.value = clockIn;
+                        modalClockOut.value = clockOut;
+
+                        modalLeaveType.value = leaveType;
+                        modalLeaveStart.value = leaveStart;
+                        modalLeaveEnd.value = leaveEnd;
+                        modalLeaveReason.value = leaveReason;
+
+                        // 清空事由
+                        document.querySelector('#modifyClockForm textarea[name="clock_reason"]').value = '';
+                        if (!leaveReason) document.querySelector('#dailyLeaveForm textarea[name="reason"]').value = '';
+
+                        // 智能切換 Tab: 如果有上班紀錄就預設停在打卡，如果有請假紀錄就翻到請假
+                        if (leaveType) {
+                            leaveTab.show();
+                        } else {
+                            clockTab.show();
+                        }
+
+                        // 顯示 Modal
+                        dailyModal.show();
+                    });
+                });
+
+                // 綁定修改打卡事件
+                document.getElementById('modifyClockForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    dailyModal.hide();
+                    setTimeout(() => {
+                        toastHeader.className = 'toast-header text-white bg-primary';
+                        toastTitle.innerText = '系統通知';
+                        toastMessage.innerHTML = '打卡修正申請已送出，待主管簽核！';
+                        toast.show();
+                    }, 300);
+                });
+
+                // 綁定請假事件
+                document.getElementById('dailyLeaveForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    dailyModal.hide();
+                    setTimeout(() => {
+                        toastHeader.className = 'toast-header text-white bg-info';
+                        toastTitle.innerText = '系統通知';
+                        toastMessage.innerHTML = '請假申請已送出，待主管簽核！';
+                        toast.show();
+                    }, 300);
+                });
 
                 // 用來記錄目前是按上班還是下班
                 let currentAction = '';
