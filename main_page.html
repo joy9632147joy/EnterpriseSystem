@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="./ESCss/MainPage.css">
-    <script src="./ESJS/MainPage.js"></script>
+    <script src="./ESJS/MainPage.js" defer></script>
 
     <title>Enterprise System</title>
 </head>
@@ -150,7 +150,7 @@
 
                     <div class="ms-3 text-white">
                         <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
-                        <span class="user-title">青銅菜鳥</span>
+                        <span class="user-title">開掛宗師</span>
                     </div>
                 </div>
 
@@ -158,9 +158,8 @@
                     <div class="points-row">
                         <span class="points-label">我的積分</span>
                         <span class="points-value">
-                            <span class="coin-icon">🪙</span>
+                            <span class="coin-icon"><i class="bi bi-p-circle-fill"></i></span>
                             6,850
-                            <span class="points-unit">pts</span>
                         </span>
                     </div>
                 </div>
@@ -177,7 +176,7 @@
                 <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
                 <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
                 <li><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-person-lines-fill me-3"></i><span>通訊錄</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
                 <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
             </ul>
@@ -192,6 +191,7 @@
                     <p class="text-muted small mb-0">早安，Joy！這裡是您今天的業務概況。</p>
                 </div>
 
+                <!-- 打卡 -->
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="card punch-horizontal border-0 shadow-sm">
@@ -204,9 +204,6 @@
                                         <div class="text-muted extra-small fw-bold text-uppercase">Current Time</div>
                                         <div class="d-flex align-items-baseline gap-2">
                                             <h2 class="fw-bold mb-0 text-dark-navy" id="live-clock">08:55</h2>
-                                            <span class="badge rounded-pill bg-soft-success text-success extra-small">
-                                                <i class="bi bi-check-circle-fill me-1"></i> 準時待命
-                                            </span>
                                         </div>
                                         <div class="extra-small text-muted mt-1">2026年 2月 24日 星期二 · Status: <span
                                                 class="fst-italic">Not Clocked In</span></div>
@@ -217,8 +214,9 @@
                                         class="btn btn-primary px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
                                         <i class="bi bi-box-arrow-in-right me-2"></i> Clock In
                                     </button>
-                                    <button class="btn btn-light rounded-circle shadow-sm p-2">
-                                        <i class="bi bi-arrow-counterclockwise text-muted"></i>
+                                    <button
+                                        class="btn btn-secondary px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i> Clock Out
                                     </button>
                                 </div>
                             </div>
@@ -226,8 +224,9 @@
                     </div>
                 </div>
 
-                <div class="row g-4">
 
+                <!-- 動態時序表 -->
+                <div class="row g-4">
                     <div class="col-lg-8">
                         <div class="row g-4">
                             <div class="col-12">
@@ -298,6 +297,7 @@
                                 </div>
                             </div>
 
+                            <!-- 待辦任務 -->
                             <div class="col-12">
                                 <div class="card bento-card border-0 shadow-sm">
                                     <div
@@ -311,7 +311,7 @@
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="small fw-bold text-dark">核准 5 月份加班申請單</div>
                                                 <span class="badge bg-soft-primary text-primary extra-small">+500
-                                                    XP</span>
+                                                    pts</span>
                                             </div>
                                             <div class="extra-small text-muted mt-2"><i class="bi bi-person me-1"></i>
                                                 Rose 老師 · 人事部</div>
@@ -320,7 +320,7 @@
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="small fw-bold text-dark">整理週會報告內容</div>
                                                 <span class="badge bg-soft-primary text-primary extra-small">+100
-                                                    XP</span>
+                                                    pts</span>
                                             </div>
                                             <div class="extra-small text-muted mt-2"><i class="bi bi-person me-1"></i>
                                                 組長 · 資訊組</div>
@@ -329,7 +329,7 @@
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="small fw-bold text-dark">回覆客戶 A 公司報價</div>
                                                 <span class="badge bg-soft-primary text-primary extra-small">+200
-                                                    XP</span>
+                                                    pts</span>
                                             </div>
                                             <div class="extra-small text-muted mt-2"><i class="bi bi-person me-1"></i>
                                                 業務經理 · 業務部</div>
@@ -345,12 +345,19 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <!-- 公告 -->
+                    <div class="col-lg-4 mb-4">
                         <div class="card bento-card border-0 shadow-sm h-100">
                             <div
                                 class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center pt-4 px-4">
                                 <div class="fw-bold"><i class="bi bi-megaphone-fill text-primary me-2"></i>公司公告欄</div>
-                                
+                                <div class="d-flex align-items-center gap-3">
+                                    <button class="btn btn-primary btn-sm align-items-center shadow-sm"
+                                        data-permission="add-announcement" data-bs-toggle="modal"
+                                        data-bs-target="#addAnnouncementModal">
+                                        <i class="bi bi-plus-lg me-1"></i> 新增公告
+                                    </button>
+                                </div>
                             </div>
                             <div class="card-body px-0 pb-0">
                                 <div class="list-group list-group-flush">
@@ -401,9 +408,88 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
+
+
         </section>
+
+        <!-- 新增公告彈窗 -->
+        <div class="modal fade" id="addAnnouncementModal" tabindex="-1" aria-labelledby="addAnnouncementModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                    <div class="modal-header border-0 pt-4 px-5">
+                        <h5 class="modal-title fw-bold text-dark-navy" id="addAnnouncementModalLabel">
+                            <i class="bi bi-megaphone-fill text-primary me-2"></i>發布新公告
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form id="announcementForm">
+                        <div class="modal-body px-5">
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium text-secondary">公告標題</label>
+                                <input type="text" class="form-control p-3" name="title" placeholder="例如：系統維護通知"
+                                    required
+                                    style="border-radius: 12px; border: 1px solid #dee2e6; background-color: #f8f9fa;">
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-6">
+                                    <label class="form-label small fw-medium text-secondary">公告類別</label>
+                                    <select class="form-select p-3" name="category"
+                                        style="border-radius: 12px; border: 1px solid #dee2e6; background-color: #f8f9fa;">
+                                        <option value="SYSTEM">系統通知</option>
+                                        <option value="ADMIN">行政事務</option>
+                                        <option value="EMERGENCY">緊急公告</option>
+                                        <option value="OTHER">其他項目</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label small fw-medium text-secondary">發布部門</label>
+                                    <select class="form-select p-3" name="dept_id"
+                                        style="border-radius: 12px; border: 1px solid #dee2e6; background-color: #f8f9fa;">
+                                        <option value="1">人事部</option>
+                                        <option value="2">資訊組</option>
+                                        <option value="3">維運組</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-medium text-secondary">詳細內容</label>
+                                <textarea class="form-control p-3" name="content" rows="4" placeholder="請輸入欲公佈的詳細資訊..."
+                                    required
+                                    style="border-radius: 12px; border: 1px solid #dee2e6; background-color: #f8f9fa; resize: none;"></textarea>
+                            </div>
+
+                            <div class="py-2 px-3 rounded-3" style="background-color: #f1f3f5;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="small">
+                                        <span class="text-muted">當前發布人：</span>
+                                        <span class="text-dark fw-bold">Joy (主管)</span>
+                                    </div>
+                                    <div class="extra-small text-muted">
+                                        USER_ID: #00125
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer border-0 pb-4 px-5 gap-3">
+                            <button type="button" class="btn btn-light btn-sm px-4 rounded-pill fw-bold"
+                                data-bs-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary btn-sm px-4 rounded-pill fw-bold shadow-sm">
+                                確認發布 <i class="bi bi-send-fill ms-1"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 

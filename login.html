@@ -14,7 +14,19 @@
 
     <title>Enterprise System</title>
 
+    <style>
+        body {
+            background-image: url("../Img/LoginBG.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    
 </head>
+
 
 <body>
 
@@ -98,6 +110,28 @@
                     eyeIcon.classList.add('bi-eye-slash');
                 }
             });
+        });
+
+
+        // 模擬登入
+        const mockUsers = {
+            "A001": { password: "123456", role: "admin" },
+            "S001": { password: "123456", role: "staff" }
+        };
+
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const id = document.getElementById("employeeId").value;
+            const pw = document.getElementById("password").value;
+            const user = mockUsers[id];
+
+            if (user && user.password === pw) {
+                sessionStorage.setItem("userRole", user.role); // 存入 role
+                window.location.href = "main_page.html"; // 跳轉
+            } else {
+                alert("帳號或密碼錯誤");
+            }
         });
 
 

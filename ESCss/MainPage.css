@@ -117,8 +117,7 @@ html {
 
 #sidebarN.toggled span,
 #sidebarN.toggled .menu-category,
-#sidebarN.toggled .sidebar-user,
-#sidebarN.toggled .dropdown-caret {
+#sidebarN.toggled .sidebar-user {
     display: none;
 }
 
@@ -145,7 +144,6 @@ html {
 }
 
 .user-title::before {
-    content: '✦';
     font-size: 0.55rem;
     color: #f6ad55;
 }
@@ -215,19 +213,7 @@ html {
 }
 
 
-/* 通訊錄 */
-.sidebar li button.dropdown-btn {
-    width: 100%;
-    border: none;
-    background: none;
-    padding: 15px 20px;
-    color: #EDEDED;
-    cursor: pointer;
-}
 
-.sidebar li button.dropdown-btn:hover {
-    background: #3E5367;
-}
 
 
 /* 主內容 */
