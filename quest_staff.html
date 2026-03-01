@@ -17,59 +17,71 @@
 
 <!-- 任務詳情 -->
 <div class="modal fade" id="taskDetailModal" tabindex="-1" aria-labelledby="taskDetailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-dark text-white border-secondary">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title w-100 text-center fw-bold" id="taskDetailModalLabel">範例任務 1</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+            <div class="modal-header border-bottom-0 pt-4 px-4">
+                <h5 class="modal-title w-100 text-center fw-bold" id="taskDetailModalLabel" style="color: #1a233a;">範例任務
+                    1</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body px-4">
                 <div class="row">
                     <div class="col-md-9">
-                        <div class="row g-0 border border-secondary mb-3 text-center">
-                            <div class="col-6 border-end border-secondary p-2">
-                                2026-01-01 ~ 2026-05-10
+                        <div class="row g-0 border rounded mb-3 text-center bg-light">
+                            <div class="col-6 border-end p-2 text-muted small">
+                                <i class="bi bi-calendar me-1"></i> 2026-01-01 ~ 2026-05-10
                             </div>
-                            <div class="col-3 border-end border-secondary p-2">發布人</div>
-                            <div class="col-3 p-2">積分</div>
+                            <div class="col-3 border-end p-2 text-muted small"><i class="bi bi-person me-1"></i>發布人
+                            </div>
+                            <div class="col-3 p-2 text-muted small"><span class="badge bg-soft-primary text-primary">+10
+                                    pt</span></div>
                         </div>
 
-                        <div class="border border-secondary p-3" style="min-height: 200px;">
-                            <p class="fw-bold mb-2">任務詳情：</p>
-                            <p class="text-secondary">劈哩卡劈哩拉拉貝貝魯多，唸完這段咒語再去抽卡</p>
+                        <div class="border rounded p-3 bg-white shadow-sm mb-3" style="min-height: 140px;">
+                            <p class="fw-bold mb-2 text-dark">任務詳情：</p>
+                            <p class="text-secondary small">劈哩卡劈哩拉拉貝貝魯多，唸完這段咒語再去抽卡</p>
+                        </div>
+
+                        <div
+                            class="border rounded p-3 bg-white shadow-sm d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="fw-bold mb-1 text-dark small">目前狀態</h6>
+                                <p class="text-muted small mb-0">任務正在進行中，請盡快完成。</p>
+                            </div>
+                            <span class="badge bg-soft-warning text-warning fs-6 px-3 py-2">進行中</span>
                         </div>
                     </div>
 
                     <div class="col-md-3 d-flex flex-column">
-                        <div class="border border-secondary flex-grow-1 p-2 text-center mb-3">
-                            <p class="border-bottom border-secondary pb-2 mb-2">隊員</p>
+                        <div class="border rounded flex-grow-1 p-2 text-center mb-3 bg-white shadow-sm">
+                            <p class="border-bottom pb-2 mb-2 fw-bold text-dark small">隊員</p>
                             <div class="d-grid gap-2">
-                                <div class="border border-secondary py-1">丁丁</div>
-                                <div class="border border-secondary py-1">拉拉</div>
-                                <div class="border border-secondary py-1">迪西</div>
-                                <div class="border border-secondary py-1">小波</div>
+                                <div class="border rounded py-1 bg-light text-muted small">丁丁</div>
+                                <div class="border rounded py-1 bg-light text-muted small">拉拉</div>
+                                <div class="border rounded py-1 bg-light text-muted small">迪西</div>
+                                <div class="border rounded py-1 bg-light text-muted small">小波</div>
                             </div>
                         </div>
 
-                        <div class="d-flex border border-secondary">
-                            <button class="btn btn-dark w-100 rounded-0 border-end border-secondary" id="taskMainBtn">
+                        <div class="d-flex rounded overflow-hidden shadow-sm">
+                            <button class="btn btn-primary w-100 rounded-0 border-end border-primary" id="taskMainBtn">
                                 完成任務
                             </button>
 
                             <div class="dropdown">
-                                <button class="btn btn-dark h-100 rounded-0 dropdown-toggle dropdown-toggle-split px-3"
+                                <button
+                                    class="btn btn-primary h-100 rounded-0 dropdown-toggle dropdown-toggle-split px-3"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="visually-hidden">Toggle Dropdown</span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
+                                <ul class="dropdown-menu dropdown-menu-end shadow">
                                     <li><a class="dropdown-item" href="#" onclick="updateTaskAction('完成任務')">完成任務</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#" onclick="updateTaskAction('任務延期')">任務延期</a>
                                     </li>
                                     <li>
-                                        <hr class="dropdown-divider border-secondary">
+                                        <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item text-danger" href="#"
                                             onclick="updateTaskAction('放棄任務')">放棄任務</a></li>
@@ -78,6 +90,180 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer border-top-0 mb-2"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 待接任務詳情 (接取任務 Modal) -->
+<div class="modal fade" id="taskAcceptModal" tabindex="-1" aria-labelledby="taskAcceptModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+            <div class="modal-header border-bottom-0 pt-4 px-4">
+                <h5 class="modal-title w-100 text-center fw-bold" id="taskAcceptModalLabel" style="color: #1a233a;">
+                    待接任務 1
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body px-4">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- 任務屬性區塊 -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar-event me-1"></i>截止日期
+                                    </div>
+                                    <div class="fw-bold small text-dark">2026-03-03</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-person me-1"></i>發布人</div>
+                                    <div class="fw-bold small text-dark">主管 Joy</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-star me-1"></i>獎勵</div>
+                                    <div class="fw-bold small text-primary">+ 10 pt</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-globe me-1"></i>派發範圍</div>
+                                    <div class="fw-bold small text-success">公開任務</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 任務詳情 -->
+                        <div class="border rounded p-3 bg-white shadow-sm" style="min-height: 140px;">
+                            <p class="fw-bold mb-2 text-dark">任務詳情：</p>
+                            <p class="text-secondary small mb-0">
+                                協助新進員工完成開發環境建置，並帶領他們認識公司內部系統，如簽到系統與文件管理系統的基礎使用流程。
+                                本任務需要具備耐心且樂於分享的夥伴協助！
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column mt-3 mt-md-0">
+                        <!-- 任務隊員區塊 -->
+                        <div class="border rounded flex-grow-1 p-3 text-center mb-3 bg-white shadow-sm">
+                            <p class="border-bottom pb-2 mb-2 fw-bold text-dark small">任務隊員 (1/3)</p>
+                            <div class="d-grid gap-2">
+                                <div class="border rounded py-1 bg-light text-muted small">
+                                    <i class="bi bi-person-fill text-primary me-1"></i>小明 (發起人)
+                                </div>
+                                <div class="border rounded py-1 bg-white text-black-50 small border-secondary"
+                                    style="border-style: dashed !important;">
+                                    等待加入...
+                                </div>
+                                <div class="border rounded py-1 bg-white text-black-50 small border-secondary"
+                                    style="border-style: dashed !important;">
+                                    等待加入...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 按鈕區塊 -->
+            <div class="modal-footer border-top-0 pt-0 pb-4 px-4 justify-content-center">
+                <button type="button" class="btn btn-light px-4 me-2" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary px-5 shadow-sm fw-bold">
+                    <i class="bi bi-check-circle me-1"></i>立即接取
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 歷史任務詳情 Modal -->
+<div class="modal fade" id="taskHistoryModal" tabindex="-1" aria-labelledby="taskHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+            <div class="modal-header border-bottom-0 pt-4 px-4 position-relative">
+                <h5 class="modal-title w-100 text-center fw-bold" id="taskHistoryModalLabel" style="color: #1a233a;">
+                    歷史任務紀錄
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body px-4">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- 任務屬性區塊 -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-calendar-check me-1"></i>完成時間
+                                    </div>
+                                    <div class="fw-bold small text-dark">2026-01-15 14:30</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-person me-1"></i>發布人</div>
+                                    <div class="fw-bold small text-dark">李經理</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-star me-1"></i>獲得獎勵</div>
+                                    <div class="fw-bold small text-primary">+20 pt</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-2 text-center bg-light h-100">
+                                    <div class="text-muted small mb-1"><i class="bi bi-info-circle me-1"></i>最終狀態</div>
+                                    <div class="fw-bold small text-success">任務成功</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 任務詳情 -->
+                        <div class="border rounded p-3 bg-white shadow-sm mb-3" style="min-height: 100px;">
+                            <p class="fw-bold mb-2 text-dark">任務詳情：</p>
+                            <p class="text-secondary small mb-0">
+                                籌備並舉辦 2026 年度第一季的部門員工大會，需包含活動流程規劃、場地佈置與餐點安排。
+                            </p>
+                        </div>
+
+                        <!-- 審核評語 -->
+                        <div class="border border-success rounded p-3 bg-soft-success shadow-sm">
+                            <p class="fw-bold mb-1 text-success small"><i class="bi bi-chat-quote-fill me-2"></i>主管評語：
+                            </p>
+                            <p class="text-dark small mb-0">這次的活動辦得非常順利，大家都很滿意，辛苦了！未來繼續保持。</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column mt-3 mt-md-0">
+                        <!-- 任務隊員區塊 -->
+                        <div class="border rounded flex-grow-1 p-3 text-center mb-3 bg-white shadow-sm">
+                            <p class="border-bottom pb-2 mb-2 fw-bold text-dark small">任務隊員 (3/3)</p>
+                            <div class="d-grid gap-2">
+                                <div class="border rounded py-1 bg-light text-muted small">
+                                    <i class="bi bi-person-fill text-primary me-1"></i>Joy (發起人)
+                                </div>
+                                <div class="border rounded py-1 bg-light text-muted small">
+                                    <i class="bi bi-person me-1"></i>丁丁
+                                </div>
+                                <div class="border rounded py-1 bg-light text-muted small">
+                                    <i class="bi bi-person me-1"></i>拉拉
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 按鈕區塊 -->
+            <div class="modal-footer border-top-0 pt-0 pb-4 px-4 justify-content-center">
+                <button type="button" class="btn btn-primary px-5 shadow-sm fw-bold" data-bs-dismiss="modal">
+                    關閉
+                </button>
             </div>
         </div>
     </div>
@@ -96,12 +282,26 @@
                 </button>
             </div>
 
+
+
             <!-- 通知 -->
             <div class="d-flex align-items-center ms-auto">
 
+                <div class="ms-auto d-none d-md-block me-3">
+                    <div class="input-group search-box">
+                        <span class="input-group-text ">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center"></div>
                 <button class="btn envelope-btn me-1" id="envelope">
                     <i class="bi bi-envelope"></i>
                 </button>
+
+
 
                 <!-- 右上角使用者選單 -->
                 <div class="dropdown">
@@ -111,12 +311,8 @@
                         <span class="d-none d-sm-inline">Joy</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                        <li><a class="dropdown-item text-danger" href="login.html"><i
+                                    class="bi bi-box-arrow-right me-2"></i>Log
                                 Out</a></li>
                     </ul>
                 </div>
@@ -131,36 +327,53 @@
 
         <nav class="list-unstyled sidebar" id="sidebarN">
 
-            <!-- LOGO -->
+            <!-- LOGO 圖文-->
             <div class="d-flex align-items-center justify-content-center"
                 style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">Admin ES</a>
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
             </div>
 
             <!-- 使用者資訊 -->
-            <div class="sidebar-user">
-                <div class="d-flex align-items-center p-3">
-                    <img src="Img/smile.jpg" class="rounded-circle me-3" width="50" height="50">
-                    <div class="text-white">
-                        <small class=" d-block opacity-75">Welcome, <strong>Joy</strong></small>
-                        <small>LV</small>
+            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="position-relative">
+                        <img src="Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                            style="object-fit: cover; ">
+                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
+                        </span>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
+                        <div class="d-flex align-items-center">
+                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
+                            <small class="xp-text">6850 XP</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-1">
+                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
+                        <span class="opacity-75">Level</span>
+                        <span class="fw-bold">69%</span>
+                    </div>
+                    <div class="progress custom-progress">
+                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
                     </div>
                 </div>
             </div>
 
             <!-- 選單 -->
             <ul class="d-flex flex-column list-unstyled">
-                <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
-                </li>
+                <li class="menu-category fw-bold">一般功能</li>
+                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a></li>
                 <li><a href="sign_in_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
                 <li class="active"><a href="quest_staff.html"><i
                             class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
-                <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a>
-                </li>
+                <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
                 <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
                 <li><a href="leave_sys.html"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-people-fill me-3"></i><span>通訊錄</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
                 <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
             </ul>
@@ -170,13 +383,16 @@
         <!-- 主頁內容 -->
         <section id="content" class="p-4 w-100">
             <div class="container-fluid">
-                <h2 class="mb-4">任務管理</h2>
+                <div class="mb-4">
+                    <h2 class="fw-bold mb-1" style="color: #1a233a;">任務管理</h2>
+                    <p class="text-muted small mb-0">檢視並管理您的待辦任務及可領取任務。</p>
+                </div>
 
                 <div class="row">
                     <div class="col-md-5">
-                        <div class="card mb-4">
-                            <div class="card-header fw-bold bg-dark text-white text-center">
-                                進行中任務
+                        <div class="card bento-card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4 fw-bold" style="color: #1a233a;">
+                                <i class="bi bi-journal-check text-success me-2"></i>進行中任務
                             </div>
                             <div class="card-body p-0">
                                 <table class="table table-hover mb-0 text-center">
@@ -185,6 +401,7 @@
                                             <th>任務名稱</th>
                                             <th>任務概要</th>
                                             <th>截止時間</th>
+                                            <th>狀態</th>
                                             <th>更多</th>
                                         </tr>
                                     </thead>
@@ -193,10 +410,11 @@
                                             <td>範例任務 1</td>
                                             <td>任務概要 1</td>
                                             <td>2026-02-26</td>
+                                            <td><span class="badge bg-soft-warning text-warning">進行中</span></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
                                                     data-bs-target="#taskDetailModal">
-                                                    ...
+                                                    <i class="bi bi-three-dots"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -204,10 +422,11 @@
                                             <td>範例任務 2</td>
                                             <td>任務概要 2</td>
                                             <td>2026-07-01</td>
+                                            <td><span class="badge bg-soft-primary text-primary">審核中</span></td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
                                                     data-bs-target="#taskDetailModal">
-                                                    ...
+                                                    <i class="bi bi-three-dots"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -218,9 +437,9 @@
                     </div>
 
                     <div class="col-md-7">
-                        <div class="card mb-4">
-                            <div class="card-header fw-bold bg-dark text-white text-center">
-                                可領取任務
+                        <div class="card bento-card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4 fw-bold" style="color: #1a233a;">
+                                <i class="bi bi-file-earmark-plus text-primary me-2"></i>可領取任務
                             </div>
                             <div class="card-body p-0">
                                 <table class="table table-hover mb-0 text-center">
@@ -238,22 +457,37 @@
                                             <td>待接任務 1</td>
                                             <td>任務概要 1</td>
                                             <td>2026-03-03</td>
-                                            <td><span class="badge bg-primary">積分</span></td>
-                                            <td><button class="btn btn-sm btn-outline-secondary">...</button></td>
+                                            <td><span class="badge bg-soft-primary text-primary">+10 pt</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskAcceptModal">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>待接任務 2</td>
                                             <td>任務概要 2</td>
                                             <td>2026-05-26</td>
-                                            <td><span class="badge bg-primary">積分</span></td>
-                                            <td><button class="btn btn-sm btn-outline-secondary">...</button></td>
+                                            <td><span class="badge bg-soft-primary text-primary">+20 pt</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskAcceptModal">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>待接任務 3</td>
                                             <td>任務概要 3</td>
                                             <td>2026-10-26</td>
-                                            <td><span class="badge bg-primary">積分</span></td>
-                                            <td><button class="btn btn-sm btn-outline-secondary">...</button></td>
+                                            <td><span class="badge bg-soft-primary text-primary">+20 pt</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskAcceptModal">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -264,12 +498,64 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header fw-bold bg-dark text-white text-center">
-                                歷史紀錄
+                        <div class="card bento-card border-0 shadow-sm">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4 fw-bold" style="color: #1a233a;">
+                                <i class="bi bi-clock-history text-muted me-2"></i>歷史紀錄
                             </div>
-                            <div class="card-body" style="min-height: 150px;">
-                                <p class="text-center text-muted mt-4">暫無歷史紀錄</p>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>任務名稱</th>
+                                            <th>任務概要</th>
+                                            <th>完成時間</th>
+                                            <th>狀態</th>
+                                            <th>隊員</th>
+                                            <th>更多</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                        <tr>
+                                            <td>舉辦員工第一季大會</td>
+                                            <td>籌備並舉辦年度第一季的部門員工大會...</td>
+                                            <td class="text-muted small">2026-01-15</td>
+                                            <td><span class="badge bg-soft-success text-success">任務成功</span></td>
+                                            <td class="text-muted small">Joy, 丁丁, 拉拉</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskHistoryModal">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>過年大掃除</td>
+                                            <td>帶領小組完成辦公區域的過年大掃除規劃</td>
+                                            <td class="text-muted small">2026-02-10</td>
+                                            <td><span class="badge bg-soft-success text-success">任務成功</span></td>
+                                            <td class="text-muted small">Joy, 迪西</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskHistoryModal">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>協助撰寫新系統文件</td>
+                                            <td>支援開發小組撰寫系統使用手冊</td>
+                                            <td class="text-muted small">2026-02-28</td>
+                                            <td><span class="badge bg-soft-danger text-danger">任務失敗</span></td>
+                                            <td class="text-muted small">Joy, 小波</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#taskHistoryModal">
+                                                    <i class="bi bi-three-dots"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
