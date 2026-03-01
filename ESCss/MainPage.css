@@ -18,10 +18,10 @@ html {
 /*通知*/
 .notification-dropdown {
     width: 320px;
-    border-radius: 20px ;
-    border: none ;
+    border-radius: 20px;
+    border: none;
     padding: 1rem 0;
-    margin-top: 10px ;
+    margin-top: 10px;
 }
 
 .notif-item {
@@ -29,11 +29,17 @@ html {
     display: flex;
     gap: 12px;
     align-items: flex-start;
-    text-decoration: none ;
+    text-decoration: none;
     border-bottom: 1px solid #f8f9fa;
 }
-.notif-item:last-child { border-bottom: none; }
-.notif-item:hover { background-color: #f8f9fa; }
+
+.notif-item:last-child {
+    border-bottom: none;
+}
+
+.notif-item:hover {
+    background-color: #f8f9fa;
+}
 
 
 .icon-box {
@@ -47,11 +53,24 @@ html {
 }
 
 
-.bg-soft-green { background-color: #e8f5e9; color: #4caf50; }
-.bg-soft-blue { background-color: #e3f2fd; color: #2196f3; }
-.bg-soft-yellow { background-color: #fffde7; color: #fbc02d; }
+.bg-soft-green {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
 
-.extra-small { font-size: 0.7rem; }
+.bg-soft-blue {
+    background-color: #e3f2fd;
+    color: #2196f3;
+}
+
+.bg-soft-yellow {
+    background-color: #fffde7;
+    color: #fbc02d;
+}
+
+.extra-small {
+    font-size: 0.7rem;
+}
 
 
 /*搜尋框*/
@@ -61,7 +80,7 @@ html {
 }
 
 .search-box .input-group {
-    background-color: #f1f3f9; 
+    background-color: #f1f3f9;
     border-radius: 50px;
     border: 1px solid transparent;
 }
@@ -79,7 +98,8 @@ html {
     border: none;
     font-size: 0.9rem;
     color: #1a233a;
-    box-shadow: none !important; /* 去掉原本藍色的外框 */
+    box-shadow: none !important;
+    /* 去掉原本藍色的外框 */
 }
 
 .search-box .form-control::placeholder {
@@ -232,16 +252,29 @@ html {
 
 
 /* 打卡 */
-.punch-horizontal {
+.checkInOutcard {
     border-radius: 20px !important;
     background: #ffffff;
     padding: 1.5rem 2rem !important;
 }
 
-.bg-soft-primary { background-color: #e7f1ff !important; color: #0d6efd; }
-.bg-soft-success { background-color: #e8f5e9 !important; color: #2e7d32; }
-.extra-small { font-size: 0.75rem; }
-.text-dark-navy { color: #1a233a; }
+.bg-soft-primary {
+    background-color: #e7f1ff ;
+    color: #0d6efd;
+}
+
+.bg-soft-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.text-dark-navy {
+    color: #1a233a;
+}
 
 
 
@@ -266,4 +299,30 @@ html {
 
 .extra-small {
     font-size: 0.72rem;
+}
+
+/*新增公告彈窗*/
+.form-control,
+.form-select{
+    border-radius: 12px;
+    border: 1px solid #dee2e6; 
+    background-color: #f8f9fa;
+}
+
+
+/* 待辦任務 */
+.bg-soft-purple {
+    background-color: #f3e5f5 ;
+}
+
+.text-purple {
+    color: #9c27b0;
+}
+
+.bg-soft-primary {
+    background-color: #e3f2fd;
+}
+
+.extra-small {
+    font-size: 0.7rem;
 }
