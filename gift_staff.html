@@ -12,52 +12,27 @@
     <link rel="stylesheet" href="./ESCss/MainPage.css">
     <script src="./ESJS/MainPage.js"></script>
     <style>
-        /* 讓兌換按鈕在滑鼠經過時有明顯反應 */
+        .hover-pt {
+            transition: all 0.2s;
+        }
+
         .hover-pt:hover {
-            background-color: #343a40 !important;
-            color: #fff;
+            background-color: #0d6efd !important;
+            color: #fff !important;
         }
 
-        /* 調整分頁標籤樣式 */
+        .nav-tabs .nav-link {
+            color: #6c757d;
+            font-weight: 500;
+        }
+
         .nav-tabs .nav-link.active {
-            background-color: #000 !important;
-            border-bottom-color: transparent !important;
-        }
-
-        /* 隱藏預設表格邊框 */
-        .table-dark {
-            --bs-table-bg: transparent;
-        }
-
-        /* 確保 body 與外層容器撐滿全高 */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        #sidebarD {
-            min-height: calc(100vh - 58px);
-            /* 扣除上方導覽列高度，確保內容區撐開 */
-        }
-
-        /* 內容區背景填滿 */
-        #content {
-            background-color: #121212;
-            /* 使用深黑色背景 */
-            min-height: 100%;
-            flex-grow: 1;
-            /* 確保內容區自動填滿剩餘空間 */
-        }
-
-        /* 針對獎勵兌換卡片與 Modal 的黑色風格強化 */
-        .bg-black {
-            background-color: #000000 !important;
-        }
-
-        .border-secondary {
-            border-color: #373b3e !important;
-            /* 調整邊框顏色使其更接近線框圖 */
+            color: #0d6efd;
+            border-bottom: 3px solid #0d6efd;
+            background-color: transparent !important;
+            border-top: none;
+            border-left: none;
+            border-right: none;
         }
     </style>
 
@@ -66,15 +41,17 @@
 
 <!-- 兌換紀錄 -->
 <div class="modal fade" id="historyModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-dark text-white border-secondary">
-            <div class="modal-header border-secondary justify-content-center">
-                <h5 class="modal-title fw-bold">兌換紀錄</h5>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+            <div class="modal-header border-bottom-0 pt-4 px-4">
+                <h5 class="modal-title fw-bold" style="color: #1a233a;"><i
+                        class="bi bi-clock-history text-primary me-2"></i>兌換紀錄</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-0">
-                <table class="table table-dark table-hover mb-0 text-center border-secondary">
-                    <thead>
-                        <tr class="border-bottom border-secondary">
+            <div class="modal-body px-4 py-0">
+                <table class="table table-hover mb-0 text-center align-middle">
+                    <thead class="table-light">
+                        <tr>
                             <th>兌換日期</th>
                             <th>兌換目標</th>
                             <th>積分</th>
@@ -84,37 +61,37 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>2026-02-27</td>
+                            <td class="text-muted small">2026-02-27</td>
                             <td>範例 1</td>
-                            <td>50pt</td>
+                            <td class="text-primary fw-bold">50 pt</td>
                             <td>丁丁</td>
-                            <td><span class="text-warning">審核中</span></td>
+                            <td><span class="badge bg-soft-warning text-warning">審核中</span></td>
                         </tr>
                         <tr>
-                            <td>2026-01-31</td>
+                            <td class="text-muted small">2026-01-31</td>
                             <td>範例 2</td>
-                            <td>100pt</td>
+                            <td class="text-primary fw-bold">100 pt</td>
                             <td>丁丁</td>
-                            <td><span class="text-success">兌換成功</span></td>
+                            <td><span class="badge bg-soft-success text-success">兌換成功</span></td>
                         </tr>
                         <tr>
-                            <td>2025-12-21</td>
+                            <td class="text-muted small">2025-12-21</td>
                             <td>範例 3</td>
-                            <td>25pt</td>
+                            <td class="text-primary fw-bold">25 pt</td>
                             <td>迪西</td>
-                            <td><span class="text-danger">兌換失敗</span></td>
+                            <td><span class="badge bg-soft-danger text-danger">兌換失敗</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer border-secondary justify-content-center">
+            <div class="modal-footer border-top-0 pt-3 pb-4 px-4 justify-content-center">
                 <nav aria-label="Page navigation">
                     <ul class="pagination pagination-sm mb-0">
-                        <li class="page-item"><a class="page-link bg-transparent text-white border-0"
+                        <li class="page-item"><a class="page-link text-muted border-0 bg-light rounded-start"
                                 href="#">&lt;&lt;</a></li>
-                        <li class="page-item"><span class="page-link bg-transparent text-white border-0">1/10</span>
-                        </li>
-                        <li class="page-item"><a class="page-link bg-transparent text-white border-0"
+                        <li class="page-item"><span class="page-link text-dark border-0 fw-bold bg-white mx-1">1 /
+                                10</span></li>
+                        <li class="page-item"><a class="page-link text-muted border-0 bg-light rounded-end"
                                 href="#">&gt;&gt;</a></li>
                     </ul>
                 </nav>
@@ -125,14 +102,18 @@
 <!-- 兌換確認 -->
 <div class="modal fade" id="confirmModal" tabindex="-1">
     <div class="modal-dialog modal-sm modal-dialog-centered">
-        <div class="modal-content bg-dark text-white border-secondary">
-            <div class="modal-body text-center p-4 border-bottom border-secondary">
-                <h5 class="mb-0">確認兌換？</h5>
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
+            <div class="modal-body text-center p-4">
+                <i class="bi bi-question-circle text-primary mb-3" style="font-size: 3rem;"></i>
+                <h5 class="mb-0 fw-bold" style="color: #1a233a;">確認兌換？</h5>
+                <p class="text-muted small mt-2 mb-0">將扣除對應的積分</p>
             </div>
-            <div class="d-flex">
-                <button type="button" class="btn btn-dark w-50 rounded-0 border-end border-secondary py-3"
+            <div class="d-flex border-top">
+                <button type="button"
+                    class="btn btn-light w-50 rounded-0 rounded-bottom-start border-end py-3 text-muted fw-bold"
+                    data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary w-50 rounded-0 rounded-bottom-end py-3 fw-bold"
                     data-bs-dismiss="modal">確認</button>
-                <button type="button" class="btn btn-dark w-50 rounded-0 py-3" data-bs-dismiss="modal">取消</button>
             </div>
         </div>
     </div>
@@ -151,12 +132,26 @@
                 </button>
             </div>
 
+
+
             <!-- 通知 -->
             <div class="d-flex align-items-center ms-auto">
 
+                <div class="ms-auto d-none d-md-block me-3">
+                    <div class="input-group search-box">
+                        <span class="input-group-text ">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center"></div>
                 <button class="btn envelope-btn me-1" id="envelope">
                     <i class="bi bi-envelope"></i>
                 </button>
+
+
 
                 <!-- 右上角使用者選單 -->
                 <div class="dropdown">
@@ -166,12 +161,8 @@
                         <span class="d-none d-sm-inline">Joy</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
+                        <li><a class="dropdown-item text-danger" href="login.html"><i
+                                    class="bi bi-box-arrow-right me-2"></i>Log
                                 Out</a></li>
                     </ul>
                 </div>
@@ -186,35 +177,53 @@
 
         <nav class="list-unstyled sidebar" id="sidebarN">
 
-            <!-- LOGO -->
+            <!-- LOGO 圖文-->
             <div class="d-flex align-items-center justify-content-center"
                 style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">Admin ES</a>
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
             </div>
 
             <!-- 使用者資訊 -->
-            <div class="sidebar-user">
-                <div class="d-flex align-items-center p-3">
-                    <img src="Img/smile.jpg" class="rounded-circle me-3" width="50" height="50">
-                    <div class="text-white">
-                        <small class=" d-block opacity-75">Welcome, <strong>Joy</strong></small>
-                        <small>LV</small>
+            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="position-relative">
+                        <img src="Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                            style="object-fit: cover; ">
+                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
+                        </span>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
+                        <div class="d-flex align-items-center">
+                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
+                            <small class="xp-text">6850 XP</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-1">
+                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
+                        <span class="opacity-75">Level</span>
+                        <span class="fw-bold">69%</span>
+                    </div>
+                    <div class="progress custom-progress">
+                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
                     </div>
                 </div>
             </div>
 
             <!-- 選單 -->
             <ul class="d-flex flex-column list-unstyled">
-                <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
-                </li>
+                <li class="menu-category fw-bold">一般功能</li>
+                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a></li>
                 <li><a href="sign_in_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
                 <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
                 <li class="active"><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a>
                 </li>
                 <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
                 <li><a href="leave_sys.html"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-people-fill me-3"></i><span>通訊錄</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
                 <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
             </ul>
@@ -222,83 +231,119 @@
 
 
         <!-- 主頁內容 -->
-        <section id="content" class="p-4 w-100 flex-grow-1 bg-dark text-white">
+        <section id="content" class="p-4 w-100">
             <div class="container-fluid">
-                <div class="d-flex justify-content-between align-items-start mb-4">
-                    <h2 class="mb-0">獎勵兌換</h2>
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="fw-bold mb-1" style="color: #1a233a;">獎勵兌換</h2>
+                        <p class="text-muted small mb-0">使用您的積分解鎖並兌換專屬獎勵。</p>
+                    </div>
 
-                    <div class="border border-secondary p-3 bg-black" style="min-width: 280px;">
-                        <div class="d-flex align-items-center mb-2">
-                            <img src="Img/smile.jpg" class="rounded-circle me-3 border border-secondary" width="60"
-                                height="60">
-                            <div>
-                                <p class="mb-0 fw-bold">Joy</p>
-                                <small class="text-secondary">員工名稱</small>
+                    <div class="card bento-card border-0 shadow-sm" style="min-width: 280px;">
+                        <div class="card-body p-3">
+                            <div class="d-flex align-items-center mb-3 pb-2 border-bottom">
+                                <img src="Img/smile.jpg" class="rounded-circle me-3 border" width="50" height="50"
+                                    style="object-fit: cover;">
+                                <div>
+                                    <p class="mb-0 fw-bold" style="color: #1a233a;">Joy <span
+                                            class="badge bg-soft-success text-success ms-1 small">Level 12</span></p>
+                                    <small class="text-muted">資訊組</small>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="mt-2 py-2 border-top border-secondary">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <small class="text-secondary">總積分：</small>
-                                <span class="fw-bold text-white">1,500 pt</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <small class="text-muted fw-bold">總積分：</small>
+                                <span class="fw-bold text-dark">1,500 pt</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <small class="text-secondary">可使用積分：</small>
-                                <span class="fw-bold text-primary">1,250 pt</span>
+                                <small class="text-muted fw-bold">可使用積分：</small>
+                                <span class="fw-bold text-primary fs-5">1,250 pt</span>
                             </div>
-                            <button class="btn btn-sm btn-outline-light w-100" data-bs-toggle="modal"
-                                data-bs-target="#historyModal">
-                                兌換紀錄
+                            <button class="btn btn-sm btn-outline-primary w-100 fw-bold shadow-sm"
+                                data-bs-toggle="modal" data-bs-target="#historyModal">
+                                <i class="bi bi-clock-history me-1"></i> 兌換紀錄
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <ul class="nav nav-tabs border-secondary mb-4" id="rewardTabs" role="tablist">
-                    <li class="nav-item">
-                        <button class="nav-link active bg-dark text-white border-secondary" data-bs-toggle="tab"
-                            data-bs-target="#cat1">獎勵類別 1</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link bg-dark text-white border-secondary" data-bs-toggle="tab"
-                            data-bs-target="#cat2">獎勵類別 2</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link bg-dark text-white border-secondary" data-bs-toggle="tab"
-                            data-bs-target="#cat3">獎勵類別 3</button>
-                    </li>
-                </ul>
+                <div class="card bento-card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-transparent border-0 pt-0 px-4">
+                        <ul class="nav nav-tabs border-bottom" id="rewardTabs" role="tablist">
+                            <li class="nav-item">
+                                <button class="nav-link active px-4 py-3" data-bs-toggle="tab"
+                                    data-bs-target="#cat1">禮券與實體獎品</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link px-4 py-3" data-bs-toggle="tab"
+                                    data-bs-target="#cat2">休假與特權</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link px-4 py-3" data-bs-toggle="tab"
+                                    data-bs-target="#cat3">學習與成長</button>
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="cat1">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="d-flex border border-secondary bg-black align-items-stretch"
-                                    style="height: 120px;">
-                                    <div
-                                        class="p-3 flex-grow-1 border-end border-secondary d-flex flex-column justify-content-center">
-                                        <h5 class="mb-1">獎勵範例 1</h5>
-                                        <small class="text-secondary">剩餘數量：10</small>
+                    <div class="card-body p-4 pt-4">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="cat1">
+                                <div class="row g-4">
+                                    <div class="col-md-6 col-lg-4">
+                                        <div
+                                            class="card border border-light shadow-sm align-items-stretch overflow-hidden h-100 rounded-3">
+                                            <div class="row g-0 h-100">
+                                                <div
+                                                    class="col-8 p-3 d-flex flex-column justify-content-center bg-white">
+                                                    <h5 class="mb-1 fw-bold text-dark">電影票兩張</h5>
+                                                    <small class="text-muted"><i
+                                                            class="bi bi-box-seam me-1"></i>剩餘數量：10</small>
+                                                </div>
+                                                <div class="col-4 d-flex">
+                                                    <button
+                                                        class="btn btn-light w-100 h-100 rounded-0 border-start text-dark fw-bold hover-pt"
+                                                        data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                                        <div class="d-flex flex-column align-items-center text-primary">
+                                                            <i class="bi bi-gift fs-4 mb-1"></i>
+                                                            <span>50pt</span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button class="btn btn-dark px-4 rounded-0 hover-pt" data-bs-toggle="modal"
-                                        data-bs-target="#confirmModal">
-                                        50pt
-                                    </button>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div
+                                            class="card border border-light shadow-sm align-items-stretch overflow-hidden h-100 rounded-3">
+                                            <div class="row g-0 h-100">
+                                                <div
+                                                    class="col-8 p-3 d-flex flex-column justify-content-center bg-white">
+                                                    <h5 class="mb-1 fw-bold text-dark">高級下午茶套餐</h5>
+                                                    <small class="text-muted"><i
+                                                            class="bi bi-box-seam me-1"></i>剩餘數量：5</small>
+                                                </div>
+                                                <div class="col-4 d-flex">
+                                                    <button
+                                                        class="btn btn-light w-100 h-100 rounded-0 border-start text-dark fw-bold hover-pt"
+                                                        data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                                        <div class="d-flex flex-column align-items-center text-primary">
+                                                            <i class="bi bi-gift fs-4 mb-1"></i>
+                                                            <span>150pt</span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="d-flex border border-secondary bg-black align-items-stretch"
-                                    style="height: 120px;">
-                                    <div
-                                        class="p-3 flex-grow-1 border-end border-secondary d-flex flex-column justify-content-center">
-                                        <h5 class="mb-1">獎勵範例 2</h5>
-                                        <small class="text-secondary">剩餘數量：5</small>
-                                    </div>
-                                    <button class="btn btn-dark px-4 rounded-0 hover-pt" data-bs-toggle="modal"
-                                        data-bs-target="#confirmModal">
-                                        50pt
-                                    </button>
-                                </div>
+
+                            <div class="tab-pane fade" id="cat2">
+                                <p class="text-muted text-center py-4">目前沒有可兌換的獎勵</p>
+                            </div>
+
+                            <div class="tab-pane fade" id="cat3">
+                                <p class="text-muted text-center py-4">目前沒有可兌換的獎勵</p>
                             </div>
                         </div>
                     </div>
