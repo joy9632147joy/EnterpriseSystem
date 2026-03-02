@@ -66,6 +66,11 @@
         .editorial-shadow {
             box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
         }
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
+        }
     </style>
 </head>
 
@@ -80,18 +85,11 @@
                             Journal</span>
                     </div>
                     <nav class="hidden items-center gap-10 lg:flex">
-                        <a class="text-xs tracking-magazine font-medium text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">夢幻場域</a>
-                        <a class="text-xs tracking-magazine font-medium text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">職人團隊</a>
-                        <a class="text-xs tracking-magazine font-medium text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">衣裳禮餅</a>
-                        <a class="text-xs tracking-magazine font-medium text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">婚禮預覽</a>
-                        <a class="text-xs tracking-magazine font-medium text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">籌備進度</a>
-                        <a class="text-xs tracking-magazine font-medium text-text-main border-b border-accent-gold pb-1"
-                            href="#">我的婚禮</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">夢幻場域</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">職人團隊</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">衣裳禮餅</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">籌備進度</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">我的婚禮</a>
                     </nav>
                 </div>
                 <div class="flex items-center gap-8">
@@ -107,11 +105,7 @@
         <main class="grow">
             <section class="relative h-screen w-full overflow-hidden">
                 <div class="absolute inset-0 z-0">
-                    <video autoplay="" class="h-full w-full object-cover" loop="" muted="" playsinline="">
-                        <source
-                            src="https://assets.mixkit.co/videos/preview/mixkit-newlyweds-walking-in-a-park-1135-large.mp4"
-                            type="video/mp4" />
-                    </video>
+                    <img src="img/m01.png" class="h-full w-full object-cover" />
                     <div class="video-overlay absolute inset-0"></div>
                 </div>
                 <div class="relative z-10 flex h-full items-center justify-center text-center">
@@ -155,7 +149,7 @@
                             <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
                                 <img alt="Detail Romance"
                                     class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZd89NHRf06IKNXhtAabHLae1mlbh4lVtGKZ_v-0oxnDV9_ItylRdl12E5FXqaUTjij_Kd4kF0iLasnozkH9iu661C7OM0WAU31449sPeKyyJgS2nBhw5Xt0w1H-gE51SzXDENo_IlIsfdUq0U11XpjeG3BLlIpJZSbzmkT3tL3eMrRRypYafbHtzz6BKo5FIi4bQ0h56nUYa93r27VAQDnZanTZrtO2Fc7-DTmHxmrH_4UyUisRPIQwPLR4LR2HMfhsn2RC2rFPfW" />
+                                    src="img/m02.png" />
                                 <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
                                     onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
                                     <source
@@ -182,7 +176,7 @@
                             <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
                                 <img alt="Intimate Moment"
                                     class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8hQhJVCMp_kal3agpcaSYgVKvruVImuNV4T9X7kZKCbYPcy5yoeKVeCvSOokf-IbJrknALl_SVYDa1LcpgOy0eNf3iFmTZ6DcRJQiHIg94XUVAKjoRlERHg4jGvFnewLLOIHZ_50iiJbKhEYhF2ypVrzBVH3Ba8pUw_QBO57ph4fKUUwiYDQ0PI0AyIvle8RKM5sB-GLjkHkivC3n9tm4fKLYh3jIFuvomwx0vxBBUXjvJsOJYy2XfnsdM4ffYEdGTwojpHPsqfT" />
+                                    src="img/m03.png" />
                                 <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
                                     onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
                                     <source
@@ -210,7 +204,7 @@
                             <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
                                 <img alt="Venue Aesthetics"
                                     class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ_rHG7GJ5Vt8SsuQb8-UBUO-Ha2OzCMXele1rpUIXC8VEK8vRSQzWaCcw5-efXUNbYlpGQdsmRJgQN88LZZw17nk2jyZhXveta_xvSwBb1et0lbn40oIFtyqEIKizWp-BsgEpR8RPqWF3U4jDsDc7rHg-Qyit5tkVqV5vqMIZa9QyKjugW-AaTGgsQpyRArh_CJ5T0DvQGiW3mkYwOpp5reem_q5GpI2AIqd3dTJp0KmeacCAPrUVCe7gDfND9v-JQspmM03A7GCP" />
+                                    src="img/m04.jpg" />
                                 <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
                                     onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
                                     <source
@@ -241,7 +235,7 @@
                 <div class="relative group h-[750px] overflow-hidden">
                     <img alt="Dream Venue"
                         class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-110 soft-focus"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaQOMtgEEf1JEwONTb1foOr-W7kTppVOovJp1gCwnmdVNRYyOAbXdZSVaDjcq9cKZnuJnvOc1OCxVgVVctf_J15ji9ui-9YeoC_SNOOcFgQITvTeMDMa9BCigP5QY5l_JGw_VoxHQLfRiChhEN6MwxsFV2eR7M_ESP40kzpi2YecQQz2zCl5pOkOnU7tSTrMaX4P1ztvA0RP6-EPRXhxgpIpyRqjmMX1TnR3oXh61HxfrC0oLyaKHB8YN3SO0AH5hclAw0qO52prJz" />
+                        src="img/m05.jpg" />
                     <div class="absolute inset-0 bg-white/10 group-hover:bg-black/20 transition-colors duration-700">
                     </div>
                     <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center text-white">

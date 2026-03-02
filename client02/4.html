@@ -69,34 +69,38 @@
             @apply relative overflow-hidden bg-white;
             box-shadow: 0 10px 40px -15px rgba(0,0,0,0.1);
         }
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
+        }
     </style>
 </head>
 
 <body>
     <div class="relative flex min-h-screen w-full flex-col">
-        <header class="fixed top-0 z-50 w-full border-b border-accent-gold/20 bg-white/90 backdrop-blur-md">
-            <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+        <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
                 <div class="flex items-center gap-16">
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-accent-gold text-2xl">auto_awesome</span>
-                        <h1 class="text-lg font-light tracking-[0.25em] text-text-main">PURE MOMENT</h1>
+                    <div class="flex flex-col items-center leading-none">
+                        <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                            Journal</span>
                     </div>
                     <nav class="hidden items-center gap-10 lg:flex">
-                        <a class="text-sm font-light text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">專屬訂製</a>
-                        <a class="text-sm font-medium text-text-main border-b border-accent-gold pb-1" href="#">婚禮進度</a>
-                        <a class="text-sm font-light text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">夢想清單</a>
-                        <a class="text-sm font-light text-text-muted hover:text-accent-gold transition-colors"
-                            href="#">預約付款</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">夢幻場域</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">職人團隊</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">衣裳禮餅</a>
+                        <a class="nav-link active text-xs font-medium transition-colors" href="#">籌備進度</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="#">我的婚禮</a>
                     </nav>
                 </div>
-                <div class="flex items-center gap-6">
-                    <span
-                        class="material-symbols-outlined text-text-muted cursor-pointer hover:text-accent-gold">notifications</span>
-                    <div class="h-8 w-8 overflow-hidden rounded-full border border-border-grey ring-2 ring-warm-cream">
-                        <img alt="User" class="h-full w-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXUzv-2n-Y_Vvu0BMNAqtrSweogn9zJXe_-LlsUAQ4ww0rSrjAZRyHCatsmgKeodC2nvmc-5I2SGYaGT5Pv5Tj__ywjprE7ahizyEIag3Uq_nUCz7nf8r71lGfZNA2AIDSVbNUuFrPE0xHX7i_iCrOH-eFIFfe6xVGN-gk8rMlBW3t_PDHzJtGBebbNsVvSTko2f4bib2LOOU0WkvzCJ-_yg3VobDHJ7vF37HlcFWMC6-Q80a6qEjo5IMnVPL9OXIgCKWcdedjZwfU" />
+                <div class="flex items-center gap-8">
+                    <button
+                        class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
                     </div>
                 </div>
             </div>
