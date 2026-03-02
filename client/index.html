@@ -7,6 +7,7 @@
     <title>Eternal Story Wedding | 您的專屬婚禮顧問</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <!-- Google Fonts: Playfair Display (標題) & Lato (內文/副標) -->
     <link
@@ -85,10 +86,11 @@
             color: #6c757d;
             background-color: transparent;
         }
-        
+
         #loginTab .nav-link.active {
             color: #fff;
-            background-color: #343a40; /* Dark gray to match theme buttons */
+            background-color: #343a40;
+            /* Dark gray to match theme buttons */
         }
     </style>
 </head>
@@ -111,7 +113,7 @@
                     <li class="nav-item px-2"><a class="nav-link active" href="#services">統包服務</a></li>
                     <li class="nav-item px-2"><a class="nav-link" href="#portfolio">精選作品</a></li>
                     <li class="nav-item px-2"><a class="nav-link" href="#process">服務流程</a></li>
-                    
+
                     <!-- 跳至籌備進度頁面(串後端後移除此導覽列) -->
                     <li class="nav-item px-2"><a class="nav-link" href="dashboard.html">籌備進度(串後端後移除)</a></li>
                 </ul>
@@ -296,161 +298,195 @@
     </section>
 
     <!-- 預約諮詢區塊 -->
-    <section id="booking" class="py-5 bg-light">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+    <div id="app">
+        <section id="booking" class="py-5 bg-light">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
 
-                        <div class="card-header border-0 text-center py-4 text-white"
-                            style="background-color: #cda87c;">
-                            <h3 class="fw-bold mb-1"><i class="bi bi-envelope-paper-heart me-2"></i>預約專屬諮詢</h3>
-                            <p class="mb-0 small opacity-75">請留下您的基本資訊，我們的婚禮顧問將於 24 小時內與您聯繫</p>
-                        </div>
+                            <div class="card-header border-0 text-center py-4 text-white"
+                                style="background-color: #cda87c;">
+                                <h3 class="fw-bold mb-1"><i class="bi bi-envelope-paper-heart me-2"></i>預約專屬諮詢</h3>
+                                <p class="mb-0 small opacity-75">請留下您的基本資訊，我們的婚禮顧問將於 24 小時內與您聯繫</p>
+                            </div>
 
-                        <div class="card-body p-5">
-                            <form id="bookingForm">
+                            <div class="card-body p-5">
+                                <form id="bookingForm" @submit.prevent="submitForm">
 
-                                <h5 class="fw-bold text-secondary mb-4 border-bottom pb-2">新人資訊</h5>
-                                <div class="row g-4 mb-4">
-                                    <div class="col-md-6">
-                                        <label for="clientName" class="form-label small fw-bold">聯絡人姓名 <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" class="form-control bg-light border-0 px-3 py-2"
-                                            id="clientName" placeholder="例如：王小明 / 陳小姐" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="clientPhone" class="form-label small fw-bold">聯絡電話 <span
-                                                class="text-danger">*</span></label>
-                                        <input type="tel" class="form-control bg-light border-0 px-3 py-2"
-                                            id="clientPhone" placeholder="09XX-XXX-XXX" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="clientLine" class="form-label small fw-bold">Line ID <span
-                                                class="text-muted fw-normal">(選填，方便顧問快速聯繫)</span></label>
-                                        <input type="text" class="form-control bg-light border-0 px-3 py-2"
-                                            id="clientLine" placeholder="您的 Line ID">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="clientEmail" class="form-label small fw-bold">電子信箱 <span
-                                                class="text-danger">*</span></label>
-                                        <input type="email" class="form-control bg-light border-0 px-3 py-2"
-                                            id="clientEmail" placeholder="example@email.com" required>
-                                    </div>
-                                </div>
+                                    <h5 class="fw-bold text-secondary mb-4 border-bottom pb-2">新人資訊</h5>
+                                    <div class="row g-4 mb-4">
+                                        <div class="col-md-6">
+                                            <label for="clientName" class="form-label small fw-bold">聯絡人姓名 <span
+                                                    class="text-danger">*</span></label>
 
-                                <h5 class="fw-bold text-secondary mb-4 border-bottom pb-2">婚禮初步構想</h5>
-                                <div class="row g-4 mb-4">
-                                    <div class="col-md-6">
-                                        <label for="weddingDate" class="form-label small fw-bold">預計婚期 <span
-                                                class="text-muted fw-normal">(若未定可留空)</span></label>
-                                        <input type="date" class="form-control bg-light border-0 px-3 py-2"
-                                            id="weddingDate">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="guestCount" class="form-label small fw-bold">預估規模</label>
-                                        <select class="form-select bg-light border-0 px-3 py-2" id="guestCount">
-                                            <option selected disabled>請選擇預估規模</option>
-                                            <option value="純儀式">純儀式 (無宴客)</option>
-                                            <option value="50人以下">50人以下 (精緻家宴)</option>
-                                            <option value="100-200人">10-20桌 (100-200人)</option>
-                                            <option value="200-300人">20-30桌 (200-300人)</option>
-                                            <option value="300人以上">30桌以上 (盛大婚宴)</option>
-                                        </select>
-                                    </div>
+                                            <input type="text" class="form-control bg-light border-0 px-3 py-2"
+                                                id="clientName" v-model="form.clientName" placeholder="例如：王小明 / 陳小姐"
+                                                required>
 
-                                    <div class="col-12">
-                                        <label class="form-label small fw-bold d-block mb-3">您嚮往的婚禮風格 <span
-                                                class="text-muted fw-normal">(可複選)</span></label>
-                                        <div class="btn-group-toggle d-flex flex-wrap gap-2" data-toggle="buttons">
-                                            <input type="checkbox" class="btn-check" id="style1" autocomplete="off">
-                                            <label class="btn btn-outline-secondary rounded-pill btn-sm px-3" for="style1">美式戶外</label>
-
-                                            <input type="checkbox" class="btn-check" id="style2" autocomplete="off">
-                                            <label class="btn btn-outline-secondary rounded-pill btn-sm px-3" for="style2">奢華飯店</label>
-
-                                            <input type="checkbox" class="btn-check" id="style3" autocomplete="off">
-                                            <label class="btn btn-outline-secondary rounded-pill btn-sm px-3" for="style3">中式古典</label>
-
-                                            <input type="checkbox" class="btn-check" id="style4" autocomplete="off">
-                                            <label class="btn btn-outline-secondary rounded-pill btn-sm px-3" for="style4">韓系簡約</label>
-
-                                            <input type="checkbox" class="btn-check" id="style5" autocomplete="off">
-                                            <label class="btn btn-outline-secondary rounded-pill btn-sm px-3" for="style5">海島浪漫</label>
-                                            
-                                            <input type="checkbox" class="btn-check" id="style6" autocomplete="off">
-                                            <label class="btn btn-outline-secondary rounded-pill btn-sm px-3" for="style6">尚未決定</label>
+                                            <p class="text-primary mt-2 fw-bold" style="min-height: 24px;">
+                                                歡迎 {{ form.clientName }}！
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="clientPhone" class="form-label small fw-bold">聯絡電話 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="tel" class="form-control bg-light border-0 px-3 py-2"
+                                                id="clientPhone" v-model="form.clientPhone" placeholder="09XX-XXX-XXX"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="clientLine" class="form-label small fw-bold">Line ID <span
+                                                    class="text-muted fw-normal">(選填，方便顧問快速聯繫)</span></label>
+                                            <input type="text" class="form-control bg-light border-0 px-3 py-2"
+                                                id="clientLine" v-model="form.clientLine" placeholder="您的 Line ID">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="clientEmail" class="form-label small fw-bold">電子信箱 <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email" class="form-control bg-light border-0 px-3 py-2"
+                                                id="clientEmail" v-model="form.clientEmail"
+                                                placeholder="example@email.com" required>
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <label class="form-label small fw-bold d-block mb-3">需要我們協助的項目 <span
-                                                class="text-muted fw-normal">(可複選)</span></label>
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="form-check p-3 border rounded bg-light">
-                                                    <input class="form-check-input ms-1" type="checkbox" value="統包企劃" id="service1">
-                                                    <label class="form-check-label fw-bold ms-2" for="service1">
-                                                        全方位統包企劃
-                                                        <small class="d-block text-muted fw-normal mt-1">預算控管、流程規劃、廠商整合</small>
-                                                    </label>
-                                                </div>
+                                    <h5 class="fw-bold text-secondary mb-4 border-bottom pb-2">婚禮初步構想</h5>
+                                    <div class="row g-4 mb-4">
+                                        <div class="col-md-6">
+                                            <label for="weddingDate" class="form-label small fw-bold">預計婚期 <span
+                                                    class="text-muted fw-normal">(若未定可留空)</span></label>
+                                            <input type="date" class="form-control bg-light border-0 px-3 py-2"
+                                                id="weddingDate" v-model="form.weddingDate">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="guestCount" class="form-label small fw-bold">預估規模</label>
+                                            <select class="form-select bg-light border-0 px-3 py-2" id="guestCount"
+                                                v-model="form.guestCount">
+                                                <option disabled value="">請選擇預估規模</option>
+                                                <option value="純儀式">純儀式 (無宴客)</option>
+                                                <option value="50人以下">50人以下 (精緻家宴)</option>
+                                                <option value="100-200人">10-20桌 (100-200人)</option>
+                                                <option value="200-300人">20-30桌 (200-300人)</option>
+                                                <option value="300人以上">30桌以上 (盛大婚宴)</option>
+                                                <option value="">尚未決定</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label small fw-bold d-block mb-3">您嚮往的婚禮風格 <span
+                                                    class="text-muted fw-normal">(可複選)</span></label>
+                                            <div class="btn-group-toggle d-flex flex-wrap gap-2" data-toggle="buttons">
+                                                <input type="checkbox" class="btn-check" id="style1"
+                                                    v-model="form.styles" value="美式戶外" autocomplete="off">
+                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
+                                                    for="style1">美式戶外</label>
+
+                                                <input type="checkbox" class="btn-check" id="style2"
+                                                    v-model="form.styles" value="奢華飯店" autocomplete="off">
+                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
+                                                    for="style2">奢華飯店</label>
+
+                                                <input type="checkbox" class="btn-check" id="style3"
+                                                    v-model="form.styles" value="中式古典" autocomplete="off">
+                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
+                                                    for="style3">中式古典</label>
+
+                                                <input type="checkbox" class="btn-check" id="style4"
+                                                    v-model="form.styles" value="韓系簡約" autocomplete="off">
+                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
+                                                    for="style4">韓系簡約</label>
+
+                                                <input type="checkbox" class="btn-check" id="style5"
+                                                    v-model="form.styles" value="海島浪漫" autocomplete="off">
+                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
+                                                    for="style5">海島浪漫</label>
+
+                                                <input type="checkbox" class="btn-check" id="style6"
+                                                    v-model="form.styles" value="尚未決定" autocomplete="off">
+                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
+                                                    for="style6">尚未決定</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-check p-3 border rounded bg-light">
-                                                    <input class="form-check-input ms-1" type="checkbox" value="場地佈置" id="service2">
-                                                    <label class="form-check-label fw-bold ms-2" for="service2">
-                                                        主題場地佈置
-                                                        <small class="d-block text-muted fw-normal mt-1">花藝設計、背板搭建、燈光氛圍</small>
-                                                    </label>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label small fw-bold d-block mb-3">需要我們協助的項目 <span
+                                                    class="text-muted fw-normal">(可複選)</span></label>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-check p-3 border rounded bg-light">
+                                                        <input class="form-check-input ms-1" type="checkbox"
+                                                            value="統包企劃" id="service1" v-model="form.services">
+                                                        <label class="form-check-label fw-bold ms-2" for="service1">
+                                                            全方位統包企劃
+                                                            <small
+                                                                class="d-block text-muted fw-normal mt-1">預算控管、流程規劃、廠商整合</small>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-check p-3 border rounded bg-light">
-                                                    <input class="form-check-input ms-1" type="checkbox" value="平面攝影" id="service3">
-                                                    <label class="form-check-label fw-bold ms-2" for="service3">
-                                                        婚禮影像紀錄
-                                                        <small class="d-block text-muted fw-normal mt-1">平面攝影、動態錄影、SDE快剪快播</small>
-                                                    </label>
+                                                <div class="col-md-6">
+                                                    <div class="form-check p-3 border rounded bg-light">
+                                                        <input class="form-check-input ms-1" type="checkbox"
+                                                            value="場地佈置" id="service2" v-model="form.services">
+                                                        <label class="form-check-label fw-bold ms-2" for="service2">
+                                                            主題場地佈置
+                                                            <small
+                                                                class="d-block text-muted fw-normal mt-1">花藝設計、背板搭建、燈光氛圍</small>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-check p-3 border rounded bg-light">
-                                                    <input class="form-check-input ms-1" type="checkbox" value="新娘秘書" id="service4">
-                                                    <label class="form-check-label fw-bold ms-2" for="service4">
-                                                        造型與禮服
-                                                        <small class="d-block text-muted fw-normal mt-1">新娘秘書、手工婚紗租借</small>
-                                                    </label>
+                                                <div class="col-md-6">
+                                                    <div class="form-check p-3 border rounded bg-light">
+                                                        <input class="form-check-input ms-1" type="checkbox"
+                                                            value="平面攝影" id="service3" v-model="form.services">
+                                                        <label class="form-check-label fw-bold ms-2" for="service3">
+                                                            婚禮影像紀錄
+                                                            <small
+                                                                class="d-block text-muted fw-normal mt-1">平面攝影、動態錄影、SDE快剪快播</small>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-check p-3 border rounded bg-light">
+                                                        <input class="form-check-input ms-1" type="checkbox"
+                                                            value="新娘秘書" id="service4" v-model="form.services">
+                                                        <label class="form-check-label fw-bold ms-2" for="service4">
+                                                            造型與禮服
+                                                            <small
+                                                                class="d-block text-muted fw-normal mt-1">新娘秘書、手工婚紗租借</small>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-12">
+                                            <label for="additionalNotes" class="form-label small fw-bold">其他想告訴我們的事
+                                                <span class="text-muted fw-normal">(選填)</span></label>
+                                            <textarea class="form-control bg-light border-0 px-3 py-3"
+                                                id="additionalNotes" rows="4"
+                                                placeholder="例如：特別喜歡戶外草地婚禮、有特定的預算考量，或是有哪些夢想中的婚禮畫面..."
+                                                v-model="form.additionalNotes"></textarea>
+                                        </div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <label for="additionalNotes" class="form-label small fw-bold">其他想告訴我們的事 <span
-                                                class="text-muted fw-normal">(選填)</span></label>
-                                        <textarea class="form-control bg-light border-0 px-3 py-3" id="additionalNotes"
-                                            rows="4" placeholder="例如：特別喜歡戶外草地婚禮、有特定的預算考量，或是有哪些夢想中的婚禮畫面..."></textarea>
+                                    <div class="text-center mt-5">
+                                        <button type="submit" class="btn btn-lg px-5 py-3 fw-bold text-white shadow-sm"
+                                            style="background-color: #cda87c; border-radius: 50px;">
+                                            送出預約申請 <i class="bi bi-send-fill ms-2"></i>
+                                        </button>
+                                        <div class="mt-3 small text-muted">
+                                            <i class="bi bi-shield-check me-1"></i> 您的資料僅供本次諮詢使用。
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="text-center mt-5">
-                                    <button type="submit" class="btn btn-lg px-5 py-3 fw-bold text-white shadow-sm"
-                                        style="background-color: #cda87c; border-radius: 50px;">
-                                        送出預約申請 <i class="bi bi-send-fill ms-2"></i>
-                                    </button>
-                                    <div class="mt-3 small text-muted">
-                                        <i class="bi bi-shield-check me-1"></i> 您的資料僅供本次諮詢使用。
-                                    </div>
-                                </div>
-
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Client Login/Register Modal -->
     <div class="modal fade" id="clientLoginModal" tabindex="-1" aria-hidden="true">
@@ -485,7 +521,8 @@
                                     <div class="input-group">
                                         <span class="input-group-text border-0 bg-light"><i
                                                 class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control bg-light border-0 py-2" placeholder="請輸入帳號">
+                                        <input type="text" class="form-control bg-light border-0 py-2"
+                                            placeholder="請輸入帳號">
                                     </div>
                                 </div>
                                 <div class="mb-4">
@@ -524,11 +561,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small fw-bold text-muted">設定密碼</label>
-                                    <input type="password" class="form-control bg-light border-0 py-2" placeholder="6位數以上英數字">
+                                    <input type="password" class="form-control bg-light border-0 py-2"
+                                        placeholder="6位數以上英數字">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label small fw-bold text-muted">確認密碼</label>
-                                    <input type="password" class="form-control bg-light border-0 py-2" placeholder="請再次輸入密碼">
+                                    <input type="password" class="form-control bg-light border-0 py-2"
+                                        placeholder="請再次輸入密碼">
                                 </div>
                                 <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold"
                                     style="background-color: #cda87c; border-color: #cda87c;">建立帳號</button>
@@ -541,6 +580,35 @@
     </div>
 
     <script src="../js/bootstrap.bundle.js"></script>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    form: {
+                        clientName: '',     // 姓名
+                        clientPhone: '',    // 電話
+                        clientLine: '',     // Line
+                        clientEmail: '',    // 信箱
+                        weddingDate: '',    // 婚期
+                        guestCount: '',     // 桌數下拉選單
+                        styles: [],         // 嚮往風格 (複選，用陣列)
+                        services: [],       // 需要協助項目 (複選，用陣列)
+                        additionalNotes: '' // 其他想告訴我們的事
+                    }
+                }
+            },
+            // methods 是用來放「你想要執行的動作(函數)」的地方
+            methods: {
+                submitForm() {
+                    // 印出收集到的資料，未來這裡可以換成呼叫 Spring Boot API
+                    console.log("即將送出的資料：", JSON.stringify(this.form, null, 2));
+                    alert("預約成功！" + this.form.clientName + "，顧問將盡快與您聯繫！");
+                }
+            }
+        }).mount('#app');
+    </script>
 </body>
 
 </html>
