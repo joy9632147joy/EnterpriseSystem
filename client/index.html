@@ -79,6 +79,17 @@
             transform: translateY(-8px);
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
         }
+
+        /* 登入 Modal 樣式 */
+        #loginTab .nav-link {
+            color: #6c757d;
+            background-color: transparent;
+        }
+        
+        #loginTab .nav-link.active {
+            color: #fff;
+            background-color: #343a40; /* Dark gray to match theme buttons */
+        }
     </style>
 </head>
 
@@ -106,8 +117,8 @@
                 </ul>
                 <div class="d-flex gap-2">
                     <a href="#booking" class="btn btn-outline-dark rounded-pill px-4">預約諮詢</a>
-                    <a href="../login.html" class="btn btn-dark rounded-pill px-4"><i
-                            class="bi bi-person me-1"></i>新人登入</a>
+                    <button type="button" class="btn btn-dark rounded-pill px-4" data-bs-toggle="modal"
+                        data-bs-target="#clientLoginModal"><i class="bi bi-person me-1"></i>會員登入&註冊</button>
                 </div>
             </div>
         </div>
@@ -440,6 +451,94 @@
             </div>
         </div>
     </section>
+
+    <!-- Client Login/Register Modal -->
+    <div class="modal fade" id="clientLoginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 overflow-hidden" style="border-radius: 20px;">
+                <div class="modal-header border-0 p-0 position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3 bg-white"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="w-100 text-center py-5 text-white" style="background-color: #cda87c;">
+                        <h3 class="fw-bold mb-1">Welcome Back</h3>
+                        <p class="mb-0 opacity-75">登入以查看您的婚禮籌備進度</p>
+                    </div>
+                </div>
+                <div class="modal-body p-4 p-md-5">
+                    <ul class="nav nav-pills nav-fill mb-4" id="loginTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill fw-bold" id="login-tab" data-bs-toggle="pill"
+                                data-bs-target="#login-content" type="button" role="tab">會員登入</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill fw-bold" id="register-tab" data-bs-toggle="pill"
+                                data-bs-target="#register-content" type="button" role="tab">註冊帳號</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- Login Form -->
+                        <div class="tab-pane fade show active" id="login-content" role="tabpanel">
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">電子信箱 / 手機號碼</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text border-0 bg-light"><i
+                                                class="bi bi-person"></i></span>
+                                        <input type="text" class="form-control bg-light border-0 py-2" placeholder="請輸入帳號">
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-muted">密碼</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text border-0 bg-light"><i
+                                                class="bi bi-lock"></i></span>
+                                        <input type="password" class="form-control bg-light border-0 py-2"
+                                            placeholder="請輸入密碼">
+                                    </div>
+                                    <div class="text-end mt-2">
+                                        <a href="#" class="text-muted small text-decoration-none">忘記密碼？</a>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold"
+                                    style="background-color: #cda87c; border-color: #cda87c;">立即登入</button>
+                            </form>
+                        </div>
+
+                        <!-- Register Form -->
+                        <div class="tab-pane fade" id="register-content" role="tabpanel">
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">姓名</label>
+                                    <input type="text" class="form-control bg-light border-0 py-2" placeholder="您的真實姓名">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">電子信箱</label>
+                                    <input type="email" class="form-control bg-light border-0 py-2"
+                                        placeholder="example@email.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">手機號碼</label>
+                                    <input type="tel" class="form-control bg-light border-0 py-2"
+                                        placeholder="09XX-XXX-XXX">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">設定密碼</label>
+                                    <input type="password" class="form-control bg-light border-0 py-2" placeholder="6位數以上英數字">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label small fw-bold text-muted">確認密碼</label>
+                                    <input type="password" class="form-control bg-light border-0 py-2" placeholder="請再次輸入密碼">
+                                </div>
+                                <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold"
+                                    style="background-color: #cda87c; border-color: #cda87c;">建立帳號</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/bootstrap.bundle.js"></script>
 </body>
