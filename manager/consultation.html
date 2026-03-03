@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../ESCss/MainPage.css">
+    <script src="../ESJS/MainPage.js" defer></script>
+
+    <title>Enterprise System</title>
+</head>
+
+<body>
+
+    <!-- 上方導覽列 -->
+    <nav class="navbar navbar-dark sticky-top">
+
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+
+
+            <!-- 通知 -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <div class="ms-auto d-none d-md-block me-3 search-box">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0" style="border-radius: 50px 0 0 50px;">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control bg-light border-0" placeholder="搜尋功能或公告..."
+                            aria-label="Search" style="border-radius: 0 50px 50px 0;">
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn envelope-btn me-1 position-relative" id="envelope" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-envelope"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
+                            style="width: 8px; height: 8px; margin-top: 8px; margin-left: -8px;"></span>
+                    </button>
+
+                    <div class="dropdown-menu dropdown-menu-end notification-dropdown shadow-lg">
+                        <div class="px-4 mb-2 d-flex justify-content-between align-items-center">
+                            <span class="fw-bold small text-dark">通知中心 <span
+                                    class="badge bg-light text-danger rounded-pill ms-1">3</span></span>
+                            <a href="#" class="text-decoration-none extra-small fw-bold text-primary">全部標為已讀</a>
+                        </div>
+
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="notif-item">
+                                <div class="icon-box bg-soft-green">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold extra-small text-dark">任務已核准</span>
+                                        <span class="extra-small text-muted">5 分鐘前</span>
+                                    </div>
+                                    <p class="extra-small text-muted mb-0">您的「5月份加班申請單」已經由 Rose 老師核准通過。</p>
+                                </div>
+                            </a>
+
+                            <a href="#" class="notif-item">
+                                <div class="icon-box bg-soft-blue">
+                                    <i class="bi bi-megaphone-fill"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold extra-small text-dark">系統維護通知</span>
+                                        <span class="extra-small text-muted">2 小時前</span>
+                                    </div>
+                                    <p class="extra-small text-muted mb-0">「Java 不倒團」將於週六凌晨 02:00 進行例行維修。</p>
+                                </div>
+                            </a>
+
+                            <a href="#" class="notif-item">
+                                <div class="icon-box bg-soft-yellow">
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold extra-small text-dark">獲得獎勵積分</span>
+                                        <span class="extra-small text-muted">昨天</span>
+                                    </div>
+                                    <p class="extra-small text-muted mb-0">完成「客戶 A 公司報價」任務，獲得了 +200 pts 積分。</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text-center mt-3 pt-2 border-top">
+                            <a href="#" class="text-decoration-none extra-small text-muted fw-bold">查看所有通知 <i
+                                    class="bi bi-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 右上角使用者選單 -->
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                    <span class="d-none d-sm-inline">Joy</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item text-danger" href="login.html"><i
+                                class="bi bi-box-arrow-right me-2"></i>Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 側邊欄 -->
+    <div class="d-flex" id="sidebarD">
+
+        <nav class="list-unstyled sidebar" id="sidebarN">
+
+            <!-- LOGO 圖文-->
+            <div class="d-flex align-items-center justify-content-center"
+                style="height: 58px; background-color: #1f2d3a;">
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
+            </div>
+
+            <!-- 使用者資訊 -->
+            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="position-relative">
+                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                            style="object-fit: cover; ">
+                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
+                        </span>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
+                        <span class="user-title">開掛宗師</span>
+                    </div>
+                </div>
+
+                <div class="px-1">
+                    <div class="points-row">
+                        <span class="points-label">我的積分</span>
+                        <span class="points-value">
+                            <span class="coin-icon"><i class="bi bi-p-circle-fill"></i></span>
+                            6,850
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 選單 -->
+            <ul class="d-flex flex-column list-unstyled">
+                <li class="menu-category fw-bold">GENERAL</li>
+                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                </li>
+                <li><a href="consultation.html"><i class="bi bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
+                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
+                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>聯絡資訊</span></a></li>
+                <li class="menu-category fw-bold">系統設定</li>
+                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
+            </ul>
+        </nav>
+
+
+        <!--內容-->
+        <section id="content" class="p-4">
+            <div class="container-fluid py-4">
+                <h3 class="fw-bold mb-4" style="color: #1a233a;">新進預約諮詢</h3>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm p-3" style="border-top: 5px solid #d4af37;">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="badge bg-soft-info text-info">待指派顧問</span>
+                                <small class="text-muted">預約時間：03-03 14:20</small>
+                            </div>
+                            <h5 class="fw-bold">新郎：陳志明 & 新娘：林春嬌</h5>
+                            <hr>
+                            <p class="small mb-1"><strong>方案：</strong> <span id="display-package">美式戶外婚禮包套</span></p>
+                            <p class="small mb-1"><strong>風格：</strong> <span id="display-style">清新森系</span></p>
+                            <p class="small mb-1"><strong>選配：</strong> <span id="display-extra">婚禮樂團、空拍紀錄</span></p>
+
+                            <div class="bg-light p-2 rounded-3 mt-2">
+                                <small class="text-dark d-block fw-bold">顧客備註：</small>
+                                <small class="text-muted">希望能有草地證婚儀式...</small>
+                            </div>
+
+                            <div class="mt-3 d-flex gap-2">
+                                <button class="btn btn-outline-secondary btn-sm flex-fill rounded-pill fw-bold"
+                                    data-bs-toggle="modal" data-bs-target="#editConsultationModal">
+                                    <i class="bi bi-pencil-square me-1"></i>更改
+                                </button>
+                                <button class="btn btn-primary btn-sm flex-fill rounded-pill fw-bold">接案處理</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-5">
+                        <h5 class="fw-bold mb-3">最近處理紀錄</h5>
+                        <div class="history-item-card success p-3 shadow-sm">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="fw-bold">林小華 & 王大美</div>
+                                    <div class="text-muted small">諮詢專員：Joy</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="badge bg-soft-success text-success">已轉簽約任務</span>
+                                    <div class="small mt-1">選購方案：經典室內婚禮包套</div>
+                                </div>
+                                <div class="col-md-5 text-end">
+                                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3"
+                                        data-bs-toggle="modal" data-bs-target="#viewConsultationModal">
+                                        查看詳細需求書
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 進行中修改視窗 -->
+    <div class="modal fade" id="editConsultationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 15px;">
+                <div class="modal-header border-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold" style="color: #1a233a;">修改諮詢細項</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form id="editConsultationForm">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">婚禮方案</label>
+                            <select class="form-select border-0 bg-light py-2">
+                                <option value="1" selected>美式戶外婚禮包套</option>
+                                <option value="2">飯店經典婚禮包套</option>
+                                <option value="3">中式傳統婚宴包套</option>
+                                <option value="4">客製化主題定製</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted d-block">偏好風格</label>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="style" id="style1" autocomplete="off"
+                                    checked>
+                                <label class="btn btn-outline-primary btn-sm" for="style1">清新森系</label>
+                                <input type="radio" class="btn-check" name="style" id="style2" autocomplete="off">
+                                <label class="btn btn-outline-primary btn-sm" for="style2">奢華金迷</label>
+                                <input type="radio" class="btn-check" name="style" id="style3" autocomplete="off">
+                                <label class="btn btn-outline-primary btn-sm" for="style3">美式簡約</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">選配附加服務</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="form-check p-2 rounded border bg-white">
+                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="extra1" checked>
+                                        <label class="form-check-label small" for="extra1">婚禮樂團</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check p-2 rounded border bg-white">
+                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="extra2" checked>
+                                        <label class="form-check-label small" for="extra2">空拍紀錄</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check p-2 rounded border bg-white">
+                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="extra3">
+                                        <label class="form-check-label small" for="extra3">禮車租借</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check p-2 rounded border bg-white">
+                                        <input class="form-check-input ms-0 me-2" type="checkbox" id="extra4">
+                                        <label class="form-check-label small" for="extra4">花藝升級</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">顧客備註內容</label>
+                            <textarea class="form-control border-0 bg-light py-2 rounded-3" rows="3"
+                                id="edit-customer-note"
+                                placeholder="輸入顧客特殊需求，如：草地證婚、餐點限制...">希望能有草地證婚儀式，人數約 150 人，預算在 60-80 萬之間。</textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 處理紀錄詳細內容 -->
+    <div class="modal fade" id="viewConsultationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 15px;">
+                <div class="modal-header border-0 pt-4 px-4">
+                    <div class="d-flex align-items-center">
+                        <h5 class="modal-title fw-bold" style="color: #1a233a;">詳細需求紀錄書</h5>
+                        <span class="badge bg-light text-muted ms-2">唯讀</span>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">原定婚禮方案</label>
+                            <select class="form-select border-0 bg-light py-2" disabled>
+                                <option selected>經典室內婚禮包套</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted d-block">選定偏好風格</label>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" disabled>
+                                <label class="btn btn-outline-primary btn-sm active">奢華金迷</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">已選附加服務</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="form-check p-2 rounded border bg-light opacity-75">
+                                        <input class="form-check-input ms-0 me-2" type="checkbox" checked disabled>
+                                        <label class="form-check-label small">婚禮樂團</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check p-2 rounded border bg-light opacity-75">
+                                        <input class="form-check-input ms-0 me-2" type="checkbox" checked disabled>
+                                        <label class="form-check-label small">禮車租借</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted">最終諮詢備註</label>
+                            <textarea class="form-control border-0 bg-light py-2 rounded-3" rows="3"
+                                disabled>新人希望宴客區能有大型香檳塔，且不希望有傳統的收禮金環節，改為電子禮金。</textarea>
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label small fw-bold text-muted">核定預算區間</label>
+                            <div class="p-2 bg-soft-primary text-primary rounded-3 text-center fw-bold">
+                                $ 120 萬
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 pb-4 px-4">
+                    <button type="button" class="btn btn-secondary rounded-pill w-100 fw-bold"
+                        data-bs-dismiss="modal">關閉視窗</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
