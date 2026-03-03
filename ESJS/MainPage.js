@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 權限設定
     const permissions = {
         admin: ["add-announcement"],
-        staff:["view-announcement"]
+        staff: ["view-announcement"]
     };
 
     // 目前登入者admin/staff
@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-
 });
 
 
