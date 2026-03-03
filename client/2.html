@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Noto+Serif+TC:wght@200;300;400;500;600&amp;family=Montserrat:wght@100;200;300;400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#D4AF37", "gold-light": "#F4EBD0",
+                        "background-pure": "#FFFFFF",
+                        "luxury-slate": "#1A1A1A",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                        "accent-gold": "#C5A059",
+                        "border-grey": "#F0F0F0",
+                    },
+                    fontFamily: {
+                        "serif-tc": ["Noto Serif TC", "serif"],
+                        "display": ["Newsreader", "serif"],
+                        "sans": ["Montserrat", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-pure text-luxury-slate font-serif-tc antialiased;
+            }
+            h1, h2, h3, h4 {
+                @apply font-serif-tc tracking-tight;
+            }
+        }
+        .magazine-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
+        }
+        .airy-header::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: #D4AF37;
+            margin: 1.5rem auto 0;
+        }
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-pure">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
+                <div class="flex items-center gap-16">
+                    <div class="flex flex-col items-center leading-none">
+                        <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                            Journal</span>
+                    </div>
+                    <nav class="hidden items-center gap-10 lg:flex">
+                        <a class="nav-link text-xs font-medium transition-colors" href="./index.html">首頁</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./1.html">夢幻場域</a>
+                        <a class="nav-link active text-xs font-medium transition-colors" href="./2.html">職人團隊</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./3.html">衣裳禮餅</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./4.html">籌備進度</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./5.html">我的婚禮</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-8">
+                    <button
+                        class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 w-full max-w-[1600px] mx-auto">
+            <section class="px-12 py-20 text-center flex flex-col items-center">
+                <span class="text-[10px] uppercase tracking-[0.5em] text-primary mb-6 block font-bold">Curated
+                    Excellence</span>
+                <h2
+                    class="text-5xl md:text-6xl font-serif-tc font-extralight text-luxury-slate mb-8 max-w-4xl leading-tight">
+                    職人團隊：極致雜誌風精品精選
+                </h2>
+                <p class="text-slate-400 max-w-2xl text-sm leading-loose font-light tracking-widest">
+                    我們深信，每場婚禮都是一件流動的藝術品。在此，我們為您引薦業界最具品味與工匠精神的職人，<br />
+                    以細膩的感官與溫柔的視角，為您的重要時刻編織永恆。
+                </p>
+            </section>
+            <div class="flex px-12 pb-32 gap-16">
+                <aside class="w-64 shrink-0">
+                    <div class="sticky top-32 flex flex-col gap-12">
+                        <div>
+                            <h4
+                                class="text-[10px] uppercase tracking-[0.3em] font-bold text-luxury-slate mb-8 border-b border-slate-100 pb-2">
+                                Filter By Style</h4>
+                            <div class="flex flex-col gap-5">
+                                <label class="flex items-center justify-between cursor-pointer group">
+                                    <span
+                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">浪漫溫馨
+                                        Romantic</span>
+                                    <input class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
+                                        type="checkbox" />
+                                </label>
+                                <label class="flex items-center justify-between cursor-pointer group">
+                                    <span
+                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">經典高雅
+                                        Classic</span>
+                                    <input checked=""
+                                        class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
+                                        type="checkbox" />
+                                </label>
+                                <label class="flex items-center justify-between cursor-pointer group">
+                                    <span
+                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">文青簡約
+                                        Minimalist</span>
+                                    <input class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
+                                        type="checkbox" />
+                                </label>
+                                <label class="flex items-center justify-between cursor-pointer group">
+                                    <span
+                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">奢華宏偉
+                                        Grandeur</span>
+                                    <input class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
+                                        type="checkbox" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="bg-gold-light/20 p-8 rounded-sm">
+                            <p class="text-[9px] uppercase tracking-[0.2em] text-primary mb-2 font-bold">Inquiry</p>
+                            <p class="text-[11px] leading-relaxed text-slate-600 mb-6">需要專屬建議？我們的婚禮顧問隨時為您安排面談。</p>
+                            <a class="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-luxury-slate pb-1 hover:text-primary hover:border-primary transition-all"
+                                href="#">Contact Us</a>
+                        </div>
+                    </div>
+                </aside>
+                <div class="flex-1">
+                    <div class="mb-24">
+                        <div class="airy-header text-center mb-16">
+                            <h3 class="text-3xl font-serif-tc font-light tracking-widest text-luxury-slate">主持人 ·
+                                Masters of Ceremony</h3>
+                            <p class="text-[10px] text-slate-400 mt-2 tracking-[0.2em] font-light">ELEGANT STORYTELLERS
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-x-12 gap-y-20">
+                            <div class="group">
+                                <div class="relative aspect-[3/4] overflow-hidden mb-8 bg-slate-50">
+                                    <img alt="Ivy Chen"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ETRw1sAiX37JFE-H_nD87uQiDe0n7ScEgYC9kYhdwOSaQ3EomGIbTLH2ExLx-nQYcskKd0IYKtZKI5Td9PVD2tzyb0amPqlM4HXT7JxpoVrRCE2VJ2-0DFxVzNSQb4MASxydsZVxZyTAYojcTildcuSD3i3QX_lExqsbJTHhakTv1Mtp1yOC0w5xbDYzvOKAUzhUhaUHQehpE4ANQQJKU94nrCBxcPBDaDnl7cYLMGjE9gRmsFoOY5Un2XvyCu6p0Gp-w5nQYYak" />
+                                    <div
+                                        class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center text-center">
+                                    <h4 class="text-2xl font-serif-tc mb-2">陳艾薇 Ivy Chen</h4>
+                                    <p class="text-[11px] uppercase tracking-[0.2em] text-primary mb-4 font-medium">
+                                        Senior Wedding Host</p>
+                                    <p
+                                        class="text-slate-500 text-sm leading-relaxed max-w-[320px] font-light mb-8 italic">
+                                        「用溫潤的嗓音，為您的愛情報告一段最優雅的開場。」
+                                    </p>
+                                    <div class="flex items-center gap-6">
+                                        <button
+                                            class="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-transparent hover:border-primary transition-all pb-1">查看作品集</button>
+                                        <button
+                                            class="px-8 py-3 bg-luxury-slate text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary transition-colors">選定職人</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group mt-24">
+                                <div class="relative aspect-[3/4] overflow-hidden mb-8 bg-slate-50">
+                                    <img alt="Sophie Lin"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Nd3NhAb_PlGIFkAfosdMB9LShYxEa-NEBKhdDdGa1GD3wgO--261e-ZvWeH8hrjYhdWfcSxpBIuRRWM0kRX3Ol_KiNKT9in35XLcPOPU3xAzL8fxJi1H3d2Hc2U1CkHAf_Bkrelcl7w1rmMy9giaoIKfXB0LytPV7wEy7BlCUd0G6Cl2DzknCEIVp1Uj93P2Dy1FLpA-K1aeLVKTryGQuSDC87xExiAX4wbwDL2PHHuAbNvE7bywtKKKqPIGuhHV18GqNEX12o9N" />
+                                </div>
+                                <div class="flex flex-col items-center text-center">
+                                    <h4 class="text-2xl font-serif-tc mb-2">林曉潔 Sophie Lin</h4>
+                                    <p class="text-[11px] uppercase tracking-[0.2em] text-primary mb-4 font-medium">
+                                        Classical Ceremonialist</p>
+                                    <p
+                                        class="text-slate-500 text-sm leading-relaxed max-w-[320px] font-light mb-8 italic">
+                                        「專注於儀式的神聖與莊重，譜寫皇室般的典雅氛圍。」
+                                    </p>
+                                    <div class="flex items-center gap-6">
+                                        <button
+                                            class="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-transparent hover:border-primary transition-all pb-1">查看作品集</button>
+                                        <button
+                                            class="px-8 py-3 bg-luxury-slate text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary transition-colors">選定職人</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-24">
+                        <div class="airy-header text-center mb-16">
+                            <h3 class="text-3xl font-serif-tc font-light tracking-widest text-luxury-slate">婚禮樂隊 ·
+                                Wedding Band</h3>
+                            <p class="text-[10px] text-slate-400 mt-2 tracking-[0.2em] font-light">MUSICAL JOURNEY</p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-12">
+                            <div class="group relative flex items-center gap-16">
+                                <div class="w-2/3 aspect-video overflow-hidden bg-slate-50">
+                                    <img alt="Jazz Trio"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfz8j7Z0WGoqQpMYjFSeycjEbAg40DxF5_UovHW0mZHbBKa2L5oDiJHxaMywcON0E8b5JIZEhK7l5B9LFags1UsZ8Sgdkqp5ohQn468a0gcBgKIxxj6OP2Kf0fpruc9BhOz7DqRggbusuJ_3j7ALHjSYZWlQ4xDgpsW7L2xC9p469tIGm7S0nszizvOHvkTIiOUVi20bUmcoVkuolauJsvv6BBma6e-AMaHHXqEAeEwtNlAualNNdCKvsW9BmhjOqUiLbxpGCzHCYp" />
+                                </div>
+                                <div class="w-1/3 pr-12">
+                                    <p class="text-[10px] uppercase tracking-[0.3em] text-primary mb-4 font-bold">
+                                        Featured Ensemble</p>
+                                    <h4 class="text-3xl font-serif-tc mb-4">Midnight Jazz Trio</h4>
+                                    <p class="text-slate-500 text-sm leading-loose font-light mb-10">
+                                        擅長將經典爵士樂與現代流行交織，薩克斯風的和弦在夜色中流淌，為晚宴注入如曼哈頓奢華派對般的微醺質感。
+                                    </p>
+                                    <div class="flex flex-col items-start gap-4">
+                                        <button
+                                            class="px-10 py-4 bg-luxury-slate text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary w-full transition-colors">選定職人</button>
+                                        <button
+                                            class="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-luxury-slate/20 hover:border-primary transition-all pb-1 mx-auto">查看演出紀錄</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="airy-header text-center mb-16">
+                            <h3 class="text-3xl font-serif-tc font-light tracking-widest text-luxury-slate">攝影團隊 ·
+                                Visual Arts</h3>
+                            <p class="text-[10px] text-slate-400 mt-2 tracking-[0.2em] font-light">TIMELESS MEMORIES</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-12">
+                            <div class="group">
+                                <div class="relative aspect-square overflow-hidden mb-6 bg-slate-50">
+                                    <img alt="Visual Artist"
+                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa-UksHL1U00COkdqSnB_vRwolTByxWESbCs27-xPAhDMhTXbxBiJ3uSjTCWYBRfhx3wCqac3pEyfPR0fY6-DEta4qpZ0ezgNbL9hWbs372r-8yS1xHyl8lyTaXks0BpAjKnieu2UMCqYxiLT5hLb30xfGlX_lr7ar27f8h4bQcCPMJQOwsFFrllMqM30olS_2nykAzWk9RbmZTpCrkdoIrOxFsvCXHCbSIw0JAxNuQX5xKFj-Y47FTCeejGVK0F0c-xlcIBuzHclZ" />
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="text-xl font-serif-tc mb-1">David Li</h4>
+                                    <p class="text-[10px] tracking-[0.2em] text-slate-400 mb-6 uppercase">Candid
+                                        Storyteller</p>
+                                    <button
+                                        class="px-8 py-3 border border-luxury-slate text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-luxury-slate hover:text-white transition-all">Select
+                                        Studio</button>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <div class="relative aspect-square overflow-hidden mb-6 bg-slate-50">
+                                    <div
+                                        class="w-full h-full bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8ETRw1sAiX37JFE-H_nD87uQiDe0n7ScEgYC9kYhdwOSaQ3EomGIbTLH2ExLx-nQYcskKd0IYKtZKI5Td9PVD2tzyb0amPqlM4HXT7JxpoVrRCE2VJ2-0DFxVzNSQb4MASxydsZVxZyTAYojcTildcuSD3i3QX_lExqsbJTHhakTv1Mtp1yOC0w5xbDYzvOKAUzhUhaUHQehpE4ANQQJKU94nrCBxcPBDaDnl7cYLMGjE9gRmsFoOY5Un2XvyCu6p0Gp-w5nQYYak')] bg-cover bg-center grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="text-xl font-serif-tc mb-1">Aurelie Studio</h4>
+                                    <p class="text-[10px] tracking-[0.2em] text-slate-400 mb-6 uppercase">Fine Art Film
+                                    </p>
+                                    <button
+                                        class="px-8 py-3 border border-luxury-slate text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-luxury-slate hover:text-white transition-all">Select
+                                        Studio</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center mt-32">
+                        <div class="w-24 h-px bg-slate-200 mb-12"></div>
+                        <button
+                            class="text-[11px] uppercase tracking-[0.4em] font-bold text-luxury-slate hover:text-primary transition-colors flex items-center gap-4 group">
+                            Discover More
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:translate-y-1 transition-transform">expand_more</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-white border-t border-slate-50 px-12 py-24">
+            <div class="max-w-[1600px] mx-auto grid grid-cols-12 gap-12">
+                <div class="col-span-4">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="size-6 text-primary">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-display italic tracking-widest">THE VOW</h2>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-loose tracking-[0.1em] font-light max-w-xs uppercase">
+                        Redefining the modern wedding experience through the lens of luxury and craftsmanship.
+                    </p>
+                </div>
+                <div class="col-span-2">
+                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-8">Services</h5>
+                    <nav class="flex flex-col gap-4 text-xs font-light tracking-widest text-slate-500">
+                        <a class="hover:text-primary transition-colors" href="#">場地導覽</a>
+                        <a class="hover:text-primary transition-colors" href="#">職人諮詢</a>
+                        <a class="hover:text-primary transition-colors" href="#">禮服選物</a>
+                        <a class="hover:text-primary transition-colors" href="#">風格攝影</a>
+                    </nav>
+                </div>
+                <div class="col-span-2">
+                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-8">Journal</h5>
+                    <nav class="flex flex-col gap-4 text-xs font-light tracking-widest text-slate-500">
+                        <a class="hover:text-primary transition-colors" href="#">品牌故事</a>
+                        <a class="hover:text-primary transition-colors" href="#">婚禮靈感</a>
+                        <a class="hover:text-primary transition-colors" href="#">客戶好評</a>
+                        <a class="hover:text-primary transition-colors" href="#">聯絡我們</a>
+                    </nav>
+                </div>
+                <div class="col-span-4 flex flex-col items-end">
+                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-8">Newsletter</h5>
+                    <div class="w-full flex border-b border-slate-200 py-2">
+                        <input
+                            class="bg-transparent border-none text-[10px] uppercase tracking-[0.2em] w-full focus:ring-0 placeholder:text-slate-300"
+                            placeholder="Your Email" type="email" />
+                        <button
+                            class="material-symbols-outlined text-slate-400 hover:text-primary">arrow_forward</button>
+                    </div>
+                    <div class="flex gap-6 mt-12">
+                        <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
+                                class="material-symbols-outlined text-[20px]">photo_camera</span></a>
+                        <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
+                                class="material-symbols-outlined text-[20px]">share</span></a>
+                        <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
+                                class="material-symbols-outlined text-[20px]">public</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-24 text-center">
+                <p class="text-[9px] uppercase tracking-[0.4em] text-slate-300 font-light">
+                    © 2024 THE VOW Wedding Concierge. All Rights Reserved. Crafted for the Modern Romantic.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>

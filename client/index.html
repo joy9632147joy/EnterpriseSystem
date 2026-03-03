@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>婚禮平台首頁：浪漫草地風與純白精品導引</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&amp;family=Noto+Sans+TC:wght@300;400;500&amp;family=Plus+Jakarta+Sans:wght@200;300;400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "pure-white": "#FFFFFF",
+                        "soft-grey": "#FBFBFB",
+                        "border-grey": "#F0F0F0",
+                        "accent-gold": "#C5A059",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                    },
+                    fontFamily: {
+                        "serif-tc": ["Noto Serif TC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
+                    },
+                    letterSpacing: {
+                        "ultra-wide": "0.3em",
+                        "magazine": "0.15em"
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-pure-white text-text-main antialiased;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .video-overlay {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%);
+        }
+        .soft-focus {
+            filter: saturate(0.9) contrast(0.95) brightness(1.02);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dynamic-tile video {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .dynamic-tile:hover video {
+            opacity: 1;
+        }
+        .breath-space {
+            letter-spacing: 0.25em;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+        }
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
+                <div class="flex items-center gap-16">
+                    <div class="flex flex-col items-center leading-none">
+                        <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                            Journal</span>
+                    </div>
+                    <nav class="hidden items-center gap-10 lg:flex">
+                        <a class="nav-link active text-xs font-medium transition-colors" href="./index.html">首頁</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./1.html">夢幻場域</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./2.html">職人團隊</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./3.html">衣裳禮餅</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./4.html">籌備進度</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./5.html">我的婚禮</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-8">
+                    <button
+                        class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="grow">
+            <section class="relative h-screen w-full overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="img/m01.png" class="h-full w-full object-cover" />
+                    <div class="video-overlay absolute inset-0"></div>
+                </div>
+                <div class="relative z-10 flex h-full items-center justify-center text-center">
+                    <div class="max-w-5xl px-6">
+                        <span class="text-[10px] uppercase tracking-[0.8em] text-white/90 drop-shadow-md">The Outdoor
+                            Celebration</span>
+                        <h2
+                            class="mt-8 font-serif-tc text-5xl font-light leading-tight text-white md:text-7xl drop-shadow-lg">
+                            草地上的幸福光影</h2>
+                        <p
+                            class="mt-8 text-sm tracking-[0.3em] text-white font-light max-w-2xl mx-auto leading-loose drop-shadow-md">
+                            陽光灑落在白色帳篷與翠綠草地之間，捕捉每一刻被微風吹拂的浪漫。<br />在自然的見證下，開啟屬於您的純白篇章。
+                        </p>
+                        <div class="mt-16 flex justify-center gap-8">
+                            <button
+                                class="border border-white/60 bg-white/5 px-14 py-5 text-[10px] tracking-ultra-wide text-white backdrop-blur-md transition-all hover:bg-white hover:text-text-main">
+                                瀏覽影音專區
+                            </button>
+                            <button
+                                class="bg-white px-14 py-5 text-[10px] tracking-ultra-wide text-text-main transition-all hover:bg-accent-gold hover:text-white">
+                                開啟您的婚禮
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
+                    <span
+                        class="material-symbols-outlined text-white/80 animate-bounce text-3xl font-light">expand_more</span>
+                </div>
+            </section>
+            <section class="bg-pure-white py-32 lg:py-56">
+                <div class="mx-auto max-w-[1400px] px-8">
+                    <div class="mb-32 flex flex-col items-center text-center">
+                        <h3 class="font-serif-tc text-4xl font-light tracking-tight text-text-main">精選真實婚禮</h3>
+                        <div class="mt-8 h-px w-20 bg-accent-gold"></div>
+                        <p class="mt-10 text-[10px] tracking-ultra-wide text-text-muted uppercase">Romantic Real Moments
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-x-16 gap-y-40 md:grid-cols-2 lg:grid-cols-3">
+                        <div class="group cursor-pointer dynamic-tile">
+                            <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
+                                <img alt="Detail Romance"
+                                    class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
+                                    src="img/m02.png" />
+                                <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
+                                    onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
+                                    <source
+                                        src="https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-walking-in-a-field-of-flowers-34440-large.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <div
+                                    class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                            <div class="mt-14 px-6 text-center">
+                                <span class="text-[9px] tracking-ultra-wide text-accent-gold uppercase font-medium">Fine
+                                    Art Details</span>
+                                <h4 class="mt-5 font-serif-tc text-2xl font-light text-text-main">蕾絲與微風的對話</h4>
+                                <p class="mt-5 text-[13px] leading-relaxed text-text-muted font-light px-4">
+                                    細緻的婚紗裙擺在草地上輕輕拂過，捕捉每一幀流動的細膩質感</p>
+                                <div class="mt-10 flex justify-center">
+                                    <span
+                                        class="h-px w-6 bg-border-grey group-hover:w-16 group-hover:bg-accent-gold transition-all duration-700"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer dynamic-tile lg:mt-24">
+                            <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
+                                <img alt="Intimate Moment"
+                                    class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
+                                    src="img/m03.png" />
+                                <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
+                                    onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
+                                    <source
+                                        src="https://assets.mixkit.co/videos/preview/mixkit-loving-couple-hugging-and-smiling-in-the-forest-34442-large.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <div
+                                    class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                            <div class="mt-14 px-6 text-center">
+                                <span
+                                    class="text-[9px] tracking-ultra-wide text-accent-gold uppercase font-medium">Gentle
+                                    Connection</span>
+                                <h4 class="mt-5 font-serif-tc text-2xl font-light text-text-main">凝視間的永恆</h4>
+                                <p class="mt-5 text-[13px] leading-relaxed text-text-muted font-light px-4">
+                                    在香檳色的暮光中，記錄新人間最溫柔的耳語與真摯互動</p>
+                                <div class="mt-10 flex justify-center">
+                                    <span
+                                        class="h-px w-6 bg-border-grey group-hover:w-16 group-hover:bg-accent-gold transition-all duration-700"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer dynamic-tile">
+                            <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
+                                <img alt="Venue Aesthetics"
+                                    class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
+                                    src="img/m04.jpg" />
+                                <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
+                                    onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
+                                    <source
+                                        src="https://assets.mixkit.co/videos/preview/mixkit-groom-and-bride-slowly-dancing-at-their-wedding-34443-large.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <div
+                                    class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                            <div class="mt-14 px-6 text-center">
+                                <span
+                                    class="text-[9px] tracking-ultra-wide text-accent-gold uppercase font-medium">Atmospheric
+                                    Venue</span>
+                                <h4 class="mt-5 font-serif-tc text-2xl font-light text-text-main">森之慶典的詩意</h4>
+                                <p class="mt-5 text-[13px] leading-relaxed text-text-muted font-light px-4">
+                                    唯美的現場佈置與自然景觀融合，打造如雜誌般的視覺盛宴</p>
+                                <div class="mt-10 flex justify-center">
+                                    <span
+                                        class="h-px w-6 bg-border-grey group-hover:w-16 group-hover:bg-accent-gold transition-all duration-700"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="grid grid-cols-1 md:grid-cols-2">
+                <div class="relative group h-[750px] overflow-hidden">
+                    <img alt="Dream Venue"
+                        class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-110 soft-focus"
+                        src="img/m05.jpg" />
+                    <div class="absolute inset-0 bg-white/10 group-hover:bg-black/20 transition-colors duration-700">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center text-white">
+                        <span class="text-[10px] tracking-ultra-wide uppercase drop-shadow">Outdoor Curation</span>
+                        <h3 class="mt-6 font-serif-tc text-4xl font-light drop-shadow-md">尋找您的夢幻草地</h3>
+                        <p
+                            class="mt-6 max-w-sm text-xs font-light leading-relaxed text-white/90 tracking-widest drop-shadow-sm">
+                            從私藏秘境到純白帳篷，為您的儀式挑選最完美的自然畫布</p>
+                        <a class="mt-12 border border-white/60 bg-white/5 backdrop-blur-sm px-12 py-5 text-[10px] tracking-ultra-wide hover:bg-white hover:text-text-main transition-all uppercase"
+                            href="#">Find Your Dream Venue</a>
+                    </div>
+                </div>
+                <div class="relative group h-[750px] overflow-hidden">
+                    <img alt="Expert Artisans"
+                        class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-110 soft-focus"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0tYNS4-vFguMdJt9UqCgNPQir22cT_HmweYhUDDCoLc1Za1wM5tWDjab_T2k7J7x6WPEK30GCiunhhrG9aOCMfkTxwBD1FWgow-sPuW6N6hedZKDipgZ8eUSMGoPHfjR6R1DTiYp13ufYIVHvfbKW4CwVCsE9wk_mikBfDchcJP0x5K2cU0CXKZt0q5jYRUDBUMkUMLyniZYfHQFpq3MyPMJZMkmG4hC6-v011cAmloXlf0iOw2PN2V0HB7UErNDP89MqCmzli8UX" />
+                    <div class="absolute inset-0 bg-white/10 group-hover:bg-black/20 transition-colors duration-700">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center text-white">
+                        <span class="text-[10px] tracking-ultra-wide uppercase drop-shadow">Elite Professionals</span>
+                        <h3 class="mt-6 font-serif-tc text-4xl font-light drop-shadow-md">預約浪漫職人</h3>
+                        <p
+                            class="mt-6 max-w-sm text-xs font-light leading-relaxed text-white/90 tracking-widest drop-shadow-sm">
+                            集結擅長捕捉自然光影的攝影大師，成就您的雜誌質感婚禮</p>
+                        <a class="mt-12 border border-white/60 bg-white/5 backdrop-blur-sm px-12 py-5 text-[10px] tracking-ultra-wide hover:bg-white hover:text-text-main transition-all uppercase"
+                            href="#">Book Your Expert</a>
+                    </div>
+                </div>
+            </section>
+            <section class="py-32 bg-soft-grey lg:py-48">
+                <div class="mx-auto max-w-7xl px-8 text-center">
+                    <span class="text-[10px] tracking-ultra-wide text-accent-gold uppercase font-medium">Visual
+                        Inspiration</span>
+                    <h3 class="mt-6 font-serif-tc text-3xl font-light text-text-main">靈感隨手集</h3>
+                    <p class="mt-4 text-xs tracking-magazine text-text-muted">細碎的美好，構築成永恆的浪漫</p>
+                    <div class="mt-24 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc" />
+                        </div>
+                    </div>
+                    <div class="mt-20">
+                        <button
+                            class="text-[10px] tracking-ultra-wide text-text-muted hover:text-accent-gold transition-colors uppercase border-b border-border-grey pb-2">View
+                            More Inspiration</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="border-t border-border-grey bg-white px-10 py-24">
+            <div class="mx-auto flex max-w-[1400px] flex-wrap justify-between gap-16">
+                <div class="max-w-xs flex flex-col gap-8">
+                    <div class="flex flex-col leading-none">
+                        <span class="text-lg font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                            Journal</span>
+                    </div>
+                    <p class="text-[13px] font-light leading-relaxed text-text-muted">
+                        致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="h-9 w-9 rounded-full border border-border-grey flex items-center justify-center text-text-muted hover:text-accent-gold transition-colors"
+                            href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+                        <a class="h-9 w-9 rounded-full border border-border-grey flex items-center justify-center text-text-muted hover:text-accent-gold transition-colors"
+                            href="#"><span class="material-symbols-outlined text-sm">mail</span></a>
+                    </div>
+                </div>
+                <div class="flex gap-24">
+                    <div class="flex flex-col gap-8">
+                        <h4 class="text-[10px] font-medium uppercase tracking-[0.3em] text-text-main">探索平台</h4>
+                        <nav class="flex flex-col gap-5 text-xs font-light tracking-magazine text-text-muted">
+                            <a class="hover:text-accent-gold transition-colors" href="#">精選場地</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">職人故事</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">風格靈感</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">最新動態</a>
+                        </nav>
+                    </div>
+                    <div class="flex flex-col gap-8">
+                        <h4 class="text-[10px] font-medium uppercase tracking-[0.3em] text-text-main">客戶服務</h4>
+                        <nav class="flex flex-col gap-5 text-xs font-light tracking-magazine text-text-muted">
+                            <a class="hover:text-accent-gold transition-colors" href="#">預約流程</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">常見問題</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">隱私政策</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">聯繫我們</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mx-auto mt-24 max-w-[1400px] border-t border-border-grey pt-12 text-center text-[9px] tracking-[0.4em] text-text-muted uppercase">
+                © 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
