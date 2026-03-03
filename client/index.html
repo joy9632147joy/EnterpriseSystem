@@ -83,31 +83,72 @@
                         <span class="text-xl font-light tracking-[0.4em] text-text-main">
                             <a href="./index.html">DREAM VENUES</a>
                         </span>
-                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase font-extralight">
                             High-End Wedding Journal
                         </span>
                     </div>
 
-                    <nav class="hidden items-center gap-10 lg:flex">
+                    <nav class="hidden items-center gap-10 lg:flex h-24">
                         <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
                             href="./1.html">婚禮方案</a>
                         <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
                             href="./2.html">活動花絮</a>
-                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
-                            href="./3.html">精選合作夥伴</a>
+
+                        <div class="group relative h-full flex items-center">
+                            <button
+                                class="nav-link text-xs font-medium transition-colors hover:text-accent-gold flex items-center gap-1">
+                                精選合作夥伴 <span
+                                    class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">expand_more</span>
+                            </button>
+
+                            <div class="absolute left-0 top-[70px] hidden group-hover:block w-64 pt-4">
+                                <div
+                                    class="bg-white border border-border-grey p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col gap-10 rounded-sm">
+
+                                    <div class="flex flex-col gap-4">
+                                        <span
+                                            class="text-[10px] tracking-[0.2em] text-accent-gold uppercase font-bold border-b border-accent-gold/40 pb-2">專業團隊</span>
+                                        <div class="flex flex-col gap-3">
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">主持人</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">攝影師</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新秘造型師</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-4">
+                                        <span
+                                            class="text-[10px] tracking-[0.2em] text-accent-gold uppercase font-bold border-b border-accent-gold/40 pb-2">婚禮美學</span>
+                                        <div class="flex flex-col gap-3">
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新娘婚紗</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新郎西服</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">喜餅禮盒</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
                             href="./5.html">聯絡我們</a>
                     </nav>
                 </div>
 
                 <div class="flex items-center gap-4 lg:gap-8">
-                    <button
-                        class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
-
-                    <button id="menu-toggle" class="lg:hidden material-symbols-outlined text-text-main p-1">
-                        menu
-                    </button>
-
+                    <div class="relative flex items-center">
+                        <input id="search-input" type="text" placeholder="搜尋場地或職人..."
+                            class="hidden w-0 opacity-0 lg:block transition-all duration-500 border-none bg-transparent text-xs focus:ring-0 placeholder:text-text-muted">
+                        <button id="search-btn"
+                            class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                    </div>
+                    <button id="menu-toggle"
+                        class="lg:hidden material-symbols-outlined text-text-main p-1">menu</button>
                     <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5 hidden sm:block">
                         <img alt="Profile" class="h-full w-full rounded-full object-cover"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0tYNS4-vFguMdJt9UqCgNPQir22cT_HmweYhUDDCoLc1Za1wM5tWDjab_T2k7J7x6WPEK30GCiunhhrG9aOCMfkTxwBD1FWgow-sPuW6N6hedZKDipgZ8eUSMGoPHfjR6R1DTiYp13ufYIVHvfbKW4CwVCsE9wk_mikBfDchcJP0x5K2cU0CXKZt0q5jYRUDBUMkUMLyniZYfHQFpq3MyPMJZMkmG4hC6-v011cAmloXlf0iOw2PN2V0HB7UErNDP89MqCmzli8UX">
@@ -115,11 +156,35 @@
                 </div>
             </div>
 
-            <nav id="mobile-nav" class="hidden border-t border-border-grey/50 bg-white/95 lg:hidden">
+            <nav id="mobile-nav"
+                class="hidden border-t border-border-grey/50 bg-white/95 lg:hidden overflow-y-auto max-h-[80vh]">
                 <div class="flex flex-col divide-y divide-border-grey/30 px-8 py-4">
                     <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./1.html">婚禮方案</a>
                     <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./2.html">活動花絮</a>
-                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./3.html">精選合作夥伴</a>
+
+                    <div class="py-4">
+                        <button id="mobile-partners-toggle"
+                            class="w-full flex justify-between items-center text-sm font-light tracking-widest text-text-main">
+                            精選合作夥伴 <span id="partners-icon"
+                                class="material-symbols-outlined transition-transform">expand_more</span>
+                        </button>
+                        <div id="mobile-partners-menu"
+                            class="hidden flex flex-col gap-8 mt-6 pl-4 border-l border-gold/20">
+                            <div class="flex flex-col gap-4">
+                                <span class="text-[9px] tracking-[0.2em] text-gold uppercase font-light">專業團隊</span>
+                                <a class="text-xs font-light text-text-muted" href="#">主持人</a>
+                                <a class="text-xs font-light text-text-muted" href="#">攝影師</a>
+                                <a class="text-xs font-light text-text-muted" href="#">新秘造型師</a>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <span class="text-[9px] tracking-[0.2em] text-gold uppercase font-light">婚禮美學</span>
+                                <a class="text-xs font-light text-text-muted" href="#">新娘婚紗</a>
+                                <a class="text-xs font-light text-text-muted" href="#">新郎西服</a>
+                                <a class="text-xs font-light text-text-muted" href="#">喜餅禮盒</a>
+                            </div>
+                        </div>
+                    </div>
+
                     <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./5.html">聯絡我們</a>
                 </div>
             </nav>
@@ -158,7 +223,7 @@
                         class="material-symbols-outlined text-white/80 animate-bounce text-3xl font-light">expand_more</span>
                 </div>
             </section>
-            <section class="bg-pure-white py-32 lg:py-56">
+            <section id="main-content" class="bg-pure-white py-32 lg:py-56">
                 <div class="mx-auto max-w-[1400px] px-8">
                     <div class="mb-32 flex flex-col items-center text-center">
                         <h3 class="font-serif-tc text-4xl font-light tracking-tight text-text-main">精選真實婚禮</h3>
@@ -381,21 +446,56 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. 手機版選單切換
             const toggleBtn = document.getElementById('menu-toggle');
             const mobileNav = document.getElementById('mobile-nav');
 
             toggleBtn.addEventListener('click', () => {
-                // 切換 hidden 類別來顯示或隱藏選單
                 mobileNav.classList.toggle('hidden');
-
-                // 可選：切換圖示從 menu 變成 close
                 const isHidden = mobileNav.classList.contains('hidden');
                 toggleBtn.textContent = isHidden ? 'menu' : 'close';
             });
 
-            // 視窗大小改變時，如果變大則自動收起手機選單
+            // 2. 搜尋功能
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('search-input');
+
+            searchBtn.addEventListener('click', () => {
+                if (searchInput.classList.contains('hidden')) {
+                    // 展開
+                    searchInput.classList.remove('hidden');
+                    setTimeout(() => {
+                        searchInput.style.width = '200px';
+                        searchInput.style.opacity = '1';
+                        searchInput.focus();
+                    }, 10);
+                } else {
+                    // 如果已經有字，點擊可以執行搜尋邏輯
+                    if (searchInput.value.trim() !== "") {
+                        alert("執行搜尋: " + searchInput.value);
+                    } else {
+                        // 縮回
+                        searchInput.style.width = '0';
+                        searchInput.style.opacity = '0';
+                        setTimeout(() => searchInput.classList.add('hidden'), 500);
+                    }
+                }
+            });
+
+            // 3. 箭頭捲動功能
+            const scrollBtn = document.getElementById('scroll-to-content');
+            const targetSection = document.getElementById('main-content');
+
+            scrollBtn.addEventListener('click', () => {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth', // 平滑捲動
+                    block: 'start'
+                });
+            });
+
+            // 視窗大小改變監聽
             window.addEventListener('resize', () => {
-                if (window.innerWidth >= 1024) { // lg 斷點
+                if (window.innerWidth >= 1024) {
                     mobileNav.classList.add('hidden');
                     toggleBtn.textContent = 'menu';
                 }
