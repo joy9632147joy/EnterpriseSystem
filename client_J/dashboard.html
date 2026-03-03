@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的籌備進度 | Eternal Story Wedding Planner</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --es-gold: #cda87c;
+        }
+
+        .bg-es-gold {
+            background-color: var(--es-gold) !important;
+        }
+
+        .text-es-gold {
+            color: var(--es-gold) !important;
+        }
+
+        /* 時間軸樣式 */
+        .timeline {
+            /* border-left: 3px solid #f1f3f5;  <-- 移除 container 的邊框 */
+            position: relative;
+            list-style: none;
+            padding-left: 30px;
+        }
+
+        /* 改用偽元素來畫線，這樣可以控制線條的起點 */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15px; /* 線條起始高度下移，對齊第一個圓點中心 */
+            bottom: 50px; /* 線條不要畫到底，保留空間給 Happy Ending 的遮罩或直接在這裡截斷 */
+            width: 3px;
+            background-color: #f1f3f5;
+            z-index: 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            background: #fff;
+            border: 3px solid var(--es-gold);
+            display: inline-block;
+            position: absolute;
+            left: -38.5px; /* 圓點中心對齊線條中心 (線條寬3px，位於0) */
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 1;
+            top: 5px;
+        }
+
+
+        .timeline-item.completed::before {
+            background: var(--es-gold);
+        }
+
+        /* 讓最後一個項目的線條不要無限延伸，或者做特殊處理 (這裡選擇移除最後一個項目的 margin-bottom 以貼合底部) */
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 展開細項樣式 */
+        .accordion-button:not(.collapsed) {
+            color: var(--es-gold);
+            background-color: #f8f6f2; /* 淺香檳色背景 */
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(205, 168, 124, 0.25); /* 香檳金光暈 */
+            border-color: rgba(205, 168, 124, 0.125);
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23cda87c'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .progress-card {
+            border-radius: 15px;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-white bg-white shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-es-gold" href="index.html">Eternal Story</a>
+            <div class="d-flex align-items-center">
+                <span class="me-3 small text-muted">歡迎回來, 王先生 & 陳小姐</span>
+                <a href="../login.html" class="btn btn-sm btn-outline-secondary rounded-pill">登出</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card progress-card shadow-sm p-4 mb-4">
+                    <h5 class="fw-bold mb-4">婚禮倒數</h5>
+                    <div class="text-center">
+                        <h2 class="display-4 fw-bold text-es-gold mb-1">33</h2>
+                        <p class="text-muted">DAYS TO GO</p>
+                    </div>
+                    <hr>
+                    <div class="small">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">大專(婚禮)日期</span>
+                            <span class="fw-bold">2026-04-10</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">負責顧問</span>
+                            <span class="fw-bold">Jack (小傑)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card progress-card shadow-sm p-4">
+                    <h5 class="fw-bold mb-3">我的文件</h5>
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action border-0 px-0 small">
+                            <i class="bi bi-file-earmark-pdf text-danger me-2"></i> 婚宴合約書.pdf
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 px-0 small">
+                            <i class="bi bi-file-earmark-image text-primary me-2"></i> 佈置模擬圖_初稿.jpg
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card progress-card shadow-sm p-4 p-md-5">
+                    <h4 class="fw-bold mb-4"><i class="bi bi-calendar-check text-es-gold me-2"></i>籌備進度追蹤</h4>
+                    <p class="text-muted small mb-5">點擊各階段標題以查看詳細執行項目與備註。</p>
+
+                    <div class="accordion accordion-flush timeline" id="progressAccordion">
+                        
+                        <!-- 階段一：已完成 -->
+                        <div class="timeline-item completed accordion-item border-0">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed fw-bold fs-5 bg-transparent shadow-none ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    <span class="d-flex align-items-center w-100 justify-content-between pe-3">
+                                        <span>第一階段：簽約與初步構想</span>
+                                        <span class="badge bg-success rounded-pill ms-2 small fw-normal">已完成</span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#progressAccordion">
+                                <div class="accordion-body ps-0 pt-0 pb-4 text-secondary">
+                                    <ul class="list-unstyled small mb-0 ps-2 border-start border-2 ms-1">
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>確認婚期與預估桌數 (2026/03/01)</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>簽訂統包服務合約</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>建立專屬LINE群組</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>初步風格意向書填寫完成</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 階段二：進行中 -->
+                        <div class="timeline-item accordion-item border-0">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button fw-bold fs-5 bg-transparent shadow-none ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    <span class="d-flex align-items-center w-100 justify-content-between pe-3">
+                                        <span>第二階段：視覺設計與場地規劃</span>
+                                        <span class="badge bg-warning text-dark rounded-pill ms-2 small fw-normal">進行中</span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#progressAccordion">
+                                <div class="accordion-body ps-0 pt-0 pb-4 text-secondary">
+                                    <p class="small mb-3"><i class="bi bi-clock-history me-1"></i> 顧問小傑 於 2小時前 更新：已與花藝師確認當季花材，預計下週三提供第二版設計圖。</p>
+                                    <ul class="list-unstyled small mb-0 ps-2 border-start border-2 ms-1 border-warning">
+                                        <li class="mb-2 fw-bold text-dark"><i class="bi bi-circle-fill text-warning me-2" style="font-size: 8px;"></i>確認主題色系與背板樣式 (待新人確認)</li>
+                                        <li class="mb-2 text-muted"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>場地動線規劃圖繪製</li>
+                                        <li class="text-muted"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>輸出物設計 (桌卡、菜單)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 階段三：待開始 -->
+                        <div class="timeline-item accordion-item border-0">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed fw-bold fs-5 bg-transparent shadow-none ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    <span class="d-flex align-items-center w-100 justify-content-between pe-3">
+                                        <span>第三階段：廠商對接與流程細節</span>
+                                        <span class="badge bg-light text-muted border rounded-pill ms-2 small fw-normal">待開始</span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#progressAccordion">
+                                <div class="accordion-body ps-0 pt-0 pb-4 text-secondary">
+                                    <p class="small text-muted mb-2">預計開始時間：婚前 3 個月 (約 2026年4月)</p>
+                                    <ul class="list-unstyled small mb-0 ps-2 border-start border-2 ms-1">
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>與攝影師溝通拍攝重點</li>
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>新秘試妝與造型定案</li>
+                                        <li><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>婚禮當日流程表 (Rundown) 初版</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 階段四：待開始 -->
+                        <div class="timeline-item accordion-item border-0">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed fw-bold fs-5 bg-transparent shadow-none ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                    <span class="d-flex align-items-center w-100 justify-content-between pe-3">
+                                        <span>第四階段：婚禮當週確認</span>
+                                        <span class="badge bg-light text-muted border rounded-pill ms-2 small fw-normal">待開始</span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#progressAccordion">
+                                <div class="accordion-body ps-0 pt-0 pb-4 text-secondary">
+                                    <p class="small text-muted mb-2">預計開始時間：婚前 1 週 (約 2026年6月下旬)</p>
+                                    <ul class="list-unstyled small mb-0 ps-2 border-start border-2 ms-1">
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>最終桌數與座位表確認</li>
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>試穿與領取婚紗禮服</li>
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>各廠商 (攝影/主持人/場佈) 最終確認</li>
+                                        <li><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>婚禮彩排 (Rehearsal)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 階段五：待開始 -->
+                        <div class="timeline-item accordion-item border-0">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed fw-bold fs-5 bg-transparent shadow-none ps-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                    <span class="d-flex align-items-center w-100 justify-content-between pe-3">
+                                        <span>第五階段：婚禮當日與結案</span>
+                                        <span class="badge bg-light text-muted border rounded-pill ms-2 small fw-normal">待開始</span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#progressAccordion">
+                                <div class="accordion-body ps-0 pt-0 pb-4 text-secondary">
+                                    <p class="small text-muted mb-2">預計時間：2026年7月5日</p>
+                                    <ul class="list-unstyled small mb-0 ps-2 border-start border-2 ms-1">
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>婚禮當日場控與執行</li>
+                                        <li class="mb-2"><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>撤場與歸還租借物品</li>
+                                        <li><i class="bi bi-circle text-muted me-2" style="font-size: 8px;"></i>交付攝影與錄影成品 (婚後 4-8 週)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 結案：Happy Ending -->
+                        <div class="timeline-item border-0 list-unstyled mb-0 position-relative">
+                            <div class="d-flex align-items-center position-relative" style="z-index: 1;">
+                                <span class="badge text-white rounded-pill px-3 py-2 fw-bold shadow-sm" style="background-color: var(--es-gold);">
+                                    <i class="bi bi-heart-fill me-1"></i> Happy Ending
+                                </span>
+                            </div>
+
+                            <p class="text-muted small mt-2 mb-0 position-relative" style="z-index: 1;">感謝您讓 Eternal Story 參與您人生最重要的時刻。</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 Bootstrap JS 以支援 Accordion 功能 -->
+    <script src="../js/bootstrap.bundle.js"></script>
+
+</body>
+
+</html>

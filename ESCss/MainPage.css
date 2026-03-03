@@ -259,7 +259,7 @@ html {
 }
 
 .bg-soft-primary {
-    background-color: #e7f1ff ;
+    background-color: #e7f1ff;
     color: #0d6efd;
 }
 
@@ -303,16 +303,16 @@ html {
 
 /*新增公告彈窗*/
 .form-control,
-.form-select{
+.form-select {
     border-radius: 12px;
-    border: 1px solid #dee2e6; 
+    border: 1px solid #dee2e6;
     background-color: #f8f9fa;
 }
 
 
 /* 待辦任務 */
 .bg-soft-purple {
-    background-color: #f3e5f5 ;
+    background-color: #f3e5f5;
 }
 
 .text-purple {
@@ -325,4 +325,136 @@ html {
 
 .extra-small {
     font-size: 0.7rem;
+}
+
+
+
+/*任務卡片*/
+/* 橫向滑動容器保持不變 */
+.task-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    scroll-behavior: smooth;
+}
+
+/* 翻轉卡片基礎結構 */
+.task-card-wrapper {
+    min-width: calc(33.333% - 1rem);
+    perspective: 1000px;
+    height: 420px;
+    /* 稍微增加高度以容納直式佈局 */
+}
+
+.task-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.task-card-wrapper:hover .task-card-inner {
+    transform: rotateY(180deg);
+}
+
+.task-card-front,
+.task-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    /* 強制由上至下排列 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 正面：婚顧主題色 */
+.task-card-front {
+    background: #ffffff;
+    border-top: 6px solid #1a233a;
+    align-items: center;
+    /* 內容居中 */
+}
+
+/* 背面：操作區 */
+.task-card-back {
+    background: #fdfdfd;
+    transform: rotateY(180deg);
+    border-top: 6px solid #d4af37;
+    /* 婚顧金 */
+    text-align: left;
+}
+
+/* 內容區塊微調 */
+.task-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #1a233a;
+}
+
+.client-info {
+    color: #c5a059;
+    /* 稍帶金色的文字色 */
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.task-meta {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: auto;
+    /* 推至底部 */
+    border-top: 1px solid #edf2f7;
+    padding-top: 1rem;
+    width: 100%;
+}
+
+/*歷史紀錄卡片*/
+/* 歷史紀錄卡片樣式 */
+.history-item-card {
+    background: #fff;
+    border-radius: 12px;
+    border-left: 5px solid #cbd5e0;
+    /* 預設灰色表示過去式 */
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.history-item-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.history-item-card.success {
+    border-left-color: #48bb78;
+    /* 成功為綠色 */
+}
+
+.history-item-card.fail {
+    border-left-color: #f56565;
+    /* 失敗為紅色 */
+}
+
+.history-client-name {
+    font-size: 0.85rem;
+    color: #c5a059;
+    /* 延用婚顧金 */
+    font-weight: 600;
+}
+
+.history-comment {
+    font-size: 0.8rem;
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-style: italic;
+    color: #4a5568;
 }
