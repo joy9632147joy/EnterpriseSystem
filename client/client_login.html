@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員登入 | MEMBER LOGIN</title>
+    
+     <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.js"></script>    
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500&family=Noto+Sans+TC:wght@300;400&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pure-white: #FFFFFF;
+            --pearl-white: #FDFDFD;
+            --champagne-gold: #C5A059;
+            --champagne-warm: #F2E8D5;
+            --apricot-mist: #FAF6F0;
+            --dark-gold: #A68648;
+            --text-main: #2D2D2D;
+            --text-muted: #666666;
+            --serif-luxury: 'Bodoni Moda', serif;
+            --sans: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+        }
+
+        /* 全域樣式強制設定 */
+        body {
+            background-color: var(--apricot-mist);
+            color: var(--text-main);
+            font-family: var(--sans);
+            font-weight: 300 !important;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        * {
+            font-style: normal !important;
+            border-radius: 0 !important; /* 強制直角 */
+            font-weight: 300 !important;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 20;
+        }
+
+        /* 背景設計 */
+        .bg-overlay-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .bg-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            opacity: 0.02;
+            filter: grayscale(100%);
+        }
+
+        .bg-gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--apricot-mist), rgba(250, 246, 240, 0.95), var(--pearl-white));
+        }
+
+        .background-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(197, 160, 89, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        /* 浮水印文字 */
+        .hero-watermark-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            user-select: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-watermark-text {
+            font-family: var(--serif-luxury);
+            font-weight: 400 !important;
+            line-height: 0.8;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(242, 232, 213, 0.35) 25%, rgba(197, 160, 89, 0.25) 50%, rgba(255, 255, 255, 0.35) 75%, rgba(197, 160, 89, 0.12) 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pearl-shimmer 15s ease infinite;
+        }
+
+        @keyframes pearl-shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .text-huge-1 { font-size: 38vw; transform: translateY(-5vh); }
+        .text-huge-2 { font-size: 24vw; transform: translate(15vw, -8vh); opacity: 0.5; }
+
+        /* 登入卡片 */
+        .login-card {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 3rem 2.5rem;
+            box-shadow: 0 30px 100px rgba(197, 160, 89, 0.08);
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        @media (min-width: 768px) {
+            .login-card { padding: 3.5rem; }
+        }
+
+        /* 輸入框自定義 */
+        .input-minimal-gold {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            background: transparent;
+            padding: 1rem 0;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            transition: all 0.5s ease;
+            color: var(--text-main);
+        }
+
+        .input-minimal-gold:focus {
+            outline: none;
+            border-color: var(--champagne-gold);
+            box-shadow: none;
+        }
+
+        .input-minimal-gold::placeholder {
+            color: rgba(102, 102, 102, 0.3);
+        }
+
+        .label-minimal {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.45em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        /* 按鈕自定義 */
+        .btn-gold-submit {
+            background-color: rgba(197, 160, 89, 0.9);
+            border: none;
+            color: white;
+            padding: 1rem;
+            font-size: 9px;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            transition: all 0.7s ease;
+            width: 100%;
+        }
+
+        .btn-gold-submit:hover {
+            background-color: var(--dark-gold);
+            color: white;
+        }
+
+        .social-btn-minimal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            transition: all 0.5s ease;
+            text-decoration: none;
+        }
+
+        .social-btn-minimal:hover {
+            color: var(--champagne-gold);
+        }
+
+        .social-icon {
+            width: 12px;
+            height: 12px;
+            opacity: 0.6;
+        }
+
+        /* 分隔線 */
+        .divider-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .divider-line {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        .divider-text {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .divider-text span {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 0 1.5rem;
+            font-size: 7px;
+            letter-spacing: 0.5em;
+            color: rgba(102, 102, 102, 0.6);
+            text-transform: uppercase;
+        }
+
+        /* 字體與裝飾 */
+        .luxury-title {
+            font-family: var(--serif-luxury);
+            font-size: 22px;
+            letter-spacing: 0.55em;
+            text-transform: uppercase;
+        }
+
+        .luxury-subtitle {
+            font-size: 8px;
+            letter-spacing: 0.65em;
+            color: var(--champagne-gold);
+            text-transform: uppercase;
+        }
+
+        .bottom-decoration {
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            opacity: 0.2;
+        }
+
+        .deco-line {
+            height: 0.5px;
+            width: 24px;
+            background-color: var(--champagne-gold);
+        }
+
+        .deco-text {
+            font-size: 7px;
+            letter-spacing: 0.8em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="d-flex align-items-center justify-content-center min-vh-100">
+
+    <div class="bg-overlay-container">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8pkkdqE64w6XOyv8rt1hHvXN4PEIkGRq-pZANAdHxdmODusGDtcNceKYM6HdiflAdxq5WwKIXsvN3dgTLVnqlbNsPak4rp951sR7wsxRDUjfNDJgG_wHNPn9D7oTX5wJs3e5QrGTFybEBHqEeGNH0gJqzVu7GIaq4JrvbbrwI9KJ5PZW4T7-Jg-zcV9HhGYBpjEj3TmbUZ9rmCk2AKW34n9fbbVHYPRxU53HiqwspnylWT2-vSICdSe974QqQiP81Lv5pQWkuAflB" alt="Wedding Background" class="bg-image">
+        <div class="bg-gradient-overlay"></div>
+        <div class="background-pattern"></div>
+        <div class="hero-watermark-container">
+            <div class="hero-watermark-text text-huge-1">ETERNAL</div>
+            <div class="hero-watermark-text text-huge-2">VENUES</div>
+        </div>
+    </div>
+
+    <main class="container-fluid d-flex flex-column align-items-center justify-content-center py-5 min-vh-100">
+        <div class="login-card">
+            <header class="mb-5 text-center">
+                <h2 class="luxury-title m-0">會員登入</h2>
+                <p class="luxury-subtitle mt-3 mb-0">The Art of Eternal Celebration</p>
+                <div class="mx-auto mt-4" style="height: 1px; width: 32px; background-color: rgba(197,160,89,0.2);"></div>
+            </header>
+
+            <form class="container-fluid p-0">
+                <div class="mb-5 position-relative">
+                    <label class="label-minimal">Account / Email</label>
+                    <input type="text" class="input-minimal-gold" placeholder="電子郵件或手機號碼">
+                </div>
+
+                <div class="mb-5 position-relative">
+                    <div class="d-flex justify-content-between align-items-end mb-1">
+                        <label class="label-minimal m-0">Password</label>
+                        <a href="#" class="text-decoration-none" style="font-size: 8px; letter-spacing: 0.3em; color: var(--champagne-gold);">忘記密碼?</a>
+                    </div>
+                    <div class="position-relative">
+                        <input type="password" id="passwordInput" class="input-minimal-gold pe-5" placeholder="請輸入密碼">
+                        <button class="position-absolute end-0 top-50 translate-middle-y bg-transparent border-0 p-0" type="button" onclick="togglePassword()" style="color: rgba(102, 102, 102, 0.4);">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="btn-gold-submit shadow-sm">
+                        立即登入 | LOGIN
+                    </button>
+                </div>
+
+                <div class="divider-container">
+                    <div class="divider-line"></div>
+                    <div class="divider-text">
+                        <span>Social Connect</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-5">
+                    <button type="button" class="social-btn-minimal">
+                        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.2-1.92 4.24-1.2 1.2-3.08 2.4-6.32 2.4-5.12 0-9.12-4.12-9.12-9.2s4-9.2 9.12-9.2c2.8 0 4.84 1.08 6.32 2.48l2.32-2.32C18.68 1.48 15.92 0 12.48 0 5.8 0 0 5.36 0 12s5.8 12 12.48 12c3.76 0 6.6-1.24 8.76-3.52 2.24-2.24 2.96-5.4 2.96-7.84 0-.48-.04-.92-.12-1.32H12.48z"></path>
+                        </svg>
+                        GOOGLE
+                    </button>
+                    <button type="button" class="social-btn-minimal">
+                        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.242 1.215 1.04 0 1.281-1.215 6.909-7.55 7.691-10.453.253-.941.308-1.859.308-2.879z"></path>
+                        </svg>
+                        LINE
+                    </button>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <p class="m-0" style="font-size: 9px; color: rgba(102,102,102,0.7); letter-spacing: 0.25em;">
+                        尚未成為會員？ <a href="#" class="text-decoration-none ms-1" style="color: var(--champagne-gold); border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 2px;">註冊帳戶</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <div class="bottom-decoration">
+            <div class="deco-line"></div>
+            <span class="deco-text">Fine Wedding Selection</span>
+            <div class="deco-line"></div>
+        </div>
+    </main>
+
+    
+    
+    <script>
+        // 密碼切換顯示功能
+        function togglePassword() {
+            const input = document.getElementById('passwordInput');
+            const icon = event.currentTarget.querySelector('.material-symbols-outlined');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
+    </script>
+</body>
+</html>

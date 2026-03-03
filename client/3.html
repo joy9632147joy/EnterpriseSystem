@@ -1,519 +1,1776 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh-TW">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <title>DREAM VENUES - 精選合作夥伴</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&amp;family=Noto+Sans+TC:wght@300;400;500&amp;family=Plus+Jakarta+Sans:wght@200;300;400&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "gold": "#C5A059",
-                        "champagne": "#D4AF37",
-                        "pure-white": "#FFFFFF",
-                        "pearl-white": "#FCFBFA",
-                        "soft-apricot": "#FDF7F2",
-                        "line-gold": "rgba(197, 160, 89, 0.15)",
-                        "deep-charcoal": "#2C2C2C",
-                        "light-gray": "#A0A0A0",
-                        "soft-grey": "#FBFBFB",
-                        "border-grey": "#F0F0F0",
-                        "accent-gold": "#C5A059",
-                        "text-main": "#1A1A1A",
-                        "text-muted": "#888888",
-                    },
-                    fontFamily: {
-                        "serif-tc": ["Noto Serif TC", "serif"],
-                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
-                    },
-                },
-            },
+
+    <style>
+        :root {
+            --pure-white: #FFFFFF;
+            --soft-grey: #FBFBFB;
+            --border-grey: #F0F0F0;
+            --accent-gold: #C5A059;
+            --text-main: #1A1A1A;
+            --text-muted: #888888;
+            --font-serif: "Noto Serif TC", serif;
+            --font-sans: "Plus Jakarta Sans", "Noto Sans TC", sans-serif;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                @apply bg-pearl-white text-deep-charcoal antialiased;
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background-color: var(--soft-grey);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* NAVBAR — Bootstrap RWD 版 */
+
+        /* 外層固定列 */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.87) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(240, 240, 240, 0.5);
+            padding: 0 48px;
+            min-height: 80px;
+            transition: transform 0.4s ease-in-out, background-color 0.3s;
+            /* 增加平滑動畫 */
+            transform: translateY(0);
+            /* 預設在原位 */
+        }
+
+        .navbar.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        /* 手機版收起時補padding */
+        @media (max-width: 991.98px) {
+            .navbar {
+                padding: 0 24px;
             }
-            .title-luxury {
-                font-family: 'Bodoni Moda', serif;
-                letter-spacing: 0.15em;
-                font-weight: 400;
-                font-style: normal;
+        }
+
+        /* 品牌區塊 */
+        .navbar-brand {
+            line-height: 1;
+            padding: 0;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: var(--text-main);
+            text-decoration: none;
+            display: block;
+            line-height: 1;
+        }
+
+        .brand-sub {
+            font-size: 8px;
+            letter-spacing: 0.5em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 200;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* 漢堡按鈕：只在手機出現（Bootstrap 預設） */
+        .navbar-toggler {
+            border: none !important;
+            box-shadow: none !important;
+            padding: 4px 6px;
+        }
+
+        .navbar-toggler-icon {
+            /* 自訂漢堡圖示顏色 */
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2826,26,26,0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        /* 展開後的選單區（手機板是垂直列） */
+        .navbar-collapse {
+            /* 手機板展開時有白色背景 */
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: white;
+                border-top: 1px solid var(--border-grey);
+                padding: 16px 8px 24px;
+                margin: 0 -24px;
+                padding-left: 24px;
+                padding-right: 24px;
             }
-            .nav-spacing {
-                letter-spacing: 0.4em;
+        }
+
+        /* 一般選單連結 */
+        .nav-link-item {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-main) !important;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+            padding: 8px 0 !important;
+            /* 手機版上下間距 */
+            white-space: nowrap;
+        }
+
+        @media (min-width: 992px) {
+            .nav-link-item {
+                padding: 8px 12px !important;
             }
-            .heading-spacing {
-                letter-spacing: 0.25em;
+        }
+
+        .nav-link-item:hover {
+            color: var(--accent-gold) !important;
+        }
+
+        /* ── Bootstrap Dropdown 覆寫 ── */
+        /*  讓 dropdown-toggle 外觀跟一般 nav-link 一樣  */
+        .nav-item.dropdown .dropdown-toggle {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-main) !important;
+            letter-spacing: 0.1em;
+            padding: 8px 0 !important;
+        }
+
+        @media (min-width: 992px) {
+            .nav-item.dropdown .dropdown-toggle {
+                padding: 8px 12px !important;
             }
         }
-        .thin-gold-border {
-            border-width: 0.5px;
-            border-color: rgba(197, 160, 89, 0.2);
+
+        /* 僅在桌面版（寬度 992px 以上）觸發 hover 效果 */
+        @media (min-width: 992px) {
+
+            /* 當滑鼠移入 dropdown 容器時，顯示下拉選單 */
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+                /* 移除間距，防止滑鼠移往選單時因為空隙而消失 */
+            }
+
+            /* 同步觸發你原本寫的箭頭旋轉動畫 */
+            .nav-item.dropdown:hover .dropdown-toggle .material-symbols-outlined {
+                transform: rotate(180deg);
+            }
         }
-        .luxury-shadow {
-            box-shadow: 0 40px 80px -20px rgba(197, 160, 89, 0.08);
+
+        .nav-item.dropdown .dropdown-toggle:hover {
+            color: var(--accent-gold) !important;
         }
-        .interaction-overlay {
-            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+
+        /* 移除 Bootstrap 預設箭頭，用 Material icon 代替 */
+        .dropdown-toggle::after {
+            display: none !important;
         }
-        .soft-focus {
-            filter: blur(0.4px) contrast(95%);
+
+        .dropdown-toggle .material-symbols-outlined {
+            font-size: 16px;
+            vertical-align: middle;
+            transition: transform 0.3s;
         }
-        .apricot-bg {
-            background-color: #FDF7F2;
+
+        .nav-item.dropdown.show .dropdown-toggle .material-symbols-outlined {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown 面板 */
+        .dropdown-menu {
+            border: 1px solid var(--border-grey) !important;
+            border-radius: 2px !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1) !important;
+            padding: 24px 28px !important;
+            min-width: 180px;
+        }
+
+        /* 手機板 dropdown 不要絕對定位，直接展開在選單下方 */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                border: none !important;
+                box-shadow: none !important;
+                padding: 8px 0 8px 16px !important;
+                border-left: 2px solid rgba(197, 160, 89, 0.3) !important;
+                border-radius: 0 !important;
+                margin-left: 8px;
+            }
+        }
+
+        .dropdown-group-label {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            display: block;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: 8px;
+            margin-bottom: 4px;
+        }
+
+        /* 第二組上方間距 */
+        .dropdown-group-label+.dropdown-group-label,
+        .dropdown-group-spacer {
+            margin-top: 20px;
+        }
+
+        .dropdown-item {
+            font-size: 13px !important;
+            font-weight: 400;
+            color: var(--text-main) !important;
+            letter-spacing: 0.06em;
+            padding: 7px 0 !important;
+            background: transparent !important;
+            transition: color 0.25s;
+        }
+
+        .dropdown-item:hover {
+            color: var(--accent-gold) !important;
+        }
+
+        /* 移除 Bootstrap 的 hover 背景色 */
+        .dropdown-item:focus,
+        .dropdown-item:active {
+            background: transparent !important;
+        }
+
+        /* 右側工具列 */
+        .navbar-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #search-input {
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            color: var(--text-main);
+            outline: none;
+            width: 0;
+            opacity: 0;
+            transition: width 0.45s ease, opacity 0.45s ease;
+        }
+
+        #search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        #search-input.open {
+            width: 180px;
+            opacity: 1;
+        }
+
+        .avatar-ring {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border-grey);
+            padding: 2px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .avatar-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+
+
+        /* PAGE LAYOUT */
+        .page-wrap {
+            padding-top: 96px;
+            /* header 高度 */
+            min-height: 100vh;
+        }
+
+        /* 頁面頂部標題 */
+        .page-hero {
+            background: white;
+            border-bottom: 1px solid var(--border-grey);
+            padding: 64px 0 56px;
+            text-align: center;
+        }
+
+        .page-hero-eyebrow {
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .page-hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-top: 16px;
+        }
+
+        .page-hero-line {
+            width: 64px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 24px auto 0;
+            opacity: 0.5;
+        }
+
+        .page-hero-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            margin-top: 20px;
+        }
+
+        /* 主體：側欄 + 內容 */
+        .content-wrap {
+            max-width: 1520px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            padding: 0 40px 120px;
+            gap: 0;
+        }
+
+        @media (max-width: 991.98px) {
+            .content-wrap {
+                flex-direction: column;
+                padding: 0 20px 80px;
+            }
+        }
+
+
+        /* LEFT SIDEBAR*/
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+            padding-top: 56px;
+            position: sticky;
+            top: 96px;
+            /* 貼著 header 下方 */
+            max-height: calc(100vh - 96px);
+            overflow-y: auto;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 100%;
+                position: static;
+                padding-top: 32px;
+                max-height: none;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 500;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-grey);
+            margin-bottom: 8px;
+        }
+
+        /* 篩選按鈕 */
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 14px 0;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(240, 240, 240, 0.6);
+            cursor: pointer;
+            transition: color 0.25s;
+            text-align: left;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .filter-btn.active .filter-dot {
+            background: var(--accent-gold);
+        }
+
+        .filter-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: transparent;
+            transition: background 0.25s;
+            flex-shrink: 0;
+        }
+
+        .filter-count {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-left: auto;
+            margin-right: 12px;
+        }
+
+        /* 手機板：橫向篩選 */
+        .mobile-filter-bar {
+            display: none;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 20px 0 16px;
+            border-bottom: 1px solid var(--border-grey);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .mobile-filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 991.98px) {
+            .mobile-filter-bar {
+                display: flex;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        .mobile-filter-chip {
+            flex-shrink: 0;
+            border: 1px solid var(--border-grey);
+            background: white;
+            padding: 8px 20px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+
+        .mobile-filter-chip.active {
+            border-color: var(--accent-gold);
+            color: var(--text-main);
+            background: rgba(197, 160, 89, 0.06);
+        }
+
+
+        /* CARD GRID */
+        .grid-area {
+            flex: 1;
+            padding-left: 56px;
+            padding-top: 56px;
+        }
+
+        @media (max-width: 991.98px) {
+            .grid-area {
+                padding-left: 0;
+                padding-top: 24px;
+            }
+        }
+
+        /* 目前分類標題 */
+        .category-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .category-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .category-title {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 300;
+        }
+
+        .result-count {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* 分隔線（分類之間） */
+        .category-divider {
+            border: none;
+            border-top: 1px solid var(--border-grey);
+            margin: 72px 0;
+        }
+
+        /* 卡片格線：預設3欄 */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        @media (max-width: 1199.98px) {
+            .partner-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 大圖卡片 */
+        .partner-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .partner-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-img-wrap {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: var(--border-grey);
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: saturate(0.92) contrast(0.97);
+        }
+
+        .partner-card:hover .card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* hover 時出現的覆蓋層 */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 32px;
+        }
+
+        .partner-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .overlay-btn {
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(6px);
+            color: white;
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            padding: 12px 28px;
+            transition: background 0.3s;
+        }
+
+        .overlay-btn:hover {
+            background: white;
+            color: var(--text-main);
+        }
+
+        /* 卡片文字區 */
+        .card-body {
+            padding: 20px 4px 0;
+        }
+
+        .card-tag {
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .card-name {
+            font-family: var(--font-serif);
+            font-size: 17px;
+            font-weight: 400;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .card-name-en {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            margin-top: 2px;
+            display: block;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .card-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-meta-item .material-symbols-outlined {
+            font-size: 13px;
+        }
+
+        /* 底部細金線 hover 動畫 */
+        .card-line {
+            height: 1px;
+            width: 20px;
+            background: var(--border-grey);
+            margin-top: 14px;
+            transition: width 0.6s, background 0.6s;
+        }
+
+        .partner-card:hover .card-line {
+            width: 48px;
+            background: var(--accent-gold);
+        }
+
+        /* 隱藏的 category section */
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        /* "全部" 時所有 section 顯示 */
+        .show-all .category-section {
+            display: block;
+        }
+
+
+        /* FOOTER */
+        .site-footer {
+            border-top: 1px solid var(--border-grey);
+            background: white;
+            padding: 96px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 64px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand-name {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: var(--text-main);
+        }
+
+        .footer-brand-sub {
+            font-size: 8px;
+            letter-spacing: 0.5em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-top: 32px;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .footer-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-icon-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-nav-cols {
+            display: flex;
+            gap: 96px;
+        }
+
+        .footer-nav-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-nav-title {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 32px;
+        }
+
+        .footer-nav-link {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 96px auto 0;
+            border-top: 1px solid var(--border-grey);
+            padding-top: 48px;
+            text-align: center;
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            color: var(--text-muted);
+            text-transform: uppercase;
         }
     </style>
 </head>
 
-<body class="selection:bg-gold/5">
-    <div class="relative flex min-h-screen flex-col">
-        <header class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border-grey/30">
-            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
-                <div class="flex items-center gap-16">
-                    <div class="flex flex-col items-center leading-none">
-                        <span class="text-xl font-light tracking-[0.4em] text-text-main">
-                            <a href="./index.html">DREAM VENUES</a>
-                        </span>
-                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase font-extralight">
-                            High-End Wedding Journal
-                        </span>
+<body>
+
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
+
+            <!-- 品牌 LOGO -->
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+
+            <!-- 右側工具列（頭像 + 搜尋）：手機也要顯示，所以放在 toggler 旁邊，不在 collapse 裡 -->
+            <div class="navbar-tools d-flex align-items-center gap-3 ms-auto me-3 order-lg-last">
+                <div class="d-flex align-items-center gap-2">
+                    <input id="search-input" type="text" placeholder="搜尋場地或職人...">
+                    <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                        style="color:var(--text-muted); font-size:20px;">search</button>
+                </div>
+                <div class="avatar-ring d-none d-sm-block">
+                    <img src="" alt="Profile">
+                </div>
+            </div>
+
+            <!-- 漢堡 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 可收合的選單區塊
+                 id 必須對應 data-bs-target="#navMenu" -->
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-lg-4 gap-lg-1 mt-2 mt-lg-0">
+
+                    <!-- 一般連結 -->
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-item" href="./2.html">活動花絮</a>
+                    </li>
+
+                    <!-- 下拉選單
+                         data-bs-toggle="dropdown" → Bootstrap 控制展開/收起，不用寫 JS -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link-item" href="./3.html">精選合作夥伴</a>
+
+                        <div class="dropdown-menu">
+                            <!-- 專業團隊 -->
+                            <span class="dropdown-group-label">專業團隊</span>
+                            <a class="dropdown-item" href="#">主持人</a>
+                            <a class="dropdown-item" href="#">攝影師</a>
+                            <a class="dropdown-item" href="#">新秘</a>
+
+                            <!-- 婚禮美學 -->
+                            <span class="dropdown-group-label dropdown-group-space">婚禮美學</span>
+                            <a class="dropdown-item" href="#">新娘婚紗</a>
+                            <a class="dropdown-item" href="#">新郎西服</a>
+                            <a class="dropdown-item" href="#">喜餅禮盒</a>
+                             <a class="dropdown-item" href="#">婚禮小物</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
+                    </li>
+
+                </ul>
+            </div><!-- end collapse -->
+
+        </div>
+    </nav>
+
+    <div class="page-wrap">
+
+        <!-- 頁面標題 -->
+        <div class="page-hero">
+            <p class="page-hero-eyebrow">Elite Partners</p>
+            <h1 class="page-hero-title">精選合作夥伴</h1>
+            <div class="page-hero-line"></div>
+            <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
+        </div>
+
+        <!-- 手機版橫向篩選條 -->
+        <div style="max-width:1520px; margin:0 auto; padding:0 20px;">
+            <div class="mobile-filter-bar" id="mobileFilterBar">
+                <button class="mobile-filter-chip active" data-cat="all">全部</button>
+                <button class="mobile-filter-chip" data-cat="host">主持人</button>
+                <button class="mobile-filter-chip" data-cat="photo">攝影師</button>
+                <button class="mobile-filter-chip" data-cat="makeup">新秘</button>
+                <button class="mobile-filter-chip" data-cat="gown">新娘婚紗</button>
+                <button class="mobile-filter-chip" data-cat="suit">新郎西服</button>
+                <button class="mobile-filter-chip" data-cat="cake">喜餅禮盒</button>
+                <button class="mobile-filter-chip" data-cat="gift">婚禮小物</button>
+            </div>
+        </div>
+
+        <!-- 主體 -->
+        <div class="content-wrap">
+
+            <!-- 左側篩選欄（桌機） -->
+            <aside class="sidebar">
+                <p class="sidebar-title">類別篩選</p>
+
+                <button class="filter-btn active" data-cat="all">
+                    全部夥伴
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">24</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+
+                <p class="sidebar-title" style="margin-top:32px;">專業團隊</p>
+                <button class="filter-btn" data-cat="host">
+                    主持人
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+                <button class="filter-btn" data-cat="photo">
+                    攝影師
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+                <button class="filter-btn" data-cat="makeup">
+                    新秘造型師
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+
+                <p class="sidebar-title" style="margin-top:32px;">婚禮美學</p>
+                <button class="filter-btn" data-cat="gown">
+                    新娘婚紗
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+                <button class="filter-btn" data-cat="suit">
+                    新郎西服
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+                <button class="filter-btn" data-cat="cake">
+                    喜餅禮盒
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+                <button class="filter-btn" data-cat="cake">
+                    婚禮小物
+                    <span class="d-flex align-items-center gap-2">
+                        <span class="filter-count">4</span>
+                        <span class="filter-dot"></span>
+                    </span>
+                </button>
+            </aside>
+
+            <!-- 右側卡片區 -->
+            <div class="grid-area" id="gridArea">
+
+                <!-- ── 主持人 ── -->
+                <div class="category-section active" data-section="host" id="sec-host">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">MC · Wedding Host</span>
+                            <h2 class="category-title">主持人</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
                     </div>
-
-                    <nav class="hidden items-center gap-10 lg:flex h-24">
-                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
-                            href="./1.html">婚禮方案</a>
-                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
-                            href="./2.html">活動花絮</a>
-
-                        <div class="group relative h-full flex items-center">
-                            <button
-                                class="nav-link text-xs font-medium transition-colors hover:text-accent-gold flex items-center gap-1">
-                                精選合作夥伴 <span
-                                    class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">expand_more</span>
-                            </button>
-
-                            <div class="absolute left-0 top-[70px] hidden group-hover:block w-64 pt-4">
-                                <div
-                                    class="bg-white border border-border-grey p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col gap-10 rounded-sm">
-
-                                    <div class="flex flex-col gap-4">
-                                        <span
-                                            class="text-100px tracking-[0.2em] text-accent-gold uppercase border-b border-accent-gold/40 pb-2">專業團隊</span>
-                                        <div class="flex flex-col gap-3">
-                                            <a href="#"
-                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">主持人</a>
-                                            <a href="#"
-                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">攝影師</a>
-                                            <a href="#"
-                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新秘造型師</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-col gap-4">
-                                        <span
-                                            class="text-[10px] tracking-[0.2em] text-accent-gold uppercase font-bold border-b border-accent-gold/40 pb-2">婚禮美學</span>
-                                        <div class="flex flex-col gap-3">
-                                            <a href="#"
-                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新娘婚紗</a>
-                                            <a href="#"
-                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新郎西服</a>
-                                            <a href="#"
-                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">喜餅禮盒</a>
-                                        </div>
-                                    </div>
-
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Sarah">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Wedding MC</span>
+                                <p class="card-name">張舒涵 Sarah</p>
+                                <span class="card-name-en">sarah-wedding.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>12+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
+                                <div class="card-line"></div>
                             </div>
-                        </div>
-
-                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
-                            href="./5.html">聯絡我們</a>
-                    </nav>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR"
+                                    alt="Eric">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Wedding MC</span>
+                                <p class="card-name">陳建宏 Eric</p>
+                                <span class="card-name-en">eric-mc.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>8+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8"
+                                    alt="Lily">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Wedding MC</span>
+                                <p class="card-name">林怡君 Lily</p>
+                                <span class="card-name-en">lily-weddinghost.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>6+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli"
+                                    alt="Kevin">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Wedding MC</span>
+                                <p class="card-name">王志明 Kevin</p>
+                                <span class="card-name-en">kevinmc.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>10+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="flex items-center gap-4 lg:gap-8">
-                    <div class="relative flex items-center">
-                        <input id="search-input" type="text" placeholder="搜尋場地或職人..."
-                            class="hidden w-0 opacity-0 lg:block transition-all duration-500 border-none bg-transparent text-xs focus:ring-0 placeholder:text-text-muted">
-                        <button id="search-btn"
-                            class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                <hr class="category-divider" data-divider="host-photo">
+
+                <!-- ── 攝影師 ── -->
+                <div class="category-section active" data-section="photo" id="sec-photo">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Photography · Film</span>
+                            <h2 class="category-title">攝影師</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
                     </div>
-                    <button id="menu-toggle"
-                        class="lg:hidden material-symbols-outlined text-text-main p-1">menu</button>
-                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5 hidden sm:block">
-                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0tYNS4-vFguMdJt9UqCgNPQir22cT_HmweYhUDDCoLc1Za1wM5tWDjab_T2k7J7x6WPEK30GCiunhhrG9aOCMfkTxwBD1FWgow-sPuW6N6hedZKDipgZ8eUSMGoPHfjR6R1DTiYp13ufYIVHvfbKW4CwVCsE9wk_mikBfDchcJP0x5K2cU0CXKZt0q5jYRUDBUMkUMLyniZYfHQFpq3MyPMJZMkmG4hC6-v011cAmloXlf0iOw2PN2V0HB7UErNDP89MqCmzli8UX">
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8"
+                                    alt="Kelvin">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Photographer</span>
+                                <p class="card-name">林國威 Kelvin</p>
+                                <span class="card-name-en">kelvinphoto.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>ISPWP Award</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>全台</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc"
+                                    alt="Mina">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Photographer</span>
+                                <p class="card-name">黃美娜 Mina</p>
+                                <span class="card-name-en">mina-studio.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>Fine Art</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="James">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Photographer</span>
+                                <p class="card-name">吳冠霖 James</p>
+                                <span class="card-name-en">james-wedfilm.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>Film Style</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7PM2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Alice">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Photographer</span>
+                                <p class="card-name">蔡雅雯 Alice</p>
+                                <span class="card-name-en">alicephotography.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>Natural
+                                        Light</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>全台</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
                     </div>
+                </div>
+
+                <hr class="category-divider" data-divider="photo-makeup">
+
+                <!-- ── 新秘造型師 ── -->
+                <div class="category-section active" data-section="makeup" id="sec-makeup">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Bridal Makeup · Hair</span>
+                            <h2 class="category-title">新秘造型師</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Abby">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal Stylist</span>
+                                <p class="card-name">艾比 Abby</p>
+                                <span class="card-name-en">abby-bridal.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>VOGUE 合作</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr"
+                                    alt="Coco">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal Stylist</span>
+                                <p class="card-name">朱可欣 Coco</p>
+                                <span class="card-name-en">coco-makeup.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕透感專家</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB"
+                                    alt="Nina">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal Stylist</span>
+                                <p class="card-name">鄭雅妮 Nina</p>
+                                <span class="card-name-en">nina-bridalstyle.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>韓系風格</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh"
+                                    alt="Belle">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal Stylist</span>
+                                <p class="card-name">方貝兒 Belle</p>
+                                <span class="card-name-en">belle-makeup.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式優雅</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <hr class="category-divider" data-divider="makeup-gown">
+
+                <!-- ── 新娘婚紗 ── -->
+                <div class="category-section active" data-section="gown" id="sec-gown">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Bridal Gown · Couture</span>
+                            <h2 class="category-title">新娘婚紗</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="Gown1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Blanc Atelier</p>
+                                <span class="card-name-en">blancatelier.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北大安</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Gown2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Pure White Studio</p>
+                                <span class="card-name-en">purewhite.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Gown3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">La Lumière</p>
+                                <span class="card-name-en">lalumiere-bridal.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北信義</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Gown4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Ivory & Silk</p>
+                                <span class="card-name-en">ivorysilk.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>日系清新</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <hr class="category-divider" data-divider="gown-suit">
+
+                <!-- ── 新郎西服 ── -->
+                <div class="category-section active" data-section="suit" id="sec-suit">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Gentleman's Tailoring</span>
+                            <h2 class="category-title">新郎西服</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr"
+                                    alt="Suit1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Suit Atelier</span>
+                                <p class="card-name">The Groom Co.</p>
+                                <span class="card-name-en">thegroomco.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>手工訂製</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB"
+                                    alt="Suit2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Suit Atelier</span>
+                                <p class="card-name">Charcoal & Linen</p>
+                                <span class="card-name-en">charcoallinen.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>英式剪裁</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh"
+                                    alt="Suit3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Suit Atelier</span>
+                                <p class="card-name">Maison Élégant</p>
+                                <span class="card-name-en">maisonelegant.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>義式風格</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR"
+                                    alt="Suit4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Suit Atelier</span>
+                                <p class="card-name">Noble Tailor</p>
+                                <span class="card-name-en">nobletailor.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>美式休閒</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <hr class="category-divider" data-divider="suit-cake">
+
+                <!-- ── 喜餅禮盒 ── -->
+                <div class="category-section active" data-section="cake" id="sec-cake">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Wedding Favors · Gifts</span>
+                            <h2 class="category-title">喜餅禮盒</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC"
+                                    alt="Cake1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Patisserie</span>
+                                <p class="card-name">Pâtisserie Dorée</p>
+                                <span class="card-name-en">patisserie-doree.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式手工</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Szm2h1wkuLv2R0qEsmP1tjOtFMEY-KMs0biil-mhgmFMYx-0Tpb92VlE-dyLbGXAC4fvopbNxdVonrOfd45Iz3GsKPjGd5IY7KUj01TMUI2e4GtQWEv77llJREjhInrspXo2WE1whPTa8_zTgxtNCHYwBRU-15JzrCTyn2gtEL31_pA4wA7yA4V2BSGB1UFYITe72Tj_Zokclx4p6gJK0F_U7G4YizM2TGIEEQl8S8tYyAkoY78HcgOPIAlWHasxjpk86Kym00SO"
+                                    alt="Cake2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Chocolatier</span>
+                                <p class="card-name">Velvet Truffle</p>
+                                <span class="card-name-en">velvettruffle.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>比利時可可</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky"
+                                    alt="Cake3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Boulangerie</span>
+                                <p class="card-name">Mille Feuille</p>
+                                <span class="card-name-en">millefeuille.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>酥皮點心</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxVOjwBt8pt89eWwPRfnlgOY4MirbxvsGrA1gUie1D2r_bt8PhYgvgo6UojsTupmvjuN4mEM2akGeoVoVMycXakB0e5uIGoQZfXw8ADoKEVKOZ34NQvDKd9RDKHC8S23M8uaMwSm-eBJx6pJda7nTOZ3FNfQH7RMcZiE2rBYWXgpuGcJR79uqYbha5fEXH9Fgof3qEMe-2cuU3pl6-rqbeuT8pfWwphVStrwIBu31Q3LkFv75b5Ku1GBMlWKnzLY0GaZBAcLWfLLY"
+                                    alt="Cake4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Gift Box</span>
+                                <p class="card-name">Maison du Cadeau</p>
+                                <span class="card-name-en">maisoncadeau.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>木盒訂製</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ── 婚禮小物 ── -->
+                <div class="category-section active" data-section="cake" id="sec-cake">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Wedding Favors · Gifts</span>
+                            <h2 class="category-title">喜餅禮盒</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC"
+                                    alt="Cake1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Patisserie</span>
+                                <p class="card-name">Pâtisserie Dorée</p>
+                                <span class="card-name-en">patisserie-doree.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式手工</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Szm2h1wkuLv2R0qEsmP1tjOtFMEY-KMs0biil-mhgmFMYx-0Tpb92VlE-dyLbGXAC4fvopbNxdVonrOfd45Iz3GsKPjGd5IY7KUj01TMUI2e4GtQWEv77llJREjhInrspXo2WE1whPTa8_zTgxtNCHYwBRU-15JzrCTyn2gtEL31_pA4wA7yA4V2BSGB1UFYITe72Tj_Zokclx4p6gJK0F_U7G4YizM2TGIEEQl8S8tYyAkoY78HcgOPIAlWHasxjpk86Kym00SO"
+                                    alt="Cake2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Chocolatier</span>
+                                <p class="card-name">Velvet Truffle</p>
+                                <span class="card-name-en">velvettruffle.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>比利時可可</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky"
+                                    alt="Cake3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Boulangerie</span>
+                                <p class="card-name">Mille Feuille</p>
+                                <span class="card-name-en">millefeuille.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>酥皮點心</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div>
+                    <span class="footer-brand-name">DREAM VENUES</span>
+                    <span class="footer-brand-sub">High-End Wedding Journal</span>
+                </div>
+                <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
+                <div class="footer-icons">
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
+                            style="font-size:18px;">share</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
+                            style="font-size:18px;">mail</span></a>
                 </div>
             </div>
-
-            <nav id="mobile-nav"
-                class="hidden border-t border-border-grey/50 bg-white/95 lg:hidden overflow-y-auto max-h-[80vh]">
-                <div class="flex flex-col divide-y divide-border-grey/30 px-8 py-4">
-                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./1.html">婚禮方案</a>
-                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./2.html">活動花絮</a>
-
-                    <div class="py-4">
-                        <button id="mobile-partners-toggle"
-                            class="w-full flex justify-between items-center text-sm font-light tracking-widest text-text-main">
-                            精選合作夥伴 <span id="partners-icon"
-                                class="material-symbols-outlined transition-transform">expand_more</span>
-                        </button>
-                        <div id="mobile-partners-menu"
-                            class="hidden flex flex-col gap-8 mt-6 pl-4 border-l border-gold/20">
-                            <div class="flex flex-col gap-4">
-                                <span class="text-[9px] tracking-[0.2em] text-gold uppercase font-light">專業團隊</span>
-                                <a class="text-xs font-light text-text-muted" href="#">主持人</a>
-                                <a class="text-xs font-light text-text-muted" href="#">攝影師</a>
-                                <a class="text-xs font-light text-text-muted" href="#">新秘造型師</a>
-                            </div>
-                            <div class="flex flex-col gap-4">
-                                <span class="text-[9px] tracking-[0.2em] text-gold uppercase font-light">婚禮美學</span>
-                                <a class="text-xs font-light text-text-muted" href="#">新娘婚紗</a>
-                                <a class="text-xs font-light text-text-muted" href="#">新郎西服</a>
-                                <a class="text-xs font-light text-text-muted" href="#">喜餅禮盒</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./5.html">聯絡我們</a>
+            <div class="footer-nav-cols">
+                <div class="footer-nav-col">
+                    <span class="footer-nav-title">探索平台</span>
+                    <a href="#" class="footer-nav-link">精選場地</a>
+                    <a href="#" class="footer-nav-link">職人故事</a>
+                    <a href="#" class="footer-nav-link">風格靈感</a>
+                    <a href="#" class="footer-nav-link">最新動態</a>
                 </div>
-            </nav>
-        </header>
-        <main class="mx-auto w-full max-w-[1500px] px-16 pt-56 pb-72">
-            <div class="mb-32 text-center">
-                <span class="text-[10px] tracking-[1em] uppercase text-gold font-light mb-6 block">The Bridal
-                    Boutique</span>
-                <h1 class="text-4xl font-normal title-luxury text-deep-charcoal mb-12">衣裳禮餅：緻精品選購</h1>
-                <div class="w-20 h-[0.5px] bg-gold/20 mx-auto mb-16"></div>
-                <div
-                    class="flex justify-center gap-12 text-[11px] tracking-[0.4em] font-light text-light-gray uppercase">
-                    <button class="text-deep-charcoal transition-all border-b border-gold/40 pb-2">精選</button>
-                    <button class="hover:text-gold transition-colors pb-2">婚紗</button>
-                    <button class="hover:text-gold transition-colors pb-2">西服</button>
-                    <button class="hover:text-gold transition-colors pb-2">喜餅</button>
-                </div>
-            </div>
-            <section class="mb-64">
-                <div class="flex items-end justify-between mb-20">
-                    <div class="flex flex-col gap-3">
-                        <span class="text-[10px] tracking-[0.6em] text-gold uppercase font-light">Couture Gowns</span>
-                        <h2 class="text-4xl font-normal title-luxury">精品婚紗專區</h2>
-                    </div>
-                    <button
-                        class="text-[10px] tracking-[0.3em] text-light-gray uppercase border-b border-transparent pb-1 hover:border-gold hover:text-gold transition-all duration-700">View
-                        Gallery</button>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-28">
-                    <a class="group cursor-pointer" href="#">
-                        <div class="relative aspect-[3/4.2] overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Wedding Gown"
-                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS" />
-                            <div
-                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
-                                <span
-                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
-                                    DETAILS</span>
-                            </div>
-                        </div>
-                        <div class="text-center px-4">
-                            <h3 class="text-lg font-normal title-luxury mb-3">縹緲絲緞 A-Line 婚紗</h3>
-                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 19,200 <span
-                                    class="mx-3 text-slate-200">/</span> <span
-                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer" href="#">
-                        <div class="relative aspect-[3/4.2] overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Wedding Gown"
-                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8" />
-                            <div
-                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
-                                <span
-                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
-                                    DETAILS</span>
-                            </div>
-                        </div>
-                        <div class="text-center px-4">
-                            <h3 class="text-lg font-normal title-luxury mb-3">經典蕾絲魚尾系列</h3>
-                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 24,800 <span
-                                    class="mx-3 text-slate-200">/</span> <span
-                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer" href="#">
-                        <div class="relative aspect-[3/4.2] overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Wedding Gown"
-                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" />
-                            <div
-                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
-                                <span
-                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
-                                    DETAILS</span>
-                            </div>
-                        </div>
-                        <div class="text-center px-4">
-                            <h3 class="text-lg font-normal title-luxury mb-3">復古一字肩刺繡婚紗</h3>
-                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 15,600 <span
-                                    class="mx-3 text-slate-200">/</span> <span
-                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-            <section class="mb-64">
-                <div class="flex items-end justify-between mb-20">
-                    <div class="flex flex-col gap-3">
-                        <span class="text-[10px] tracking-[0.6em] text-gold uppercase font-light">Gentleman's
-                            Tailoring</span>
-                        <h2 class="text-4xl font-normal title-luxury">西服專區</h2>
-                    </div>
-                    <button
-                        class="text-[10px] tracking-[0.3em] text-light-gray uppercase border-b border-transparent pb-1 hover:border-gold hover:text-gold transition-all duration-700">View
-                        All Styles</button>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-28">
-                    <a class="group cursor-pointer" href="#">
-                        <div class="relative aspect-[3/4.2] overflow-hidden apricot-bg mb-8">
-                            <img alt="Classic Dark Suit"
-                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus mix-blend-multiply opacity-90"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr" />
-                            <div
-                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
-                                <span
-                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
-                                    DETAILS</span>
-                            </div>
-                        </div>
-                        <div class="text-center px-4">
-                            <h3 class="text-lg font-normal title-luxury mb-3">午夜深灰手工羊絨西服</h3>
-                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 12,800 <span
-                                    class="mx-3 text-slate-200">/</span> <span
-                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer" href="#">
-                        <div class="relative aspect-[3/4.2] overflow-hidden apricot-bg mb-8">
-                            <img alt="Beige Linen Suit"
-                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus mix-blend-multiply opacity-90"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" />
-                            <div
-                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
-                                <span
-                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
-                                    DETAILS</span>
-                            </div>
-                        </div>
-                        <div class="text-center px-4">
-                            <h3 class="text-lg font-normal title-luxury mb-3">純淨米棕香檳紳士套裝</h3>
-                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 9,500 <span
-                                    class="mx-3 text-slate-200">/</span> <span
-                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
-                        </div>
-                    </a>
-                    <a class="group cursor-pointer" href="#">
-                        <div class="relative aspect-[3/4.2] overflow-hidden apricot-bg mb-8">
-                            <img alt="Elegant Blue Suit"
-                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus mix-blend-multiply opacity-90"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh" />
-                            <div
-                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
-                                <span
-                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
-                                    DETAILS</span>
-                            </div>
-                        </div>
-                        <div class="text-center px-4">
-                            <h3 class="text-lg font-normal title-luxury mb-3">午夜藍晚宴禮服系列</h3>
-                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 14,200 <span
-                                    class="mx-3 text-slate-200">/</span> <span
-                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-            <section>
-                <div class="flex items-end justify-between mb-20">
-                    <div class="flex flex-col gap-3">
-                        <span class="text-[10px] tracking-[0.6em] text-gold uppercase font-light">Exquisite
-                            Favors</span>
-                        <h2 class="text-4xl font-normal title-luxury">喜餅專區</h2>
-                    </div>
-                    <button
-                        class="text-[10px] tracking-[0.3em] text-light-gray uppercase border-b border-transparent pb-1 hover:border-gold hover:text-gold transition-all duration-700">Explore
-                        Gifts</button>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                    <div class="group cursor-pointer">
-                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Gift Box"
-                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC" />
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-[14px] font-normal title-luxury mb-2">匠心手作馬卡龍禮盒</h3>
-                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 98 <span
-                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
-                        </div>
-                    </div>
-                    <div class="group cursor-pointer">
-                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Gift Box"
-                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Szm2h1wkuLv2R0qEsmP1tjOtFMEY-KMs0biil-mhgmFMYx-0Tpb92VlE-dyLbGXAC4fvopbNxdVonrOfd45Iz3GsKPjGd5IY7KUj01TMUI2e4GtQWEv77llJREjhInrspXo2WE1whPTa8_zTgxtNCHYwBRU-15JzrCTyn2gtEL31_pA4wA7yA4V2BSGB1UFYITe72Tj_Zokclx4p6gJK0F_U7G4YizM2TGIEEQl8S8tYyAkoY78HcgOPIAlWHasxjpk86Kym00SO" />
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-[14px] font-normal title-luxury mb-2">絲絨松露朱古力禮盒</h3>
-                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 145 <span
-                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
-                        </div>
-                    </div>
-                    <div class="group cursor-pointer">
-                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Gift Box"
-                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" />
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-[14px] font-normal title-luxury mb-2">法式蝴蝶酥精品裝</h3>
-                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 85 <span
-                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
-                        </div>
-                    </div>
-                    <div class="group cursor-pointer">
-                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
-                            <img alt="Gift Box"
-                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxVOjwBt8pt89eWwPRfnlgOY4MirbxvsGrA1gUie1D2r_bt8PhYgvgo6UojsTupmvjuN4mEM2akGeoVoVMycXakB0e5uIGoQZfXw8ADoKEVKOZ34NQvDKd9RDKHC8S23M8uaMwSm-eBJx6pJda7nTOZ3FNfQH7RMcZiE2rBYWXgpuGcJR79uqYbha5fEXH9Fgof3qEMe-2cuU3pl6-rqbeuT8pfWwphVStrwIBu31Q3LkFv75b5Ku1GBMlWKnzLY0GaZBAcLWfLLY" />
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-[14px] font-normal title-luxury mb-2">綜合手工餅乾木盒</h3>
-                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 120 <span
-                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <div
-            class="fixed bottom-0 left-0 right-0 z-[60] bg-white/60 backdrop-blur-xl border-t thin-gold-border py-6 luxury-shadow">
-            <div class="mx-auto flex max-w-[1500px] items-center justify-between px-16">
-                <div class="flex items-center gap-16">
-                    <div class="flex -space-x-4">
-                        <div class="h-14 w-14 rounded-full border border-white/40 overflow-hidden shadow-lg z-20">
-                            <img alt="Selected" class="h-full w-full object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8" />
-                        </div>
-                        <div
-                            class="h-14 w-14 rounded-full border border-white/40 bg-soft-apricot flex items-center justify-center shadow-lg text-gold font-sans font-light text-[10px] z-10">
-                            +2
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <span class="text-[9px] tracking-[0.3em] text-gold font-light uppercase">Selection</span>
-                        <p
-                            class="text-[12px] font-light tracking-[0.05em] text-deep-charcoal/80 flex items-center gap-3">
-                            縹緲絲緞 A-Line <span class="h-3 w-[0.5px] bg-slate-200"></span> 馬卡龍禮盒 (100)
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-12">
-                    <div class="flex items-center gap-4 bg-pearl-white px-5 py-2 rounded-full border thin-gold-border">
-                        <span class="text-[9px] tracking-[0.2em] uppercase font-light text-light-gray">方案</span>
-                        <div class="flex bg-slate-50/50 rounded-full p-0.5 shadow-inner">
-                            <button
-                                class="bg-gold text-white px-4 py-1.5 rounded-full text-[9px] tracking-[0.2em] font-light">基本</button>
-                            <button
-                                class="text-light-gray px-4 py-1.5 rounded-full text-[9px] tracking-[0.2em] font-light hover:text-gold transition-colors">高訂</button>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <span
-                            class="text-[9px] tracking-[0.3em] text-light-gray font-light uppercase mb-0.5 block">Estimated
-                            Total</span>
-                        <p class="text-3xl font-luxury font-normal tracking-tight text-gold">HK$ 29,000</p>
-                    </div>
-                    <button
-                        class="bg-deep-charcoal px-12 py-5 text-[10px] nav-spacing font-light uppercase text-white hover:bg-gold transition-all duration-1000">
-                        Proceed
-                    </button>
+                <div class="footer-nav-col">
+                    <span class="footer-nav-title">客戶服務</span>
+                    <a href="#" class="footer-nav-link">預約流程</a>
+                    <a href="#" class="footer-nav-link">常見問題</a>
+                    <a href="#" class="footer-nav-link">隱私政策</a>
+                    <a href="#" class="footer-nav-link">聯繫我們</a>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+    </footer>
+
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. 手機版選單切換
-            const toggleBtn = document.getElementById('menu-toggle');
-            const mobileNav = document.getElementById('mobile-nav');
 
-            toggleBtn.addEventListener('click', () => {
-                mobileNav.classList.toggle('hidden');
-                const isHidden = mobileNav.classList.contains('hidden');
-                toggleBtn.textContent = isHidden ? 'menu' : 'close';
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollTop = 0;
+            const delta = 10; // 捲動超過多少像素才觸發（避免太靈敏）
+
+            // 1. 處理捲動顯示/隱藏
+            window.addEventListener('scroll', () => {
+                let st = window.pageYOffset || document.documentElement.scrollTop;
+
+                // 如果捲動距離太小，不執行
+                if (Math.abs(lastScrollTop - st) <= delta) return;
+
+                if (st > lastScrollTop && st > 80) {
+                    // 往下捲動：隱藏導覽列
+                    navbar.classList.add('nav-hidden');
+                } else {
+                    // 往上捲動：顯示導覽列
+                    navbar.classList.remove('nav-hidden');
+                }
+                lastScrollTop = st;
             });
 
-            // 2. 搜尋功能
-            const searchBtn = document.getElementById('search-btn');
-            const searchInput = document.getElementById('search-input');
-
-            searchBtn.addEventListener('click', () => {
-                if (searchInput.classList.contains('hidden')) {
-                    // 展開
-                    searchInput.classList.remove('hidden');
-                    setTimeout(() => {
-                        searchInput.style.width = '200px';
-                        searchInput.style.opacity = '1';
-                        searchInput.focus();
-                    }, 10);
-                } else {
-                    // 如果已經有字，點擊可以執行搜尋邏輯
-                    if (searchInput.value.trim() !== "") {
-                        alert("執行搜尋: " + searchInput.value);
-                    } else {
-                        // 縮回
-                        searchInput.style.width = '0';
-                        searchInput.style.opacity = '0';
-                        setTimeout(() => searchInput.classList.add('hidden'), 500);
-                    }
+            // 2. 處理滑鼠靠近頂部顯示
+            document.addEventListener('mousemove', (e) => {
+                // 如果滑鼠移動到距離頂部 50px 以內
+                if (e.clientY < 50) {
+                    navbar.classList.remove('nav-hidden');
                 }
             });
 
-            // 3. 箭頭捲動功能
-            const scrollBtn = document.getElementById('scroll-to-content');
-            const targetSection = document.getElementById('main-content');
+        });
 
-            scrollBtn.addEventListener('click', () => {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth', // 平滑捲動
-                    block: 'start'
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ── 篩選邏輯（桌機側欄 + 手機橫條同步） ──
+            const sections = document.querySelectorAll('.category-section');
+            const dividers = document.querySelectorAll('.category-divider');
+            const sidebarBtns = document.querySelectorAll('.sidebar .filter-btn');
+            const mobileBtns = document.querySelectorAll('.mobile-filter-chip');
+            const gridArea = document.getElementById('gridArea');
+
+            function applyFilter(cat) {
+                if (cat === 'all') {
+                    // 全部顯示
+                    sections.forEach(s => s.style.display = 'block');
+                    dividers.forEach(d => d.style.display = 'block');
+                } else {
+                    sections.forEach(s => {
+                        s.style.display = s.dataset.section === cat ? 'block' : 'none';
+                    });
+                    dividers.forEach(d => d.style.display = 'none');
+                }
+
+                // 切換後重新觸發進場動畫
+                document.querySelectorAll('.partner-card').forEach(c => c.classList.remove('visible'));
+                setTimeout(() => triggerVisible(), 50);
+            }
+
+            function setActive(cat) {
+                sidebarBtns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+                mobileBtns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+            }
+
+            sidebarBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setActive(btn.dataset.cat);
+                    applyFilter(btn.dataset.cat);
+                });
+            });
+            mobileBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setActive(btn.dataset.cat);
+                    applyFilter(btn.dataset.cat);
+                    // 手機：滾到卡片區
+                    gridArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
 
-            // 視窗大小改變監聽
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 1024) {
-                    mobileNav.classList.add('hidden');
-                    toggleBtn.textContent = 'menu';
+            // ── 卡片進場動畫（IntersectionObserver） ──
+            function triggerVisible() {
+                const cards = document.querySelectorAll('.partner-card:not(.visible)');
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach((e, i) => {
+                        if (e.isIntersecting) {
+                            setTimeout(() => e.target.classList.add('visible'), i * 80);
+                            obs.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                cards.forEach(c => obs.observe(c));
+            }
+            triggerVisible();
+
+            // ── Header JS（同其他頁面） ──
+            
+
+            const partnersToggle = document.getElementById('mobile-partners-toggle');
+            const partnersMenu = document.getElementById('mobile-partners-menu');
+            const partnersIcon = document.getElementById('partners-icon');
+            partnersToggle.addEventListener('click', () => {
+                const open = partnersMenu.style.display !== 'flex';
+                partnersMenu.style.display = open ? 'flex' : 'none';
+                partnersIcon.textContent = open ? 'expand_less' : 'expand_more';
+            });
+
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('search-input');
+            searchBtn.addEventListener('click', () => {
+                if (!searchInput.classList.contains('open')) {
+                    searchInput.classList.add('open'); searchInput.focus();
+                } else {
+                    if (searchInput.value.trim()) alert('搜尋：' + searchInput.value);
+                    else searchInput.classList.remove('open');
                 }
             });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 992) { mobileNav.style.display = 'none'; menuToggle.textContent = 'menu'; }
+            });
+
         });
     </script>
-
 </body>
 
 </html>
