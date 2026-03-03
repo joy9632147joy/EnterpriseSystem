@@ -76,32 +76,53 @@
 
 <body class="font-sans">
     <div class="relative flex min-h-screen w-full flex-col">
-        <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+        <header class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border-grey/30">
             <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
                 <div class="flex items-center gap-16">
                     <div class="flex flex-col items-center leading-none">
-                        <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
-                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
-                            Journal</span>
+                        <span class="text-xl font-light tracking-[0.4em] text-text-main">
+                            <a href="./index.html">DREAM VENUES</a>
+                        </span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">
+                            High-End Wedding Journal
+                        </span>
                     </div>
+
                     <nav class="hidden items-center gap-10 lg:flex">
-                        <a class="nav-link active text-xs font-medium transition-colors" href="./index.html">首頁</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./1.html">夢幻場域</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./2.html">職人團隊</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./3.html">衣裳禮餅</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./4.html">籌備進度</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./5.html">我的婚禮</a>
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./1.html">婚禮方案</a>
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./2.html">活動花絮</a>
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./3.html">精選合作夥伴</a>
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./5.html">聯絡我們</a>
                     </nav>
                 </div>
-                <div class="flex items-center gap-8">
+
+                <div class="flex items-center gap-4 lg:gap-8">
                     <button
                         class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
-                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+
+                    <button id="menu-toggle" class="lg:hidden material-symbols-outlined text-text-main p-1">
+                        menu
+                    </button>
+
+                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5 hidden sm:block">
                         <img alt="Profile" class="h-full w-full rounded-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0tYNS4-vFguMdJt9UqCgNPQir22cT_HmweYhUDDCoLc1Za1wM5tWDjab_T2k7J7x6WPEK30GCiunhhrG9aOCMfkTxwBD1FWgow-sPuW6N6hedZKDipgZ8eUSMGoPHfjR6R1DTiYp13ufYIVHvfbKW4CwVCsE9wk_mikBfDchcJP0x5K2cU0CXKZt0q5jYRUDBUMkUMLyniZYfHQFpq3MyPMJZMkmG4hC6-v011cAmloXlf0iOw2PN2V0HB7UErNDP89MqCmzli8UX">
                     </div>
                 </div>
             </div>
+
+            <nav id="mobile-nav" class="hidden border-t border-border-grey/50 bg-white/95 lg:hidden">
+                <div class="flex flex-col divide-y divide-border-grey/30 px-8 py-4">
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./1.html">婚禮方案</a>
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./2.html">活動花絮</a>
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./3.html">精選合作夥伴</a>
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./5.html">聯絡我們</a>
+                </div>
+            </nav>
         </header>
         <main class="grow">
             <section class="relative h-screen w-full overflow-hidden">
@@ -358,6 +379,29 @@
         </footer>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('menu-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            toggleBtn.addEventListener('click', () => {
+                // 切換 hidden 類別來顯示或隱藏選單
+                mobileNav.classList.toggle('hidden');
+
+                // 可選：切換圖示從 menu 變成 close
+                const isHidden = mobileNav.classList.contains('hidden');
+                toggleBtn.textContent = isHidden ? 'menu' : 'close';
+            });
+
+            // 視窗大小改變時，如果變大則自動收起手機選單
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) { // lg 斷點
+                    mobileNav.classList.add('hidden');
+                    toggleBtn.textContent = 'menu';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
