@@ -1,614 +1,363 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eternal Story Wedding | 您的專屬婚禮顧問</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-    <!-- Google Fonts: Playfair Display (標題) & Lato (內文/副標) -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>婚禮平台首頁：浪漫草地風與純白精品導引</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        /* 暫時寫在這裡，之後可移至 ClientStyle.css */
-
-        /* 定義變數 */
-        :root {
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Lato', sans-serif;
-            --color-champagne: #cda87c;
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&amp;family=Noto+Sans+TC:wght@300;400;500&amp;family=Plus+Jakarta+Sans:wght@200;300;400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "pure-white": "#FFFFFF",
+                        "soft-grey": "#FBFBFB",
+                        "border-grey": "#F0F0F0",
+                        "accent-gold": "#C5A059",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                    },
+                    fontFamily: {
+                        "serif-tc": ["Noto Serif TC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
+                    },
+                    letterSpacing: {
+                        "ultra-wide": "0.3em",
+                        "magazine": "0.15em"
+                    }
+                },
+            },
         }
-
-        /* 標題設計 */
-        .brand-container {
-            display: flex;
-            align-items: center;
-            line-height: 1;
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-pure-white text-text-main antialiased;
+            }
         }
-
-        .brand-text {
-            font-family: var(--font-serif);
-            font-weight: 600;
-            font-size: 1.6rem;
-            color: #333;
-            letter-spacing: 0.5px;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
         }
-
-        .brand-sub {
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            color: var(--color-champagne);
-            letter-spacing: 4px;
-            /* 寬字距營造高級感 */
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-left: 8px;
-            /* 與主標題的距離 */
-            position: relative;
-            top: 2px;
+        .video-overlay {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%);
         }
-
-        .hero-section {
-            /* 建議替換成一張唯美的婚禮背景圖 */
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            align-items: center;
+        .soft-focus {
+            filter: saturate(0.9) contrast(0.95) brightness(1.02);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .navbar-custom {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        .dynamic-tile video {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
         }
-
-        .text-champagne {
-            color: #d4af37;
-            /* 香檳金點綴 */
+        .dynamic-tile:hover video {
+            opacity: 1;
         }
-
-        /* 作品集設計 */
-        .portfolio-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .breath-space {
+            letter-spacing: 0.25em;
         }
-
-        .portfolio-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
         }
-
-        /* 登入 Modal 樣式 */
-        #loginTab .nav-link {
-            color: #6c757d;
-            background-color: transparent;
-        }
-
-        #loginTab .nav-link.active {
-            color: #fff;
-            background-color: #343a40;
-            /* Dark gray to match theme buttons */
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
         }
     </style>
 </head>
 
-<body>
-    <!-- 這裡是首頁的內容，包含導覽列、Hero 區塊、服務介紹、作品集、流程說明和預約諮詢表單。 -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top px-4 py-3">
-        <div class="container">
-            <a class="navbar-brand py-0" href="#">
-                <div class="brand-container">
-                    <span class="brand-text">Eternal Story</span>
-                    <span class="brand-sub">Wedding</span>
-                </div>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto fw-medium">
-                    <li class="nav-item px-2"><a class="nav-link active" href="#services">統包服務</a></li>
-                    <li class="nav-item px-2"><a class="nav-link" href="#portfolio">精選作品</a></li>
-                    <li class="nav-item px-2"><a class="nav-link" href="#process">服務流程</a></li>
-
-                    <!-- 跳至籌備進度頁面(串後端後移除此導覽列) -->
-                    <li class="nav-item px-2"><a class="nav-link" href="dashboard.html">籌備進度(串後端後移除)</a></li>
-                </ul>
-                <div class="d-flex gap-2">
-                    <a href="#booking" class="btn btn-outline-dark rounded-pill px-4">預約諮詢</a>
-                    <button type="button" class="btn btn-dark rounded-pill px-4" data-bs-toggle="modal"
-                        data-bs-target="#clientLoginModal"><i class="bi bi-person me-1"></i>會員登入&註冊</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero 區塊 -->
-    <header class="hero-section text-center text-white">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <h1 class="display-3 fw-bold mb-4">將美好的想像，化為真實的浪漫</h1>
-                    <p class="lead mb-5 fs-5">從場地佈置、攝影企劃到禮服秘書，Eternal Story Wedding 提供全方位統包服務。<br>
-                        您只需享受幸福，瑣事交給我們。</p>
-                    <a href="#booking" class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold shadow-sm text-dark">
-                        開始籌備您的專屬婚禮
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 服務介紹區塊 -->
-    <section id="services" class="py-5 bg-light">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h6 class="fw-bold" style="color: #cda87c; letter-spacing: 2px;">OUR SERVICES</h6>
-                <h2 class="fw-bold mb-3">全方位統包服務</h2>
-                <p class="text-muted">從零到一為您打理婚禮大小事，讓您優雅享受人生最重要的時刻</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4 service-card"
-                        style="border-radius: 15px;">
-                        <div class="mb-3 mt-2">
-                            <i class="bi bi-clipboard2-heart fs-1" style="color: #cda87c;"></i>
-                        </div>
-                        <h5 class="fw-bold mb-3">專屬婚禮顧問</h5>
-                        <p class="text-muted small mb-0">專人一對一服務，為您控管預算、規劃流程、並協調所有廠商，做您最安心的後盾。</p>
+<body class="font-sans">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
+                <div class="flex items-center gap-16">
+                    <div class="flex flex-col items-center leading-none">
+                        <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                            Journal</span>
                     </div>
+                    <nav class="hidden items-center gap-10 lg:flex">
+                        <a class="nav-link active text-xs font-medium transition-colors" href="./index.html">首頁</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./1.html">夢幻場域</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./2.html">職人團隊</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./3.html">衣裳禮餅</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./4.html">籌備進度</a>
+                        <a class="nav-link text-xs font-medium transition-colors" href="./5.html">我的婚禮</a>
+                    </nav>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4 service-card"
-                        style="border-radius: 15px;">
-                        <div class="mb-3 mt-2">
-                            <i class="bi bi-flower1 fs-1" style="color: #cda87c;"></i>
-                        </div>
-                        <h5 class="fw-bold mb-3">主題視覺佈置</h5>
-                        <p class="text-muted small mb-0">客製化迎賓背板、相片桌、主客桌花藝設計，打造專屬於您的夢幻氛圍。</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4 service-card"
-                        style="border-radius: 15px;">
-                        <div class="mb-3 mt-2">
-                            <i class="bi bi-camera-reels fs-1" style="color: #cda87c;"></i>
-                        </div>
-                        <h5 class="fw-bold mb-3">婚禮動靜態影像</h5>
-                        <p class="text-muted small mb-0">嚴選專業攝影團隊，精準捕捉每一個感動瞬間，為您留下永恆的美好回憶。</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4 service-card"
-                        style="border-radius: 15px;">
-                        <div class="mb-3 mt-2">
-                            <i class="bi bi-magic fs-1" style="color: #cda87c;"></i>
-                        </div>
-                        <h5 class="fw-bold mb-3">頂級新娘秘書</h5>
-                        <p class="text-muted small mb-0">專屬試妝與整體造型溝通，搭配精緻手工婚紗，讓您在婚禮當天無死角閃耀動人。</p>
+                <div class="flex items-center gap-8">
+                    <button
+                        class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
                     </div>
                 </div>
             </div>
-
-            <div class="text-center mt-5">
-                <a href="#booking" class="btn btn-dark rounded-pill px-5 py-3 shadow-sm fw-bold">我想了解方案與報價</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 作品集區塊 -->
-    <section id="portfolio" class="py-5 bg-white">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h6 class="fw-bold" style="color: #cda87c; letter-spacing: 2px;">OUR WORK</h6>
-                <h2 class="fw-bold mb-3">精選婚禮佈置</h2>
-                <p class="text-muted">每一場婚禮，都是獨一無二的永恆故事</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm overflow-hidden portfolio-card h-100">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069"
-                            class="card-img-top" alt="戶外草地婚禮" style="height: 280px; object-fit: cover;">
-                        <div class="card-body text-center py-4">
-                            <h5 class="fw-bold mb-1">自然系戶外草地婚禮</h5>
-                            <span class="badge bg-light text-muted fw-normal">美式戶外</span>
+        </header>
+        <main class="grow">
+            <section class="relative h-screen w-full overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="img/m01.png" class="h-full w-full object-cover" />
+                    <div class="video-overlay absolute inset-0"></div>
+                </div>
+                <div class="relative z-10 flex h-full items-center justify-center text-center">
+                    <div class="max-w-5xl px-6">
+                        <span class="text-[10px] uppercase tracking-[0.8em] text-white/90 drop-shadow-md">The Outdoor
+                            Celebration</span>
+                        <h2
+                            class="mt-8 font-serif-tc text-5xl font-light leading-tight text-white md:text-7xl drop-shadow-lg">
+                            草地上的幸福光影</h2>
+                        <p
+                            class="mt-8 text-sm tracking-[0.3em] text-white font-light max-w-2xl mx-auto leading-loose drop-shadow-md">
+                            陽光灑落在白色帳篷與翠綠草地之間，捕捉每一刻被微風吹拂的浪漫。<br />在自然的見證下，開啟屬於您的純白篇章。
+                        </p>
+                        <div class="mt-16 flex justify-center gap-8">
+                            <button
+                                class="border border-white/60 bg-white/5 px-14 py-5 text-[10px] tracking-ultra-wide text-white backdrop-blur-md transition-all hover:bg-white hover:text-text-main">
+                                瀏覽影音專區
+                            </button>
+                            <button
+                                class="bg-white px-14 py-5 text-[10px] tracking-ultra-wide text-text-main transition-all hover:bg-accent-gold hover:text-white">
+                                開啟您的婚禮
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm overflow-hidden portfolio-card h-100">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070"
-                            class="card-img-top" alt="奢華飯店婚宴" style="height: 280px; object-fit: cover;">
-                        <div class="card-body text-center py-4">
-                            <h5 class="fw-bold mb-1">香檳金奢華飯店婚宴</h5>
-                            <span class="badge bg-light text-muted fw-normal">頂級飯店</span>
-                        </div>
-                    </div>
+                <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
+                    <span
+                        class="material-symbols-outlined text-white/80 animate-bounce text-3xl font-light">expand_more</span>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm overflow-hidden portfolio-card h-100">
-                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070"
-                            class="card-img-top" alt="浪漫海島婚禮" style="height: 280px; object-fit: cover;">
-                        <div class="card-body text-center py-4">
-                            <h5 class="fw-bold mb-1">微光浪漫海島婚禮</h5>
-                            <span class="badge bg-light text-muted fw-normal">主題客製</span>
-                        </div>
+            </section>
+            <section class="bg-pure-white py-32 lg:py-56">
+                <div class="mx-auto max-w-[1400px] px-8">
+                    <div class="mb-32 flex flex-col items-center text-center">
+                        <h3 class="font-serif-tc text-4xl font-light tracking-tight text-text-main">精選真實婚禮</h3>
+                        <div class="mt-8 h-px w-20 bg-accent-gold"></div>
+                        <p class="mt-10 text-[10px] tracking-ultra-wide text-text-muted uppercase">Romantic Real Moments
+                        </p>
                     </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-outline-dark rounded-pill px-4 py-2">查看更多作品</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 服務流程區塊 -->
-    <section id="process" class="py-5" style="background-color: #faf9f7;">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h6 class="fw-bold" style="color: #cda87c; letter-spacing: 2px;">HOW IT WORKS</h6>
-                <h2 class="fw-bold mb-3">專屬服務流程</h2>
-                <p class="text-muted">四個簡單步驟，與我們一起輕鬆打造夢幻婚禮</p>
-            </div>
-
-            <div class="row g-4 position-relative">
-                <div class="col-lg-3 col-sm-6 text-center process-step">
-                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow-sm rounded-circle mb-4"
-                        style="width: 90px; height: 90px; color: #cda87c;">
-                        <i class="bi bi-chat-heart fs-1"></i>
-                    </div>
-                    <h5 class="fw-bold">1. 預約諮詢</h5>
-                    <p class="text-muted small px-2">填寫線上表單，我們的婚禮顧問將與您聯繫，了解初步需求。</p>
-                </div>
-                <div class="col-lg-3 col-sm-6 text-center process-step">
-                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow-sm rounded-circle mb-4"
-                        style="width: 90px; height: 90px; color: #cda87c;">
-                        <i class="bi bi-palette fs-1"></i>
-                    </div>
-                    <h5 class="fw-bold">2. 專屬提案</h5>
-                    <p class="text-muted small px-2">為您量身打造婚禮主題視覺、場地規劃與報價單，並完成簽約。</p>
-                </div>
-                <div class="col-lg-3 col-sm-6 text-center process-step">
-                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow-sm rounded-circle mb-4"
-                        style="width: 90px; height: 90px; color: #cda87c;">
-                        <i class="bi bi-calendar-check fs-1"></i>
-                    </div>
-                    <h5 class="fw-bold">3. 細節執行</h5>
-                    <p class="text-muted small px-2">透過專屬系統隨時追蹤籌備進度，包含攝影、新秘與流程確認。</p>
-                </div>
-                <div class="col-lg-3 col-sm-6 text-center process-step">
-                    <div class="d-inline-flex align-items-center justify-content-center bg-white shadow-sm rounded-circle mb-4"
-                        style="width: 90px; height: 90px; color: #cda87c;">
-                        <i class="bi bi-stars fs-1"></i>
-                    </div>
-                    <h5 class="fw-bold">4. 圓滿婚禮</h5>
-                    <p class="text-muted small px-2">婚禮當天由專業團隊全場場控與佈置，您只需負責享受幸福。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 預約諮詢區塊 -->
-    <div id="app">
-        <section id="booking" class="py-5 bg-light">
-            <div class="container py-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
-
-                            <div class="card-header border-0 text-center py-4 text-white"
-                                style="background-color: #cda87c;">
-                                <h3 class="fw-bold mb-1"><i class="bi bi-envelope-paper-heart me-2"></i>預約專屬諮詢</h3>
-                                <p class="mb-0 small opacity-75">請留下您的基本資訊，我們的婚禮顧問將於 24 小時內與您聯繫</p>
+                    <div class="grid grid-cols-1 gap-x-16 gap-y-40 md:grid-cols-2 lg:grid-cols-3">
+                        <div class="group cursor-pointer dynamic-tile">
+                            <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
+                                <img alt="Detail Romance"
+                                    class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
+                                    src="img/m02.png" />
+                                <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
+                                    onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
+                                    <source
+                                        src="https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-walking-in-a-field-of-flowers-34440-large.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <div
+                                    class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
                             </div>
-
-                            <div class="card-body p-5">
-                                <form id="bookingForm" @submit.prevent="submitForm">
-
-                                    <h5 class="fw-bold text-secondary mb-4 border-bottom pb-2">新人資訊</h5>
-                                    <div class="row g-4 mb-4">
-                                        <div class="col-md-6">
-                                            <label for="clientName" class="form-label small fw-bold">聯絡人姓名 <span
-                                                    class="text-danger">*</span></label>
-
-                                            <input type="text" class="form-control bg-light border-0 px-3 py-2"
-                                                id="clientName" v-model="form.clientName" placeholder="例如：王小明 / 陳小姐"
-                                                required>
-
-                                            <p class="text-primary mt-2 fw-bold" style="min-height: 24px;">
-                                                歡迎 {{ form.clientName }}！
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="clientPhone" class="form-label small fw-bold">聯絡電話 <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="tel" class="form-control bg-light border-0 px-3 py-2"
-                                                id="clientPhone" v-model="form.clientPhone" placeholder="09XX-XXX-XXX"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="clientLine" class="form-label small fw-bold">Line ID <span
-                                                    class="text-muted fw-normal">(選填，方便顧問快速聯繫)</span></label>
-                                            <input type="text" class="form-control bg-light border-0 px-3 py-2"
-                                                id="clientLine" v-model="form.clientLine" placeholder="您的 Line ID">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="clientEmail" class="form-label small fw-bold">電子信箱 <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="email" class="form-control bg-light border-0 px-3 py-2"
-                                                id="clientEmail" v-model="form.clientEmail"
-                                                placeholder="example@email.com" required>
-                                        </div>
-                                    </div>
-
-                                    <h5 class="fw-bold text-secondary mb-4 border-bottom pb-2">婚禮初步構想</h5>
-                                    <div class="row g-4 mb-4">
-                                        <div class="col-md-6">
-                                            <label for="weddingDate" class="form-label small fw-bold">預計婚期 <span
-                                                    class="text-muted fw-normal">(若未定可留空)</span></label>
-                                            <input type="date" class="form-control bg-light border-0 px-3 py-2"
-                                                id="weddingDate" v-model="form.weddingDate">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="guestCount" class="form-label small fw-bold">預估規模</label>
-                                            <select class="form-select bg-light border-0 px-3 py-2" id="guestCount"
-                                                v-model="form.guestCount">
-                                                <option disabled value="">請選擇預估規模</option>
-                                                <option value="純儀式">純儀式 (無宴客)</option>
-                                                <option value="50人以下">50人以下 (精緻家宴)</option>
-                                                <option value="100-200人">10-20桌 (100-200人)</option>
-                                                <option value="200-300人">20-30桌 (200-300人)</option>
-                                                <option value="300人以上">30桌以上 (盛大婚宴)</option>
-                                                <option value="">尚未決定</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label class="form-label small fw-bold d-block mb-3">您嚮往的婚禮風格 <span
-                                                    class="text-muted fw-normal">(可複選)</span></label>
-                                            <div class="btn-group-toggle d-flex flex-wrap gap-2" data-toggle="buttons">
-                                                <input type="checkbox" class="btn-check" id="style1"
-                                                    v-model="form.styles" value="美式戶外" autocomplete="off">
-                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
-                                                    for="style1">美式戶外</label>
-
-                                                <input type="checkbox" class="btn-check" id="style2"
-                                                    v-model="form.styles" value="奢華飯店" autocomplete="off">
-                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
-                                                    for="style2">奢華飯店</label>
-
-                                                <input type="checkbox" class="btn-check" id="style3"
-                                                    v-model="form.styles" value="中式古典" autocomplete="off">
-                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
-                                                    for="style3">中式古典</label>
-
-                                                <input type="checkbox" class="btn-check" id="style4"
-                                                    v-model="form.styles" value="韓系簡約" autocomplete="off">
-                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
-                                                    for="style4">韓系簡約</label>
-
-                                                <input type="checkbox" class="btn-check" id="style5"
-                                                    v-model="form.styles" value="海島浪漫" autocomplete="off">
-                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
-                                                    for="style5">海島浪漫</label>
-
-                                                <input type="checkbox" class="btn-check" id="style6"
-                                                    v-model="form.styles" value="尚未決定" autocomplete="off">
-                                                <label class="btn btn-outline-secondary rounded-pill btn-sm px-3"
-                                                    for="style6">尚未決定</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label class="form-label small fw-bold d-block mb-3">需要我們協助的項目 <span
-                                                    class="text-muted fw-normal">(可複選)</span></label>
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-check p-3 border rounded bg-light">
-                                                        <input class="form-check-input ms-1" type="checkbox"
-                                                            value="統包企劃" id="service1" v-model="form.services">
-                                                        <label class="form-check-label fw-bold ms-2" for="service1">
-                                                            全方位統包企劃
-                                                            <small
-                                                                class="d-block text-muted fw-normal mt-1">預算控管、流程規劃、廠商整合</small>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-check p-3 border rounded bg-light">
-                                                        <input class="form-check-input ms-1" type="checkbox"
-                                                            value="場地佈置" id="service2" v-model="form.services">
-                                                        <label class="form-check-label fw-bold ms-2" for="service2">
-                                                            主題場地佈置
-                                                            <small
-                                                                class="d-block text-muted fw-normal mt-1">花藝設計、背板搭建、燈光氛圍</small>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-check p-3 border rounded bg-light">
-                                                        <input class="form-check-input ms-1" type="checkbox"
-                                                            value="平面攝影" id="service3" v-model="form.services">
-                                                        <label class="form-check-label fw-bold ms-2" for="service3">
-                                                            婚禮影像紀錄
-                                                            <small
-                                                                class="d-block text-muted fw-normal mt-1">平面攝影、動態錄影、SDE快剪快播</small>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-check p-3 border rounded bg-light">
-                                                        <input class="form-check-input ms-1" type="checkbox"
-                                                            value="新娘秘書" id="service4" v-model="form.services">
-                                                        <label class="form-check-label fw-bold ms-2" for="service4">
-                                                            造型與禮服
-                                                            <small
-                                                                class="d-block text-muted fw-normal mt-1">新娘秘書、手工婚紗租借</small>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="additionalNotes" class="form-label small fw-bold">其他想告訴我們的事
-                                                <span class="text-muted fw-normal">(選填)</span></label>
-                                            <textarea class="form-control bg-light border-0 px-3 py-3"
-                                                id="additionalNotes" rows="4"
-                                                placeholder="例如：特別喜歡戶外草地婚禮、有特定的預算考量，或是有哪些夢想中的婚禮畫面..."
-                                                v-model="form.additionalNotes"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-center mt-5">
-                                        <button type="submit" class="btn btn-lg px-5 py-3 fw-bold text-white shadow-sm"
-                                            style="background-color: #cda87c; border-radius: 50px;">
-                                            送出預約申請 <i class="bi bi-send-fill ms-2"></i>
-                                        </button>
-                                        <div class="mt-3 small text-muted">
-                                            <i class="bi bi-shield-check me-1"></i> 您的資料僅供本次諮詢使用。
-                                        </div>
-                                    </div>
-
-                                </form>
+                            <div class="mt-14 px-6 text-center">
+                                <span class="text-[9px] tracking-ultra-wide text-accent-gold uppercase font-medium">Fine
+                                    Art Details</span>
+                                <h4 class="mt-5 font-serif-tc text-2xl font-light text-text-main">蕾絲與微風的對話</h4>
+                                <p class="mt-5 text-[13px] leading-relaxed text-text-muted font-light px-4">
+                                    細緻的婚紗裙擺在草地上輕輕拂過，捕捉每一幀流動的細膩質感</p>
+                                <div class="mt-10 flex justify-center">
+                                    <span
+                                        class="h-px w-6 bg-border-grey group-hover:w-16 group-hover:bg-accent-gold transition-all duration-700"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer dynamic-tile lg:mt-24">
+                            <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
+                                <img alt="Intimate Moment"
+                                    class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
+                                    src="img/m03.png" />
+                                <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
+                                    onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
+                                    <source
+                                        src="https://assets.mixkit.co/videos/preview/mixkit-loving-couple-hugging-and-smiling-in-the-forest-34442-large.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <div
+                                    class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                            <div class="mt-14 px-6 text-center">
+                                <span
+                                    class="text-[9px] tracking-ultra-wide text-accent-gold uppercase font-medium">Gentle
+                                    Connection</span>
+                                <h4 class="mt-5 font-serif-tc text-2xl font-light text-text-main">凝視間的永恆</h4>
+                                <p class="mt-5 text-[13px] leading-relaxed text-text-muted font-light px-4">
+                                    在香檳色的暮光中，記錄新人間最溫柔的耳語與真摯互動</p>
+                                <div class="mt-10 flex justify-center">
+                                    <span
+                                        class="h-px w-6 bg-border-grey group-hover:w-16 group-hover:bg-accent-gold transition-all duration-700"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer dynamic-tile">
+                            <div class="relative aspect-[4/5] overflow-hidden bg-soft-grey editorial-shadow">
+                                <img alt="Venue Aesthetics"
+                                    class="absolute inset-0 h-full w-full object-cover soft-focus group-hover:scale-105 transition-transform duration-1000"
+                                    src="img/m04.jpg" />
+                                <video class="absolute inset-0 h-full w-full object-cover" loop="" muted=""
+                                    onmouseout="this.pause()" onmouseover="this.play()" playsinline="">
+                                    <source
+                                        src="https://assets.mixkit.co/videos/preview/mixkit-groom-and-bride-slowly-dancing-at-their-wedding-34443-large.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <div
+                                    class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                            <div class="mt-14 px-6 text-center">
+                                <span
+                                    class="text-[9px] tracking-ultra-wide text-accent-gold uppercase font-medium">Atmospheric
+                                    Venue</span>
+                                <h4 class="mt-5 font-serif-tc text-2xl font-light text-text-main">森之慶典的詩意</h4>
+                                <p class="mt-5 text-[13px] leading-relaxed text-text-muted font-light px-4">
+                                    唯美的現場佈置與自然景觀融合，打造如雜誌般的視覺盛宴</p>
+                                <div class="mt-10 flex justify-center">
+                                    <span
+                                        class="h-px w-6 bg-border-grey group-hover:w-16 group-hover:bg-accent-gold transition-all duration-700"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Client Login/Register Modal -->
-    <div class="modal fade" id="clientLoginModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 overflow-hidden" style="border-radius: 20px;">
-                <div class="modal-header border-0 p-0 position-relative">
-                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3 bg-white"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="w-100 text-center py-5 text-white" style="background-color: #cda87c;">
-                        <h3 class="fw-bold mb-1">Welcome Back</h3>
-                        <p class="mb-0 opacity-75">登入以查看您的婚禮籌備進度</p>
+            </section>
+            <section class="grid grid-cols-1 md:grid-cols-2">
+                <div class="relative group h-[750px] overflow-hidden">
+                    <img alt="Dream Venue"
+                        class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-110 soft-focus"
+                        src="img/m05.jpg" />
+                    <div class="absolute inset-0 bg-white/10 group-hover:bg-black/20 transition-colors duration-700">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center text-white">
+                        <span class="text-[10px] tracking-ultra-wide uppercase drop-shadow">Outdoor Curation</span>
+                        <h3 class="mt-6 font-serif-tc text-4xl font-light drop-shadow-md">尋找您的夢幻草地</h3>
+                        <p
+                            class="mt-6 max-w-sm text-xs font-light leading-relaxed text-white/90 tracking-widest drop-shadow-sm">
+                            從私藏秘境到純白帳篷，為您的儀式挑選最完美的自然畫布</p>
+                        <a class="mt-12 border border-white/60 bg-white/5 backdrop-blur-sm px-12 py-5 text-[10px] tracking-ultra-wide hover:bg-white hover:text-text-main transition-all uppercase"
+                            href="#">Find Your Dream Venue</a>
                     </div>
                 </div>
-                <div class="modal-body p-4 p-md-5">
-                    <ul class="nav nav-pills nav-fill mb-4" id="loginTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active rounded-pill fw-bold" id="login-tab" data-bs-toggle="pill"
-                                data-bs-target="#login-content" type="button" role="tab">會員登入</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill fw-bold" id="register-tab" data-bs-toggle="pill"
-                                data-bs-target="#register-content" type="button" role="tab">註冊帳號</button>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content">
-                        <!-- Login Form -->
-                        <div class="tab-pane fade show active" id="login-content" role="tabpanel">
-                            <form>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-muted">電子信箱 / 手機號碼</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text border-0 bg-light"><i
-                                                class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control bg-light border-0 py-2"
-                                            placeholder="請輸入帳號">
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label small fw-bold text-muted">密碼</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text border-0 bg-light"><i
-                                                class="bi bi-lock"></i></span>
-                                        <input type="password" class="form-control bg-light border-0 py-2"
-                                            placeholder="請輸入密碼">
-                                    </div>
-                                    <div class="text-end mt-2">
-                                        <a href="#" class="text-muted small text-decoration-none">忘記密碼？</a>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold"
-                                    style="background-color: #cda87c; border-color: #cda87c;">立即登入</button>
-                            </form>
+                <div class="relative group h-[750px] overflow-hidden">
+                    <img alt="Expert Artisans"
+                        class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-110 soft-focus"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0tYNS4-vFguMdJt9UqCgNPQir22cT_HmweYhUDDCoLc1Za1wM5tWDjab_T2k7J7x6WPEK30GCiunhhrG9aOCMfkTxwBD1FWgow-sPuW6N6hedZKDipgZ8eUSMGoPHfjR6R1DTiYp13ufYIVHvfbKW4CwVCsE9wk_mikBfDchcJP0x5K2cU0CXKZt0q5jYRUDBUMkUMLyniZYfHQFpq3MyPMJZMkmG4hC6-v011cAmloXlf0iOw2PN2V0HB7UErNDP89MqCmzli8UX" />
+                    <div class="absolute inset-0 bg-white/10 group-hover:bg-black/20 transition-colors duration-700">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center text-white">
+                        <span class="text-[10px] tracking-ultra-wide uppercase drop-shadow">Elite Professionals</span>
+                        <h3 class="mt-6 font-serif-tc text-4xl font-light drop-shadow-md">預約浪漫職人</h3>
+                        <p
+                            class="mt-6 max-w-sm text-xs font-light leading-relaxed text-white/90 tracking-widest drop-shadow-sm">
+                            集結擅長捕捉自然光影的攝影大師，成就您的雜誌質感婚禮</p>
+                        <a class="mt-12 border border-white/60 bg-white/5 backdrop-blur-sm px-12 py-5 text-[10px] tracking-ultra-wide hover:bg-white hover:text-text-main transition-all uppercase"
+                            href="#">Book Your Expert</a>
+                    </div>
+                </div>
+            </section>
+            <section class="py-32 bg-soft-grey lg:py-48">
+                <div class="mx-auto max-w-7xl px-8 text-center">
+                    <span class="text-[10px] tracking-ultra-wide text-accent-gold uppercase font-medium">Visual
+                        Inspiration</span>
+                    <h3 class="mt-6 font-serif-tc text-3xl font-light text-text-main">靈感隨手集</h3>
+                    <p class="mt-4 text-xs tracking-magazine text-text-muted">細碎的美好，構築成永恆的浪漫</p>
+                    <div class="mt-24 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" />
                         </div>
-
-                        <!-- Register Form -->
-                        <div class="tab-pane fade" id="register-content" role="tabpanel">
-                            <form>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-muted">姓名</label>
-                                    <input type="text" class="form-control bg-light border-0 py-2" placeholder="您的真實姓名">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-muted">電子信箱</label>
-                                    <input type="email" class="form-control bg-light border-0 py-2"
-                                        placeholder="example@email.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-muted">手機號碼</label>
-                                    <input type="tel" class="form-control bg-light border-0 py-2"
-                                        placeholder="09XX-XXX-XXX">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-muted">設定密碼</label>
-                                    <input type="password" class="form-control bg-light border-0 py-2"
-                                        placeholder="6位數以上英數字">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label small fw-bold text-muted">確認密碼</label>
-                                    <input type="password" class="form-control bg-light border-0 py-2"
-                                        placeholder="請再次輸入密碼">
-                                </div>
-                                <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold"
-                                    style="background-color: #cda87c; border-color: #cda87c;">建立帳號</button>
-                            </form>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR" />
                         </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" />
+                        </div>
+                        <div
+                            class="aspect-[4/5] bg-white border border-border-grey p-2 transition-all duration-700 hover:shadow-xl hover:-translate-y-2">
+                            <img class="h-full w-full object-cover soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc" />
+                        </div>
+                    </div>
+                    <div class="mt-20">
+                        <button
+                            class="text-[10px] tracking-ultra-wide text-text-muted hover:text-accent-gold transition-colors uppercase border-b border-border-grey pb-2">View
+                            More Inspiration</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="border-t border-border-grey bg-white px-10 py-24">
+            <div class="mx-auto flex max-w-[1400px] flex-wrap justify-between gap-16">
+                <div class="max-w-xs flex flex-col gap-8">
+                    <div class="flex flex-col leading-none">
+                        <span class="text-lg font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                            Journal</span>
+                    </div>
+                    <p class="text-[13px] font-light leading-relaxed text-text-muted">
+                        致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="h-9 w-9 rounded-full border border-border-grey flex items-center justify-center text-text-muted hover:text-accent-gold transition-colors"
+                            href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+                        <a class="h-9 w-9 rounded-full border border-border-grey flex items-center justify-center text-text-muted hover:text-accent-gold transition-colors"
+                            href="#"><span class="material-symbols-outlined text-sm">mail</span></a>
+                    </div>
+                </div>
+                <div class="flex gap-24">
+                    <div class="flex flex-col gap-8">
+                        <h4 class="text-[10px] font-medium uppercase tracking-[0.3em] text-text-main">探索平台</h4>
+                        <nav class="flex flex-col gap-5 text-xs font-light tracking-magazine text-text-muted">
+                            <a class="hover:text-accent-gold transition-colors" href="#">精選場地</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">職人故事</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">風格靈感</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">最新動態</a>
+                        </nav>
+                    </div>
+                    <div class="flex flex-col gap-8">
+                        <h4 class="text-[10px] font-medium uppercase tracking-[0.3em] text-text-main">客戶服務</h4>
+                        <nav class="flex flex-col gap-5 text-xs font-light tracking-magazine text-text-muted">
+                            <a class="hover:text-accent-gold transition-colors" href="#">預約流程</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">常見問題</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">隱私政策</a>
+                            <a class="hover:text-accent-gold transition-colors" href="#">聯繫我們</a>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </div>
+            <div
+                class="mx-auto mt-24 max-w-[1400px] border-t border-border-grey pt-12 text-center text-[9px] tracking-[0.4em] text-text-muted uppercase">
+                © 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.
+            </div>
+        </footer>
     </div>
 
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script>
-        const { createApp } = Vue;
-
-        createApp({
-            data() {
-                return {
-                    form: {
-                        clientName: '',     // 姓名
-                        clientPhone: '',    // 電話
-                        clientLine: '',     // Line
-                        clientEmail: '',    // 信箱
-                        weddingDate: '',    // 婚期
-                        guestCount: '',     // 桌數下拉選單
-                        styles: [],         // 嚮往風格 (複選，用陣列)
-                        services: [],       // 需要協助項目 (複選，用陣列)
-                        additionalNotes: '' // 其他想告訴我們的事
-                    }
-                }
-            },
-            // methods 是用來放「你想要執行的動作(函數)」的地方
-            methods: {
-                submitForm() {
-                    // 印出收集到的資料，未來這裡可以換成呼叫 Spring Boot API
-                    console.log("即將送出的資料：", JSON.stringify(this.form, null, 2));
-                    alert("預約成功！" + this.form.clientName + "，顧問將盡快與您聯繫！");
-                }
-            }
-        }).mount('#app');
-    </script>
 </body>
 
 </html>
