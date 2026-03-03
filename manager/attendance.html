@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="./ESCss/SignInOut.css" defer>
-    <script src="./ESJS/MainPage.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../ESCss/SignInOut.css" defer>
+    <script src="../ESJS/MainPage.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Enterprise System</title>
@@ -52,7 +52,7 @@
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                         data-bs-toggle="dropdown">
-                        <img src="Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                        <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
                         <span class="d-none d-sm-inline">Joy</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -86,7 +86,7 @@
             <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
                 <div class="d-flex align-items-center mb-3">
                     <div class="position-relative">
-                        <img src="Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
                             style="object-fit: cover; ">
                         <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
                         </span>
@@ -118,14 +118,12 @@
                 <li class="menu-category fw-bold">GENERAL</li>
                 <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
                 </li>
-                <li class="active"><a href="#"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a>
-                </li>
+                <li><a href="consultation.html"><i class="bi bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
                 <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
-                <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
-                <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-people-fill me-3"></i><span>通訊錄</span></a></li>
+                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>聯絡資訊</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
-                <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
+                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
             </ul>
         </nav>
 
@@ -182,9 +180,9 @@
                             <div
                                 class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom-0">
                                 <h5 class="mb-0 fw-bold"><i class="bi bi-calendar-check me-2"></i>個人行事曆</h5>
-                                <button class="btn btn-primary btn-sm fw-bold shadow-sm px-3 me-0" data-bs-toggle="modal"
-                                    data-bs-target="#leaveRequestModal">
-                                    <i class="bi bi-plus-lg me-2"></i>填寫請假單    
+                                <button class="btn btn-primary btn-sm fw-bold shadow-sm px-3 me-0"
+                                    data-bs-toggle="modal" data-bs-target="#leaveRequestModal">
+                                    <i class="bi bi-plus-lg me-2"></i>填寫請假單
                                 </button>
 
                                 <div class="btn-group">
@@ -222,7 +220,8 @@
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
                                                 </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-03" data-clock-in="08:55" data-clock-out="18:10">
+                                            <td class="calendar-day" data-date="2026-02-03" data-clock-in="08:55"
+                                                data-clock-out="18:10">
                                                 <div class="text-end mb-1">3</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
                                                 </div>
@@ -235,14 +234,16 @@
                                                 <div class="badge bg-info w-100 text-start px-2 py-1 text-dark"><i
                                                         class="bi bi-airplane me-1"></i>特休</div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-05" data-clock-in="08:55" data-clock-out="18:00">
+                                            <td class="calendar-day" data-date="2026-02-05" data-clock-in="08:55"
+                                                data-clock-out="18:00">
                                                 <div class="text-end mb-1">5</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
                                                 </div>
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:00 下班
                                                 </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-06" data-clock-in="08:50" data-clock-out="18:05">
+                                            <td class="calendar-day" data-date="2026-02-06" data-clock-in="08:50"
+                                                data-clock-out="18:05">
                                                 <div class="text-end mb-1">6</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
                                                 </div>
@@ -257,35 +258,41 @@
                                             <td class="text-muted bg-light calendar-day" data-date="2026-02-08">
                                                 <div class="text-end mb-1 text-danger">8</div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-09" data-clock-in="08:55" data-clock-out="18:10">
+                                            <td class="calendar-day" data-date="2026-02-09" data-clock-in="08:55"
+                                                data-clock-out="18:10">
                                                 <div class="text-end mb-1">9</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
                                                 </div>
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:10 下班
                                                 </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-10" data-clock-in="09:05" data-clock-out="18:05">
+                                            <td class="calendar-day" data-date="2026-02-10" data-clock-in="09:05"
+                                                data-clock-out="18:05">
                                                 <div class="text-end mb-1">10</div>
-                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">09:05 上班 (遲到)
+                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">
+                                                    09:05 上班 (遲到)
                                                 </div>
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
                                                 </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-11" data-clock-in="08:52" data-clock-out="18:15">
+                                            <td class="calendar-day" data-date="2026-02-11" data-clock-in="08:52"
+                                                data-clock-out="18:15">
                                                 <div class="text-end mb-1">11</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:52 上班
                                                 </div>
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:15 下班
                                                 </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-12" data-clock-in="08:55" data-clock-out="18:00">
+                                            <td class="calendar-day" data-date="2026-02-12" data-clock-in="08:55"
+                                                data-clock-out="18:00">
                                                 <div class="text-end mb-1">12</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
                                                 </div>
                                                 <div class="badge bg-secondary w-100 text-start px-2 py-1">18:00 下班
                                                 </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-13" data-clock-in="08:58" data-clock-out="18:30">
+                                            <td class="calendar-day" data-date="2026-02-13" data-clock-in="08:58"
+                                                data-clock-out="18:30">
                                                 <div class="text-end mb-1">13</div>
                                                 <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:58 上班
                                                 </div>
@@ -300,22 +307,30 @@
                                             <td class="calendar-day" data-date="2026-02-15">
                                                 <div class="text-end mb-1 text-danger">15</div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-16" data-clock-in="08:58" data-clock-out="18:10">
+                                            <td class="calendar-day" data-date="2026-02-16" data-clock-in="08:58"
+                                                data-clock-out="18:10">
                                                 <div class="text-end mb-1">16</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:58 上班</div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:10 下班</div>
+                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:58 上班
+                                                </div>
+                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:10 下班
+                                                </div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-17" data-clock-in="09:05" data-clock-out="18:30" data-reason="遲到補登">
+                                            <td class="calendar-day" data-date="2026-02-17" data-clock-in="09:05"
+                                                data-clock-out="18:30" data-reason="遲到補登">
                                                 <div class="text-end mb-1">17</div>
-                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">09:05 上班 (遲到)</div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:30 下班</div>
+                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">
+                                                    09:05 上班 (遲到)</div>
+                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:30 下班
+                                                </div>
                                             </td>
                                             <td class="calendar-day" data-date="2026-02-18">
                                                 <div class="text-end mb-1">18</div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-19" data-leave-type="SICK" data-start-time="09:00" data-end-time="18:00" data-reason="感冒就醫">
+                                            <td class="calendar-day" data-date="2026-02-19" data-leave-type="SICK"
+                                                data-start-time="09:00" data-end-time="18:00" data-reason="感冒就醫">
                                                 <div class="text-end mb-1">19</div>
-                                                <div class="badge bg-danger w-100 text-start px-2 py-1 text-white"><i class="bi bi-bandaid me-1"></i>病假</div>
+                                                <div class="badge bg-danger w-100 text-start px-2 py-1 text-white"><i
+                                                        class="bi bi-bandaid me-1"></i>病假</div>
                                             </td>
                                             <td class="calendar-day" data-date="2026-02-20">
                                                 <div class="text-end mb-1">20</div>
@@ -331,14 +346,20 @@
                                             <td class="calendar-day" data-date="2026-02-23">
                                                 <div class="text-end mb-1">23</div>
                                             </td>
-                                            <td class="calendar-day" data-date="2026-02-24" data-leave-type="PERSONAL" data-start-time="13:30" data-end-time="18:00" data-reason="處理私事">
+                                            <td class="calendar-day" data-date="2026-02-24" data-leave-type="PERSONAL"
+                                                data-start-time="13:30" data-end-time="18:00" data-reason="處理私事">
                                                 <div class="text-end mb-1">24</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班</div>
-                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1"><i class="bi bi-person-workspace me-1"></i>事假 (半天)</div>
+                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
+                                                </div>
+                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">
+                                                    <i class="bi bi-person-workspace me-1"></i>事假 (半天)
+                                                </div>
                                             </td>
-                                            <td class="calendar-day text-muted bg-light" data-date="2026-02-25" data-clock-in="08:55">
+                                            <td class="calendar-day text-muted bg-light" data-date="2026-02-25"
+                                                data-clock-in="08:55">
                                                 <div class="text-end mb-1">25</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班</div>
+                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
+                                                </div>
                                             </td>
                                             <td class="calendar-day text-muted bg-light" data-date="2026-02-26">
                                                 <div class="text-end mb-1">26</div>
@@ -648,7 +669,7 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const clockToastElement = document.getElementById('clockToast');

@@ -172,10 +172,11 @@
                 <li class="active"><a href="main_page.html"><i
                             class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
                 </li>
-                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
+                <li><a href="sign_in_out.html"><i class="bi bi-clock-fill me-3"></i><span>簽到簽退</span></a></li>
                 <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
                 <li><a href="gift_staff.html"><i class="bi bi-gift-fill me-3"></i><span>獎勵兌換</span></a></li>
                 <li><a href="file_sys.html"><i class="bi bi-file-earmark-text-fill me-3"></i><span>文件管理</span></a></li>
+                <li><a href="leave_sys.html"><i class="bi bi-calendar-check-fill me-3"></i><span>請假系統</span></a></li>
                 <li><a href="contacts.html"><i class="bi bi-people-fill me-3"></i><span>通訊錄</span></a></li>
                 <li class="menu-category fw-bold">系統設定</li>
                 <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
@@ -210,11 +211,11 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center gap-2">
-                                    <button id="clockInBtn"
-                                        class="btn btn-success px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
+                                    <button
+                                        class="btn btn-primary px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
                                         <i class="bi bi-box-arrow-in-right me-2"></i> Clock In
                                     </button>
-                                    <button id="clockOutBtn"
+                                    <button
                                         class="btn btn-secondary px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
                                         <i class="bi bi-box-arrow-in-right me-2"></i> Clock Out
                                     </button>
@@ -508,43 +509,7 @@
         </div>
     </div>
 
-    <!-- 打卡與 Toast -->
-    <div class="modal fade" id="clockConfirmModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
-                <div class="modal-header border-bottom-0 pt-4 px-4">
-                    <h5 class="modal-title fw-bold">
-                        <i class="bi bi-clock-history text-primary me-2"></i>系統確認
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-4 text-center">
-                    <p class="mb-1 text-muted">打卡時間</p>
-                    <h2 class="fw-bold text-dark mb-3" id="clockConfirmTime">00:00</h2>
-                    <p class="mb-0 fw-bold" id="clockConfirmText">確定要進行打卡嗎？</p>
-                </div>
-                <div class="modal-footer border-top-0 pb-4 px-4 justify-content-center">
-                    <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary btn-sm px-4 shadow-sm"
-                        id="confirmSubmitBtn">確定送出</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
-        <div id="clockToast" class="toast shadow-lg border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header text-white" id="toastHeader">
-                <i class="bi bi-check-circle-fill me-2"></i>
-                <strong class="me-auto" id="toastTitle">系統通知</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-            <div class="toast-body fw-bold bg-white text-dark" id="toastMessage">
-                打卡成功！
-            </div>
-        </div>
-    </div>
 
 </body>
 

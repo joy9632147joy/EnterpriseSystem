@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../ESCss/MainPage.css">
+    <script src="../ESJS/MainPage.js" defer></script>
+
+    <title>Enterprise System</title>
+</head>
+
+<body>
+
+    <!-- 上方導覽列 -->
+    <nav class="navbar navbar-dark sticky-top">
+
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+
+
+            <!-- 通知 -->
+            <div class="d-flex align-items-center ms-auto">
+
+                <div class="ms-auto d-none d-md-block me-3 search-box">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0" style="border-radius: 50px 0 0 50px;">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control bg-light border-0" placeholder="搜尋功能或公告..."
+                            aria-label="Search" style="border-radius: 0 50px 50px 0;">
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn envelope-btn me-1 position-relative" id="envelope" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-envelope"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
+                            style="width: 8px; height: 8px; margin-top: 8px; margin-left: -8px;"></span>
+                    </button>
+
+                    <div class="dropdown-menu dropdown-menu-end notification-dropdown shadow-lg">
+                        <div class="px-4 mb-2 d-flex justify-content-between align-items-center">
+                            <span class="fw-bold small text-dark">通知中心 <span
+                                    class="badge bg-light text-danger rounded-pill ms-1">3</span></span>
+                            <a href="#" class="text-decoration-none extra-small fw-bold text-primary">全部標為已讀</a>
+                        </div>
+
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="notif-item">
+                                <div class="icon-box bg-soft-green">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold extra-small text-dark">任務已核准</span>
+                                        <span class="extra-small text-muted">5 分鐘前</span>
+                                    </div>
+                                    <p class="extra-small text-muted mb-0">您的「5月份加班申請單」已經由 Rose 老師核准通過。</p>
+                                </div>
+                            </a>
+
+                            <a href="#" class="notif-item">
+                                <div class="icon-box bg-soft-blue">
+                                    <i class="bi bi-megaphone-fill"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold extra-small text-dark">系統維護通知</span>
+                                        <span class="extra-small text-muted">2 小時前</span>
+                                    </div>
+                                    <p class="extra-small text-muted mb-0">「Java 不倒團」將於週六凌晨 02:00 進行例行維修。</p>
+                                </div>
+                            </a>
+
+                            <a href="#" class="notif-item">
+                                <div class="icon-box bg-soft-yellow">
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold extra-small text-dark">獲得獎勵積分</span>
+                                        <span class="extra-small text-muted">昨天</span>
+                                    </div>
+                                    <p class="extra-small text-muted mb-0">完成「客戶 A 公司報價」任務，獲得了 +200 pts 積分。</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text-center mt-3 pt-2 border-top">
+                            <a href="#" class="text-decoration-none extra-small text-muted fw-bold">查看所有通知 <i
+                                    class="bi bi-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 右上角使用者選單 -->
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown">
+                    <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
+                    <span class="d-none d-sm-inline">Joy</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item text-danger" href="login.html"><i
+                                class="bi bi-box-arrow-right me-2"></i>Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+    </nav>
+
+
+    <!-- 側邊欄 -->
+    <div class="d-flex" id="sidebarD">
+
+        <nav class="list-unstyled sidebar" id="sidebarN">
+
+            <!-- LOGO 圖文-->
+            <div class="d-flex align-items-center justify-content-center"
+                style="height: 58px; background-color: #1f2d3a;">
+                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
+            </div>
+
+            <!-- 使用者資訊 -->
+            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="position-relative">
+                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
+                            style="object-fit: cover; ">
+                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
+                        </span>
+                    </div>
+
+                    <div class="ms-3 text-white">
+                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
+                        <span class="user-title">開掛宗師</span>
+                    </div>
+                </div>
+
+                <div class="px-1">
+                    <div class="points-row">
+                        <span class="points-label">我的積分</span>
+                        <span class="points-value">
+                            <span class="coin-icon"><i class="bi bi-p-circle-fill"></i></span>
+                            6,850
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 選單 -->
+            <ul class="d-flex flex-column list-unstyled">
+                <li class="menu-category fw-bold">GENERAL</li>
+                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
+                </li>
+                <li><a href="consultation.html"><i class="bi bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
+                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
+                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
+                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>聯絡資訊</span></a></li>
+                <li class="menu-category fw-bold">系統設定</li>
+                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
+            </ul>
+        </nav>
+
+
+        <!--內容-->
+        <div id="content" class="p-4">
+            <section class="container-fluid">
+                <div class="row mb-4 g-3">
+                    <div class="col-md-4">
+                        <div class="card bento-card border-0 shadow-sm p-3">
+                            <small class="text-muted">本月服務新人</small>
+                            <h3 class="fw-bold text-primary">12 <span class="small" style="font-size: 0.8rem;">對</span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bento-card border-0 shadow-sm p-3">
+                            <small class="text-muted">待核銷預算</small>
+                            <h3 class="fw-bold text-success">$24.5 <span class="small"
+                                    style="font-size: 0.8rem;">萬</span></h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bento-card border-0 shadow-sm p-3">
+                            <small class="text-muted">今日諮詢預約</small>
+                            <h3 class="fw-bold" style="color: #d4af37;">5 <span class="small"
+                                    style="font-size: 0.8rem;">組</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-12">
+                        <div class="card bento-card border-0 shadow-sm h-100">
+                            <div class="card-header bg-transparent border-0 pt-4 px-4 d-flex justify-content-between">
+                                <h5 class="fw-bold m-0" style="color: #1a233a;">最近動態時序</h5>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill">發布公告</button>
+                            </div>
+                            <div class="card-body px-4">
+                                <div class="timeline-container">
+                                    <div class="d-flex mb-4">
+                                        <div class="timeline-icon me-3">
+                                            <div class="bg-soft-primary text-primary rounded-circle p-2">
+                                                <i class="bi bi-file-earmark-check"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold small">簽署合約：美式莊園婚禮</div>
+                                            <div class="text-muted extra-small">30 分鐘前 - 由顧問 Joy 更新</div>
+                                            <p class="small mt-1 mb-0 text-secondary">新人：陳先生 & 林小姐。已確認訂金支付與 05-20 檔期。
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex mb-4">
+                                        <div class="timeline-icon me-3">
+                                            <div class="bg-soft-warning text-warning rounded-circle p-2">
+                                                <i class="bi bi-camera-reels"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold small">變更紀錄：攝影團隊更換</div>
+                                            <div class="text-muted extra-small">2 小時前 - 系統 Log 自動記錄</div>
+                                            <p class="small mt-1 mb-0 text-secondary">因攝影師檔期衝突，由『永恆紀錄』更換為『樂覓影像』。</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <div class="timeline-icon me-3">
+                                            <div class="bg-soft-danger text-danger rounded-circle p-2">
+                                                <i class="bi bi-chat-dots"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold small">新諮詢：喜帖校稿需求</div>
+                                            <div class="text-muted extra-small">5 小時前 - 來自客戶端網頁</div>
+                                            <p class="small mt-1 mb-0 text-secondary">客戶對燙金顏色有疑問，請企劃部協助確認。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card bento-card border-0 shadow-sm p-4">
+                            <h5 class="fw-bold mb-3">今日急件清單</h5>
+                            <div class="list-group list-group-flush">
+                                <label class="list-group-item d-flex align-items-center border-0 px-0">
+                                    <input class="form-check-input me-3" type="checkbox">
+                                    <div>
+                                        <div class="fw-bold">確認君品酒店場勘時間</div>
+                                        <div class="extra-small text-muted">負責人：小波 | 期限：今天 17:00</div>
+                                    </div>
+                                </label>
+                                <label class="list-group-item d-flex align-items-center border-0 px-0">
+                                    <input class="form-check-input me-3" type="checkbox">
+                                    <div>
+                                        <div class="fw-bold">傳送 04-12 婚禮流程表給主持人</div>
+                                        <div class="extra-small text-muted">負責人：拉拉 | 期限：明天</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+</body>
+
+</html>
