@@ -128,7 +128,20 @@
 
         <!-- 主頁內容 -->
         <section id="content" class="p-4 w-100">
+            <!-- <ul class="nav nav-pills mb-4" id="departmentTab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active rounded-pill px-4" data-bs-toggle="pill">我的組別 (專案A組)</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link rounded-pill px-4 text-muted" data-bs-toggle="pill">企劃部任務</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link rounded-pill px-4 text-muted" data-bs-toggle="pill">攝影部進度</button>
+                </li>
+            </ul> -->
             <div class="container-fluid">
+                <!-- 進行中任務 -->
+                <!-- 標題 -->
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="d-flex justify-content-between align-items-end mb-3">
@@ -140,123 +153,242 @@
                         </div>
 
                         <div class="task-scroll-container">
-
+                            <!-- 任務卡片 -->
                             <div class="task-card-wrapper">
                                 <div class="task-card-inner">
                                     <div class="task-card-front">
-                                        <span class="badge bg-soft-warning text-warning mb-3">進行中</span>
-                                        <div class="task-title">場地佈置最終確認</div>
+                                        <span class="badge bg-soft-primary text-primary mb-3">企劃部 - 任務派發</span>
+                                        <div class="task-title">美式戶外場地佈置</div>
                                         <div class="client-info">客戶：黃小姐 & 陳先生</div>
 
-                                        <div class="my-3 text-center">
-                                            <i class="bi bi-flower1" style="font-size: 3rem; color: #e2e8f0;"></i>
+                                        <div class="team-avatars mb-3">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ivy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <span class="small text-muted ms-2">+3 位組員</span>
                                         </div>
 
-                                        <div class="task-meta text-center">
-                                            <div><i class="bi bi-calendar3 me-1"></i> 婚期：2026-05-20</div>
-                                            <div class="text-danger fw-bold mt-1"><i
-                                                    class="bi bi-exclamation-circle me-1"></i>期限：03-15</div>
+                                        <div class="task-meta text-center mt-auto">
+                                            <div><i class="bi bi-people-fill me-1"></i> 組別：專案 A 組</div>
+                                            <div class="text-danger fw-bold mt-1"><i class="bi bi-clock me-1"></i>
+                                                截止：03-15</div>
                                         </div>
                                     </div>
 
                                     <div class="task-card-back">
-                                        <div class="fw-bold mb-2 border-bottom pb-1" style="font-size: 0.9rem;">任務詳情
-                                        </div>
-                                        <p class="small text-secondary mb-3" style="line-height: 1.6;">
-                                            1. 確認戶外證婚區花藝擺放位置。<br>
-                                            2. 對接飯店音控確認電力負載。<br>
-                                            3. 下午 3 點與新人現場場勘。
+                                        <div class="fw-bold mb-2 border-bottom pb-1">部門協作詳情</div>
+                                        <p class="small text-secondary mb-3">
+                                            此任務已指派給【企劃部】。請組員依照分工完成：<br>
+                                            1. 確認場地電力 (負責人: Joy)<br>
+                                            2. 花藝對接 (負責人: Bob)
                                         </p>
 
-                                        <div class="mb-4">
-                                            <small class="text-muted d-block mb-1">共同執行員：</small>
-                                            <div class="d-flex gap-1">
-                                                <span class="badge bg-light text-dark border">丁丁</span>
-                                                <span class="badge bg-light text-dark border">迪西</span>
-                                            </div>
-                                        </div>
-
                                         <div class="d-grid gap-2 mt-auto">
-                                            <div class="mt-auto">
-                                                <button
-                                                    class="btn btn-primary w-100 fw-bold mb-2 shadow-sm rounded-pill"
-                                                    onclick="handleTaskSubmit('T001')">
-                                                    <i class="bi bi-cloud-upload me-1"></i> 提交完成紀錄
-                                                </button>
-
-                                                <div class="d-flex gap-2">
-                                                    <button
-                                                        class="btn btn-outline-warning btn-sm flex-fill rounded-pill"
-                                                        onclick="reportIssue('T001')">
-                                                        <i class="bi bi-chat-dots me-1"></i> 回報問題
-                                                    </button>
-
-                                                    <button class="btn btn-outline-danger btn-sm flex-fill rounded-pill"
-                                                        data-bs-toggle="tooltip" title="放棄後需由主管重新指派">
-                                                        <i class="bi bi-x-circle me-1"></i> 放棄任務
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            <button class="btn btn-primary fw-bold shadow-sm"
+                                                onclick="handleGroupSubmit('企劃部')">
+                                                代表小組提交完成
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="reportGroupIssue()">
+                                                小組回報問題
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- 1 -->
                             <div class="task-card-wrapper">
                                 <div class="task-card-inner">
                                     <div class="task-card-front">
-                                        <span class="badge bg-soft-primary text-primary mb-3">審核中</span>
-                                        <div class="task-title">喜帖設計初稿</div>
-                                        <div class="client-info">客戶：林先生 & 趙小姐</div>
+                                        <span class="badge bg-soft-primary text-primary mb-3">企劃部 - 任務派發</span>
+                                        <div class="task-title">美式戶外場地佈置</div>
+                                        <div class="client-info">客戶：黃小姐 & 陳先生</div>
 
-                                        <div class="my-3 text-center">
-                                            <i class="bi bi-envelope-heart"
-                                                style="font-size: 3rem; color: #e2e8f0;"></i>
+                                        <div class="team-avatars mb-3">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ivy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <span class="small text-muted ms-2">+3 位組員</span>
                                         </div>
 
-                                        <div class="task-meta text-center">
-                                            <div><i class="bi bi-calendar3 me-1"></i> 婚期：2026-06-12</div>
-                                            <div class="mt-1"><i class="bi bi-clock me-1"></i> 提交時間：03-01</div>
+                                        <div class="task-meta text-center mt-auto">
+                                            <div><i class="bi bi-people-fill me-1"></i> 組別：專案 A 組</div>
+                                            <div class="text-danger fw-bold mt-1"><i class="bi bi-clock me-1"></i>
+                                                截止：03-15</div>
                                         </div>
                                     </div>
+
                                     <div class="task-card-back">
-                                        <div class="fw-bold mb-2 border-bottom pb-1">審核狀態</div>
-                                        <div class="alert alert-info py-2 px-3 small mb-3">
-                                            主管 Joy 正在審核預算超支部分。
-                                        </div>
-                                        <p class="small text-secondary">
-                                            新人追加了燙金與手繪地圖需求，已提交印刷廠報價單。
+                                        <div class="fw-bold mb-2 border-bottom pb-1">部門協作詳情</div>
+                                        <p class="small text-secondary mb-3">
+                                            此任務已指派給【企劃部】。請組員依照分工完成：<br>
+                                            1. 確認場地電力 (負責人: Joy)<br>
+                                            2. 花藝對接 (負責人: Bob)
                                         </p>
-                                        <button class="btn btn-secondary w-100 mt-auto" disabled>等待審核</button>
+
+                                        <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-primary fw-bold shadow-sm"
+                                                onclick="handleGroupSubmit('企劃部')">
+                                                代表小組提交完成
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="reportGroupIssue()">
+                                                小組回報問題
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- 2 -->
                             <div class="task-card-wrapper">
                                 <div class="task-card-inner">
                                     <div class="task-card-front">
-                                        <span class="badge bg-soft-warning text-warning mb-3">進行中</span>
-                                        <div class="task-title">婚紗挑選陪同</div>
-                                        <div class="client-info">客戶：周小姐 (單人預約)</div>
+                                        <span class="badge bg-soft-primary text-primary mb-3">企劃部 - 任務派發</span>
+                                        <div class="task-title">美式戶外場地佈置</div>
+                                        <div class="client-info">客戶：黃小姐 & 陳先生</div>
 
-                                        <div class="my-3 text-center">
-                                            <i class="bi bi-gem" style="font-size: 3rem; color: #e2e8f0;"></i>
+                                        <div class="team-avatars mb-3">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ivy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <span class="small text-muted ms-2">+3 位組員</span>
                                         </div>
 
-                                        <div class="task-meta text-center">
-                                            <div><i class="bi bi-calendar3 me-1"></i> 婚期：2026-07-05</div>
-                                            <div class="fw-bold mt-1 text-success"><i
-                                                    class="bi bi-check2-circle me-1"></i> 期限：03-10</div>
+                                        <div class="task-meta text-center mt-auto">
+                                            <div><i class="bi bi-people-fill me-1"></i> 組別：專案 A 組</div>
+                                            <div class="text-danger fw-bold mt-1"><i class="bi bi-clock me-1"></i>
+                                                截止：03-15</div>
                                         </div>
                                     </div>
+
                                     <div class="task-card-back">
-                                        <div class="fw-bold mb-2 border-bottom pb-1">執行項目</div>
-                                        <p class="small text-secondary mb-4">
-                                            陪同至『永恆精品婚紗』挑選一白兩晚。需協助側拍紀錄並提供專業建議。
+                                        <div class="fw-bold mb-2 border-bottom pb-1">部門協作詳情</div>
+                                        <p class="small text-secondary mb-3">
+                                            此任務已指派給【企劃部】。請組員依照分工完成：<br>
+                                            1. 確認場地電力 (負責人: Joy)<br>
+                                            2. 花藝對接 (負責人: Bob)
                                         </p>
+
                                         <div class="d-grid gap-2 mt-auto">
-                                            <button class="btn btn-primary fw-bold shadow-sm">打卡完成任務</button>
-                                            <button class="btn btn-outline-danger btn-sm">放棄接取</button>
+                                            <button class="btn btn-primary fw-bold shadow-sm"
+                                                onclick="handleGroupSubmit('企劃部')">
+                                                代表小組提交完成
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="reportGroupIssue()">
+                                                小組回報問題
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 3 -->
+                            <div class="task-card-wrapper">
+                                <div class="task-card-inner">
+                                    <div class="task-card-front">
+                                        <span class="badge bg-soft-primary text-primary mb-3">企劃部 - 任務派發</span>
+                                        <div class="task-title">美式戶外場地佈置</div>
+                                        <div class="client-info">客戶：黃小姐 & 陳先生</div>
+
+                                        <div class="team-avatars mb-3">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ivy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <span class="small text-muted ms-2">+3 位組員</span>
+                                        </div>
+
+                                        <div class="task-meta text-center mt-auto">
+                                            <div><i class="bi bi-people-fill me-1"></i> 組別：專案 A 組</div>
+                                            <div class="text-danger fw-bold mt-1"><i class="bi bi-clock me-1"></i>
+                                                截止：03-15</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card-back">
+                                        <div class="fw-bold mb-2 border-bottom pb-1">部門協作詳情</div>
+                                        <p class="small text-secondary mb-3">
+                                            此任務已指派給【企劃部】。請組員依照分工完成：<br>
+                                            1. 確認場地電力 (負責人: Joy)<br>
+                                            2. 花藝對接 (負責人: Bob)
+                                        </p>
+
+                                        <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-primary fw-bold shadow-sm"
+                                                onclick="handleGroupSubmit('企劃部')">
+                                                代表小組提交完成
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="reportGroupIssue()">
+                                                小組回報問題
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 4 -->
+                            <div class="task-card-wrapper">
+                                <div class="task-card-inner">
+                                    <div class="task-card-front">
+                                        <span class="badge bg-soft-primary text-primary mb-3">企劃部 - 任務派發</span>
+                                        <div class="task-title">美式戶外場地佈置</div>
+                                        <div class="client-info">客戶：黃小姐 & 陳先生</div>
+
+                                        <div class="team-avatars mb-3">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bob"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ivy"
+                                                class="rounded-circle border border-white shadow-sm"
+                                                style="width: 30px; margin-left: -10px;">
+                                            <span class="small text-muted ms-2">+3 位組員</span>
+                                        </div>
+
+                                        <div class="task-meta text-center mt-auto">
+                                            <div><i class="bi bi-people-fill me-1"></i> 組別：專案 A 組</div>
+                                            <div class="text-danger fw-bold mt-1"><i class="bi bi-clock me-1"></i>
+                                                截止：03-15</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-card-back">
+                                        <div class="fw-bold mb-2 border-bottom pb-1">部門協作詳情</div>
+                                        <p class="small text-secondary mb-3">
+                                            此任務已指派給【企劃部】。請組員依照分工完成：<br>
+                                            1. 確認場地電力 (負責人: Joy)<br>
+                                            2. 花藝對接 (負責人: Bob)
+                                        </p>
+
+                                        <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-primary fw-bold shadow-sm"
+                                                onclick="handleGroupSubmit('企劃部')">
+                                                代表小組提交完成
+                                            </button>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="reportGroupIssue()">
+                                                小組回報問題
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -265,7 +397,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- 歷史紀錄 -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card bento-card border-0 shadow-sm">
