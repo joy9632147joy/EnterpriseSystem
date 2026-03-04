@@ -2,60 +2,193 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ES Admin - 差勤系統</title>
+
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../ESCss/SignInOut.css" defer>
     <script src="../ESJS/MainPage.js"></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Enterprise System</title>
 
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#1F2937",
+                        "sidebar-bg": "#21252D",
+                        "sidebar-hover": "#2C313C",
+                        "card-bg-light": "rgba(255, 255, 255, 0.7)",
+                        "card-bg-dark": "rgba(31, 41, 55, 0.7)",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                    boxShadow: {
+                        'glass': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 避免 Bootstrap 底線影響 Tailwind a 標籤 */
+        a {
+            text-decoration: none !important;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .dark .glass-card {
+            background: rgba(31, 41, 55, 0.85);
+            border: 1px solid rgba(75, 85, 99, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* 讓日曆格子有可點擊的感覺 */
+        .calendar-day {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calendar-day:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 側邊欄收縮時的隱藏與置中規則 */
+        #sidebarN.w-20 .menu-category,
+        #sidebarN.w-20 .sidebar-user {
+            display: none !important;
+        }
+        #sidebarN.w-20 a {
+            justify-content: center;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        #sidebarN.w-20 .material-icons,
+        #sidebarN.w-20 .text-2xl {
+            margin-right: 0 !important;
+        }
+    </style>
 </head>
 
-<body>
-
-    <!-- 上方導覽列 -->
-    <nav class="navbar navbar-dark sticky-top">
-
-        <div class="container-fluid">
-            <div class="d-flex">
-                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
-                    <i class="bi bi-list"></i>
-                </button>
-            </div>
-
-
-
-            <!-- 通知 -->
-            <div class="d-flex align-items-center ms-auto">
-
-                <div class="ms-auto d-none d-md-block me-3">
-                    <div class="input-group search-box">
-                        <span class="input-group-text ">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
+<body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
+    <aside id="sidebarN" class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden" style="z-index: 50;">
+        <div class="h-16 flex items-center justify-center">
+            <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
+            <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
+        </div>
+        
+        <div class="px-4 py-4 mt-2 sidebar-user">
+            <div class="bg-sidebar-hover rounded-xl p-4 flex items-center shadow-sm">
+                <img alt="Joy Avatar" class="w-12 h-12 rounded-full border-2 border-sidebar-bg mr-3 object-cover" src="../Img/smile.jpg" />
+                <div class="menu-category p-0 m-0">
+                    <div class="text-white font-medium">Joy</div>
+                    <div class="text-xs text-gray-400 mt-1">高級宗師</div>
+                    <div class="text-xs text-yellow-500 flex items-center mt-1">
+                        <span class="material-icons text-[14px] mr-1">monetization_on</span>
+                        6,850 XP
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="d-flex align-items-center">
+        <nav class="flex-1 py-2 overflow-y-auto">
+            <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                GENERAL</div>
+
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]" href="main_page.html">
+                <span class="material-icons text-blue-400 mr-3 group-hover:text-blue-500">home</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">主頁</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]" href="consultation.html">
+                <span class="material-icons text-orange-400 mr-3 group-hover:text-orange-500">calendar_month</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]" href="quest_staff.html">
+                <span class="material-icons text-green-400 mr-3 group-hover:text-green-500">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]" href="attendance.html">
+                <span class="material-icons text-purple-400 mr-3">schedule</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap text-white">差勤系統</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]" href="contacts.html">
+                <span class="material-icons text-red-400 mr-3 group-hover:text-red-500">contacts</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">聯絡資訊</div>
+            </a>
+
+            <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                系統設定</div>
+
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]" href="account.html">
+                <span class="material-icons text-teal-400 mr-3 group-hover:text-teal-500">settings</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">個人資訊</div>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <header
+            class="h-16 bg-[#2B303B] flex items-center justify-between px-6 flex-shrink-0 z-10 shadow-sm text-white">
+            <div class="flex items-center flex-1">
+                <button class="mr-4 text-gray-400 hover:text-white focus:outline-none flex-shrink-0"
+                    id="sidebar-hamburger">
+                    <span class="material-icons">menu</span>
+                </button>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-tight m-0">差勤系統</h1>
+                    <p class="text-xs text-gray-400 mt-0.5 mb-0">管理您的出勤紀錄與請假申請</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative w-64 lg:w-80 d-none d-md-block">
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                        <span class="material-icons text-sm">search</span>
+                    </span>
+                    <input
+                        class="w-full bg-[#353A45] border-none rounded-full py-2 pl-4 pr-10 text-sm focus:ring-1 focus:ring-blue-500 focus:outline-none text-gray-200 placeholder-gray-400"
+                        placeholder="搜尋功能或公告..." type="text" />
                 </div>
 
-                <button class="btn envelope-btn me-1" id="envelope">
-                    <i class="bi bi-envelope"></i>
+                <button class="relative text-gray-400 hover:text-white focus:outline-none mt-1">
+                    <span class="material-icons">notifications</span>
+                    <span class="absolute top-0 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/4 border-2 border-[#2B303B]"></span>
+                </button>
+                <button class="relative text-gray-400 hover:text-white focus:outline-none me-2" id="envelope">
+                    <i class="bi bi-envelope fs-5"></i>
                 </button>
 
-
-
-                <!-- 右上角使用者選單 -->
                 <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                        data-bs-toggle="dropdown">
-                        <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
-                        <span class="d-none d-sm-inline">Joy</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <div class="flex items-center cursor-pointer dropdown-toggle" data-bs-toggle="dropdown">
+                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-600 mr-2 object-cover"
+                            src="../Img/smile.jpg" />
+                        <span class="text-sm font-medium mr-1">Joy</span>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end mt-2">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
                         <li>
@@ -66,389 +199,265 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </header>
 
-    </nav>
+        <main
+            class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800">
+            <div class="max-w-7xl mx-auto space-y-6">
+                <div class="flex justify-end items-center">
+                    <button data-bs-toggle="modal" data-bs-target="#leaveRequestModal"
+                        class="bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg shadow-md font-medium flex items-center transition-colors">
+                        <span class="material-icons mr-2 text-sm">event_note</span>
+                        申請請假
+                    </button>
+                </div>
 
-
-    <!-- 側邊欄 -->
-    <div class="d-flex" id="sidebarD">
-
-        <nav class="list-unstyled sidebar" id="sidebarN">
-
-            <!-- LOGO 圖文-->
-            <div class="d-flex align-items-center justify-content-center"
-                style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
-            </div>
-
-            <!-- 使用者資訊 -->
-            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="position-relative">
-                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
-                            style="object-fit: cover; ">
-                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
-                        </span>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+                        <div
+                            class="absolute -right-4 -top-4 w-24 h-24 bg-blue-100 dark:bg-blue-900 rounded-full opacity-50 blur-xl">
+                        </div>
+                        <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 relative z-10">剩餘年假</h3>
+                        <div class="flex items-baseline space-x-2 relative z-10">
+                            <span class="text-4xl font-bold text-blue-600 dark:text-blue-400">10</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">天 / 14 天</span>
+                        </div>
                     </div>
-
-                    <div class="ms-3 text-white">
-                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
-                        <div class="d-flex align-items-center">
-                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
-                            <small class="xp-text">6850 XP</small>
+                    <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+                        <div
+                            class="absolute -right-4 -top-4 w-24 h-24 bg-orange-100 dark:bg-orange-900 rounded-full opacity-50 blur-xl">
+                        </div>
+                        <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 relative z-10">本月出勤率</h3>
+                        <div class="flex items-baseline space-x-2 relative z-10">
+                            <span class="text-4xl font-bold text-orange-500 dark:text-orange-400">98</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">%</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+                        <div
+                            class="absolute -right-4 -top-4 w-24 h-24 bg-green-100 dark:bg-green-900 rounded-full opacity-50 blur-xl">
+                        </div>
+                        <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-2 relative z-10">待處理申請</h3>
+                        <div class="flex items-baseline space-x-2 relative z-10">
+                            <span class="text-4xl font-bold text-green-500 dark:text-green-400">2</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">件</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="px-1">
-                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
-                        <span class="opacity-75">Level</span>
-                        <span class="fw-bold">69%</span>
+                <div class="flex flex-col lg:flex-row gap-6 mt-6">
+                    <div class="flex-1">
+                        <div class="glass-card rounded-2xl p-6 h-full">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">考勤日曆</h2>
+                                <div class="flex items-center space-x-4">
+                                    <button class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                        <span class="material-icons">chevron_left</span>
+                                    </button>
+                                    <span class="font-medium text-gray-700 dark:text-gray-200">2026年 10月</span>
+                                    <button class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                        <span class="material-icons">chevron_right</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4 mb-6 text-sm">
+                                <div class="flex items-center"><span
+                                        class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span><span
+                                        class="text-gray-600 dark:text-gray-400">準時</span></div>
+                                <div class="flex items-center"><span
+                                        class="w-3 h-3 rounded-full bg-red-500 mr-2"></span><span
+                                        class="text-gray-600 dark:text-gray-400">遲到</span></div>
+                                <div class="flex items-center"><span
+                                        class="w-3 h-3 rounded-full bg-green-500 mr-2"></span><span
+                                        class="text-gray-600 dark:text-gray-400">請假</span></div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-2 text-center text-sm mb-2">
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">日</div>
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">一</div>
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">二</div>
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">三</div>
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">四</div>
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">五</div>
+                                <div class="text-gray-500 dark:text-gray-400 font-medium py-2">六</div>
+                            </div>
+
+                            <div class="grid grid-cols-7 gap-2 pb-2">
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start opacity-50 calendar-day"
+                                    data-date="2026-10-01">
+                                    <span class="text-right text-gray-400">1</span>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-02" data-clock-in="08:50" data-clock-out="18:05">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">2</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-03" data-clock-in="08:55" data-clock-out="18:10">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">3</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-04" data-leave-type="ANNUAL" data-start-time="09:00"
+                                    data-end-time="18:00" data-reason="個人休假">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">4</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-05" data-clock-in="08:55" data-clock-out="18:00">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">5</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border p-2 flex flex-col justify-start bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 relative group calendar-day"
+                                    data-date="2026-10-06" data-clock-in="08:52" data-clock-out="18:10">
+                                    <span class="text-right text-blue-600 dark:text-blue-400 font-bold">6</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                    <div
+                                        class="hidden group-hover:block absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3 z-20">
+                                        <div
+                                            class="text-sm font-semibold text-gray-800 dark:text-white border-b border-gray-100 dark:border-gray-700 pb-2 mb-2">
+                                            10月6日 (週五)</div>
+                                        <div class="space-y-1.5 text-xs text-gray-600 dark:text-gray-300">
+                                            <div class="flex justify-between">
+                                                <span>上班打卡:</span><span
+                                                    class="font-medium text-blue-600 dark:text-blue-400">08:52</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>下班打卡:</span><span
+                                                    class="font-medium text-blue-600 dark:text-blue-400">18:10</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start opacity-50 calendar-day"
+                                    data-date="2026-10-07">
+                                    <span class="text-right text-gray-400">7</span>
+                                </div>
+
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start opacity-50 calendar-day"
+                                    data-date="2026-10-08">
+                                    <span class="text-right text-gray-400">8</span>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-09" data-clock-in="09:05" data-clock-out="18:05">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">9</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-red-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-10" data-clock-in="08:55" data-clock-out="18:00">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">10</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-11" data-clock-in="08:58" data-clock-out="18:30">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">11</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-12" data-clock-in="08:55" data-clock-out="18:00">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">12</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start calendar-day"
+                                    data-date="2026-10-13" data-leave-type="SICK" data-start-time="09:00"
+                                    data-end-time="18:00" data-reason="感冒就醫">
+                                    <span class="text-right text-gray-700 dark:text-gray-300">13</span>
+                                    <div class="mt-auto flex justify-center">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 mx-0.5"></div>
+                                    </div>
+                                </div>
+                                <div class="h-24 rounded-lg border border-gray-100 dark:border-gray-700 p-2 flex flex-col justify-start opacity-50 calendar-day"
+                                    data-date="2026-10-14">
+                                    <span class="text-right text-gray-400">14</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress custom-progress">
-                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
-                    </div>
-                </div>
-            </div>
 
-
-            <!-- 選單 -->
-            <ul class="d-flex flex-column list-unstyled">
-                <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
-                </li>
-                <li><a href="consultation.html"><i class="bi bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
-                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
-                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>聯絡資訊</span></a></li>
-                <li class="menu-category fw-bold">系統設定</li>
-                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
-            </ul>
-        </nav>
-
-
-        <main id="content" class="p-4 w-100 bg-light">
-            <div class="container-fluid">
-                <h3 class="mb-4 fw-bold"><i class="bi bi-clock-history me-2 text-primary"></i>差勤系統</h3>
-                <div class="row g-4">
-                    <div class="col-lg-12">
-                        <!-- 請假餘額 -->
-                        <div class="row g-4 mb-4">
-                            <div class="col-md-4">
-                                <div class="card bento-card border-0 shadow-sm h-100 p-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="fw-bold text-secondary">可用特休餘額</span>
-                                        <i class="bi bi-airplane-fill fs-4 text-info"></i>
-                                    </div>
-                                    <h2 class="fw-bold mb-0">10 <span class="fs-6 text-muted fw-normal">天 / 14 天</span>
-                                    </h2>
-                                    <div class="progress mt-3" style="height: 6px;">
-                                        <div class="progress-bar bg-info" style="width: 71%;"></div>
-                                    </div>
-                                </div>
+                    <div class="w-full lg:w-80 flex flex-col space-y-6">
+                        <div class="flex flex-col space-y-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center">
+                                    <span class="w-2 h-2 rounded-full bg-blue-500 mr-2"></span> 近期打卡紀錄
+                                </h2>
+                                <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"><span
+                                        class="material-icons text-sm">more_horiz</span></button>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card bento-card border-0 shadow-sm h-100 p-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="fw-bold text-secondary">本年度已請病假</span>
-                                        <i class="bi bi-bandaid-fill fs-4 text-danger"></i>
-                                    </div>
-                                    <h2 class="fw-bold mb-0">2 <span class="fs-6 text-muted fw-normal">天 / 30 天
-                                            (半薪)</span></h2>
-                                    <div class="progress mt-3" style="height: 6px;">
-                                        <div class="progress-bar bg-danger" style="width: 6%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card bento-card border-0 shadow-sm h-100 p-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span class="fw-bold text-secondary">本年度已請事假</span>
-                                        <i class="bi bi-person-workspace fs-4 text-warning"></i>
-                                    </div>
-                                    <h2 class="fw-bold mb-0">1 <span class="fs-6 text-muted fw-normal">天 / 14 天
-                                            (無薪)</span></h2>
-                                    <div class="progress mt-3" style="height: 6px;">
-                                        <div class="progress-bar bg-warning" style="width: 7%;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card bento-card shadow-sm border-0 h-75 mb-4">
                             <div
-                                class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom-0">
-                                <h5 class="mb-0 fw-bold"><i class="bi bi-calendar-check me-2"></i>個人行事曆</h5>
-                                <button class="btn btn-primary btn-sm fw-bold shadow-sm px-3 me-0"
-                                    data-bs-toggle="modal" data-bs-target="#leaveRequestModal">
-                                    <i class="bi bi-plus-lg me-2"></i>填寫請假單
-                                </button>
-
-                                <div class="btn-group">
-                                    <button class="btn btn-outline-secondary btn-sm"><i
-                                            class="bi bi-chevron-left"></i></button>
-                                    <button class="btn btn-outline-secondary btn-sm fw-bold px-3">2026 年 2 月</button>
-                                    <button class="btn btn-outline-secondary btn-sm"><i
-                                            class="bi bi-chevron-right"></i></button>
+                                class="glass-card rounded-xl p-5 cursor-pointer hover:shadow-lg transition-shadow border-l-4 border-l-blue-500">
+                                <div class="flex justify-between items-center mb-3">
+                                    <h4 class="text-base font-medium text-gray-800 dark:text-gray-100">10月24日 (週二)</h4>
+                                    <span
+                                        class="px-2.5 py-1 text-xs font-semibold text-blue-700 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 rounded-md">正常</span>
+                                </div>
+                                <div class="flex flex-col space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                                    <div
+                                        class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2">
+                                        <div class="flex items-center"><span
+                                                class="material-icons text-[18px] mr-2 text-green-500">login</span> 上班打卡
+                                        </div>
+                                        <span class="font-medium text-gray-800 dark:text-white">08:55</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center"><span
+                                                class="material-icons text-[18px] mr-2 text-red-500">logout</span> 下班打卡
+                                        </div>
+                                        <span class="font-medium text-gray-800 dark:text-white">18:05</span>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="card-body p-0">
-                                <table class="table table-bordered text-center mb-0" style="table-layout: fixed;">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th class="text-danger py-2">日</th>
-                                            <th class="py-2">一</th>
-                                            <th class="py-2">二</th>
-                                            <th class="py-2">三</th>
-                                            <th class="py-2">四</th>
-                                            <th class="py-2">五</th>
-                                            <th class="text-primary py-2">六</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr style="height: 110px;">
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-02-01">
-                                                <div class="text-end mb-1 text-danger">1</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-02" data-clock-in="08:50"
-                                                data-clock-out="18:05">
-                                                <div class="text-end mb-1">2</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-03" data-clock-in="08:55"
-                                                data-clock-out="18:10">
-                                                <div class="text-end mb-1">3</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:10 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-04" data-leave-type="ANNUAL"
-                                                data-start-time="09:00" data-end-time="18:00" data-reason="個人休假安排">
-                                                <div class="text-end mb-1">4</div>
-                                                <div class="badge bg-info w-100 text-start px-2 py-1 text-dark"><i
-                                                        class="bi bi-airplane me-1"></i>特休</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-05" data-clock-in="08:55"
-                                                data-clock-out="18:00">
-                                                <div class="text-end mb-1">5</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:00 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-06" data-clock-in="08:50"
-                                                data-clock-out="18:05">
-                                                <div class="text-end mb-1">6</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
-                                                </div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-02-07">
-                                                <div class="text-end mb-1 text-primary">7</div>
-                                            </td>
-                                        </tr>
-                                        <tr style="height: 110px;">
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-02-08">
-                                                <div class="text-end mb-1 text-danger">8</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-09" data-clock-in="08:55"
-                                                data-clock-out="18:10">
-                                                <div class="text-end mb-1">9</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:10 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-10" data-clock-in="09:05"
-                                                data-clock-out="18:05">
-                                                <div class="text-end mb-1">10</div>
-                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">
-                                                    09:05 上班 (遲到)
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:05 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-11" data-clock-in="08:52"
-                                                data-clock-out="18:15">
-                                                <div class="text-end mb-1">11</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:52 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:15 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-12" data-clock-in="08:55"
-                                                data-clock-out="18:00">
-                                                <div class="text-end mb-1">12</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:00 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-13" data-clock-in="08:58"
-                                                data-clock-out="18:30">
-                                                <div class="text-end mb-1">13</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:58 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:30 下班
-                                                </div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-02-14">
-                                                <div class="text-end mb-1 text-primary">14</div>
-                                            </td>
-                                        </tr>
-                                        <tr style="height: 110px;">
-                                            <td class="calendar-day" data-date="2026-02-15">
-                                                <div class="text-end mb-1 text-danger">15</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-16" data-clock-in="08:58"
-                                                data-clock-out="18:10">
-                                                <div class="text-end mb-1">16</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:58 上班
-                                                </div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:10 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-17" data-clock-in="09:05"
-                                                data-clock-out="18:30" data-reason="遲到補登">
-                                                <div class="text-end mb-1">17</div>
-                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">
-                                                    09:05 上班 (遲到)</div>
-                                                <div class="badge bg-secondary w-100 text-start px-2 py-1">18:30 下班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-18">
-                                                <div class="text-end mb-1">18</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-19" data-leave-type="SICK"
-                                                data-start-time="09:00" data-end-time="18:00" data-reason="感冒就醫">
-                                                <div class="text-end mb-1">19</div>
-                                                <div class="badge bg-danger w-100 text-start px-2 py-1 text-white"><i
-                                                        class="bi bi-bandaid me-1"></i>病假</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-20">
-                                                <div class="text-end mb-1">20</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-21">
-                                                <div class="text-end mb-1 text-primary">21</div>
-                                            </td>
-                                        </tr>
-                                        <tr style="height: 110px;">
-                                            <td class="calendar-day" data-date="2026-02-22">
-                                                <div class="text-end mb-1 text-danger">22</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-23">
-                                                <div class="text-end mb-1">23</div>
-                                            </td>
-                                            <td class="calendar-day" data-date="2026-02-24" data-leave-type="PERSONAL"
-                                                data-start-time="13:30" data-end-time="18:00" data-reason="處理私事">
-                                                <div class="text-end mb-1">24</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:50 上班
-                                                </div>
-                                                <div class="badge bg-warning text-dark w-100 text-start px-2 py-1 mb-1">
-                                                    <i class="bi bi-person-workspace me-1"></i>事假 (半天)
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day text-muted bg-light" data-date="2026-02-25"
-                                                data-clock-in="08:55">
-                                                <div class="text-end mb-1">25</div>
-                                                <div class="badge bg-success w-100 text-start px-2 py-1 mb-1">08:55 上班
-                                                </div>
-                                            </td>
-                                            <td class="calendar-day text-muted bg-light" data-date="2026-02-26">
-                                                <div class="text-end mb-1">26</div>
-                                            </td>
-                                            <td class="calendar-day text-muted bg-light" data-date="2026-02-27">
-                                                <div class="text-end mb-1">27</div>
-                                            </td>
-                                            <td class="calendar-day text-muted bg-light" data-date="2026-02-28">
-                                                <div class="text-end mb-1 text-primary">28</div>
-                                            </td>
-                                        </tr>
-                                        <tr style="height: 110px;">
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-01">
-                                                <div class="text-end mb-1">1</div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-02">
-                                                <div class="text-end mb-1">2</div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-03">
-                                                <div class="text-end mb-1">3</div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-04">
-                                                <div class="text-end mb-1">4</div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-05">
-                                                <div class="text-end mb-1">5</div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-06">
-                                                <div class="text-end mb-1">6</div>
-                                            </td>
-                                            <td class="text-muted bg-light calendar-day" data-date="2026-03-07">
-                                                <div class="text-end mb-1">7</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
-
-
-
-                        <!-- 近期假單紀錄 -->
-                        <div class="card bento-card border-0 shadow-sm h-50 mb-4">
+                        <div class="flex flex-col space-y-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center">
+                                    <span class="w-2 h-2 rounded-full bg-purple-500 mr-2"></span> 請假紀錄
+                                </h2>
+                                <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"><span
+                                        class="material-icons text-sm">more_horiz</span></button>
+                            </div>
                             <div
-                                class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
-                                <h6 class="fw-bold"><i class="bi bi-card-list me-2"></i>近期假單紀錄</h6>
-
-                            </div>
-                            <div class="card-body px-4">
-                                <div class="table-responsive">
-                                    <table class="table table-hover align-middle mb-0">
-                                        <thead class="table-light text-muted small">
-                                            <tr>
-                                                <th>假單編號</th>
-                                                <th>假別</th>
-                                                <th>起訖時間</th>
-                                                <th>共計</th>
-                                                <th>職務代理人</th>
-                                                <th>簽核狀態</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="fw-bold text-secondary">#LV-202602241</td>
-                                                <td><span class="badge bg-soft-info text-info">特休</span></td>
-                                                <td class="small">2026/03/05 09:00<br>2026/03/06 18:00</td>
-                                                <td>16 小時</td>
-                                                <td>王大同</td>
-                                                <td><span class="badge bg-warning text-dark"><i
-                                                            class="bi bi-hourglass-split me-1"></i>主管審核中</span></td>
-                                                <td><button class="btn btn-sm btn-outline-danger">撤銷</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold text-secondary">#LV-202601152</td>
-                                                <td><span class="badge bg-soft-danger text-danger">病假</span></td>
-                                                <td class="small">2026/01/15 09:00<br>2026/01/15 13:00</td>
-                                                <td>4 小時</td>
-                                                <td>無</td>
-                                                <td><span class="badge bg-success"><i
-                                                            class="bi bi-check-circle me-1"></i>已核准</span></td>
-                                                <td><button class="btn btn-sm btn-light text-primary">檢視</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                class="glass-card rounded-xl p-5 cursor-pointer hover:shadow-lg transition-shadow border-l-4 border-l-green-500">
+                                <div class="flex justify-between items-center mb-3">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="material-icons text-purple-500">flight_takeoff</span>
+                                        <h4 class="text-base font-medium text-gray-800 dark:text-gray-100">特休/年假</h4>
+                                    </div>
+                                    <span
+                                        class="px-2.5 py-1 text-xs font-semibold text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-400 rounded-md">已核准</span>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">期間：11月01日 09:00 - 11月02日 18:00
+                                </p>
+                                <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                                    <span>事由：家庭旅遊</span>
+                                    <span class="font-medium">共 2 天</span>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -467,7 +476,6 @@
                 </div>
 
                 <div class="modal-body px-0 py-0">
-                    <!-- 導籤 (Tabs) -->
                     <ul class="nav nav-tabs nav-justified px-4 pt-3 border-bottom-0 shadow-sm" id="dailyTab"
                         role="tablist">
                         <li class="nav-item" role="presentation">
@@ -482,11 +490,8 @@
                         </li>
                     </ul>
 
-                    <!-- 導籤內容 -->
                     <div class="tab-content bg-white px-4 py-4" id="dailyTabContent"
                         style="border-radius: 0 0 12px 12px;">
-
-                        <!-- 區塊 A：打卡紀錄 -->
                         <div class="tab-pane fade show active" id="clock-pane" role="tabpanel" tabindex="0">
                             <form id="modifyClockForm">
                                 <div class="row g-3 mb-3">
@@ -513,8 +518,6 @@
                                 </div>
                             </form>
                         </div>
-
-                        <!-- 區塊 B：請假申請 -->
                         <div class="tab-pane fade" id="leave-pane" role="tabpanel" tabindex="0">
                             <form id="dailyLeaveForm">
                                 <div class="row g-3 mb-3">
@@ -529,10 +532,6 @@
                                             <option value="PERSONAL">事假 (無薪)</option>
                                             <option value="MARRIAGE">婚假 (有薪)</option>
                                             <option value="BEREAVEMENT">喪假 (有薪)</option>
-                                            <option value="PUBLIC">公假 (有薪)</option>
-                                            <option value="MENSTRUAL">生理假 (半薪)</option>
-                                            <option value="MATERNITY">產假/陪產假</option>
-                                            <option value="COMPENSATORY">加班補休</option>
                                         </select>
                                     </div>
                                     <div class="col-6">
@@ -540,7 +539,6 @@
                                         <select class="form-select form-select-sm" name="agent_id">
                                             <option value="" selected>無代理人</option>
                                             <option value="2">王大同</option>
-                                            <option value="3">李曉明</option>
                                         </select>
                                     </div>
                                 </div>
@@ -570,14 +568,12 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 請假單 modal  -->
     <div class="modal fade" id="leaveRequestModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
@@ -587,24 +583,16 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <form id="leaveForm">
                     <div class="modal-body px-4">
-
                         <div class="row g-3 mb-3">
                             <div class="col-6">
                                 <label class="form-label small fw-bold">假別 <span class="text-danger">*</span></label>
                                 <select class="form-select form-select-sm" name="leave_type" required>
                                     <option value="" selected disabled>請選擇假別</option>
                                     <option value="ANNUAL">特休 (剩餘 10 天)</option>
-                                    <option value="SICK">普通傷病假 (半薪)</option>
+                                    <option value="SICK">病假 (半薪)</option>
                                     <option value="PERSONAL">事假 (無薪)</option>
-                                    <option value="MARRIAGE">婚假 (有薪)</option>
-                                    <option value="BEREAVEMENT">喪假 (有薪)</option>
-                                    <option value="PUBLIC">公假 (有薪)</option>
-                                    <option value="MENSTRUAL">生理假 (半薪)</option>
-                                    <option value="MATERNITY">產假/陪產假</option>
-                                    <option value="COMPENSATORY">補休</option>
                                 </select>
                             </div>
                             <div class="col-6">
@@ -612,11 +600,9 @@
                                 <select class="form-select form-select-sm" name="agent_id">
                                     <option value="" selected>無代理人</option>
                                     <option value="2">王大同</option>
-                                    <option value="3">李曉明</option>
                                 </select>
                             </div>
                         </div>
-
                         <div class="row g-3 mb-3">
                             <div class="col-6">
                                 <label class="form-label small fw-bold">起始時間 <span class="text-danger">*</span></label>
@@ -629,21 +615,17 @@
                                     required>
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label small fw-bold">請假事由 <span class="text-danger">*</span></label>
                             <textarea class="form-control form-control-sm" name="reason" rows="3"
                                 placeholder="請簡述請假原因..." required></textarea>
                         </div>
-
                         <div class="mb-2">
                             <label class="form-label small fw-bold">附件證明 <span
                                     class="text-muted fw-normal">(選填)</span></label>
                             <input class="form-control form-control-sm" type="file" id="formFile">
                         </div>
-
                     </div>
-
                     <div class="modal-footer border-top-0 pb-4 px-4">
                         <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-primary btn-sm px-4 shadow-sm">送出申請</button>
@@ -653,7 +635,6 @@
         </div>
     </div>
 
-    <!-- Toast 通知 -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
         <div id="clockToast" class="toast shadow-lg border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header text-white" id="toastHeader">
@@ -662,13 +643,10 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
                     aria-label="Close"></button>
             </div>
-            <div class="toast-body fw-bold bg-white text-dark" id="toastMessage">
-                <!-- 訊息內容由 JS 控制 -->
-            </div>
+            <div class="toast-body fw-bold bg-white text-dark" id="toastMessage"></div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="../js/bootstrap.bundle.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -677,14 +655,11 @@
             const toastTitle = document.getElementById('toastTitle');
             const toastMessage = document.getElementById('toastMessage');
 
-            // Modal 元素
             if (clockToastElement) {
-                // 初始化 Bootstrap 元件
                 const toast = new bootstrap.Toast(clockToastElement, { delay: 3000 });
                 const dailyModalElement = document.getElementById('dailyAttendanceModal');
                 const dailyModal = new bootstrap.Modal(dailyModalElement);
 
-                // 日曆點擊邏輯
                 const calendarDays = document.querySelectorAll('.calendar-day');
                 const dailyModalTitle = document.getElementById('dailyModalTitle');
                 const modalClockIn = document.getElementById('modalClockIn');
@@ -694,7 +669,6 @@
                 const modalLeaveEnd = document.getElementById('modalLeaveEnd');
                 const modalLeaveReason = document.getElementById('modalLeaveReason');
 
-                // Tab 切換
                 const clockTab = new bootstrap.Tab(document.getElementById('clock-tab'));
                 const leaveTab = new bootstrap.Tab(document.getElementById('leave-tab'));
 
@@ -703,46 +677,29 @@
                         const dateStr = this.dataset.date;
                         if (!dateStr) return;
 
-                        // 格式化標題
                         const d = new Date(dateStr);
                         dailyModalTitle.innerText = `${d.getFullYear()}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')} 出勤管理`;
 
-                        // 抓取該格子的打卡資料 (如果有)
-                        const clockIn = this.dataset.clockIn || '';
-                        const clockOut = this.dataset.clockOut || '';
+                        modalClockIn.value = this.dataset.clockIn || '';
+                        modalClockOut.value = this.dataset.clockOut || '';
+                        modalLeaveType.value = this.dataset.leaveType || '';
+                        modalLeaveStart.value = this.dataset.startTime || '';
+                        modalLeaveEnd.value = this.dataset.endTime || '';
+                        modalLeaveReason.value = this.dataset.reason || '';
 
-                        // 抓取請假資料 (如果有)
-                        const leaveType = this.dataset.leaveType || '';
-                        const leaveStart = this.dataset.startTime || '';
-                        const leaveEnd = this.dataset.endTime || '';
-                        const leaveReason = this.dataset.reason || '';
-
-                        // 填入表單
-                        modalClockIn.value = clockIn;
-                        modalClockOut.value = clockOut;
-
-                        modalLeaveType.value = leaveType;
-                        modalLeaveStart.value = leaveStart;
-                        modalLeaveEnd.value = leaveEnd;
-                        modalLeaveReason.value = leaveReason;
-
-                        // 清空事由
                         document.querySelector('#modifyClockForm textarea[name="clock_reason"]').value = '';
-                        if (!leaveReason) document.querySelector('#dailyLeaveForm textarea[name="reason"]').value = '';
+                        if (!this.dataset.reason) document.querySelector('#dailyLeaveForm textarea[name="reason"]').value = '';
 
-                        // 智能切換 Tab: 如果有上班紀錄就預設停在打卡，如果有請假紀錄就翻到請假
-                        if (leaveType) {
+                        if (this.dataset.leaveType) {
                             leaveTab.show();
                         } else {
                             clockTab.show();
                         }
 
-                        // 顯示 Modal
                         dailyModal.show();
                     });
                 });
 
-                // 綁定修改打卡事件
                 document.getElementById('modifyClockForm').addEventListener('submit', function (e) {
                     e.preventDefault();
                     dailyModal.hide();
@@ -754,7 +711,6 @@
                     }, 300);
                 });
 
-                // 綁定請假事件
                 document.getElementById('dailyLeaveForm').addEventListener('submit', function (e) {
                     e.preventDefault();
                     dailyModal.hide();
@@ -765,10 +721,38 @@
                         toast.show();
                     }, 300);
                 });
+
+                document.getElementById('leaveForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const leaveModal = bootstrap.Modal.getInstance(document.getElementById('leaveRequestModal'));
+                    leaveModal.hide();
+                    setTimeout(() => {
+                        toastHeader.className = 'toast-header text-white bg-info';
+                        toastTitle.innerText = '系統通知';
+                        toastMessage.innerHTML = '新請假單申請已送出！';
+                        toast.show();
+                    }, 300);
+                });
             }
         });
-    </script>
 
+        // --- 新增：側邊欄收縮邏輯 ---
+        const hamburgerBtn = document.getElementById('sidebar-hamburger');
+        const sidebarEl = document.getElementById('sidebarN'); // 改抓 sidebarN
+
+        if (hamburgerBtn && sidebarEl) {
+            hamburgerBtn.addEventListener('click', function () {
+                // 切換側邊欄寬度 (w-64 展開, w-20 收縮保留圖示)
+                if (sidebarEl.classList.contains('w-64')) {
+                    sidebarEl.classList.remove('w-64');
+                    sidebarEl.classList.add('w-20');
+                } else {
+                    sidebarEl.classList.remove('w-20');
+                    sidebarEl.classList.add('w-64');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
