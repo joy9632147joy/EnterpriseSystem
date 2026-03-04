@@ -82,7 +82,6 @@
             padding: 4px 6px;
         }
 
-        /* 一般選單連結 */
         .nav-link-item {
             font-size: 12px;
             font-weight: 500;
@@ -125,7 +124,6 @@
             transform: rotate(180deg);
         }
 
-        /* 桌面版 hover 展開 dropdown */
         @media (min-width: 992px) {
             .nav-item.dropdown:hover .dropdown-menu {
                 display: block;
@@ -136,8 +134,6 @@
             }
         }
 
-
-        /* Dropdown 面板 */
         .dropdown-menu {
             border: 1px solid var(--border-grey) !important;
             border-radius: 2px !important;
@@ -175,7 +171,6 @@
         .dropdown-item:focus,
         .dropdown-item:active { background: transparent !important; }
 
-        /* 右側工具列（桌面版） */
         .navbar-tools {
             display: flex;
             align-items: center;
@@ -197,7 +192,6 @@
 
         #search-input.open { width: 180px; opacity: 1; }
 
-        /* ─── OFFCANVAS 手機側邊選單樣式 ─── */
         .offcanvas.offcanvas-end {
             width: 280px;
             border-left: 1px solid var(--border-grey);
@@ -210,7 +204,6 @@
 
         .offcanvas-body { padding: 24px; }
 
-        /* offcanvas 內搜尋框 */
         .offcanvas-search {
             display: flex;
             align-items: center;
@@ -231,7 +224,6 @@
 
         .offcanvas-search input::placeholder { color: var(--text-muted); }
 
-        /* offcanvas 內登入按鈕 */
         .offcanvas-login {
             display: block;
             width: 100%;
@@ -253,7 +245,6 @@
             color: white;
         }
 
-        /* offcanvas 內 dropdown */
         #navMenu .dropdown-menu {
             border: none !important;
             box-shadow: none !important;
@@ -262,9 +253,9 @@
             border-radius: 0 !important;
             margin-left: 8px;
             background-color: #FFFFFF;
-            position: static !important;  /* 不蓋住下方選單 */
+            position: static !important;
             float: none;
-            transform: none !important;   /* 取消 Bootstrap 的 translate 定位 */
+            transform: none !important;
         }
 
         #navMenu .nav-link-item {
@@ -273,108 +264,165 @@
             border-bottom: 1px solid var(--border-grey);
         }
 
-        /* ─── HERO ─── */
-        .hero-section {
+        /* ════════════════════════════════════
+           HERO SLIDESHOW  (from wedding_theme)
+           ════════════════════════════════════ */
+        .hero-slideshow {
             position: relative;
-            height: 100vh;
             width: 100%;
+            height: calc(100vh - 80px);
+            min-height: 480px;
             overflow: hidden;
+            background: #0c0b09;
+            margin-top: 80px;
         }
 
-        .hero-bg { position: absolute; inset: 0; z-index: 0; }
+        /* slides */
+        .hs-slide {
+            position: absolute; inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            pointer-events: none;
+        }
+        .hs-slide.active { opacity: 1; pointer-events: auto; }
+        .hs-slide img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transform: scale(1.06);
+            transition: transform 7s ease;
+            filter: brightness(.82) saturate(.92);
+        }
+        .hs-slide.active img { transform: scale(1); }
 
-        .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%);
+        /* gradient overlay */
+        .hs-slide::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(8,6,4,.48) 0%, transparent 52%);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        /* slide content */
+        .hs-content {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+            padding: 0 56px 56px;
+            display: flex; align-items: flex-end; justify-content: space-between;
+            gap: 40px;
+        }
+        @media (max-width: 767px) {
+            .hs-content { padding: 0 24px 40px; flex-direction: column; align-items: flex-start; gap: 20px; }
         }
 
-        .hero-content-inner { max-width: 900px; padding: 0 24px; }
-
-        .hero-eyebrow {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.8em;
-            color: rgba(255, 255, 255, 0.9);
+        .hs-num {
+            font-size: 9px; letter-spacing: .5em; color: rgba(197,160,89,.65);
+            font-weight: 500; display: block; margin-bottom: 10px;
         }
+        .hs-rule {
+            width: 0; height: 1px; background: var(--accent-gold);
+            margin-bottom: 12px; transition: width .8s ease .3s;
+        }
+        .hs-slide.active .hs-rule { width: 32px; }
 
-        .hero-title {
+        .hs-eyebrow {
+            font-size: 9px; letter-spacing: .45em; text-transform: uppercase;
+            color: rgba(197,160,89,.8); display: block; margin-bottom: 10px;
+            opacity: 0; transform: translateY(12px);
+            transition: opacity .7s ease .4s, transform .7s ease .4s;
+        }
+        .hs-slide.active .hs-eyebrow { opacity: 1; transform: translateY(0); }
+
+        .hs-title {
             font-family: var(--font-serif);
-            font-size: clamp(40px, 8vw, 80px);
-            font-weight: 300;
+            font-size: clamp(32px, 5vw, 72px);
+            font-weight: 300; color: white;
+            line-height: 1.05; letter-spacing: .03em;
+            opacity: 0; transform: translateY(20px);
+            transition: opacity .8s ease .5s, transform .8s ease .5s;
+        }
+        .hs-slide.active .hs-title { opacity: 1; transform: translateY(0); }
+
+        .hs-desc {
+            font-size: 12px; color: rgba(255,255,255,.5);
+            letter-spacing: .12em; line-height: 1.9;
+            margin-top: 16px;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity .7s ease .65s, transform .7s ease .65s;
+        }
+        .hs-slide.active .hs-desc { opacity: 1; transform: translateY(0); }
+
+        .hs-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 28px;
+            font-size: 9px; letter-spacing: .4em; text-transform: uppercase;
             color: white;
-            margin-top: 32px;
-            line-height: 1.2;
+            border-bottom: 1px solid rgba(197,160,89,.45);
+            padding-bottom: 4px; text-decoration: none;
+            width: fit-content;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity .6s ease .8s, transform .6s ease .8s, color .3s, border-color .3s;
         }
+        .hs-slide.active .hs-cta { opacity: 1; transform: translateY(0); }
+        .hs-cta:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
 
-        .hero-desc {
-            font-size: 14px;
-            letter-spacing: 0.3em;
-            color: white;
-            font-weight: 300;
-            line-height: 2;
-            margin-top: 32px;
-            max-width: 700px;
+        /* right side: index pills */
+        .hs-right {
+            display: flex; flex-direction: column; gap: 0;
+            align-items: flex-end; flex-shrink: 0;
         }
-
-        .hero-btn-ghost {
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            color: white;
-            font-size: 10px;
-            letter-spacing: 0.3em;
-            padding: 18px 48px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
+        @media (max-width: 767px) {
+            .hs-right { flex-direction: row; gap: 0; align-items: flex-end; }
         }
-
-        .hero-btn-ghost:hover { background: white; color: var(--text-main); }
-
-        .hero-btn-solid {
-            background: white;
-            border: 1px solid white;
-            color: var(--text-main);
-            font-size: 10px;
-            letter-spacing: 0.3em;
-            padding: 18px 48px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
+        .hs-pill {
+            background: none; border: none; cursor: pointer;
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 0;
+            font-family: var(--font-sans);
+            text-align: right;
+            opacity: .38;
+            transition: opacity .4s;
         }
+        .hs-pill:hover { opacity: .65; }
+        .hs-pill.active { opacity: 1; }
+        .hs-pill-name {
+            font-size: 10px; letter-spacing: .2em; color: white;
+            white-space: nowrap;
+            transition: color .3s;
+        }
+        @media (max-width: 767px) { .hs-pill-name { display: none; } }
+        .hs-pill.active .hs-pill-name { color: var(--accent-gold); }
+        .hs-pill-line {
+            width: 20px; height: 1px;
+            background: rgba(255,255,255,.35);
+            transition: width .4s, background .4s;
+            flex-shrink: 0;
+        }
+        .hs-pill.active .hs-pill-line { width: 36px; background: var(--accent-gold); }
 
-        .hero-btn-solid:hover {
+        /* progress bar */
+        .hs-progress {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+            height: 1.5px; background: rgba(255,255,255,.1);
+        }
+        .hs-progress-bar {
+            height: 100%; width: 0%;
             background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: white;
+            transition: width linear;
         }
 
-        .hero-scroll-indicator {
-            position: absolute;
-            bottom: 48px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            color: rgba(255, 255, 255, 0.8);
-            animation: bounce 2s infinite;
+        /* top label */
+        .hs-header {
+            position: absolute; top: 0; left: 0; z-index: 3;
+            padding: 40px 56px;
+            pointer-events: none;
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0) }
-            50%       { transform: translateX(-50%) translateY(8px) }
+        @media (max-width: 767px) { .hs-header { padding: 28px 24px; } }
+        .hs-header-eyebrow {
+            font-size: 9px; letter-spacing: .55em; color: rgba(197,160,89,.75);
+            text-transform: uppercase; font-weight: 500; display: block; margin-bottom: 8px;
+        }
+        .hs-header-title {
+            font-family: var(--font-serif);
+            font-size: clamp(20px, 2.4vw, 32px);
+            font-weight: 300; color: white; letter-spacing: .06em;
         }
 
         /* ─── 精選真實婚禮 ─── */
@@ -737,40 +785,36 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
 
-            <!-- 品牌 LOGO -->
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
 
-            <!-- 漢堡按鈕 → 觸發 offcanvas -->
             <button class="navbar-toggler d-lg-none" type="button"
                 data-bs-toggle="offcanvas" data-bs-target="#navMenu"
                 aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- 桌面版選單 + 右側工具列 -->
             <div class="collapse navbar-collapse" id="navMenuDesktop">
                 <ul class="navbar-nav ms-lg-4 gap-lg-1">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./2.html">婚禮主題</a>
+                        <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./3.html"
-                            id="desktopDropdown" data-bs-toggle="dropdown">
+                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
+                            id="desktopDropdown">
                             精選合作夥伴
                             <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
                         </a>
                         <div class="dropdown-menu">
-                            <span class="dropdown-group-label">專業團隊</span>
-                            <a class="dropdown-item" href="#">主持人</a>
-                            <a class="dropdown-item" href="#">攝影師</a>
-                            <a class="dropdown-item" href="#">新秘造型師</a>
-                            <span class="dropdown-group-label dropdown-group-spacer">婚禮美學</span>
+                            <a class="dropdown-item" href="#">婚禮場地</a>
                             <a class="dropdown-item" href="#">新娘婚紗</a>
                             <a class="dropdown-item" href="#">新郎西服</a>
                             <a class="dropdown-item" href="#">喜餅禮盒</a>
@@ -782,7 +826,6 @@
                     </li>
                 </ul>
 
-                <!-- 右側工具列：放在 collapse 內，ms-auto 自動推到最右邊 -->
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
                         <input id="search-input" type="text" placeholder="搜尋場地或職人...">
@@ -806,20 +849,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
-
-            <!-- 搜尋框 -->
             <div class="offcanvas-search">
                 <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
-
-            <!-- 選單項目 -->
             <ul class="navbar-nav gap-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-item" href="./professional_team.html">專業團隊</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./2.html">婚禮主題</a>
+                    <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="#"
@@ -828,11 +870,7 @@
                         <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
                     </a>
                     <div class="dropdown-menu">
-                        <span class="dropdown-group-label">專業團隊</span>
-                        <a class="dropdown-item" href="#">主持人</a>
-                        <a class="dropdown-item" href="#">攝影師</a>
-                        <a class="dropdown-item" href="#">新秘造型師</a>
-                        <span class="dropdown-group-label dropdown-group-spacer">婚禮美學</span>
+                        <a class="dropdown-item" href="#">婚禮場地</a>
                         <a class="dropdown-item" href="#">新娘婚紗</a>
                         <a class="dropdown-item" href="#">新郎西服</a>
                         <a class="dropdown-item" href="#">喜餅禮盒</a>
@@ -843,37 +881,106 @@
                     <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
                 </li>
             </ul>
-
-            <!-- 登入按鈕 -->
             <a href="client_login.html" class="offcanvas-login">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-
         </div>
     </div>
 
     <main>
 
-        <!-- HERO -->
-        <section class="hero-section">
-            <div class="hero-bg">
-                <img src="img/m01.png" alt="草地婚禮">
-                <div class="video-overlay"></div>
+        <!-- ════ HERO SLIDESHOW ════ -->
+        <div class="hero-slideshow" id="heroSlideshow">
+
+            <div class="hs-header">
+                <span class="hs-header-eyebrow">High-End Wedding Journal</span>
+                <p class="hs-header-title">DREAM VENUES</p>
             </div>
-            <div class="hero-content">
-                <div class="hero-content-inner">
-                    <p class="hero-eyebrow">The Outdoor Celebration</p>
-                    <h2 class="hero-title">草地上的幸福光影</h2>
-                    <p class="hero-desc mx-auto">陽光灑落在白色帳篷與翠綠草地之間，捕捉每一刻被微風吹拂的浪漫。<br>在自然的見證下，開啟屬於您的純白篇章。</p>
-                    <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-top:64px;">
-                        <button class="hero-btn-ghost">瀏覽影音專區</button>
-                        <button class="hero-btn-solid">開啟您的婚禮</button>
+
+            <!-- Slide 1 · 森林系 -->
+            <div class="hs-slide" id="firstSlide">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80&fit=crop&crop=center" alt="森林系婚禮">
+                <div class="hs-content">
+                    <div class="hs-left">
+                        <span class="hs-num">01 / 05</span>
+                        <div class="hs-rule"></div>
+                        <span class="hs-eyebrow">Forest · Nature · Organic</span>
+                        <h2 class="hs-title">森林系</h2>
+                        <p class="hs-desc">枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景</p>
+                        <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
                     </div>
+                    <div class="hs-right" id="hsPills"></div>
                 </div>
             </div>
-        </section>
+
+            <!-- Slide 2 · 美式復古 -->
+            <div class="hs-slide">
+                <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1600&q=80&fit=crop&crop=center" alt="美式復古婚禮">
+                <div class="hs-content">
+                    <div class="hs-left">
+                        <span class="hs-num">02 / 05</span>
+                        <div class="hs-rule"></div>
+                        <span class="hs-eyebrow">Americana · Rustic · Vintage</span>
+                        <h2 class="hs-title">美式復古</h2>
+                        <p class="hs-desc">穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面</p>
+                        <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
+                    </div>
+                    <div class="hs-right"></div>
+                </div>
+            </div>
+
+            <!-- Slide 3 · 西式教堂 -->
+            <div class="hs-slide">
+                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80&fit=crop&crop=center" alt="西式教堂婚禮">
+                <div class="hs-content">
+                    <div class="hs-left">
+                        <span class="hs-num">03 / 05</span>
+                        <div class="hs-rule"></div>
+                        <span class="hs-eyebrow">Chapel · Cathedral · Timeless</span>
+                        <h2 class="hs-title">西式教堂</h2>
+                        <p class="hs-desc">彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證</p>
+                        <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
+                    </div>
+                    <div class="hs-right"></div>
+                </div>
+            </div>
+
+            <!-- Slide 4 · 中式老宅 -->
+            <div class="hs-slide">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&q=80&fit=crop&crop=center" alt="中式老宅婚禮">
+                <div class="hs-content">
+                    <div class="hs-left">
+                        <span class="hs-num">04 / 05</span>
+                        <div class="hs-rule"></div>
+                        <span class="hs-eyebrow">Chinese Heritage · Courtyard · Ink</span>
+                        <h2 class="hs-title">中式老宅</h2>
+                        <p class="hs-desc">紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生</p>
+                        <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
+                    </div>
+                    <div class="hs-right"></div>
+                </div>
+            </div>
+
+            <!-- Slide 5 · 極簡現代 -->
+            <div class="hs-slide">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&fit=crop&crop=center" alt="極簡現代婚禮">
+                <div class="hs-content">
+                    <div class="hs-left">
+                        <span class="hs-num">05 / 05</span>
+                        <div class="hs-rule"></div>
+                        <span class="hs-eyebrow">Minimal · Modern · Editorial</span>
+                        <h2 class="hs-title">極簡現代</h2>
+                        <p class="hs-desc">Less is more<br>讓空間本身成為最有力量的表達</p>
+                        <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
+                    </div>
+                    <div class="hs-right"></div>
+                </div>
+            </div>
+
+            <div class="hs-progress"><div class="hs-progress-bar" id="hsProgressBar"></div></div>
+        </div>
 
         <!-- 精選真實婚禮 -->
         <section id="main-content" class="real-weddings-section">
@@ -1136,18 +1243,13 @@
                 if (e.clientY < 50) navbar.classList.remove('nav-hidden');
             });
 
-            // ─── 桌面版 dropdown：第一下展開，第二下跳頁 ───
+            // ─── 桌面版 dropdown ───
             const desktopDropdownToggle = document.getElementById('desktopDropdown');
             if (desktopDropdownToggle) {
-                let dropdownOpened = false;
                 desktopDropdownToggle.addEventListener('click', (e) => {
                     if (window.innerWidth >= 992) {
-                        const menu = desktopDropdownToggle.nextElementSibling;
                         const isOpen = desktopDropdownToggle.closest('.nav-item').classList.contains('show');
-                        if (!isOpen) {
-                            e.preventDefault(); // 第一下只展開，不跳頁
-                        }
-                        // 第二下 isOpen=true，不 preventDefault，正常跳頁
+                        if (!isOpen) e.preventDefault();
                     }
                 });
             }
@@ -1164,6 +1266,83 @@
                     if (searchInput.value.trim()) alert('執行搜尋：' + searchInput.value);
                     else searchInput.classList.remove('open');
                 }
+            });
+
+            // ─── HERO SLIDESHOW ───
+            const INTERVAL = 5000;
+            const slides = document.querySelectorAll('.hs-slide');
+            const progressBar = document.getElementById('hsProgressBar');
+            const slideNames = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代'];
+            let cur = 0, timer = null, paused = false;
+
+            // Build pills into all slides
+            slides.forEach((slide, si) => {
+                const pillsEl = slide.querySelector('.hs-right');
+                if (!pillsEl) return;
+                slideNames.forEach((name, ni) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'hs-pill' + (ni === si ? ' active' : '');
+                    btn.innerHTML = `<span class="hs-pill-name">${name}</span><div class="hs-pill-line"></div>`;
+                    btn.addEventListener('click', () => goTo(ni));
+                    pillsEl.appendChild(btn);
+                });
+            });
+
+            function goTo(idx) {
+                slides[cur].classList.remove('active');
+                cur = (idx + slides.length) % slides.length;
+                slides[cur].classList.add('active');
+                updatePills();
+                startProgress();
+            }
+
+            function updatePills() {
+                slides.forEach(slide => {
+                    slide.querySelectorAll('.hs-pill').forEach((p, pi) => {
+                        p.classList.toggle('active', pi === cur);
+                    });
+                });
+            }
+
+            function startProgress() {
+                clearInterval(timer);
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        progressBar.style.transition = `width ${INTERVAL}ms linear`;
+                        progressBar.style.width = '100%';
+                    });
+                });
+                if (!paused) {
+                    timer = setInterval(() => goTo(cur + 1), INTERVAL);
+                }
+            }
+
+            // swipe support
+            let tX = null;
+            const ss = document.getElementById('heroSlideshow');
+            ss.addEventListener('touchstart', e => { tX = e.touches[0].clientX; }, { passive: true });
+            ss.addEventListener('touchend', e => {
+                if (tX === null) return;
+                const dx = e.changedTouches[0].clientX - tX;
+                if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+                tX = null;
+            });
+
+            // pause on hover
+            ss.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
+            ss.addEventListener('mouseleave', () => {
+                paused = false;
+                timer = setInterval(() => goTo(cur + 1), INTERVAL);
+            });
+
+            // 第一張入場動畫：頁面載入後加 active，讓 transition 觸發
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    slides[0].classList.add('active');
+                    startProgress();
+                });
             });
 
             // ─── 職人卡片進場動畫 ───
