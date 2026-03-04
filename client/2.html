@@ -1,358 +1,987 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-
+<html lang="zh-TW">
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Noto+Serif+TC:wght@200;300;400;500;600&amp;family=Montserrat:wght@100;200;300;400;500&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#D4AF37", "gold-light": "#F4EBD0",
-                        "background-pure": "#FFFFFF",
-                        "luxury-slate": "#1A1A1A",
-                        "text-main": "#1A1A1A",
-                        "text-muted": "#888888",
-                        "accent-gold": "#C5A059",
-                        "border-grey": "#F0F0F0",
-                    },
-                    fontFamily: {
-                        "serif-tc": ["Noto Serif TC", "serif"],
-                        "display": ["Newsreader", "serif"],
-                        "sans": ["Montserrat", "sans-serif"]
-                    },
-                },
-            },
+    <title>DREAM VENUES - 婚禮主題</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --pure-white:#FFFFFF; --soft-grey:#FBFBFB; --border-grey:#F0F0F0;
+            --accent-gold:#C5A059; --text-main:#1A1A1A; --text-muted:#888888;
+            --font-serif:"Noto Serif TC",serif; --font-sans:"Plus Jakarta Sans","Noto Sans TC",sans-serif;
+            --sidebar-width:260px;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                @apply bg-background-pure text-luxury-slate font-serif-tc antialiased;
-            }
-            h1, h2, h3, h4 {
-                @apply font-serif-tc tracking-tight;
-            }
-        }
-        .magazine-shadow {
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
-        }
-        .airy-header::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 1px;
-            background: #D4AF37;
-            margin: 1.5rem auto 0;
-        }
-        .nav-link.active {
-            color: #1A1A1A;
-            border-bottom: 1px solid #C5A059;
-            padding-bottom: 4px;
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:var(--font-sans);color:var(--text-main);background:var(--soft-grey);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+        .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24;}
+
+        /* NAVBAR */
+        .navbar{background-color:rgba(255,255,255,0.87)!important;backdrop-filter:blur(12px);border-bottom:1px solid rgba(240,240,240,0.5);padding:0 48px;min-height:80px;transition:transform 0.4s ease-in-out;transform:translateY(0);}
+        .navbar.nav-hidden{transform:translateY(-100%);}
+        .navbar-brand{line-height:1;padding:0;}
+        .brand-name{font-size:18px;font-weight:300;letter-spacing:0.4em;color:var(--text-main);text-decoration:none;display:block;line-height:1;}
+        .brand-sub{font-size:8px;letter-spacing:0.5em;color:var(--accent-gold);text-transform:uppercase;font-weight:200;display:block;margin-top:4px;}
+        .navbar-toggler{border:none!important;box-shadow:none!important;padding:4px 6px;}
+        .nav-link-item{font-size:12px;font-weight:500;color:var(--text-main)!important;letter-spacing:0.1em;transition:color 0.3s;padding:8px 0!important;white-space:nowrap;}
+        @media(min-width:992px){.nav-link-item{padding:8px 12px!important;}}
+        .nav-link-item:hover{color:var(--accent-gold)!important;}
+        .nav-item.dropdown .dropdown-toggle{font-size:12px;font-weight:500;color:var(--text-main)!important;letter-spacing:0.1em;padding:8px 0!important;}
+        @media(min-width:992px){.nav-item.dropdown .dropdown-toggle{padding:8px 12px!important;}}
+        .nav-item.dropdown .dropdown-toggle:hover{color:var(--accent-gold)!important;}
+        .dropdown-toggle::after{display:none!important;}
+        .dropdown-toggle .material-symbols-outlined{font-size:16px;vertical-align:middle;transition:transform 0.3s;}
+        .nav-item.dropdown.show .dropdown-toggle .material-symbols-outlined{transform:rotate(180deg);}
+        @media(min-width:992px){.nav-item.dropdown:hover .dropdown-menu{display:block;margin-top:0;}.nav-item.dropdown:hover .dropdown-toggle .material-symbols-outlined{transform:rotate(180deg);}}
+        .dropdown-menu{border:1px solid var(--border-grey)!important;border-radius:2px!important;box-shadow:0 20px 50px rgba(0,0,0,0.1)!important;padding:24px 28px!important;min-width:180px;}
+        .dropdown-group-label{font-size:12px;letter-spacing:0.18em;color:var(--accent-gold);text-transform:uppercase;display:block;border-bottom:1px solid rgba(197,160,89,0.3);padding-bottom:8px;margin-bottom:4px;}
+        .dropdown-group-spacer{margin-top:20px;}
+        .dropdown-item{font-size:13px!important;font-weight:400;color:var(--text-main)!important;letter-spacing:0.06em;padding:7px 0!important;background:transparent!important;transition:color 0.25s;}
+        .dropdown-item:hover{color:var(--accent-gold)!important;}
+        .dropdown-item:focus,.dropdown-item:active{background:transparent!important;}
+        .navbar-tools{display:flex;align-items:center;gap:20px;}
+        #search-input{border:none;background:transparent;font-size:12px;color:var(--text-main);outline:none;width:0;opacity:0;transition:width 0.45s ease,opacity 0.45s ease;}
+        #search-input::placeholder{color:var(--text-muted);}
+        #search-input.open{width:180px;opacity:1;}
+        .offcanvas.offcanvas-end{width:280px;border-left:1px solid var(--border-grey);}
+        .offcanvas-header{padding:20px 24px;border-bottom:1px solid var(--border-grey);}
+        .offcanvas-body{padding:24px;}
+        .offcanvas-search{display:flex;align-items:center;gap:8px;border:1px solid var(--border-grey);padding:10px 14px;margin-bottom:24px;}
+        .offcanvas-search input{border:none;outline:none;font-size:13px;color:var(--text-main);flex:1;background:transparent;}
+        .offcanvas-login{display:block;width:100%;text-align:center;border:1px solid var(--text-main);background:transparent;color:var(--text-main);font-size:12px;letter-spacing:0.2em;padding:12px;margin-top:24px;text-decoration:none;transition:all 0.3s;}
+        .offcanvas-login:hover{background:var(--accent-gold);border-color:var(--accent-gold);color:white;}
+        #navMenu .dropdown-menu{border:none!important;box-shadow:none!important;padding:8px 0 8px 16px!important;border-left:2px solid rgba(197,160,89,0.3)!important;border-radius:0!important;margin-left:8px;background-color:#fff;position:static!important;float:none;transform:none!important;}
+        #navMenu .nav-link-item{font-size:14px!important;padding:12px 0!important;border-bottom:1px solid var(--border-grey);}
+
+        /* HERO */
+        .page-wrap{padding-top:80px;}
+        .page-hero{position:relative;height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0e0e0e;}
+        .hero-bg{position:absolute;inset:0;background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8');background-size:cover;background-position:center 30%;opacity:0.4;transform:scale(1.05);transition:transform 8s ease;}
+        .hero-bg.loaded{transform:scale(1);}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.6) 100%);}
+        .hero-content{position:relative;text-align:center;color:white;z-index:2;}
+        .hero-eyebrow{font-size:9px;letter-spacing:0.6em;text-transform:uppercase;color:var(--accent-gold);font-weight:500;display:block;margin-bottom:20px;}
+        .hero-title{font-family:var(--font-serif);font-size:clamp(32px,5vw,60px);font-weight:300;letter-spacing:0.06em;line-height:1.2;color:white;}
+        .hero-line{width:48px;height:1px;background:var(--accent-gold);margin:28px auto;opacity:0.8;}
+        .hero-sub{font-size:12px;letter-spacing:0.3em;color:rgba(255,255,255,0.65);text-transform:uppercase;}
+
+        /* ── LAYOUT: SIDEBAR + CONTENT ── */
+        .browse-layout{display:flex;align-items:flex-start;max-width:1400px;margin:0 auto;padding:0 32px 120px;}
+
+        /* LEFT SIDEBAR */
+        .sidebar{width:var(--sidebar-width);flex-shrink:0;position:sticky;top:100px;padding:40px 0 40px 0;margin-right:48px;}
+        .sidebar-logo-line{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+        .sidebar-logo-line::after{content:'';flex:1;height:1px;background:var(--border-grey);}
+        .sidebar-logo-line span{font-size:8px;letter-spacing:0.45em;text-transform:uppercase;color:var(--accent-gold);white-space:nowrap;}
+
+        .sidebar-group{margin-bottom:36px;}
+        .sidebar-group-label{font-size:9px;letter-spacing:0.45em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border-grey);}
+
+        .sidebar-item{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;padding:10px 14px;margin-bottom:4px;cursor:pointer;color:var(--text-muted);font-size:12px;letter-spacing:0.1em;font-family:var(--font-sans);transition:all 0.22s;text-align:left;border-left:2px solid transparent;}
+        .sidebar-item .material-symbols-outlined{font-size:16px;font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 20;}
+        .sidebar-item:hover{color:var(--text-main);background:var(--border-grey);}
+        .sidebar-item.active{color:var(--text-main);border-left-color:var(--accent-gold);background:rgba(197,160,89,0.06);font-weight:500;}
+        .sidebar-item.active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 300,'GRAD' 0,'opsz' 20;color:var(--accent-gold);}
+
+        .sidebar-divider{height:1px;background:var(--border-grey);margin:8px 0 24px;}
+
+        /* MAIN CONTENT AREA */
+        .content-area{flex:1;min-width:0;padding:40px 0 0;}
+
+        /* SECTION */
+        .theme-section{display:none;margin-bottom:80px;}
+        .theme-section.active{display:block;}
+
+        .section-header{display:grid;grid-template-columns:1fr auto;align-items:end;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border-grey);}
+        .section-eyebrow{font-size:9px;letter-spacing:0.5em;color:var(--accent-gold);text-transform:uppercase;font-weight:500;display:block;margin-bottom:8px;}
+        .section-title{font-family:var(--font-serif);font-size:clamp(22px,3vw,30px);font-weight:300;letter-spacing:0.02em;}
+        .section-count{font-size:9px;letter-spacing:0.3em;color:var(--text-muted);text-transform:uppercase;}
+
+        .sub-section{margin-bottom:56px;}
+        .sub-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+        .sub-label{font-size:10px;letter-spacing:0.3em;color:var(--text-muted);text-transform:uppercase;font-weight:500;white-space:nowrap;}
+        .sub-line{flex:1;height:1px;background:var(--border-grey);}
+
+        /* VENUE / THEME CARDS */
+        .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+        @media(max-width:900px){.card-grid{grid-template-columns:1fr;}}
+
+        .venue-card{background:white;border:1px solid var(--border-grey);transition:box-shadow 0.3s,transform 0.3s;cursor:pointer;}
+        .venue-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.08);transform:translateY(-3px);}
+
+        .vc-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--border-grey);}
+        .vc-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(0.4,0,0.2,1);}
+        .venue-card:hover .vc-img img{transform:scale(1.06);}
+        .vc-badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent-gold);padding:5px 10px;font-weight:500;}
+        .vc-type-badge{position:absolute;top:12px;right:12px;background:rgba(26,26,26,0.78);backdrop-filter:blur(6px);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.85);padding:5px 10px;}
+
+        .vc-body{padding:20px;}
+        .vc-name{font-family:var(--font-serif);font-size:18px;font-weight:400;margin-bottom:4px;}
+        .vc-name-en{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:14px;}
+
+        .vc-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-bottom:14px;}
+        .vc-meta-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text-muted);letter-spacing:0.06em;}
+        .vc-meta-item .material-symbols-outlined{font-size:13px;}
+        .vc-meta-item strong{color:var(--text-main);font-weight:500;}
+
+        .vc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+        .vc-tag{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid var(--border-grey);padding:4px 10px;color:var(--text-muted);}
+
+        .vc-footer{border-top:1px solid var(--border-grey);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
+        .vc-footer-link{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.25s;}
+        .vc-footer-link:hover{color:var(--accent-gold);}
+        .vc-line{height:1px;width:20px;background:var(--border-grey);transition:width 0.5s,background 0.5s;}
+        .venue-card:hover .vc-line{width:40px;background:var(--accent-gold);}
+
+        /* THEME CARDS (主題系別) */
+        .theme-card{background:white;border:1px solid var(--border-grey);transition:box-shadow 0.3s,transform 0.3s;cursor:pointer;}
+        .theme-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.08);transform:translateY(-3px);}
+        .tc-img{position:relative;aspect-ratio:3/2;overflow:hidden;background:var(--border-grey);}
+        .tc-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(0.4,0,0.2,1);}
+        .theme-card:hover .tc-img img{transform:scale(1.06);}
+        .tc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px 22px;}
+        .tc-eyebrow{font-size:8px;letter-spacing:0.5em;text-transform:uppercase;color:var(--accent-gold);display:block;margin-bottom:4px;}
+        .tc-title{font-family:var(--font-serif);font-size:20px;font-weight:300;color:white;}
+        .tc-body{padding:18px 20px;}
+        .tc-desc{font-size:11px;color:var(--text-muted);line-height:1.7;margin-bottom:14px;letter-spacing:0.04em;}
+        .tc-includes{margin-bottom:14px;}
+        .tc-includes-label{font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent-gold);display:block;margin-bottom:8px;}
+        .tc-include-tags{display:flex;flex-wrap:wrap;gap:5px;}
+        .tc-include-tag{font-size:9px;letter-spacing:0.15em;border:1px solid rgba(197,160,89,0.3);padding:3px 9px;color:var(--text-muted);}
+        .tc-meta-row{display:flex;gap:16px;}
+        .tc-meta-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text-muted);}
+        .tc-meta-item .material-symbols-outlined{font-size:13px;}
+
+        /* GALLERY */
+        .gallery-a{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:5px;}
+        .gallery-a .img-main{grid-row:1/3;aspect-ratio:2/3;}
+        .gallery-a .img-sub{aspect-ratio:3/2;}
+        .gallery-b{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+        .gallery-b .img-item{aspect-ratio:3/4;}
+        .gallery-c{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+        .gallery-c .img-top{aspect-ratio:3/4;}
+        .gallery-c .img-wide{grid-column:1/3;aspect-ratio:16/6;}
+        .gallery-d{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:5px;}
+        .gallery-d .img-main{grid-row:1/3;aspect-ratio:2/3;}
+        .gallery-d .img-sub{aspect-ratio:4/3;}
+
+        .img-item,.img-main,.img-sub,.img-top,.img-wide{position:relative;overflow:hidden;background:var(--border-grey);cursor:pointer;}
+        .img-item img,.img-main img,.img-sub img,.img-top img,.img-wide img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(0.4,0,0.2,1);}
+        .img-item:hover img,.img-main:hover img,.img-sub:hover img,.img-top:hover img,.img-wide:hover img{transform:scale(1.06);}
+        .img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 55%);opacity:0;transition:opacity 0.4s;display:flex;align-items:flex-end;padding:16px;}
+        .img-item:hover .img-overlay,.img-main:hover .img-overlay,.img-sub:hover .img-overlay,.img-top:hover .img-overlay,.img-wide:hover .img-overlay{opacity:1;}
+        .img-caption{color:white;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;}
+
+        /* OVERVIEW MOSAIC */
+        .overview-mosaic{display:grid;grid-template-columns:2fr 1fr;gap:5px;margin-bottom:56px;}
+        .mosaic-main{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--border-grey);}
+        .mosaic-right{display:grid;grid-template-rows:1fr 1fr;gap:5px;}
+        .mosaic-small{position:relative;overflow:hidden;cursor:pointer;background:var(--border-grey);}
+        .mosaic-main img,.mosaic-small img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(0.4,0,0.2,1);}
+        .mosaic-main:hover img,.mosaic-small:hover img{transform:scale(1.05);}
+        .mosaic-label{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.58) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 28px;}
+        .mosaic-small .mosaic-label{padding:14px 16px;}
+        .mosaic-tag{font-size:8px;letter-spacing:0.5em;color:var(--accent-gold);text-transform:uppercase;display:block;margin-bottom:5px;}
+        .mosaic-name{font-family:var(--font-serif);font-weight:300;color:white;line-height:1.25;}
+        .mosaic-main .mosaic-name{font-size:22px;}
+        .mosaic-small .mosaic-name{font-size:14px;}
+
+        /* ANIMATION */
+        .fade-in{opacity:0;transform:translateY(18px);transition:opacity 0.65s ease,transform 0.65s ease;}
+        .fade-in.visible{opacity:1;transform:translateY(0);}
+
+        /* LIGHTBOX */
+        .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;}
+        .lightbox.open{display:flex;}
+        .lightbox-img{max-width:88vw;max-height:85vh;object-fit:contain;box-shadow:0 40px 100px rgba(0,0,0,0.6);}
+        .lightbox-close{position:absolute;top:24px;right:32px;color:white;background:none;border:none;font-size:32px;cursor:pointer;opacity:0.7;transition:opacity 0.3s;line-height:1;}
+        .lightbox-close:hover{opacity:1;}
+        .lightbox-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.45);font-size:10px;letter-spacing:0.4em;text-transform:uppercase;white-space:nowrap;}
+        .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,0.2);color:white;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.3s,background 0.3s;}
+        .lightbox-prev{left:28px;} .lightbox-next{right:28px;}
+        .lightbox-prev:hover,.lightbox-next:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.5);}
+
+        /* FOOTER */
+        .site-footer{border-top:1px solid var(--border-grey);background:white;padding:80px 40px;}
+        .footer-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:48px;}
+        .footer-brand{max-width:280px;}
+        .footer-brand-name{font-size:18px;font-weight:300;letter-spacing:0.4em;}
+        .footer-brand-sub{font-size:8px;letter-spacing:0.5em;color:var(--accent-gold);text-transform:uppercase;margin-top:4px;display:block;}
+        .footer-desc{font-size:13px;font-weight:300;line-height:1.8;color:var(--text-muted);margin-top:24px;}
+        .footer-icons{display:flex;gap:14px;margin-top:24px;}
+        .footer-icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-grey);display:flex;align-items:center;justify-content:center;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+        .footer-icon-btn:hover{color:var(--accent-gold);}
+        .footer-nav-cols{display:flex;gap:72px;}
+        .footer-nav-col{display:flex;flex-direction:column;}
+        .footer-nav-title{font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-main);margin-bottom:24px;}
+        .footer-nav-link{font-size:12px;font-weight:300;letter-spacing:0.15em;color:var(--text-muted);text-decoration:none;transition:color 0.3s;margin-bottom:16px;display:block;}
+        .footer-nav-link:hover{color:var(--accent-gold);}
+        .footer-bottom{max-width:1400px;margin:72px auto 0;border-top:1px solid var(--border-grey);padding-top:40px;text-align:center;font-size:9px;letter-spacing:0.4em;color:var(--text-muted);text-transform:uppercase;}
+
+        /* RESPONSIVE */
+        @media(max-width:991px){
+            .browse-layout{flex-direction:column;padding:0 20px 80px;}
+            .sidebar{width:100%;position:static;margin-right:0;padding:24px 0;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--border-grey);margin-bottom:32px;}
+            .sidebar-logo-line,.sidebar-divider{display:none;}
+            .sidebar-group{margin-bottom:0;}
+            .sidebar-group-label{display:none;}
+            .sidebar-item{padding:8px 14px;border-left:none;border:1px solid var(--border-grey);margin-bottom:0;font-size:11px;}
+            .sidebar-item.active{background:var(--text-main);color:white;border-color:var(--text-main);}
+            .sidebar-item.active .material-symbols-outlined{color:white;}
+            .content-area{padding:0;}
+            .overview-mosaic{grid-template-columns:1fr;}
+            .gallery-a,.gallery-c,.gallery-d{grid-template-columns:1fr;}
+            .gallery-a .img-main,.gallery-d .img-main{grid-row:auto;aspect-ratio:4/3;}
+            .gallery-c .img-wide{grid-column:auto;aspect-ratio:4/3;}
+            .gallery-b{grid-template-columns:repeat(2,1fr);}
+            .card-grid{grid-template-columns:1fr;}
         }
     </style>
 </head>
+<body>
 
-<body class="bg-background-pure">
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
-            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
-                <div class="flex items-center gap-16">
-                    <div class="flex flex-col items-center leading-none">
-                        <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
-                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
-                            Journal</span>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid" style="max-width:1600px;margin:0 auto;">
+        <a class="navbar-brand" href="./index.html">
+            <span class="brand-name">DREAM VENUES</span>
+            <span class="brand-sub">High-End Wedding Journal</span>
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-controls="navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenuDesktop">
+            <ul class="navbar-nav ms-lg-4 gap-lg-1">
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./1.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./2.html">婚禮主題</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./3.html" id="desktopDropdown" data-bs-toggle="dropdown">
+                        精選合作夥伴<span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <span class="dropdown-group-label">專業團隊</span>
+                        <a class="dropdown-item" href="#">主持人</a>
+                        <a class="dropdown-item" href="#">攝影師</a>
+                        <a class="dropdown-item" href="#">新秘造型師</a>
+                        <span class="dropdown-group-label dropdown-group-spacer">婚禮美學</span>
+                        <a class="dropdown-item" href="#">新娘婚紗</a>
+                        <a class="dropdown-item" href="#">新郎西服</a>
+                        <a class="dropdown-item" href="#">喜餅禮盒</a>
+                        <a class="dropdown-item" href="#">婚禮小物</a>
                     </div>
-                    <nav class="hidden items-center gap-10 lg:flex">
-                        <a class="nav-link text-xs font-medium transition-colors" href="./index.html">首頁</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./1.html">夢幻場域</a>
-                        <a class="nav-link active text-xs font-medium transition-colors" href="./2.html">職人團隊</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./3.html">衣裳禮餅</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./4.html">籌備進度</a>
-                        <a class="nav-link text-xs font-medium transition-colors" href="./5.html">我的婚禮</a>
-                    </nav>
+                </li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
+            </ul>
+            <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
+                <div class="d-flex align-items-center gap-2">
+                    <input id="search-input" type="text" placeholder="搜尋場地或主題...">
+                    <button id="search-btn" class="btn p-0 material-symbols-outlined" style="color:var(--text-muted);font-size:20px;">search</button>
                 </div>
-                <div class="flex items-center gap-8">
-                    <button
-                        class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
-                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
-                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
-                    </div>
-                </div>
+                <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
             </div>
-        </header>
-        <main class="flex-1 w-full max-w-[1600px] mx-auto">
-            <section class="px-12 py-20 text-center flex flex-col items-center">
-                <span class="text-[10px] uppercase tracking-[0.5em] text-primary mb-6 block font-bold">Curated
-                    Excellence</span>
-                <h2
-                    class="text-5xl md:text-6xl font-serif-tc font-extralight text-luxury-slate mb-8 max-w-4xl leading-tight">
-                    職人團隊：極致雜誌風精品精選
-                </h2>
-                <p class="text-slate-400 max-w-2xl text-sm leading-loose font-light tracking-widest">
-                    我們深信，每場婚禮都是一件流動的藝術品。在此，我們為您引薦業界最具品味與工匠精神的職人，<br />
-                    以細膩的感官與溫柔的視角，為您的重要時刻編織永恆。
-                </p>
-            </section>
-            <div class="flex px-12 pb-32 gap-16">
-                <aside class="w-64 shrink-0">
-                    <div class="sticky top-32 flex flex-col gap-12">
-                        <div>
-                            <h4
-                                class="text-[10px] uppercase tracking-[0.3em] font-bold text-luxury-slate mb-8 border-b border-slate-100 pb-2">
-                                Filter By Style</h4>
-                            <div class="flex flex-col gap-5">
-                                <label class="flex items-center justify-between cursor-pointer group">
-                                    <span
-                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">浪漫溫馨
-                                        Romantic</span>
-                                    <input class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
-                                        type="checkbox" />
-                                </label>
-                                <label class="flex items-center justify-between cursor-pointer group">
-                                    <span
-                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">經典高雅
-                                        Classic</span>
-                                    <input checked=""
-                                        class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
-                                        type="checkbox" />
-                                </label>
-                                <label class="flex items-center justify-between cursor-pointer group">
-                                    <span
-                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">文青簡約
-                                        Minimalist</span>
-                                    <input class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
-                                        type="checkbox" />
-                                </label>
-                                <label class="flex items-center justify-between cursor-pointer group">
-                                    <span
-                                        class="text-xs tracking-widest text-slate-500 group-hover:text-primary transition-colors">奢華宏偉
-                                        Grandeur</span>
-                                    <input class="rounded-full border-slate-200 text-primary focus:ring-primary h-3 w-3"
-                                        type="checkbox" />
-                                </label>
-                            </div>
-                        </div>
-                        <div class="bg-gold-light/20 p-8 rounded-sm">
-                            <p class="text-[9px] uppercase tracking-[0.2em] text-primary mb-2 font-bold">Inquiry</p>
-                            <p class="text-[11px] leading-relaxed text-slate-600 mb-6">需要專屬建議？我們的婚禮顧問隨時為您安排面談。</p>
-                            <a class="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-luxury-slate pb-1 hover:text-primary hover:border-primary transition-all"
-                                href="#">Contact Us</a>
-                        </div>
-                    </div>
-                </aside>
-                <div class="flex-1">
-                    <div class="mb-24">
-                        <div class="airy-header text-center mb-16">
-                            <h3 class="text-3xl font-serif-tc font-light tracking-widest text-luxury-slate">主持人 ·
-                                Masters of Ceremony</h3>
-                            <p class="text-[10px] text-slate-400 mt-2 tracking-[0.2em] font-light">ELEGANT STORYTELLERS
-                            </p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-x-12 gap-y-20">
-                            <div class="group">
-                                <div class="relative aspect-[3/4] overflow-hidden mb-8 bg-slate-50">
-                                    <img alt="Ivy Chen"
-                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ETRw1sAiX37JFE-H_nD87uQiDe0n7ScEgYC9kYhdwOSaQ3EomGIbTLH2ExLx-nQYcskKd0IYKtZKI5Td9PVD2tzyb0amPqlM4HXT7JxpoVrRCE2VJ2-0DFxVzNSQb4MASxydsZVxZyTAYojcTildcuSD3i3QX_lExqsbJTHhakTv1Mtp1yOC0w5xbDYzvOKAUzhUhaUHQehpE4ANQQJKU94nrCBxcPBDaDnl7cYLMGjE9gRmsFoOY5Un2XvyCu6p0Gp-w5nQYYak" />
-                                    <div
-                                        class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    </div>
-                                </div>
-                                <div class="flex flex-col items-center text-center">
-                                    <h4 class="text-2xl font-serif-tc mb-2">陳艾薇 Ivy Chen</h4>
-                                    <p class="text-[11px] uppercase tracking-[0.2em] text-primary mb-4 font-medium">
-                                        Senior Wedding Host</p>
-                                    <p
-                                        class="text-slate-500 text-sm leading-relaxed max-w-[320px] font-light mb-8 italic">
-                                        「用溫潤的嗓音，為您的愛情報告一段最優雅的開場。」
-                                    </p>
-                                    <div class="flex items-center gap-6">
-                                        <button
-                                            class="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-transparent hover:border-primary transition-all pb-1">查看作品集</button>
-                                        <button
-                                            class="px-8 py-3 bg-luxury-slate text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary transition-colors">選定職人</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="group mt-24">
-                                <div class="relative aspect-[3/4] overflow-hidden mb-8 bg-slate-50">
-                                    <img alt="Sophie Lin"
-                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Nd3NhAb_PlGIFkAfosdMB9LShYxEa-NEBKhdDdGa1GD3wgO--261e-ZvWeH8hrjYhdWfcSxpBIuRRWM0kRX3Ol_KiNKT9in35XLcPOPU3xAzL8fxJi1H3d2Hc2U1CkHAf_Bkrelcl7w1rmMy9giaoIKfXB0LytPV7wEy7BlCUd0G6Cl2DzknCEIVp1Uj93P2Dy1FLpA-K1aeLVKTryGQuSDC87xExiAX4wbwDL2PHHuAbNvE7bywtKKKqPIGuhHV18GqNEX12o9N" />
-                                </div>
-                                <div class="flex flex-col items-center text-center">
-                                    <h4 class="text-2xl font-serif-tc mb-2">林曉潔 Sophie Lin</h4>
-                                    <p class="text-[11px] uppercase tracking-[0.2em] text-primary mb-4 font-medium">
-                                        Classical Ceremonialist</p>
-                                    <p
-                                        class="text-slate-500 text-sm leading-relaxed max-w-[320px] font-light mb-8 italic">
-                                        「專注於儀式的神聖與莊重，譜寫皇室般的典雅氛圍。」
-                                    </p>
-                                    <div class="flex items-center gap-6">
-                                        <button
-                                            class="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-transparent hover:border-primary transition-all pb-1">查看作品集</button>
-                                        <button
-                                            class="px-8 py-3 bg-luxury-slate text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary transition-colors">選定職人</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-24">
-                        <div class="airy-header text-center mb-16">
-                            <h3 class="text-3xl font-serif-tc font-light tracking-widest text-luxury-slate">婚禮樂隊 ·
-                                Wedding Band</h3>
-                            <p class="text-[10px] text-slate-400 mt-2 tracking-[0.2em] font-light">MUSICAL JOURNEY</p>
-                        </div>
-                        <div class="grid grid-cols-1 gap-12">
-                            <div class="group relative flex items-center gap-16">
-                                <div class="w-2/3 aspect-video overflow-hidden bg-slate-50">
-                                    <img alt="Jazz Trio"
-                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfz8j7Z0WGoqQpMYjFSeycjEbAg40DxF5_UovHW0mZHbBKa2L5oDiJHxaMywcON0E8b5JIZEhK7l5B9LFags1UsZ8Sgdkqp5ohQn468a0gcBgKIxxj6OP2Kf0fpruc9BhOz7DqRggbusuJ_3j7ALHjSYZWlQ4xDgpsW7L2xC9p469tIGm7S0nszizvOHvkTIiOUVi20bUmcoVkuolauJsvv6BBma6e-AMaHHXqEAeEwtNlAualNNdCKvsW9BmhjOqUiLbxpGCzHCYp" />
-                                </div>
-                                <div class="w-1/3 pr-12">
-                                    <p class="text-[10px] uppercase tracking-[0.3em] text-primary mb-4 font-bold">
-                                        Featured Ensemble</p>
-                                    <h4 class="text-3xl font-serif-tc mb-4">Midnight Jazz Trio</h4>
-                                    <p class="text-slate-500 text-sm leading-loose font-light mb-10">
-                                        擅長將經典爵士樂與現代流行交織，薩克斯風的和弦在夜色中流淌，為晚宴注入如曼哈頓奢華派對般的微醺質感。
-                                    </p>
-                                    <div class="flex flex-col items-start gap-4">
-                                        <button
-                                            class="px-10 py-4 bg-luxury-slate text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary w-full transition-colors">選定職人</button>
-                                        <button
-                                            class="text-[11px] uppercase tracking-[0.2em] font-bold border-b border-luxury-slate/20 hover:border-primary transition-all pb-1 mx-auto">查看演出紀錄</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="airy-header text-center mb-16">
-                            <h3 class="text-3xl font-serif-tc font-light tracking-widest text-luxury-slate">攝影團隊 ·
-                                Visual Arts</h3>
-                            <p class="text-[10px] text-slate-400 mt-2 tracking-[0.2em] font-light">TIMELESS MEMORIES</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-12">
-                            <div class="group">
-                                <div class="relative aspect-square overflow-hidden mb-6 bg-slate-50">
-                                    <img alt="Visual Artist"
-                                        class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa-UksHL1U00COkdqSnB_vRwolTByxWESbCs27-xPAhDMhTXbxBiJ3uSjTCWYBRfhx3wCqac3pEyfPR0fY6-DEta4qpZ0ezgNbL9hWbs372r-8yS1xHyl8lyTaXks0BpAjKnieu2UMCqYxiLT5hLb30xfGlX_lr7ar27f8h4bQcCPMJQOwsFFrllMqM30olS_2nykAzWk9RbmZTpCrkdoIrOxFsvCXHCbSIw0JAxNuQX5xKFj-Y47FTCeejGVK0F0c-xlcIBuzHclZ" />
-                                </div>
-                                <div class="text-center">
-                                    <h4 class="text-xl font-serif-tc mb-1">David Li</h4>
-                                    <p class="text-[10px] tracking-[0.2em] text-slate-400 mb-6 uppercase">Candid
-                                        Storyteller</p>
-                                    <button
-                                        class="px-8 py-3 border border-luxury-slate text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-luxury-slate hover:text-white transition-all">Select
-                                        Studio</button>
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="relative aspect-square overflow-hidden mb-6 bg-slate-50">
-                                    <div
-                                        class="w-full h-full bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8ETRw1sAiX37JFE-H_nD87uQiDe0n7ScEgYC9kYhdwOSaQ3EomGIbTLH2ExLx-nQYcskKd0IYKtZKI5Td9PVD2tzyb0amPqlM4HXT7JxpoVrRCE2VJ2-0DFxVzNSQb4MASxydsZVxZyTAYojcTildcuSD3i3QX_lExqsbJTHhakTv1Mtp1yOC0w5xbDYzvOKAUzhUhaUHQehpE4ANQQJKU94nrCBxcPBDaDnl7cYLMGjE9gRmsFoOY5Un2XvyCu6p0Gp-w5nQYYak')] bg-cover bg-center grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <h4 class="text-xl font-serif-tc mb-1">Aurelie Studio</h4>
-                                    <p class="text-[10px] tracking-[0.2em] text-slate-400 mb-6 uppercase">Fine Art Film
-                                    </p>
-                                    <button
-                                        class="px-8 py-3 border border-luxury-slate text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-luxury-slate hover:text-white transition-all">Select
-                                        Studio</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-center mt-32">
-                        <div class="w-24 h-px bg-slate-200 mb-12"></div>
-                        <button
-                            class="text-[11px] uppercase tracking-[0.4em] font-bold text-luxury-slate hover:text-primary transition-colors flex items-center gap-4 group">
-                            Discover More
-                            <span
-                                class="material-symbols-outlined text-[18px] group-hover:translate-y-1 transition-transform">expand_more</span>
-                        </button>
-                    </div>
+        </div>
+    </div>
+</nav>
+
+<!-- OFFCANVAS -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+    <div class="offcanvas-header">
+        <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End Wedding Journal</span></div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="offcanvas-search">
+            <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-muted);">search</span>
+            <input type="text" placeholder="搜尋場地或主題...">
+        </div>
+        <ul class="navbar-nav gap-0">
+            <li class="nav-item"><a class="nav-link nav-link-item" href="./1.html">婚禮方案</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-item" href="./2.html">婚禮主題</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="#" data-bs-toggle="dropdown" data-bs-auto-close="inside">
+                    精選合作夥伴<span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                </a>
+                <div class="dropdown-menu">
+                    <span class="dropdown-group-label">專業團隊</span>
+                    <a class="dropdown-item" href="#">主持人</a>
+                    <a class="dropdown-item" href="#">攝影師</a>
+                    <span class="dropdown-group-label dropdown-group-spacer">婚禮美學</span>
+                    <a class="dropdown-item" href="#">新娘婚紗</a>
                 </div>
-            </div>
-        </main>
-        <footer class="bg-white border-t border-slate-50 px-12 py-24">
-            <div class="max-w-[1600px] mx-auto grid grid-cols-12 gap-12">
-                <div class="col-span-4">
-                    <div class="flex items-center gap-2 mb-8">
-                        <div class="size-6 text-primary">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                        <h2 class="text-xl font-display italic tracking-widest">THE VOW</h2>
-                    </div>
-                    <p class="text-slate-400 text-xs leading-loose tracking-[0.1em] font-light max-w-xs uppercase">
-                        Redefining the modern wedding experience through the lens of luxury and craftsmanship.
-                    </p>
-                </div>
-                <div class="col-span-2">
-                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-8">Services</h5>
-                    <nav class="flex flex-col gap-4 text-xs font-light tracking-widest text-slate-500">
-                        <a class="hover:text-primary transition-colors" href="#">場地導覽</a>
-                        <a class="hover:text-primary transition-colors" href="#">職人諮詢</a>
-                        <a class="hover:text-primary transition-colors" href="#">禮服選物</a>
-                        <a class="hover:text-primary transition-colors" href="#">風格攝影</a>
-                    </nav>
-                </div>
-                <div class="col-span-2">
-                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-8">Journal</h5>
-                    <nav class="flex flex-col gap-4 text-xs font-light tracking-widest text-slate-500">
-                        <a class="hover:text-primary transition-colors" href="#">品牌故事</a>
-                        <a class="hover:text-primary transition-colors" href="#">婚禮靈感</a>
-                        <a class="hover:text-primary transition-colors" href="#">客戶好評</a>
-                        <a class="hover:text-primary transition-colors" href="#">聯絡我們</a>
-                    </nav>
-                </div>
-                <div class="col-span-4 flex flex-col items-end">
-                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-8">Newsletter</h5>
-                    <div class="w-full flex border-b border-slate-200 py-2">
-                        <input
-                            class="bg-transparent border-none text-[10px] uppercase tracking-[0.2em] w-full focus:ring-0 placeholder:text-slate-300"
-                            placeholder="Your Email" type="email" />
-                        <button
-                            class="material-symbols-outlined text-slate-400 hover:text-primary">arrow_forward</button>
-                    </div>
-                    <div class="flex gap-6 mt-12">
-                        <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
-                                class="material-symbols-outlined text-[20px]">photo_camera</span></a>
-                        <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
-                                class="material-symbols-outlined text-[20px]">share</span></a>
-                        <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
-                                class="material-symbols-outlined text-[20px]">public</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-24 text-center">
-                <p class="text-[9px] uppercase tracking-[0.4em] text-slate-300 font-light">
-                    © 2024 THE VOW Wedding Concierge. All Rights Reserved. Crafted for the Modern Romantic.
-                </p>
-            </div>
-        </footer>
+            </li>
+            <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
+        </ul>
+        <a href="client_login.html" class="offcanvas-login">
+            <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;margin-right:6px;">person</span>會員登入
+        </a>
+    </div>
+</div>
+
+<div class="page-wrap">
+
+    <!-- HERO -->
+    <div class="page-hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-eyebrow">Wedding Themes &amp; Venues</span>
+            <h1 class="hero-title">婚禮主題 &amp; 場地</h1>
+            <div class="hero-line"></div>
+            <p class="hero-sub">探索專屬於你的婚禮風格與理想場域</p>
+        </div>
     </div>
 
-</body>
+    <!-- BROWSE LAYOUT -->
+    <div class="browse-layout">
 
+        <!-- ── LEFT SIDEBAR ── -->
+        <aside class="sidebar">
+            <div class="sidebar-logo-line"><span>Filter · 篩選</span></div>
+
+            <!-- 全部 -->
+            <div class="sidebar-group">
+                <button class="sidebar-item active" data-tab="all">
+                    <span class="material-symbols-outlined">dashboard</span>全部瀏覽
+                </button>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- 婚禮主題 -->
+            <div class="sidebar-group">
+                <span class="sidebar-group-label">婚禮主題</span>
+                <button class="sidebar-item" data-tab="western-chapel">
+                    <span class="material-symbols-outlined">church</span>西式教堂
+                </button>
+                <button class="sidebar-item" data-tab="forest">
+                    <span class="material-symbols-outlined">forest</span>森林系
+                </button>
+                <button class="sidebar-item" data-tab="chinese-mansion">
+                    <span class="material-symbols-outlined">home_work</span>中式老宅
+                </button>
+                <button class="sidebar-item" data-tab="disco">
+                    <span class="material-symbols-outlined">nightlife</span>迪斯可
+                </button>
+                <button class="sidebar-item" data-tab="classic-bw">
+                    <span class="material-symbols-outlined">contrast</span>經典黑／白
+                </button>
+                <button class="sidebar-item" data-tab="oriental">
+                    <span class="material-symbols-outlined">spa</span>中日式
+                </button>
+                <button class="sidebar-item" data-tab="nature">
+                    <span class="material-symbols-outlined">eco</span>自然花草
+                </button>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <!-- 場地地點 -->
+            <div class="sidebar-group">
+                <span class="sidebar-group-label">場地地點</span>
+                <button class="sidebar-item" data-tab="venue-hotel">
+                    <span class="material-symbols-outlined">hotel</span>飯店宴會廳
+                </button>
+                <button class="sidebar-item" data-tab="venue-outdoor">
+                    <span class="material-symbols-outlined">park</span>戶外場地
+                </button>
+                <button class="sidebar-item" data-tab="venue-chapel">
+                    <span class="material-symbols-outlined">brightness_5</span>教堂
+                </button>
+            </div>
+        </aside>
+
+        <!-- ── MAIN CONTENT ── -->
+        <main class="content-area">
+
+            <!-- ══ 全部 ══ -->
+            <div class="theme-section active" data-section="all">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">All Themes &amp; Venues</span><h2 class="section-title">所有主題與場地</h2></div>
+                    <span class="section-count">7 主題 · 3 場地</span>
+                </div>
+                <div class="overview-mosaic fade-in">
+                    <div class="mosaic-main" onclick="openTab('western-chapel')">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" alt="西式教堂">
+                        <div class="mosaic-label"><span class="mosaic-tag">Western Chapel</span><span class="mosaic-name">西式教堂婚禮</span></div>
+                    </div>
+                    <div class="mosaic-right">
+                        <div class="mosaic-small" onclick="openTab('forest')">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" alt="森林系">
+                            <div class="mosaic-label"><span class="mosaic-tag">Forest</span><span class="mosaic-name">森林系婚禮</span></div>
+                        </div>
+                        <div class="mosaic-small" onclick="openTab('disco')">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="迪斯可">
+                            <div class="mosaic-label"><span class="mosaic-tag">Disco</span><span class="mosaic-name">迪斯可婚禮</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-header fade-in"><span class="sub-label">精選場地預覽</span><div class="sub-line"></div></div>
+                <div class="card-grid fade-in">
+                    <!-- hotel preview -->
+                    <div class="venue-card" onclick="openTab('venue-hotel')">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC" alt="林酒店">
+                            <div class="vc-badge">飯店</div><div class="vc-type-badge">室內</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">林酒店</p><span class="vc-name-en">THE LINN HOTEL</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>台中市西屯區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>800</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_bus</span>捷運綠線</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>自有停車場</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                    <!-- outdoor preview -->
+                    <div class="venue-card" onclick="openTab('venue-outdoor')">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" alt="一抹森林">
+                            <div class="vc-badge">戶外</div><div class="vc-type-badge">戶外</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">一抹森林</p><span class="vc-name-en">FOREST TOUCH</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>新北市三峽區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>200</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_car</span>自行開車</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>免費停車場</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 西式教堂 ══ -->
+            <div class="theme-section" data-section="western-chapel">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Western Chapel</span><h2 class="section-title">西式教堂婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" alt="西式教堂">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Western Chapel</span><span class="tc-title">西式教堂婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">以純白教堂為舞台，玫瑰拱門、彩繪玻璃與燭光相伴，讓誓言在神聖氛圍中永恆留存。適合嚮往歐式浪漫與莊重儀式感的新人。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">教堂儀式場佈</span><span class="tc-include-tag">花藝拱門</span>
+                                <span class="tc-include-tag">主持人</span><span class="tc-include-tag">管風琴演奏</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">迎賓茶點</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 30 – 300 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>室內 / 戶外教堂</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section fade-in" style="margin-top:32px;">
+                    <div class="sub-header"><span class="sub-label">精選影像</span><div class="sub-line"></div></div>
+                    <div class="gallery-a">
+                        <div class="img-main" data-caption="教堂婚禮"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" alt=""><div class="img-overlay"><span class="img-caption">Chapel Ceremony</span></div></div>
+                        <div class="img-sub" data-caption="花藝拱門"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc" alt=""><div class="img-overlay"><span class="img-caption">Floral Arch</span></div></div>
+                        <div class="img-sub" data-caption="婚禮走道"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS" alt=""><div class="img-overlay"><span class="img-caption">Wedding Aisle</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 森林系 ══ -->
+            <div class="theme-section" data-section="forest">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Forest</span><h2 class="section-title">森林系婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" alt="森林系">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Forest Wedding</span><span class="tc-title">森林系婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">走入林間，以蒼翠樹海為背景，乾燥花、藤蔓與木質調元素交織成自然詩篇。適合嚮往清新、無拘束感的新人，在大自然的見證下交換誓言。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">林間儀式場佈</span><span class="tc-include-tag">乾燥花拱門</span>
+                                <span class="tc-include-tag">木質桌椅租借</span><span class="tc-include-tag">燈串裝置</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">有機迎賓茶點</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 20 – 200 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>戶外森林場地</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section fade-in" style="margin-top:32px;">
+                    <div class="sub-header"><span class="sub-label">精選影像</span><div class="sub-line"></div></div>
+                    <div class="gallery-d">
+                        <div class="img-main" data-caption="林間婚禮"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" alt=""><div class="img-overlay"><span class="img-caption">Forest Wedding</span></div></div>
+                        <div class="img-sub" data-caption="乾燥花布置"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC" alt=""><div class="img-overlay"><span class="img-caption">Dried Flowers</span></div></div>
+                        <div class="img-sub" data-caption="燈串氣氛"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Szm2h1wkuLv2R0qEsmP1tjOtFMEY-KMs0biil-mhgmFMYx-0Tpb92VlE-dyLbGXAC4fvopbNxdVonrOfd45Iz3GsKPjGd5IY7KUj01TMUI2e4GtQWEv77llJREjhInrspXo2WE1whPTa8_zTgxtNCHYwBRU-15JzrCTyn2gtEL31_pA4wA7yA4V2BSGB1UFYITe72Tj_Zokclx4p6gJK0F_U7G4YizM2TGIEEQl8S8tYyAkoY78HcgOPIAlWHasxjpk86Kym00SO" alt=""><div class="img-overlay"><span class="img-caption">String Lights</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 中式老宅 ══ -->
+            <div class="theme-section" data-section="chinese-mansion">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Chinese Heritage</span><h2 class="section-title">中式老宅婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" alt="中式老宅">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Chinese Heritage Mansion</span><span class="tc-title">中式老宅婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">百年老宅的磚瓦庭院中，紅燈籠、青瓦迴廊與傳統茶禮交融，呈現東方婚禮最細膩的溫度。適合嚮往傳統文化底蘊與人文情懷的新人。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">老宅場地租借</span><span class="tc-include-tag">傳統茶禮儀式</span>
+                                <span class="tc-include-tag">紅燈籠佈置</span><span class="tc-include-tag">漢服造型</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">中式喜宴</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 20 – 150 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>室內 / 庭院</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section fade-in" style="margin-top:32px;">
+                    <div class="sub-header"><span class="sub-label">精選影像</span><div class="sub-line"></div></div>
+                    <div class="gallery-c">
+                        <div class="img-top" data-caption="老宅庭院"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" alt=""><div class="img-overlay"><span class="img-caption">Heritage Courtyard</span></div></div>
+                        <div class="img-top" data-caption="茶禮儀式"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr" alt=""><div class="img-overlay"><span class="img-caption">Tea Ceremony</span></div></div>
+                        <div class="img-wide" data-caption="庭院全景"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" alt=""><div class="img-overlay"><span class="img-caption">Courtyard Panorama</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 迪斯可 ══ -->
+            <div class="theme-section" data-section="disco">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Disco &amp; Party</span><h2 class="section-title">迪斯可婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="迪斯可">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Disco &amp; Party Wedding</span><span class="tc-title">迪斯可婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">鏡球旋轉、霓虹閃爍，婚禮變成一場盛大派對！復古迪斯可氛圍融合現代 DJ 音樂，讓賓客在歡笑與舞動中共同見證這一刻。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">鏡球場佈</span><span class="tc-include-tag">霓虹燈裝置</span>
+                                <span class="tc-include-tag">DJ 音響設備</span><span class="tc-include-tag">乾冰效果</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">派對點心</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 50 – 400 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>室內宴會廳</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section fade-in" style="margin-top:32px;">
+                    <div class="sub-header"><span class="sub-label">精選影像</span><div class="sub-line"></div></div>
+                    <div class="gallery-b">
+                        <div class="img-item" data-caption="鏡球場景"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh" alt=""><div class="img-overlay"><span class="img-caption">Mirror Ball</span></div></div>
+                        <div class="img-item" data-caption="舞池氣氛"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" alt=""><div class="img-overlay"><span class="img-caption">Dance Floor</span></div></div>
+                        <div class="img-item" data-caption="霓虹燈佈置"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxVOjwBt8pt89eWwPRfnlgOY4MirbxvsGrA1gUie1D2r_bt8PhYgvgo6UojsTupmvjuN4mEM2akGeoVoVMycXakB0e5uIGoQZfXw8ADoKEVKOZ34NQvDKd9RDKHC8S23M8uaMwSm-eBJx6pJda7nTOZ3FNfQH7RMcZiE2rBYWXgpuGcJR79uqYbha5fEXH9Fgof3qEMe-2cuU3pl6-rqbeuT8pfWwphVStrwIBu31Q3LkFv75b5Ku1GBMlWKnzLY0GaZBAcLWfLLY" alt=""><div class="img-overlay"><span class="img-caption">Neon Lights</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 經典黑/白 ══ -->
+            <div class="theme-section" data-section="classic-bw">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Classic B&amp;W</span><h2 class="section-title">經典黑／白婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" alt="經典黑白">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Classic Black &amp; White</span><span class="tc-title">經典黑／白婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">黑與白的極致對比，演繹時間永恆的優雅。大理石桌面、黑色燭台、純白花牆，每一個細節都是對精緻的致敬。適合追求低調奢華的現代新人。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">黑白主題場佈</span><span class="tc-include-tag">白色花牆</span>
+                                <span class="tc-include-tag">大理石桌面</span><span class="tc-include-tag">黑色燭台</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">精緻甜點台</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 30 – 350 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>室內宴會廳</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section fade-in" style="margin-top:32px;">
+                    <div class="sub-header"><span class="sub-label">精選影像</span><div class="sub-line"></div></div>
+                    <div class="gallery-b">
+                        <div class="img-item" data-caption="白色花牆"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" alt=""><div class="img-overlay"><span class="img-caption">White Flower Wall</span></div></div>
+                        <div class="img-item" data-caption="黑白宴會廳"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR" alt=""><div class="img-overlay"><span class="img-caption">Classic Ballroom</span></div></div>
+                        <div class="img-item" data-caption="燭台細節"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" alt=""><div class="img-overlay"><span class="img-caption">Candle Details</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 中日式 ══ -->
+            <div class="theme-section" data-section="oriental">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Oriental</span><h2 class="section-title">中日式婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh" alt="中日式">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Oriental Style</span><span class="tc-title">中日式婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">融合中式庭院的雅致與日式禪意的靜謐，以枯山水、和紙燈籠、緋紅楓葉點綴，創造兼具底蘊與現代感的東方婚禮。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">東方風格場佈</span><span class="tc-include-tag">和紙燈籠</span>
+                                <span class="tc-include-tag">枯山水造景</span><span class="tc-include-tag">和服租借</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">和式茶點</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 20 – 200 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>室內 / 庭院</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 自然花草 ══ -->
+            <div class="theme-section" data-section="nature">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Theme · Botanical</span><h2 class="section-title">自然花草婚禮</h2></div>
+                    <span class="section-count">主題系別</span>
+                </div>
+                <div class="theme-card fade-in">
+                    <div class="tc-img">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="自然花草">
+                        <div class="tc-overlay"><span class="tc-eyebrow">Natural Botanical</span><span class="tc-title">自然花草婚禮</span></div>
+                    </div>
+                    <div class="tc-body">
+                        <p class="tc-desc">鮮花滿溢的空間裡，玫瑰、繡球、芍藥交織成一片花海。以大地色系為基調，呈現自然而不失精緻的浪漫氛圍。</p>
+                        <div class="tc-includes">
+                            <span class="tc-includes-label">包含項目 · Includes</span>
+                            <div class="tc-include-tags">
+                                <span class="tc-include-tag">大型花藝裝置</span><span class="tc-include-tag">桌花設計</span>
+                                <span class="tc-include-tag">新娘捧花</span><span class="tc-include-tag">花牆背板</span>
+                                <span class="tc-include-tag">婚禮攝影</span><span class="tc-include-tag">有機花草茶</span>
+                            </div>
+                        </div>
+                        <div class="tc-meta-row">
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">group</span>適合 30 – 300 人</span>
+                            <span class="tc-meta-item"><span class="material-symbols-outlined">location_on</span>室內 / 戶外</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 場地：飯店 ══ -->
+            <div class="theme-section" data-section="venue-hotel">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Venues · Luxury Hotels</span><h2 class="section-title">飯店宴會廳</h2></div>
+                    <span class="section-count">2 個場地</span>
+                </div>
+                <div class="card-grid">
+                    <div class="venue-card fade-in">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC" alt="林酒店">
+                            <div class="vc-badge">飯店</div><div class="vc-type-badge">室內</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">林酒店</p><span class="vc-name-en">THE LINN HOTEL</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>台中市西屯區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>800</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_bus</span>捷運綠線 / 台灣大道站</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>自有停車場 500 位</span>
+                            </div>
+                            <div class="vc-tags">
+                                <span class="vc-tag">室內宴會廳</span><span class="vc-tag">可包場</span><span class="vc-tag">無障礙設施</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                    <div class="venue-card fade-in">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Szm2h1wkuLv2R0qEsmP1tjOtFMEY-KMs0biil-mhgmFMYx-0Tpb92VlE-dyLbGXAC4fvopbNxdVonrOfd45Iz3GsKPjGd5IY7KUj01TMUI2e4GtQWEv77llJREjhInrspXo2WE1whPTa8_zTgxtNCHYwBRU-15JzrCTyn2gtEL31_pA4wA7yA4V2BSGB1UFYITe72Tj_Zokclx4p6gJK0F_U7G4YizM2TGIEEQl8S8tYyAkoY78HcgOPIAlWHasxjpk86Kym00SO" alt="東方文華">
+                            <div class="vc-badge">飯店</div><div class="vc-type-badge">室內</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">東方文華</p><span class="vc-name-en">MANDARIN ORIENTAL</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>台北市中正區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>600</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_bus</span>捷運紅線 / 忠孝新生站</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>地下停車場 200 位</span>
+                            </div>
+                            <div class="vc-tags">
+                                <span class="vc-tag">室內宴會廳</span><span class="vc-tag">露台景觀</span><span class="vc-tag">五星服務</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 場地：戶外 ══ -->
+            <div class="theme-section" data-section="venue-outdoor">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Venues · Outdoor</span><h2 class="section-title">戶外婚禮場地</h2></div>
+                    <span class="section-count">2 個場地</span>
+                </div>
+                <div class="card-grid">
+                    <div class="venue-card fade-in">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" alt="一抹森林">
+                            <div class="vc-badge">戶外</div><div class="vc-type-badge">戶外</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">一抹森林</p><span class="vc-name-en">FOREST TOUCH</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>新北市三峽區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>200</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_car</span>台65 轉接駁車</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>免費停車 100 位</span>
+                            </div>
+                            <div class="vc-tags">
+                                <span class="vc-tag">戶外草地</span><span class="vc-tag">森林系</span><span class="vc-tag">備用室內空間</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                    <div class="venue-card fade-in">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="為愛庭園">
+                            <div class="vc-badge">戶外</div><div class="vc-type-badge">戶外</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">為愛庭園</p><span class="vc-name-en">LOVE GARDEN</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>桃園市大溪區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>300</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_car</span>國道3 大溪交流道</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>免費停車 150 位</span>
+                            </div>
+                            <div class="vc-tags">
+                                <span class="vc-tag">玫瑰庭園</span><span class="vc-tag">半露天</span><span class="vc-tag">夜間燈光</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ 場地：教堂 ══ -->
+            <div class="theme-section" data-section="venue-chapel">
+                <div class="section-header fade-in">
+                    <div><span class="section-eyebrow">Venues · Chapel</span><h2 class="section-title">教堂場地</h2></div>
+                    <span class="section-count">2 個場地</span>
+                </div>
+                <div class="card-grid">
+                    <div class="venue-card fade-in">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxVOjwBt8pt89eWwPRfnlgOY4MirbxvsGrA1gUie1D2r_bt8PhYgvgo6UojsTupmvjuN4mEM2akGeoVoVMycXakB0e5uIGoQZfXw8ADoKEVKOZ34NQvDKd9RDKHC8S23M8uaMwSm-eBJx6pJda7nTOZ3FNfQH7RMcZiE2rBYWXgpuGcJR79uqYbha5fEXH9Fgof3qEMe-2cuU3pl6-rqbeuT8pfWwphVStrwIBu31Q3LkFv75b5Ku1GBMlWKnzLY0GaZBAcLWfLLY" alt="萊特薇庭">
+                            <div class="vc-badge">教堂</div><div class="vc-type-badge">室內</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">萊特薇庭</p><span class="vc-name-en">WRIGHT GARDEN</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>台北市內湖區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>300</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_bus</span>捷運文湖線 / 西湖站</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>周邊停車場 80 位</span>
+                            </div>
+                            <div class="vc-tags">
+                                <span class="vc-tag">歐式教堂</span><span class="vc-tag">彩繪玻璃</span><span class="vc-tag">附設庭院</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                    <div class="venue-card fade-in">
+                        <div class="vc-img">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" alt="路易斯教堂">
+                            <div class="vc-badge">教堂</div><div class="vc-type-badge">室內</div>
+                        </div>
+                        <div class="vc-body">
+                            <p class="vc-name">路易斯教堂</p><span class="vc-name-en">LOUIS CHAPEL</span>
+                            <div class="vc-meta">
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">location_on</span><strong>台中市北屯區</strong></span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">group</span>最多 <strong>250</strong> 人</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">directions_bus</span>台灣大道 / 崇德路口</span>
+                                <span class="vc-meta-item"><span class="material-symbols-outlined">local_parking</span>自有停車場 120 位</span>
+                            </div>
+                            <div class="vc-tags">
+                                <span class="vc-tag">哥德式建築</span><span class="vc-tag">管風琴</span><span class="vc-tag">附設接待廳</span>
+                            </div>
+                        </div>
+                        <div class="vc-footer"><span class="vc-footer-link">查看詳情 →</span><div class="vc-line"></div></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div><!-- end browse-layout -->
+</div><!-- end page-wrap -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&#215;</button>
+    <button class="lightbox-prev" id="lightboxPrev"><span class="material-symbols-outlined">chevron_left</span></button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-next" id="lightboxNext"><span class="material-symbols-outlined">chevron_right</span></button>
+    <span class="lightbox-caption" id="lightboxCaption"></span>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div><span class="footer-brand-name">DREAM VENUES</span><span class="footer-brand-sub">High-End Wedding Journal</span></div>
+            <p class="footer-desc">致力於為每一對新人打造專屬的婚禮記憶。在最純白的場景中，見證最誠摯的誓言。</p>
+            <div class="footer-icons">
+                <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">share</span></a>
+                <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></a>
+            </div>
+        </div>
+        <div class="footer-nav-cols">
+            <div class="footer-nav-col">
+                <span class="footer-nav-title">探索平台</span>
+                <a href="#" class="footer-nav-link">精選場地</a>
+                <a href="#" class="footer-nav-link">婚禮主題</a>
+                <a href="#" class="footer-nav-link">風格靈感</a>
+                <a href="#" class="footer-nav-link">最新動態</a>
+            </div>
+            <div class="footer-nav-col">
+                <span class="footer-nav-title">客戶服務</span>
+                <a href="#" class="footer-nav-link">預約流程</a>
+                <a href="#" class="footer-nav-link">常見問題</a>
+                <a href="#" class="footer-nav-link">隱私政策</a>
+                <a href="#" class="footer-nav-link">聯繫我們</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Hero
+    setTimeout(() => document.getElementById('heroBg').classList.add('loaded'), 100);
+
+    // Navbar scroll
+    const navbar = document.querySelector('.navbar');
+    let lastST = 0;
+    window.addEventListener('scroll', () => {
+        const st = window.pageYOffset;
+        if (Math.abs(lastST - st) <= 10) return;
+        navbar.classList.toggle('nav-hidden', st > lastST && st > 80);
+        lastST = st;
+    });
+    document.addEventListener('mousemove', e => { if (e.clientY < 50) navbar.classList.remove('nav-hidden'); });
+
+    // Search
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('search-input');
+    if (searchBtn) searchBtn.addEventListener('click', () => {
+        if (!searchInput.classList.contains('open')) { searchInput.classList.add('open'); searchInput.focus(); }
+        else { searchInput.classList.remove('open'); }
+    });
+
+    // Tab switching
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const sections = document.querySelectorAll('.theme-section');
+
+    function openTab(tab) {
+        sidebarItems.forEach(i => i.classList.toggle('active', i.dataset.tab === tab));
+        sections.forEach(s => {
+            const show = s.dataset.section === tab;
+            s.classList.toggle('active', show);
+            if (show) {
+                s.querySelectorAll('.fade-in').forEach((el, i) => {
+                    el.classList.remove('visible');
+                    setTimeout(() => el.classList.add('visible'), 60 + i * 60);
+                });
+            }
+        });
+        if (window.innerWidth <= 991) {
+            const content = document.querySelector('.content-area');
+            if (content) window.scrollTo({ top: content.offsetTop - 20, behavior: 'smooth' });
+        }
+    }
+
+    window.openTab = openTab;
+    sidebarItems.forEach(item => item.addEventListener('click', () => openTab(item.dataset.tab)));
+
+    // Initial
+    setTimeout(() => {
+        const active = document.querySelector('.theme-section.active');
+        if (active) active.querySelectorAll('.fade-in').forEach((el, i) => setTimeout(() => el.classList.add('visible'), 120 + i * 70));
+    }, 150);
+
+    // IntersectionObserver
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    // Lightbox
+    let lbImages = [], lbIndex = 0;
+    function buildImages() {
+        const active = document.querySelector('.theme-section.active');
+        return active ? Array.from(active.querySelectorAll('[data-caption] img')) : [];
+    }
+    function openLightbox(img, caption) {
+        lbImages = buildImages(); lbIndex = lbImages.indexOf(img);
+        document.getElementById('lightboxImg').src = img.src;
+        document.getElementById('lightboxCaption').textContent = caption || '';
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+    function showLb(i) {
+        if (!lbImages.length) return;
+        lbIndex = (i + lbImages.length) % lbImages.length;
+        document.getElementById('lightboxImg').src = lbImages[lbIndex].src;
+        document.getElementById('lightboxCaption').textContent = lbImages[lbIndex].closest('[data-caption]')?.dataset.caption || '';
+    }
+    document.querySelectorAll('[data-caption]').forEach(w => w.addEventListener('click', () => openLightbox(w.querySelector('img'), w.dataset.caption)));
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => showLb(lbIndex - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => showLb(lbIndex + 1));
+    document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+        if (!document.getElementById('lightbox').classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showLb(lbIndex - 1);
+        if (e.key === 'ArrowRight') showLb(lbIndex + 1);
+    });
+});
+</script>
+</body>
 </html>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="zh-TW">
 
 <head>
@@ -26,9 +27,7 @@
             --font-sans: "Plus Jakarta Sans", "Noto Sans TC", sans-serif;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: var(--font-sans);
@@ -42,9 +41,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* NAVBAR — Bootstrap RWD 版 */
-
-        /* 外層固定列 */
+        /* ─── NAVBAR ─── */
         .navbar {
             background-color: rgba(255, 255, 255, 0.87) !important;
             backdrop-filter: blur(12px);
@@ -52,39 +49,12 @@
             padding: 0 48px;
             min-height: 80px;
             transition: transform 0.4s ease-in-out, background-color 0.3s;
-            /* 增加平滑動畫 */
             transform: translateY(0);
-            /* 預設在原位 */
         }
 
-        .navbar.nav-hidden {
-            transform: translateY(-100%);
-            /* 往上推到畫面外 */
-        }
+        .navbar.nav-hidden { transform: translateY(-100%); }
 
-        /* 手機版收起時補padding */
-        @media (max-width: 991.98px) {
-            .navbar-collapse {
-                background: white;
-                padding: 20px 24px 30px;
-                
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-            }
-
-
-
-            /* 調整手機版連結的字體大小，稍微放大一點方便手指點擊 */
-            .nav-link-item {
-                font-size: 14px !important;
-                padding: 12px 0 !important;
-            }
-        }
-
-        /* 品牌區塊 */
-        .navbar-brand {
-            line-height: 1;
-            padding: 0;
-        }
+        .navbar-brand { line-height: 1; padding: 0; }
 
         .brand-name {
             font-size: 18px;
@@ -106,24 +76,10 @@
             margin-top: 4px;
         }
 
-        /* 漢堡按鈕：只在手機出現（Bootstrap 預設） */
         .navbar-toggler {
             border: none !important;
             box-shadow: none !important;
             padding: 4px 6px;
-        }
-
-
-
-
-        @media (max-width: 991.98px) {
-            .navbar-collapse {
-                background: white;
-                padding: 16px 8px 24px;
-                margin: 0 -24px;
-                padding-left: 24px;
-                padding-right: 24px;
-            }
         }
 
         /* 一般選單連結 */
@@ -134,20 +90,14 @@
             letter-spacing: 0.1em;
             transition: color 0.3s;
             padding: 8px 0 !important;
-            /* 手機版上下間距 */
             white-space: nowrap;
         }
 
         @media (min-width: 992px) {
-            .nav-link-item {
-                padding: 8px 12px !important;
-            }
+            .nav-link-item { padding: 8px 12px !important; }
         }
 
-        .nav-link-item:hover {
-            color: var(--accent-gold) !important;
-        }
-
+        .nav-link-item:hover { color: var(--accent-gold) !important; }
 
         .nav-item.dropdown .dropdown-toggle {
             font-size: 12px;
@@ -158,19 +108,12 @@
         }
 
         @media (min-width: 992px) {
-            .nav-item.dropdown .dropdown-toggle {
-                padding: 8px 12px !important;
-            }
+            .nav-item.dropdown .dropdown-toggle { padding: 8px 12px !important; }
         }
 
-        .nav-item.dropdown .dropdown-toggle:hover {
-            color: var(--accent-gold) !important;
-        }
+        .nav-item.dropdown .dropdown-toggle:hover { color: var(--accent-gold) !important; }
 
-        /* 移除 Bootstrap 預設箭頭，用 Material icon 代替 */
-        .dropdown-toggle::after {
-            display: none !important;
-        }
+        .dropdown-toggle::after { display: none !important; }
 
         .dropdown-toggle .material-symbols-outlined {
             font-size: 16px;
@@ -182,21 +125,17 @@
             transform: rotate(180deg);
         }
 
-        /* 僅在桌面版（寬度 992px 以上）觸發 hover 效果 */
+        /* 桌面版 hover 展開 dropdown */
         @media (min-width: 992px) {
-
-            /* 當滑鼠移入 dropdown 容器時，顯示下拉選單 */
             .nav-item.dropdown:hover .dropdown-menu {
                 display: block;
                 margin-top: 0;
-                /* 移除間距，防止滑鼠移往選單時因為空隙而消失 */
             }
-
-            /* 同步觸發你原本寫的箭頭旋轉動畫 */
             .nav-item.dropdown:hover .dropdown-toggle .material-symbols-outlined {
                 transform: rotate(180deg);
             }
         }
+
 
         /* Dropdown 面板 */
         .dropdown-menu {
@@ -206,20 +145,6 @@
             padding: 24px 28px !important;
             min-width: 180px;
         }
-
-        /* 手機板 dropdown 不要絕對定位，直接展開在選單下方 */
-        @media (max-width: 991.98px) {
-            .dropdown-menu {
-                border: none !important;
-                box-shadow: none !important;
-                padding: 8px 0 8px 16px !important;
-                border-left: 2px solid rgba(197, 160, 89, 0.3) !important;
-                border-radius: 0 !important;
-                margin-left: 8px;
-                background-color: #FFFFFF;
-            }
-        }
-
 
         .dropdown-group-label {
             font-size: 12px;
@@ -232,11 +157,8 @@
             margin-bottom: 4px;
         }
 
-        /* 第二組上方間距 */
-        .dropdown-group-label+.dropdown-group-label,
-        .dropdown-group-spacer {
-            margin-top: 20px;
-        }
+        .dropdown-group-label + .dropdown-group-label,
+        .dropdown-group-spacer { margin-top: 20px; }
 
         .dropdown-item {
             font-size: 13px !important;
@@ -248,17 +170,12 @@
             transition: color 0.25s;
         }
 
-        .dropdown-item:hover {
-            color: var(--accent-gold) !important;
-        }
+        .dropdown-item:hover { color: var(--accent-gold) !important; }
 
-        /* 移除 Bootstrap 的 hover 背景色 */
         .dropdown-item:focus,
-        .dropdown-item:active {
-            background: transparent !important;
-        }
+        .dropdown-item:active { background: transparent !important; }
 
-        /* 右側工具列 */
+        /* 右側工具列（桌面版） */
         .navbar-tools {
             display: flex;
             align-items: center;
@@ -276,34 +193,87 @@
             transition: width 0.45s ease, opacity 0.45s ease;
         }
 
-        #search-input::placeholder {
-            color: var(--text-muted);
+        #search-input::placeholder { color: var(--text-muted); }
+
+        #search-input.open { width: 180px; opacity: 1; }
+
+        /* ─── OFFCANVAS 手機側邊選單樣式 ─── */
+        .offcanvas.offcanvas-end {
+            width: 280px;
+            border-left: 1px solid var(--border-grey);
         }
 
-        #search-input.open {
-            width: 180px;
-            opacity: 1;
+        .offcanvas-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-grey);
         }
 
-        .avatar-ring {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
+        .offcanvas-body { padding: 24px; }
+
+        /* offcanvas 內搜尋框 */
+        .offcanvas-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             border: 1px solid var(--border-grey);
-            padding: 2px;
-            overflow: hidden;
-            flex-shrink: 0;
+            padding: 10px 14px;
+            margin-bottom: 24px;
         }
 
-        .avatar-ring img {
+        .offcanvas-search input {
+            border: none;
+            outline: none;
+            font-size: 13px;
+            color: var(--text-main);
+            flex: 1;
+            background: transparent;
+        }
+
+        .offcanvas-search input::placeholder { color: var(--text-muted); }
+
+        /* offcanvas 內登入按鈕 */
+        .offcanvas-login {
+            display: block;
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
+            text-align: center;
+            border: 1px solid var(--text-main);
+            background: transparent;
+            color: var(--text-main);
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            padding: 12px;
+            margin-top: 24px;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
+        .offcanvas-login:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: white;
+        }
 
-        /* HERO*/
+        /* offcanvas 內 dropdown */
+        #navMenu .dropdown-menu {
+            border: none !important;
+            box-shadow: none !important;
+            padding: 8px 0 8px 16px !important;
+            border-left: 2px solid rgba(197, 160, 89, 0.3) !important;
+            border-radius: 0 !important;
+            margin-left: 8px;
+            background-color: #FFFFFF;
+            position: static !important;  /* 不蓋住下方選單 */
+            float: none;
+            transform: none !important;   /* 取消 Bootstrap 的 translate 定位 */
+        }
+
+        #navMenu .nav-link-item {
+            font-size: 14px !important;
+            padding: 12px 0 !important;
+            border-bottom: 1px solid var(--border-grey);
+        }
+
+        /* ─── HERO ─── */
         .hero-section {
             position: relative;
             height: 100vh;
@@ -311,17 +281,9 @@
             overflow: hidden;
         }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; }
 
-        .hero-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
 
         .video-overlay {
             position: absolute;
@@ -339,10 +301,7 @@
             text-align: center;
         }
 
-        .hero-content-inner {
-            max-width: 900px;
-            padding: 0 24px;
-        }
+        .hero-content-inner { max-width: 900px; padding: 0 24px; }
 
         .hero-eyebrow {
             font-size: 10px;
@@ -383,10 +342,7 @@
             transition: all 0.3s;
         }
 
-        .hero-btn-ghost:hover {
-            background: white;
-            color: var(--text-main);
-        }
+        .hero-btn-ghost:hover { background: white; color: var(--text-main); }
 
         .hero-btn-solid {
             background: white;
@@ -417,53 +373,27 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0)
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(8px)
-            }
+            0%, 100% { transform: translateX(-50%) translateY(0) }
+            50%       { transform: translateX(-50%) translateY(8px) }
         }
 
-
-        /* 精選真實婚禮 */
+        /* ─── 精選真實婚禮 ─── */
         .real-weddings-section {
             background-color: var(--pure-white);
             padding: 128px 0;
         }
 
         @media (min-width: 992px) {
-            .real-weddings-section {
-                padding: 196px 0;
-            }
+            .real-weddings-section { padding: 196px 0; }
         }
 
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
+        .section-container { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 128px;
-        }
+        .section-header { text-align: center; margin-bottom: 128px; }
 
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 36px;
-            font-weight: 300;
-        }
+        .section-title { font-family: var(--font-serif); font-size: 36px; font-weight: 300; }
 
-        .section-gold-line {
-            width: 80px;
-            height: 1px;
-            background: var(--accent-gold);
-            margin: 32px auto 0;
-        }
+        .section-gold-line { width: 80px; height: 1px; background: var(--accent-gold); margin: 32px auto 0; }
 
         .section-sub {
             font-size: 10px;
@@ -473,37 +403,16 @@
             margin-top: 40px;
         }
 
-        .wedding-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 64px;
-        }
+        .wedding-grid { display: grid; grid-template-columns: 1fr; gap: 64px; }
 
-        @media (min-width: 768px) {
-            .wedding-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        @media (min-width: 768px) { .wedding-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 992px) { .wedding-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        @media (min-width: 992px) {
-            .wedding-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+        .wedding-card { cursor: pointer; }
 
-        .wedding-card {
-            cursor: pointer;
-        }
+        .wedding-card.offset { margin-top: 0; }
 
-        .wedding-card.offset {
-            margin-top: 0;
-        }
-
-        @media (min-width: 992px) {
-            .wedding-card.offset {
-                margin-top: 96px;
-            }
-        }
+        @media (min-width: 992px) { .wedding-card.offset { margin-top: 96px; } }
 
         .wedding-img-wrap {
             position: relative;
@@ -523,9 +432,7 @@
             transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .wedding-card:hover .wedding-img-wrap img {
-            transform: scale(1.05);
-        }
+        .wedding-card:hover .wedding-img-wrap img { transform: scale(1.05); }
 
         .wedding-img-wrap video {
             position: absolute;
@@ -537,9 +444,7 @@
             transition: opacity 0.8s;
         }
 
-        .wedding-card:hover .wedding-img-wrap video {
-            opacity: 1;
-        }
+        .wedding-card:hover .wedding-img-wrap video { opacity: 1; }
 
         .wedding-img-overlay {
             position: absolute;
@@ -549,15 +454,9 @@
             transition: opacity 0.3s;
         }
 
-        .wedding-card:hover .wedding-img-overlay {
-            opacity: 1;
-        }
+        .wedding-card:hover .wedding-img-overlay { opacity: 1; }
 
-        .wedding-card-body {
-            margin-top: 56px;
-            padding: 0 24px;
-            text-align: center;
-        }
+        .wedding-card-body { margin-top: 56px; padding: 0 24px; text-align: center; }
 
         .card-eyebrow {
             font-size: 9px;
@@ -567,12 +466,7 @@
             font-weight: 500;
         }
 
-        .card-title {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            font-weight: 300;
-            margin-top: 20px;
-        }
+        .card-title { font-family: var(--font-serif); font-size: 24px; font-weight: 300; margin-top: 20px; }
 
         .card-desc {
             font-size: 13px;
@@ -583,11 +477,7 @@
             padding: 0 16px;
         }
 
-        .card-line-wrap {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-        }
+        .card-line-wrap { margin-top: 40px; display: flex; justify-content: center; }
 
         .card-line {
             height: 1px;
@@ -596,25 +486,12 @@
             transition: width 0.7s, background 0.7s;
         }
 
-        .wedding-card:hover .card-line {
-            width: 64px;
-            background: var(--accent-gold);
-        }
+        .wedding-card:hover .card-line { width: 64px; background: var(--accent-gold); }
 
+        /* ─── 花絮 + 職人 ─── */
+        .extra-section { background-color: var(--pure-white); padding: 120px 0 100px; }
 
-
-
-        /* 花絮 + 職人 */
-        .extra-section {
-            background-color: var(--pure-white);
-            padding: 120px 0 100px;
-        }
-
-        .highlight-banner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
+        .highlight-banner { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
 
         .eyebrow-line {
             display: flex;
@@ -633,42 +510,17 @@
             background: var(--accent-gold);
         }
 
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            margin-top: 64px;
-        }
+        .highlight-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 64px; }
 
-        @media (min-width: 768px) {
-            .highlight-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        @media (min-width: 768px)  { .highlight-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1200px) { .highlight-grid { grid-template-columns: 2fr 1.1fr 1.1fr; } }
 
-        @media (min-width: 1200px) {
-            .highlight-grid {
-                grid-template-columns: 2fr 1.1fr 1.1fr;
-            }
-        }
+        .highlight-card { position: relative; overflow: hidden; cursor: pointer; }
 
-        .highlight-card {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
+        .highlight-card .card-img-box { overflow: hidden; }
 
-        .highlight-card .card-img-box {
-            overflow: hidden;
-        }
-
-        .highlight-card.large .card-img-box {
-            height: 580px;
-        }
-
-        .highlight-card.small .card-img-box {
-            height: 260px;
-        }
+        .highlight-card.large .card-img-box { height: 580px; }
+        .highlight-card.small .card-img-box { height: 260px; }
 
         .highlight-card .card-img-box img {
             width: 100%;
@@ -678,9 +530,7 @@
             filter: saturate(0.9) contrast(0.95);
         }
 
-        .highlight-card:hover .card-img-box img {
-            transform: scale(1.06);
-        }
+        .highlight-card:hover .card-img-box img { transform: scale(1.06); }
 
         .card-img-label {
             position: absolute;
@@ -692,9 +542,7 @@
             color: white;
         }
 
-        .highlight-card.small .card-img-label {
-            padding: 24px 20px 18px;
-        }
+        .highlight-card.small .card-img-label { padding: 24px 20px 18px; }
 
         .label-tag {
             font-size: 9px;
@@ -705,51 +553,19 @@
             margin-bottom: 6px;
         }
 
-        .label-title {
-            font-family: var(--font-serif);
-            font-weight: 300;
-            line-height: 1.3;
-        }
+        .label-title { font-family: var(--font-serif); font-weight: 300; line-height: 1.3; }
 
-        .highlight-card.large .label-title {
-            font-size: 26px;
-        }
+        .highlight-card.large .label-title { font-size: 26px; }
+        .highlight-card.small .label-title { font-size: 17px; }
 
-        .highlight-card.small .label-title {
-            font-size: 17px;
-        }
+        .label-date { font-size: 11px; color: rgba(255, 255, 255, 0.7); margin-top: 6px; letter-spacing: 0.1em; }
 
-        .label-date {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 6px;
-            letter-spacing: 0.1em;
-        }
+        .booking-section { max-width: 1400px; margin: 120px auto 0; padding: 0 32px; }
 
-        .booking-section {
-            max-width: 1400px;
-            margin: 120px auto 0;
-            padding: 0 32px;
-        }
+        .artisan-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 64px; }
 
-        .artisan-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            margin-top: 64px;
-        }
-
-        @media (min-width: 768px) {
-            .artisan-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .artisan-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
+        @media (min-width: 768px) { .artisan-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 992px) { .artisan-grid { grid-template-columns: repeat(4, 1fr); } }
 
         .artisan-card {
             border: 1px solid var(--border-grey);
@@ -760,10 +576,7 @@
             transform: translateY(30px);
         }
 
-        .artisan-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .artisan-card.visible { opacity: 1; transform: translateY(0); }
 
         .artisan-card.visible:hover {
             transform: translateY(-10px);
@@ -771,22 +584,11 @@
             border-color: var(--accent-gold);
         }
 
-        .artisan-photo {
-            position: relative;
-            height: 260px;
-            overflow: hidden;
-        }
+        .artisan-photo { position: relative; height: 260px; overflow: hidden; }
 
-        .artisan-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s;
-        }
+        .artisan-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
 
-        .artisan-card.visible:hover .artisan-photo img {
-            transform: scale(1.08);
-        }
+        .artisan-card.visible:hover .artisan-photo img { transform: scale(1.08); }
 
         .artisan-badge {
             position: absolute;
@@ -799,37 +601,15 @@
             padding: 4px 10px;
         }
 
-        .artisan-body {
-            padding: 24px;
-            text-align: center;
-        }
+        .artisan-body { padding: 24px; text-align: center; }
 
-        .artisan-name {
-            font-family: var(--font-serif);
-            font-size: 18px;
-            font-weight: 400;
-        }
+        .artisan-name { font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
 
-        .artisan-divider {
-            width: 24px;
-            height: 1px;
-            background: var(--border-grey);
-            margin: 10px auto;
-        }
+        .artisan-divider { width: 24px; height: 1px; background: var(--border-grey); margin: 10px auto; }
 
-        .artisan-role {
-            font-size: 10px;
-            letter-spacing: 0.15em;
-            color: var(--accent-gold);
-        }
+        .artisan-role { font-size: 10px; letter-spacing: 0.15em; color: var(--accent-gold); }
 
-        .artisan-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-top: 12px;
-            padding: 0 4px;
-        }
+        .artisan-desc { font-size: 12px; color: var(--text-muted); line-height: 1.8; margin-top: 12px; padding: 0 4px; }
 
         .gallery-label {
             font-size: 9px;
@@ -843,18 +623,9 @@
             border-bottom: 1px solid var(--border-grey);
         }
 
-        .artisan-gallery {
-            display: flex;
-            margin-top: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-grey);
-        }
+        .artisan-gallery { display: flex; margin-top: 8px; overflow: hidden; border: 1px solid var(--border-grey); }
 
-        .artisan-gallery-item {
-            flex: 1;
-            height: 68px;
-            overflow: hidden;
-        }
+        .artisan-gallery-item { flex: 1; height: 68px; overflow: hidden; }
 
         .artisan-gallery-item img {
             width: 100%;
@@ -864,14 +635,9 @@
             filter: saturate(0.8);
         }
 
-        .artisan-gallery-item:hover img {
-            transform: scale(1.14);
-            filter: saturate(1.1);
-        }
+        .artisan-gallery-item:hover img { transform: scale(1.14); filter: saturate(1.1); }
 
-        .artisan-gallery-item+.artisan-gallery-item {
-            border-left: 2px solid white;
-        }
+        .artisan-gallery-item + .artisan-gallery-item { border-left: 2px solid white; }
 
         .artisan-btn {
             display: inline-block;
@@ -886,19 +652,10 @@
             transition: all 0.3s;
         }
 
-        .artisan-btn:hover {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: white;
-        }
+        .artisan-btn:hover { background: var(--accent-gold); border-color: var(--accent-gold); color: white; }
 
-
-        /* FOOTER */
-        .site-footer {
-            border-top: 1px solid var(--border-grey);
-            background: white;
-            padding: 96px 40px;
-        }
+        /* ─── FOOTER ─── */
+        .site-footer { border-top: 1px solid var(--border-grey); background: white; padding: 96px 40px; }
 
         .footer-inner {
             max-width: 1400px;
@@ -909,38 +666,15 @@
             gap: 64px;
         }
 
-        .footer-brand {
-            max-width: 300px;
-        }
+        .footer-brand { max-width: 300px; }
 
-        .footer-brand-name {
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 0.4em;
-            color: var(--text-main);
-        }
+        .footer-brand-name { font-size: 18px; font-weight: 300; letter-spacing: 0.4em; color: var(--text-main); }
 
-        .footer-brand-sub {
-            font-size: 8px;
-            letter-spacing: 0.5em;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
+        .footer-brand-sub { font-size: 8px; letter-spacing: 0.5em; color: var(--accent-gold); text-transform: uppercase; margin-top: 4px; }
 
-        .footer-desc {
-            font-size: 13px;
-            font-weight: 300;
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin-top: 32px;
-        }
+        .footer-desc { font-size: 13px; font-weight: 300; line-height: 1.8; color: var(--text-muted); margin-top: 32px; }
 
-        .footer-icons {
-            display: flex;
-            gap: 16px;
-            margin-top: 32px;
-        }
+        .footer-icons { display: flex; gap: 16px; margin-top: 32px; }
 
         .footer-icon-btn {
             width: 36px;
@@ -955,19 +689,11 @@
             transition: color 0.3s;
         }
 
-        .footer-icon-btn:hover {
-            color: var(--accent-gold);
-        }
+        .footer-icon-btn:hover { color: var(--accent-gold); }
 
-        .footer-nav-cols {
-            display: flex;
-            gap: 96px;
-        }
+        .footer-nav-cols { display: flex; gap: 96px; }
 
-        .footer-nav-col {
-            display: flex;
-            flex-direction: column;
-        }
+        .footer-nav-col { display: flex; flex-direction: column; }
 
         .footer-nav-title {
             font-size: 10px;
@@ -989,9 +715,7 @@
             display: block;
         }
 
-        .footer-nav-link:hover {
-            color: var(--accent-gold);
-        }
+        .footer-nav-link:hover { color: var(--accent-gold); }
 
         .footer-bottom {
             max-width: 1400px;
@@ -1009,7 +733,7 @@
 
 <body>
 
-    <!--導覽列-->
+    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
 
@@ -1019,54 +743,33 @@
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
 
-            <!-- 右側工具列（頭像 + 搜尋）：手機也要顯示，所以放在 toggler 旁邊，不在 collapse 裡 -->
-            <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto me-3 order-lg-last">
-                <div class="d-flex align-items-center gap-2">
-                    <input id="search-input" type="text" placeholder="搜尋場地或職人...">
-                    <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                        style="color:var(--text-muted); font-size:20px;">search</button>
-                </div>
-                <!-- <div class="avatar-ring d-none d-sm-block">
-                    <img src="" alt="Profile">
-                </div> -->
-
-                <button class="nav-link nav-link-item"><a class="nav-link nav-link-item"
-                        href="client_login.html">會員登入</a></button>
-
-            </div>
-
-            <!-- 漢堡 -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-                aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- 漢堡按鈕 → 觸發 offcanvas -->
+            <button class="navbar-toggler d-lg-none" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- 可收合的選單區塊
-                 id 必須對應 data-bs-target="#navMenu" -->
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-lg-4 gap-lg-1 mt-2 mt-lg-0">
-
-                    <!-- 一般連結 -->
+            <!-- 桌面版選單 + 右側工具列 -->
+            <div class="collapse navbar-collapse" id="navMenuDesktop">
+                <ul class="navbar-nav ms-lg-4 gap-lg-1">
                     <li class="nav-item">
                         <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./2.html">活動花絮</a>
+                        <a class="nav-link nav-link-item" href="./2.html">婚禮主題</a>
                     </li>
-
-                    <!-- 下拉選單
-                         data-bs-toggle="dropdown" → Bootstrap 控制展開/收起，不用寫 JS -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-link-item" href="./3.html">精選合作夥伴</a>
-
+                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./3.html"
+                            id="desktopDropdown" data-bs-toggle="dropdown">
+                            精選合作夥伴
+                            <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                        </a>
                         <div class="dropdown-menu">
-                            <!-- 專業團隊 -->
                             <span class="dropdown-group-label">專業團隊</span>
                             <a class="dropdown-item" href="#">主持人</a>
                             <a class="dropdown-item" href="#">攝影師</a>
                             <a class="dropdown-item" href="#">新秘造型師</a>
-
-                            <!-- 婚禮美學 -->
                             <span class="dropdown-group-label dropdown-group-spacer">婚禮美學</span>
                             <a class="dropdown-item" href="#">新娘婚紗</a>
                             <a class="dropdown-item" href="#">新郎西服</a>
@@ -1074,17 +777,82 @@
                             <a class="dropdown-item" href="#">婚禮小物</a>
                         </div>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
                     </li>
-
                 </ul>
+
+                <!-- 右側工具列：放在 collapse 內，ms-auto 自動推到最右邊 -->
+                <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
+                    <div class="d-flex align-items-center gap-2">
+                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted); font-size:20px;">search</button>
+                    </div>
+                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
+                </div>
             </div>
 
         </div>
     </nav>
 
+    <!-- ─── 手機版 Offcanvas 側邊選單 ─── -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+        <div class="offcanvas-header">
+            <div>
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <!-- 搜尋框 -->
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+
+            <!-- 選單項目 -->
+            <ul class="navbar-nav gap-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-item" href="./2.html">婚禮主題</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="#"
+                        data-bs-toggle="dropdown" data-bs-auto-close="inside">
+                        精選合作夥伴
+                        <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <span class="dropdown-group-label">專業團隊</span>
+                        <a class="dropdown-item" href="#">主持人</a>
+                        <a class="dropdown-item" href="#">攝影師</a>
+                        <a class="dropdown-item" href="#">新秘造型師</a>
+                        <span class="dropdown-group-label dropdown-group-spacer">婚禮美學</span>
+                        <a class="dropdown-item" href="#">新娘婚紗</a>
+                        <a class="dropdown-item" href="#">新郎西服</a>
+                        <a class="dropdown-item" href="#">喜餅禮盒</a>
+                        <a class="dropdown-item" href="#">婚禮小物</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
+                </li>
+            </ul>
+
+            <!-- 登入按鈕 -->
+            <a href="client_login.html" class="offcanvas-login">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                會員登入
+            </a>
+
+        </div>
+    </div>
 
     <main>
 
@@ -1120,9 +888,7 @@
                         <div class="wedding-img-wrap">
                             <img src="img/m02.png" alt="Detail Romance">
                             <video loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()">
-                                <source
-                                    src="https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-walking-in-a-field-of-flowers-34440-large.mp4"
-                                    type="video/mp4">
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-walking-in-a-field-of-flowers-34440-large.mp4" type="video/mp4">
                             </video>
                             <div class="wedding-img-overlay"></div>
                         </div>
@@ -1137,9 +903,7 @@
                         <div class="wedding-img-wrap">
                             <img src="img/m03.png" alt="Intimate Moment">
                             <video loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()">
-                                <source
-                                    src="https://assets.mixkit.co/videos/preview/mixkit-loving-couple-hugging-and-smiling-in-the-forest-34442-large.mp4"
-                                    type="video/mp4">
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-loving-couple-hugging-and-smiling-in-the-forest-34442-large.mp4" type="video/mp4">
                             </video>
                             <div class="wedding-img-overlay"></div>
                         </div>
@@ -1154,9 +918,7 @@
                         <div class="wedding-img-wrap">
                             <img src="img/m04.jpg" alt="Venue Aesthetics">
                             <video loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()">
-                                <source
-                                    src="https://assets.mixkit.co/videos/preview/mixkit-groom-and-bride-slowly-dancing-at-their-wedding-34443-large.mp4"
-                                    type="video/mp4">
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-groom-and-bride-slowly-dancing-at-their-wedding-34443-large.mp4" type="video/mp4">
                             </video>
                             <div class="wedding-img-overlay"></div>
                         </div>
@@ -1171,22 +933,16 @@
             </div>
         </section>
 
-
         <!-- 婚禮花絮 + 職人預約 -->
         <section class="extra-section">
 
             <div class="highlight-banner">
                 <div class="text-center" style="margin-bottom:64px;">
                     <div class="eyebrow-line">
-                        <span
-                            style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Wedding
-                            Highlights</span>
+                        <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Wedding Highlights</span>
                     </div>
-                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; margin-top:12px;">活動花絮精選
-                    </h3>
-                    <p
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
-                        每一場婚禮，都是一首獨一無二的詩</p>
+                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; margin-top:12px;">活動花絮精選</h3>
+                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">每一場婚禮，都是一首獨一無二的詩</p>
                 </div>
                 <div class="highlight-grid">
                     <div class="highlight-card large">
@@ -1245,22 +1001,15 @@
             <div class="booking-section">
                 <div class="text-center" style="margin-bottom:64px;">
                     <div class="eyebrow-line">
-                        <span
-                            style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Elite
-                            Artisans</span>
+                        <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Elite Artisans</span>
                     </div>
-                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; margin-top:12px;">
-                        預約您的浪漫職人</h3>
-                    <p
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
-                        集結業界頂尖師資，成就您的夢幻質感婚禮</p>
+                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; margin-top:12px;">預約您的浪漫職人</h3>
+                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">集結業界頂尖師資，成就您的夢幻質感婚禮</p>
                 </div>
                 <div class="artisan-grid">
 
                     <div class="artisan-card" data-delay="0">
-                        <div class="artisan-photo"><img
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
-                                alt="Sarah"><span class="artisan-badge">12+ Years Exp.</span></div>
+                        <div class="artisan-photo"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="Sarah"><span class="artisan-badge">12+ Years Exp.</span></div>
                         <div class="artisan-body">
                             <p class="artisan-name">張舒涵 Sarah</p>
                             <div class="artisan-divider"></div>
@@ -1268,24 +1017,16 @@
                             <p class="artisan-desc">溫潤知性的主持風格，精準捕捉新人間的情感流動，讓每一場儀式都像一部電影。</p>
                             <span class="gallery-label">近期作品 · Recent Works</span>
                             <div class="artisan-gallery">
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli"
-                                        alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" alt=""></div>
                             </div>
                             <button class="artisan-btn">預約 Sarah 的檔期</button>
                         </div>
                     </div>
 
                     <div class="artisan-card" data-delay="100">
-                        <div class="artisan-photo"><img
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8"
-                                alt="Kelvin"><span class="artisan-badge">8+ Years Exp.</span></div>
+                        <div class="artisan-photo"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" alt="Kelvin"><span class="artisan-badge">8+ Years Exp.</span></div>
                         <div class="artisan-body">
                             <p class="artisan-name">林國威 Kelvin</p>
                             <div class="artisan-divider"></div>
@@ -1293,24 +1034,16 @@
                             <p class="artisan-desc">擅長自然光影與大膽構圖，紀錄草地婚禮最純粹的真摯互動，作品多次榮獲國際大獎。</p>
                             <span class="gallery-label">近期作品 · Recent Works</span>
                             <div class="artisan-gallery">
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7PM2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
-                                        alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7PM2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHFPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8" alt=""></div>
                             </div>
                             <button class="artisan-btn">瀏覽 Kelvin 作品集</button>
                         </div>
                     </div>
 
                     <div class="artisan-card" data-delay="200">
-                        <div class="artisan-photo"><img
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
-                                alt="Abby"><span class="artisan-badge">VOGUE合作師資</span></div>
+                        <div class="artisan-photo"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" alt="Abby"><span class="artisan-badge">VOGUE合作師資</span></div>
                         <div class="artisan-body">
                             <p class="artisan-name">艾比 Abby</p>
                             <div class="artisan-divider"></div>
@@ -1318,24 +1051,16 @@
                             <p class="artisan-desc">打造如微風拂面般的輕盈底妝與優雅髮型，讓新娘在陽光下的每一刻都無懈可擊。</p>
                             <span class="gallery-label">近期作品 · Recent Works</span>
                             <div class="artisan-gallery">
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh"
-                                        alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh" alt=""></div>
                             </div>
                             <button class="artisan-btn">諮詢妝髮美學</button>
                         </div>
                     </div>
 
                     <div class="artisan-card" data-delay="300">
-                        <div class="artisan-photo"><img
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
-                                alt="Vian"><span class="artisan-badge">頂級婚禮策劃</span></div>
+                        <div class="artisan-photo"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS" alt="Vian"><span class="artisan-badge">頂級婚禮策劃</span></div>
                         <div class="artisan-body">
                             <p class="artisan-name">陳薇安 Vian</p>
                             <div class="artisan-divider"></div>
@@ -1343,15 +1068,9 @@
                             <p class="artisan-desc">從場地規劃到花藝陳設，統籌每一個細節，讓您的婚禮成為賓客永難忘懷的感動場景。</p>
                             <span class="gallery-label">近期作品 · Recent Works</span>
                             <div class="artisan-gallery">
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli"
-                                        alt=""></div>
-                                <div class="artisan-gallery-item"><img
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
-                                        alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" alt=""></div>
+                                <div class="artisan-gallery-item"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt=""></div>
                             </div>
                             <button class="artisan-btn">預約統籌諮詢</button>
                         </div>
@@ -1374,10 +1093,8 @@
                 </div>
                 <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
                 <div class="footer-icons">
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                            style="font-size:18px;">share</span></a>
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                            style="font-size:18px;">mail</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">share</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></a>
                 </div>
             </div>
             <div class="footer-nav-cols">
@@ -1401,44 +1118,44 @@
     </footer>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', () => {
+
+            // ─── 導覽列捲動隱藏/顯示 ───
             const navbar = document.querySelector('.navbar');
             let lastScrollTop = 0;
-            const delta = 10; // 捲動超過多少像素才觸發（避免太靈敏）
+            const delta = 10;
 
-            // 1. 處理捲動顯示/隱藏
             window.addEventListener('scroll', () => {
                 let st = window.pageYOffset || document.documentElement.scrollTop;
-
-                // 如果捲動距離太小，不執行
                 if (Math.abs(lastScrollTop - st) <= delta) return;
-
-                if (st > lastScrollTop && st > 80) {
-                    // 往下捲動：隱藏導覽列
-                    navbar.classList.add('nav-hidden');
-                } else {
-                    // 往上捲動：顯示導覽列
-                    navbar.classList.remove('nav-hidden');
-                }
+                navbar.classList.toggle('nav-hidden', st > lastScrollTop && st > 80);
                 lastScrollTop = st;
             });
 
-            // 2. 處理滑鼠靠近頂部顯示
             document.addEventListener('mousemove', (e) => {
-                // 如果滑鼠移動到距離頂部 50px 以內
-                if (e.clientY < 50) {
-                    navbar.classList.remove('nav-hidden');
-                }
+                if (e.clientY < 50) navbar.classList.remove('nav-hidden');
             });
 
-        });
+            // ─── 桌面版 dropdown：第一下展開，第二下跳頁 ───
+            const desktopDropdownToggle = document.getElementById('desktopDropdown');
+            if (desktopDropdownToggle) {
+                let dropdownOpened = false;
+                desktopDropdownToggle.addEventListener('click', (e) => {
+                    if (window.innerWidth >= 992) {
+                        const menu = desktopDropdownToggle.nextElementSibling;
+                        const isOpen = desktopDropdownToggle.closest('.nav-item').classList.contains('show');
+                        if (!isOpen) {
+                            e.preventDefault(); // 第一下只展開，不跳頁
+                        }
+                        // 第二下 isOpen=true，不 preventDefault，正常跳頁
+                    }
+                });
+            }
 
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // 搜尋列
+            // ─── 桌面版搜尋列 ───
             const searchBtn = document.getElementById('search-btn');
             const searchInput = document.getElementById('search-input');
+
             searchBtn.addEventListener('click', () => {
                 if (!searchInput.classList.contains('open')) {
                     searchInput.classList.add('open');
@@ -1449,7 +1166,7 @@
                 }
             });
 
-            // 職人卡片進場
+            // ─── 職人卡片進場動畫 ───
             const obs = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
                     if (e.isIntersecting) {
@@ -1462,11 +1179,11 @@
                     }
                 });
             }, { threshold: 0.12 });
+
             document.querySelectorAll('.artisan-card').forEach(c => obs.observe(c));
 
         });
     </script>
 
 </body>
-
 </html>
