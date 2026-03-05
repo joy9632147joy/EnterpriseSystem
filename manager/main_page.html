@@ -5,11 +5,8 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>ES Admin - 主頁儀表板</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../ESCss/SignInOut.css" defer>
-    <script src="../ESJS/MainPage.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="../ESCss/es_new_ver.css">
+    <script src="../ESJS/ES-Helper.js" defer></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -34,73 +31,6 @@
             },
         };
     </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-        }
-
-        .dark .glass-card {
-            background: rgba(31, 41, 55, 0.85);
-            border: 1px solid rgba(75, 85, 99, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes pulse-dot {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.5;
-                transform: scale(1.2);
-            }
-        }
-
-        .animate-pulse-dot {
-            animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(156, 163, 175, 0.5);
-            border-radius: 3px;
-        }
-
-        /* 側邊欄收縮時的隱藏與置中規則 */
-        #sidebar.w-20 .menu-category,
-        #sidebar.w-20 .sidebar-user {
-            display: none !important;
-        }
-
-        #sidebar.w-20 a {
-            justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        #sidebar.w-20 .material-icons,
-        #sidebar.w-20 .text-2xl {
-            margin-right: 0 !important;
-        }
-    </style>
 </head>
 
 <body
