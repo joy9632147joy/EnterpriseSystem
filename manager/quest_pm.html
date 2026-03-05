@@ -2,83 +2,166 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Enterprise System - PM任務管理</title>
+    
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <link rel="stylesheet" href="../ESCss/MainPage.css">
-    <script src="../ESJS/MainPage.js"></script>
-    <title>Enterprise System - PM任務管理</title>
+    <link rel="stylesheet" href="../ESCss/es_new_ver.css">
+    <script src="../ESJS/es_new_ver.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#1F2937",
+                        "sidebar-bg": "#21252D",
+                        "sidebar-hover": "#2C313C",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
 </head>
 
-<body>
-    <nav class="navbar navbar-dark sticky-top">
-        <div class="container-fluid">
-            <div class="d-flex">
-                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
-                    <i class="bi bi-list"></i>
-                </button>
-            </div>
-            <div class="d-flex align-items-center ms-auto">
-                <div class="ms-auto d-none d-md-block me-3">
-                    <div class="input-group search-box">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
-                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
-                    </div>
-                </div>
-                <button class="btn envelope-btn me-1" id="envelope"><i class="bi bi-envelope"></i></button>
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                        data-bs-toggle="dropdown">
-                        <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
-                        <span class="d-none d-sm-inline">Joy (PM)</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item text-danger" href="login.html"><i
-                                    class="bi bi-box-arrow-right me-2"></i>Log Out</a></li>
-                    </ul>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
+    <aside id="sidebar"
+        class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden relative z-20">
+        <div class="h-16 flex items-center justify-center">
+            <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
+            <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
+        </div>
+
+        <div class="px-4 py-4 mt-2 sidebar-user">
+            <div class="bg-sidebar-hover rounded-xl p-4 flex items-center shadow-sm">
+                <img alt="Joy Avatar" class="w-12 h-12 rounded-full border-2 border-sidebar-bg mr-3 object-cover"
+                    src="../Img/smile.jpg" />
+                <div class="menu-category p-0 m-0">
+                    <div class="text-white font-medium">Joy</div>
+                    <div class="text-xs text-gray-400 mt-1">PM 權限</div>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <div class="d-flex" id="sidebarD">
-        <nav class="list-unstyled sidebar" id="sidebarN">
-            <div class="d-flex align-items-center justify-content-center"
-                style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
+        <nav class="flex-1 py-2 overflow-y-auto overflow-x-hidden">
+            <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                GENERAL</div>
+
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="main_page.html">
+                <span class="material-icons text-blue-400 mr-3 group-hover:scale-110 transition-transform">home</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">主頁</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="consultation.html">
+                <span
+                    class="material-icons text-orange-400 mr-3 group-hover:scale-110 transition-transform">calendar_month</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_pm.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap text-white">任務管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
+                href="quest_pm.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap text-white">任務管理-PM(待整合)</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="attendance.html">
+                <span
+                    class="material-icons text-purple-400 mr-3 group-hover:scale-110 transition-transform">schedule</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">差勤系統</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="contacts.html">
+                <span
+                    class="material-icons text-red-400 mr-3 group-hover:scale-110 transition-transform">contacts</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">聯絡資訊</div>
+            </a>
+
+            <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                系統設定</div>
+
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="account.html">
+                <span
+                    class="material-icons text-teal-400 mr-3 group-hover:scale-110 transition-transform">settings</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">個人資訊</div>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+
+        <header
+            class="h-16 bg-[#2B303B] flex items-center justify-between px-6 flex-shrink-0 z-10 shadow-sm text-white">
+            <div class="flex items-center flex-1">
+                <button id="sidebar-hamburger"
+                    class="mr-4 text-gray-400 hover:text-white focus:outline-none p-1 rounded-md hover:bg-gray-700 transition-colors">
+                    <span class="material-icons">menu</span>
+                </button>
+                <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">PM任務管理</h1>
             </div>
-            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="position-relative">
-                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
-                            style="object-fit: cover;">
-                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle"></span>
+
+            <div class="flex items-center space-x-4">
+                <div class="relative w-64 lg:w-80 hidden md:block">
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                        <span class="material-icons text-sm">search</span>
+                    </span>
+                    <input class="w-full bg-[#353A45] border-none rounded-full py-2 pl-4 pr-10 text-sm focus:ring-1 focus:ring-blue-500 focus:outline-none text-gray-200 placeholder-gray-400" placeholder="搜尋功能或公告..." type="text" />
+                </div>
+
+                <button class="relative text-gray-400 hover:text-white focus:outline-none mt-1">
+                    <span class="material-icons">notifications</span>
+                    <span class="absolute top-0 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/4 border-2 border-[#2B303B]"></span>
+                </button>
+                
+                <button class="relative text-gray-400 hover:text-white focus:outline-none me-2" id="envelope">
+                    <i class="bi bi-envelope fs-5"></i>
+                </button>
+
+                <div class="relative">
+                    <div id="user-menu-button" class="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-500 mr-2 object-cover" src="../Img/smile.jpg" />
+                        <span class="text-sm font-medium mr-1 text-gray-200">Joy</span>
+                        <span class="material-icons text-sm text-gray-400">arrow_drop_down</span>
                     </div>
-                    <div class="ms-3 text-white">
-                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
-                        <div class="d-flex align-items-center"><span class="badge rounded-pill lv-badge me-2">PM
-                                權限</span></div>
+                    
+                    <div id="user-dropdown" class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
+                        <a href="account.html" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
+                        </a>
+                        <a href="account.html" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">settings</span> Settings
+                        </a>
+                        <hr class="my-1 border-gray-100">
+                        <a href="login.html" class="flex items-center px-4 py-2.5 text-sm text-danger hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-danger">logout</span> Log Out
+                        </a>
                     </div>
                 </div>
             </div>
-            <ul class="d-flex flex-column list-unstyled">
-                <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a></li>
-                <li><a href="consultation.html"><i class="bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
-                <li class="active"><a href="quest_pm.html"><i class="bi bi-list-task me-3"></i><span>任務管理</span></a>
-                </li>
-                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-person-lines-fill me-3"></i><span>聯絡資訊</span></a></li>
-                <li class="menu-category fw-bold">系統設定</li>
-                <li><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
-            </ul>
-        </nav>
+        </header>
 
-        <section id="content" class="p-4 w-100" style="background-color: #f8f9fa;">
+        <main class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800">
             <div class="container-fluid">
 
                 <div class="row mb-5">
@@ -88,6 +171,25 @@
                                 <h4 class="fw-bold mb-1" style="color: #1a233a;"><i
                                         class="bi bi-inbox text-primary me-2"></i>待分派任務</h4>
                                 <p class="text-muted small mb-0">來自客戶端的新需求與諮詢轉換</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <select class="form-select form-select-sm shadow-sm" style="width: 130px;">
+                                    <option value="">需求類型</option>
+                                    <option value="1">全套婚顧企劃</option>
+                                    <option value="2">單純攝影+造型</option>
+                                    <option value="3">場地佈置</option>
+                                </select>
+                                <select class="form-select form-select-sm shadow-sm" style="width: 110px;">
+                                    <option value="">狀態</option>
+                                    <option value="new">新進件</option>
+                                    <option value="urgent">急件</option>
+                                    <option value="normal">一般</option>
+                                    <option value="overdue">逾期</option>
+                                </select>
+                                <div class="input-group input-group-sm shadow-sm" style="width: 200px;">
+                                    <input type="text" class="form-control" placeholder="搜尋單號 / 客戶...">
+                                    <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                                </div>
                             </div>
                         </div>
                         <div class="card border-0 shadow-sm">
@@ -112,9 +214,10 @@
                                                 <td>2026-10-20</td>
                                                 <td><span class="badge bg-danger">急件</span></td>
                                                 <td class="pe-4 text-end">
-                                                    <button class="btn btn-sm btn-primary shadow-sm"
+                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#assignTaskModal">分派小組</button>
+                                                        data-bs-target="#assignTaskModal"
+                                                        data-req="#REQ-0305" data-client="林先生 & 陳小姐" data-type="全套婚顧企劃" data-cat="企劃部">分派小組</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -124,9 +227,62 @@
                                                 <td>2026-12-15</td>
                                                 <td><span class="badge bg-warning text-dark">新進件</span></td>
                                                 <td class="pe-4 text-end">
-                                                    <button class="btn btn-sm btn-primary shadow-sm"
+                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#assignTaskModal">分派小組</button>
+                                                        data-bs-target="#assignTaskModal"
+                                                        data-req="#REQ-0306" data-client="王先生 & 李小姐" data-type="單純攝影+造型" data-cat="攝影部">分派小組</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold text-secondary">#REQ-0307</td>
+                                                <td>張先生 & 吳小姐</td>
+                                                <td>場地佈置</td>
+                                                <td>2026-11-05</td>
+                                                <td><span class="badge bg-info text-dark">一般</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#assignTaskModal"
+                                                        data-req="#REQ-0307" data-client="張先生 & 吳小姐" data-type="場地佈置" data-cat="佈置部">分派小組</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold text-secondary">#REQ-0308</td>
+                                                <td>陳先生 & 黃小姐</td>
+                                                <td>全套婚顧企劃</td>
+                                                <td>2026-09-30</td>
+                                                <td><span class="badge bg-secondary">逾期</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#assignTaskModal"
+                                                        data-req="#REQ-0308" data-client="陳先生 & 黃小姐" data-type="全套婚顧企劃" data-cat="企劃部">分派小組</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold text-secondary">#REQ-0309</td>
+                                                <td>周先生 & 劉小姐</td>
+                                                <td>單純造型</td>
+                                                <td>2027-01-10</td>
+                                                <td><span class="badge bg-warning text-dark">新進件</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#assignTaskModal"
+                                                        data-req="#REQ-0309" data-client="周先生 & 劉小姐" data-type="單純造型" data-cat="造型部">分派小組</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 fw-bold text-secondary">#REQ-0310</td>
+                                                <td>許先生 & 郭小姐</td>
+                                                <td>單純攝影</td>
+                                                <td>2026-10-15</td>
+                                                <td><span class="badge bg-danger">急件</span></td>
+                                                <td class="pe-4 text-end">
+                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#assignTaskModal"
+                                                        data-req="#REQ-0310" data-client="許先生 & 郭小姐" data-type="單純攝影" data-cat="攝影部">分派小組</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -148,6 +304,7 @@
                         </div>
                         <div class="task-scroll-container">
                             <div class="task-card-wrapper">
+                                <!-- Card 1 -->
                                 <div class="task-card-inner">
                                     <div class="task-card-front border-warning" style="border-top: 4px solid #ffc107;">
                                         <span class="badge bg-warning text-dark mb-3">企劃 A 組 - 提報完成</span>
@@ -164,9 +321,91 @@
                                             企劃 A 組已上傳場地配置圖與電力配置確認單。請查閱附件並決定是否結案。
                                         </p>
                                         <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-outline-info btn-sm">📄 檢視完整資料</button>
                                             <button class="btn btn-success fw-bold shadow-sm">✅ 核准結案</button>
-                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#rejectTaskModal">❌ 退回重做</button>
+                                            <button class="btn btn-outline-danger btn-sm btn-reject" data-bs-toggle="modal"
+                                                data-bs-target="#rejectTaskModal" data-task="美式戶外場地佈置確認" data-client="黃小姐 & 陳先生">❌ 退回重做</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-card-wrapper">
+                                <!-- Card 2 -->
+                                <div class="task-card-inner">
+                                    <div class="task-card-front border-info" style="border-top: 4px solid #0dcaf0;">
+                                        <span class="badge bg-info text-dark mb-3">攝影部 - 提報完成</span>
+                                        <div class="task-title">婚紗攝影行程表確認</div>
+                                        <div class="client-info">客戶：李先生 & 林小姐</div>
+                                        <div class="task-meta text-center mt-auto">
+                                            <div class="text-success fw-bold"><i class="bi bi-check-circle me-1"></i>
+                                                Staff 已回報完成</div>
+                                        </div>
+                                    </div>
+                                    <div class="task-card-back">
+                                        <div class="fw-bold mb-2 border-bottom pb-1">審核操作</div>
+                                        <p class="small text-secondary mb-3">
+                                            攝影部已提交外拍行程表與雨天備案計畫。請審閱確認無誤。
+                                        </p>
+                                        <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-outline-info btn-sm">📄 檢視完整資料</button>
+                                            <button class="btn btn-success fw-bold shadow-sm">✅ 核准結案</button>
+                                            <button class="btn btn-outline-danger btn-sm btn-reject" data-bs-toggle="modal"
+                                                data-bs-target="#rejectTaskModal" data-task="婚紗攝影行程表確認" data-client="李先生 & 林小姐">❌ 退回重做</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="task-card-wrapper">
+                                <!-- Card 3 -->
+                                <div class="task-card-inner">
+                                    <div class="task-card-front border-primary" style="border-top: 4px solid #0d6efd;">
+                                        <span class="badge bg-primary mb-3">造型部 - 提報完成</span>
+                                        <div class="task-title">新娘試妝風格定案</div>
+                                        <div class="client-info">客戶：吳先生 & 蔡小姐</div>
+                                        <div class="task-meta text-center mt-auto">
+                                            <div class="text-success fw-bold"><i class="bi bi-check-circle me-1"></i>
+                                                Staff 已回報完成</div>
+                                        </div>
+                                    </div>
+                                    <div class="task-card-back">
+                                        <div class="fw-bold mb-2 border-bottom pb-1">審核操作</div>
+                                        <p class="small text-secondary mb-3">
+                                            造型部已整理3組試妝照與使用的彩妝品清單，請簽核確認。
+                                        </p>
+                                        <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-outline-info btn-sm">📄 檢視完整資料</button>
+                                            <button class="btn btn-success fw-bold shadow-sm">✅ 核准結案</button>
+                                            <button class="btn btn-outline-danger btn-sm btn-reject" data-bs-toggle="modal"
+                                                data-bs-target="#rejectTaskModal" data-task="新娘試妝風格定案" data-client="吳先生 & 蔡小姐">❌ 退回重做</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="task-card-wrapper">
+                                <!-- Card 4 -->
+                                <div class="task-card-inner">
+                                    <div class="task-card-front border-warning" style="border-top: 4px solid #ffc107;">
+                                        <span class="badge bg-warning text-dark mb-3">企劃 B 組 - 提報完成</span>
+                                        <div class="task-title">迎娶儀式流程表</div>
+                                        <div class="client-info">客戶：謝先生 & 鄭小姐</div>
+                                        <div class="task-meta text-center mt-auto">
+                                            <div class="text-success fw-bold"><i class="bi bi-check-circle me-1"></i>
+                                                Staff 已回報完成</div>
+                                        </div>
+                                    </div>
+                                    <div class="task-card-back">
+                                        <div class="fw-bold mb-2 border-bottom pb-1">審核操作</div>
+                                        <p class="small text-secondary mb-3">
+                                            企劃 B 組已完成訂結同日迎娶儀式流程表，包含人員配置與時間規劃。
+                                        </p>
+                                        <div class="d-grid gap-2 mt-auto">
+                                            <button class="btn btn-outline-info btn-sm">📄 檢視完整資料</button>
+                                            <button class="btn btn-success fw-bold shadow-sm">✅ 核准結案</button>
+                                            <button class="btn btn-outline-danger btn-sm btn-reject" data-bs-toggle="modal"
+                                                data-bs-target="#rejectTaskModal" data-task="迎娶儀式流程表" data-client="謝先生 & 鄭小姐">❌ 退回重做</button>
                                         </div>
                                     </div>
                                 </div>
@@ -176,47 +415,60 @@
                 </div>
 
             </div>
-        </section>
+        </main>
     </div>
 
     <div class="modal fade" id="assignTaskModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title fw-bold">分派任務小組</h5>
+                    <h5 class="modal-title fw-bold">確認與分派任務</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label class="form-label text-muted small">任務對象</label>
-                            <input type="text" class="form-control bg-light" value="林先生 & 陳小姐 - 全套婚顧企劃" readonly>
+                            <label class="form-label text-muted small">客戶與專案</label>
+                            <input type="text" class="form-control bg-light fw-bold" id="assign-client" value="#REQ-0305 (林先生 & 陳小姐)"
+                                readonly>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">指派部門 / 小組 <span class="text-danger">*</span></label>
-                            <select class="form-select">
-                                <option selected disabled>請選擇負責單位...</option>
-                                <option value="1">企劃 A 組</option>
-                                <option value="2">企劃 B 組</option>
-                                <option value="3">攝影部</option>
-                                <option value="4">造型部</option>
-                            </select>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-muted small">任務對應服務</label>
+                                <input type="text" class="form-control bg-light" id="assign-type" value="美式戶外場地佈置" readonly>
+                            </div>
                         </div>
+
+                        <div class="mb-3 p-3 rounded-3" style="background-color: #eef2f6; border: 1px solid #cce0f5;">
+                            <label class="form-label fw-bold text-primary mb-1">系統自動分派部門</label>
+                            <div class="d-flex align-items-center mt-1">
+                                <span class="badge bg-primary fs-6 px-3 py-2 shadow-sm" id="assign-dept-badge"><i
+                                        class="bi bi-building me-2"></i>企劃部</span>
+                                <small class="text-muted ms-3"><i
+                                        class="bi bi-info-circle me-1"></i>由系統依據服務分類自動帶入</small>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label fw-bold">任務截止日 (Deadline) <span
                                     class="text-danger">*</span></label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">上傳參考附件</label>
+                            <input class="form-control" type="file" id="formFile">
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">PM 交辦事項備註</label>
-                            <textarea class="form-control" rows="3" placeholder="請輸入需要特別注意的細節..."></textarea>
+                            <textarea class="form-control" rows="3" placeholder="請輸入需要該部門特別注意的細節..."></textarea>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer border-top-0 pt-0">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary px-4">確認分派</button>
+                    <button type="button" class="btn btn-primary px-4 shadow-sm">確認並發送通知</button>
                 </div>
             </div>
         </div>
@@ -236,6 +488,10 @@
                     </div>
                     <form>
                         <div class="mb-3">
+                            <label class="form-label text-muted small">退回任務與客戶</label>
+                            <input type="text" class="form-control bg-light fw-bold" id="reject-info" value="" readonly>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label fw-bold">退回理由 / 修改建議 <span class="text-danger">*</span></label>
                             <textarea class="form-control" rows="4" placeholder="請詳細說明為何退回，以及需要小組修改的地方..."></textarea>
                         </div>
@@ -249,6 +505,36 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 動態綁定：分派任務 Modal
+            const assignButtons = document.querySelectorAll('.btn-assign');
+            assignButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const req = this.getAttribute('data-req');
+                    const client = this.getAttribute('data-client');
+                    const type = this.getAttribute('data-type');
+                    const cat = this.getAttribute('data-cat');
+
+                    document.getElementById('assign-client').value = req + ' (' + client + ')';
+                    document.getElementById('assign-type').value = type;
+                    document.getElementById('assign-cat').value = cat;
+                    document.getElementById('assign-dept-badge').innerHTML = '<i class="bi bi-building me-2"></i>' + cat;
+                });
+            });
+
+            // 動態綁定：退回任務 Modal
+            const rejectButtons = document.querySelectorAll('.btn-reject');
+            rejectButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const task = this.getAttribute('data-task');
+                    const client = this.getAttribute('data-client');
+                    
+                    document.getElementById('reject-info').value = task + ' - ' + client;
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
