@@ -182,21 +182,25 @@
                     <i class="bi bi-envelope fs-5"></i>
                 </button>
 
-                <div class="dropdown">
-                    <div class="flex items-center cursor-pointer dropdown-toggle" data-bs-toggle="dropdown">
-                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-600 mr-2 object-cover"
-                            src="../Img/smile.jpg" />
-                        <span class="text-sm font-medium mr-1">Joy</span>
+                <div class="relative">
+                    <div id="user-menu-button" class="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-500 mr-2 object-cover" src="../Img/smile.jpg" />
+                        <span class="text-sm font-medium mr-1 text-gray-200">Joy</span>
+                        <span class="material-icons text-sm text-gray-400">arrow_drop_down</span>
                     </div>
-                    <ul class="dropdown-menu dropdown-menu-end mt-2">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
-                                Out</a></li>
-                    </ul>
+                    
+                    <div id="user-dropdown" class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
+                        <a href="#" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">settings</span> Settings
+                        </a>
+                        <hr class="my-1 border-gray-100">
+                        <a href="login.html" class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">logout</span> Log Out
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>
@@ -749,6 +753,25 @@
                 } else {
                     sidebarEl.classList.remove('w-20');
                     sidebarEl.classList.add('w-64');
+                }
+            });
+        }
+
+        // ================= 使用者下拉選單邏輯 =================
+        const userMenuBtn = document.getElementById('user-menu-button');
+        const userDropdown = document.getElementById('user-dropdown');
+
+        if (userMenuBtn && userDropdown) {
+            // 點擊頭像切換選單
+            userMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                userDropdown.classList.toggle('hidden');
+            });
+
+            // 點擊畫面其他地方自動關閉選單
+            document.addEventListener('click', (e) => {
+                if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                    userDropdown.classList.add('hidden');
                 }
             });
         }
