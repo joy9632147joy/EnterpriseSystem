@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&amp;family=Noto+Sans+TC:wght@300;400;500&amp;family=Plus+Jakarta+Sans:wght@200;300;400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": "#C5A059",
+                        "champagne": "#D4AF37",
+                        "pure-white": "#FFFFFF",
+                        "pearl-white": "#FCFBFA",
+                        "soft-apricot": "#FDF7F2",
+                        "line-gold": "rgba(197, 160, 89, 0.15)",
+                        "deep-charcoal": "#2C2C2C",
+                        "light-gray": "#A0A0A0",
+                        "soft-grey": "#FBFBFB",
+                        "border-grey": "#F0F0F0",
+                        "accent-gold": "#C5A059",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                    },
+                    fontFamily: {
+                        "serif-tc": ["Noto Serif TC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-pearl-white text-deep-charcoal antialiased;
+            }
+            .title-luxury {
+                font-family: 'Bodoni Moda', serif;
+                letter-spacing: 0.15em;
+                font-weight: 400;
+                font-style: normal;
+            }
+            .nav-spacing {
+                letter-spacing: 0.4em;
+            }
+            .heading-spacing {
+                letter-spacing: 0.25em;
+            }
+        }
+        .thin-gold-border {
+            border-width: 0.5px;
+            border-color: rgba(197, 160, 89, 0.2);
+        }
+        .luxury-shadow {
+            box-shadow: 0 40px 80px -20px rgba(197, 160, 89, 0.08);
+        }
+        .interaction-overlay {
+            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+        }
+        .soft-focus {
+            filter: blur(0.4px) contrast(95%);
+        }
+        .apricot-bg {
+            background-color: #FDF7F2;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-gold/5">
+    <div class="relative flex min-h-screen flex-col">
+        <header class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border-grey/30">
+            <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
+                <div class="flex items-center gap-16">
+                    <div class="flex flex-col items-center leading-none">
+                        <span class="text-xl font-light tracking-[0.4em] text-text-main">
+                            <a href="./index.html">DREAM VENUES</a>
+                        </span>
+                        <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase font-extralight">
+                            High-End Wedding Journal
+                        </span>
+                    </div>
+
+                    <nav class="hidden items-center gap-10 lg:flex h-24">
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./1.html">婚禮方案</a>
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./2.html">活動花絮</a>
+
+                        <div class="group relative h-full flex items-center">
+                            <button
+                                class="nav-link text-xs font-medium transition-colors hover:text-accent-gold flex items-center gap-1">
+                                精選合作夥伴 <span
+                                    class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">expand_more</span>
+                            </button>
+
+                            <div class="absolute left-0 top-[70px] hidden group-hover:block w-64 pt-4">
+                                <div
+                                    class="bg-white border border-border-grey p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex flex-col gap-10 rounded-sm">
+
+                                    <div class="flex flex-col gap-4">
+                                        <span
+                                            class="text-100px tracking-[0.2em] text-accent-gold uppercase border-b border-accent-gold/40 pb-2">專業團隊</span>
+                                        <div class="flex flex-col gap-3">
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">主持人</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">攝影師</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新秘造型師</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-4">
+                                        <span
+                                            class="text-[10px] tracking-[0.2em] text-accent-gold uppercase font-bold border-b border-accent-gold/40 pb-2">婚禮美學</span>
+                                        <div class="flex flex-col gap-3">
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新娘婚紗</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">新郎西服</a>
+                                            <a href="#"
+                                                class="text-[12px] tracking-widest text-text-main hover:text-accent-gold transition-colors font-medium">喜餅禮盒</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="nav-link text-xs font-medium transition-colors hover:text-accent-gold"
+                            href="./contact.html">聯絡我們</a>
+                    </nav>
+                </div>
+
+                <div class="flex items-center gap-4 lg:gap-8">
+                    <div class="relative flex items-center">
+                        <input id="search-input" type="text" placeholder="搜尋場地或職人..."
+                            class="hidden w-0 opacity-0 lg:block transition-all duration-500 border-none bg-transparent text-xs focus:ring-0 placeholder:text-text-muted">
+                        <button id="search-btn"
+                            class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                    </div>
+                    <button id="menu-toggle"
+                        class="lg:hidden material-symbols-outlined text-text-main p-1">menu</button>
+                    <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5 hidden sm:block">
+                        <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0tYNS4-vFguMdJt9UqCgNPQir22cT_HmweYhUDDCoLc1Za1wM5tWDjab_T2k7J7x6WPEK30GCiunhhrG9aOCMfkTxwBD1FWgow-sPuW6N6hedZKDipgZ8eUSMGoPHfjR6R1DTiYp13ufYIVHvfbKW4CwVCsE9wk_mikBfDchcJP0x5K2cU0CXKZt0q5jYRUDBUMkUMLyniZYfHQFpq3MyPMJZMkmG4hC6-v011cAmloXlf0iOw2PN2V0HB7UErNDP89MqCmzli8UX">
+                    </div>
+                </div>
+            </div>
+
+            <nav id="mobile-nav"
+                class="hidden border-t border-border-grey/50 bg-white/95 lg:hidden overflow-y-auto max-h-[80vh]">
+                <div class="flex flex-col divide-y divide-border-grey/30 px-8 py-4">
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./1.html">婚禮方案</a>
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./2.html">活動花絮</a>
+
+                    <div class="py-4">
+                        <button id="mobile-partners-toggle"
+                            class="w-full flex justify-between items-center text-sm font-light tracking-widest text-text-main">
+                            精選合作夥伴 <span id="partners-icon"
+                                class="material-symbols-outlined transition-transform">expand_more</span>
+                        </button>
+                        <div id="mobile-partners-menu"
+                            class="hidden flex flex-col gap-8 mt-6 pl-4 border-l border-gold/20">
+                            <div class="flex flex-col gap-4">
+                                <span class="text-[9px] tracking-[0.2em] text-gold uppercase font-light">專業團隊</span>
+                                <a class="text-xs font-light text-text-muted" href="#">主持人</a>
+                                <a class="text-xs font-light text-text-muted" href="#">攝影師</a>
+                                <a class="text-xs font-light text-text-muted" href="#">新秘造型師</a>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <span class="text-[9px] tracking-[0.2em] text-gold uppercase font-light">婚禮美學</span>
+                                <a class="text-xs font-light text-text-muted" href="#">新娘婚紗</a>
+                                <a class="text-xs font-light text-text-muted" href="#">新郎西服</a>
+                                <a class="text-xs font-light text-text-muted" href="#">喜餅禮盒</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="py-4 text-sm font-light tracking-widest text-text-main" href="./5.html">聯絡我們</a>
+                </div>
+            </nav>
+        </header>
+        <main class="mx-auto w-full max-w-[1500px] px-16 pt-56 pb-72">
+            <div class="mb-32 text-center">
+                <span class="text-[10px] tracking-[1em] uppercase text-gold font-light mb-6 block">The Bridal
+                    Boutique</span>
+                <h1 class="text-4xl font-normal title-luxury text-deep-charcoal mb-12">衣裳禮餅：緻精品選購</h1>
+                <div class="w-20 h-[0.5px] bg-gold/20 mx-auto mb-16"></div>
+                <div
+                    class="flex justify-center gap-12 text-[11px] tracking-[0.4em] font-light text-light-gray uppercase">
+                    <button class="text-deep-charcoal transition-all border-b border-gold/40 pb-2">精選</button>
+                    <button class="hover:text-gold transition-colors pb-2">婚紗</button>
+                    <button class="hover:text-gold transition-colors pb-2">西服</button>
+                    <button class="hover:text-gold transition-colors pb-2">喜餅</button>
+                </div>
+            </div>
+            <section class="mb-64">
+                <div class="flex items-end justify-between mb-20">
+                    <div class="flex flex-col gap-3">
+                        <span class="text-[10px] tracking-[0.6em] text-gold uppercase font-light">Couture Gowns</span>
+                        <h2 class="text-4xl font-normal title-luxury">精品婚紗專區</h2>
+                    </div>
+                    <button
+                        class="text-[10px] tracking-[0.3em] text-light-gray uppercase border-b border-transparent pb-1 hover:border-gold hover:text-gold transition-all duration-700">View
+                        Gallery</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-28">
+                    <a class="group cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4.2] overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Wedding Gown"
+                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS" />
+                            <div
+                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
+                                <span
+                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
+                                    DETAILS</span>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <h3 class="text-lg font-normal title-luxury mb-3">縹緲絲緞 A-Line 婚紗</h3>
+                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 19,200 <span
+                                    class="mx-3 text-slate-200">/</span> <span
+                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4.2] overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Wedding Gown"
+                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8" />
+                            <div
+                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
+                                <span
+                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
+                                    DETAILS</span>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <h3 class="text-lg font-normal title-luxury mb-3">經典蕾絲魚尾系列</h3>
+                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 24,800 <span
+                                    class="mx-3 text-slate-200">/</span> <span
+                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4.2] overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Wedding Gown"
+                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" />
+                            <div
+                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
+                                <span
+                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
+                                    DETAILS</span>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <h3 class="text-lg font-normal title-luxury mb-3">復古一字肩刺繡婚紗</h3>
+                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 15,600 <span
+                                    class="mx-3 text-slate-200">/</span> <span
+                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="mb-64">
+                <div class="flex items-end justify-between mb-20">
+                    <div class="flex flex-col gap-3">
+                        <span class="text-[10px] tracking-[0.6em] text-gold uppercase font-light">Gentleman's
+                            Tailoring</span>
+                        <h2 class="text-4xl font-normal title-luxury">西服專區</h2>
+                    </div>
+                    <button
+                        class="text-[10px] tracking-[0.3em] text-light-gray uppercase border-b border-transparent pb-1 hover:border-gold hover:text-gold transition-all duration-700">View
+                        All Styles</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-28">
+                    <a class="group cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4.2] overflow-hidden apricot-bg mb-8">
+                            <img alt="Classic Dark Suit"
+                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus mix-blend-multiply opacity-90"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr" />
+                            <div
+                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
+                                <span
+                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
+                                    DETAILS</span>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <h3 class="text-lg font-normal title-luxury mb-3">午夜深灰手工羊絨西服</h3>
+                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 12,800 <span
+                                    class="mx-3 text-slate-200">/</span> <span
+                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4.2] overflow-hidden apricot-bg mb-8">
+                            <img alt="Beige Linen Suit"
+                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus mix-blend-multiply opacity-90"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" />
+                            <div
+                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
+                                <span
+                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
+                                    DETAILS</span>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <h3 class="text-lg font-normal title-luxury mb-3">純淨米棕香檳紳士套裝</h3>
+                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 9,500 <span
+                                    class="mx-3 text-slate-200">/</span> <span
+                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
+                        </div>
+                    </a>
+                    <a class="group cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4.2] overflow-hidden apricot-bg mb-8">
+                            <img alt="Elegant Blue Suit"
+                                class="h-full w-full object-cover transition-transform duration-[3s] ease-out group-hover:scale-105 soft-focus mix-blend-multiply opacity-90"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh" />
+                            <div
+                                class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 interaction-overlay flex items-end justify-center pb-16">
+                                <span
+                                    class="border thin-gold-border px-10 py-4 text-[9px] tracking-[0.5em] font-light uppercase text-deep-charcoal bg-white/90">VIEW
+                                    DETAILS</span>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <h3 class="text-lg font-normal title-luxury mb-3">午夜藍晚宴禮服系列</h3>
+                            <p class="text-[13px] font-sans font-light tracking-[0.1em] text-gold">HK$ 14,200 <span
+                                    class="mx-3 text-slate-200">/</span> <span
+                                    class="text-light-gray text-[10px] uppercase tracking-[0.2em]">套</span></p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section>
+                <div class="flex items-end justify-between mb-20">
+                    <div class="flex flex-col gap-3">
+                        <span class="text-[10px] tracking-[0.6em] text-gold uppercase font-light">Exquisite
+                            Favors</span>
+                        <h2 class="text-4xl font-normal title-luxury">喜餅專區</h2>
+                    </div>
+                    <button
+                        class="text-[10px] tracking-[0.3em] text-light-gray uppercase border-b border-transparent pb-1 hover:border-gold hover:text-gold transition-all duration-700">Explore
+                        Gifts</button>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Gift Box"
+                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiNhBJQ-a8_g3D5swUlCQ43mfDsLgFmPeMQcNlQhhugtqqHX3j0-iTltFtLj3P7EsAyTMD7J7gBZ4HkHPwpWmbQFZXEc5HW7UgMw1yxEgEx1imBj1ukVCgcUcwCK1BUIzdP-0KE23DVN-I4jqPt7_YM_CJxVEmbM1CDb_cuSfl4kcCBhKXmOzUaHAe8S6JkUp-zYajv1cS0Pce_pre0m6sz61p5pPgxPd56Uc_uSYP9APR_JSojsoYYjyBHWq3otdyJ4U4DH-vhbRC" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-[14px] font-normal title-luxury mb-2">匠心手作馬卡龍禮盒</h3>
+                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 98 <span
+                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Gift Box"
+                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Szm2h1wkuLv2R0qEsmP1tjOtFMEY-KMs0biil-mhgmFMYx-0Tpb92VlE-dyLbGXAC4fvopbNxdVonrOfd45Iz3GsKPjGd5IY7KUj01TMUI2e4GtQWEv77llJREjhInrspXo2WE1whPTa8_zTgxtNCHYwBRU-15JzrCTyn2gtEL31_pA4wA7yA4V2BSGB1UFYITe72Tj_Zokclx4p6gJK0F_U7G4YizM2TGIEEQl8S8tYyAkoY78HcgOPIAlWHasxjpk86Kym00SO" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-[14px] font-normal title-luxury mb-2">絲絨松露朱古力禮盒</h3>
+                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 145 <span
+                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Gift Box"
+                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhWCWfquvN86h5Z93jlLUeZ6AgJmFtqNGT6hJuyauFIeAO6a7-vqQ82syuSBVGDS29m-yxFc_DjvmBNOYIXsyM8vzqIAacFbM5OLATrJAD9NH1NJuuBAr1oWtRGyvE04-MXJC2BGOjYTeSZ3qD0F39U1Bcx5AIgw_E3WKrzh4RvtGF9z3iPkyKCHp-dXyW2ou2vGI0BKq1uUa4siprD0qa5aMzpfefMeHaVAk5d6iCCFLP-Oh6I-EseoX_-9SPsh3hGvdm9QzhFGky" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-[14px] font-normal title-luxury mb-2">法式蝴蝶酥精品裝</h3>
+                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 85 <span
+                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="aspect-square overflow-hidden bg-soft-apricot mb-8">
+                            <img alt="Gift Box"
+                                class="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-105 soft-focus"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxVOjwBt8pt89eWwPRfnlgOY4MirbxvsGrA1gUie1D2r_bt8PhYgvgo6UojsTupmvjuN4mEM2akGeoVoVMycXakB0e5uIGoQZfXw8ADoKEVKOZ34NQvDKd9RDKHC8S23M8uaMwSm-eBJx6pJda7nTOZ3FNfQH7RMcZiE2rBYWXgpuGcJR79uqYbha5fEXH9Fgof3qEMe-2cuU3pl6-rqbeuT8pfWwphVStrwIBu31Q3LkFv75b5Ku1GBMlWKnzLY0GaZBAcLWfLLY" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-[14px] font-normal title-luxury mb-2">綜合手工餅乾木盒</h3>
+                            <p class="text-[11px] font-sans font-light tracking-[0.1em] text-gold">HK$ 120 <span
+                                    class="text-[9px] text-light-gray ml-1">UP</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div
+            class="fixed bottom-0 left-0 right-0 z-[60] bg-white/60 backdrop-blur-xl border-t thin-gold-border py-6 luxury-shadow">
+            <div class="mx-auto flex max-w-[1500px] items-center justify-between px-16">
+                <div class="flex items-center gap-16">
+                    <div class="flex -space-x-4">
+                        <div class="h-14 w-14 rounded-full border border-white/40 overflow-hidden shadow-lg z-20">
+                            <img alt="Selected" class="h-full w-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8" />
+                        </div>
+                        <div
+                            class="h-14 w-14 rounded-full border border-white/40 bg-soft-apricot flex items-center justify-center shadow-lg text-gold font-sans font-light text-[10px] z-10">
+                            +2
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-[9px] tracking-[0.3em] text-gold font-light uppercase">Selection</span>
+                        <p
+                            class="text-[12px] font-light tracking-[0.05em] text-deep-charcoal/80 flex items-center gap-3">
+                            縹緲絲緞 A-Line <span class="h-3 w-[0.5px] bg-slate-200"></span> 馬卡龍禮盒 (100)
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-12">
+                    <div class="flex items-center gap-4 bg-pearl-white px-5 py-2 rounded-full border thin-gold-border">
+                        <span class="text-[9px] tracking-[0.2em] uppercase font-light text-light-gray">方案</span>
+                        <div class="flex bg-slate-50/50 rounded-full p-0.5 shadow-inner">
+                            <button
+                                class="bg-gold text-white px-4 py-1.5 rounded-full text-[9px] tracking-[0.2em] font-light">基本</button>
+                            <button
+                                class="text-light-gray px-4 py-1.5 rounded-full text-[9px] tracking-[0.2em] font-light hover:text-gold transition-colors">高訂</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span
+                            class="text-[9px] tracking-[0.3em] text-light-gray font-light uppercase mb-0.5 block">Estimated
+                            Total</span>
+                        <p class="text-3xl font-luxury font-normal tracking-tight text-gold">HK$ 29,000</p>
+                    </div>
+                    <button
+                        class="bg-deep-charcoal px-12 py-5 text-[10px] nav-spacing font-light uppercase text-white hover:bg-gold transition-all duration-1000">
+                        Proceed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. 手機版選單切換
+            const toggleBtn = document.getElementById('menu-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            toggleBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+                const isHidden = mobileNav.classList.contains('hidden');
+                toggleBtn.textContent = isHidden ? 'menu' : 'close';
+            });
+
+            // 2. 搜尋功能
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('search-input');
+
+            searchBtn.addEventListener('click', () => {
+                if (searchInput.classList.contains('hidden')) {
+                    // 展開
+                    searchInput.classList.remove('hidden');
+                    setTimeout(() => {
+                        searchInput.style.width = '200px';
+                        searchInput.style.opacity = '1';
+                        searchInput.focus();
+                    }, 10);
+                } else {
+                    // 如果已經有字，點擊可以執行搜尋邏輯
+                    if (searchInput.value.trim() !== "") {
+                        alert("執行搜尋: " + searchInput.value);
+                    } else {
+                        // 縮回
+                        searchInput.style.width = '0';
+                        searchInput.style.opacity = '0';
+                        setTimeout(() => searchInput.classList.add('hidden'), 500);
+                    }
+                }
+            });
+
+            // 3. 箭頭捲動功能
+            const scrollBtn = document.getElementById('scroll-to-content');
+            const targetSection = document.getElementById('main-content');
+
+            scrollBtn.addEventListener('click', () => {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth', // 平滑捲動
+                    block: 'start'
+                });
+            });
+
+            // 視窗大小改變監聽
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    mobileNav.classList.add('hidden');
+                    toggleBtn.textContent = 'menu';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>夢幻場域：精選場地與餐點比價</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "pure-white": "#FFFFFF",
+                        "off-white": "#FAFAFA",
+                        "champagne-gold": "#D4AF37",
+                        "soft-gold": "#E5D5B0",
+                        "text-primary": "#1A1A1A",
+                        "text-secondary": "#666666",
+                        "border-light": "#F0F0F0",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                        "accent-gold": "#C5A059",
+                        "border-grey": "#F0F0F0",
+                    },
+                    fontFamily: {
+                        "serif": ["Noto Serif TC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-pure-white text-text-primary antialiased selection:bg-soft-gold/30;
+            }
+            h1, h2, h3, h4, .serif-font {
+                @apply font-serif;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 20;
+        }
+        .venue-card-shadow {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .venue-card-shadow:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.08);
+        }
+        .gold-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden">
+    <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+        <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
+            <div class="flex items-center gap-16">
+                <div class="flex flex-col items-center leading-none">
+                    <span class="text-xl font-light tracking-[0.4em] text-text-main">DREAM VENUES</span>
+                    <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                        Journal</span>
+                </div>
+                <nav class="hidden items-center gap-10 lg:flex">
+                    <a class="nav-link text-xs font-medium transition-colors" href="./index.html">首頁</a>
+                    <a class="nav-link active text-xs font-medium transition-colors" href="./1.html">夢幻場域</a>
+                    <a class="nav-link text-xs font-medium transition-colors" href="./2.html">職人團隊</a>
+                    <a class="nav-link text-xs font-medium transition-colors" href="./3.html">衣裳禮餅</a>
+                    <a class="nav-link text-xs font-medium transition-colors" href="./4.html">籌備進度</a>
+                    <a class="nav-link text-xs font-medium transition-colors" href="./contact.html">聯絡我們</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-8">
+                <button
+                    class="material-symbols-outlined text-text-muted hover:text-text-main transition-colors">search</button>
+                <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+                    <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="mx-auto w-full max-w-7xl grow px-8 py-24">
+        <div class="mb-32 text-center">
+            <span class="text-[10px] uppercase tracking-[0.5em] text-champagne-gold mb-6 block">Exquisite Venue
+                Curation</span>
+            <h2 class="text-5xl font-extralight tracking-widest text-text-primary md:text-6xl mb-10">夢幻場域：精選場地與餐點比價</h2>
+            <div class="gold-line mx-auto w-32 opacity-40"></div>
+            <p class="mx-auto mt-12 max-w-3xl text-[17px] font-light leading-[2.2] text-text-secondary serif-font">
+                為您的神聖盟約挑選一方純淨天地。我們嚴選具備藝術靈魂的婚禮空間，<br />
+                將繁瑣的比價過程轉化為一場優雅的視覺巡禮。
+            </p>
+        </div>
+        <div class="mb-16 flex flex-wrap items-center justify-between gap-8 border-y border-border-light py-8">
+            <div class="flex flex-wrap gap-10">
+                <button
+                    class="serif-font flex items-center gap-3 text-sm tracking-widest text-text-secondary hover:text-champagne-gold transition-colors">
+                    容納人數 <span class="material-symbols-outlined text-xs">expand_more</span>
+                </button>
+                <button
+                    class="serif-font flex items-center gap-3 text-sm tracking-widest text-text-secondary hover:text-champagne-gold transition-colors">
+                    價格區間 <span class="material-symbols-outlined text-xs">expand_more</span>
+                </button>
+                <button
+                    class="serif-font flex items-center gap-3 text-sm tracking-widest text-text-secondary hover:text-champagne-gold transition-colors">
+                    餐飲風格 <span class="material-symbols-outlined text-xs">expand_more</span>
+                </button>
+            </div>
+            <button
+                class="flex items-center gap-4 bg-text-primary px-10 py-4 text-[13px] tracking-[0.2em] text-white transition-all hover:bg-champagne-gold">
+                <span class="material-symbols-outlined text-sm">architecture</span>
+                開啟場地比價
+            </button>
+        </div>
+        <div class="grid grid-cols-1 gap-x-12 gap-y-24 md:grid-cols-2 lg:grid-cols-3">
+            <div class="venue-card-shadow group relative bg-white">
+                <div class="relative aspect-[4/5] overflow-hidden">
+                    <img alt="Venue"
+                        class="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110 grayscale-[10%]"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK5oKIwFn7xTBKFCtW5WAf5o2q5uissrKOAcd6WlLfzqvzwdGIN8z2RZhtLyyzUJ3YkPnuZgaozZf8rXHQEurN7kN2XOf88NSJF5pMiIAtlBwcIvyH0LpWzzAS3bmez9JMjjExfhlz3HljLcYtS1_ravmKaFB-OnMJDJadV3i1e_OKMUSpMXeGrOPd8yUuwrHgZl4_9xxlNU_IrUOp-zPm-sSO1vypCgD6hMGnECww-oivPtC-lJLYt70kGoEuclgIX04eUWDrkAO0" />
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <button
+                        class="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur text-text-secondary hover:text-champagne-gold transition-all duration-300 hover:scale-110">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+                </div>
+                <div class="pt-8 px-2">
+                    <div class="flex items-end justify-between mb-4">
+                        <h3 class="text-2xl font-light tracking-wide text-text-primary">麗晶大飯店．皇家宴會廳</h3>
+                        <div class="text-right">
+                            <span class="block text-[10px] tracking-widest text-text-secondary uppercase mb-1">Starting
+                                from</span>
+                            <span class="text-xl font-light text-champagne-gold serif-font">NT$ 28,800</span>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-[13px] font-light text-text-secondary tracking-wider serif-font mb-8">
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-sm">groups_3</span> 50 桌客席</span>
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-sm">restaurant</span> 中式桌宴</span>
+                    </div>
+                    <div class="flex border-t border-border-light">
+                        <button
+                            class="flex-1 py-6 text-[12px] tracking-[0.2em] uppercase text-text-secondary hover:text-champagne-gold transition-colors">Explore</button>
+                        <div class="w-px bg-border-light h-10 self-center"></div>
+                        <button
+                            class="flex-1 py-6 text-[12px] tracking-[0.2em] uppercase text-text-secondary hover:text-champagne-gold transition-colors">Compare</button>
+                    </div>
+                </div>
+            </div>
+            <div class="venue-card-shadow group relative bg-white border border-champagne-gold/20 p-px">
+                <div class="relative aspect-[4/5] overflow-hidden">
+                    <img alt="Venue"
+                        class="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp4Y8NQQRR4NVHb91tenZDZqAIH3GvRcqhaRELXkxC140-1jwTkIAmY-DCQoTYIUVswg0MvcUVSX-9ym9fj_K4B7irCuXKFEN02_1k4EDynTasOsCHyQ-lAGuK5WBAojv73P5r6AANeIBdVZKNfyQ6IvzWMV1yRoRQz59ReAZ1KEEx_OPP_I60JQPI9iVQWeg3IEHOjz6XeI1ZX9cD5jrheGvYMPi-Gt7rgMbmaHCF2M95m4BT6EGGOX3AazacVMcbk1eRWwgS9sCe" />
+                    <div class="absolute inset-0 bg-champagne-gold/5"></div>
+                    <button
+                        class="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-champagne-gold text-white shadow-lg shadow-champagne-gold/20">
+                        <span class="material-symbols-outlined"
+                            style="font-variation-settings: 'FILL' 1;">favorite</span>
+                    </button>
+                    <div
+                        class="absolute bottom-6 left-6 bg-white/95 px-5 py-2 text-[10px] tracking-[0.3em] uppercase text-champagne-gold border border-champagne-gold/30">
+                        Current Selection</div>
+                </div>
+                <div class="pt-8 px-6 pb-2">
+                    <div class="flex items-end justify-between mb-4">
+                        <h3 class="text-2xl font-light tracking-wide text-text-primary">蔚藍海岸．海景禮堂</h3>
+                        <div class="text-right">
+                            <span class="block text-[10px] tracking-widest text-text-secondary uppercase mb-1">Starting
+                                from</span>
+                            <span class="text-xl font-light text-champagne-gold serif-font">NT$ 32,000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-[13px] font-light text-text-secondary tracking-wider serif-font mb-8">
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-sm">groups_3</span> 20 桌客席</span>
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-sm">restaurant</span> 西式自助</span>
+                    </div>
+                    <div class="flex border-t border-border-light">
+                        <button
+                            class="flex-1 py-6 text-[12px] tracking-[0.2em] uppercase text-text-secondary hover:text-champagne-gold transition-colors">Explore</button>
+                        <div class="w-px bg-border-light h-10 self-center"></div>
+                        <button
+                            class="flex-1 py-6 text-[12px] tracking-[0.2em] uppercase text-champagne-gold font-medium">Selected</button>
+                    </div>
+                </div>
+            </div>
+            <div class="venue-card-shadow group relative bg-white">
+                <div class="relative aspect-[4/5] overflow-hidden">
+                    <img alt="Venue"
+                        class="h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110 grayscale-[10%]"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkzeEFePRqjaKL52Gm03gPi6moFfpVXtUPvEnLvukKKoNagEvCqXI5Q7x12CzYOs8a8tkV37nSMTIgGpPcC3gn8KsZpOj3u-eeUScUFKCEDvYVmipnv354J3v6rN19RJape9ODUZOSxFy5qwufbU7YVRMLE94JbzNS5ET4lUbXk4nIa7H9exvHlnMmCTP33CPYX_EK_2_xcp_sqocykVBbTC7qoqJtyNRYKJrjcWqdx2hqlVx3KjFg1y5CPi0c5hahmLs0t_eBVTJh" />
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <button
+                        class="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 backdrop-blur text-text-secondary hover:text-champagne-gold transition-all duration-300 hover:scale-110">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+                </div>
+                <div class="pt-8 px-2">
+                    <div class="flex items-end justify-between mb-4">
+                        <h3 class="text-2xl font-light tracking-wide text-text-primary">森之綠境．玻璃溫室</h3>
+                        <div class="text-right">
+                            <span class="block text-[10px] tracking-widest text-text-secondary uppercase mb-1">Starting
+                                from</span>
+                            <span class="text-xl font-light text-champagne-gold serif-font">NT$ 22,000</span>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-6 text-[13px] font-light text-text-secondary tracking-wider serif-font mb-8">
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-sm">groups_3</span> 15 桌客席</span>
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-sm">restaurant</span> 創意法式</span>
+                    </div>
+                    <div class="flex border-t border-border-light">
+                        <button
+                            class="flex-1 py-6 text-[12px] tracking-[0.2em] uppercase text-text-secondary hover:text-champagne-gold transition-colors">Explore</button>
+                        <div class="w-px bg-border-light h-10 self-center"></div>
+                        <button
+                            class="flex-1 py-6 text-[12px] tracking-[0.2em] uppercase text-text-secondary hover:text-champagne-gold transition-colors">Compare</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-48">
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl font-light tracking-[0.15em] text-text-primary">場地細節深度比較</h2>
+                <div class="mx-auto mt-6 h-px w-16 bg-champagne-gold/30"></div>
+                <p class="mt-8 text-[15px] font-light tracking-widest text-text-secondary serif-font">為您的完美日子挑選最合適的空間
+                </p>
+            </div>
+            <div class="overflow-hidden border border-border-light bg-off-white/30 backdrop-blur-sm">
+                <table class="w-full border-collapse text-left">
+                    <thead>
+                        <tr class="border-b border-border-light">
+                            <th
+                                class="p-12 text-[11px] uppercase tracking-[0.3em] text-text-secondary font-normal w-1/4">
+                                Feature Analysis</th>
+                            <th class="p-12 text-2xl font-light text-text-primary w-1/4 serif-font">蔚藍海岸．海景禮堂</th>
+                            <th class="p-12 text-2xl font-light text-text-primary w-1/4 serif-font">麗晶大飯店．皇家宴會廳</th>
+                            <th
+                                class="p-12 text-[13px] italic tracking-widest text-text-secondary/40 font-light w-1/4 serif-font">
+                                Add venue to compare...</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border-light serif-font">
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="px-12 py-10 text-[14px] font-medium text-text-primary tracking-widest">餐飲風格</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary leading-relaxed">
+                                國際自助百匯<br /><span class="text-[12px] text-champagne-gold/70">現場烹飪區</span></td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary leading-relaxed">
+                                中式頂級桌席<br /><span class="text-[12px] text-champagne-gold/70">12道功夫菜</span></td>
+                            <td class="px-12 py-10 text-border-light">—</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="px-12 py-10 text-[14px] font-medium text-text-primary tracking-widest">最大容納</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary">200 位客席 / 350 位酒會</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary">600 位客席 / 800 位酒會</td>
+                            <td class="px-12 py-10 text-border-light">—</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="px-12 py-10 text-[14px] font-medium text-text-primary tracking-widest">佈置選項</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary">海灘風情, 極簡純白</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary">維多利亞經典, 金緻奢華</td>
+                            <td class="px-12 py-10 text-border-light">—</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="px-12 py-10 text-[14px] font-medium text-text-primary tracking-widest">影音設備</td>
+                            <td class="px-12 py-10">
+                                <span
+                                    class="inline-block border border-border-light px-4 py-1.5 text-[11px] tracking-widest text-text-secondary uppercase">Standard
+                                    AV</span>
+                            </td>
+                            <td class="px-12 py-10">
+                                <span
+                                    class="inline-block border border-champagne-gold/30 px-4 py-1.5 text-[11px] tracking-widest text-champagne-gold uppercase bg-champagne-gold/5">4K
+                                    LED Full Wall</span>
+                            </td>
+                            <td class="px-12 py-10 text-border-light">—</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="px-12 py-10 text-[14px] font-medium text-text-primary tracking-widest">新娘休息室</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary">標準休息間 (1間)</td>
+                            <td class="px-12 py-10 text-[15px] font-light text-text-secondary">尊榮套房 (2間含衛浴)</td>
+                            <td class="px-12 py-10 text-border-light">—</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td class="p-12">
+                                <button
+                                    class="w-full bg-text-primary py-5 text-[11px] tracking-[0.3em] text-white transition-all hover:bg-champagne-gold uppercase">Schedule
+                                    Visit</button>
+                            </td>
+                            <td class="p-12">
+                                <button
+                                    class="w-full bg-text-primary py-5 text-[11px] tracking-[0.3em] text-white transition-all hover:bg-champagne-gold uppercase">Schedule
+                                    Visit</button>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer class="mt-32 border-t border-border-light bg-off-white/50 px-8 py-32">
+        <div class="mx-auto flex max-w-7xl flex-wrap justify-between gap-24">
+            <div class="max-w-md flex flex-col gap-10">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-champagne-gold text-2xl">storm</span>
+                    <span class="serif-font text-2xl font-light tracking-[0.3em] text-text-primary">DREAM VENUES</span>
+                </div>
+                <p class="serif-font text-[15px] font-light leading-[2.2] text-text-secondary">
+                    我們相信每一場婚禮都是一件獨一無二的藝術品。<br />
+                    致力於透過極簡的美學視野，為新人捕捉生命中最純粹的光影，打造永恆的優雅回憶。
+                </p>
+                <div class="flex gap-6">
+                    <a class="h-10 w-10 border border-border-light rounded-full flex items-center justify-center hover:border-champagne-gold transition-colors text-text-secondary"
+                        href="#">
+                        <span class="material-symbols-outlined text-sm">nest_eco_leaf</span>
+                    </a>
+                    <a class="h-10 w-10 border border-border-light rounded-full flex items-center justify-center hover:border-champagne-gold transition-colors text-text-secondary"
+                        href="#">
+                        <span class="material-symbols-outlined text-sm">public</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex gap-32">
+                <div class="flex flex-col gap-8">
+                    <h4 class="text-[11px] font-medium uppercase tracking-[0.4em] text-text-primary">探索平台</h4>
+                    <nav class="flex flex-col gap-5 serif-font text-[14px] font-light text-text-secondary">
+                        <a class="hover:text-champagne-gold transition-colors" href="#">精選場地</a>
+                        <a class="hover:text-champagne-gold transition-colors" href="#">職人故事</a>
+                        <a class="hover:text-champagne-gold transition-colors" href="#">風格靈感</a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <h4 class="text-[11px] font-medium uppercase tracking-[0.4em] text-text-primary">客戶服務</h4>
+                    <nav class="flex flex-col gap-5 serif-font text-[14px] font-light text-text-secondary">
+                        <a class="hover:text-champagne-gold transition-colors" href="#">預約流程</a>
+                        <a class="hover:text-champagne-gold transition-colors" href="#">隱私政策</a>
+                        <a class="hover:text-champagne-gold transition-colors" href="#">聯繫我們</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div
+            class="mx-auto mt-32 max-w-7xl pt-12 border-t border-border-light text-center text-[9px] tracking-[0.5em] text-text-secondary/50 uppercase">
+            © 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+</body>
+
+</html>

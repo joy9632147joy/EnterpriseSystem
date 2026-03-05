@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DREAM VENUES | 專業婚禮顧問與方案統籌</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "pure-white": "#FFFFFF",
+                        "soft-grey": "#FBFBFB",
+                        "border-grey": "#F0F0F0",
+                        "accent-gold": "#C5A059",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                    },
+                    fontFamily: {
+                        "serif-tc": ["Noto Serif TC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body { @apply bg-pure-white text-text-main antialiased; }
+        }
+
+        /* 3D 翻轉核心邏輯 */
+        .card-container {
+            perspective: 1500px;
+            height: 520px;
+            cursor: pointer;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .card-inner.is-flipped { transform: rotateY(180deg); }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 2px;
+            @apply shadow-sm border border-border-grey;
+        }
+        .card-front {
+            @apply bg-soft-grey flex flex-col items-center justify-center text-center p-8;
+            border-top: 3px solid #C5A059;
+        }
+        .card-back {
+            @apply bg-pure-white p-8 overflow-hidden flex flex-col;
+            transform: rotateY(180deg);
+            border: 1px solid #C5A059;
+        }
+        
+        /* 自定義捲軸 */
+        .custom-scrollbar::-webkit-scrollbar { width: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 10px; }
+
+        .video-overlay { background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%); }
+        .nav-link.active { border-bottom: 1px solid #C5A059; padding-bottom: 4px; }
+    </style>
+</head>
+
+<body class="font-sans">
+    <header class="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-lg border-b border-border-grey/30">
+        <div class="mx-auto flex h-24 max-w-[1600px] items-center justify-between px-8 lg:px-12">
+            <div class="flex items-center gap-16">
+                <div class="flex flex-col items-center leading-none">
+                    <span class="text-xl font-light tracking-[0.4em]">DREAM VENUES</span>
+                    <span class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase">High-End Wedding
+                        Journal</span>
+                </div>
+                <nav class="hidden items-center gap-10 lg:flex">
+                    <a class="nav-link active text-xs font-medium" href="./index.html">首頁</a>
+                    <a class="nav-link text-xs font-medium" href="./1.html">夢幻場域</a>
+                    <a class="nav-link text-xs font-medium" href="./2.html">職人團隊</a>
+                    <a class="nav-link text-xs font-medium" href="./3.html">衣裳禮餅</a>
+                    <a class="nav-link text-xs font-medium" href="./4.html">籌備進度</a>
+                    <a class="nav-link text-xs font-medium" href="./contact.html">聯絡我們</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-8">
+                <button class="material-symbols-outlined text-text-muted">search</button>
+                <div class="h-9 w-9 overflow-hidden rounded-full border border-border-grey p-0.5">
+                    <img alt="Profile" class="h-full w-full rounded-full object-cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuANYQ2CYkYmdtWMNpq2boMlxELs_swfy_CSiMDBipCkC_AMj2TO10sBhX2XFfZt3xlTvbgGF5uR0rimGNU2Q4bD2xUjnWB1-STTPHbKgB8As-HyhSllbDPngKYkPkmLXiee5oF5WGEs1lTa_TiVH_CuiQxIscu5-8wYMReqIzcRxdsN-1aBgeh-Zr-Khngdo2U2ip39iCxfCuVHgRw2N0hDWlIQVWsCYuO8ZUDPgeKoRsAaGBVkUerPwX6Ih-aT9dZKErO3HmmgOwbp" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-40 pb-32 lg:pt-20 lg:pb-48 bg-pure-white">
+            <div class="mx-auto max-w-[1500px] px-8">
+                <div class="mb-20 mt-12 flex flex-col items-center text-center">
+                    <h3 class="font-serif-tc text-5xl font-light tracking-tight text-text-main">專業顧問服務方案</h3>
+                    <div class="mt-8 h-px w-24 bg-accent-gold/40"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+
+                    <div class="lg:col-span-7 card-container !h-full min-h-[700px]" onclick="flipCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front !p-16 !justify-center">
+                                <span
+                                    class="text-[11px] tracking-[0.5em] text-accent-gold mb-8 font-bold uppercase block">Core
+                                    Flagship Package A</span>
+                                <h4 class="font-serif-tc text-5xl mb-8 leading-tight">婚宴顧問服務<br>+ 儀式規劃</h4>
+                                <div class="text-accent-gold font-light text-3xl serif-font mb-12">NT$ 58,800</div>
+                                <div class="w-16 h-px bg-accent-gold/30 mb-12"></div>
+                                <p
+                                    class="text-text-muted text-base font-light tracking-widest leading-relaxed max-w-md">
+                                    專為追求完美的您打造，涵蓋從統籌、儀式到宴會執行的 18 項專業細節。
+                                </p>
+                                <span
+                                    class="mt-12 text-[10px] tracking-[0.4em] text-text-muted border-b border-accent-gold pb-1 uppercase">點擊展開全案統籌細節
+                                    ⟳</span>
+                            </div>
+                            <div class="card-back !p-14 overflow-y-auto custom-scrollbar">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                                    <div class="md:col-span-2 border-b border-border-grey pb-8">
+                                        <h5
+                                            class="text-accent-gold text-[12px] font-bold tracking-[0.3em] mb-6 uppercase">
+                                            I. Wedding Planning 婚禮統籌籌備</h5>
+                                        <ul
+                                            class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-[14px] text-text-muted font-light">
+                                            <li>• 進度管理：專屬籌備時序表定期追蹤</li>
+                                            <li>• 廠商媒合：依風格推薦攝影/新秘/禮服</li>
+                                            <li>• 合約諮詢：審閱合約要點確保權益</li>
+                                            <li>• 專業場勘：確認舞台及硬體配置</li>
+                                            <li>• 動線規劃：進場/送客之最佳動線</li>
+                                            <li>• 人力配置：工作人員職掌建議表</li>
+                                        </ul>
+                                    </div>
+                                    <div class="border-r border-border-grey pr-8">
+                                        <h5
+                                            class="text-accent-gold text-[12px] font-bold tracking-[0.3em] mb-6 uppercase">
+                                            II. Ceremony 儀式規劃</h5>
+                                        <ul class="text-[14px] space-y-3 text-text-muted font-light">
+                                            <li>• 客製流程腳本（含禁忌/誓詞安排）</li>
+                                            <li>• 儀式前置解說與清單提供</li>
+                                            <li>• 物資代購協助與現場執行控管</li>
+                                            <li>• 場控人員(1-2名)全程引導</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5
+                                            class="text-accent-gold text-[12px] font-bold tracking-[0.3em] mb-6 uppercase">
+                                            III. Reception 宴會執行</h5>
+                                        <ul class="text-[14px] space-y-3 text-text-muted font-light">
+                                            <li>• 活動設計與完整音樂歌單規劃</li>
+                                            <li>• 配置專業影音場控及貼身助理</li>
+                                            <li>• 婚顧主場指揮對接飯店領班</li>
+                                            <li>• 正式開始前之走位及活動彩排</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col gap-8">
+
+                        <div class="card-container flex-1 !h-auto min-h-[210px]" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front !flex-row !justify-between !px-12 !py-8">
+                                    <div class="text-left">
+                                        <span
+                                            class="text-[9px] tracking-[0.3em] text-accent-gold mb-2 block uppercase font-bold">Package
+                                            B</span>
+                                        <h4 class="font-serif-tc text-2xl">專業婚禮主持人</h4>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-accent-gold text-xl serif-font">NT$ 16,000</div>
+                                        <span class="text-[9px] text-text-muted uppercase tracking-widest">Detail
+                                            ⟳</span>
+                                    </div>
+                                </div>
+                                <div class="card-back !p-10 justify-center">
+                                    <ul class="grid grid-cols-2 gap-4 text-[13px] text-text-muted font-light">
+                                        <li>• 主持群作品挑選面談</li>
+                                        <li>• 深度訪談挖掘故事</li>
+                                        <li>• 品牌發表會等級控場</li>
+                                        <li>• 全程服務至送客結束</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-container flex-1 !h-auto min-h-[210px]" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front !flex-row !justify-between !px-12 !py-8">
+                                    <div class="text-left">
+                                        <span
+                                            class="text-[9px] tracking-[0.3em] text-accent-gold mb-2 block uppercase font-bold">Package
+                                            C</span>
+                                        <h4 class="font-serif-tc text-2xl">單儀式規劃執行</h4>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-accent-gold text-xl serif-font">NT$ 15,800</div>
+                                        <span class="text-[9px] text-text-muted uppercase tracking-widest">Scope
+                                            ⟳</span>
+                                    </div>
+                                </div>
+                                <div class="card-back !p-10 justify-center text-center">
+                                    <p class="text-[13px] leading-relaxed text-text-muted font-light">
+                                        <strong class="text-text-main block mb-2">專為「純儀式」或「家宴」新人設計</strong>
+                                        包含專業引導、現場帶位及流程掌控，不含後續宴客執行。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-container flex-1 !h-auto min-h-[210px]" onclick="flipCard(this)">
+                            <div class="card-inner">
+                                <div class="card-front !flex-row !justify-between !px-12 !py-8">
+                                    <div class="text-left">
+                                        <span
+                                            class="text-[9px] tracking-[0.3em] text-accent-gold mb-2 block uppercase font-bold">Package
+                                            D</span>
+                                        <h4 class="font-serif-tc text-2xl">客製婚禮佈置</h4>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-accent-gold text-xl serif-font">NT$ 50,000 <small
+                                                class="text-[10px]">起</small></div>
+                                        <span class="text-[9px] text-text-muted uppercase tracking-widest">Visual
+                                            ⟳</span>
+                                    </div>
+                                </div>
+                                <div class="card-back !p-10 justify-center">
+                                    <ul class="grid grid-cols-2 gap-4 text-[13px] text-text-muted font-light">
+                                        <li>• 2D/3D 視覺提案示意</li>
+                                        <li>• 主背板/相本桌/收禮區</li>
+                                        <li>• 高品質鮮花規格提升</li>
+                                        <li>• 專業團隊進拆場服務</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div
+                    class="mt-20 p-12 bg-soft-grey flex flex-col md:flex-row justify-between items-center border border-border-grey">
+                    <div class="text-center md:text-left mb-8 md:mb-0">
+                        <h4 class="font-serif-tc text-2xl mb-2 italic">Exclusive Bundle Packages</h4>
+                        <p class="text-[11px] tracking-[0.4em] text-text-muted uppercase">多項合購享尊榮優惠折扣</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-12 items-baseline">
+                        <div class="text-center">
+                            <span class="text-[10px] text-text-muted block mb-1">A + B + C</span>
+                            <span class="text-xl font-medium serif-font">NT$ 85,000 <span
+                                    class="text-[10px] text-accent-gold">&lt;已省 $5,600&gt;</span></span>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-[10px] text-text-muted block mb-1">A + C + D</span>
+                            <span class="text-xl font-medium serif-font">NT$ 117,000 <span
+                                    class="text-[10px] text-accent-gold">&lt;已省 $7,600&gt;</span></span>
+                        </div>
+                        <div class="text-center bg-accent-gold/5 px-8 py-4 border border-accent-gold/20">
+                            <span class="text-[10px] text-accent-gold font-bold block mb-1">FULL PACKAGE
+                                (A+B+C+D)</span>
+                            <span class="text-3xl font-bold text-accent-gold serif-font">NT$ 130,000 <span
+                                    class="text-[10px] ml-1 tracking-tighter">&lt;最高省 $10,600&gt;</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer class="border-t border-border-grey bg-white px-10 py-24">
+                <div class="mx-auto flex max-w-[1400px] flex-wrap justify-between gap-16">
+                    <div class="max-w-xs flex flex-col gap-8">
+                        <div class="flex flex-col leading-none">
+                            <span class="text-lg font-light tracking-[0.4em] text-text-main uppercase">Dream
+                                Venues</span>
+                            <span
+                                class="mt-1 text-[8px] tracking-[0.5em] text-accent-gold uppercase font-medium">Wedding
+                                &
+                                Event Design</span>
+                        </div>
+                        <p class="text-[13px] font-light leading-relaxed text-text-muted">
+                            致力於為每一對新人打造專屬的記憶。在最優雅的場景中，見證最誠摯的誓言。
+                        </p>
+                    </div>
+                    <div class="text-[9px] tracking-[0.5em] text-text-muted uppercase self-end">
+                        © 2024 DREAM VENUES DESIGN. ALL RIGHTS RESERVED.
+                    </div>
+                </div>
+            </footer>
+    </main>
+
+    <script>
+        function flipCard(element) {
+            const inner = element.querySelector('.card-inner');
+            inner.classList.toggle('is-flipped');
+        }
+    </script>
+</body>
+
+</html>
