@@ -7,10 +7,9 @@
     <title>ES Admin - 差勤系統</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../ESCss/SignInOut.css" defer>
-    <script src="../ESJS/MainPage.js"></script>
+    <link rel="stylesheet" href="../ESCss/es_new_ver.css">
+    <script src="../ESJS/es_new_ver.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -44,28 +43,6 @@
         };
     </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* 避免 Bootstrap 底線影響 Tailwind a 標籤 */
-        a {
-            text-decoration: none !important;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-        }
-
-        .dark .glass-card {
-            background: rgba(31, 41, 55, 0.85);
-            border: 1px solid rgba(75, 85, 99, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-        }
-
         /* 讓日曆格子有可點擊的感覺 */
         .calendar-day {
             cursor: pointer;
@@ -76,27 +53,12 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-
-        /* 側邊欄收縮時的隱藏與置中規則 */
-        #sidebarN.w-20 .menu-category,
-        #sidebarN.w-20 .sidebar-user {
-            display: none !important;
-        }
-        #sidebarN.w-20 a {
-            justify-content: center;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        #sidebarN.w-20 .material-icons,
-        #sidebarN.w-20 .text-2xl {
-            margin-right: 0 !important;
-        }
     </style>
 </head>
 
 <body
     class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
-    <aside id="sidebarN" class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden" style="z-index: 50;">
+    <aside id="sidebar" class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden" style="z-index: 50;">
         <div class="h-16 flex items-center justify-center">
             <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
             <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
@@ -739,42 +701,6 @@
                 });
             }
         });
-
-        // --- 新增：側邊欄收縮邏輯 ---
-        const hamburgerBtn = document.getElementById('sidebar-hamburger');
-        const sidebarEl = document.getElementById('sidebarN'); // 改抓 sidebarN
-
-        if (hamburgerBtn && sidebarEl) {
-            hamburgerBtn.addEventListener('click', function () {
-                // 切換側邊欄寬度 (w-64 展開, w-20 收縮保留圖示)
-                if (sidebarEl.classList.contains('w-64')) {
-                    sidebarEl.classList.remove('w-64');
-                    sidebarEl.classList.add('w-20');
-                } else {
-                    sidebarEl.classList.remove('w-20');
-                    sidebarEl.classList.add('w-64');
-                }
-            });
-        }
-
-        // ================= 使用者下拉選單邏輯 =================
-        const userMenuBtn = document.getElementById('user-menu-button');
-        const userDropdown = document.getElementById('user-dropdown');
-
-        if (userMenuBtn && userDropdown) {
-            // 點擊頭像切換選單
-            userMenuBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                userDropdown.classList.toggle('hidden');
-            });
-
-            // 點擊畫面其他地方自動關閉選單
-            document.addEventListener('click', (e) => {
-                if (!userMenuBtn.contains(e.target) && !userDropdown.contains(e.target)) {
-                    userDropdown.classList.add('hidden');
-                }
-            });
-        }
     </script>
 </body>
 
