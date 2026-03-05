@@ -63,7 +63,7 @@
         }
 
         .brand-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 300;
             letter-spacing: 0.4em;
             color: var(--text-main);
@@ -80,6 +80,8 @@
             font-weight: 200;
             display: block;
             margin-top: 4px;
+            font-weight: 500;
+            text-align: center;
         }
 
         .navbar-toggler {
@@ -140,7 +142,7 @@
         .nav-item.dropdown.show .dropdown-toggle .material-symbols-outlined {
             transform: rotate(180deg);
         }
-        
+
 
         /* 桌面版 hover 展開 dropdown */
         @media (min-width: 992px) {
@@ -444,10 +446,12 @@
             display: none;
             overflow-x: auto;
             gap: 8px;
-            padding: 20px 0 16px;
+            padding: 20px 20px 16px;
             border-bottom: 1px solid var(--border-grey);
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .mobile-filter-bar::-webkit-scrollbar {
@@ -564,7 +568,7 @@
 
         .card-img-wrap {
             position: relative;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1/1;
             overflow: hidden;
             background: var(--border-grey);
         }
@@ -584,13 +588,20 @@
         .card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, transparent 55%);
-            opacity: 0;
-            transition: opacity 0.5s;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 60%);
+            opacity: 1;
             display: flex;
             align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 32px;
+            justify-content: space-between;
+            padding: 0 16px 16px;
+        }
+
+        .card-overlay-name {
+            font-family: var(--font-serif);
+            font-size: 15px;
+            color: white;
+            font-weight: 400;
+            letter-spacing: 0.06em;
         }
 
         .partner-card:hover .card-overlay {
@@ -806,63 +817,62 @@
     <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
-
-            <!-- 品牌 LOGO -->
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-
-            <!-- 漢堡按鈕 → 觸發 offcanvas -->
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
                 aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- 桌面版選單 + 右側工具列 -->
             <div class="collapse navbar-collapse" id="navMenuDesktop">
                 <ul class="navbar-nav ms-lg-4 gap-lg-1">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
-                            id="desktopDropdown" data-bs-toggle="dropdown">
-                            精選合作夥伴
-                            <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="venue">婚禮場地</a>
-                            <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="gown">新娘婚紗</a>
-                            <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="suit">新郎西服</a>
-                            <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="cake">喜餅禮盒</a>
-                            <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="gift">婚禮小物</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
                 </ul>
-
-                <!-- 右側工具列：放在 collapse 內，ms-auto 自動推到最右邊 -->
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
+                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
                 </div>
             </div>
-
         </div>
     </nav>
+
+    <!-- ─── 手機版 Offcanvas ─── -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+        <div class="offcanvas-header">
+            <div>
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+            <ul class="navbar-nav gap-0">
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+            </ul>
+            <a href="client_login.html" class="offcanvas-login">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                會員登入
+            </a>
+        </div>
+    </div>
 
     <!-- ─── 手機版 Offcanvas 側邊選單 ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
@@ -887,8 +897,8 @@
                     <a class="nav-link nav-link-item" href="./professional_team.html">婚禮團隊</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
-                    </li>
+                    <a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
                 </li>
@@ -899,7 +909,7 @@
                         <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="venue">婚禮場地</a>
+                        <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="venues">婚禮場地</a>
                         <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="gown">新娘婚紗</a>
                         <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="suit">新郎西服</a>
                         <a class="dropdown-item nav-filter-link" href="javascript:void(0)" data-cat="cake">喜餅禮盒</a>
@@ -907,11 +917,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
+                    <a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a>
                 </li>
             </ul>
 
-             <!-- 登入按鈕 -->
+            <!-- 登入按鈕 -->
             <a href="client_login.html" class="offcanvas-login">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
@@ -931,7 +941,7 @@
         </div>
 
         <!-- 手機版橫向篩選條 -->
-        <div style="max-width:1520px; margin:0 auto; padding:0 20px;">
+        <div style="max-width:1520px; margin:0 auto;">
             <div class="mobile-filter-bar" id="mobileFilterBar">
                 <button class="mobile-filter-chip" data-cat="venus">婚禮場地</button>
                 <button class="mobile-filter-chip" data-cat="gown">新娘婚紗</button>
@@ -947,7 +957,7 @@
             <!-- 左側篩選欄（桌機） -->
             <aside class="sidebar">
                 <p class="sidebar-title">類別篩選</p>
-                <button class="filter-btn" data-cat="venue">婚禮場地</button>
+                <button class="filter-btn" data-cat="venues">婚禮場地</button>
                 <button class="filter-btn" data-cat="gown">新娘婚紗</button>
                 <button class="filter-btn" data-cat="suit">新郎西服</button>
                 <button class="filter-btn" data-cat="cake">喜餅禮盒</button>
@@ -958,7 +968,99 @@
             <div class="grid-area" id="gridArea">
 
                 <!-- ── 婚禮場地 ── -->
-                <div class="category-section active" data-section="venus">
+                <div class="category-section active" data-section="venues">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Bridal Gown · Couture</span>
+                            <h2 class="category-title">婚禮場地</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="Gown1">
+                                <div class="card-overlay">
+                                    <span class="card-overlay-name">廠商名字</span>
+                                    <span class="overlay-btn">前往官網</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Blanc Atelier</p>
+                                <span class="card-name-en">blancatelier.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北大安</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Gown2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Pure White Studio</p>
+                                <span class="card-name-en">purewhite.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Gown3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">La Lumière</p>
+                                <span class="card-name-en">lalumiere-bridal.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北信義</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Gown4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Ivory & Silk</p>
+                                <span class="card-name-en">ivorysilk.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>日系清新</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ── 新娘婚紗 ── -->
+                <div class="category-section active" data-section="gown">
                     <div class="category-header">
                         <div>
                             <span class="category-label">Bridal Gown · Couture</span>
@@ -1046,7 +1148,267 @@
                     </div>
                 </div>
 
-                <!-- ── 新娘婚紗 ── -->
+                <div class="category-section active" data-section="gown">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Bridal Gown · Couture</span>
+                            <h2 class="category-title">新娘婚紗</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="Gown1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Blanc Atelier</p>
+                                <span class="card-name-en">blancatelier.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北大安</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Gown2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Pure White Studio</p>
+                                <span class="card-name-en">purewhite.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Gown3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">La Lumière</p>
+                                <span class="card-name-en">lalumiere-bridal.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北信義</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Gown4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Ivory & Silk</p>
+                                <span class="card-name-en">ivorysilk.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>日系清新</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-section active" data-section="gown">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Bridal Gown · Couture</span>
+                            <h2 class="category-title">新娘婚紗</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="Gown1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Blanc Atelier</p>
+                                <span class="card-name-en">blancatelier.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北大安</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Gown2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Pure White Studio</p>
+                                <span class="card-name-en">purewhite.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Gown3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">La Lumière</p>
+                                <span class="card-name-en">lalumiere-bridal.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北信義</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Gown4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Ivory & Silk</p>
+                                <span class="card-name-en">ivorysilk.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>日系清新</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-section active" data-section="gown">
+                    <div class="category-header">
+                        <div>
+                            <span class="category-label">Bridal Gown · Couture</span>
+                            <h2 class="category-title">新娘婚紗</h2>
+                        </div>
+                        <span class="result-count">4 位夥伴</span>
+                    </div>
+                    <div class="partner-grid">
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="Gown1">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Blanc Atelier</p>
+                                <span class="card-name-en">blancatelier.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北大安</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7MP2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHfPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Gown2">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Pure White Studio</p>
+                                <span class="card-name-en">purewhite.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Gown3">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">La Lumière</p>
+                                <span class="card-name-en">lalumiere-bridal.com</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北信義</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                        <a class="partner-card" href="https://example.com" target="_blank">
+                            <div class="card-img-wrap">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Gown4">
+                                <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-tag">Bridal House</span>
+                                <p class="card-name">Ivory & Silk</p>
+                                <span class="card-name-en">ivorysilk.com.tw</span>
+                                <div class="card-meta">
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>日系清新</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
+                                </div>
+                                <div class="card-line"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 <div class="category-section active" data-section="gown">
                     <div class="category-header">
                         <div>
@@ -1431,7 +1793,7 @@
 
     <script>
 
-        
+
         document.addEventListener('DOMContentLoaded', () => {
 
             // ─── 導覽列捲動隱藏/顯示 ───
@@ -1566,6 +1928,15 @@
             }
 
             triggerVisible();
+
+            //導覽列場上下拉選單連結
+            // ─── 從其他頁面帶 ?=cat 參數進來時自動篩選 ───
+            const urlParams = new URLSearchParams(window.location.search);
+            const catFromUrl = urlParams.get('cat');
+            if (catFromUrl) {
+                setActive(catFromUrl);
+                applyFilter(catFromUrl);
+            }
         });
     </script>
 </body>
