@@ -470,7 +470,6 @@
         .contact-card {
             border: 1px solid var(--border-grey);
             border-top: 3px solid var(--accent-gold);
-            border-radius: 16px;
             background: var(--pure-white);
             padding: 56px 60px 64px;
             box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.07);
@@ -538,21 +537,21 @@
         .lux-input {
             width: 100%;
             background: transparent;
-            background: transparent;
-            border: 1px solid var(--border-grey);
-            padding: 10px 14px;
+            border: none;
+            border-bottom: 1px solid var(--border-grey);
+            padding: 10px 2px 10px 0;
             font-size: 16px;
             font-family: var(--font-sans);
             color: var(--text-main);
             outline: none;
-            border-radius: 8px;
+            border-radius: 0;
             transition: border-color 0.3s;
             -webkit-appearance: none;
         }
 
         .lux-input:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+            border-bottom-color: var(--accent-gold);
+            box-shadow: none;
         }
 
         .lux-input::placeholder {
@@ -585,7 +584,7 @@
         /* ─── STYLE PILLS ─── */
         .lux-pill {
             padding: 7px 18px;
-            border-radius: 20px;
+            border-radius: 0;
             border: 1px solid var(--border-grey);
             font-size: 14px;
             letter-spacing: 0.06em;
@@ -610,7 +609,6 @@
         .lux-service-card {
             position: relative;
             border: 1px solid var(--border-grey);
-            border-radius: 12px;
             padding: 24px 20px;
             transition: all 0.3s;
             cursor: pointer;
@@ -694,7 +692,6 @@
             font-size: 14px;
             letter-spacing: 0.35em;
             border: 1px solid var(--text-main);
-            border-radius: 50px;
             transition: all 0.35s;
             cursor: pointer;
             text-transform: uppercase;
@@ -711,7 +708,6 @@
             resize: none;
             display: block;
             border: 1px solid var(--border-grey);
-            border-radius: 8px;
             padding: 14px 16px;
             line-height: 1.7;
         }
