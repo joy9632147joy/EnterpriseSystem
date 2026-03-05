@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ================= 1. 側邊欄開合邏輯 =================
     // 支援 id="sidebar" (如 main_page) 或 id="sidebarN" (如 attendance)
-    const sidebarEl = document.getElementById('sidebar') || document.getElementById('sidebarN');
+    const sidebar = document.getElementById('sidebar');
     const hamburgerBtn = document.getElementById('sidebar-hamburger');
 
-    if (hamburgerBtn && sidebarEl) {
+    if (hamburgerBtn && sidebar) {
         hamburgerBtn.addEventListener('click', function () {
             // 切換寬度 (w-64 展開, w-20 收縮保留圖示)
-            if (sidebarEl.classList.contains('w-64')) {
-                sidebarEl.classList.remove('w-64');
-                sidebarEl.classList.add('w-20');
+            if (sidebar.classList.contains('w-64')) {
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-20');
             } else {
-                sidebarEl.classList.remove('w-20');
-                sidebarEl.classList.add('w-64');
+                sidebar.classList.remove('w-20');
+                sidebar.classList.add('w-64');
             }
         });
     }

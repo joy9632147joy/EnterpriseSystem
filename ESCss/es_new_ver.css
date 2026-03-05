@@ -53,22 +53,17 @@ a {
 
 /* 側邊欄收縮 (w-20) 時的隱藏與置中規則 */
 #sidebar.w-20 .menu-category,
-#sidebar.w-20 .sidebar-user,
-#sidebarN.w-20 .menu-category,
-#sidebarN.w-20 .sidebar-user {
+#sidebar.w-20 .sidebar-user {
     display: none !important;
 }
 
-#sidebar.w-20 a,
-#sidebarN.w-20 a {
+#sidebar.w-20 a {
     justify-content: center;
     padding-left: 0;
     padding-right: 0;
 }
 
 #sidebar.w-20 .material-icons,
-#sidebar.w-20 .text-2xl,
-#sidebarN.w-20 .material-icons,
-#sidebarN.w-20 .text-2xl {
+#sidebar.w-20 .text-2xl{
     margin-right: 0 !important;
 }
