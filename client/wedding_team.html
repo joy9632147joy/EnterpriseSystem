@@ -52,8 +52,8 @@
 
         .navbar-brand { line-height: 1; padding: 0; }
 
-        .brand-name {
-            font-size: 18px;
+       .brand-name {
+            font-size: 20px;
             font-weight: 300;
             letter-spacing: 0.4em;
             color: var(--text-main);
@@ -70,6 +70,8 @@
             font-weight: 200;
             display: block;
             margin-top: 4px;
+            font-weight: 500;
+            text-align: center;
         }
 
         .navbar-toggler {
@@ -642,65 +644,62 @@
     <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
-
-            <!-- 品牌 LOGO -->
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-
-            <!-- 漢堡按鈕 → 觸發 offcanvas -->
-            <button class="navbar-toggler d-lg-none" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
                 aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- 桌面版選單 + 右側工具列 -->
             <div class="collapse navbar-collapse" id="navMenuDesktop">
                 <ul class="navbar-nav ms-lg-4 gap-lg-1">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./3.html"
-                            id="desktopDropdown" data-bs-toggle="dropdown">
-                            精選合作夥伴
-                            <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="./wedding_factory.html?=venus">婚禮場地</a>
-                            <a class="dropdown-item" href="#">新娘婚紗</a>
-                            <a class="dropdown-item" href="#">新郎西服</a>
-                            <a class="dropdown-item" href="#">喜餅禮盒</a>
-                            <a class="dropdown-item" href="#">婚禮小物</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
                 </ul>
-
-                <!-- 右側工具列：放在 collapse 內，ms-auto 自動推到最右邊 -->
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
+                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
                 </div>
             </div>
-
         </div>
     </nav>
+
+    <!-- ─── 手機版 Offcanvas ─── -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+        <div class="offcanvas-header">
+            <div>
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+            <ul class="navbar-nav gap-0">
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+            </ul>
+            <a href="client_login.html" class="offcanvas-login">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                會員登入
+            </a>
+        </div>
+    </div>
 
     <!-- ─── 手機版 Offcanvas 側邊選單 ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
@@ -721,7 +720,7 @@
                         <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
                     </li>
                 <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
+                        <a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
@@ -733,15 +732,15 @@
                         <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./wedding_factory.html?=venus">婚禮場地</a>
-                        <a class="dropdown-item" href="#">新娘婚紗</a>
-                        <a class="dropdown-item" href="#">新郎西服</a>
-                        <a class="dropdown-item" href="#">喜餅禮盒</a>
-                        <a class="dropdown-item" href="#">婚禮小物</a>
-                    </div>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=venues">婚禮場地</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=gown">新娘婚紗</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=suit">新郎西服</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=cake">喜餅禮盒</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=gift">婚禮小物</a>
+                        </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
+                    <a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a>
                 </li>
             </ul>
             <a href="client_login.html" class="offcanvas-login">
