@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/jack
 <html lang="zh-TW">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>婚禮平台首頁：浪漫草地風與純白精品導引</title>
-<<<<<<< HEAD
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
@@ -779,78 +775,10 @@
             letter-spacing: 0.4em;
             color: var(--text-muted);
             text-transform: uppercase;
-=======
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&amp;family=Noto+Sans+TC:wght@300;400;500&amp;family=Plus+Jakarta+Sans:wght@200;300;400&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "pure-white": "#FFFFFF",
-                        "soft-grey": "#FBFBFB",
-                        "border-grey": "#F0F0F0",
-                        "accent-gold": "#C5A059",
-                        "text-main": "#1A1A1A",
-                        "text-muted": "#888888",
-                    },
-                    fontFamily: {
-                        "serif-tc": ["Noto Serif TC", "serif"],
-                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
-                    },
-                    letterSpacing: {
-                        "ultra-wide": "0.3em",
-                        "magazine": "0.15em"
-                    }
-                },
-            },
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                @apply bg-pure-white text-text-main antialiased;
-            }
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
-        }
-        .video-overlay {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%);
-        }
-        .soft-focus {
-            filter: saturate(0.9) contrast(0.95) brightness(1.02);
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .dynamic-tile video {
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-        .dynamic-tile:hover video {
-            opacity: 1;
-        }
-        .breath-space {
-            letter-spacing: 0.25em;
-        }
-        .editorial-shadow {
-            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
-        }
-        .nav-link.active {
-            color: #1A1A1A;
-            border-bottom: 1px solid #C5A059;
-            padding-bottom: 4px;
->>>>>>> origin/jack
         }
     </style>
 </head>
 
-<<<<<<< HEAD
 <body>
 
     <!-- ─── 導覽列 ─── -->
@@ -1327,7 +1255,193 @@
             }
 
             // ─── 桌面版搜尋列 ───
-=======
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('search-input');
+
+            searchBtn.addEventListener('click', () => {
+                if (!searchInput.classList.contains('open')) {
+                    searchInput.classList.add('open');
+                    searchInput.focus();
+                } else {
+                    if (searchInput.value.trim()) alert('執行搜尋：' + searchInput.value);
+                    else searchInput.classList.remove('open');
+                }
+            });
+
+            // ─── HERO SLIDESHOW ───
+            const INTERVAL = 5000;
+            const slides = document.querySelectorAll('.hs-slide');
+            const progressBar = document.getElementById('hsProgressBar');
+            const slideNames = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代'];
+            let cur = 0, timer = null, paused = false;
+
+            // Build pills into all slides
+            slides.forEach((slide, si) => {
+                const pillsEl = slide.querySelector('.hs-right');
+                if (!pillsEl) return;
+                slideNames.forEach((name, ni) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'hs-pill' + (ni === si ? ' active' : '');
+                    btn.innerHTML = `<span class="hs-pill-name">${name}</span><div class="hs-pill-line"></div>`;
+                    btn.addEventListener('click', () => goTo(ni));
+                    pillsEl.appendChild(btn);
+                });
+            });
+
+            function goTo(idx) {
+                slides[cur].classList.remove('active');
+                cur = (idx + slides.length) % slides.length;
+                slides[cur].classList.add('active');
+                updatePills();
+                startProgress();
+            }
+
+            function updatePills() {
+                slides.forEach(slide => {
+                    slide.querySelectorAll('.hs-pill').forEach((p, pi) => {
+                        p.classList.toggle('active', pi === cur);
+                    });
+                });
+            }
+
+            function startProgress() {
+                clearInterval(timer);
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        progressBar.style.transition = `width ${INTERVAL}ms linear`;
+                        progressBar.style.width = '100%';
+                    });
+                });
+                if (!paused) {
+                    timer = setInterval(() => goTo(cur + 1), INTERVAL);
+                }
+            }
+
+            // swipe support
+            let tX = null;
+            const ss = document.getElementById('heroSlideshow');
+            ss.addEventListener('touchstart', e => { tX = e.touches[0].clientX; }, { passive: true });
+            ss.addEventListener('touchend', e => {
+                if (tX === null) return;
+                const dx = e.changedTouches[0].clientX - tX;
+                if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+                tX = null;
+            });
+
+            // pause on hover
+            ss.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
+            ss.addEventListener('mouseleave', () => {
+                paused = false;
+                timer = setInterval(() => goTo(cur + 1), INTERVAL);
+            });
+
+            // 第一張入場動畫：頁面載入後加 active，讓 transition 觸發
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    slides[0].classList.add('active');
+                    startProgress();
+                });
+            });
+
+            // ─── 職人卡片進場動畫 ───
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const d = parseInt(e.target.dataset.delay) || 0;
+                        setTimeout(() => {
+                            e.target.classList.add('visible');
+                            e.target.style.transition = 'opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s, border-color 0.5s';
+                        }, d);
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.artisan-card').forEach(c => obs.observe(c));
+
+        });
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>婚禮平台首頁：浪漫草地風與純白精品導引</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&amp;family=Noto+Sans+TC:wght@300;400;500&amp;family=Plus+Jakarta+Sans:wght@200;300;400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "pure-white": "#FFFFFF",
+                        "soft-grey": "#FBFBFB",
+                        "border-grey": "#F0F0F0",
+                        "accent-gold": "#C5A059",
+                        "text-main": "#1A1A1A",
+                        "text-muted": "#888888",
+                    },
+                    fontFamily: {
+                        "serif-tc": ["Noto Serif TC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "Noto Sans TC", "sans-serif"]
+                    },
+                    letterSpacing: {
+                        "ultra-wide": "0.3em",
+                        "magazine": "0.15em"
+                    }
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-pure-white text-text-main antialiased;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .video-overlay {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%);
+        }
+        .soft-focus {
+            filter: saturate(0.9) contrast(0.95) brightness(1.02);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dynamic-tile video {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .dynamic-tile:hover video {
+            opacity: 1;
+        }
+        .breath-space {
+            letter-spacing: 0.25em;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.1);
+        }
+        .nav-link.active {
+            color: #1A1A1A;
+            border-bottom: 1px solid #C5A059;
+            padding-bottom: 4px;
+        }
+    </style>
+</head>
+
 <body class="font-sans">
     <div class="relative flex min-h-screen w-full flex-col">
         <header class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border-grey/30">
@@ -1733,119 +1847,10 @@
             });
 
             // 2. 搜尋功能
->>>>>>> origin/jack
             const searchBtn = document.getElementById('search-btn');
             const searchInput = document.getElementById('search-input');
 
             searchBtn.addEventListener('click', () => {
-<<<<<<< HEAD
-                if (!searchInput.classList.contains('open')) {
-                    searchInput.classList.add('open');
-                    searchInput.focus();
-                } else {
-                    if (searchInput.value.trim()) alert('執行搜尋：' + searchInput.value);
-                    else searchInput.classList.remove('open');
-                }
-            });
-
-            // ─── HERO SLIDESHOW ───
-            const INTERVAL = 5000;
-            const slides = document.querySelectorAll('.hs-slide');
-            const progressBar = document.getElementById('hsProgressBar');
-            const slideNames = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代'];
-            let cur = 0, timer = null, paused = false;
-
-            // Build pills into all slides
-            slides.forEach((slide, si) => {
-                const pillsEl = slide.querySelector('.hs-right');
-                if (!pillsEl) return;
-                slideNames.forEach((name, ni) => {
-                    const btn = document.createElement('button');
-                    btn.className = 'hs-pill' + (ni === si ? ' active' : '');
-                    btn.innerHTML = `<span class="hs-pill-name">${name}</span><div class="hs-pill-line"></div>`;
-                    btn.addEventListener('click', () => goTo(ni));
-                    pillsEl.appendChild(btn);
-                });
-            });
-
-            function goTo(idx) {
-                slides[cur].classList.remove('active');
-                cur = (idx + slides.length) % slides.length;
-                slides[cur].classList.add('active');
-                updatePills();
-                startProgress();
-            }
-
-            function updatePills() {
-                slides.forEach(slide => {
-                    slide.querySelectorAll('.hs-pill').forEach((p, pi) => {
-                        p.classList.toggle('active', pi === cur);
-                    });
-                });
-            }
-
-            function startProgress() {
-                clearInterval(timer);
-                progressBar.style.transition = 'none';
-                progressBar.style.width = '0%';
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        progressBar.style.transition = `width ${INTERVAL}ms linear`;
-                        progressBar.style.width = '100%';
-                    });
-                });
-                if (!paused) {
-                    timer = setInterval(() => goTo(cur + 1), INTERVAL);
-                }
-            }
-
-            // swipe support
-            let tX = null;
-            const ss = document.getElementById('heroSlideshow');
-            ss.addEventListener('touchstart', e => { tX = e.touches[0].clientX; }, { passive: true });
-            ss.addEventListener('touchend', e => {
-                if (tX === null) return;
-                const dx = e.changedTouches[0].clientX - tX;
-                if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
-                tX = null;
-            });
-
-            // pause on hover
-            ss.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
-            ss.addEventListener('mouseleave', () => {
-                paused = false;
-                timer = setInterval(() => goTo(cur + 1), INTERVAL);
-            });
-
-            // 第一張入場動畫：頁面載入後加 active，讓 transition 觸發
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    slides[0].classList.add('active');
-                    startProgress();
-                });
-            });
-
-            // ─── 職人卡片進場動畫 ───
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) {
-                        const d = parseInt(e.target.dataset.delay) || 0;
-                        setTimeout(() => {
-                            e.target.classList.add('visible');
-                            e.target.style.transition = 'opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s, border-color 0.5s';
-                        }, d);
-                        obs.unobserve(e.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-
-            document.querySelectorAll('.artisan-card').forEach(c => obs.observe(c));
-
-        });
-    </script>
-
-</body>
-=======
                 if (searchInput.classList.contains('hidden')) {
                     // 展開
                     searchInput.classList.remove('hidden');
@@ -1889,5 +1894,4 @@
     </script>
 </body>
 
->>>>>>> origin/jack
 </html>
