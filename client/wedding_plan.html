@@ -7,18 +7,20 @@
     <title>DREAM VENUES - 婚禮方案</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
-            rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet" />
+        rel="stylesheet" />
     <style>
         /* ── Variables ── */
         :root {
-            --soft-grey: #FBFBFB;
-            --border-grey: #F0F0F0;
-            --accent-gold: #C5A059;
-            --text-main: #1A1A1A;
-            --text-muted: #888;
+            /* 調整為燕麥奶茶色，加深一點點背景，讓白色卡片跳出來 */
+            --soft-grey: #EFECE5; 
+            --border-grey: #EBE7E0; 
+            --accent-gold: #BCAE9B; 
+            --text-main: #3A3836; 
+            --text-muted: #8F8B86; 
             --font-serif: "Noto Serif TC", serif;
             --font-sans: "Plus Jakarta Sans", "Noto Sans TC", sans-serif;
         }
@@ -45,7 +47,7 @@
         .navbar {
             background: rgba(255, 255, 255, .9) !important;
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(240, 240, 240, .5);
+            border-bottom: 1px solid rgba(235, 231, 224, .5);
             padding: 0 48px;
             min-height: 80px;
             transition: transform .4s ease-in-out;
@@ -271,7 +273,7 @@
             border: none !important;
             box-shadow: none !important;
             padding: 8px 0 8px 16px !important;
-            border-left: 2px solid rgba(197, 160, 89, .3) !important;
+            border-left: 2px solid rgba(188, 174, 155, .3) !important;
             border-radius: 0 !important;
             margin-left: 8px;
             background: #fff;
@@ -301,7 +303,7 @@
 
 
         .page-hero {
-            background: white;
+            /* background: white; */
             border-bottom: 1px solid var(--border-grey);
             padding: 64px 0 50px;
             text-align: center;
@@ -371,10 +373,10 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg,
-            rgba(8, 6, 4, .72) 0%,
-            rgba(0, 0, 0, .1) 50%,
-            transparent 100%),
-            linear-gradient(to top, rgba(8, 6, 4, .88) 0%, transparent 45%);
+                    rgba(8, 6, 4, .72) 0%,
+                    rgba(0, 0, 0, .1) 50%,
+                    transparent 100%),
+                linear-gradient(to top, rgba(8, 6, 4, .88) 0%, transparent 45%);
         }
 
         /* slide content */
@@ -405,7 +407,7 @@
         .hs-num {
             font-size: 9px;
             letter-spacing: .5em;
-            color: rgba(197, 160, 89, .65);
+            color: rgba(188, 174, 155, .65);
             font-weight: 500;
             display: block;
             margin-bottom: 10px;
@@ -427,7 +429,7 @@
             font-size: 9px;
             letter-spacing: .45em;
             text-transform: uppercase;
-            color: rgba(197, 160, 89, .8);
+            color: rgba(188, 174, 155, .8);
             display: block;
             margin-bottom: 10px;
             opacity: 0;
@@ -482,7 +484,7 @@
             letter-spacing: .4em;
             text-transform: uppercase;
             color: white;
-            border-bottom: 1px solid rgba(197, 160, 89, .45);
+            border-bottom: 1px solid rgba(188, 174, 155, .45);
             padding-bottom: 4px;
             text-decoration: none;
             width: fit-content;
@@ -608,7 +610,7 @@
         .hs-header-eyebrow {
             font-size: 9px;
             letter-spacing: .55em;
-            color: rgba(197, 160, 89, .75);
+            color: rgba(188, 174, 155, .75);
             text-transform: uppercase;
             font-weight: 500;
             display: block;
@@ -870,7 +872,7 @@
         .tile-label {
             font-size: 9px;
             letter-spacing: .4em;
-            color: rgba(197, 160, 89, .9);
+            color: rgba(188, 174, 155, .9);
             text-transform: uppercase;
             font-weight: 500;
             margin-bottom: 8px;
@@ -922,8 +924,8 @@
             right: 20px;
             width: 32px;
             height: 32px;
-            border-top: 1px solid rgba(197, 160, 89, .6);
-            border-right: 1px solid rgba(197, 160, 89, .6);
+            border-top: 1px solid rgba(188, 174, 155, .6);
+            border-right: 1px solid rgba(188, 174, 155, .6);
             opacity: 0;
             transition: opacity .5s;
         }
@@ -1023,8 +1025,8 @@
         }
 
         .detail-card:hover {
-            border-color: rgba(197, 160, 89, .4);
-            box-shadow: 0 8px 32px rgba(197, 160, 89, .08);
+            border-color: rgba(188, 174, 155, .4);
+            box-shadow: 0 8px 32px rgba(188, 174, 155, .08);
         }
 
         @media(max-width:767px) {
@@ -1141,7 +1143,7 @@
         .lb-caption-label {
             font-size: 9px;
             letter-spacing: .35em;
-            color: rgba(197, 160, 89, .65);
+            color: rgba(188, 174, 155, .65);
             text-transform: uppercase;
             margin-top: 4px;
         }
@@ -1165,9 +1167,9 @@
         }
 
         .lb-btn:hover {
-            background: rgba(197, 160, 89, .18);
+            background: rgba(188, 174, 155, .18);
             color: var(--accent-gold);
-            border-color: rgba(197, 160, 89, .4);
+            border-color: rgba(188, 174, 155, .4);
         }
 
         .lb-prev {
@@ -1457,10 +1459,10 @@
             color: var(--text-muted);
             text-transform: uppercase;
         }
+
         /* 客製加購區塊樣式 */
         .addon-section {
             padding: 20px 20px 60px 20px;
-            background-color: #fff;
             text-align: center;
         }
 
@@ -1472,19 +1474,39 @@
 
         .addon-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* 均分空間 */
             gap: 30px;
             max-width: 1200px;
-            margin: 0 auto 100px auto; /* 留空間給底部固定欄 */
+            width: 100%; /* 確保與A方案一樣寬 */
+            margin: 0 auto 100px auto;
+        }
+
+        /* 新增：手機與平板版改為上下排列，避免太擠 */
+        @media(max-width: 991.98px) {
+            .addon-container {
+                flex-direction: column;
+                padding: 0 16px;
+                max-width: calc(100% - 32px);
+            }
         }
 
         .addon-card {
             background: #fff;
-            border-radius: 25px;
-            padding: 40px 20px;
-            width: 300px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* 柔和陰影 */
-            transition: transform 0.3s ease;
+            border-radius: 12px; /* 調整為與A區塊相同的 12px 圓角 */
+            padding: 40px 30px;
+            flex: 1; /* 拿掉固定的寬度，讓三個框自動均分填滿 1200px */
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.04); /* 增加輕微立體感 */
+            border: 1px solid var(--border-grey); /* 加上極淡的邊框 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .addon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
         }
 
         .addon-card:hover {
@@ -1499,11 +1521,12 @@
         .addon-name {
             font-size: 18px;
             margin-bottom: 10px;
-            color: #333;
+            color: #3A3836;
         }
 
         .addon-price {
-            color: #d69a96; /* 圖片中的粉金色 */
+            color: #C5ACA7;
+            /* 圖片中的粉金色 */
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -1511,12 +1534,18 @@
 
         .addon-btn {
             background: transparent;
-            border: 1px solid #d69a96;
-            color: #d69a96;
+            border: 1px solid #C5ACA7;
+            color: #C5ACA7;
             padding: 8px 40px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+        }
+
+        .addon-btn.selected {
+            background: #C5ACA7;
+            color: #fff;
+            border-color: #C5ACA7;
         }
 
         /* 底部固定結算欄樣式 */
@@ -1526,7 +1555,7 @@
             left: 0;
             width: 100%;
             background: #fff;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #EBE7E0;
             padding: 15px 0;
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
             z-index: 1000;
@@ -1543,19 +1572,19 @@
 
         .price-summary .label {
             font-size: 12px;
-            color: #999;
+            color: #8F8B86;
             margin-right: 10px;
         }
 
         .price-summary .amount {
             font-size: 28px;
             font-weight: bold;
-            color: #d69a96;
+            color: #BCAE9B;
         }
 
         .btn-reset {
-            background: #f8f8f8;
-            border: 1px solid #ddd;
+            background: #F9F8F5;
+            border: 1px solid #EBE7E0;
             padding: 10px 20px;
             border-radius: 5px;
             margin-right: 10px;
@@ -1563,7 +1592,7 @@
         }
 
         .btn-reserve {
-            background: #d69a96;
+            background: #BCAE9B;
             color: #fff;
             border: none;
             padding: 10px 30px;
@@ -1575,19 +1604,24 @@
         /* main-package-card 卡片樣式 */
         .main-package-card {
             background: #fff;
-            border-radius: 25px;
-            padding: 40px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 48px; /* 更大的內距以增加留白 */
+            margin: 0 auto 36px auto;
+            max-width: 1200px; /* 放大橫向寬度 */
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.06);
+            border: 1.5px solid var(--accent-gold);
             position: relative;
+        }
+
+        @media(max-width:991.98px) {
+            .main-package-card { padding: 28px; margin: 0 16px 28px 16px; max-width: calc(100% - 32px); }
         }
 
         .ribbon {
             position: absolute;
             top: 0;
-            left: 40px;
-            background: #d69a96;
+            right: 40px;
+            background: #9DAA97;
             color: white;
             padding: 8px 16px;
             border-radius: 0 0 8px 8px;
@@ -1599,21 +1633,22 @@
         .card-header {
             margin-top: 20px;
             margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #EBE7E0;
+            text-align: center;
         }
 
         .card-header h3 {
             font-size: 20px;
             font-weight: 500;
-            color: #1a1a1a;
+            color: #3A3836;
             margin-bottom: 10px;
             font-family: "Noto Serif TC", serif;
         }
 
         .card-header p {
             font-size: 13px;
-            color: #888;
+            color: #8F8B86;
             margin-bottom: 16px;
             letter-spacing: 0.05em;
         }
@@ -1621,7 +1656,7 @@
         .card-header .price {
             font-size: 24px;
             font-weight: 600;
-            color: #d69a96;
+            color: #9DAA97;
         }
 
         .card-header .price span {
@@ -1634,16 +1669,20 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
+            justify-items: center;
         }
 
         .service-col {
             padding: 20px 0;
+            max-width: 340px; /* 限制欄位寬度以便置中 */
+            margin: 0 auto;
+            text-align: left; /* 清單內容維持左對齊 */
         }
 
         .service-col h4 {
             font-size: 15px;
             font-weight: 500;
-            color: #1a1a1a;
+            color: #3A3836;
             margin-bottom: 16px;
             font-family: "Noto Serif TC", serif;
         }
@@ -1656,7 +1695,7 @@
 
         .service-col li {
             font-size: 13px;
-            color: #666;
+            color: #7A7571;
             padding: 8px 0;
             padding-left: 20px;
             position: relative;
@@ -1667,7 +1706,7 @@
             content: '•';
             position: absolute;
             left: 0;
-            color: #d69a96;
+            color: #BCAE9B;
             font-weight: bold;
         }
     </style>
@@ -1675,25 +1714,66 @@
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid" style="max-width:1600px;margin:0 auto;">
-        <a class="navbar-brand" href="./index.html">
-            <span class="brand-name">DREAM VENUES</span>
-            <span class="brand-sub">High-End Wedding Journal</span>
-        </a>
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid" style="max-width:1600px;margin:0 auto;">
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
                 aria-controls="navMenu" aria-label="開啟選單">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenuDesktop">
-            <ul class="navbar-nav ms-lg-4 gap-lg-1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenuDesktop">
+                <ul class="navbar-nav ms-lg-4 gap-lg-1">
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
+                            id="desktopDropdown" data-bs-toggle="dropdown">
+                            精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">婚禮場地</a>
+                            <a class="dropdown-item" href="#">新娘婚紗</a>
+                            <a class="dropdown-item" href="#">新郎西服</a>
+                            <a class="dropdown-item" href="#">喜餅禮盒</a>
+                            <a class="dropdown-item" href="#">婚禮小物</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
+                </ul>
+                <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
+                    <div class="d-flex align-items-center gap-2">
+                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted);font-size:20px;">search</button>
+                    </div>
+                    <a class="nav-link nav-link-item" href="client_login.html">我的婚禮</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+        <div class="offcanvas-header">
+            <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End
+                    Wedding Journal</span></div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+            <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./1.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
-                       id="desktopDropdown" data-bs-toggle="dropdown">
+                        data-bs-toggle="dropdown" data-bs-auto-close="inside">
                         精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
                     </a>
                     <div class="dropdown-menu">
@@ -1706,379 +1786,328 @@
                 </li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
             </ul>
-            <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
-                <div class="d-flex align-items-center gap-2">
-                    <input id="search-input" type="text" placeholder="搜尋場地或職人...">
-                    <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                            style="color:var(--text-muted);font-size:20px;">search</button>
-                </div>
-                <a class="nav-link nav-link-item" href="client_login.html">我的婚禮</a>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<!-- OFFCANVAS -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
-    <div class="offcanvas-header">
-        <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End
-                    Wedding Journal</span></div>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="offcanvas-search">
-            <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-muted);">search</span>
-            <input type="text" placeholder="搜尋場地或職人...">
-        </div>
-        <ul class="navbar-nav gap-0">
-            <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
-            <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
-            <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
-                   data-bs-toggle="dropdown" data-bs-auto-close="inside">
-                    精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">婚禮場地</a>
-                    <a class="dropdown-item" href="#">新娘婚紗</a>
-                    <a class="dropdown-item" href="#">新郎西服</a>
-                    <a class="dropdown-item" href="#">喜餅禮盒</a>
-                    <a class="dropdown-item" href="#">婚禮小物</a>
-                </div>
-            </li>
-            <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
-        </ul>
-        <a href="client_login.html" class="offcanvas-login">
+            <a href="client_login.html" class="offcanvas-login">
                 <span class="material-symbols-outlined"
-                      style="font-size:16px;vertical-align:middle;margin-right:6px;">person</span>我的婚禮
-        </a>
-    </div>
-</div>
-
-<div class="page-wrap">
-    <!-- 頁面標題 -->
-    <div class="page-hero">
-        <p class="page-hero-eyebrow">Wedding Package</p>
-        <h1 class="page-hero-title">婚禮方案</h1>
-        <div class="page-hero-line"></div>
-        <p class="page-hero-sub">選擇您的婚禮藍圖</p>
-    </div>
-
-<main class="container">
-    <div class="main-package-card">
-        <div class="ribbon">核心方案</div>
-        <div class="card-header">
-            <h3>A. 婚宴全時統籌服務 + 單儀式專案</h3>
-            <p>本方案為獨立訂購核心，不可取消</p>
-            <div class="price">NT$ 58,800 <span>起</span></div>
-        </div>
-
-        <div class="sub-services">
-            <div class="service-col">
-                <h4>婚禮顧問統籌</h4>
-                <ul>
-                    <li>婚禮整體籌備協助</li>
-                    <li>婚禮籌劃期程規劃建議</li>
-                    <li>婚禮細節安排</li>
-                    <li>相關廠商媒合推薦</li>
-                    <li>相關廠商媒合推薦</li>
-                    <li>相關廠商媒合推薦</li>
-                    <li>相關廠商媒合推薦</li>
-                    <li>相關廠商媒合推薦</li>
-                    <li>相關廠商媒合推薦</li>
-                    <li>相關廠商媒合推薦</li>
-                </ul>
-            </div>
-            <div class="service-col">
-                <h4>A.2 單儀式規劃執行</h4>
-                <ul>
-                    <li>儀式前置解說 / 內容建議</li>
-                    <li>儀式流程規劃 / 流程引導</li>
-                    <li>儀式細節安排</li>
-                    <li>儀式物品準備清單</li>
-                </ul>
-            </div>
-            <div class="service-col">
-                <h4>A.3 宴會企劃執行</h4>
-                <ul>
-                    <li>宴會訂製流程規劃</li>
-                    <li>各團隊工作協調 / 時程掌控</li>
-                    <li>婚禮主場指揮統籌</li>
-                    <li><b>婚禮助理 1 名</b></li>
-                </ul>
-            </div>
+                    style="font-size:16px;vertical-align:middle;margin-right:6px;">person</span>我的婚禮
+            </a>
         </div>
     </div>
 
-<section class="addon-section">
-    <h3 class="section-title">客製加購項目</h3>
-
-    <div class="addon-container">
-        <div class="addon-card">
-            <div class="addon-icon">🎤</div>
-            <h4 class="addon-name">B. 專業婚禮主持人</h4>
-            <p class="addon-price">NT$ 16,000</p>
-            <button class="addon-btn">點擊加購</button>
+    <div class="page-wrap">
+        <div class="page-hero">
+            <p class="page-hero-eyebrow">Wedding Package</p>
+            <h1 class="page-hero-title">婚禮方案</h1>
+            <div class="page-hero-line"></div>
+            <p class="page-hero-sub">選擇您的婚禮藍圖</p>
         </div>
 
-        <div class="addon-card">
-            <div class="addon-icon">📋</div>
-            <h4 class="addon-name">C. 儀式規劃執行</h4>
-            <p class="addon-price">NT$ 15,800</p>
-            <button class="addon-btn">點擊加購</button>
-        </div>
+        <main class="container">
+            <div class="main-package-card">
+                <div class="ribbon">核心方案</div>
+                <div class="card-header">
+                    <h3>A. 婚宴全時統籌服務 + 單儀式專案</h3>
+                    <p>本方案為獨立訂購核心，不可取消</p>
+                    <div class="price">NT$ 60,800 <span>起</span></div>
+                    <input type="radio" name="main_package" value="60800" checked style="display:none">
+                </div>
+    
+                <div class="sub-services">
+                    <div class="service-col">
+                        <h4>婚禮顧問統籌</h4>
+                        <ul>
+                            <li>婚禮整體籌備協助</li>
+                            <li>婚禮籌備期程規劃建議</li>
+                            <li>婚禮細節安排</li>
+                            <li>相關廠商媒合推薦</li>
+                            <li>周邊廠商整合統籌</li>
+                            <li>親友工作人員職掌建議</li>
+                            <li>婚宴場地場勘</li>
+                            <li>空間動線規劃建議</li>
+                            <li>確認婚禮細節會議</li>
+                        </ul>
+                    </div>
+                    <div class="service-col">
+                        <h4>單儀式規劃執行（文定 / 迎娶 / 證婚 三擇一）</h4>
+                        <ul>
+                            <li>儀式前置解說</li>
+                            <li>儀式內容建議</li>
+                            <li>儀式時程規劃</li>
+                            <li>儀式流程引導</li>
+                            <li>儀式細節安排</li>
+                            <li>儀式物品準備清單</li>
+                            <li>儀式場地空間建議</li>
+                            <li>相關物品代購</li>
+                            <li>婚顧現場指揮整合</li>
+                            <li>專業現場場控：儀式場控 1-2 名（依選擇儀式而定）</li>
+                        </ul>
+                    </div>
+                    <div class="service-col">
+                        <h4>宴會企劃執行</h4>
+                        <ul>
+                            <li>宴會訂製流程規劃</li>
+                            <li>各團隊工作協調</li>
+                            <li>宴會時程掌控</li>
+                            <li>婚顧主場控指揮統籌</li>
+                            <li>婚禮助理1名</li>
+                            <li>專業影音場控1名</li>
+                            <li>流程音樂曲目建議</li>
+                            <li>宴客備品代購</li>
+                            <li>婚禮當日彩排引導</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-        <div class="addon-card">
-            <div class="addon-icon">🌸</div>
-            <h4 class="addon-name">D. 客製化視覺佈置</h4>
-            <p class="addon-price">NT$ 50,000 <span>起</span></p>
-            <button class="addon-btn">點擊加購</button>
-        </div>
+            <section class="addon-section">
+                <h3 class="section-title">可加購方案</h3>
+
+                <div class="addon-container">
+                    <div class="addon-card">
+                        <p style="color: #BCAE9B;font-size: 30px;">B</p>
+                        <h4 class="addon-name">專業婚禮主持人</h4>
+                        <p>具備大型品牌、發表會等級主持經驗
+                            提供專業主持群作品集供挑選，確保主持風格契合新人氛圍。
+                        </p>
+                        <p class="addon-price">NT$ 18,000</p>
+                        <button type="button" class="addon-btn" data-price="18000">點擊加購</button>
+                    </div>
+
+                    <div class="addon-card">
+                        <p style="color: #BCAE9B;font-size: 30px;">C</p>
+                        <h4 class="addon-name">儀式規劃執行</h4>
+                        <p>文定或迎娶或證婚（三擇一）之完整流程規劃與現場帶領執行</p>
+                        <p class="addon-price">NT$ 15,800</p>
+                        <button type="button" class="addon-btn" data-price="15800">點擊加購</button>
+                    </div>
+
+                    <div class="addon-card">
+                        <p style="color: #BCAE9B;font-size: 30px;">D</p>
+                        <h4 class="addon-name">客製化視覺佈置</h4>
+                        <p>客製專屬設計</p>
+                        <p>鮮花花藝佈置</p>
+                        <p class="addon-price">NT$ 50,000 <span>起</span></p>
+                        <button type="button" class="addon-btn" data-price="50000">點擊加購</button>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-</section>
-</main>
-</div>
 
-<footer class="sticky-checkout">
-    <div class="checkout-content">
-        <div class="price-summary">
-            <span class="label">預估總額</span>
-            <span class="amount">NT$ 58,800</span>
-        </div>
-        <div class="action-btns">
-            <button class="btn-reset">重置選項</button>
-            <button class="btn-reserve">預約諮詢此方案</button>
-        </div>
-    </div>
-</footer>
-
-
-
-
-
-
-<script>
-    // 3D 翻轉邏輯
-    function flipCard(element) {
-        const inner = element.querySelector('.card-inner');
-        inner.classList.toggle('is-flipped');
-    }
-
-    // 價格計算邏輯
-    const checkboxes = document.querySelectorAll('.plan-checkbox');
-    const totalDisplay = document.getElementById('total-investment');
-    const basePrice = 38000;
-
-    function updateInvestment() {
-        let currentTotal = basePrice;
-        checkboxes.forEach(cb => {
-            if (cb.checked) {
-                currentTotal += parseInt(cb.dataset.price);
-            }
-        });
-        // 數字格式化帶逗號
-        totalDisplay.innerText = currentTotal.toLocaleString();
-    }
-
-    checkboxes.forEach(cb => {
-        cb.addEventListener('change', updateInvestment);
-    });
-</script>
-
-
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <div><span class="footer-brand-name">DREAM VENUES</span><span class="footer-brand-sub">High-End Wedding
-                        Journal</span></div>
-            <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
-            <div class="footer-icons">
-                <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                                                          style="font-size:18px;">share</span></a>
-                <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                                                          style="font-size:18px;">mail</span></a>
+    <footer class="sticky-checkout">
+        <div class="checkout-content">
+            <div class="price-summary">
+                <span class="label">預估總額</span>
+                <span class="amount" id="totalPriceDisplay">NT$ 60,800</span>
+            </div>
+            <div class="action-btns">
+                <button class="btn-reset">重置選項</button>
+                <button class="btn-reserve">預約諮詢此方案</button>
             </div>
         </div>
-        <div class="footer-nav-cols">
-            <div class="footer-nav-col">
-                <span class="footer-nav-title">探索平台</span>
-                <a href="#" class="footer-nav-link">精選場地</a>
-                <a href="#" class="footer-nav-link">職人故事</a>
-                <a href="#" class="footer-nav-link">風格靈感</a>
-                <a href="#" class="footer-nav-link">最新動態</a>
-            </div>
-            <div class="footer-nav-col">
-                <span class="footer-nav-title">客戶服務</span>
-                <a href="#" class="footer-nav-link">預約流程</a>
-                <a href="#" class="footer-nav-link">常見問題</a>
-                <a href="#" class="footer-nav-link">隱私政策</a>
-                <a href="#" class="footer-nav-link">聯繫我們</a>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
-</footer>
+    </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
+    <script>
+        function calculateTotal() {
+            let total = 0;
+            const mainPackage = document.querySelector('input[name="main_package"]:checked');
+            if (mainPackage) total += parseInt(mainPackage.value, 10) || 0;
 
-        /* ── Navbar ── */
-        const navbar = document.querySelector('.navbar');
-        const themeNav = document.getElementById('themeNav');
-        let lastST = 0;
-
-        function syncThemeNavTop() {
-            themeNav.style.top = navbar.getBoundingClientRect().height + 'px';
-        }
-        syncThemeNavTop();
-        window.addEventListener('resize', syncThemeNavTop);
-
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset;
-            if (Math.abs(lastST - st) <= 8) return;
-            const hiding = st > lastST && st > 80;
-            navbar.classList.toggle('nav-hidden', hiding);
-            themeNav.style.top = hiding ? '0px' : navbar.getBoundingClientRect().height + 'px';
-            lastST = st;
-        });
-        document.addEventListener('mousemove', e => {
-            if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
-        });
-
-        /* ── Desktop dropdown ── */
-        const ddt = document.getElementById('desktopDropdown');
-        if (ddt) ddt.addEventListener('click', e => {
-            if (window.innerWidth >= 992 && !ddt.closest('.nav-item').classList.contains('show')) e.preventDefault();
-        });
-
-        /* ── Search ── */
-        const sBtn = document.getElementById('search-btn');
-        const sIn = document.getElementById('search-input');
-        sBtn.addEventListener('click', () => {
-            if (!sIn.classList.contains('open')) { sIn.classList.add('open'); sIn.focus(); }
-            else { if (sIn.value.trim()) alert('搜尋：' + sIn.value); else sIn.classList.remove('open'); }
-        });
-
-
-
-        /* ── Theme nav pills ── */
-        const pills = document.querySelectorAll('.theme-pill');
-        const sections = {
-            forest: document.getElementById('sec-forest'),
-            vintage: document.getElementById('sec-vintage'),
-            chapel: document.getElementById('sec-chapel'),
-            chinese: document.getElementById('sec-chinese'),
-            minimal: document.getElementById('sec-minimal'),
-        };
-
-        function showTheme(target) {
-            pills.forEach(p => p.classList.toggle('active', p.dataset.target === target));
-            if (target === 'all') {
-                Object.values(sections).forEach(s => s.classList.add('active'));
-            } else {
-                Object.entries(sections).forEach(([k, el]) => el.classList.toggle('active', k === target));
-                setTimeout(() => {
-                    const el = sections[target];
-                    if (el) {
-                        const navH = navbar.getBoundingClientRect().height;
-                        const navH2 = themeNav.getBoundingClientRect().height;
-                        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - navH2 - 16, behavior: 'smooth' });
-                    }
-                }, 50);
-            }
-            document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
-            setTimeout(triggerAnim, 80);
-        }
-
-        pills.forEach(p => p.addEventListener('click', () => showTheme(p.dataset.target)));
-
-        /* ── Lightbox ── */
-        const overlay = document.getElementById('lbOverlay');
-        const lbImg = document.getElementById('lbImg');
-        const lbName = document.getElementById('lbName');
-        const lbLabel = document.getElementById('lbLabel');
-        const lbDots = document.getElementById('lbDots');
-        const lbCounter = document.getElementById('lbCounter');
-
-        const galleries = {};
-        document.querySelectorAll('.tile[data-lb]').forEach(tile => {
-            const g = tile.dataset.lb;
-            if (!galleries[g]) galleries[g] = [];
-            const img = tile.querySelector('img');
-            galleries[g][parseInt(tile.dataset.idx)] = {
-                src: img ? img.src : '',
-                name: tile.dataset.name || '',
-                label: tile.dataset.label || ''
-            };
-        });
-
-        let curG = null, curI = 0;
-
-        function openLb(g, i) { curG = g; curI = i; renderLb(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeLb() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
-
-        function renderLb() {
-            const item = galleries[curG][curI];
-            lbImg.classList.add('fade');
-            setTimeout(() => {
-                lbImg.src = item.src;
-                lbName.textContent = item.name;
-                lbLabel.textContent = item.label;
-                lbCounter.textContent = (curI + 1) + ' / ' + galleries[curG].length;
-                lbImg.classList.remove('fade');
-            }, 200);
-            lbDots.innerHTML = '';
-            galleries[curG].forEach((_, i) => {
-                const d = document.createElement('div');
-                d.className = 'lb-dot' + (i === curI ? ' active' : '');
-                d.addEventListener('click', () => { curI = i; renderLb(); });
-                lbDots.appendChild(d);
+            // Sum selected addon buttons
+            document.querySelectorAll('.addon-btn.selected').forEach(btn => {
+                const p = parseInt(btn.dataset.price, 10) || 0;
+                total += p;
             });
+
+            const out = document.getElementById('totalPriceDisplay');
+            if (out) out.innerText = 'NT$ ' + total.toLocaleString('zh-TW');
+            return total;
         }
 
-        function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
-        document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
-        document.getElementById('lbNext').addEventListener('click', () => navLb(1));
-        document.getElementById('lbClose').addEventListener('click', closeLb);
-        overlay.addEventListener('click', e => { if (e.target === overlay) closeLb(); });
-        document.addEventListener('keydown', e => {
-            if (!overlay.classList.contains('open')) return;
-            if (e.key === 'ArrowLeft') navLb(-1);
-            if (e.key === 'ArrowRight') navLb(1);
-            if (e.key === 'Escape') closeLb();
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            // initial render
+            calculateTotal();
 
-        let lbTX = null;
-        overlay.addEventListener('touchstart', e => { lbTX = e.touches[0].clientX; }, { passive: true });
-        overlay.addEventListener('touchend', e => {
-            if (lbTX === null) return;
-            const dx = e.changedTouches[0].clientX - lbTX;
-            if (Math.abs(dx) > 40) navLb(dx < 0 ? 1 : -1);
-            lbTX = null;
-        });
-
-        document.querySelectorAll('.tile[data-lb]').forEach(tile => {
-            tile.addEventListener('click', e => {
-                if (e.target.closest('.tile-cta')) return;
-                openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
-            });
-        });
-
-        /* ── Scroll reveal ── */
-        function triggerAnim() {
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach((e, i) => {
-                    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('vis'), i * 60); obs.unobserve(e.target); }
+            // addon toggle handlers
+            document.querySelectorAll('.addon-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('selected');
+                    btn.innerText = btn.classList.contains('selected') ? '已選取' : '點擊加購';
+                    calculateTotal();
                 });
-            }, { threshold: 0.08 });
-            document.querySelectorAll('.tile:not(.vis),.detail-card:not(.vis)').forEach(el => obs.observe(el));
-        }
-        triggerAnim();
-    });
-</script>
+            });
+
+            // reset button
+            const reset = document.querySelector('.btn-reset');
+            if (reset) reset.addEventListener('click', (e) => {
+                document.querySelectorAll('.addon-btn.selected').forEach(b => {
+                    b.classList.remove('selected');
+                    b.innerText = '點擊加購';
+                });
+                // leave main package as-is
+                calculateTotal();
+            });
+        });
+    </script>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ── Navbar ── */
+            const navbar = document.querySelector('.navbar');
+            const themeNav = document.getElementById('themeNav');
+            let lastST = 0;
+
+            function syncThemeNavTop() {
+                themeNav.style.top = navbar.getBoundingClientRect().height + 'px';
+            }
+            syncThemeNavTop();
+            window.addEventListener('resize', syncThemeNavTop);
+
+            window.addEventListener('scroll', () => {
+                const st = window.pageYOffset;
+                if (Math.abs(lastST - st) <= 8) return;
+                const hiding = st > lastST && st > 80;
+                navbar.classList.toggle('nav-hidden', hiding);
+                themeNav.style.top = hiding ? '0px' : navbar.getBoundingClientRect().height + 'px';
+                lastST = st;
+            });
+            document.addEventListener('mousemove', e => {
+                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
+            });
+
+            /* ── Desktop dropdown ── */
+            const ddt = document.getElementById('desktopDropdown');
+            if (ddt) ddt.addEventListener('click', e => {
+                if (window.innerWidth >= 992 && !ddt.closest('.nav-item').classList.contains('show')) e.preventDefault();
+            });
+
+            /* ── Search ── */
+            const sBtn = document.getElementById('search-btn');
+            const sIn = document.getElementById('search-input');
+            sBtn.addEventListener('click', () => {
+                if (!sIn.classList.contains('open')) { sIn.classList.add('open'); sIn.focus(); }
+                else { if (sIn.value.trim()) alert('搜尋：' + sIn.value); else sIn.classList.remove('open'); }
+            });
+
+
+
+            /* ── Theme nav pills ── */
+            const pills = document.querySelectorAll('.theme-pill');
+            const sections = {
+                forest: document.getElementById('sec-forest'),
+                vintage: document.getElementById('sec-vintage'),
+                chapel: document.getElementById('sec-chapel'),
+                chinese: document.getElementById('sec-chinese'),
+                minimal: document.getElementById('sec-minimal'),
+            };
+
+            function showTheme(target) {
+                pills.forEach(p => p.classList.toggle('active', p.dataset.target === target));
+                if (target === 'all') {
+                    Object.values(sections).forEach(s => s.classList.add('active'));
+                } else {
+                    Object.entries(sections).forEach(([k, el]) => el.classList.toggle('active', k === target));
+                    setTimeout(() => {
+                        const el = sections[target];
+                        if (el) {
+                            const navH = navbar.getBoundingClientRect().height;
+                            const navH2 = themeNav.getBoundingClientRect().height;
+                            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - navH2 - 16, behavior: 'smooth' });
+                        }
+                    }, 50);
+                }
+                document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
+                setTimeout(triggerAnim, 80);
+            }
+
+            pills.forEach(p => p.addEventListener('click', () => showTheme(p.dataset.target)));
+
+            /* ── Lightbox ── */
+            const overlay = document.getElementById('lbOverlay');
+            const lbImg = document.getElementById('lbImg');
+            const lbName = document.getElementById('lbName');
+            const lbLabel = document.getElementById('lbLabel');
+            const lbDots = document.getElementById('lbDots');
+            const lbCounter = document.getElementById('lbCounter');
+
+            const galleries = {};
+            document.querySelectorAll('.tile[data-lb]').forEach(tile => {
+                const g = tile.dataset.lb;
+                if (!galleries[g]) galleries[g] = [];
+                const img = tile.querySelector('img');
+                galleries[g][parseInt(tile.dataset.idx)] = {
+                    src: img ? img.src : '',
+                    name: tile.dataset.name || '',
+                    label: tile.dataset.label || ''
+                };
+            });
+
+            let curG = null, curI = 0;
+
+            function openLb(g, i) { curG = g; curI = i; renderLb(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closeLb() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+            function renderLb() {
+                const item = galleries[curG][curI];
+                lbImg.classList.add('fade');
+                setTimeout(() => {
+                    lbImg.src = item.src;
+                    lbName.textContent = item.name;
+                    lbLabel.textContent = item.label;
+                    lbCounter.textContent = (curI + 1) + ' / ' + galleries[curG].length;
+                    lbImg.classList.remove('fade');
+                }, 200);
+                lbDots.innerHTML = '';
+                galleries[curG].forEach((_, i) => {
+                    const d = document.createElement('div');
+                    d.className = 'lb-dot' + (i === curI ? ' active' : '');
+                    d.addEventListener('click', () => { curI = i; renderLb(); });
+                    lbDots.appendChild(d);
+                });
+            }
+
+            function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
+            document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
+            document.getElementById('lbNext').addEventListener('click', () => navLb(1));
+            document.getElementById('lbClose').addEventListener('click', closeLb);
+            overlay.addEventListener('click', e => { if (e.target === overlay) closeLb(); });
+            document.addEventListener('keydown', e => {
+                if (!overlay.classList.contains('open')) return;
+                if (e.key === 'ArrowLeft') navLb(-1);
+                if (e.key === 'ArrowRight') navLb(1);
+                if (e.key === 'Escape') closeLb();
+            });
+
+            let lbTX = null;
+            overlay.addEventListener('touchstart', e => { lbTX = e.touches[0].clientX; }, { passive: true });
+            overlay.addEventListener('touchend', e => {
+                if (lbTX === null) return;
+                const dx = e.changedTouches[0].clientX - lbTX;
+                if (Math.abs(dx) > 40) navLb(dx < 0 ? 1 : -1);
+                lbTX = null;
+            });
+
+            document.querySelectorAll('.tile[data-lb]').forEach(tile => {
+                tile.addEventListener('click', e => {
+                    if (e.target.closest('.tile-cta')) return;
+                    openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
+                });
+            });
+
+            /* ── Scroll reveal ── */
+            function triggerAnim() {
+                const obs = new IntersectionObserver(entries => {
+                    entries.forEach((e, i) => {
+                        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('vis'), i * 60); obs.unobserve(e.target); }
+                    });
+                }, { threshold: 0.08 });
+                document.querySelectorAll('.tile:not(.vis),.detail-card:not(.vis)').forEach(el => obs.observe(el));
+            }
+            triggerAnim();
+        });
+    </script>
 </body>
 
 </html>
