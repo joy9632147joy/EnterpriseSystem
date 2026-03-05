@@ -1,0 +1,183 @@
+<header class="py-12 text-center bg-white">
+        <h1 class="text-5xl font-bold serif mb-4">客製化婚禮預算試算</h1>
+        <p class="text-gray-400 text-lg">勾選您需要的服務項目，系統將自動套用最優惠的專案組合</p>
+    </header>
+
+    <section class="max-w-[95rem] mx-auto px-6 mb-10">
+        <div class="bg-white rounded-[3rem] p-10 border-2 border-brand shadow-2xl relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 bg-brand text-white px-12 py-1.5 transform rotate-45 translate-x-10 translate-y-6 text-sm font-bold tracking-widest">
+                核心方案</div>
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                <div>
+                    <h2 class="text-4xl font-bold serif mb-2">A. 婚宴全時統籌服務 + 單儀式專案</h2>
+                    <p class="text-gray-500">本方案為獨立訂購核心，不可取消</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-baseline">
+                    <span class="text-brand price-focus font-bold">NT$ 58,800</span>
+                    <span class="ml-2 text-xl text-gray-400 font-medium">起</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-rose-50/40 p-8 rounded-3xl border border-rose-100">
+                    <h3 class="text-xl font-bold text-brand mb-5">A.1 婚禮顧問統籌</h3>
+                    <ul class="service-list text-base text-gray-600 space-y-2">
+                        <li>• 婚禮整體籌備協助</li>
+                        <li>• 婚禮籌備期程規劃建議</li>
+                        <li>• 婚禮細節安排</li>
+                        <li>• 相關廠商媒合推薦</li>
+                        <li>• 周邊廠商整合統籌</li>
+                        <li>• 親友工作人員職掌建議</li>
+                        <li>• 婚宴場地場勘</li>
+                        <li>• 空間動線規劃建議</li>
+                        <li>• 確認婚禮細節會議</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50/40 p-8 rounded-3xl border border-rose-100">
+                    <h3 class="text-xl font-bold text-brand mb-2">A.2 單儀式規劃執行</h3>
+                    <p class="text-xs text-brand font-bold mb-4">(文定 / 迎娶 / 證婚 三擇一)</p>
+                    <ul class="service-list text-base text-gray-600 space-y-2">
+                        <li>• 儀式前置解說 / 內容建議</li>
+                        <li>• 儀式時程規劃 / 流程引導</li>
+                        <li>• 儀式細節安排</li>
+                        <li>• 儀式物品準備清單</li>
+                        <li>• 儀式場地空間建議</li>
+                        <li>• 相關物品代購</li>
+                        <li>• 婚顧現場指揮整合</li>
+                        <li class="font-bold text-gray-800">• 儀式場控 1-2 名人員進駐</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50/40 p-8 rounded-3xl border border-rose-100">
+                    <h3 class="text-xl font-bold text-brand mb-5">A.3 宴會企劃執行</h3>
+                    <ul class="service-list text-base text-gray-600 space-y-2">
+                        <li>• 宴會訂製流程規劃</li>
+                        <li>• 各團隊工作協調 / 時程掌控</li>
+                        <li>• 婚顧主場控指揮統籌</li>
+                        <li class="font-bold text-gray-800">• 婚禮助理 1 名</li>
+                        <li class="font-bold text-gray-800">• 專業影音場控 1 名</li>
+                        <li>• 流程音樂曲目建議</li>
+                        <li>• 宴客備品代購</li>
+                        <li>• 婚禮當日彩排引導</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[95rem] mx-auto px-6 mb-12">
+        <h3 class="text-3xl font-bold text-center serif mb-10">客製加購項目</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <div id="card-B"
+                class="bg-white rounded-[3rem] p-10 border-2 border-transparent shadow-lg flex flex-col items-center text-center cursor-pointer transition-all duration-300"
+                onclick="toggleOption('B')">
+                <div class="text-6xl mb-6">🎤</div>
+                <h4 class="text-2xl font-bold mb-2">B. 專業婚禮主持人</h4>
+                <p class="text-brand text-2xl font-bold mb-6">NT$ 16,000</p>
+                <div id="btn-B" class="w-full py-4 rounded-2xl border-2 border-brand text-brand font-bold">點擊加購</div>
+            </div>
+
+            <div id="card-C"
+                class="bg-white rounded-[3rem] p-10 border-2 border-transparent shadow-lg flex flex-col items-center text-center cursor-pointer transition-all duration-300"
+                onclick="toggleOption('C')">
+                <div class="text-6xl mb-6">📝</div>
+                <h4 class="text-2xl font-bold mb-2">C. 儀式規劃執行</h4>
+                <p class="text-brand text-2xl font-bold mb-6">NT$ 15,800</p>
+                <div id="btn-C" class="w-full py-4 rounded-2xl border-2 border-brand text-brand font-bold">點擊加購</div>
+            </div>
+
+            <div id="card-D"
+                class="bg-white rounded-[3rem] p-10 border-2 border-transparent shadow-lg flex flex-col items-center text-center cursor-pointer transition-all duration-300"
+                onclick="toggleOption('D')">
+                <div class="text-6xl mb-6">🌸</div>
+                <h4 class="text-2xl font-bold mb-2">D. 客製化視覺佈置</h4>
+                <p class="text-brand text-2xl font-bold mb-6">NT$ 50,000 <span class="text-sm font-normal">起</span></p>
+                <div id="btn-D" class="w-full py-4 rounded-2xl border-2 border-brand text-brand font-bold">點擊加購</div>
+            </div>
+
+        </div>
+    </section>
+
+    <div
+        class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-xl border-t border-rose-100 px-10 py-5 z-[100] shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+        <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-widest">預估總額</span>
+                    <span id="total-price" class="text-4xl font-bold text-brand">NT$ 58,800</span>
+                    <span id="discount-tag"
+                        class="hidden bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">已套用專案優惠</span>
+                </div>
+                <p id="savings-text" class="text-emerald-600 text-sm font-bold mt-1 opacity-0 transition-opacity">
+                    恭喜！本組合已為您省下 $0 元</p>
+            </div>
+            <div class="flex space-x-4">
+                <button
+                    class="px-8 py-3 rounded-xl border border-gray-200 text-sm font-bold hover:bg-gray-50">重置選項</button>
+                <button
+                    class="bg-brand text-white px-12 py-3 rounded-xl text-base font-bold shadow-lg shadow-rose-200 hover:opacity-90">預約諮詢此方案</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selected = { B: false, C: false, D: false };
+        const prices = { A: 58800, B: 16000, C: 15800, D: 50000 };
+
+        function toggleOption(id) {
+            selected[id] = !selected[id];
+            updateUI();
+        }
+
+        function updateUI() {
+            let total = prices.A;
+            let discount = 0;
+
+            // 切換卡片視覺
+            ['B', 'C', 'D'].forEach(id => {
+                const card = document.getElementById(`card-${id}`);
+                const btn = document.getElementById(`btn-${id}`);
+                if (selected[id]) {
+                    card.classList.add('selected-card');
+                    btn.classList.add('bg-brand', 'text-white');
+                    btn.innerText = '已加入';
+                    total += prices[id];
+                } else {
+                    card.classList.remove('selected-card');
+                    btn.classList.remove('bg-brand', 'text-white');o
+                    btn.innerText = '點擊加購';
+                }
+            });
+
+            // 優惠判斷邏輯
+            if (selected.B && selected.C && selected.D) {
+                total = 130000; // A+B+C+D 專案價
+                discount = 10600;
+            } else if (selected.B && selected.C) {
+                total = 85000; // A+B+C 專案價
+                discount = 5600;
+            } else if (selected.C && selected.D) {
+                total = 117000; // A+C+D 專案價
+                discount = 7600;
+            } else if (selected.B && selected.D) {
+                total = 117000; // A+B+D 專案價
+                discount = 7800;
+            }
+
+            // 更新顯示
+            document.getElementById('total-price').innerText = `NT$ ${total.toLocaleString()}`;
+            const discountTag = document.getElementById('discount-tag');
+            const savingsText = document.getElementById('savings-text');
+
+            if (discount > 0) {
+                discountTag.classList.remove('hidden');
+                savingsText.style.opacity = '1';
+                savingsText.innerText = `恭喜！本組合已為您省下 $${discount.toLocaleString()} 元`;
+            } else {
+                discountTag.classList.add('hidden');
+                savingsText.style.opacity = '0';
+            }
+        }
+    </script>
