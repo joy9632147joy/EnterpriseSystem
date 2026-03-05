@@ -301,8 +301,6 @@
             }
         }
 
-
-
         .page-hero {
             background: white;
             border-bottom: 1px solid var(--border-grey);
@@ -368,7 +366,6 @@
             transform: scale(1);
         }
 
-        /* gradient */
         .hs-slide::after {
             content: '';
             position: absolute;
@@ -380,7 +377,6 @@
                 linear-gradient(to top, rgba(8, 6, 4, .88) 0%, transparent 45%);
         }
 
-        /* slide content */
         .hs-content {
             position: absolute;
             bottom: 0;
@@ -402,8 +398,6 @@
                 gap: 20px;
             }
         }
-
-        .hs-left {}
 
         .hs-num {
             font-size: 9px;
@@ -504,7 +498,6 @@
             border-color: var(--accent-gold);
         }
 
-        /* right side: index pills */
         .hs-right {
             display: flex;
             flex-direction: column;
@@ -574,7 +567,6 @@
             background: var(--accent-gold);
         }
 
-        /* progress bar */
         .hs-progress {
             position: absolute;
             bottom: 0;
@@ -592,7 +584,6 @@
             transition: width linear;
         }
 
-        /* top label */
         .hs-header {
             position: absolute;
             top: 0;
@@ -700,6 +691,148 @@
                 text-align: left;
                 max-width: 100%;
             }
+        }
+
+        /* ══ 五主題導覽圖（取代原 mosaic-forest） ══ */
+        .theme-preview-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
+            gap: 6px;
+            height: 520px;
+        }
+
+        @media(max-width:991px) {
+            .theme-preview-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 260px 200px 200px;
+                height: auto;
+            }
+            .theme-preview-grid .theme-preview-card:first-child {
+                grid-column: 1 / 3;
+            }
+        }
+
+        @media(max-width:575px) {
+            .theme-preview-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(5, 200px);
+            }
+            .theme-preview-grid .theme-preview-card:first-child {
+                grid-column: 1;
+            }
+        }
+
+        .theme-preview-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .theme-preview-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(.4,0,.2,1), filter .5s;
+            filter: saturate(.85) brightness(.9);
+        }
+
+        .theme-preview-card:hover img {
+            transform: scale(1.07);
+            filter: saturate(1) brightness(.95);
+        }
+
+        .theme-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,8,6,.78) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+            transition: background .45s;
+        }
+
+        .theme-preview-card:hover .theme-preview-overlay {
+            background: linear-gradient(to top, rgba(10,8,6,.88) 0%, rgba(0,0,0,.22) 60%, transparent 100%);
+        }
+
+        .theme-preview-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 22px;
+            z-index: 2;
+        }
+
+        .theme-preview-en {
+            font-size: 8px;
+            letter-spacing: .42em;
+            color: rgba(197,160,89,.85);
+            text-transform: uppercase;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 7px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity .35s .05s, transform .35s .05s;
+        }
+
+        .theme-preview-card:hover .theme-preview-en {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .theme-preview-name {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 300;
+            color: white;
+            letter-spacing: .04em;
+            line-height: 1.2;
+        }
+
+        /* 第一張（最寬）標題大一點 */
+        .theme-preview-card:first-child .theme-preview-name {
+            font-size: 28px;
+        }
+
+        .theme-preview-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 8px;
+            letter-spacing: .38em;
+            text-transform: uppercase;
+            color: white;
+            border-bottom: 1px solid rgba(197,160,89,.5);
+            padding-bottom: 3px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity .35s .1s, transform .35s .1s, color .25s, border-color .25s;
+        }
+
+        .theme-preview-card:hover .theme-preview-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .theme-preview-btn:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .theme-preview-accent {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 24px;
+            height: 24px;
+            border-top: 1px solid rgba(197,160,89,.6);
+            border-right: 1px solid rgba(197,160,89,.6);
+            opacity: 0;
+            transition: opacity .4s;
+        }
+
+        .theme-preview-card:hover .theme-preview-accent {
+            opacity: 1;
         }
 
         /* ── Mosaic grids (same as original) ── */
@@ -935,7 +1068,6 @@
             opacity: 1;
         }
 
-        /* zoom hint */
         .tile-zoom {
             position: absolute;
             top: 12px;
@@ -960,7 +1092,6 @@
             opacity: 1;
         }
 
-        /* text tile */
         .tile-text-panel {
             background: #1A1A18;
             display: flex;
@@ -1090,13 +1221,8 @@
         }
 
         @keyframes lbIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
+            from { opacity: 0 }
+            to { opacity: 1 }
         }
 
         .lb-inner {
@@ -1173,28 +1299,13 @@
             border-color: rgba(197, 160, 89, .4);
         }
 
-        .lb-prev {
-            left: 20px;
-        }
-
-        .lb-next {
-            right: 20px;
-        }
+        .lb-prev { left: 20px; }
+        .lb-next { right: 20px; }
 
         @media(max-width:767px) {
-            .lb-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-
-            .lb-prev {
-                left: 6px;
-            }
-
-            .lb-next {
-                right: 6px;
-            }
+            .lb-btn { width: 36px; height: 36px; font-size: 16px; }
+            .lb-prev { left: 6px; }
+            .lb-next { right: 6px; }
         }
 
         .lb-close {
@@ -1210,9 +1321,7 @@
             transition: color .3s;
         }
 
-        .lb-close:hover {
-            color: white;
-        }
+        .lb-close:hover { color: white; }
 
         .lb-dots {
             position: absolute;
@@ -1257,9 +1366,7 @@
         }
 
         @media(max-width:991.98px) {
-            .theme-nav {
-                top: 64px;
-            }
+            .theme-nav { top: 64px; }
         }
 
         .theme-nav-inner {
@@ -1280,18 +1387,11 @@
         }
 
         @media(min-width:992px) {
-            .theme-nav-inner {
-                padding: 0 40px;
-            }
-
-            .theme-nav-inner::after {
-                display: none;
-            }
+            .theme-nav-inner { padding: 0 40px; }
+            .theme-nav-inner::after { display: none; }
         }
 
-        .theme-nav-inner::-webkit-scrollbar {
-            display: none;
-        }
+        .theme-nav-inner::-webkit-scrollbar { display: none; }
 
         .theme-pill {
             flex-shrink: 0;
@@ -1310,10 +1410,7 @@
         }
 
         @media(min-width:992px) {
-            .theme-pill {
-                padding: 20px 24px;
-                letter-spacing: .18em;
-            }
+            .theme-pill { padding: 20px 24px; letter-spacing: .18em; }
         }
 
         .theme-pill::after {
@@ -1328,18 +1425,14 @@
             transition: width .4s ease;
         }
 
-        .theme-pill:hover {
-            color: var(--text-main);
-        }
+        .theme-pill:hover { color: var(--text-main); }
 
         .theme-pill.active {
             color: var(--text-main);
             font-weight: 500;
         }
 
-        .theme-pill.active::after {
-            width: 55%;
-        }
+        .theme-pill.active::after { width: 55%; }
 
         .theme-pill-divider {
             width: 1px;
@@ -1364,9 +1457,7 @@
             gap: 64px;
         }
 
-        .footer-brand {
-            max-width: 300px;
-        }
+        .footer-brand { max-width: 300px; }
 
         .footer-brand-name {
             font-size: 18px;
@@ -1392,11 +1483,7 @@
             margin-top: 32px;
         }
 
-        .footer-icons {
-            display: flex;
-            gap: 16px;
-            margin-top: 32px;
-        }
+        .footer-icons { display: flex; gap: 16px; margin-top: 32px; }
 
         .footer-icon-btn {
             width: 36px;
@@ -1411,19 +1498,10 @@
             transition: color .3s;
         }
 
-        .footer-icon-btn:hover {
-            color: var(--accent-gold);
-        }
+        .footer-icon-btn:hover { color: var(--accent-gold); }
 
-        .footer-nav-cols {
-            display: flex;
-            gap: 96px;
-        }
-
-        .footer-nav-col {
-            display: flex;
-            flex-direction: column;
-        }
+        .footer-nav-cols { display: flex; gap: 96px; }
+        .footer-nav-col { display: flex; flex-direction: column; }
 
         .footer-nav-title {
             font-size: 10px;
@@ -1445,9 +1523,7 @@
             display: block;
         }
 
-        .footer-nav-link:hover {
-            color: var(--accent-gold);
-        }
+        .footer-nav-link:hover { color: var(--accent-gold); }
 
         .footer-bottom {
             max-width: 1400px;
@@ -1465,9 +1541,9 @@
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
+        <div class="container-fluid" style="max-width:1600px;margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
@@ -1481,14 +1557,26 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
+                            id="desktopDropdown" data-bs-toggle="dropdown">
+                            精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=venues">婚禮場地</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=gown">新娘婚紗</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=suit">新郎西服</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=cake">喜餅禮盒</a>
+                            <a class="dropdown-item" href="./wedding_factory.html?cat=gift">婚禮小物</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
+                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                            style="color:var(--text-muted); font-size:20px;">search</button>
+                            style="color:var(--text-muted);font-size:20px;">search</button>
                     </div>
                     <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
                 </div>
@@ -1496,36 +1584,43 @@
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas ─── -->
+    <!-- OFFCANVAS -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div>
-                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
-                <span class="brand-sub">High-End Wedding Journal</span>
-            </div>
+            <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End Wedding Journal</span></div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas-search">
-                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
             <ul class="navbar-nav gap-0">
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
+                        data-bs-toggle="dropdown" data-bs-auto-close="inside">
+                        精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./wedding_factory.html?cat=venues">婚禮場地</a>
+                        <a class="dropdown-item" href="./wedding_factory.html?cat=gown">新娘婚紗</a>
+                        <a class="dropdown-item" href="./wedding_factory.html?cat=suit">新郎西服</a>
+                        <a class="dropdown-item" href="./wedding_factory.html?cat=cake">喜餅禮盒</a>
+                        <a class="dropdown-item" href="./wedding_factory.html?cat=gift">婚禮小物</a>
+                    </div>
+                </li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
             </ul>
             <a href="client_login.html" class="offcanvas-login">
-                <span class="material-symbols-outlined"
-                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
-                會員登入
+                <span class="material-symbols-outlined" style="font-size:16px;vertical-align:middle;margin-right:6px;">person</span>會員登入
             </a>
         </div>
     </div>
-    <div class="page-wrap">
 
+    <div class="page-wrap">
 
         <!-- 頁面標題 -->
         <div class="page-hero">
@@ -1534,21 +1629,6 @@
             <div class="page-hero-line"></div>
             <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
         </div>
-
-        <!-- THEME NAV (sticky) -->
-        <nav class="theme-nav" id="themeNav">
-            <div class="theme-nav-inner">
-                <button class="theme-pill" data-target="forest">森林系</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="vintage">美式復古</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="chapel">西式教堂</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="chinese">中式老宅</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="minimal">極簡現代</button>
-            </div>
-        </nav>
 
         <!-- THEME SECTIONS -->
         <div class="themes-wrap">
@@ -1561,50 +1641,53 @@
                     </div>
                     <p class="section-desc">枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景</p>
                 </div>
+
+                <!-- 五主題馬賽克圖 -->
                 <div class="mosaic-forest">
-                    <div class="tile" data-lb="forest" data-idx="0" data-name="山間祕境婚宴" data-label="Featured Venue">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&fit=crop"
-                            alt="森林主圖">
+                    <div class="tile" data-tlb="forest" data-tidx="0">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&fit=crop" alt="森林系">
                         <div class="tile-accent-corner"></div>
                         <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Venue</span>
-                            <p class="tile-name">山間祕境婚宴</p><span class="tile-sub">Cedar Hall · 台北烏來</span><a
-                                class="tile-cta" href="#">探索場地</a>
+                        <div class="tile-overlay">
+                            <span class="tile-label">Forest · Nature</span>
+                            <p class="tile-name">森林系</p>
+                            <span class="tile-sub">點擊瀏覽更多</span>
                         </div>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="1" data-name="自然系花藝佈置" data-label="Florals">
-                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80&fit=crop"
-                            alt="花藝">
+                    <div class="tile" data-tlb="vintage" data-tidx="0">
+                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=80&fit=crop" alt="美式復古">
                         <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Florals</span>
-                            <p class="tile-name tile-name-small">自然系花藝佈置</p>
+                        <div class="tile-overlay">
+                            <span class="tile-label">Americana · Rustic</span>
+                            <p class="tile-name tile-name-small">美式復古</p>
                         </div>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="2" data-name="戶外儀式區" data-label="Ceremony">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=80&fit=crop"
-                            alt="儀式">
+                    <div class="tile" data-tlb="chapel" data-tidx="0">
+                        <img src="https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=700&q=80&fit=crop" alt="西式教堂">
                         <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Ceremony</span>
-                            <p class="tile-name tile-name-small">戶外儀式區</p>
+                        <div class="tile-overlay">
+                            <span class="tile-label">Chapel · Timeless</span>
+                            <p class="tile-name tile-name-small">西式教堂</p>
                         </div>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="3" data-name="晚宴燈光氛圍" data-label="Reception">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17d7dc783f06?w=700&q=80&fit=crop"
-                            alt="宴席">
+                    <div class="tile" data-tlb="chinese" data-tidx="0">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=80&fit=crop" alt="中式老宅">
                         <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Reception</span>
-                            <p class="tile-name tile-name-small">晚宴燈光氛圍</p>
+                        <div class="tile-overlay">
+                            <span class="tile-label">Heritage · Courtyard</span>
+                            <p class="tile-name tile-name-small">中式老宅</p>
                         </div>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="4" data-name="綠葉桌花細節" data-label="Details">
-                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80&fit=crop"
-                            alt="細節">
+                    <div class="tile" data-tlb="minimal" data-tidx="0">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80&fit=crop" alt="極簡現代">
                         <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Details</span>
-                            <p class="tile-name tile-name-small">綠葉桌花細節</p>
+                        <div class="tile-overlay">
+                            <span class="tile-label">Minimal · Modern</span>
+                            <p class="tile-name tile-name-small">極簡現代</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="detail-strip">
                     <div class="detail-card"><span class="detail-card-tag">Mood</span>
                         <p class="detail-card-title">靜謐 · 清新 · 療癒</p>
@@ -1624,230 +1707,7 @@
                 </div>
             </section>
 
-            <!-- 美式復古 -->
-            <section class="theme-section active" id="sec-vintage">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Americana · Rustic · Vintage</span>
-                        <h2 class="section-title">美式復古</h2>
-                    </div>
-                    <p class="section-desc">穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面</p>
-                </div>
-                <div class="mosaic-vintage">
-                    <div class="tile" data-lb="vintage" data-idx="0" data-name="穀倉婚禮" data-label="Barn Wedding">
-                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=900&q=80&fit=crop"
-                            alt="穀倉">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Barn Wedding</span>
-                            <p class="tile-name">穀倉婚禮</p><span class="tile-sub">Rustic Barn · 宜蘭</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="vintage" data-idx="1" data-name="長桌宴席佈置" data-label="Tablescape">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=80&fit=crop"
-                            alt="長桌">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Tablescape</span>
-                            <p class="tile-name tile-name-small">長桌宴席佈置</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="vintage" data-idx="2" data-name="復古婚紗造型" data-label="Bridal">
-                        <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80&fit=crop"
-                            alt="婚紗">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Bridal</span>
-                            <p class="tile-name tile-name-small">復古婚紗造型</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">溫暖 · 懷舊 · 自在</p>
-                        <p class="detail-card-desc">布幔、木質長桌與棉麻布料，讓客人感受回家般的溫暖氛圍。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Terracotta · Wheat · Navy</p>
-                        <p class="detail-card-desc">磚紅與小麥黃的大地色系，點綴深藍為視覺焦點。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Signature</span>
-                        <p class="detail-card-title">串燈 · 乾燥花環 · 老木椅</p>
-                        <p class="detail-card-desc">幾個標誌性元素就能喚出完整的美式復古氣息。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 西式教堂 -->
-            <section class="theme-section active" id="sec-chapel">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Chapel · Cathedral · Timeless</span>
-                        <h2 class="section-title">西式教堂</h2>
-                    </div>
-                    <p class="section-desc">彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證</p>
-                </div>
-                <div class="mosaic-chapel">
-                    <div class="tile" data-lb="chapel" data-idx="0" data-name="教堂側廊光影" data-label="Interior">
-                        <img src="https://images.unsplash.com/photo-1543738435-59d1e5a3ef1b?w=700&q=80&fit=crop"
-                            alt="教堂側廊">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Interior</span>
-                            <p class="tile-name tile-name-small">教堂側廊光影</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chapel" data-idx="1" data-name="純白教堂誓約" data-label="Featured Chapel">
-                        <img src="https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=900&q=80&fit=crop"
-                            alt="教堂走道">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Chapel</span>
-                            <p class="tile-name">純白教堂誓約</p><span class="tile-sub">Chapel blanc · 台南</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chapel" data-idx="2" data-name="白玫瑰花道" data-label="Florals">
-                        <img src="https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop"
-                            alt="花道">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Florals</span>
-                            <p class="tile-name tile-name-small">白玫瑰花道</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">神聖 · 典雅 · 永恆</p>
-                        <p class="detail-card-desc">宏偉空間賦予誓言重量，讓這個時刻成為記憶中最神聖的瞬間。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Pure White · Gold · Blush</p>
-                        <p class="detail-card-desc">純白主調搭配金色細節，粉裸色點綴帶來柔和浪漫。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Must-Have</span>
-                        <p class="detail-card-title">管風琴 · 彩繪玻璃 · 花柱</p>
-                        <p class="detail-card-desc">選對空間的靈魂元素，讓儀式超越時間的限制。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 中式老宅 -->
-            <section class="theme-section active" id="sec-chinese">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Chinese Heritage · Courtyard · Ink</span>
-                        <h2 class="section-title">中式老宅</h2>
-                    </div>
-                    <p class="section-desc">紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生</p>
-                </div>
-                <div class="mosaic-chinese">
-                    <div class="tile" data-lb="chinese" data-idx="0" data-name="古韻院落婚宴" data-label="Courtyard Venue">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80&fit=crop"
-                            alt="院落">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Courtyard Venue</span>
-                            <p class="tile-name">古韻院落婚宴</p><span class="tile-sub">Heritage House · 台南老街</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chinese" data-idx="1" data-name="漆器與囍字擺設" data-label="Details">
-                        <img src="https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&q=80&fit=crop"
-                            alt="細節">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Details</span>
-                            <p class="tile-name tile-name-small">漆器與囍字擺設</p>
-                        </div>
-                    </div>
-                    <div class="tile tile-text-panel tile-text">
-                        <div class="panel-gold-line"></div>
-                        <p class="panel-quote">「執子之手<br>與子偕老」</p>
-                        <span class="panel-en">A Vow Across Lifetimes</span>
-                    </div>
-                    <div class="tile" data-lb="chinese" data-idx="2" data-name="紅木圓桌宴席" data-label="Banquet">
-                        <img src="https://images.unsplash.com/photo-1569521843991-e45bfbbb2fd3?w=700&q=80&fit=crop"
-                            alt="宴席">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Banquet</span>
-                            <p class="tile-name tile-name-small">紅木圓桌宴席</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">內斂 · 深情 · 文化底蘊</p>
-                        <p class="detail-card-desc">以中華美學為基底，融入當代設計語彙，打造新中式婚禮美學。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">朱紅 · 墨黑 · 金箔</p>
-                        <p class="detail-card-desc">正紅與黑金的經典搭配，莊重而不失喜慶。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Elements</span>
-                        <p class="detail-card-title">燈籠 · 剪紙 · 青花瓷</p>
-                        <p class="detail-card-desc">傳統工藝賦予婚禮獨特的文化重量與視覺溫度。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 極簡現代 -->
-            <section class="theme-section active" id="sec-minimal">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Minimal · Modern · Editorial</span>
-                        <h2 class="section-title">極簡現代</h2>
-                    </div>
-                    <p class="section-desc">Less is more<br>讓空間本身成為最有力量的表達</p>
-                </div>
-                <div class="mosaic-minimal">
-                    <div class="tile" data-lb="minimal" data-idx="0" data-name="建築感白盒子婚宴" data-label="Featured Venue">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&fit=crop"
-                            alt="極簡">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Venue</span>
-                            <p class="tile-name">建築感白盒子婚宴</p><span class="tile-sub">White Box Studio · 台北信義</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="minimal" data-idx="1" data-name="單支芒草桌花" data-label="Tablescape">
-                        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80&fit=crop"
-                            alt="桌花">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Tablescape</span>
-                            <p class="tile-name tile-name-small">單支芒草桌花</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="minimal" data-idx="2" data-name="俐落婚紗輪廓" data-label="Bridal">
-                        <img src="https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop"
-                            alt="婚紗">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Bridal</span>
-                            <p class="tile-name tile-name-small">俐落婚紗輪廓</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">清冷 · 理性 · 高訂感</p>
-                        <p class="detail-card-desc">以精準留白取代繁複裝飾，讓每一個細節都成為有意義的選擇。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Chalk White · Greige · Onyx</p>
-                        <p class="detail-card-desc">近乎無色的調色盤，讓質感與形狀成為唯一主角。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Key Elements</span>
-                        <p class="detail-card-title">幾何線條 · 拋光石材 · 單枝花</p>
-                        <p class="detail-card-desc">材質的對話與形式的克制，構成極簡婚禮的靈魂美學。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
+            
 
         </div>
     </div><!-- end page-wrap -->
@@ -1856,8 +1716,7 @@
     <div class="lb-overlay" id="lbOverlay">
         <button class="lb-close" id="lbClose"><span class="material-symbols-outlined">close</span></button>
         <div class="lb-inner">
-            <button class="lb-btn lb-prev" id="lbPrev"><span
-                    class="material-symbols-outlined">chevron_left</span></button>
+            <button class="lb-btn lb-prev" id="lbPrev"><span class="material-symbols-outlined">chevron_left</span></button>
             <div class="lb-img-wrap" id="lbImgWrap">
                 <img id="lbImg" src="" alt="">
                 <div class="lb-caption">
@@ -1865,8 +1724,7 @@
                     <p class="lb-caption-label" id="lbLabel"></p>
                 </div>
             </div>
-            <button class="lb-btn lb-next" id="lbNext"><span
-                    class="material-symbols-outlined">chevron_right</span></button>
+            <button class="lb-btn lb-next" id="lbNext"><span class="material-symbols-outlined">chevron_right</span></button>
         </div>
         <div class="lb-dots" id="lbDots"></div>
         <div class="lb-counter" id="lbCounter"></div>
@@ -1876,14 +1734,11 @@
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <div><span class="footer-brand-name">DREAM VENUES</span><span class="footer-brand-sub">High-End Wedding
-                        Journal</span></div>
+                <div><span class="footer-brand-name">DREAM VENUES</span><span class="footer-brand-sub">High-End Wedding Journal</span></div>
                 <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
                 <div class="footer-icons">
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                            style="font-size:18px;">share</span></a>
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                            style="font-size:18px;">mail</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">share</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></a>
                 </div>
             </div>
             <div class="footer-nav-cols">
@@ -1911,25 +1766,16 @@
 
             /* ── Navbar ── */
             const navbar = document.querySelector('.navbar');
-            const themeNav = document.getElementById('themeNav');
             let lastST = 0;
-
-            function syncThemeNavTop() {
-                themeNav.style.top = navbar.getBoundingClientRect().height + 'px';
-            }
-            syncThemeNavTop();
-            window.addEventListener('resize', syncThemeNavTop);
 
             window.addEventListener('scroll', () => {
                 const st = window.pageYOffset;
                 if (Math.abs(lastST - st) <= 8) return;
-                const hiding = st > lastST && st > 80;
-                navbar.classList.toggle('nav-hidden', hiding);
-                themeNav.style.top = hiding ? '0px' : navbar.getBoundingClientRect().height + 'px';
+                navbar.classList.toggle('nav-hidden', st > lastST && st > 80);
                 lastST = st;
             });
             document.addEventListener('mousemove', e => {
-                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
+                if (e.clientY < 50) navbar.classList.remove('nav-hidden');
             });
 
             /* ── Desktop dropdown ── */
@@ -1946,10 +1792,7 @@
                 else { if (sIn.value.trim()) alert('搜尋：' + sIn.value); else sIn.classList.remove('open'); }
             });
 
-
-
-            /* ── Theme nav pills ── */
-            const pills = document.querySelectorAll('.theme-pill');
+            /* ── Theme nav removed; all sections always visible ── */
             const sections = {
                 forest: document.getElementById('sec-forest'),
                 vintage: document.getElementById('sec-vintage'),
@@ -1957,27 +1800,38 @@
                 chinese: document.getElementById('sec-chinese'),
                 minimal: document.getElementById('sec-minimal'),
             };
+            Object.values(sections).forEach(s => { if (s) s.classList.add('active'); });
 
-            function showTheme(target) {
-                pills.forEach(p => p.classList.toggle('active', p.dataset.target === target));
-                if (target === 'all') {
-                    Object.values(sections).forEach(s => s.classList.add('active'));
-                } else {
-                    Object.entries(sections).forEach(([k, el]) => el.classList.toggle('active', k === target));
-                    setTimeout(() => {
-                        const el = sections[target];
-                        if (el) {
-                            const navH = navbar.getBoundingClientRect().height;
-                            const navH2 = themeNav.getBoundingClientRect().height;
-                            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - navH2 - 16, behavior: 'smooth' });
-                        }
-                    }, 50);
-                }
-                document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
-                setTimeout(triggerAnim, 80);
-            }
-
-            pills.forEach(p => p.addEventListener('click', () => showTheme(p.dataset.target)));
+            /* ── 五主題圖集資料 ── */
+            const themeGalleries = {
+                forest: [
+                    { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&q=85&fit=crop', name: '山間祕境婚宴', label: 'Forest · Featured Venue' },
+                    { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1400&q=85&fit=crop', name: '自然系花藝佈置', label: 'Forest · Florals' },
+                    { src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1400&q=85&fit=crop', name: '戶外儀式區', label: 'Forest · Ceremony' },
+                    { src: 'https://images.unsplash.com/photo-1520854221256-17d7dc783f06?w=1400&q=85&fit=crop', name: '晚宴燈光氛圍', label: 'Forest · Reception' },
+                    { src: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1400&q=85&fit=crop', name: '綠葉桌花細節', label: 'Forest · Details' },
+                ],
+                vintage: [
+                    { src: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1400&q=85&fit=crop', name: '穀倉婚禮', label: 'Vintage · Barn Wedding' },
+                    { src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1400&q=85&fit=crop', name: '長桌宴席佈置', label: 'Vintage · Tablescape' },
+                    { src: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1400&q=85&fit=crop', name: '復古婚紗造型', label: 'Vintage · Bridal' },
+                ],
+                chapel: [
+                    { src: 'https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=1400&q=85&fit=crop', name: '純白教堂誓約', label: 'Chapel · Featured' },
+                    { src: 'https://images.unsplash.com/photo-1543738435-59d1e5a3ef1b?w=1400&q=85&fit=crop', name: '教堂側廊光影', label: 'Chapel · Interior' },
+                    { src: 'https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=1400&q=85&fit=crop', name: '白玫瑰花道', label: 'Chapel · Florals' },
+                ],
+                chinese: [
+                    { src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1400&q=85&fit=crop', name: '古韻院落婚宴', label: 'Chinese · Courtyard' },
+                    { src: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=1400&q=85&fit=crop', name: '漆器與囍字擺設', label: 'Chinese · Details' },
+                    { src: 'https://images.unsplash.com/photo-1569521843991-e45bfbbb2fd3?w=1400&q=85&fit=crop', name: '紅木圓桌宴席', label: 'Chinese · Banquet' },
+                ],
+                minimal: [
+                    { src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1400&q=85&fit=crop', name: '建築感白盒子婚宴', label: 'Minimal · Featured' },
+                    { src: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=1400&q=85&fit=crop', name: '單支芒草桌花', label: 'Minimal · Tablescape' },
+                    { src: 'https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=1400&q=85&fit=crop', name: '俐落婚紗輪廓', label: 'Minimal · Bridal' },
+                ],
+            };
 
             /* ── Lightbox ── */
             const overlay = document.getElementById('lbOverlay');
@@ -1987,35 +1841,40 @@
             const lbDots = document.getElementById('lbDots');
             const lbCounter = document.getElementById('lbCounter');
 
-            const galleries = {};
-            document.querySelectorAll('.tile[data-lb]').forEach(tile => {
-                const g = tile.dataset.lb;
-                if (!galleries[g]) galleries[g] = [];
-                const img = tile.querySelector('img');
-                galleries[g][parseInt(tile.dataset.idx)] = {
-                    src: img ? img.src : '',
-                    name: tile.dataset.name || '',
-                    label: tile.dataset.label || ''
-                };
-            });
+            let curG = null, curI = 0, curData = null;
 
-            let curG = null, curI = 0;
+            function openLbTheme(theme, idx) {
+                curG = theme;
+                curI = idx;
+                curData = themeGalleries[theme];
+                renderLb();
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
 
-            function openLb(g, i) { curG = g; curI = i; renderLb(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function openLbTile(g, i, data) {
+                curG = g;
+                curI = i;
+                curData = data;
+                renderLb();
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
             function closeLb() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
 
             function renderLb() {
-                const item = galleries[curG][curI];
+                const item = curData[curI];
                 lbImg.classList.add('fade');
                 setTimeout(() => {
                     lbImg.src = item.src;
                     lbName.textContent = item.name;
                     lbLabel.textContent = item.label;
-                    lbCounter.textContent = (curI + 1) + ' / ' + galleries[curG].length;
+                    lbCounter.textContent = (curI + 1) + ' / ' + curData.length;
                     lbImg.classList.remove('fade');
                 }, 200);
                 lbDots.innerHTML = '';
-                galleries[curG].forEach((_, i) => {
+                curData.forEach((_, i) => {
                     const d = document.createElement('div');
                     d.className = 'lb-dot' + (i === curI ? ' active' : '');
                     d.addEventListener('click', () => { curI = i; renderLb(); });
@@ -2023,7 +1882,7 @@
                 });
             }
 
-            function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
+            function navLb(dir) { curI = (curI + dir + curData.length) % curData.length; renderLb(); }
             document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
             document.getElementById('lbNext').addEventListener('click', () => navLb(1));
             document.getElementById('lbClose').addEventListener('click', closeLb);
@@ -2044,10 +1903,30 @@
                 lbTX = null;
             });
 
+            /* ── 五主題入口圖點擊 → 開啟該主題 lightbox ── */
+            document.querySelectorAll('.tile[data-tlb]').forEach(tile => {
+                tile.addEventListener('click', () => {
+                    openLbTheme(tile.dataset.tlb, 0);
+                });
+            });
+
+            /* ── 各主題內的 tile 點擊 → 開啟該主題 lightbox（同圖集）── */
+            const tileGalleries = {};
+            document.querySelectorAll('.tile[data-lb]').forEach(tile => {
+                const g = tile.dataset.lb;
+                if (!tileGalleries[g]) tileGalleries[g] = [];
+                const img = tile.querySelector('img');
+                tileGalleries[g][parseInt(tile.dataset.idx)] = {
+                    src: img ? img.src : '',
+                    name: tile.dataset.name || '',
+                    label: tile.dataset.label || ''
+                };
+            });
             document.querySelectorAll('.tile[data-lb]').forEach(tile => {
                 tile.addEventListener('click', e => {
                     if (e.target.closest('.tile-cta')) return;
-                    openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
+                    const g = tile.dataset.lb;
+                    openLbTile(g, parseInt(tile.dataset.idx), tileGalleries[g]);
                 });
             });
 
