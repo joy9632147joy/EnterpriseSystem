@@ -1605,7 +1605,7 @@
             border-radius: 12px;
             padding: 48px; /* 更大的內距以增加留白 */
             margin: 0 auto 36px auto;
-            max-width: 1200px; /* 放大橫向寬度 */
+            max-width: 1030px; /* 放大橫向寬度 */
             box-shadow: 0 14px 38px rgba(0, 0, 0, 0.06);
             border: 1.5px solid var(--accent-gold);
             position: relative;
@@ -1689,6 +1689,9 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            /* 兩欄排版文字內容 */
+            column-count: 2;
+            column-gap: 20px;
         }
 
         .service-col li {
@@ -1698,6 +1701,8 @@
             padding-left: 20px;
             position: relative;
             line-height: 1.6;
+            /* 保持欄內段落不被拆分 */
+            break-inside: avoid;
         }
 
         .service-col li::before {
@@ -1740,7 +1745,7 @@
                             <a class="dropdown-item" href="#">婚禮小物</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
@@ -1748,7 +1753,7 @@
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted);font-size:20px;">search</button>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html">我的婚禮</a>
+                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
                 </div>
             </div>
         </div>
@@ -1803,7 +1808,7 @@
             <div class="main-package-card">
                 <div class="ribbon">核心方案</div>
                 <div class="card-header">
-                    <h3>A. 婚宴全時統籌服務 + 單儀式專案</h3>
+                    <h3>A. 婚宴全時統籌服務</h3>
                     <p>本方案為獨立訂購核心，不可取消</p>
                     <div class="price">NT$ 60,800 <span>起</span></div>
                     <input type="radio" name="main_package" value="60800" checked style="display:none">
@@ -1824,21 +1829,7 @@
                             <li>確認婚禮細節會議</li>
                         </ul>
                     </div>
-                    <div class="service-col">
-                        <h4>單儀式規劃執行（文定 / 迎娶 / 證婚 三擇一）</h4>
-                        <ul>
-                            <li>儀式前置解說</li>
-                            <li>儀式內容建議</li>
-                            <li>儀式時程規劃</li>
-                            <li>儀式流程引導</li>
-                            <li>儀式細節安排</li>
-                            <li>儀式物品準備清單</li>
-                            <li>儀式場地空間建議</li>
-                            <li>相關物品代購</li>
-                            <li>婚顧現場指揮整合</li>
-                            <li>專業現場場控：儀式場控 1-2 名（依選擇儀式而定）</li>
-                        </ul>
-                    </div>
+                
                     <div class="service-col">
                         <h4>宴會企劃執行</h4>
                         <ul>
