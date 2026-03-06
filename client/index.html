@@ -23,7 +23,7 @@
         .hero-slideshow {
             position: relative;
             width: 100%;
-            height: 95vh;
+            height: 75vh;
             min-height: 480px;
             overflow: hidden;
             background: #0c0b09;
@@ -198,59 +198,6 @@
                 gap: 0;
                 align-items: flex-end;
             }
-        }
-
-        .hs-pill {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            font-family: var(--font-sans);
-            text-align: right;
-            opacity: .38;
-            transition: opacity .4s;
-        }
-
-        .hs-pill:hover {
-            opacity: .65;
-        }
-
-        .hs-pill.active {
-            opacity: 1;
-        }
-
-        .hs-pill-name {
-            font-size: 10px;
-            letter-spacing: .2em;
-            color: white;
-            white-space: nowrap;
-            transition: color .3s;
-        }
-
-        @media (max-width: 767px) {
-            .hs-pill-name {
-                display: none;
-            }
-        }
-
-        .hs-pill.active .hs-pill-name {
-            color: var(--accent-gold);
-        }
-
-        .hs-pill-line {
-            width: 20px;
-            height: 1px;
-            background: rgba(255, 255, 255, .35);
-            transition: width .4s, background .4s;
-            flex-shrink: 0;
-        }
-
-        .hs-pill.active .hs-pill-line {
-            width: 36px;
-            background: var(--accent-gold);
         }
 
         .hs-progress {
@@ -480,7 +427,7 @@
             </div>
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
@@ -512,7 +459,7 @@
                         <p class="hs-desc">枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景</p>
                         <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
                     </div>
-                    <div class="hs-right" id="hsPills"></div>
+                    <div class="hs-right"></div>
                 </div>
             </div>
 
@@ -690,35 +637,7 @@
 
     <!-- FOOTER -->
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <div>
-                    <span class="footer-brand-name">DREAM VENUES</span>
-                    <span class="footer-brand-sub">High-End &nbsp;·&nbsp; Wedding Journal</span>
-                </div>
-                <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
-                <div class="footer-icons">
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">share</span></a>
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></a>
-                </div>
-            </div>
-            <div class="footer-nav-cols">
-                <div class="footer-nav-col">
-                    <span class="footer-nav-title">探索平台</span>
-                    <a href="./wedding_theme.html" class="footer-nav-link">精選場地</a>
-                    <a href="./wedding_team.html" class="footer-nav-link">職人故事</a>
-                    <a href="./wedding_theme.html" class="footer-nav-link">風格靈感</a>
-                    <a href="./plan.html" class="footer-nav-link">最新動態</a>
-                </div>
-                <div class="footer-nav-col">
-                    <span class="footer-nav-title">客戶服務</span>
-                    <a href="./plan.html" class="footer-nav-link">預約流程</a>
-                    <a href="./contact.html" class="footer-nav-link">常見問題</a>
-                    <a href="#" class="footer-nav-link">隱私政策</a>
-                    <a href="./contact.html" class="footer-nav-link">聯繫我們</a>
-                </div>
-            </div>
-        </div>
+        
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
@@ -732,35 +651,13 @@
             const INTERVAL = 5000;
             const slides = document.querySelectorAll('.hs-slide');
             const progressBar = document.getElementById('hsProgressBar');
-            const slideNames = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代'];
             let cur = 0, timer = null, paused = false;
-
-            slides.forEach((slide, si) => {
-                const pillsEl = slide.querySelector('.hs-right');
-                if (!pillsEl) return;
-                slideNames.forEach((name, ni) => {
-                    const btn = document.createElement('button');
-                    btn.className = 'hs-pill' + (ni === si ? ' active' : '');
-                    btn.innerHTML = `<span class="hs-pill-name">${name}</span><div class="hs-pill-line"></div>`;
-                    btn.addEventListener('click', () => goTo(ni));
-                    pillsEl.appendChild(btn);
-                });
-            });
 
             function goTo(idx) {
                 slides[cur].classList.remove('active');
                 cur = (idx + slides.length) % slides.length;
                 slides[cur].classList.add('active');
-                updatePills();
                 startProgress();
-            }
-
-            function updatePills() {
-                slides.forEach(slide => {
-                    slide.querySelectorAll('.hs-pill').forEach((p, pi) => {
-                        p.classList.toggle('active', pi === cur);
-                    });
-                });
             }
 
             function startProgress() {
