@@ -102,9 +102,7 @@
             transition: width .8s ease .3s;
         }
 
-        .hs-slide.active .hs-rule {
-            width: 32px;
-        }
+        .hs-slide.active .hs-rule { width: 32px; }
 
         .hs-eyebrow {
             font-size: 9px;
@@ -200,64 +198,9 @@
             }
         }
 
-        .hs-pill {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            font-family: var(--font-sans);
-            text-align: right;
-            opacity: .38;
-            transition: opacity .4s;
-        }
-
-        .hs-pill:hover {
-            opacity: .65;
-        }
-
-        .hs-pill.active {
-            opacity: 1;
-        }
-
-        .hs-pill-name {
-            font-size: 10px;
-            letter-spacing: .2em;
-            color: white;
-            white-space: nowrap;
-            transition: color .3s;
-        }
-
-        @media (max-width: 767px) {
-            .hs-pill-name {
-                display: none;
-            }
-        }
-
-        .hs-pill.active .hs-pill-name {
-            color: var(--accent-gold);
-        }
-
-        .hs-pill-line {
-            width: 20px;
-            height: 1px;
-            background: rgba(255, 255, 255, .35);
-            transition: width .4s, background .4s;
-            flex-shrink: 0;
-        }
-
-        .hs-pill.active .hs-pill-line {
-            width: 36px;
-            background: var(--accent-gold);
-        }
-
         .hs-progress {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             z-index: 3;
             height: 1.5px;
             background: rgba(255, 255, 255, .1);
@@ -288,16 +231,12 @@
             display: block;
         }
 
-        .hs-scroll-hint:hover .material-symbols-outlined {
-            color: var(--accent-gold);
-        }
+        .hs-scroll-hint:hover .material-symbols-outlined { color: var(--accent-gold); }
 
         @keyframes hsBouce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(10px); }
         }
-
-
 
         /* 婚禮花絮 */
         .extra-section {
@@ -328,7 +267,6 @@
             background: var(--accent-gold);
         }
 
-        /* highlight-grid：左大圖 + 右兩欄各兩小圖，高度對齊 */
         .highlight-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -337,15 +275,11 @@
         }
 
         @media (min-width: 768px) {
-            .highlight-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .highlight-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (min-width: 1200px) {
-            .highlight-grid {
-                grid-template-columns: 2fr 1.1fr 1.1fr;
-            }
+            .highlight-grid { grid-template-columns: 2fr 1.1fr 1.1fr; }
         }
 
         .highlight-card {
@@ -354,44 +288,28 @@
             cursor: pointer;
         }
 
-        .highlight-card .card-img-box {
-            overflow: hidden;
-        }
-
-        /* 大圖高度 = 兩張小圖 + gap，視覺完全對齊 */
-        .highlight-card.large .card-img-box {
-            height: 552px;
-        }
-
-        .highlight-card.small .card-img-box {
-            height: 260px;
-        }
+        .highlight-card .card-img-box { overflow: hidden; }
+        .highlight-card.large .card-img-box { height: 552px; }
+        .highlight-card.small .card-img-box { height: 260px; }
 
         .highlight-card .card-img-box img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 1.2s;
             filter: saturate(0.9) contrast(0.95);
         }
 
-        .highlight-card:hover .card-img-box img {
-            transform: scale(1.06);
-        }
+        .highlight-card:hover .card-img-box img { transform: scale(1.06); }
 
         .card-img-label {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             padding: 40px 28px 28px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
             color: white;
         }
 
-        .highlight-card.small .card-img-label {
-            padding: 24px 20px 18px;
-        }
+        .highlight-card.small .card-img-label { padding: 24px 20px 18px; }
 
         .label-tag {
             font-size: 9px;
@@ -408,24 +326,46 @@
             line-height: 1.3;
         }
 
-        .highlight-card.large .label-title {
-            font-size: 26px;
-        }
-
-        .highlight-card.small .label-title {
-            font-size: 17px;
-        }
+        .highlight-card.large .label-title { font-size: 26px; }
+        .highlight-card.small .label-title { font-size: 17px; }
 
         .label-date {
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255,255,255,0.7);
             margin-top: 6px;
             letter-spacing: 0.1em;
         }
 
+        /* ─── 桌面版下拉選單 ─── */
+        #userDropdownWrap .dropdown-menu {
+            border-radius: 0;
+            border: 1px solid var(--border-grey);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            padding: 8px 0;
+            min-width: 120px;
+        }
+        #userDropdownWrap .dropdown-item {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            padding: 10px 20px;
+        }
+        #userDropdownWrap .dropdown-item:hover {
+            background: rgba(197,160,89,0.06);
+            color: var(--accent-gold);
+        }
+        #userDropdownWrap .dropdown-toggle::after { display: none; }
 
-
-        
+        /* ─── 手機版登入後選單（預設完全不顯示，無邊線） ─── */
+        #mobileUserMenu {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+        }
+        #mobileUserMenu.visible {
+            display: block;
+            border-top: 1px solid var(--border-grey);
+        }
 
     </style>
 </head>
@@ -450,7 +390,6 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./my_wedding.html">我的婚禮</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
@@ -458,7 +397,17 @@
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
+                    <!-- 登入後顯示（預設隱藏） -->
+                    <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./my_wedding.html">我的婚禮</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
+                        </ul>
+                    </div>
+                    <!-- 未登入顯示 -->
+                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
@@ -484,13 +433,19 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./my_wedding.html">我的婚禮</a></li>
             </ul>
-            <a href="client_login.html" class="offcanvas-login">
+            <!-- 未登入 -->
+            <a href="#" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
+            <!-- 登入後顯示（由 JS 加上 .visible class 才出現） -->
+            <div id="mobileUserMenu">
+                <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
+                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮</a>
+                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
+            </div>
         </div>
     </div>
 
@@ -499,10 +454,8 @@
         <!-- HERO SLIDESHOW -->
         <div class="hero-slideshow" id="heroSlideshow">
 
-            <!-- Slide 1 · 森林系 -->
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80&fit=crop&crop=center"
-                    alt="森林系婚禮">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80&fit=crop&crop=center" alt="森林系婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">01 / 05</span>
@@ -512,14 +465,12 @@
                         <p class="hs-desc">枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景</p>
                         <a class="hs-cta" href="./wedding_theme.html">探索主題 &rarr;</a>
                     </div>
-                    <div class="hs-right" id="hsPills"></div>
+                    <div class="hs-right"></div>
                 </div>
             </div>
 
-            <!-- Slide 2 · 美式復古 -->
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1600&q=80&fit=crop&crop=center"
-                    alt="美式復古婚禮">
+                <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1600&q=80&fit=crop&crop=center" alt="美式復古婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">02 / 05</span>
@@ -533,10 +484,8 @@
                 </div>
             </div>
 
-            <!-- Slide 3 · 西式教堂 -->
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80&fit=crop&crop=center"
-                    alt="西式教堂婚禮">
+                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80&fit=crop&crop=center" alt="西式教堂婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">03 / 05</span>
@@ -550,10 +499,8 @@
                 </div>
             </div>
 
-            <!-- Slide 4 · 中式老宅 -->
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&q=80&fit=crop&crop=center"
-                    alt="中式老宅婚禮">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&q=80&fit=crop&crop=center" alt="中式老宅婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">04 / 05</span>
@@ -567,10 +514,8 @@
                 </div>
             </div>
 
-            <!-- Slide 5 · 極簡現代 -->
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&fit=crop&crop=center"
-                    alt="極簡現代婚禮">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&fit=crop&crop=center" alt="極簡現代婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">05 / 05</span>
@@ -588,7 +533,6 @@
                 <div class="hs-progress-bar" id="hsProgressBar"></div>
             </div>
 
-            <!-- 往下捲動提示箭頭 -->
             <div class="hs-scroll-hint" id="hsScrollHint">
                 <span class="material-symbols-outlined">keyboard_arrow_down</span>
             </div>
@@ -598,21 +542,16 @@
         <!-- 主題 -->
         <section class="extra-section">
 
-            <div class="highlight-banner">
+            <div class="highlight-banner" id="main-content">
                 <div class="text-center" style="margin-bottom:64px;">
-                    <div class="eyebrow-line">
-                        <span
-                            style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Wedding
-                            Highlights</span>
+                    <div class="eyebrow-line" style="margin-bottom:8px;">
+                        <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Wedding Highlights</span>
                     </div>
-                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; margin-top:12px;">活動花絮精選
-                    </h3>
-                    <p
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
+                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300;">活動花絮精選</h3>
+                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
                         每一場婚禮，都是一首獨一無二的詩</p>
                 </div>
 
-                <!-- 左大圖 + 右兩欄各兩小圖 -->
                 <div class="highlight-grid">
                     <div class="highlight-card large">
                         <div class="card-img-box"><img src="img/m02.png" alt=""></div>
@@ -659,29 +598,15 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="text-center" style="margin-top:56px;">
-                    <a href="./2.html"
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--border-grey); padding-bottom:8px; transition:color 0.3s;"
-                        onmouseover="this.style.color='var(--accent-gold)'"
-                        onmouseout="this.style.color='var(--text-muted)'">瀏覽全部花絮</a>
-                </div>
             </div>
 
-            <div class="booking-section">
-                <div class="text-center" style="margin-bottom:64px;">
-                    <div class="eyebrow-line">
-                        <span
-                            style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Elite
-                            Artisans</span>
-                    </div>
-                    <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; margin-top:20px;">
-                        預約您的浪漫職人</h3>
-                    <p
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
-                        集結業界頂尖師資，成就您的夢幻質感婚禮</p>
+            <div class="text-center" style="margin-top:64px;">
+                <div class="eyebrow-line" style="margin-bottom:8px;">
+                    <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">專業團隊</span>
                 </div>
-                
+                <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300;">活動花絮精選</h3>
+                <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
+                    每一場婚禮，都是一首獨一無二的詩</p>
             </div>
 
         </section>
@@ -690,77 +615,123 @@
 
     <!-- FOOTER -->
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <div>
-                    <span class="footer-brand-name">DREAM VENUES</span>
-                    <span class="footer-brand-sub">High-End &nbsp;·&nbsp; Wedding Journal</span>
-                </div>
-                <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
-                <div class="footer-icons">
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">share</span></a>
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></a>
-                </div>
-            </div>
-            <div class="footer-nav-cols">
-                <div class="footer-nav-col">
-                    <span class="footer-nav-title">探索平台</span>
-                    <a href="./wedding_theme.html" class="footer-nav-link">精選場地</a>
-                    <a href="./wedding_team.html" class="footer-nav-link">職人故事</a>
-                    <a href="./wedding_theme.html" class="footer-nav-link">風格靈感</a>
-                    <a href="./plan.html" class="footer-nav-link">最新動態</a>
-                </div>
-                <div class="footer-nav-col">
-                    <span class="footer-nav-title">客戶服務</span>
-                    <a href="./plan.html" class="footer-nav-link">預約流程</a>
-                    <a href="./contact.html" class="footer-nav-link">常見問題</a>
-                    <a href="#" class="footer-nav-link">隱私政策</a>
-                    <a href="./contact.html" class="footer-nav-link">聯繫我們</a>
-                </div>
-            </div>
-        </div>
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
+        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
+            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)"
+                style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
+            <div style="text-align:right;">
+                <button id="loginSubmit"
+                    style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // ─── 箭頭捲動 ───
             document.getElementById('hsScrollHint')?.addEventListener('click', () => {
                 document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
             });
 
+            // ─── 模擬登入（使用 sessionStorage 跨頁面保持狀態） ───
+            const loginModal    = document.getElementById('loginModal');
+            const loginSubmit   = document.getElementById('loginSubmit');
+            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
+            const loginLinkMobile  = document.getElementById('loginLinkMobile');
+            const userDropdownWrap = document.getElementById('userDropdownWrap');
+            const userDropdownBtn  = document.getElementById('userDropdownBtn');
+            const mobileUserMenu   = document.getElementById('mobileUserMenu');
+            const mobileWelcome    = document.getElementById('mobileWelcome');
+
+            // 頁面載入時先檢查 sessionStorage 是否已登入
+            const savedUsername = sessionStorage.getItem('dv_username');
+            if (savedUsername) {
+                updateNav(savedUsername);
+            }
+
+            // 點「會員登入」→ 開彈窗
+            [loginLinkDesktop, loginLinkMobile].forEach(el => {
+                if (!el) return;
+                el.addEventListener('click', e => {
+                    e.preventDefault();
+                    loginModal.style.display = 'flex';
+                });
+            });
+
+            // 點彈窗背景 → 關閉
+            loginModal.addEventListener('click', e => {
+                if (e.target === loginModal) loginModal.style.display = 'none';
+            });
+
+            // 按登入按鈕
+            loginSubmit.addEventListener('click', () => {
+                const nameInput = document.getElementById('loginName').value.trim();
+                if (nameInput) {
+                    sessionStorage.setItem('dv_username', nameInput); // 存入 sessionStorage
+                    loginModal.style.display = 'none';
+                    updateNav(nameInput);
+                }
+            });
+
+            // Enter 鍵也能登入
+            document.getElementById('loginName').addEventListener('keydown', e => {
+                if (e.key === 'Enter') loginSubmit.click();
+            });
+
+            function updateNav(username) {
+                // 桌面版：隱藏「會員登入」，顯示下拉選單
+                if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
+                if (userDropdownWrap) {
+                    userDropdownWrap.style.display = 'block';
+                    userDropdownBtn.textContent = `歡迎, ${username} ▾`;
+                }
+
+                // 手機版：隱藏「會員登入」，顯示登入後選單（加 .visible 才出現邊線）
+                if (loginLinkMobile) loginLinkMobile.style.display = 'none';
+                if (mobileUserMenu)  mobileUserMenu.classList.add('visible');
+                if (mobileWelcome)   mobileWelcome.textContent = `歡迎, ${username}`;
+
+                // 桌面 navbar 插入「我的婚禮」（聯絡我們前面，避免重複）
+                document.querySelectorAll('.navbar-nav').forEach(nav => {
+                    if (nav.querySelector('.my-wedding-item')) return;
+                    let contactLi = null;
+                    nav.querySelectorAll('.nav-item').forEach(li => {
+                        const a = li.querySelector('a');
+                        if (a && a.getAttribute('href') === './contact.html') contactLi = li;
+                    });
+                    
+                });
+            }
+
+            // 登出
+            document.getElementById('logoutBtn')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                location.reload();
+            });
+            document.getElementById('logoutBtnMobile')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                location.reload();
+            });
+
+            // ─── Slideshow ───
             const INTERVAL = 5000;
             const slides = document.querySelectorAll('.hs-slide');
             const progressBar = document.getElementById('hsProgressBar');
-            const slideNames = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代'];
             let cur = 0, timer = null, paused = false;
-
-            slides.forEach((slide, si) => {
-                const pillsEl = slide.querySelector('.hs-right');
-                if (!pillsEl) return;
-                slideNames.forEach((name, ni) => {
-                    const btn = document.createElement('button');
-                    btn.className = 'hs-pill' + (ni === si ? ' active' : '');
-                    btn.innerHTML = `<span class="hs-pill-name">${name}</span><div class="hs-pill-line"></div>`;
-                    btn.addEventListener('click', () => goTo(ni));
-                    pillsEl.appendChild(btn);
-                });
-            });
 
             function goTo(idx) {
                 slides[cur].classList.remove('active');
                 cur = (idx + slides.length) % slides.length;
                 slides[cur].classList.add('active');
-                updatePills();
                 startProgress();
-            }
-
-            function updatePills() {
-                slides.forEach(slide => {
-                    slide.querySelectorAll('.hs-pill').forEach((p, pi) => {
-                        p.classList.toggle('active', pi === cur);
-                    });
-                });
             }
 
             function startProgress() {
@@ -773,9 +744,7 @@
                         progressBar.style.width = '100%';
                     });
                 });
-                if (!paused) {
-                    timer = setInterval(() => goTo(cur + 1), INTERVAL);
-                }
+                if (!paused) timer = setInterval(() => goTo(cur + 1), INTERVAL);
             }
 
             let tX = null;
@@ -801,7 +770,7 @@
                 });
             });
 
-             // ─── 卡片進場動畫 ───
+            // ─── 卡片進場動畫 ───
             const obs = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
                     if (e.isIntersecting) {
