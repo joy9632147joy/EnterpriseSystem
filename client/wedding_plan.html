@@ -4,10 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>DREAM VENUES - 婚禮主題</title>
-
+    <title>DREAM VENUES - 婚禮方案</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="./global.css">
     <script src="../js/bootstrap.bundle.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
@@ -15,16 +13,299 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <style>
+        /* ── Variables ── */
+        :root {
+            /* 調整為燕麥奶茶色，加深一點點背景，讓白色卡片跳出來 */
+            --soft-grey: #EFECE5; 
+            --border-grey: #EBE7E0; 
+            --accent-gold: #BCAE9B; 
+            --text-main: #3A3836; 
+            --text-muted: #8F8B86; 
+            --font-serif: "Noto Serif TC", serif;
+            --font-sans: "Plus Jakarta Sans", "Noto Sans TC", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background: var(--soft-grey);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ══ NAVBAR ══ */
+        .navbar {
+            background: rgba(255, 255, 255, .9) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(235, 231, 224, .5);
+            padding: 0 48px;
+            min-height: 80px;
+            transition: transform .4s ease-in-out;
+            transform: translateY(0);
+        }
+
+        @media(max-width:991.98px) {
+            .navbar {
+                padding: 0 20px;
+                min-height: 64px;
+            }
+        }
+
+        .navbar.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .navbar-brand {
+            line-height: 1;
+            padding: 0;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: .4em;
+            color: var(--text-main);
+            text-decoration: none;
+            display: block;
+            line-height: 1;
+        }
+
+        .brand-sub {
+            font-size: 8px;
+            letter-spacing: .5em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 200;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .navbar-toggler {
+            border: none !important;
+            box-shadow: none !important;
+            padding: 4px 6px;
+        }
+
+        .nav-link-item {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-main) !important;
+            letter-spacing: .1em;
+            transition: color .3s;
+            padding: 8px 0 !important;
+            white-space: nowrap;
+        }
+
+        @media(min-width:992px) {
+            .nav-link-item {
+                padding: 8px 12px !important;
+            }
+        }
+
+        .nav-link-item:hover {
+            color: var(--accent-gold) !important;
+        }
+
+        .nav-item.dropdown .dropdown-toggle {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-main) !important;
+            letter-spacing: .1em;
+            padding: 8px 0 !important;
+        }
+
+        @media(min-width:992px) {
+            .nav-item.dropdown .dropdown-toggle {
+                padding: 8px 12px !important;
+            }
+        }
+
+        .nav-item.dropdown .dropdown-toggle:hover {
+            color: var(--accent-gold) !important;
+        }
+
+        .dropdown-toggle::after {
+            display: none !important;
+        }
+
+        .dropdown-toggle .material-symbols-outlined {
+            font-size: 16px;
+            vertical-align: middle;
+            transition: transform .3s;
+        }
+
+        .nav-item.dropdown.show .dropdown-toggle .material-symbols-outlined {
+            transform: rotate(180deg);
+        }
+
+        @media(min-width:992px) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
+
+            .nav-item.dropdown:hover .dropdown-toggle .material-symbols-outlined {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-menu {
+            border: 1px solid var(--border-grey) !important;
+            border-radius: 2px !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .1) !important;
+            padding: 24px 28px !important;
+            min-width: 180px;
+        }
+
+        .dropdown-item {
+            font-size: 13px !important;
+            font-weight: 400;
+            color: var(--text-main) !important;
+            letter-spacing: .06em;
+            padding: 7px 0 !important;
+            background: transparent !important;
+            transition: color .25s;
+        }
+
+        .dropdown-item:hover {
+            color: var(--accent-gold) !important;
+        }
+
+        .dropdown-item:focus,
+        .dropdown-item:active {
+            background: transparent !important;
+        }
+
+        .navbar-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #search-input {
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            color: var(--text-main);
+            outline: none;
+            width: 0;
+            opacity: 0;
+            transition: width .45s ease, opacity .45s ease;
+        }
+
+        #search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        #search-input.open {
+            width: 180px;
+            opacity: 1;
+        }
+
+        .offcanvas.offcanvas-end {
+            width: 280px;
+            border-left: 1px solid var(--border-grey);
+        }
+
+        .offcanvas-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-grey);
+        }
+
+        .offcanvas-body {
+            padding: 24px;
+        }
+
+        .offcanvas-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border-grey);
+            padding: 10px 14px;
+            margin-bottom: 24px;
+        }
+
+        .offcanvas-search input {
+            border: none;
+            outline: none;
+            font-size: 13px;
+            color: var(--text-main);
+            flex: 1;
+            background: transparent;
+        }
+
+        .offcanvas-search input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .offcanvas-login {
+            display: block;
+            width: 100%;
+            text-align: center;
+            border: 1px solid var(--text-main);
+            background: transparent;
+            color: var(--text-main);
+            font-size: 12px;
+            letter-spacing: .2em;
+            padding: 12px;
+            margin-top: 24px;
+            text-decoration: none;
+            transition: all .3s;
+        }
+
+        .offcanvas-login:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: white;
+        }
+
+        #navMenu .dropdown-menu {
+            border: none !important;
+            box-shadow: none !important;
+            padding: 8px 0 8px 16px !important;
+            border-left: 2px solid rgba(188, 174, 155, .3) !important;
+            border-radius: 0 !important;
+            margin-left: 8px;
+            background: #fff;
+            position: static !important;
+            float: none;
+            transform: none !important;
+        }
+
+        #navMenu .nav-link-item {
+            font-size: 14px !important;
+            padding: 12px 0 !important;
+            border-bottom: 1px solid var(--border-grey);
+        }
+
         /* ══ PAGE WRAP ══ */
         .page-wrap {
-            padding-top: 80px;
+            padding-top: 60px;
             min-height: 100vh;
         }
 
+        @media(max-width:991.98px) {
+            .page-wrap {
+                padding-top: 64px;
+            }
+        }
+
+
+
         .page-hero {
-            background: white;
+            /* background: white; */
             border-bottom: 1px solid var(--border-grey);
-            padding: 64px 0 56px;
+            padding: 64px 0 50px;
             text-align: center;
         }
 
@@ -59,7 +340,7 @@
             margin-top: 20px;
         }
 
-        /* slide */
+        /* slides */
         .hs-slide {
             position: absolute;
             inset: 0;
@@ -121,11 +402,10 @@
             }
         }
 
-
         .hs-num {
             font-size: 9px;
             letter-spacing: .5em;
-            color: rgba(197, 160, 89, .65);
+            color: rgba(188, 174, 155, .65);
             font-weight: 500;
             display: block;
             margin-bottom: 10px;
@@ -147,7 +427,7 @@
             font-size: 9px;
             letter-spacing: .45em;
             text-transform: uppercase;
-            color: rgba(197, 160, 89, .8);
+            color: rgba(188, 174, 155, .8);
             display: block;
             margin-bottom: 10px;
             opacity: 0;
@@ -202,7 +482,7 @@
             letter-spacing: .4em;
             text-transform: uppercase;
             color: white;
-            border-bottom: 1px solid rgba(197, 160, 89, .45);
+            border-bottom: 1px solid rgba(188, 174, 155, .45);
             padding-bottom: 4px;
             text-decoration: none;
             width: fit-content;
@@ -328,7 +608,7 @@
         .hs-header-eyebrow {
             font-size: 9px;
             letter-spacing: .55em;
-            color: rgba(197, 160, 89, .75);
+            color: rgba(188, 174, 155, .75);
             text-transform: uppercase;
             font-weight: 500;
             display: block;
@@ -590,7 +870,7 @@
         .tile-label {
             font-size: 9px;
             letter-spacing: .4em;
-            color: rgba(197, 160, 89, .9);
+            color: rgba(188, 174, 155, .9);
             text-transform: uppercase;
             font-weight: 500;
             margin-bottom: 8px;
@@ -642,8 +922,8 @@
             right: 20px;
             width: 32px;
             height: 32px;
-            border-top: 1px solid rgba(197, 160, 89, .6);
-            border-right: 1px solid rgba(197, 160, 89, .6);
+            border-top: 1px solid rgba(188, 174, 155, .6);
+            border-right: 1px solid rgba(188, 174, 155, .6);
             opacity: 0;
             transition: opacity .5s;
         }
@@ -743,8 +1023,8 @@
         }
 
         .detail-card:hover {
-            border-color: rgba(197, 160, 89, .4);
-            box-shadow: 0 8px 32px rgba(197, 160, 89, .08);
+            border-color: rgba(188, 174, 155, .4);
+            box-shadow: 0 8px 32px rgba(188, 174, 155, .08);
         }
 
         @media(max-width:767px) {
@@ -861,7 +1141,7 @@
         .lb-caption-label {
             font-size: 9px;
             letter-spacing: .35em;
-            color: rgba(197, 160, 89, .65);
+            color: rgba(188, 174, 155, .65);
             text-transform: uppercase;
             margin-top: 4px;
         }
@@ -885,9 +1165,9 @@
         }
 
         .lb-btn:hover {
-            background: rgba(197, 160, 89, .18);
+            background: rgba(188, 174, 155, .18);
             color: var(--accent-gold);
-            border-color: rgba(197, 160, 89, .4);
+            border-color: rgba(188, 174, 155, .4);
         }
 
         .lb-prev {
@@ -1064,14 +1344,376 @@
             background: var(--border-grey);
             flex-shrink: 0;
         }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            border-top: 1px solid var(--border-grey);
+            background: white;
+            padding: 96px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 64px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand-name {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: .4em;
+            color: var(--text-main);
+        }
+
+        .footer-brand-sub {
+            font-size: 8px;
+            letter-spacing: .5em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-top: 32px;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .footer-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .footer-icon-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-nav-cols {
+            display: flex;
+            gap: 96px;
+        }
+
+        .footer-nav-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-nav-title {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 32px;
+        }
+
+        .footer-nav-link {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: .15em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .3s;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 96px auto 0;
+            border-top: 1px solid var(--border-grey);
+            padding-top: 48px;
+            text-align: center;
+            font-size: 9px;
+            letter-spacing: .4em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* 客製加購區塊樣式 */
+        .addon-section {
+            padding: 20px 20px 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .addon-container {
+            display: flex;
+            justify-content: space-between; /* 均分空間 */
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%; /* 確保與A方案一樣寬 */
+            margin: 0 auto 100px auto;
+        }
+
+        /* 新增：手機與平板版改為上下排列，避免太擠 */
+        @media(max-width: 991.98px) {
+            .addon-container {
+                flex-direction: column;
+                padding: 0 16px;
+                max-width: calc(100% - 32px);
+            }
+        }
+
+        .addon-card {
+            background: #fff;
+            border-radius: 12px; /* 調整為與A區塊相同的 12px 圓角 */
+            padding: 40px 30px;
+            flex: 1; /* 拿掉固定的寬度，讓三個框自動均分填滿 1200px */
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.04); /* 增加輕微立體感 */
+            border: 1px solid var(--border-grey); /* 加上極淡的邊框 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .addon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+        }
+
+        .addon-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .addon-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .addon-name {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #3A3836;
+        }
+
+        .addon-price {
+            color: #C5ACA7;
+            /* 圖片中的粉金色 */
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .addon-btn {
+            background: transparent;
+            border: 1px solid #C5ACA7;
+            color: #C5ACA7;
+            padding: 8px 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .addon-btn.selected {
+            background: #C5ACA7;
+            color: #fff;
+            border-color: #C5ACA7;
+        }
+
+        /* 底部固定結算欄樣式 */
+        .sticky-checkout {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border-top: 1px solid #EBE7E0;
+            padding: 15px 0;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
+            z-index: 1000;
+        }
+
+        .checkout-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .price-summary .label {
+            font-size: 12px;
+            color: #8F8B86;
+            margin-right: 10px;
+        }
+
+        .price-summary .amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #BCAE9B;
+        }
+
+        .btn-reset {
+            background: #F9F8F5;
+            border: 1px solid #EBE7E0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .btn-reserve {
+            background: #BCAE9B;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* main-package-card 卡片樣式 */
+        .main-package-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 48px; /* 更大的內距以增加留白 */
+            margin: 0 auto 36px auto;
+            max-width: 1200px; /* 放大橫向寬度 */
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.06);
+            border: 1.5px solid var(--accent-gold);
+            position: relative;
+        }
+
+        @media(max-width:991.98px) {
+            .main-package-card { padding: 28px; margin: 0 16px 28px 16px; max-width: calc(100% - 32px); }
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 40px;
+            background: #9DAA97;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0 0 8px 8px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        .card-header {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #EBE7E0;
+            text-align: center;
+        }
+
+        .card-header h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #3A3836;
+            margin-bottom: 10px;
+            font-family: "Noto Serif TC", serif;
+        }
+
+        .card-header p {
+            font-size: 13px;
+            color: #8F8B86;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .card-header .price {
+            font-size: 24px;
+            font-weight: 600;
+            color: #9DAA97;
+        }
+
+        .card-header .price span {
+            font-size: 14px;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        .sub-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .service-col {
+            padding: 20px 0;
+            max-width: 340px; /* 限制欄位寬度以便置中 */
+            margin: 0 auto;
+            text-align: left; /* 清單內容維持左對齊 */
+        }
+
+        .service-col h4 {
+            font-size: 15px;
+            font-weight: 500;
+            color: #3A3836;
+            margin-bottom: 16px;
+            font-family: "Noto Serif TC", serif;
+        }
+
+        .service-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-col li {
+            font-size: 13px;
+            color: #7A7571;
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .service-col li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #BCAE9B;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
+        <div class="container-fluid" style="max-width:1600px;margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
@@ -1085,430 +1727,227 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
+                            id="desktopDropdown" data-bs-toggle="dropdown">
+                            精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">婚禮場地</a>
+                            <a class="dropdown-item" href="#">新娘婚紗</a>
+                            <a class="dropdown-item" href="#">新郎西服</a>
+                            <a class="dropdown-item" href="#">喜餅禮盒</a>
+                            <a class="dropdown-item" href="#">婚禮小物</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
+                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                            style="color:var(--text-muted); font-size:20px;">search</button>
+                            style="color:var(--text-muted);font-size:20px;">search</button>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
+                    <a class="nav-link nav-link-item" href="client_login.html">我的婚禮</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div>
-                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
-                <span class="brand-sub">High-End Wedding Journal</span>
-            </div>
+            <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End
+                    Wedding Journal</span></div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas-search">
-                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
             <ul class="navbar-nav gap-0">
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
+                        data-bs-toggle="dropdown" data-bs-auto-close="inside">
+                        精選合作夥伴 <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">婚禮場地</a>
+                        <a class="dropdown-item" href="#">新娘婚紗</a>
+                        <a class="dropdown-item" href="#">新郎西服</a>
+                        <a class="dropdown-item" href="#">喜餅禮盒</a>
+                        <a class="dropdown-item" href="#">婚禮小物</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./5.html">聯絡我們</a></li>
             </ul>
             <a href="client_login.html" class="offcanvas-login">
                 <span class="material-symbols-outlined"
-                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
-                會員登入
+                    style="font-size:16px;vertical-align:middle;margin-right:6px;">person</span>我的婚禮
             </a>
         </div>
     </div>
 
-    <!-- 主體 -->
     <div class="page-wrap">
-        <!-- 頁面標題 -->
         <div class="page-hero">
-            <p class="page-hero-eyebrow">Elite Partners</p>
-            <h1 class="page-hero-title">婚禮主題</h1>
+            <p class="page-hero-eyebrow">Wedding Package</p>
+            <h1 class="page-hero-title">婚禮方案</h1>
             <div class="page-hero-line"></div>
-            <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
+            <p class="page-hero-sub">選擇您的婚禮藍圖</p>
         </div>
 
-        <!-- THEME NAV (sticky) -->
-        <nav class="theme-nav" id="themeNav">
-            <div class="theme-nav-inner">
-                <button class="theme-pill" data-target="forest">森林系</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="vintage">美式復古</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="chapel">西式教堂</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="chinese">中式老宅</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="minimal">極簡現代</button>
-            </div>
-        </nav>
-
-        <!-- THEME SECTIONS -->
-        <div class="themes-wrap">
-
-            <!-- 森林系 -->
-            <section class="theme-section active" id="sec-forest">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Forest · Nature · Organic</span>
-                        <h2 class="section-title">森林系</h2>
-                    </div>
-                    <p class="section-desc">枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景</p>
+        <main class="container">
+            <div class="main-package-card">
+                <div class="ribbon">核心方案</div>
+                <div class="card-header">
+                    <h3>A. 婚宴全時統籌服務 + 單儀式專案</h3>
+                    <p>本方案為獨立訂購核心，不可取消</p>
+                    <div class="price">NT$ 60,800 <span>起</span></div>
+                    <input type="radio" name="main_package" value="60800" checked style="display:none">
                 </div>
-                <div class="mosaic-forest">
-                    <div class="tile" data-lb="forest" data-idx="0" data-name="山間祕境婚宴" data-label="Featured Venue">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&fit=crop"
-                            alt="森林主圖">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Venue</span>
-                            <p class="tile-name">山間祕境婚宴</p><span class="tile-sub">Cedar Hall · 台北烏來</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
+    
+                <div class="sub-services">
+                    <div class="service-col">
+                        <h4>婚禮顧問統籌</h4>
+                        <ul>
+                            <li>婚禮整體籌備協助</li>
+                            <li>婚禮籌備期程規劃建議</li>
+                            <li>婚禮細節安排</li>
+                            <li>相關廠商媒合推薦</li>
+                            <li>周邊廠商整合統籌</li>
+                            <li>親友工作人員職掌建議</li>
+                            <li>婚宴場地場勘</li>
+                            <li>空間動線規劃建議</li>
+                            <li>確認婚禮細節會議</li>
+                        </ul>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="1" data-name="自然系花藝佈置" data-label="Florals">
-                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80&fit=crop"
-                            alt="花藝">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Florals</span>
-                            <p class="tile-name tile-name-small">自然系花藝佈置</p>
-                        </div>
+                    <div class="service-col">
+                        <h4>單儀式規劃執行（文定 / 迎娶 / 證婚 三擇一）</h4>
+                        <ul>
+                            <li>儀式前置解說</li>
+                            <li>儀式內容建議</li>
+                            <li>儀式時程規劃</li>
+                            <li>儀式流程引導</li>
+                            <li>儀式細節安排</li>
+                            <li>儀式物品準備清單</li>
+                            <li>儀式場地空間建議</li>
+                            <li>相關物品代購</li>
+                            <li>婚顧現場指揮整合</li>
+                            <li>專業現場場控：儀式場控 1-2 名（依選擇儀式而定）</li>
+                        </ul>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="2" data-name="戶外儀式區" data-label="Ceremony">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=80&fit=crop"
-                            alt="儀式">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Ceremony</span>
-                            <p class="tile-name tile-name-small">戶外儀式區</p>
-                        </div>
+                    <div class="service-col">
+                        <h4>宴會企劃執行</h4>
+                        <ul>
+                            <li>宴會訂製流程規劃</li>
+                            <li>各團隊工作協調</li>
+                            <li>宴會時程掌控</li>
+                            <li>婚顧主場控指揮統籌</li>
+                            <li>婚禮助理1名</li>
+                            <li>專業影音場控1名</li>
+                            <li>流程音樂曲目建議</li>
+                            <li>宴客備品代購</li>
+                            <li>婚禮當日彩排引導</li>
+                        </ul>
                     </div>
-                    <div class="tile" data-lb="forest" data-idx="3" data-name="晚宴燈光氛圍" data-label="Reception">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17d7dc783f06?w=700&q=80&fit=crop"
-                            alt="宴席">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Reception</span>
-                            <p class="tile-name tile-name-small">晚宴燈光氛圍</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="forest" data-idx="4" data-name="綠葉桌花細節" data-label="Details">
-                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80&fit=crop"
-                            alt="細節">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Details</span>
-                            <p class="tile-name tile-name-small">綠葉桌花細節</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">靜謐 · 清新 · 療癒</p>
-                        <p class="detail-card-desc">以大自然為主角，苔蘚、蕨類與原木共同構築屬於你的秘密花園。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Forest Green · Ivory · Rust</p>
-                        <p class="detail-card-desc">深綠為底，搭配暖象牙與秋褐，層次豐富卻毫不張揚。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Best Season</span>
-                        <p class="detail-card-title">春末 · 秋初</p>
-                        <p class="detail-card-desc">四五月嫩綠盎然，九十月層林盡染，皆是森林婚禮的黃金時刻。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 美式復古 -->
-            <section class="theme-section active" id="sec-vintage">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Americana · Rustic · Vintage</span>
-                        <h2 class="section-title">美式復古</h2>
-                    </div>
-                    <p class="section-desc">穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面</p>
-                </div>
-                <div class="mosaic-vintage">
-                    <div class="tile" data-lb="vintage" data-idx="0" data-name="穀倉婚禮" data-label="Barn Wedding">
-                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=900&q=80&fit=crop"
-                            alt="穀倉">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Barn Wedding</span>
-                            <p class="tile-name">穀倉婚禮</p><span class="tile-sub">Rustic Barn · 宜蘭</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="vintage" data-idx="1" data-name="長桌宴席佈置" data-label="Tablescape">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=80&fit=crop"
-                            alt="長桌">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Tablescape</span>
-                            <p class="tile-name tile-name-small">長桌宴席佈置</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="vintage" data-idx="2" data-name="復古婚紗造型" data-label="Bridal">
-                        <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80&fit=crop"
-                            alt="婚紗">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Bridal</span>
-                            <p class="tile-name tile-name-small">復古婚紗造型</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">溫暖 · 懷舊 · 自在</p>
-                        <p class="detail-card-desc">布幔、木質長桌與棉麻布料，讓客人感受回家般的溫暖氛圍。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Terracotta · Wheat · Navy</p>
-                        <p class="detail-card-desc">磚紅與小麥黃的大地色系，點綴深藍為視覺焦點。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Signature</span>
-                        <p class="detail-card-title">串燈 · 乾燥花環 · 老木椅</p>
-                        <p class="detail-card-desc">幾個標誌性元素就能喚出完整的美式復古氣息。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 西式教堂 -->
-            <section class="theme-section active" id="sec-chapel">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Chapel · Cathedral · Timeless</span>
-                        <h2 class="section-title">西式教堂</h2>
-                    </div>
-                    <p class="section-desc">彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證</p>
-                </div>
-                <div class="mosaic-chapel">
-                    <div class="tile" data-lb="chapel" data-idx="0" data-name="教堂側廊光影" data-label="Interior">
-                        <img src="https://images.unsplash.com/photo-1543738435-59d1e5a3ef1b?w=700&q=80&fit=crop"
-                            alt="教堂側廊">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Interior</span>
-                            <p class="tile-name tile-name-small">教堂側廊光影</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chapel" data-idx="1" data-name="純白教堂誓約" data-label="Featured Chapel">
-                        <img src="https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=900&q=80&fit=crop"
-                            alt="教堂走道">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Chapel</span>
-                            <p class="tile-name">純白教堂誓約</p><span class="tile-sub">Chapel blanc · 台南</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chapel" data-idx="2" data-name="白玫瑰花道" data-label="Florals">
-                        <img src="https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop"
-                            alt="花道">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Florals</span>
-                            <p class="tile-name tile-name-small">白玫瑰花道</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">神聖 · 典雅 · 永恆</p>
-                        <p class="detail-card-desc">宏偉空間賦予誓言重量，讓這個時刻成為記憶中最神聖的瞬間。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Pure White · Gold · Blush</p>
-                        <p class="detail-card-desc">純白主調搭配金色細節，粉裸色點綴帶來柔和浪漫。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Must-Have</span>
-                        <p class="detail-card-title">管風琴 · 彩繪玻璃 · 花柱</p>
-                        <p class="detail-card-desc">選對空間的靈魂元素，讓儀式超越時間的限制。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 中式老宅 -->
-            <section class="theme-section active" id="sec-chinese">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Chinese Heritage · Courtyard · Ink</span>
-                        <h2 class="section-title">中式老宅</h2>
-                    </div>
-                    <p class="section-desc">紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生</p>
-                </div>
-                <div class="mosaic-chinese">
-                    <div class="tile" data-lb="chinese" data-idx="0" data-name="古韻院落婚宴" data-label="Courtyard Venue">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80&fit=crop"
-                            alt="院落">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Courtyard Venue</span>
-                            <p class="tile-name">古韻院落婚宴</p><span class="tile-sub">Heritage House · 台南老街</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chinese" data-idx="1" data-name="漆器與囍字擺設" data-label="Details">
-                        <img src="https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&q=80&fit=crop"
-                            alt="細節">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Details</span>
-                            <p class="tile-name tile-name-small">漆器與囍字擺設</p>
-                        </div>
-                    </div>
-                    <div class="tile tile-text-panel tile-text">
-                        <div class="panel-gold-line"></div>
-                        <p class="panel-quote">「執子之手<br>與子偕老」</p>
-                        <span class="panel-en">A Vow Across Lifetimes</span>
-                    </div>
-                    <div class="tile" data-lb="chinese" data-idx="2" data-name="紅木圓桌宴席" data-label="Banquet">
-                        <img src="https://images.unsplash.com/photo-1569521843991-e45bfbbb2fd3?w=700&q=80&fit=crop"
-                            alt="宴席">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Banquet</span>
-                            <p class="tile-name tile-name-small">紅木圓桌宴席</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">內斂 · 深情 · 文化底蘊</p>
-                        <p class="detail-card-desc">以中華美學為基底，融入當代設計語彙，打造新中式婚禮美學。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">朱紅 · 墨黑 · 金箔</p>
-                        <p class="detail-card-desc">正紅與黑金的經典搭配，莊重而不失喜慶。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Elements</span>
-                        <p class="detail-card-title">燈籠 · 剪紙 · 青花瓷</p>
-                        <p class="detail-card-desc">傳統工藝賦予婚禮獨特的文化重量與視覺溫度。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 極簡現代 -->
-            <section class="theme-section active" id="sec-minimal">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Minimal · Modern · Editorial</span>
-                        <h2 class="section-title">極簡現代</h2>
-                    </div>
-                    <p class="section-desc">Less is more<br>讓空間本身成為最有力量的表達</p>
-                </div>
-                <div class="mosaic-minimal">
-                    <div class="tile" data-lb="minimal" data-idx="0" data-name="建築感白盒子婚宴" data-label="Featured Venue">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&fit=crop"
-                            alt="極簡">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Venue</span>
-                            <p class="tile-name">建築感白盒子婚宴</p><span class="tile-sub">White Box Studio · 台北信義</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="minimal" data-idx="1" data-name="單支芒草桌花" data-label="Tablescape">
-                        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80&fit=crop"
-                            alt="桌花">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Tablescape</span>
-                            <p class="tile-name tile-name-small">單支芒草桌花</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="minimal" data-idx="2" data-name="俐落婚紗輪廓" data-label="Bridal">
-                        <img src="https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop"
-                            alt="婚紗">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Bridal</span>
-                            <p class="tile-name tile-name-small">俐落婚紗輪廓</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="detail-strip">
-                    <div class="detail-card"><span class="detail-card-tag">Mood</span>
-                        <p class="detail-card-title">清冷 · 理性 · 高訂感</p>
-                        <p class="detail-card-desc">以精準留白取代繁複裝飾，讓每一個細節都成為有意義的選擇。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Palette</span>
-                        <p class="detail-card-title">Chalk White · Greige · Onyx</p>
-                        <p class="detail-card-desc">近乎無色的調色盤，讓質感與形狀成為唯一主角。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                    <div class="detail-card"><span class="detail-card-tag">Key Elements</span>
-                        <p class="detail-card-title">幾何線條 · 拋光石材 · 單枝花</p>
-                        <p class="detail-card-desc">材質的對話與形式的克制，構成極簡婚禮的靈魂美學。</p>
-                        <div class="detail-card-line"></div>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </div><!-- end page-wrap -->
-
-    <!-- LIGHTBOX -->
-    <div class="lb-overlay" id="lbOverlay">
-        <button class="lb-close" id="lbClose"><span class="material-symbols-outlined">close</span></button>
-        <div class="lb-inner">
-            <button class="lb-btn lb-prev" id="lbPrev"><span
-                    class="material-symbols-outlined">chevron_left</span></button>
-            <div class="lb-img-wrap" id="lbImgWrap">
-                <img id="lbImg" src="" alt="">
-                <div class="lb-caption">
-                    <p class="lb-caption-name" id="lbName"></p>
-                    <p class="lb-caption-label" id="lbLabel"></p>
                 </div>
             </div>
-            <button class="lb-btn lb-next" id="lbNext"><span
-                    class="material-symbols-outlined">chevron_right</span></button>
-        </div>
-        <div class="lb-dots" id="lbDots"></div>
-        <div class="lb-counter" id="lbCounter"></div>
+
+            <section class="addon-section">
+                <h3 class="section-title">可加購方案</h3>
+
+                <div class="addon-container">
+                    <div class="addon-card">
+                        <p style="color: #BCAE9B;font-size: 30px;">B</p>
+                        <h4 class="addon-name">專業婚禮主持人</h4>
+                        <p>具備大型品牌、發表會等級主持經驗
+                            提供專業主持群作品集供挑選，確保主持風格契合新人氛圍。
+                        </p>
+                        <p class="addon-price">NT$ 18,000</p>
+                        <button type="button" class="addon-btn" data-price="18000">點擊加購</button>
+                    </div>
+
+                    <div class="addon-card">
+                        <p style="color: #BCAE9B;font-size: 30px;">C</p>
+                        <h4 class="addon-name">儀式規劃執行</h4>
+                        <p>文定或迎娶或證婚（三擇一）之完整流程規劃與現場帶領執行</p>
+                        <p class="addon-price">NT$ 15,800</p>
+                        <button type="button" class="addon-btn" data-price="15800">點擊加購</button>
+                    </div>
+
+                    <div class="addon-card">
+                        <p style="color: #BCAE9B;font-size: 30px;">D</p>
+                        <h4 class="addon-name">客製化視覺佈置</h4>
+                        <p>客製專屬設計</p>
+                        <p>鮮花花藝佈置</p>
+                        <p class="addon-price">NT$ 50,000 <span>起</span></p>
+                        <button type="button" class="addon-btn" data-price="50000">點擊加購</button>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <div><span class="footer-brand-name">DREAM VENUES</span><span class="footer-brand-sub">High-End Wedding
-                        Journal</span></div>
-                <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
-                <div class="footer-icons">
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                            style="font-size:18px;">share</span></a>
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
-                            style="font-size:18px;">mail</span></a>
-                </div>
+    <footer class="sticky-checkout">
+        <div class="checkout-content">
+            <div class="price-summary">
+                <span class="label">預估總額</span>
+                <span class="amount" id="totalPriceDisplay">NT$ 60,800</span>
             </div>
-            <div class="footer-nav-cols">
-                <div class="footer-nav-col">
-                    <span class="footer-nav-title">探索平台</span>
-                    <a href="#" class="footer-nav-link">精選場地</a>
-                    <a href="#" class="footer-nav-link">職人故事</a>
-                    <a href="#" class="footer-nav-link">風格靈感</a>
-                    <a href="#" class="footer-nav-link">最新動態</a>
-                </div>
-                <div class="footer-nav-col">
-                    <span class="footer-nav-title">客戶服務</span>
-                    <a href="#" class="footer-nav-link">預約流程</a>
-                    <a href="#" class="footer-nav-link">常見問題</a>
-                    <a href="#" class="footer-nav-link">隱私政策</a>
-                    <a href="#" class="footer-nav-link">聯繫我們</a>
-                </div>
+            <div class="action-btns">
+                <button class="btn-reset">重置選項</button>
+                <button class="btn-reserve">預約諮詢此方案</button>
             </div>
         </div>
-        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
+
+    <script>
+        function calculateTotal() {
+            let total = 0;
+            const mainPackage = document.querySelector('input[name="main_package"]:checked');
+            if (mainPackage) total += parseInt(mainPackage.value, 10) || 0;
+
+            // Sum selected addon buttons
+            document.querySelectorAll('.addon-btn.selected').forEach(btn => {
+                const p = parseInt(btn.dataset.price, 10) || 0;
+                total += p;
+            });
+
+            const out = document.getElementById('totalPriceDisplay');
+            if (out) out.innerText = 'NT$ ' + total.toLocaleString('zh-TW');
+            return total;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // initial render
+            calculateTotal();
+
+            // addon toggle handlers
+            document.querySelectorAll('.addon-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('selected');
+                    btn.innerText = btn.classList.contains('selected') ? '已選取' : '點擊加購';
+                    calculateTotal();
+                });
+            });
+
+            // reset button
+            const reset = document.querySelector('.btn-reset');
+            if (reset) reset.addEventListener('click', (e) => {
+                document.querySelectorAll('.addon-btn.selected').forEach(b => {
+                    b.classList.remove('selected');
+                    b.innerText = '點擊加購';
+                });
+                // leave main package as-is
+                calculateTotal();
+            });
+        });
+    </script>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1665,13 +2104,6 @@
                 document.querySelectorAll('.tile:not(.vis),.detail-card:not(.vis)').forEach(el => obs.observe(el));
             }
             triggerAnim();
-
-
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.nav-link-item').forEach(link => {
-                const href = (link.getAttribute('href') || '').split('/').pop();
-                if (href && href === currentPath) link.classList.add('active-page');
-            });
         });
     </script>
 </body>

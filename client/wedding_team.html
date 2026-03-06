@@ -7,265 +7,15 @@
     <title>DREAM VENUES - 婚禮團隊</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="./global.css">
     <script src="../js/bootstrap.bundle.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
 
     <style>
-        :root {
-            --pure-white: #FFFFFF;
-            --soft-grey: #FBFBFB;
-            --border-grey: #F0F0F0;
-            --accent-gold: #C5A059;
-            --text-main: #1A1A1A;
-            --text-muted: #888888;
-            --font-serif: "Noto Serif TC", serif;
-            --font-sans: "Plus Jakarta Sans", "Noto Sans TC", sans-serif;
-        }
-
-        * { box-sizing: border-box; }
-
-        body {
-            font-family: var(--font-sans);
-            color: var(--text-main);
-            background-color: var(--soft-grey);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
-        }
-
-        /* ─── NAVBAR ─── */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.87) !important;
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(240, 240, 240, 0.5);
-            padding: 0 48px;
-            min-height: 80px;
-            transition: transform 0.4s ease-in-out, background-color 0.3s;
-            transform: translateY(0);
-        }
-
-        .navbar.nav-hidden { transform: translateY(-100%); }
-
-        .navbar-brand { line-height: 1; padding: 0; }
-
-        .brand-name {
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 0.4em;
-            color: var(--text-main);
-            text-decoration: none;
-            display: block;
-            line-height: 1;
-        }
-
-        .brand-sub {
-            font-size: 8px;
-            letter-spacing: 0.5em;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            font-weight: 200;
-            display: block;
-            margin-top: 4px;
-        }
-
-        .navbar-toggler {
-            border: none !important;
-            box-shadow: none !important;
-            padding: 4px 6px;
-        }
-
-        /* 一般選單連結 */
-        .nav-link-item {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-main) !important;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
-            padding: 8px 0 !important;
-            white-space: nowrap;
-        }
-
-        @media (min-width: 992px) {
-            .nav-link-item { padding: 8px 12px !important; }
-        }
-
-        .nav-link-item:hover { color: var(--accent-gold) !important; }
-
-        .nav-item.dropdown .dropdown-toggle {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-main) !important;
-            letter-spacing: 0.1em;
-            padding: 8px 0 !important;
-        }
-
-        @media (min-width: 992px) {
-            .nav-item.dropdown .dropdown-toggle { padding: 8px 12px !important; }
-        }
-
-        .nav-item.dropdown .dropdown-toggle:hover { color: var(--accent-gold) !important; }
-
-        .dropdown-toggle::after { display: none !important; }
-
-        .dropdown-toggle .material-symbols-outlined {
-            font-size: 16px;
-            vertical-align: middle;
-            transition: transform 0.3s;
-        }
-
-        .nav-item.dropdown.show .dropdown-toggle .material-symbols-outlined {
-            transform: rotate(180deg);
-        }
-
-        /* 桌面版 hover 展開 dropdown */
-        @media (min-width: 992px) {
-            .nav-item.dropdown:hover .dropdown-menu {
-                display: block;
-                margin-top: 0;
-            }
-            .nav-item.dropdown:hover .dropdown-toggle .material-symbols-outlined {
-                transform: rotate(180deg);
-            }
-        }
-
-        /* Dropdown 面板 */
-        .dropdown-menu {
-            border: 1px solid var(--border-grey) !important;
-            border-radius: 2px !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1) !important;
-            padding: 24px 28px !important;
-            min-width: 180px;
-        }
-
-        .dropdown-group-label {
-            font-size: 12px;
-            letter-spacing: 0.18em;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            display: block;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-            padding-bottom: 8px;
-            margin-bottom: 4px;
-        }
-
-        .dropdown-group-label + .dropdown-group-label,
-        .dropdown-group-spacer { margin-top: 20px; }
-
-        .dropdown-item {
-            font-size: 13px !important;
-            font-weight: 400;
-            color: var(--text-main) !important;
-            letter-spacing: 0.06em;
-            padding: 7px 0 !important;
-            background: transparent !important;
-            transition: color 0.25s;
-        }
-
-        .dropdown-item:hover { color: var(--accent-gold) !important; }
-
-        .dropdown-item:focus,
-        .dropdown-item:active { background: transparent !important; }
-
-        /* 右側工具列（桌面版） */
-        .navbar-tools {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        #search-input {
-            border: none;
-            background: transparent;
-            font-size: 12px;
-            color: var(--text-main);
-            outline: none;
-            width: 0;
-            opacity: 0;
-            transition: width 0.45s ease, opacity 0.45s ease;
-        }
-
-        #search-input::placeholder { color: var(--text-muted); }
-
-        #search-input.open { width: 180px; opacity: 1; }
-
-        /* ─── OFFCANVAS 手機側邊選單 ─── */
-        .offcanvas.offcanvas-end {
-            width: 280px;
-            border-left: 1px solid var(--border-grey);
-        }
-
-        .offcanvas-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border-grey);
-        }
-
-        .offcanvas-body { padding: 24px; }
-
-        .offcanvas-search {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--border-grey);
-            padding: 10px 14px;
-            margin-bottom: 24px;
-        }
-
-        .offcanvas-search input {
-            border: none;
-            outline: none;
-            font-size: 13px;
-            color: var(--text-main);
-            flex: 1;
-            background: transparent;
-        }
-
-        .offcanvas-search input::placeholder { color: var(--text-muted); }
-
-        .offcanvas-login {
-            display: block;
-            width: 100%;
-            text-align: center;
-            border: 1px solid var(--text-main);
-            background: transparent;
-            color: var(--text-main);
-            font-size: 12px;
-            letter-spacing: 0.2em;
-            padding: 12px;
-            margin-top: 24px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .offcanvas-login:hover {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: white;
-        }
-
-        /* offcanvas 內 dropdown */
-        #navMenu .dropdown-menu {
-            border: none !important;
-            box-shadow: none !important;
-            padding: 8px 0 8px 16px !important;
-            border-left: 2px solid rgba(197, 160, 89, 0.3) !important;
-            border-radius: 0 !important;
-            margin-left: 8px;
-            background-color: #FFFFFF;
-            position: static !important;
-            float: none;
-            transform: none !important;
-        }
-
-        #navMenu .nav-link-item {
-            font-size: 14px !important;
-            padding: 12px 0 !important;
-            border-bottom: 1px solid var(--border-grey);
-        }
-
         /* ─── PAGE LAYOUT ─── */
         .page-wrap {
             padding-top: 96px;
@@ -320,7 +70,10 @@
         }
 
         @media (max-width: 991.98px) {
-            .content-wrap { flex-direction: column; padding: 0 20px 80px; }
+            .content-wrap {
+                flex-direction: column;
+                padding: 0 20px 80px;
+            }
         }
 
         /* ─── LEFT SIDEBAR ─── */
@@ -335,14 +88,16 @@
         }
 
         @media (max-width: 991.98px) {
-            .sidebar { display: none; }
+            .sidebar {
+                display: none;
+            }
         }
 
         .sidebar-title {
             font-size: 12px;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-            color:#C5A059;
+            color: #C5A059;
             font-weight: 500;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-grey);
@@ -367,11 +122,18 @@
             text-align: left;
         }
 
-        .filter-btn:hover { color: var(--text-main); }
+        .filter-btn:hover {
+            color: var(--text-main);
+        }
 
-        .filter-btn.active { color: var(--text-main); font-weight: 500; }
+        .filter-btn.active {
+            color: var(--text-main);
+            font-weight: 500;
+        }
 
-        .filter-btn.active .filter-dot { background: var(--accent-gold); }
+        .filter-btn.active .filter-dot {
+            background: var(--accent-gold);
+        }
 
         .filter-dot {
             width: 5px;
@@ -400,10 +162,14 @@
             scrollbar-width: none;
         }
 
-        .mobile-filter-bar::-webkit-scrollbar { display: none; }
+        .mobile-filter-bar::-webkit-scrollbar {
+            display: none;
+        }
 
         @media (max-width: 991.98px) {
-            .mobile-filter-bar { display: flex; }
+            .mobile-filter-bar {
+                display: flex;
+            }
         }
 
         .mobile-filter-chip {
@@ -433,7 +199,10 @@
         }
 
         @media (max-width: 991.98px) {
-            .grid-area { padding-left: 0; padding-top: 24px; }
+            .grid-area {
+                padding-left: 0;
+                padding-top: 24px;
+            }
         }
 
         .category-header {
@@ -453,7 +222,11 @@
             margin-bottom: 8px;
         }
 
-        .category-title { font-family: var(--font-serif); font-size: 28px; font-weight: 300; }
+        .category-title {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 300;
+        }
 
         .result-count {
             font-size: 10px;
@@ -474,8 +247,17 @@
             gap: 32px;
         }
 
-        @media (max-width: 1199.98px) { .partner-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 575.98px)  { .partner-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1199.98px) {
+            .partner-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .partner-card {
             display: block;
@@ -487,7 +269,10 @@
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .partner-card.visible { opacity: 1; transform: translateY(0); }
+        .partner-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .card-img-wrap {
             position: relative;
@@ -504,7 +289,9 @@
             filter: saturate(0.92) contrast(0.97);
         }
 
-        .partner-card:hover .card-img-wrap img { transform: scale(1.06); }
+        .partner-card:hover .card-img-wrap img {
+            transform: scale(1.06);
+        }
 
         .card-overlay {
             position: absolute;
@@ -518,7 +305,9 @@
             padding-bottom: 32px;
         }
 
-        .partner-card:hover .card-overlay { opacity: 1; }
+        .partner-card:hover .card-overlay {
+            opacity: 1;
+        }
 
         .overlay-btn {
             border: 1px solid rgba(255, 255, 255, 0.7);
@@ -532,9 +321,14 @@
             transition: background 0.3s;
         }
 
-        .overlay-btn:hover { background: white; color: var(--text-main); }
+        .overlay-btn:hover {
+            background: white;
+            color: var(--text-main);
+        }
 
-        .card-body { padding: 20px 4px 0; }
+        .card-body {
+            padding: 20px 4px 0;
+        }
 
         .card-tag {
             font-size: 9px;
@@ -544,9 +338,21 @@
             font-weight: 500;
         }
 
-        .card-name { font-family: var(--font-serif); font-size: 17px; font-weight: 400; margin-top: 6px; line-height: 1.4; }
+        .card-name {
+            font-family: var(--font-serif);
+            font-size: 17px;
+            font-weight: 400;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
 
-        .card-name-en { font-size: 11px; color: var(--text-muted); letter-spacing: 0.15em; margin-top: 2px; display: block; }
+        .card-name-en {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            margin-top: 2px;
+            display: block;
+        }
 
         .card-meta {
             display: flex;
@@ -558,9 +364,15 @@
             letter-spacing: 0.1em;
         }
 
-        .card-meta-item { display: flex; align-items: center; gap: 4px; }
+        .card-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
-        .card-meta-item .material-symbols-outlined { font-size: 13px; }
+        .card-meta-item .material-symbols-outlined {
+            font-size: 13px;
+        }
 
         .card-line {
             height: 1px;
@@ -570,69 +382,21 @@
             transition: width 0.6s, background 0.6s;
         }
 
-        .partner-card:hover .card-line { width: 48px; background: var(--accent-gold); }
-
-        .category-section { display: none; }
-        .category-section.active { display: block; }
-        .show-all .category-section { display: block; }
-
-        /* ─── FOOTER ─── */
-        .site-footer { border-top: 1px solid var(--border-grey); background: white; padding: 96px 40px; }
-
-        .footer-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 64px;
+        .partner-card:hover .card-line {
+            width: 48px;
+            background: var(--accent-gold);
         }
 
-        .footer-brand { max-width: 300px; }
-
-        .footer-brand-name { font-size: 18px; font-weight: 300; letter-spacing: 0.4em; color: var(--text-main); }
-
-        .footer-brand-sub { font-size: 8px; letter-spacing: 0.5em; color: var(--accent-gold); text-transform: uppercase; margin-top: 4px; }
-
-        .footer-desc { font-size: 13px; font-weight: 300; line-height: 1.8; color: var(--text-muted); margin-top: 32px; }
-
-        .footer-icons { display: flex; gap: 16px; margin-top: 32px; }
-
-        .footer-icon-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid var(--border-grey);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
+        .category-section {
+            display: none;
         }
 
-        .footer-icon-btn:hover { color: var(--accent-gold); }
+        .category-section.active {
+            display: block;
+        }
 
-        .footer-nav-cols { display: flex; gap: 96px; }
-
-        .footer-nav-col { display: flex; flex-direction: column; }
-
-        .footer-nav-title { font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-main); margin-bottom: 32px; }
-
-        .footer-nav-link { font-size: 12px; font-weight: 300; letter-spacing: 0.15em; color: var(--text-muted); text-decoration: none; transition: color 0.3s; margin-bottom: 20px; display: block; }
-
-        .footer-nav-link:hover { color: var(--accent-gold); }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 96px auto 0;
-            border-top: 1px solid var(--border-grey);
-            padding-top: 48px;
-            text-align: center;
-            font-size: 9px;
-            letter-spacing: 0.4em;
-            color: var(--text-muted);
-            text-transform: uppercase;
+        .show-all .category-section {
+            display: block;
         }
     </style>
 </head>
@@ -642,67 +406,35 @@
     <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
-
-            <!-- 品牌 LOGO -->
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-
-            <!-- 漢堡按鈕 → 觸發 offcanvas -->
-            <button class="navbar-toggler d-lg-none" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
                 aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- 桌面版選單 + 右側工具列 -->
             <div class="collapse navbar-collapse" id="navMenuDesktop">
                 <ul class="navbar-nav ms-lg-4 gap-lg-1">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
-                    </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./3.html"
-                            id="desktopDropdown" data-bs-toggle="dropdown">
-                            精選合作夥伴
-                            <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="./wedding_factory.html?=venus">婚禮場地</a>
-                            <a class="dropdown-item" href="#">新娘婚紗</a>
-                            <a class="dropdown-item" href="#">新郎西服</a>
-                            <a class="dropdown-item" href="#">喜餅禮盒</a>
-                            <a class="dropdown-item" href="#">婚禮小物</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
                 </ul>
-
-                <!-- 右側工具列：放在 collapse 內，ms-auto 自動推到最右邊 -->
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋場地或職人...">
+                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
                 </div>
             </div>
-
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas 側邊選單 ─── -->
+    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
             <div>
@@ -717,35 +449,15 @@
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
             <ul class="navbar-nav gap-0">
-                <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
-                    </li>
-                <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./1.html">婚禮方案</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
-                    </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-link-item d-flex align-items-center gap-1" href="./wedding_factory.html"
-                        data-bs-toggle="dropdown" data-bs-auto-close="inside">
-                        精選合作夥伴
-                        <span class="material-symbols-outlined" style="font-size:16px;">expand_more</span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./wedding_factory.html?=venus">婚禮場地</a>
-                        <a class="dropdown-item" href="#">新娘婚紗</a>
-                        <a class="dropdown-item" href="#">新郎西服</a>
-                        <a class="dropdown-item" href="#">喜餅禮盒</a>
-                        <a class="dropdown-item" href="#">婚禮小物</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./5.html">聯絡我們</a>
-                </li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
             </ul>
             <a href="client_login.html" class="offcanvas-login">
-                <span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
         </div>
@@ -768,7 +480,7 @@
                 <button class="mobile-filter-chip" data-cat="host">主持人</button>
                 <button class="mobile-filter-chip" data-cat="photo">攝影師</button>
                 <button class="mobile-filter-chip" data-cat="makeup">新秘造型師</button>
-                
+
             </div>
         </div>
 
@@ -776,7 +488,7 @@
         <div class="content-wrap">
 
             <!-- 左側篩選欄（桌機） -->
-                  <aside class="sidebar">
+            <aside class="sidebar">
                 <p class="sidebar-title">類別篩選</p>
                 <button class="filter-btn" data-cat="planner">婚禮顧問</button>
                 <button class="filter-btn" data-cat="host">主持人</button>
@@ -799,7 +511,8 @@
                     <div class="partner-grid">
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="Sarah">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Sarah">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -807,15 +520,18 @@
                                 <p class="card-name">李宜瑾 Tina</p>
                                 <span class="card-name-en">sarah-wedding.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>12+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>12+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR" alt="Eric">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR"
+                                    alt="Eric">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -823,15 +539,18 @@
                                 <p class="card-name">王浩瀚 Tommy</p>
                                 <span class="card-name-en">eric-mc.com.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>8+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>8+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8" alt="Lily">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8"
+                                    alt="Lily">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -839,15 +558,18 @@
                                 <p class="card-name">林怡君 Nina</p>
                                 <span class="card-name-en">lily-weddinghost.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>6+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>6+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" alt="Kevin">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli"
+                                    alt="Kevin">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -855,8 +577,10 @@
                                 <p class="card-name">春嬌 Kevin</p>
                                 <span class="card-name-en">kevinmc.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>10+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>10+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
@@ -876,7 +600,8 @@
                     <div class="partner-grid">
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR" alt="Sarah">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsy-uopGQ8NQ-sEz8FpqCSts3QzC0jAWK0so2jM1CwYMhE-tYXhMKdTVwxLawqrtTtxOuwD5BfWRobo2Dd_kHTTRjZhX44Y3staYhTJRYDlwD6IN6oUqCb9Cd7-e3qFQFlG7NlmgMIc5sIC2GHryLdAzTvXIr0ZhUAZmn6tTawMBNcqcQod67_QMXGlBvXAHg7z_iF2lJfSr19Izti5274ZvyFjKGzyNqCjDNjaOfndFgl_DUodAkFVFqw506rM4suibiVgEVVphxR"
+                                    alt="Sarah">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -884,15 +609,18 @@
                                 <p class="card-name">張舒涵 Sarah</p>
                                 <span class="card-name-en">sarah-wedding.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>12+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>12+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR" alt="Eric">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kA-Q5Aar3ir6YOVDuqJ4HQavC_SKZZQmekscewTjOf_0Ar0C3fe_R0f1p1KZJEhCj4-KMpLZhoUKljVcauK0RpEUvS3l8duc61ViVsh1gbjFAbHhOs23-weKzt8jygqzbD2WfM_ntS75JEDT-vrJqGda2nt7kHtR5nLjOctFcxX6PJ1YEvRrkvYhbMOhup52P4k4YMr5gn9ss5qCxUUmf2v6-EbDzJ0Q_heaCFb41U9r-ni-KpYsaXhnwlOkLjXChP5AJLiz9kfR"
+                                    alt="Eric">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -900,15 +628,18 @@
                                 <p class="card-name">陳建宏 Eric</p>
                                 <span class="card-name-en">eric-mc.com.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>8+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>8+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8" alt="Lily">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCooeBXvtly3fOIEYYq2ybMEoGKG6ay2i-2du1Iw27MHEjdWMzrG0xeL553Hum1huF0kiV6s3f5EWbI8TPfU_Bpnkoy08dgliYQj9nLlbaWgyQAKInIFVRSFB8lgXhN3nxf6K7DxUxFimS-UV5mIKO7hYqwiEtgKQzcPmWSxCEk28eEugabxQwX3rbfP66XnMMT3Wbo-_4C5GyIiz21O7A3e8NCnnIdQMMimAE3Oumc81qJB9e1Q5y0WoBGL3k0pmZTS6o2ypVhG1F8"
+                                    alt="Lily">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -916,15 +647,18 @@
                                 <p class="card-name">林怡君 Lily</p>
                                 <span class="card-name-en">lily-weddinghost.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>6+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>6+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli" alt="Kevin">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNX3yWG_oB6aTHlOzE0G4mx4iGGUG3mOvm_FYfwVJofb78abCG0KFzbh-fzXm1K6b3cOCv-CC9MnbGhZihiFwxhcZMgFnJPlATcSQ0K_Pp72G7YXDKLOt-vwFvgIMlFkZ4M3VLGpug2Ev31ovAzRAOlSW0MLoiGNQ-ahmra9Z5HM8jtRJhxES4TuLt3u0P_vkawXkrGoMpD6XT2o-gJji_Ba0ewrEk-PXIGONFHiCbBJ4iKg5GFu5LO-HkhehneZ0quk6OzHytCTli"
+                                    alt="Kevin">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -932,8 +666,10 @@
                                 <p class="card-name">王志明 Kevin</p>
                                 <span class="card-name-en">kevinmc.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>10+ Years</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>10+ Years</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
@@ -955,7 +691,8 @@
                     <div class="partner-grid">
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8" alt="Kelvin">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5JbxUTgoqukDna-kCGruPdIWowTV6N6jTqG-ZeEPyqMWvUBM9B6kY0C2F2egUxaV1fF1iMpxsMlKxG9WIF2WfnzQ_Kjo6dFrFysxQh6yXtpa29ARfX1uCb11OnINxW7PE9dMg34gtkqKjanKRT_hKBsw8p97PXQsANLAhKEs9R55r_lKwKpgG27LB6H1eX-_xb23lpi7boecZb90ShevEUlrknuSIWbY1J1FkF5UHYsWVFuSLWw62nyYsGYY5aah1-qiTe2aRKF8"
+                                    alt="Kelvin">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -963,15 +700,18 @@
                                 <p class="card-name">林國威 Kelvin</p>
                                 <span class="card-name-en">kelvinphoto.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>ISPWP Award</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>全台</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>ISPWP Award</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>全台</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc" alt="Mina">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpKMeTkO9ewxgtUTLjUcYGdZja0XOKxU7HUgQfChI5dijvjUC4v0-88aF7T010e3S7k0ZXe7HkYqgTmrkFYmWDdTOAqEgTQFpv1vQjRm4w-Y8LELpvwIQdxAq6Zv8eblTcTZw-htk746Lngtd7gy-gA0cylsdT29P8VjyNn7yvS0xxh2ZSmGH43gIV5MoP4HN7s3Fx6t_nCsxuUHj1WulGR7lmWeKG6iun_VMadRYkiaiz7I6vr8w7qvJjMbDLn5F-gjmTi9LkKXc"
+                                    alt="Mina">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -979,15 +719,18 @@
                                 <p class="card-name">黃美娜 Mina</p>
                                 <span class="card-name-en">mina-studio.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>Fine Art</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>Fine Art</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS" alt="James">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ua6w6sfL_Cc1m7SMNTNBgINxq1TC6TW_xY2cSKm8yeu8srP17t92HDIW-nH-71AMhSWZO7eR6Y0XgraFo55sLEdiYRtREpUQ8--oExZfGYt9penMZPw4-lONQ41NUX57D_whQM30GJaa8i7R7YMgPSXy2N77wqz_SqOR7y9chqE2yL2nVEDa7Dv8pTqIlezs6K5QIYJNnn8Q44v8NGW4Kv4UUsJW1j2KIzz2fEvdq34CeHxPHz8F-1HKHD0b4LN7Dduegmwhg-oS"
+                                    alt="James">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -995,15 +738,18 @@
                                 <p class="card-name">吳冠霖 James</p>
                                 <span class="card-name-en">james-wedfilm.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>Film Style</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>Film Style</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7PM2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHFPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8" alt="Alice">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_POR876nLlkTT68ziDnwzELfcA6sNnv79jBiWHFSTKsw62d7PM2AmWwEw0i9luPwSRooWJSM8R0nyfb25d7jXyxKWwcJAOs6NKzdiQ4bR7G-eMSFUyEUFxfuZolfphVRn8Tpp9yi5nGRWnZSUxAjgB-L0tHnCol1CbGOX_vJ3v9-FvrcwHYw5ZiIC80aPSym8OXhygDhI1Z40moO9MGekVR0wU_UQ_c-1IpmsIHFPLJEw6P3t23KeGkcq72ORsEJdYQuF3broevw8"
+                                    alt="Alice">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -1011,8 +757,11 @@
                                 <p class="card-name">蔡雅雯 Alice</p>
                                 <span class="card-name-en">alicephotography.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>Natural Light</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>全台</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>Natural
+                                        Light</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>全台</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
@@ -1034,7 +783,8 @@
                     <div class="partner-grid">
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h" alt="Abby">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkky7Vav5HdcaIwRnYRAOcrQh2uPV4wNXJYzQxRHtiSrfO-4IKxXZBi791ldYQHRSUlmI1eSVKBHEpKtq3Y7kbID6mfnv93OKIEcMr_4nQrA4uRfnvxUi714aJV-nFhR1GFd7pRrrrPZbIZFivRx-M4_p3OOg6lQoU5yU_FDxviMvheN06oBmE87fBrzyhHkiD3mFyZ-PKNs_mMTneYHXmlmaLbPImJVFNQh7wmulpnEuTzgOONZ3HCFA2ZFU9atMk1pvJjPiOqK9h"
+                                    alt="Abby">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -1042,15 +792,18 @@
                                 <p class="card-name">艾比 Abby</p>
                                 <span class="card-name-en">abby-bridal.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>VOGUE 合作</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>VOGUE 合作</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr" alt="Coco">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYP-7QFYa9VJK5wII6dDe2Cz2hkhMSqnFZ0IfPdIt2ifw7BQjeOi0MpmLWtv8aL7xODHrIY4n5tb4XtjPNDA409tVlQWk-b1VxAfXMWW-0XjqXPdfra3h7OBFR6tFtcXgbIlpio5Bejd4QTvFpjeDw8TVX7VCcaaFj3zSytTlCVuG_UZfuYNW3fGgWvbZBie4BAXdgsUiKnXAvspxVMkiAysWOvNSliNTdti-pmvqyOWxanQxlFcjWIvbXJdtK41JcDnp0x4cFMIIr"
+                                    alt="Coco">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -1058,15 +811,18 @@
                                 <p class="card-name">朱可欣 Coco</p>
                                 <span class="card-name-en">coco-makeup.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>輕透感專家</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>輕透感專家</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台中</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB" alt="Nina">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuoLq11VW5X4i-oqL_S5YGGYvQ3IRMi0digNuByvScQYPCzLDJj92i86Kee2xViPVb8DtUfd7mXuVsdQN1xEm9JL-uAzi4FO8-dQxgnY_ROQAlBU8r0hhcdZyKiMlzJlQXLa_ze5n1APNx9flI17LofpKmRmKVYKYItEEbTagpXR_3Rqmo9v4K1097K_gMiutSCV-Bk7mhM2gXh0hXfm10rc7w6PrV1pGEaEPPtMeqwIweEHIjrCNDMFhkdcKh477aAyi8YXuPE1pB"
+                                    alt="Nina">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -1074,15 +830,18 @@
                                 <p class="card-name">鄭雅妮 Nina</p>
                                 <span class="card-name-en">nina-bridalstyle.com</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>韓系風格</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>韓系風格</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>台北</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
                         </a>
                         <a class="partner-card" href="https://example.com" target="_blank">
                             <div class="card-img-wrap">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh" alt="Belle">
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMyZ62XeG9J8BvhLkatk5p-6XEftF8wRLH2-ioXDJb5PoDXkWhjhEpmUX5Bg4NZbo9nqrZyRwgXKEplogOJgDznvrlcLVgO6fe4T5wcliN0IzY7yg-WuDiE3-_WWdlcGkG5XTKWgZGVHWLvA6C9yRrFnYRiC6KbhGAWCpKO5bj3AeSmpPZD6LRlWeI3k02AMf4jJ5Sc_Si9FhLLcbWLH-2zxG1TscIizvHJmNS1BRxvJzYYLG5iB6dBNRXPEiCW0aWGPwe1w_LTSVh"
+                                    alt="Belle">
                                 <div class="card-overlay"><span class="overlay-btn">前往官網</span></div>
                             </div>
                             <div class="card-body">
@@ -1090,8 +849,10 @@
                                 <p class="card-name">方貝兒 Belle</p>
                                 <span class="card-name-en">belle-makeup.tw</span>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>法式優雅</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">workspace_premium</span>法式優雅</span>
+                                    <span class="card-meta-item"><span
+                                            class="material-symbols-outlined">location_on</span>高雄</span>
                                 </div>
                                 <div class="card-line"></div>
                             </div>
@@ -1115,8 +876,10 @@
                 </div>
                 <p class="footer-desc">致力於為每一對新人打造專屬的草地記憶。在最純白的場景中，見證最誠摯的誓言。</p>
                 <div class="footer-icons">
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">share</span></a>
-                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
+                            style="font-size:18px;">share</span></a>
+                    <a href="#" class="footer-icon-btn"><span class="material-symbols-outlined"
+                            style="font-size:18px;">mail</span></a>
                 </div>
             </div>
             <div class="footer-nav-cols">
@@ -1184,7 +947,7 @@
             });
 
 
-            
+
             // ─── 篩選邏輯（桌機側欄 + 手機橫條同步） ───
             const sections = document.querySelectorAll('.category-section');
             const dividers = document.querySelectorAll('.category-divider');
@@ -1215,6 +978,9 @@
                 btn.addEventListener('click', () => {
                     setActive(btn.dataset.cat);
                     applyFilter(btn.dataset.cat);
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPos = gridArea.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    window.scrollTo({ top: targetPos, behavior: 'smooth' });
                 });
             });
 
@@ -1241,7 +1007,15 @@
             }
 
             triggerVisible();
+
+
+            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link-item').forEach(link => {
+                const href = (link.getAttribute('href') || '').split('/').pop();
+                if (href && href === currentPath) link.classList.add('active-page');
+            });
         });
     </script>
 </body>
+
 </html>
