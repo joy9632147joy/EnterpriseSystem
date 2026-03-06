@@ -979,7 +979,7 @@
                         <div class="row g-4">
                             <div class="col-md-6 contact-field">
                                 <label class="contact-label">姓名 Name <span class="text-danger">*</span></label>
-                                <input class="lux-input" placeholder="您的完整姓名" type="text" v-model="form.clientName"
+                                <input class="lux-input" placeholder="您的完整姓名" type="text" v-model="form.client_name"
                                     required />
                             </div>
                             <div class="col-md-6 contact-field">
@@ -990,7 +990,7 @@
                             <div class="col-md-6 contact-field">
                                 <label class="contact-label">Line ID <span
                                         style="color:var(--text-muted); font-size:9px;">(選填)</span></label>
-                                <input class="lux-input" placeholder="以便後續即時聯繫" type="text" v-model="form.lineId" />
+                                <input class="lux-input" placeholder="以便後續即時聯繫" type="text" v-model="form.line_id" />
                             </div>
                             <div class="col-md-6 contact-field">
                                 <label class="contact-label">電子郵件 Email <span class="text-danger">*</span></label>
@@ -1012,11 +1012,11 @@
                         <div class="row g-4">
                             <div class="col-md-6 contact-field">
                                 <label class="contact-label">預定婚期 Wedding Date</label>
-                                <input class="lux-input" type="date" v-model="form.weddingDate" />
+                                <input class="lux-input" type="date" v-model="form.wedding_date" />
                             </div>
                             <div class="col-md-6 contact-field">
                                 <label class="contact-label">賓客規模 Guest Scale</label>
-                                <select class="lux-input" v-model="form.guestScale">
+                                <select class="lux-input" v-model="form.guest_scale">
                                     <option value="">請選擇預計人數</option>
                                     <option>50人以下 (精緻派對)</option>
                                     <option>50 - 150人 (溫馨婚禮)</option>
@@ -1076,7 +1076,7 @@
                             </div>
                         </div>
                         <textarea class="lux-input" placeholder="請告訴我們更多關於您們的故事，或任何特別的需求..." rows="5"
-                            v-model="form.additionalNotes"></textarea>
+                            v-model="form.additional_notes"></textarea>
                     </section>
 
                     <!-- 提交 -->
@@ -1177,15 +1177,15 @@
 
                 // ── 表單資料 ──
                 const form = reactive({
-                    clientName: '',
+                    client_name: '',
                     phone: '',
-                    lineId: '',
+                    line_id: '',
                     email: '',
-                    weddingDate: '',
-                    guestScale: '',
+                    wedding_date: '',
+                    guest_scale: '',
                     services: [],
                     styles: [],
-                    additionalNotes: ''
+                    additional_notes: ''
                 });
 
                 const availableStyles = ['美式戶外', '奢華飯店', '極簡現代', '經典歐式', '中式當代', '森林系', '異國風情'];
