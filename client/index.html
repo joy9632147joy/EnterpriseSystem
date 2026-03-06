@@ -12,7 +12,7 @@
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="./global.js"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -238,21 +238,28 @@
             50% { transform: translateX(-50%) translateY(10px); }
         }
 
-        /* ════ FIXED PARALLAX DIVIDER ════ */
+        /* ════ PARALLAX DIVIDER ════ */
         .parallax-divider {
             position: relative;
-            height: 320px;
-            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=80&fit=crop');
-            background-attachment: fixed;
+            height: 280px;
+            clip-path: inset(0);
+        }
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1800&q=90&fit=crop&crop=center');
             background-size: cover;
-            background-position: center;
-            overflow: hidden;
+            background-position: center 40%;
+            filter: saturate(0.8) brightness(1.05);
+            will-change: transform;
+            z-index: 0;
         }
         .parallax-divider::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(245,238,225,0.72);
+            background: rgba(8,6,3,0.50);
+            z-index: 1;
         }
         .parallax-divider-inner {
             position: relative;
@@ -263,124 +270,187 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 16px;
+            gap: 14px;
         }
         .parallax-divider-inner .pd-eyebrow {
             font-size: 9px;
-            letter-spacing: 0.5em;
+            letter-spacing: 0.55em;
             text-transform: uppercase;
-            color: rgba(140,105,50,0.85);
+            color: rgba(197,160,89,0.85);
             font-weight: 500;
         }
         .parallax-divider-inner .pd-quote {
             font-family: var(--font-serif);
-            font-size: clamp(20px, 3.5vw, 36px);
-            color: #3a2e1e;
+            font-size: clamp(22px, 3.5vw, 40px);
+            color: rgba(255,252,245,0.95);
             font-weight: 300;
-            letter-spacing: 0.06em;
-            line-height: 1.6;
+            letter-spacing: 0.08em;
+            line-height: 1.7;
         }
         .parallax-divider-inner .pd-line {
-            width: 48px;
+            width: 40px;
             height: 1px;
-            background: var(--accent-gold);
-            opacity: 0.55;
+            background: rgba(197,160,89,0.6);
         }
 
-        /* ════ SERVICE FLOW ════ */
+        /* ════ SERVICE FLOW (美化版) ════ */
         .service-section {
             background: #faf7f2;
-            padding: 96px 0 100px;
+            padding: 88px 0 96px;
         }
         .service-inner {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 32px;
         }
         .service-steps {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 0;
+            gap: 24px;
             margin-top: 64px;
             position: relative;
         }
+        
+        /* 頂部纖細虛線連接 */
         .service-steps::before {
             content: '';
             position: absolute;
-            top: 28px;
-            left: calc(100% / 12);
-            right: calc(100% / 12);
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(197,160,89,0.3) 15%, rgba(197,160,89,0.3) 85%, transparent);
-            pointer-events: none;
+            top: 6px;
+            left: 8.33%;
+            right: 8.33%;
+            height: 0;
+            border-top: 1px dashed rgba(197,160,89,0.4);
+            z-index: 0;
         }
-        @media (max-width: 767px) {
+
+        @media (max-width: 991px) {
             .service-steps {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px 24px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 56px 24px;
             }
             .service-steps::before { display: none; }
         }
-        @media (max-width: 400px) {
-            .service-steps { grid-template-columns: 1fr; }
+
+        @media (max-width: 767px) {
+            .service-steps {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
+
         .service-step {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 0 12px;
+            padding: 24px 8px 0;
+            background: transparent;
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .service-step.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .service-step-num {
-            font-size: 9px;
-            letter-spacing: 0.4em;
-            color: rgba(197,160,89,0.6);
-            font-weight: 500;
-            margin-bottom: 14px;
-            display: block;
-        }
-        .service-step-icon {
-            width: 56px;
-            height: 56px;
-            border: 1px solid rgba(197,160,89,0.28);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.85);
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
             position: relative;
             z-index: 1;
-            transition: border-color 0.3s, background 0.3s;
-            margin-bottom: 20px;
         }
-        .service-step:hover .service-step-icon {
-            border-color: var(--accent-gold);
-            background: rgba(197,160,89,0.06);
+        
+        .service-step.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
         }
-        .service-step-icon .material-symbols-outlined {
-            font-size: 22px;
-            color: var(--accent-gold);
+
+        /* 頂部精緻小圓點 */
+        @media (min-width: 992px) {
+            .service-step::before {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: #faf7f2; /* 與背景同色，製造鏤空感 */
+                border: 2px solid rgba(197,160,89,0.5);
+                transition: border-color 0.4s, transform 0.4s, background 0.4s;
+                z-index: 2;
+            }
+            .service-step:hover::before {
+                border-color: var(--accent-gold);
+                background: var(--accent-gold);
+                transform: translateX(-50%) scale(1.2);
+            }
         }
+
+        /* 手機版：左側精緻豎線 */
+        @media (max-width: 767px) {
+            .service-step {
+                flex-direction: row;
+                align-items: center; 
+                text-align: left;
+                padding: 24px 0 24px 20px;
+                border-left: 1px dashed rgba(197,160,89,0.4);
+                gap: 24px;
+            }
+            .service-step:last-child {
+                border-left-color: transparent;
+            }
+        }
+
+        .service-step-num {
+            font-family: var(--font-serif);
+            font-size: 64px; /* 更大、更具視覺張力 */
+            font-weight: 200; /* 極細優雅字體 */
+            color: rgba(197,160,89,0.25); 
+            line-height: 0.8;
+            margin-top: 16px;
+            margin-bottom: 0;
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
+            transition: color 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .service-step:hover .service-step-num {
+            color: rgba(197,160,89,0.7);
+            transform: translateY(-6px); 
+        }
+
+        /* 直立裝飾金線 */
+        .service-step-deco {
+            width: 1px;
+            height: 20px;
+            background: rgba(197,160,89,0.3);
+            margin: 20px 0 16px;
+            transition: height 0.4s ease, background 0.4s ease;
+        }
+
+        .service-step:hover .service-step-deco {
+            height: 32px;
+            background: var(--accent-gold);
+        }
+
+        @media (max-width: 767px) {
+            .service-step-num { font-size: 56px; margin-top: 0; }
+            .service-step-deco { display: none; }
+        }
+
         .service-step-title {
             font-family: var(--font-serif);
-            font-size: 15px;
-            font-weight: 300;
-            letter-spacing: 0.06em;
-            color: var(--text-main);
-            line-height: 1.5;
+            font-size: 16px; 
+            font-weight: 500; 
+            letter-spacing: 0.08em;
+            color: #2b2520;
+            line-height: 1.6;
             margin-bottom: 8px;
+            transition: color 0.3s;
         }
+
+        .service-step:hover .service-step-title {
+            color: var(--accent-gold);
+        }
+        
         .service-step-sub {
-            font-size: 10px;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
+            font-size: 12.5px; 
+            letter-spacing: 0.12em;
+            color: #8c7e6f; 
             line-height: 1.8;
         }
 
@@ -508,14 +578,14 @@
             transform: translate(0,0);
         }
 
-        /* ════ TESTIMONIALS ════ */
+        /* ════ TESTIMONIALS (小巧美化版) ════ */
         .testimonials-section {
             background: #faf7f2;
-            padding: 100px 0 110px;
+            padding: 80px 0 48px; /* 這裡將底部的 96px 縮小為 48px */
         }
 
         .testimonials-inner {
-            max-width: 1400px;
+            max-width: 1200px; /* 從 1400px 改為 1200px 縮小卡片寬度 */
             margin: 0 auto;
             padding: 0 32px;
         }
@@ -523,8 +593,8 @@
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 64px;
+            gap: 24px; /* 稍微縮小間距 */
+            margin-top: 56px;
         }
 
         @media (max-width: 991px) {
@@ -536,13 +606,16 @@
         }
 
         .testi-card {
-            border: 1px solid rgba(197,160,89,0.12);
-            padding: 40px 32px 36px;
+            background: #ffffff;
+            border: none;
+            border-radius: 8px; 
+            padding: 32px 28px 24px; /* 縮小內部的 padding，讓卡片更小巧 */
             position: relative;
-            background: #fffefb;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s, border-color 0.4s;
+            transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease;
+            overflow: hidden; 
         }
 
         .testi-card.visible {
@@ -551,57 +624,79 @@
         }
 
         .testi-card:hover {
-            box-shadow: 0 8px 40px rgba(197,160,89,0.08);
-            border-color: rgba(197,160,89,0.3);
+            box-shadow: 0 16px 48px rgba(197,160,89,0.08);
+            transform: translateY(-6px);
         }
 
+        /* 浮水印式大引號 */
         .testi-quote-mark {
-            font-family: var(--font-serif);
-            font-size: 64px;
-            line-height: 0.7;
-            color: rgba(197,160,89,0.18);
-            margin-bottom: 20px;
-            display: block;
-            font-weight: 300;
+            font-family: 'Times New Roman', serif;
+            position: absolute;
+            top: -10px; /* 調整位置 */
+            right: 12px;
+            font-size: 110px; /* 縮小浮水印引號 */
+            color: rgba(197,160,89,0.05); 
+            line-height: 1;
+            margin: 0;
+            pointer-events: none;
+        }
+
+        .testi-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 20px; /* 縮小底距 */
+        }
+
+        .testi-stars .material-symbols-outlined {
+            font-size: 14px;
+            color: var(--accent-gold);
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
         .testi-text {
-            font-size: 13px;
-            line-height: 2;
-            color: #555;
-            letter-spacing: 0.04em;
-            margin-bottom: 28px;
+            font-size: 13px; /* 微調字體大小 */
+            line-height: 2.0; /* 縮小一點點行距 */
+            color: #6a6053;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px; /* 縮小底距 */
             font-family: var(--font-serif);
             font-weight: 300;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
         }
 
         .testi-rule {
-            width: 24px;
+            width: 32px;
             height: 1px;
-            background: var(--accent-gold);
-            margin-bottom: 20px;
-            opacity: 0.6;
+            background: rgba(197,160,89,0.4);
+            margin-bottom: 20px; /* 縮小底距 */
         }
 
         .testi-author {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
+            position: relative;
+            z-index: 2;
         }
 
         .testi-avatar {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             object-fit: cover;
-            filter: saturate(0.7);
+            filter: saturate(0.85);
+            /* 加上精緻的金色雙圈感 */
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 1px rgba(197,160,89,0.3);
         }
 
         .testi-name {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: #2b2520;
             display: block;
         }
 
@@ -610,22 +705,8 @@
             letter-spacing: 0.2em;
             color: var(--accent-gold);
             text-transform: uppercase;
-            margin-top: 2px;
+            margin-top: 4px;
             display: block;
-        }
-
-        .testi-stars {
-            position: absolute;
-            top: 32px;
-            right: 28px;
-            display: flex;
-            gap: 2px;
-        }
-
-        .testi-stars .material-symbols-outlined {
-            font-size: 13px;
-            color: var(--accent-gold);
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
         /* ─── 桌面版下拉選單 ─── */
@@ -664,7 +745,6 @@
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
@@ -689,7 +769,6 @@
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
-                    <!-- 登入後顯示（預設隱藏） -->
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -698,14 +777,12 @@
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <!-- 未登入顯示 -->
                     <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
             <div>
@@ -726,13 +803,11 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
             </ul>
-            <!-- 未登入 -->
             <a href="#" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-            <!-- 登入後顯示（由 JS 加上 .visible class 才出現） -->
             <div id="mobileUserMenu">
                 <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
                 <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮</a>
@@ -743,7 +818,6 @@
 
     <main>
 
-        <!-- ════ HERO SLIDESHOW（不變動） ════ -->
         <div class="hero-slideshow" id="heroSlideshow">
 
             <div class="hs-slide">
@@ -831,7 +905,6 @@
 
         </div>
 
-        <!-- ════ 活動花絮精選 ════ -->
         <section class="extra-section" id="main-content">
 
             <div class="highlight-banner">
@@ -899,8 +972,8 @@
 
         </section>
 
-        <!-- ════ PARALLAX DIVIDER ════ -->
         <div class="parallax-divider">
+            <div class="parallax-bg" id="parallaxBg"></div>
             <div class="parallax-divider-inner">
                 <span class="pd-eyebrow">Dream Venues · Est. 2018</span>
                 <div class="pd-line"></div>
@@ -909,7 +982,6 @@
             </div>
         </div>
 
-        <!-- ════ 服務流程 ════ -->
         <section class="service-section">
             <div class="service-inner">
 
@@ -923,66 +995,46 @@
                 </div>
 
                 <div class="service-steps">
-
                     <div class="service-step" data-delay="0">
                         <span class="service-step-num">01</span>
-                        <div class="service-step-icon">
-                            <span class="material-symbols-outlined">calendar_month</span>
-                        </div>
+                        <div class="service-step-deco"></div>
                         <p class="service-step-title">檔期諮詢<br>專人報價</p>
                         <p class="service-step-sub">了解需求<br>量身評估方案</p>
                     </div>
-
                     <div class="service-step" data-delay="100">
                         <span class="service-step-num">02</span>
-                        <div class="service-step-icon">
-                            <span class="material-symbols-outlined">contract_edit</span>
-                        </div>
+                        <div class="service-step-deco"></div>
                         <p class="service-step-title">合約寄發<br>預付訂金</p>
                         <p class="service-step-sub">確認細節<br>完成訂單保留</p>
                     </div>
-
                     <div class="service-step" data-delay="200">
                         <span class="service-step-num">03</span>
-                        <div class="service-step-icon">
-                            <span class="material-symbols-outlined">groups</span>
-                        </div>
+                        <div class="service-step-deco"></div>
                         <p class="service-step-title">保留檔期<br>建立群組</p>
                         <p class="service-step-sub">專屬溝通頻道<br>即時掌握進度</p>
                     </div>
-
                     <div class="service-step" data-delay="300">
                         <span class="service-step-num">04</span>
-                        <div class="service-step-icon">
-                            <span class="material-symbols-outlined">forum</span>
-                        </div>
+                        <div class="service-step-deco"></div>
                         <p class="service-step-title">見面或線上<br>洽談流程</p>
                         <p class="service-step-sub">深度規劃<br>確認每個細節</p>
                     </div>
-
                     <div class="service-step" data-delay="400">
                         <span class="service-step-num">05</span>
-                        <div class="service-step-icon">
-                            <span class="material-symbols-outlined">favorite</span>
-                        </div>
+                        <div class="service-step-deco"></div>
                         <p class="service-step-title">婚禮當日<br>專業服務</p>
                         <p class="service-step-sub">全程到場陪伴<br>確保完美呈現</p>
                     </div>
-
                     <div class="service-step" data-delay="500">
                         <span class="service-step-num">06</span>
-                        <div class="service-step-icon">
-                            <span class="material-symbols-outlined">auto_stories</span>
-                        </div>
+                        <div class="service-step-deco"></div>
                         <p class="service-step-title">留下完美<br>回憶</p>
                         <p class="service-step-sub">精修交付<br>珍藏每個瞬間</p>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- ════ 客戶回饋 ════ -->
         <section class="testimonials-section">
             <div class="testimonials-inner">
 
@@ -998,6 +1050,7 @@
                 <div class="testimonials-grid">
 
                     <div class="testi-card" data-delay="0">
+                        <span class="testi-quote-mark">"</span>
                         <div class="testi-stars">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -1005,8 +1058,7 @@
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
                         </div>
-                        <span class="testi-quote-mark">"</span>
-                        <p class="testi-text">從場地選定到當天的每個細節，Dream Venues 團隊都貼心照顧到了。婚禮當天我完全不需要擔心任何事，只需要沉浸在那份幸福之中。那是我這輩子最美的一天。</p>
+                        <p class="testi-text">從場地選定到細節佈置，團隊都貼心照顧。婚禮當天我完全無須操心，只需要沉浸在幸福之中。那是我這輩子最美的一天。</p>
                         <div class="testi-rule"></div>
                         <div class="testi-author">
                             <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&fit=crop&crop=face" alt="Sophia">
@@ -1018,6 +1070,7 @@
                     </div>
 
                     <div class="testi-card" data-delay="120">
+                        <span class="testi-quote-mark">"</span>
                         <div class="testi-stars">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -1025,8 +1078,7 @@
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
                         </div>
-                        <span class="testi-quote-mark">"</span>
-                        <p class="testi-text">我們想要中式老宅的典雅氛圍，又希望保有現代感。Dream Venues 完美詮釋了這個平衡——燈光、花藝、桌景，每個角落都美得像一幅畫，賓客讚不絕口。</p>
+                        <p class="testi-text">我們期盼中式老宅的典雅能結合現代感，Dream Venues 完美詮釋了這個平衡。每個角落都美得像畫，賓客讚不絕口。</p>
                         <div class="testi-rule"></div>
                         <div class="testi-author">
                             <img class="testi-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80&fit=crop&crop=face" alt="Mei">
@@ -1038,6 +1090,7 @@
                     </div>
 
                     <div class="testi-card" data-delay="240">
+                        <span class="testi-quote-mark">"</span>
                         <div class="testi-stars">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -1045,8 +1098,7 @@
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
                         </div>
-                        <span class="testi-quote-mark">"</span>
-                        <p class="testi-text">攝影團隊真的太厲害了！每張照片都充滿了情感，連我們自己都不知道有這麼多美好的瞬間被記錄下來。那本相冊，我每翻一次都忍不住哭。謝謝 Dream Venues。</p>
+                        <p class="testi-text">攝影團隊捕捉了充滿情感的瞬間，讓我們自己都驚訝有這麼多美好的畫面被記錄下來。相冊讓我每翻一次都好感動。</p>
                         <div class="testi-rule"></div>
                         <div class="testi-author">
                             <img class="testi-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80&fit=crop&crop=face" alt="Wei">
@@ -1058,6 +1110,7 @@
                     </div>
 
                     <div class="testi-card" data-delay="80">
+                        <span class="testi-quote-mark">"</span>
                         <div class="testi-stars">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -1065,8 +1118,7 @@
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
                         </div>
-                        <span class="testi-quote-mark">"</span>
-                        <p class="testi-text">從第一次諮詢到婚禮結束，雅涵老師的耐心和細心讓我們非常放心。她總是比我們更早想到每個環節，連婚禮前一晚的突發狀況都迅速處理，完全不影響隔天的完美呈現。</p>
+                        <p class="testi-text">從初次諮詢到婚禮結束，企劃的耐心與細心讓我們非常放心，連突發狀況都迅速妥善處理，確保了婚禮的完美呈現。</p>
                         <div class="testi-rule"></div>
                         <div class="testi-author">
                             <img class="testi-avatar" src="https://images.unsplash.com/photo-1521566652839-697aa473761a?w=80&q=80&fit=crop&crop=face" alt="couple">
@@ -1078,6 +1130,7 @@
                     </div>
 
                     <div class="testi-card" data-delay="200">
+                        <span class="testi-quote-mark">"</span>
                         <div class="testi-stars">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -1085,8 +1138,7 @@
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
                         </div>
-                        <span class="testi-quote-mark">"</span>
-                        <p class="testi-text">我們從日本特地回台灣舉辦婚禮，異地籌備的壓力很大。Dream Venues 的線上諮詢服務非常完善，每個決定都有清楚的提案和備案，讓遠距規劃變得出乎意料地順暢。</p>
+                        <p class="testi-text">跨國異地籌備的壓力本來很大，但完善的線上諮詢與備案規劃，讓遠距籌備變得出乎意料地順暢與安心。</p>
                         <div class="testi-rule"></div>
                         <div class="testi-author">
                             <img class="testi-avatar" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=80&q=80&fit=crop&crop=face" alt="couple">
@@ -1098,6 +1150,7 @@
                     </div>
 
                     <div class="testi-card" data-delay="320">
+                        <span class="testi-quote-mark">"</span>
                         <div class="testi-stars">
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
@@ -1105,8 +1158,7 @@
                             <span class="material-symbols-outlined">star</span>
                             <span class="material-symbols-outlined">star</span>
                         </div>
-                        <span class="testi-quote-mark">"</span>
-                        <p class="testi-text">柏宇導演的空間佈置超乎我的想像！我只給了幾張靈感圖，他卻打造出比夢境更美的現場。那個瞬間走進禮堂，我的眼淚完全止不住。這輩子最值得的投資。</p>
+                        <p class="testi-text">空間佈置超乎想像！僅憑幾張靈感圖，就打造出比夢境更美的現場。走進禮堂的那一刻，真的是這輩子最值得的決定。</p>
                         <div class="testi-rule"></div>
                         <div class="testi-author">
                             <img class="testi-avatar" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=80&q=80&fit=crop&crop=face" alt="bride">
@@ -1123,12 +1175,10 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
-    <!-- LOGIN MODAL -->
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
         <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
             <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
@@ -1293,14 +1343,27 @@
 
             document.querySelectorAll('.testi-card').forEach(c => testiObs.observe(c));
 
-            // ─── 卡片進場動畫（原有） ───
+            // ─── Parallax 視差 ───
+            const parallaxBg = document.getElementById('parallaxBg');
+            const parallaxSection = parallaxBg?.parentElement;
+
+            function updateParallax() {
+                if (!parallaxBg || !parallaxSection) return;
+                const rect = parallaxSection.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                parallaxBg.style.visibility = inView ? 'visible' : 'hidden';
+            }
+
+            window.addEventListener('scroll', updateParallax, { passive: true });
+            updateParallax();
+
+            // ─── 卡片進場動畫 ───
             const obs = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
                     if (e.isIntersecting) {
                         const d = parseInt(e.target.dataset.delay) || 0;
                         setTimeout(() => {
                             e.target.classList.add('visible');
-                            e.target.style.transition = 'opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s, border-color 0.5s';
                         }, d);
                         obs.unobserve(e.target);
                     }
