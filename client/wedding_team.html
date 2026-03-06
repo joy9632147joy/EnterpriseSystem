@@ -493,6 +493,7 @@
                 <button class="filter-btn" data-cat="planner">婚禮顧問</button>
                 <button class="filter-btn" data-cat="host">主持人</button>
                 <button class="filter-btn" data-cat="photo">攝影師</button>
+                <button class="filter-btn" data-cat="host">場空/音控</button>
                 <button class="filter-btn" data-cat="makeup">新秘造型師</button>
             </aside>
 
@@ -921,16 +922,6 @@
                 if (e.clientY < 50) navbar.classList.remove('nav-hidden');
             });
 
-            // ─── 桌面版 dropdown：第一下展開，第二下跳頁 ───
-            const desktopDropdownToggle = document.getElementById('desktopDropdown');
-            if (desktopDropdownToggle) {
-                desktopDropdownToggle.addEventListener('click', (e) => {
-                    if (window.innerWidth >= 992) {
-                        const isOpen = desktopDropdownToggle.closest('.nav-item').classList.contains('show');
-                        if (!isOpen) e.preventDefault();
-                    }
-                });
-            }
 
             // ─── 桌面版搜尋列 ───
             const searchBtn = document.getElementById('search-btn');
