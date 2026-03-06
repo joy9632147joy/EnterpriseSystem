@@ -1,166 +1,442 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Wedding Vision Proposal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DREAM VENUES - 方案擬定 </title>
+    
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="./global.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
-        
         :root {
-            --soft-grey: #EFECE5; --border-grey: #EBE7E0; --accent-gold: #BCAE9B; 
-            --text-main: #3A3836; --text-muted: #8F8B86;
+            --soft-grey: #EFECE5; 
+            --border-grey: #EBE7E0; 
+            --accent-gold: #BCAE9B; 
+            --text-main: #3A3836; 
+            --text-muted: #8F8B86;
+            --white: #FFFFFF;
         }
 
-        body { background-color: var(--soft-grey); color: var(--text-main); font-family: "Noto Sans TC", sans-serif; overflow-x: hidden; }
-        .serif { font-family: "Noto Serif TC", serif; }
-        
-        /* 內容切換動畫 */
-        .step-content { display: none; transform: translateY(20px); opacity: 0; transition: all 0.5s ease; }
-        .step-content.active { display: block; transform: translateY(0); opacity: 1; }
+        /* 覆蓋 body 背景，使其呈現燕麥色 */
+        body { 
+            background-color: var(--soft-grey); 
+            color: var(--text-main);
+        }
 
-        /* 進度條指示器 */
-        .dot { height: 8px; width: 8px; background-color: #D1CDC7; border-radius: 50%; transition: all 0.3s; }
-        .dot.active { width: 24px; background-color: var(--accent-gold); border-radius: 4px; }
+        .consult-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 20px 60px; /* 頂部預留 navbar 空間 */
+            min-height: calc(100vh - 80px);
+        }
 
-        /* 選項點擊效果 */
-        .option-card { border: 1px solid var(--border-grey); transition: all 0.3s; cursor: pointer; background: white; }
-        .option-card.selected { border-color: var(--accent-gold); background-color: #F9F8F6; box-shadow: 0 4px 12px rgba(188, 174, 155, 0.15); }
+        .serif { font-family: var(--font-serif); }
+
+        /* --- 頂部三階段導覽 --- */
+        .step-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .step-navbar::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 50px;
+            right: 50px;
+            height: 1px;
+            background: var(--border-grey);
+            z-index: 1;
+        }
+        .nav-item-step { position: relative; z-index: 2; flex: 1; text-align: center; }
+        .nav-circle {
+            width: 32px; height: 32px;
+            background: var(--white);
+            border: 1px solid var(--border-grey);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 13px;
+            transition: 0.4s;
+        }
+        .nav-label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+
+        .nav-item-step.active .nav-circle {
+            background: var(--accent-gold);
+            color: var(--white);
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 10px rgba(188, 174, 155, 0.4);
+        }
+        .nav-item-step.active .nav-label { color: var(--text-main); font-weight: 500; }
+
+        /* --- 內容區塊 --- */
+        .content-section { display: none; animation: fadeIn 0.6s ease; }
+        .content-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 卡片設計 --- */
+        .consult-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        @media (max-width: 768px) { .consult-grid { grid-template-columns: 1fr; } }
+
+        .option-card {
+            background: var(--white);
+            border: 1px solid var(--border-grey);
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            height: 100%;
+        }
+        .option-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+        .option-card.selected { background: #F9F8F6; border-color: var(--accent-gold); }
+
+        .option-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+        .option-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+        .option-badge {
+            font-size: 10px;
+            background: #F5F2EE;
+            color: var(--accent-gold);
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* --- 深度訪談列表 --- */
+        .interview-box {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-grey);
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #F5F2EE;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .check-item input { margin-right: 15px; accent-color: var(--accent-gold); width: 18px; height: 18px; }
+
+        /* --- 按鈕樣式 --- */
+        .consult-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-grey);
+        }
+
+        .consult-btn {
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+        .btn-prev { background: transparent; color: var(--text-muted); }
+        .btn-next { background: var(--accent-gold); color: var(--white); box-shadow: 0 4px 15px rgba(188, 174, 155, 0.3); }
+        .btn-next:hover { background: #A89A87; transform: scale(1.05); }
+
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6">
 
-    <div class="fixed top-12 flex space-x-3 items-center">
-        <div class="dot active" id="dot-1"></div>
-        <div class="dot" id="dot-2"></div>
-        <div class="dot" id="dot-3"></div>
-        <div class="dot" id="dot-4"></div>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-label="開啟選單">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenuDesktop">
+                <ul class="navbar-nav ms-lg-4 gap-lg-1">
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                </ul>
+                <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
+                    <div class="d-flex align-items-center gap-2">
+                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted); font-size:20px;">search</button>
+                    </div>
+                    <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./my_wedding.html">我的婚禮</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+        <div class="offcanvas-header">
+            <div>
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+            <ul class="navbar-nav gap-0">
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+            </ul>
+            <a href="#" class="offcanvas-login" id="loginLinkMobile">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>會員登入
+            </a>
+            <div id="mobileUserMenu" style="display:none; margin-top:12px; padding-top:12px;">
+                <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
+                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮</a>
+                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
+            </div>
+        </div>
     </div>
 
-    <div class="w-full max-w-2xl bg-white/60 backdrop-blur-md rounded-[3rem] p-10 md:p-16 shadow-xl border border-white/50 relative">
+
+    <div class="consult-wrap">
         
-        <div id="step-1" class="step-content active text-center">
-            <span class="text-[10px] tracking-[0.3em] text-[#BCAE9B] font-bold uppercase">Phase 01</span>
-            <h2 class="serif text-3xl mt-4 mb-8">定義您的婚禮氣息</h2>
-            <div class="grid grid-cols-1 gap-4">
-                <div class="option-card p-6 rounded-2xl text-left" onclick="selectOption(this, 1)">
-                    <h4 class="font-bold">經典美式戶外</h4>
-                    <p class="text-xs text-[#8F8B86] mt-1">草地證婚、長桌晚宴、輕鬆派對感</p>
-                </div>
-                <div class="option-card p-6 rounded-2xl text-left" onclick="selectOption(this, 1)">
-                    <h4 class="font-bold">飯店室內盛宴</h4>
-                    <p class="text-xs text-[#8F8B86] mt-1">華麗燈光、隆重進場、氣派圓桌</p>
-                </div>
-                <div class="option-card p-6 rounded-2xl text-left" onclick="selectOption(this, 1)">
-                    <h4 class="font-bold">私宅溫馨家宴</h4>
-                    <p class="text-xs text-[#8F8B86] mt-1">小眾精緻、深度交流、像家一樣溫暖</p>
-                </div>
+        <div class="step-navbar">
+            <div class="nav-item-step active" id="nav-1">
+                <div class="nav-circle">1</div>
+                <div class="nav-label">流程初步諮詢</div>
+            </div>
+            <div class="nav-item-step" id="nav-2">
+                <div class="nav-circle">2</div>
+                <div class="nav-label">需求深度訪談</div>
+            </div>
+            <div class="nav-item-step" id="nav-3">
+                <div class="nav-circle">3</div>
+                <div class="nav-label">方案最終定案</div>
             </div>
         </div>
 
-        <div id="step-2" class="step-content text-center">
-            <span class="text-[10px] tracking-[0.3em] text-[#BCAE9B] font-bold uppercase">Phase 02</span>
-            <h2 class="serif text-3xl mt-4 mb-8">您理想中的流程節奏</h2>
-            <div class="space-y-6 text-left">
-                <div class="p-6 bg-white/80 rounded-2xl border border-[#EBE7E0]">
-                    <p class="text-sm font-bold mb-4">這場婚禮中，您最期待哪個環節？</p>
-                    <div class="flex flex-wrap gap-3">
-                        <button class="px-4 py-2 border rounded-full text-xs hover:border-[#BCAE9B]" onclick="this.classList.toggle('bg-[#BCAE9B]'); this.classList.toggle('text-white')">證婚儀式</button>
-                        <button class="px-4 py-2 border rounded-full text-xs hover:border-[#BCAE9B]" onclick="this.classList.toggle('bg-[#BCAE9B]'); this.classList.toggle('text-white')">驚喜進場</button>
-                        <button class="px-4 py-2 border rounded-full text-xs hover:border-[#BCAE9B]" onclick="this.classList.toggle('bg-[#BCAE9B]'); this.classList.toggle('text-white')">深度敬酒</button>
-                        <button class="px-4 py-2 border rounded-full text-xs hover:border-[#BCAE9B]" onclick="this.classList.toggle('bg-[#BCAE9B]'); this.classList.toggle('text-white')">After Party</button>
-                    </div>
-                </div>
-                <textarea class="w-full p-4 bg-transparent border-b border-[#EBE7E0] outline-none text-sm italic" placeholder="關於流程，還有什麼特別想實現的願望嗎？"></textarea>
+        <section id="phase-1" class="content-section active">
+            <div class="text-center">
+                <h1 class="serif" style="font-size: 2rem; margin-bottom: 10px;">選擇您的籌備模式</h1>
+                <p style="font-size: 14px; color: var(--text-muted);">根據現階段進度，定調您的服務需求</p>
             </div>
-        </div>
-
-        <div id="step-3" class="step-content text-center">
-            <span class="text-[10px] tracking-[0.3em] text-[#BCAE9B] font-bold uppercase">Phase 03</span>
-            <h2 class="serif text-3xl mt-4 mb-8">資源分配的優先權</h2>
-            <p class="text-xs text-[#8F8B86] mb-10">拖動下方滑桿，告訴我們您最看重的領域</p>
-            <div class="space-y-10">
-                <div class="px-4">
-                    <div class="flex justify-between text-[10px] font-bold text-[#BCAE9B] mb-2"><span>視覺佈置</span> <span id="val1">50%</span></div>
-                    <input type="range" class="w-full accent-[#BCAE9B]" oninput="document.getElementById('val1').innerText = this.value + '%'">
+            <div class="consult-grid">
+                <div class="option-card" onclick="selectScheme('A')">
+                    <span class="option-badge">全時統籌</span>
+                    <h3 class="serif">A方案｜婚宴全時統籌</h3>
+                    <p>適合追求完美細節，希望將場地規劃、廠商媒合、統籌指揮完全交給專業管家的您。</p>
                 </div>
-                <div class="px-4">
-                    <div class="flex justify-between text-[10px] font-bold text-[#BCAE9B] mb-2"><span>紀錄(攝錄影)</span> <span id="val2">50%</span></div>
-                    <input type="range" class="w-full accent-[#BCAE9B]" oninput="document.getElementById('val2').innerText = this.value + '%'">
+                <div class="option-card" onclick="selectScheme('B')">
+                    <span class="option-badge">團隊執行</span>
+                    <h3 class="serif">B方案｜專業婚禮團隊</h3>
+                    <p>專注宴會當日執行。包含造型師、主持人、攝影師及影音場控，成就高品質宴會。</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="step-4" class="step-content text-center">
-            <span class="text-[10px] tracking-[0.3em] text-[#BCAE9B] font-bold uppercase">Phase 04</span>
-            <h2 class="serif text-3xl mt-4 mb-8">顧問服務深度需求</h2>
-            <div class="bg-[#F9F8F6] p-8 rounded-[2rem] text-left space-y-4">
-                <label class="flex items-center justify-between cursor-pointer">
-                    <span class="text-sm">婚禮統籌進度管控</span>
-                    <input type="checkbox" checked class="w-5 h-5 accent-[#BCAE9B]">
-                </label>
-                <label class="flex items-center justify-between cursor-pointer">
-                    <span class="text-sm">視覺設計與美感執行</span>
-                    <input type="checkbox" checked class="w-5 h-5 accent-[#BCAE9B]">
-                </label>
-                <label class="flex items-center justify-between cursor-pointer">
-                    <span class="text-sm">廠商對接與談判</span>
-                    <input type="checkbox" class="w-5 h-5 accent-[#BCAE9B]">
-                </label>
+        <section id="phase-2" class="content-section">
+            <div class="text-center">
+                <h1 class="serif" style="font-size: 2rem; margin-bottom: 10px;">需求訪談細節</h1>
+                <p style="font-size: 14px; color: var(--text-muted);">針對儀式與佈置等附加需求進行確認</p>
             </div>
-        </div>
+            <div style="margin-top: 40px;">
+                <div class="interview-box">
+                    <h3 class="serif" style="margin-bottom: 20px;">C方案｜儀式與傳統需求</h3>
+                    <label class="check-item">
+                        <input type="checkbox"> <span>文定 / 迎娶儀式專業引導與引言</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> <span>戶外證婚 / 室內證婚流程規劃</span>
+                    </label>
+                </div>
+                <div class="interview-box">
+                    <h3 class="serif" style="margin-bottom: 20px;">D方案｜視覺與空間美學</h3>
+                    <label class="check-item">
+                        <input type="checkbox"> <span>客製化視覺主題提案 (3D/2D 模擬)</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> <span>職人手作鮮花花藝與專屬設計</span>
+                    </label>
+                </div>
+            </div>
+        </section>
 
-        <div class="mt-12 flex justify-between items-center">
-            <button id="prevBtn" onclick="nextStep(-1)" class="text-[12px] font-bold text-[#8F8B86] opacity-0 pointer-events-none transition">PREV</button>
-            <button id="nextBtn" onclick="nextStep(1)" class="bg-[#BCAE9B] text-white px-10 py-4 rounded-full font-bold shadow-lg hover:bg-[#A89A87] transition">NEXT</button>
+        <section id="phase-3" class="content-section">
+            <div class="text-center">
+                <h1 class="serif" style="font-size: 2rem; margin-bottom: 10px;">方案定案確認</h1>
+                <div class="interview-box" style="margin-top: 40px; text-align: center;">
+                    <i class="fa-solid fa-file-invoice text-gold" style="font-size: 50px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                    <h2 class="serif" style="margin-bottom: 15px;">您的初步提案已生成</h2>
+                    <p style="font-size: 14px; color: var(--text-muted); max-width: 450px; margin: 0 auto 30px;">
+                        我們已根據 A、B、C、D 方案內容彙整您的需求。點擊下方確認按鈕，我們將產出正式建議書並為您保留檔期。
+                    </p>
+                    <button class="consult-btn btn-next" style="width: 250px;" onclick="alert('方案已送出！顧問將於24小時內聯繫您。')">確認定案內容</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="consult-actions">
+            <button class="consult-btn btn-prev" id="prevBtn" onclick="changeStep(-1)" style="visibility: hidden;">← 上一步驟</button>
+            <div style="font-size: 10px; font-weight: bold; letter-spacing: 2px; color: var(--accent-gold);">CONSULTATION PROGRESS</div>
+            <button class="consult-btn btn-next" id="nextBtn" onclick="changeStep(1)">下一步驟 →</button>
+        </div>
+    </div>
+
+    <footer class="site-footer" style="padding-bottom: 30px;">
+        <div class="footer-bottom" style="width: fit-content; margin: 0 auto; border-top: 1px solid var(--border-grey); padding-top: 16px; text-align: center; font-size: 9px; letter-spacing: 0.3em; color: var(--text-muted); text-transform: uppercase;">
+            © 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
+        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
+            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)"
+                style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
+            <div style="text-align:right;">
+                <button id="loginSubmit"
+                    style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
+            </div>
         </div>
     </div>
 
     <script>
-        let currentStep = 1;
-        const totalSteps = 4;
+        // 1. 諮詢系統流程切換邏輯
+        let current = 1;
 
-        function switchTab(step) {
-            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
-            document.getElementById('step-' + step).classList.add('active');
-            
-            document.querySelectorAll('.dot').forEach((el, index) => {
-                index + 1 <= step ? el.classList.add('active') : el.classList.remove('active');
+        function changeStep(delta) {
+            current += delta;
+            if (current < 1) current = 1;
+            if (current > 3) current = 3;
+
+            // 切換導航狀態
+            document.querySelectorAll('.nav-item-step').forEach((item, index) => {
+                if (index + 1 <= current) item.classList.add('active');
+                else item.classList.remove('active');
             });
 
-            // 按鈕狀態
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            if (step === 1) {
-                prevBtn.style.opacity = "0";
-                prevBtn.style.pointerEvents = "none";
-            } else {
-                prevBtn.style.opacity = "1";
-                prevBtn.style.pointerEvents = "auto";
+            // 切換內容
+            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+            document.getElementById('phase-' + current).classList.add('active');
+
+            // 按鈕狀態控制
+            document.getElementById('prevBtn').style.visibility = (current === 1) ? 'hidden' : 'visible';
+            document.getElementById('nextBtn').style.visibility = (current === 3) ? 'hidden' : 'visible';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectScheme(name) {
+            changeStep(1);
+        }
+
+        // 2. 您的原生會員登入腳本 (完美還原)
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginModal    = document.getElementById('loginModal');
+            const loginSubmit   = document.getElementById('loginSubmit');
+            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
+            const loginLinkMobile  = document.getElementById('loginLinkMobile');
+            const userDropdownWrap = document.getElementById('userDropdownWrap');
+            const userDropdownBtn  = document.getElementById('userDropdownBtn');
+            const mobileUserMenu   = document.getElementById('mobileUserMenu');
+            const mobileWelcome    = document.getElementById('mobileWelcome');
+
+            const savedUsername = sessionStorage.getItem('dv_username');
+            if (savedUsername) { updateNav(savedUsername); }
+
+            [loginLinkDesktop, loginLinkMobile].forEach(el => {
+                if (!el) return;
+                el.addEventListener('click', e => {
+                    e.preventDefault();
+                    loginModal.style.display = 'flex';
+                });
+            });
+
+            loginModal.addEventListener('click', e => {
+                if (e.target === loginModal) loginModal.style.display = 'none';
+            });
+
+            loginSubmit.addEventListener('click', () => {
+                const nameInput = document.getElementById('loginName').value.trim();
+                if (nameInput) {
+                    sessionStorage.setItem('dv_username', nameInput);
+                    loginModal.style.display = 'none';
+                    updateNav(nameInput);
+                }
+            });
+
+            document.getElementById('loginName').addEventListener('keydown', e => {
+                if (e.key === 'Enter') loginSubmit.click();
+            });
+
+            function updateNav(username) {
+                if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
+                if (userDropdownWrap) {
+                    userDropdownWrap.style.display = 'block';
+                    userDropdownBtn.textContent = `歡迎, ${username} ▾`;
+                }
+                if (loginLinkMobile) loginLinkMobile.style.display = 'none';
+                if (mobileUserMenu)  {
+                    mobileUserMenu.style.display = 'block';
+                    mobileUserMenu.style.borderTop = '1px solid var(--border-grey)';
+                }
+                if (mobileWelcome)   mobileWelcome.textContent = `歡迎, ${username}`;
             }
 
-            if (step === totalSteps) {
-                nextBtn.innerText = "完成提案並確認";
-                nextBtn.onclick = () => alert("大方向已擬定！將為您產出正式方案細節。");
-            } else {
-                nextBtn.innerText = "NEXT";
-                nextBtn.onclick = () => nextStep(1);
-            }
-        }
-
-        function nextStep(delta) {
-            currentStep += delta;
-            if (currentStep < 1) currentStep = 1;
-            if (currentStep > totalSteps) currentStep = totalSteps;
-            switchTab(currentStep);
-        }
-
-        function selectOption(el, step) {
-            document.querySelectorAll(`#step-${step} .option-card`).forEach(card => card.classList.remove('selected'));
-            el.classList.add('selected');
-        }
+            document.getElementById('logoutBtn')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                location.reload();
+            });
+            document.getElementById('logoutBtnMobile')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                location.reload();
+            });
+        });
     </script>
 </body>
 </html>
