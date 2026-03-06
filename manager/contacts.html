@@ -1,310 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ES Admin - 主頁儀表板</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="../ESCss/es_new_ver.css">
+    <script src="../ESJS/es_new_ver.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link rel="stylesheet" href="../ESCss/MainPage.css">
-    <script src="../ESJS/MainPage.js"></script>
-
-    <title>Enterprise System</title>
-    <style>
-        /* 內容區塊背景 */
-        #content {
-            background-color: #f8fafc;
-            transition: all 0.3s ease;
-        }
-
-        /* 頂部 Hero 卡片 */
-        .profile-hero {
-            background: #fff;
-            border-radius: 12px;
-            padding: 24px 30px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .avatar-container {
-            position: relative;
-            width: 85px;
-            height: 85px;
-        }
-
-        .avatar-container img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid #f1f5f9;
-        }
-
-        .camera-trigger {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: #64748b;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            border: 2px solid white;
-        }
-
-        /* 狀態標籤 */
-        .badge-status {
-            font-size: 0.7rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 700;
-        }
-
-        .badge-active {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .badge-fulltime {
-            background: #f1f5f9;
-            color: #475569;
-        }
-
-        /* 資訊卡片 */
-        .info-card {
-            background: #fff;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .card-header-custom {
-            padding: 12px 20px;
-            background: #fafafa;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .info-label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #94a3b8;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .info-value {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .btn-edit-text {
-            background: #f0f9ff;
-            color: #0369a1;
-            border: 1px solid #bae6fd;
-            font-size: 0.8rem;
-            padding: 2px 10px;
-            border-radius: 6px;
-        }
-
-        /* 左側人員清單 Hover 與漸變效果 */
-        .accordion-collapse .list-group-item-action {
-            transition: all 0.2s ease-in-out;
-        }
-
-        /* 未選取狀態的 hover 效果 (淺藍灰色底) */
-        .accordion-collapse .list-group-item-action:not(.active):hover {
-            background-color: #f1f5f9 !important;
-            transform: translateX(4px);
-            /* 滑鼠游標靠近時微微向右浮動 */
-        }
-
-        /* 選取狀態 (Active) 的確保設定 */
-        .accordion-collapse .list-group-item-action.active {
-            background-color: #f8fafc !important;
-            color: #000 !important;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#1F2937",
+                        "sidebar-bg": "#21252D",
+                        "sidebar-hover": "#2C313C",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
 </head>
 
-<body>
+<body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
 
-    <!-- 上方導覽列 -->
-    <nav class="navbar navbar-dark sticky-top">
+    <aside id="sidebar"
+        class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden relative z-20">
+        <div class="h-16 flex items-center justify-center">
+            <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
+            <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
+        </div>
 
-        <div class="container-fluid">
-            <div class="d-flex">
-                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
-                    <i class="bi bi-list"></i>
-                </button>
-            </div>
-
-
-
-            <!-- 通知 -->
-            <div class="d-flex align-items-center ms-auto">
-
-                <div class="ms-auto d-none d-md-block me-3">
-                    <div class="input-group search-box">
-                        <span class="input-group-text ">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="搜尋..." aria-label="Search">
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center">
-                </div>
-
-                <button class="btn envelope-btn me-1" id="envelope">
-                    <i class="bi bi-envelope"></i>
-                </button>
-
-
-
-                <!-- 右上角使用者選單 -->
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                        data-bs-toggle="dropdown">
-                        <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
-                        <span class="d-none d-sm-inline">Joy</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="Login.html"><i class="bi bi-box-arrow-right me-2"></i>Log
-                                Out</a></li>
-                    </ul>
+        <div class="px-4 py-4 mt-2 sidebar-user">
+            <div class="bg-sidebar-hover rounded-xl p-4 flex items-center shadow-sm">
+                <img alt="Joy Avatar" class="w-12 h-12 rounded-full border-2 border-sidebar-bg mr-3 object-cover"
+                    src="../Img/smile.jpg" />
+                <div class="menu-category p-0 m-0">
+                    <div class="text-white font-medium">Joy</div>
+                    <div class="text-xs text-gray-400 mt-1">PM 權限</div>
                 </div>
             </div>
         </div>
 
-    </nav>
+        <nav class="flex-1 py-2 overflow-y-auto overflow-x-hidden">
+            <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                GENERAL</div>
 
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="main_page.html">
+                <span class="material-icons text-blue-400 mr-3 group-hover:scale-110 transition-transform">home</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">主頁</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="consultation.html">
+                <span
+                    class="material-icons text-orange-400 mr-3 group-hover:scale-110 transition-transform">calendar_month</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_staff.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_pm.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理-PM(待整合)</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="attendance.html">
+                <span
+                    class="material-icons text-purple-400 mr-3 group-hover:scale-110 transition-transform">schedule</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">差勤系統</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
+                href="contacts.html">
+                <span
+                    class="material-icons text-red-400 mr-3 group-hover:scale-110 transition-transform">contacts</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap text-white">聯絡資訊</div>
+            </a>
 
-    <!-- 側邊欄 -->
-    <div class="d-flex" id="sidebarD">
+            <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                系統設定</div>
 
-        <nav class="list-unstyled sidebar" id="sidebarN">
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="account.html">
+                <span
+                    class="material-icons text-teal-400 mr-3 group-hover:scale-110 transition-transform">settings</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">個人資訊</div>
+            </a>
+        </nav>
+    </aside>
 
-            <!-- LOGO 圖文-->
-            <div class="d-flex align-items-center justify-content-center"
-                style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="MainPage.html">ES<span> Admin</span></a>
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+
+        <header
+            class="h-16 bg-[#2B303B] flex items-center justify-between px-6 flex-shrink-0 z-10 shadow-sm text-white">
+            <div class="flex items-center flex-1">
+                <button id="sidebar-hamburger"
+                    class="mr-4 text-gray-400 hover:text-white focus:outline-none p-1 rounded-md hover:bg-gray-700 transition-colors">
+                    <span class="material-icons">menu</span>
+                </button>
+                <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">通訊錄</h1>
             </div>
 
-            <!-- 使用者資訊 -->
-            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="position-relative">
-                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
-                            style="object-fit: cover; ">
-                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
-                        </span>
+            <div class="flex items-center space-x-4">
+                <div class="relative w-64 lg:w-80 hidden md:block">
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                        <span class="material-icons text-sm">search</span>
+                    </span>
+                    <input
+                        class="w-full bg-[#353A45] border-none rounded-full py-2 pl-4 pr-10 text-sm focus:ring-1 focus:ring-blue-500 focus:outline-none text-gray-200 placeholder-gray-400"
+                        placeholder="搜尋功能或公告..." type="text" />
+                </div>
+
+                <button class="relative text-gray-400 hover:text-white focus:outline-none mt-1">
+                    <span class="material-icons">notifications</span>
+                    <span
+                        class="absolute top-0 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/4 border-2 border-[#2B303B]"></span>
+                </button>
+
+                <button class="relative text-gray-400 hover:text-white focus:outline-none me-2" id="envelope">
+                    <i class="bi bi-envelope fs-5"></i>
+                </button>
+
+                <div class="relative">
+                    <div id="user-menu-button"
+                        class="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-500 mr-2 object-cover"
+                            src="../Img/smile.jpg" />
+                        <span class="text-sm font-medium mr-1 text-gray-200">Joy</span>
+                        <span class="material-icons text-sm text-gray-400">arrow_drop_down</span>
                     </div>
 
-                    <div class="ms-3 text-white">
-                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
-                        <div class="d-flex align-items-center">
-                            <span class="badge rounded-pill lv-badge me-2">Lv. 12</span>
-                            <small class="xp-text">6850 XP</small>
+                    <div id="user-dropdown"
+                        class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
+                        </a>
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">settings</span> Settings
+                        </a>
+                        <hr class="my-1 border-gray-100">
+                        <a href="login.html"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">logout</span> Log Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-6 lg:p-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-text-main-light dark:text-text-main-dark">合作夥伴通訊錄</h2>
+                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">管理並快速尋找所有特約廠商與合作場地資訊</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button
+                            class="flex items-center px-4 py-2 bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-text-main-light dark:text-text-main-dark hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                            <span class="material-icons text-sm mr-2">filter_list</span>
+                            進階篩選
+                        </button>
+                        <button
+                            class="flex items-center px-4 py-2 bg-primary text-white rounded-md text-sm font-medium hover:bg-blue-600 transition-colors shadow-sm">
+                            <span class="material-icons text-sm mr-2">add</span>
+                            新增企業
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-8 items-center">
+                    <span
+                        class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark mr-2">廠商類別篩選:</span>
+                    <button
+                        class="px-5 py-2 text-sm font-medium text-white bg-primary rounded-full shadow-sm hover:bg-blue-600 transition-colors">全部</button>
+                    <button
+                        class="px-5 py-2 text-sm font-medium text-text-main-light dark:text-text-main-dark bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">婚宴場地</button>
+                    <button
+                        class="px-5 py-2 text-sm font-medium text-text-main-light dark:text-text-main-dark bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">婚紗攝影</button>
+                    <button
+                        class="px-5 py-2 text-sm font-medium text-text-main-light dark:text-text-main-dark bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">新娘秘書</button>
+                    <button
+                        class="px-5 py-2 text-sm font-medium text-text-main-light dark:text-text-main-dark bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">花藝設計</button>
+                    <button
+                        class="px-5 py-2 text-sm font-medium text-text-main-light dark:text-text-main-dark bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">婚禮紀錄</button>
+                </div>
+                <div class="grid grid-cols-1 gap-6">
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div
+                                class="flex items-start justify-between border-b border-gray-100 dark:border-gray-800 pb-5 mb-5">
+                                <div class="flex items-center">
+                                    <div
+                                        class="h-16 w-16 rounded-full bg-red-500 text-white flex items-center justify-center text-2xl font-medium flex-shrink-0 shadow-inner">
+                                        VE
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="flex items-center flex-wrap gap-2">
+                                            <h3 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">
+                                                君品酒店 (五星級場地)</h3>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                                                婚宴場地
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Palais
+                                            de Chine Hotel</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                    <span class="material-icons">more_vert</span>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+                                <div>
+                                    <p
+                                        class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                        對應聯絡人</p>
+                                    <p class="text-sm text-text-main-light dark:text-text-main-dark font-medium">業務經理 -
+                                        王大明</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                        聯繫電話</p>
+                                    <p
+                                        class="text-sm text-text-main-light dark:text-text-main-dark font-medium flex items-center">
+                                        <span class="material-icons text-[16px] mr-1 text-gray-400">phone</span>
+                                        02-2181-XXXX
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-gray-50 dark:bg-gray-800/50 rounded-md p-4 border border-gray-100 dark:border-gray-700/50">
+                                <p
+                                    class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                    合作備註 (方案限制)</p>
+                                <p class="text-sm text-text-main-light dark:text-text-main-dark">美式戶外包套僅限 15 樓露台，需提前 6
+                                    個月預約。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div
+                                class="flex items-start justify-between border-b border-gray-100 dark:border-gray-800 pb-5 mb-5">
+                                <div class="flex items-center">
+                                    <div
+                                        class="h-16 w-16 rounded-full bg-emerald-500 text-white flex items-center justify-center text-2xl font-medium flex-shrink-0 shadow-inner">
+                                        LF
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="flex items-center flex-wrap gap-2">
+                                            <h3 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">
+                                                LinLi Boutique 林莉婚紗</h3>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                                                婚紗攝影
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">LinLi
+                                            Wedding</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                    <span class="material-icons">more_vert</span>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+                                <div>
+                                    <p
+                                        class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                        對應聯絡人</p>
+                                    <p class="text-sm text-text-main-light dark:text-text-main-dark font-medium">總監 -
+                                        陳依林</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                        聯繫電話</p>
+                                    <p
+                                        class="text-sm text-text-main-light dark:text-text-main-dark font-medium flex items-center">
+                                        <span class="material-icons text-[16px] mr-1 text-gray-400">phone</span>
+                                        02-2775-XXXX
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-gray-50 dark:bg-gray-800/50 rounded-md p-4 border border-gray-100 dark:border-gray-700/50">
+                                <p
+                                    class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                    合作備註 (方案限制)</p>
+                                <p class="text-sm text-text-main-light dark:text-text-main-dark">本公司 VIP 客戶享全新高訂款免加價升級（限
+                                    2 套），拍攝檔期需於 3 個月前確認。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div
+                                class="flex items-start justify-between border-b border-gray-100 dark:border-gray-800 pb-5 mb-5">
+                                <div class="flex items-center">
+                                    <div
+                                        class="h-16 w-16 rounded-full bg-amber-500 text-white flex items-center justify-center text-2xl font-medium flex-shrink-0 shadow-inner">
+                                        CN
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="flex items-center flex-wrap gap-2">
+                                            <h3 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">
+                                                CNFlower 西恩花藝</h3>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                                                花藝設計
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">CNFlower
+                                            Design</p>
+                                    </div>
+                                </div>
+                                <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                    <span class="material-icons">more_vert</span>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+                                <div>
+                                    <p
+                                        class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                        對應聯絡人</p>
+                                    <p class="text-sm text-text-main-light dark:text-text-main-dark font-medium">專案企劃 -
+                                        林心如</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                        聯繫電話</p>
+                                    <p
+                                        class="text-sm text-text-main-light dark:text-text-main-dark font-medium flex items-center">
+                                        <span class="material-icons text-[16px] mr-1 text-gray-400">phone</span>
+                                        02-2592-XXXX
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-gray-50 dark:bg-gray-800/50 rounded-md p-4 border border-gray-100 dark:border-gray-700/50">
+                                <p
+                                    class="text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1 uppercase tracking-wider">
+                                    合作備註 (方案限制)</p>
+                                <p class="text-sm text-text-main-light dark:text-text-main-dark">
+                                    客製化大型吊頂花藝設計需另加收工程勘驗費，特殊進口花材需提前 45 天下單。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="px-1">
-                    <div class="d-flex justify-content-between text-white mb-1" style="font-size: 0.75rem;">
-                        <span class="opacity-75">Level</span>
-                        <span class="fw-bold">69%</span>
-                    </div>
-                    <div class="progress custom-progress">
-                        <div class="progress-bar progress-bar-animated" role="progressbar" style="width: 69%;"></div>
+                <div class="flex items-center justify-between mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">顯示 1 至 3 筆，共 42 筆合作夥伴</p>
+                    <div class="flex space-x-2">
+                        <button
+                            class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-400 cursor-not-allowed bg-gray-50 dark:bg-gray-800"
+                            disabled="">上一頁</button>
+                        <button
+                            class="px-3 py-1 bg-primary border border-primary rounded-md text-sm font-medium text-white shadow-sm">1</button>
+                        <button
+                            class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-text-main-light dark:text-text-main-dark hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors bg-white dark:bg-surface-dark">2</button>
+                        <button
+                            class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-text-main-light dark:text-text-main-dark hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors bg-white dark:bg-surface-dark">3</button>
+                        <span class="px-2 py-1 text-gray-500">...</span>
+                        <button
+                            class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-text-main-light dark:text-text-main-dark hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors bg-white dark:bg-surface-dark">下一頁</button>
                     </div>
                 </div>
             </div>
-
-
-            <!-- 選單 -->
-            <ul class="d-flex flex-column list-unstyled">
-                <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
-                </li>
-                <li><a href="consultation.html"><i class="bi bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
-                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
-                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>聯絡資訊</span></a></li>
-                <li class="menu-category fw-bold">系統設定</li>
-                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
-            </ul>
-        </nav>
+        </main>
     </div>
 
-    <section id="content" class="p-4 flex-grow-1 bg-light">
-        <div class="mb-4 d-flex justify-content-between align-items-center">
-            <h4 class="fw-bold mb-0">企業通訊錄</h4>
-        </div>
+    <div id="clockModal"
+        class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-gray-900 bg-opacity-50 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-80 max-w-[90%] transform transition-all duration-300 scale-95 opacity-0 border border-gray-100 dark:border-gray-700"
+            id="clockModalContent">
+            <div class="p-6 text-center relative">
+                <button id="closeModalCross"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                    <span class="material-icons text-sm">close</span>
+                </button>
+                <div
+                    class="w-14 h-14 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-500 mx-auto flex items-center justify-center mb-4 mt-2">
+                    <span class="material-icons text-3xl">update</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">系統確認</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">目前紀錄時間</p>
 
-        <div class="profile-hero mb-4">
-            <div class="row align-items-center">
-                <div class="col-auto">
-                    <div class="avatar-container">
-                        <img id="profile-avatar" src="https://api.dicebear.com/7.x/initials/svg?seed=Venue"
-                            class="rounded-circle w-100 h-100" alt="Partner">
+                <div class="bg-gray-50 dark:bg-gray-900/50 rounded-lg py-3 mb-4">
+                    <div class="text-3xl font-mono font-bold text-gray-800 dark:text-gray-100" id="clockConfirmTime">
+                        00:00:00</div>
+                </div>
+
+                <p class="text-gray-700 dark:text-gray-300 font-medium mb-6" id="clockConfirmText">確定要進行打卡嗎？</p>
+
+                <div class="flex space-x-3">
+                    <button id="cancelSubmitBtn"
+                        class="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl font-medium transition-colors">取消</button>
+                    <button id="confirmSubmitBtn"
+                        class="flex-1 py-2.5 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium shadow-md shadow-blue-500/30 transition-colors">確定送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col space-y-3 pointer-events-none" id="toastContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ================= 2. 即時時鐘邏輯 =================
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                document.getElementById('live-clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                const date = now.getDate();
+                const days = ['日', '一', '二', '三', '四', '五', '六'];
+                const day = days[now.getDay()];
+
+                document.getElementById('live-date').innerHTML = `<span class="material-icons text-[16px] mr-1.5 opacity-80">calendar_today</span>${year}年 ${month}月 ${date}日 星期${day}`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // ================= 3. 打卡 Modal 與 Toast 邏輯 =================
+            let currentAction = '';
+            const modal = document.getElementById('clockModal');
+            const modalContent = document.getElementById('clockModalContent');
+            const clockConfirmTime = document.getElementById('clockConfirmTime');
+            const clockConfirmText = document.getElementById('clockConfirmText');
+
+            function openModal(action) {
+                currentAction = action;
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                clockConfirmTime.textContent = `${hours}:${minutes}:${seconds}`;
+                clockConfirmText.innerHTML = `確定要進行<span class="${action === 'in' ? 'text-blue-500' : 'text-orange-500'} font-bold mx-1">「${action === 'in' ? '上班' : '下班'}打卡」</span>嗎？`;
+
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function closeModal() {
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+
+            document.getElementById('clockInBtn').addEventListener('click', () => openModal('in'));
+            document.getElementById('clockOutBtn').addEventListener('click', () => openModal('out'));
+            document.getElementById('cancelSubmitBtn').addEventListener('click', closeModal);
+            document.getElementById('closeModalCross').addEventListener('click', closeModal);
+
+            document.getElementById('confirmSubmitBtn').addEventListener('click', () => {
+                const actionName = currentAction === 'in' ? '上班' : '下班';
+                showToast('打卡成功', `您已於剛剛成功完成 ${actionName}打卡！`, 'success');
+                closeModal();
+
+                const statusDot = document.getElementById('status-dot');
+                const statusText = document.getElementById('status-text');
+                const statusContainer = document.getElementById('status-container');
+                const now = new Date();
+                const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+                if (currentAction === 'in') {
+                    document.getElementById('in-time-record').innerHTML = `<span class="text-green-300">今日 ${timeStr} 已記錄</span>`;
+                    statusContainer.className = "flex items-center bg-green-100 dark:bg-green-900/30 px-3 py-1.5 rounded-full text-green-700 dark:text-green-400 text-sm font-medium border border-green-200 dark:border-green-800 transition-colors duration-300";
+                    statusDot.className = "w-2.5 h-2.5 rounded-full bg-green-500 mr-2 animate-pulse-dot";
+                    statusText.textContent = "已上班打卡";
+                } else {
+                    document.getElementById('out-time-record').innerHTML = `<span class="text-blue-500 dark:text-blue-400">今日 ${timeStr} 已記錄</span>`;
+                    statusContainer.className = "flex items-center bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full text-gray-700 dark:text-gray-400 text-sm font-medium border border-gray-200 dark:border-gray-700 transition-colors duration-300";
+                    statusDot.className = "w-2.5 h-2.5 rounded-full bg-gray-400 mr-2";
+                    statusText.textContent = "已下班打卡";
+                }
+            });
+
+            // ================= 4. Toast 通知產生器 =================
+            function showToast(title, message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+
+                const borderColor = type === 'success' ? 'border-green-500' : 'border-blue-500';
+                const iconColor = type === 'success' ? 'text-green-500' : 'text-blue-500';
+                const iconName = type === 'success' ? 'check_circle' : 'info';
+
+                toast.className = `bg-white dark:bg-gray-800 border-l-4 ${borderColor} rounded-lg shadow-xl p-4 w-80 transform transition-all duration-300 translate-x-full opacity-0 flex items-start pointer-events-auto border-t border-r border-b border-gray-100 dark:border-gray-700`;
+
+                toast.innerHTML = `
+                    <span class="material-icons ${iconColor} mr-3 text-2xl mt-0.5">${iconName}</span>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white">${title}</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${message}</p>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="d-flex align-items-center mb-1">
-                        <h4 id="profile-name-zh" class="fw-bold mb-0 me-3">君品酒店 (五星級場地)</h4>
-                        <span id="profile-role"
-                            class="badge bg-soft-primary text-primary rounded-pill px-3">特約場地夥伴</span>
-                    </div>
-                    <p id="profile-name-en" class="text-muted small mb-0">Palais de Chine Hotel</p>
-                </div>
-            </div>
-        </div>
+                    <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 focus:outline-none ml-2" onclick="this.parentElement.remove()">
+                        <span class="material-icons text-[16px]">close</span>
+                    </button>
+                `;
 
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="info-group">
-                    <label class="text-muted small d-block mb-1">對應聯絡人</label>
-                    <div id="profile-ext" class="fw-medium">業務經理 - 王大明</div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="info-group">
-                    <label class="text-muted small d-block mb-1">聯繫電話</label>
-                    <div id="profile-phone" class="fw-medium">02-2181-XXXX</div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="info-group">
-                    <label class="text-muted small d-block mb-1">合作備註 (方案限制)</label>
-                    <div id="profile-dept" class="fw-medium">美式戶外包套僅限 15 樓露台，需提前 6 個月預約。</div>
-                </div>
-            </div>
-        </div>
+                container.appendChild(toast);
 
+                setTimeout(() => {
+                    toast.classList.remove('translate-x-full', 'opacity-0');
+                }, 10);
 
-        </div>
-    </section>
-
-
-
-
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full', 'opacity-0');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 
 </html>

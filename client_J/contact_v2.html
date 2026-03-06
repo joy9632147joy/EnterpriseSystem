@@ -34,7 +34,7 @@
         body {
             font-family: var(--font-sans);
             color: var(--text-main);
-            background-color: var(--soft-grey);
+            background-color: var(--pure-white);
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
@@ -416,41 +416,35 @@
     <style>
         /* ─── CONTACT HERO ─── */
         .contact-hero {
-            background: white;
-            border-bottom: 1px solid var(--border-grey);
-            padding: 160px 0 56px;
+            padding: 160px 32px 80px;
             text-align: center;
-        }
-
-        .contact-hero-eyebrow {
-            font-size: 10px;
-            letter-spacing: 0.5em;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            font-weight: 500;
+            background: var(--pure-white);
+            border-bottom: 1px solid var(--border-grey);
         }
 
         .contact-hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(28px, 4vw, 44px);
+            font-size: clamp(36px, 5vw, 64px);
             font-weight: 300;
-            letter-spacing: 0.02em;
-            margin-top: 16px;
-        }
-
-        .contact-hero-sep {
-            width: 64px;
-            height: 1px;
-            background: var(--accent-gold);
-            margin: 24px auto 0;
-            opacity: 0.5;
+            letter-spacing: 0.06em;
+            margin: 0 0 16px;
+            line-height: 1.1;
         }
 
         .contact-hero-sub {
             font-size: 12px;
+            letter-spacing: 0.4em;
             color: var(--text-muted);
-            letter-spacing: 0.2em;
-            margin-top: 20px;
+            text-transform: uppercase;
+            font-style: italic;
+            margin: 0 0 40px;
+        }
+
+        .contact-hero-sep {
+            width: 60px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 0 auto;
         }
 
         /* ─── LAYOUT ─── */
@@ -476,7 +470,6 @@
         .contact-card {
             border: 1px solid var(--border-grey);
             border-top: 3px solid var(--accent-gold);
-            border-radius: 16px;
             background: var(--pure-white);
             padding: 56px 60px 64px;
             box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.07);
@@ -544,21 +537,21 @@
         .lux-input {
             width: 100%;
             background: transparent;
-            background: transparent;
-            border: 1px solid var(--border-grey);
-            padding: 10px 14px;
+            border: none;
+            border-bottom: 1px solid var(--border-grey);
+            padding: 10px 2px 10px 0;
             font-size: 16px;
             font-family: var(--font-sans);
             color: var(--text-main);
             outline: none;
-            border-radius: 8px;
+            border-radius: 0;
             transition: border-color 0.3s;
             -webkit-appearance: none;
         }
 
         .lux-input:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+            border-bottom-color: var(--accent-gold);
+            box-shadow: none;
         }
 
         .lux-input::placeholder {
@@ -591,7 +584,7 @@
         /* ─── STYLE PILLS ─── */
         .lux-pill {
             padding: 7px 18px;
-            border-radius: 20px;
+            border-radius: 0;
             border: 1px solid var(--border-grey);
             font-size: 14px;
             letter-spacing: 0.06em;
@@ -616,7 +609,6 @@
         .lux-service-card {
             position: relative;
             border: 1px solid var(--border-grey);
-            border-radius: 12px;
             padding: 24px 20px;
             transition: all 0.3s;
             cursor: pointer;
@@ -700,7 +692,6 @@
             font-size: 14px;
             letter-spacing: 0.35em;
             border: 1px solid var(--text-main);
-            border-radius: 50px;
             transition: all 0.35s;
             cursor: pointer;
             text-transform: uppercase;
@@ -717,163 +708,12 @@
             resize: none;
             display: block;
             border: 1px solid var(--border-grey);
-            border-radius: 8px;
             padding: 14px 16px;
             line-height: 1.7;
         }
 
         textarea.lux-input:focus {
             border-color: var(--accent-gold);
-        }
-
-        /* ─── FAQ ACCORDION ─── */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border-grey);
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:first-child {
-            border-top: 1px solid var(--border-grey);
-        }
-
-        .faq-question {
-            padding: 24px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-family: var(--font-serif);
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--text-main);
-            letter-spacing: 0.05em;
-            transition: color 0.3s;
-        }
-
-        .faq-question:hover {
-            color: var(--accent-gold);
-        }
-
-        .faq-icon {
-            font-size: 24px;
-            color: var(--text-muted);
-            transition: transform 0.4s ease, color 0.3s;
-        }
-
-        .faq-item.open .faq-question {
-            color: var(--accent-gold);
-        }
-
-        .faq-item.open .faq-icon {
-            transform: rotate(180deg);
-            color: var(--accent-gold);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
-            opacity: 0;
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 500px;
-            /* 足夠容納文字的高度 */
-            opacity: 1;
-        }
-
-        .faq-answer p {
-            padding-bottom: 24px;
-            font-size: 14px;
-            line-height: 1.8;
-            color: var(--text-muted);
-            font-weight: 300;
-            letter-spacing: 0.08em;
-            margin: 0;
-        }
-
-        /* 分類標籤置中微調 */
-        .faq-filters {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 48px;
-        }
-
-        /* ─── PAGE TAB BAR ─── */
-        .page-tab-bar {
-            position: sticky;
-            top: 80px;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-grey);
-            display: flex;
-            justify-content: center;
-            transition: top 0.4s ease-in-out;
-        }
-
-        .page-tab-bar.nav-hidden {
-            top: 0;
-        }
-
-        .page-tab {
-            position: relative;
-            padding: 20px 56px;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .page-tab::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--accent-gold);
-            transform: scaleX(0);
-            transition: transform 0.35s ease;
-        }
-
-        .page-tab.active {
-            color: var(--text-main);
-        }
-
-        .page-tab.active::after {
-            transform: scaleX(1);
-        }
-
-        .page-tab:hover {
-            color: var(--accent-gold);
-        }
-
-        .page-tab .material-symbols-outlined {
-            font-size: 18px;
-        }
-
-        @media (max-width: 575px) {
-            .page-tab {
-                padding: 16px 28px;
-                font-size: 11px;
-                letter-spacing: 0.15em;
-            }
         }
     </style>
 
@@ -942,28 +782,20 @@
     </div>
 
     <main id="app">
-        <!-- ─── 統一 Hero ─── -->
+        <!-- ─── 純文字 Hero ─── -->
         <div class="contact-hero">
-            <p class="contact-hero-eyebrow">Get In Touch</p>
-            <h1 class="contact-hero-title">聯絡我們</h1>
+            <div class="eyebrow-line">
+                <span
+                    style="font-size:9px; letter-spacing:0.4em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">PRIVATE
+                    CONSULTATION</span>
+            </div>
+            <h1 class="contact-hero-title">預約專屬諮詢</h1>
+            <p class="contact-hero-sub">Book Your Consultation</p>
             <div class="contact-hero-sep"></div>
-            <p class="contact-hero-sub">專屬婚禮顧問，為您打造無瑕婚禮體驗</p>
-        </div>
-
-        <!-- ─── Tab 切換列 ─── -->
-        <div class="page-tab-bar">
-            <button class="page-tab" :class="{ active: activeTab === 'booking' }" @click="activeTab = 'booking'">
-                <span class="material-symbols-outlined">edit_calendar</span>
-                預約諮詢
-            </button>
-            <button class="page-tab" :class="{ active: activeTab === 'faq' }" @click="activeTab = 'faq'">
-                <span class="material-symbols-outlined">help_outline</span>
-                常見問題
-            </button>
         </div>
 
         <!-- ─── 表單主體 ─── -->
-        <div class="contact-wrapper" v-show="activeTab === 'booking'">
+        <div class="contact-wrapper">
             <div class="contact-card">
                 <form @submit.prevent="submitForm">
 
@@ -1093,56 +925,6 @@
                 </form>
             </div>
         </div>
-
-        <!-- ─── FAQ 區塊 ─── -->
-        <div class="contact-wrapper" v-show="activeTab === 'faq'">
-    <div class="contact-card">
-        
-        <div class="faq-filters">
-            <button 
-                v-for="category in categories" 
-                :key="category" 
-                type="button" 
-                class="lux-pill" 
-                :class="{ 'active': activeCategory === category }"
-                @click="activeCategory = category">
-                {{ category }}
-            </button>
-        </div>
-
-        <div class="faq-container">
-            <div 
-                v-for="faq in filteredFaqs" 
-                :key="faq.id" 
-                class="faq-item" 
-                :class="{ 'open': faq.isOpen }">
-                
-                <div class="faq-question" @click="toggleFaq(faq.id)">
-                    <span>{{ faq.question }}</span>
-                    <span class="material-symbols-outlined faq-icon">expand_more</span>
-                </div>
-                
-                <div class="faq-answer">
-                    <p>{{ faq.answer }}</p>
-                </div>
-            </div>
-            
-            <div v-if="filteredFaqs.length === 0" class="text-center py-5">
-                <p style="color:var(--text-muted); font-size:13px;">目前該分類尚未有相關問題。</p>
-            </div>
-        </div>
-
-        <div class="text-center" style="margin-top: 64px;">
-            <p style="font-size:13px; color:var(--text-muted); margin-bottom: 24px;">
-                還找不到您心中的解答嗎？我們的專屬顧問隨時為您傾聽。
-            </p>
-            <a href="javascript:void(0)" class="btn-gold" style="text-decoration: none;" @click="activeTab = 'booking'">
-                預約專屬諮詢 &nbsp;|&nbsp; BOOK NOW
-            </a>
-        </div>
-
-    </div>
-</div>
     </main>
 
 
@@ -1169,13 +951,9 @@
 
     <script>
 
-        const { createApp, reactive, ref, computed } = Vue;
-
-        // ─── 單一 Vue App 掛載到 #app，同時管理表單與 FAQ ───
+        const { createApp, reactive } = Vue;
         createApp({
             setup() {
-
-                // ── 表單資料 ──
                 const form = reactive({
                     clientName: '',
                     phone: '',
@@ -1219,71 +997,13 @@
                     alert('表單已成功在前端攔截！');
                 };
 
-                // ── Tab 切換 ──
-                const activeTab = ref('booking');
-
-                // ── FAQ 資料 ──
-                const categories = ['全部', '服務流程', '費用與合約', '客製化需求', '檔期預約'];
-                const activeCategory = ref('全部');
-
-                const faqs = reactive([
-                    {
-                        id: 1,
-                        category: '服務流程',
-                        question: '婚禮統籌和飯店附的婚禮企劃有什麼不同？',
-                        answer: '飯店企劃主要負責「婚宴當天」的流程與場地狀況；而我們的專屬婚顧則是從「決定結婚的那一刻起」，為您控管預算、媒合外部廠商（攝影、新秘）、審閱合約，並全程陪伴您處理所有繁瑣細節。',
-                        isOpen: false
-                    },
-                    {
-                        id: 2,
-                        category: '檔期預約',
-                        question: '請問最晚需要提前多久預約婚顧服務？',
-                        answer: '為了確保能為您訂到理想的場地與頂級職人團隊，我們建議在預定婚期的 8 到 12 個月前開始與我們接觸。',
-                        isOpen: false
-                    },
-                    {
-                        id: 3,
-                        category: '費用與合約',
-                        question: '費用是如何計算的？會有後續隱藏費用嗎？',
-                        answer: '我們的報價皆為透明公開。在初次免費諮詢後，會依據您的客製化需求提供完整的預算規劃書，所有代墊款項與協力廠商費用皆會提供明細，絕無隱藏抽成。',
-                        isOpen: false
-                    },
-                    {
-                        id: 4,
-                        category: '客製化需求',
-                        question: '如果我已經找好攝影師和新秘了，還能請你們幫忙統籌嗎？',
-                        answer: '當然可以。我們提供「半程統籌」或「單儀式規劃」方案，能無縫接軌您已確定的項目，為您整合剩餘的拼圖。',
-                        isOpen: false
-                    }
-                ]);
-
-                const filteredFaqs = computed(() => {
-                    if (activeCategory.value === '全部') return faqs;
-                    return faqs.filter(faq => faq.category === activeCategory.value);
-                });
-
-                const toggleFaq = (id) => {
-                    faqs.forEach(faq => {
-                        if (faq.id === id) {
-                            faq.isOpen = !faq.isOpen;
-                        } else {
-                            faq.isOpen = false;
-                        }
-                    });
-                };
-
                 return {
                     form,
                     availableStyles,
                     availableServices,
                     toggleStyle,
                     toggleService,
-                    submitForm,
-                    activeTab,
-                    categories,
-                    activeCategory,
-                    filteredFaqs,
-                    toggleFaq
+                    submitForm
                 };
             }
         }).mount('#app');
@@ -1291,7 +1011,6 @@
         // 首頁共用 Navbar 捲動與搜尋框特效
         document.addEventListener('DOMContentLoaded', () => {
             const navbar = document.querySelector('.navbar');
-            const tabBar = document.querySelector('.page-tab-bar');
             if (navbar) {
                 let lastScrollTop = 0;
                 const delta = 10;
@@ -1300,17 +1019,12 @@
                 window.addEventListener('scroll', () => {
                     let st = window.pageYOffset || document.documentElement.scrollTop;
                     if (Math.abs(lastScrollTop - st) <= delta) return;
-                    const hide = !navLocked && st > lastScrollTop && st > 80;
-                    navbar.classList.toggle('nav-hidden', hide);
-                    if (tabBar) tabBar.classList.toggle('nav-hidden', hide);
+                    if (!navLocked) navbar.classList.toggle('nav-hidden', st > lastScrollTop && st > 80);
                     lastScrollTop = st;
                 });
 
                 document.addEventListener('mousemove', (e) => {
-                    if (e.clientY < 50) {
-                        navbar.classList.remove('nav-hidden');
-                        if (tabBar) tabBar.classList.remove('nav-hidden');
-                    }
+                    if (e.clientY < 50) navbar.classList.remove('nav-hidden');
                 });
 
                 navbar.addEventListener('mouseenter', () => { navLocked = true; });
@@ -1351,9 +1065,6 @@
             document.querySelectorAll('.contact-section').forEach(el => obs.observe(el));
         });
 
-
-
-        
     </script>
 </body>
 

@@ -1,364 +1,543 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ES Admin - 主頁儀表板</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="../ESCss/es_new_ver.css">
+    <script src="../ESJS/es_new_ver.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link rel="stylesheet" href="../ESCss/MainPage.css">
-    <script src="../ESJS/MainPage.js" defer></script>
-
-    <title>Enterprise System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#1F2937",
+                        "sidebar-bg": "#21252D",
+                        "sidebar-hover": "#2C313C",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
 </head>
 
-<body>
+<body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
 
-    <!-- 上方導覽列 -->
-    <nav class="navbar navbar-dark sticky-top">
-
-        <div class="container-fluid">
-            <div class="d-flex">
-                <button class="btn me-2 hamburger-btn" id="sidebar-hamburger">
-                    <i class="bi bi-list"></i>
-                </button>
-            </div>
-
-
-
-            <!-- 通知 -->
-            <div class="d-flex align-items-center ms-auto">
-
-                <div class="ms-auto d-none d-md-block me-3 search-box">
-                    <div class="input-group">
-                        <span class="input-group-text bg-light border-0" style="border-radius: 50px 0 0 50px;">
-                            <i class="bi bi-search text-muted"></i>
-                        </span>
-                        <input type="text" class="form-control bg-light border-0" placeholder="搜尋功能或公告..."
-                            aria-label="Search" style="border-radius: 0 50px 50px 0;">
-                    </div>
-                </div>
-
-                <div class="dropdown">
-                    <button class="btn envelope-btn me-1 position-relative" id="envelope" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-envelope"></i>
-                        <span
-                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
-                            style="width: 8px; height: 8px; margin-top: 8px; margin-left: -8px;"></span>
-                    </button>
-
-                    <div class="dropdown-menu dropdown-menu-end notification-dropdown shadow-lg">
-                        <div class="px-4 mb-2 d-flex justify-content-between align-items-center">
-                            <span class="fw-bold small text-dark">通知中心 <span
-                                    class="badge bg-light text-danger rounded-pill ms-1">3</span></span>
-                            <a href="#" class="text-decoration-none extra-small fw-bold text-primary">全部標為已讀</a>
-                        </div>
-
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="notif-item">
-                                <div class="icon-box bg-soft-green">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <span class="fw-bold extra-small text-dark">任務已核准</span>
-                                        <span class="extra-small text-muted">5 分鐘前</span>
-                                    </div>
-                                    <p class="extra-small text-muted mb-0">您的「5月份加班申請單」已經由 Rose 老師核准通過。</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="notif-item">
-                                <div class="icon-box bg-soft-blue">
-                                    <i class="bi bi-megaphone-fill"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <span class="fw-bold extra-small text-dark">系統維護通知</span>
-                                        <span class="extra-small text-muted">2 小時前</span>
-                                    </div>
-                                    <p class="extra-small text-muted mb-0">「Java 不倒團」將於週六凌晨 02:00 進行例行維修。</p>
-                                </div>
-                            </a>
-
-                            <a href="#" class="notif-item">
-                                <div class="icon-box bg-soft-yellow">
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <span class="fw-bold extra-small text-dark">獲得獎勵積分</span>
-                                        <span class="extra-small text-muted">昨天</span>
-                                    </div>
-                                    <p class="extra-small text-muted mb-0">完成「客戶 A 公司報價」任務，獲得了 +200 pts 積分。</p>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="text-center mt-3 pt-2 border-top">
-                            <a href="#" class="text-decoration-none extra-small text-muted fw-bold">查看所有通知 <i
-                                    class="bi bi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!-- 右上角使用者選單 -->
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                    data-bs-toggle="dropdown">
-                    <img src="../Img/smile.jpg" class="rounded-circle me-2" width="32" height="32">
-                    <span class="d-none d-sm-inline">Joy</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item text-danger" href="login.html"><i
-                                class="bi bi-box-arrow-right me-2"></i>Log Out</a></li>
-                </ul>
-            </div>
-        </div>
+    <aside id="sidebar"
+        class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden relative z-20">
+        <div class="h-16 flex items-center justify-center">
+            <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
+            <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
         </div>
 
-    </nav>
-
-
-    <!-- 側邊欄 -->
-    <div class="d-flex" id="sidebarD">
-
-        <nav class="list-unstyled sidebar" id="sidebarN">
-
-            <!-- LOGO 圖文-->
-            <div class="d-flex align-items-center justify-content-center"
-                style="height: 58px; background-color: #1f2d3a;">
-                <a class="text-white text-decoration-none fs-4 fw-bold" href="main_page.html">ES<span> Admin</span></a>
-            </div>
-
-            <!-- 使用者資訊 -->
-            <div class="sidebar-user p-3 border-bottom border-secondary border-opacity-50">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="position-relative">
-                        <img src="../Img/smile.jpg" class="rounded-circle" width="55" height="55"
-                            style="object-fit: cover; ">
-                        <span class="status position-absolute bottom-0 end-0 bg-success border rounded-circle">
-                        </span>
-                    </div>
-
-                    <div class="ms-3 text-white">
-                        <div class="fw-bold mb-1" style="font-size: 1rem; letter-spacing: 0.5px;">歡迎回來, Joy</div>
-                        <span class="user-title">開掛宗師</span>
-                    </div>
-                </div>
-
-                <div class="px-1">
-                    <div class="points-row">
-                        <span class="points-label">我的積分</span>
-                        <span class="points-value">
-                            <span class="coin-icon"><i class="bi bi-p-circle-fill"></i></span>
-                            6,850
-                        </span>
-                    </div>
+        <div class="px-4 py-4 mt-2 sidebar-user">
+            <div class="bg-sidebar-hover rounded-xl p-4 flex items-center shadow-sm">
+                <img alt="Joy Avatar" class="w-12 h-12 rounded-full border-2 border-sidebar-bg mr-3 object-cover"
+                    src="../Img/smile.jpg" />
+                <div class="menu-category p-0 m-0">
+                    <div class="text-white font-medium">Joy</div>
+                    <div class="text-xs text-gray-400 mt-1">PM 權限</div>
                 </div>
             </div>
+        </div>
 
+        <nav class="flex-1 py-2 overflow-y-auto overflow-x-hidden">
+            <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                GENERAL</div>
 
-            <!-- 選單 -->
-            <ul class="d-flex flex-column list-unstyled">
-                <li class="menu-category fw-bold">GENERAL</li>
-                <li><a href="main_page.html"><i class="bi bi-house-door-fill me-3"></i><span>主頁</span></a>
-                </li>
-                <li><a href="consultation.html"><i class="bi bi bi-list-stars me-3"></i><span>預約管理</span></a></li>
-                <li><a href="quest_staff.html"><i class="bi bi bi-list-stars me-3"></i><span>任務管理</span></a></li>
-                <li><a href="attendance.html"><i class="bi bi-calendar-check-fill me-3"></i><span>差勤系統</span></a></li>
-                <li><a href="contacts.html"><i class="bi bi-calendar-check-fill me-3"></i><span>聯絡資訊</span></a></li>
-                <li class="menu-category fw-bold">系統設定</li>
-                <li class="active"><a href="account.html"><i class="bi bi-gear-fill me-3"></i><span>個人資訊</span></a></li>
-            </ul>
+            <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
+                href="main_page.html">
+                <span class="material-icons text-blue-400 mr-3 group-hover:scale-110 transition-transform">home</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap text-white">主頁</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="consultation.html">
+                <span
+                    class="material-icons text-orange-400 mr-3 group-hover:scale-110 transition-transform">calendar_month</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_staff.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_pm.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理-PM(待整合)</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="attendance.html">
+                <span
+                    class="material-icons text-purple-400 mr-3 group-hover:scale-110 transition-transform">schedule</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">差勤系統</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="contacts.html">
+                <span
+                    class="material-icons text-red-400 mr-3 group-hover:scale-110 transition-transform">contacts</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">聯絡資訊</div>
+            </a>
+
+            <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                系統設定</div>
+
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="account.html">
+                <span
+                    class="material-icons text-teal-400 mr-3 group-hover:scale-110 transition-transform">settings</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">個人資訊</div>
+            </a>
         </nav>
+    </aside>
 
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
 
-        <!--內容-->
+        <header
+            class="h-16 bg-[#2B303B] flex items-center justify-between px-6 flex-shrink-0 z-10 shadow-sm text-white">
+            <div class="flex items-center flex-1">
+                <button id="sidebar-hamburger"
+                    class="mr-4 text-gray-400 hover:text-white focus:outline-none p-1 rounded-md hover:bg-gray-700 transition-colors">
+                    <span class="material-icons">menu</span>
+                </button>
+                <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">主頁儀表板</h1>
+            </div>
 
-
-        <div id="content" class="p-4">
-            <section class="container-fluid">
-                <!-- 打卡 -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="checkInOutcard border-0 shadow-sm">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-soft-primary p-3 rounded-3 me-3">
-                                        <i class="bi bi-clock-fill fs-4"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-muted extra-small fw-bold text-uppercase">Current Time</div>
-                                        <div class="d-flex align-items-baseline gap-2">
-                                            <h2 class="fw-bold mb-0 text-dark-navy" id="live-clock">08:55</h2>
-                                        </div>
-                                        <div class="extra-small text-muted mt-1">2026年 2月 24日 星期二 · Status: <span
-                                                class="fst-italic text-danger">Not Clocked In</span></div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <button id="clockInBtn"
-                                        class="btn btn-success px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
-                                        <i class="bi bi-box-arrow-in-right me-2"></i> Clock In
-                                    </button>
-                                    <button id="clockOutBtn"
-                                        class="btn btn-secondary px-4 py-2 rounded-3 fw-bold shadow-sm d-flex align-items-center">
-                                        <i class="bi bi-box-arrow-in-right me-2"></i> Clock Out
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-4 g-3">
-                    <div class="col-md-4">
-                        <div class="card bento-card border-0 shadow-sm p-3">
-                            <small class="text-muted">本月服務新人</small>
-                            <h3 class="fw-bold text-primary">12 <span class="small" style="font-size: 0.8rem;">對</span>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bento-card border-0 shadow-sm p-3">
-                            <small class="text-muted">待核銷預算</small>
-                            <h3 class="fw-bold text-success">$24.5 <span class="small"
-                                    style="font-size: 0.8rem;">萬</span></h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bento-card border-0 shadow-sm p-3">
-                            <small class="text-muted">今日諮詢預約</small>
-                            <h3 class="fw-bold" style="color: #d4af37;">5 <span class="small"
-                                    style="font-size: 0.8rem;">組</span></h3>
-                        </div>
-                    </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative w-64 lg:w-80 hidden md:block">
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                        <span class="material-icons text-sm">search</span>
+                    </span>
+                    <input
+                        class="w-full bg-[#353A45] border-none rounded-full py-2 pl-4 pr-10 text-sm focus:ring-1 focus:ring-blue-500 focus:outline-none text-gray-200 placeholder-gray-400"
+                        placeholder="搜尋功能或公告..." type="text" />
                 </div>
 
-                <div class="row g-4">
-                    <div class="col-md-12">
-                        <div class="card bento-card border-0 shadow-sm h-100">
-                            <div class="card-header bg-transparent border-0 pt-4 px-4 d-flex justify-content-between">
-                                <h5 class="fw-bold m-0" style="color: #1a233a;">最近動態時序</h5>
-                                <button class="btn btn-sm btn-outline-primary rounded-pill">發布公告</button>
-                            </div>
-                            <div class="card-body px-4">
-                                <div class="timeline-container">
-                                    <div class="d-flex mb-4">
-                                        <div class="timeline-icon me-3">
-                                            <div class="bg-soft-primary text-primary rounded-circle p-2">
-                                                <i class="bi bi-file-earmark-check"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="fw-bold small">簽署合約：美式莊園婚禮</div>
-                                            <div class="text-muted extra-small">30 分鐘前 - 由顧問 Joy 更新</div>
-                                            <p class="small mt-1 mb-0 text-secondary">新人：陳先生 & 林小姐。已確認訂金支付與 05-20 檔期。
-                                            </p>
-                                        </div>
-                                    </div>
+                <button class="relative text-gray-400 hover:text-white focus:outline-none mt-1">
+                    <span class="material-icons">notifications</span>
+                    <span
+                        class="absolute top-0 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/4 border-2 border-[#2B303B]"></span>
+                </button>
 
-                                    <div class="d-flex mb-4">
-                                        <div class="timeline-icon me-3">
-                                            <div class="bg-soft-warning text-warning rounded-circle p-2">
-                                                <i class="bi bi-camera-reels"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="fw-bold small">變更紀錄：攝影團隊更換</div>
-                                            <div class="text-muted extra-small">2 小時前 - 系統 Log 自動記錄</div>
-                                            <p class="small mt-1 mb-0 text-secondary">因攝影師檔期衝突，由『永恆紀錄』更換為『樂覓影像』。</p>
-                                        </div>
-                                    </div>
+                <button class="relative text-gray-400 hover:text-white focus:outline-none me-2" id="envelope">
+                    <i class="bi bi-envelope fs-5"></i>
+                </button>
 
-                                    <div class="d-flex">
-                                        <div class="timeline-icon me-3">
-                                            <div class="bg-soft-danger text-danger rounded-circle p-2">
-                                                <i class="bi bi-chat-dots"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="fw-bold small">新諮詢：喜帖校稿需求</div>
-                                            <div class="text-muted extra-small">5 小時前 - 來自客戶端網頁</div>
-                                            <p class="small mt-1 mb-0 text-secondary">客戶對燙金顏色有疑問，請企劃部協助確認。</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="relative">
+                    <div id="user-menu-button"
+                        class="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-500 mr-2 object-cover"
+                            src="../Img/smile.jpg" />
+                        <span class="text-sm font-medium mr-1 text-gray-200">Joy</span>
+                        <span class="material-icons text-sm text-gray-400">arrow_drop_down</span>
                     </div>
-                </div>
 
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="card bento-card border-0 shadow-sm p-4">
-                            <h5 class="fw-bold mb-3">今日急件清單</h5>
-                            <div class="list-group list-group-flush">
-                                <label class="list-group-item d-flex align-items-center border-0 px-0">
-                                    <input class="form-check-input me-3" type="checkbox">
-                                    <div>
-                                        <div class="fw-bold">確認君品酒店場勘時間</div>
-                                        <div class="extra-small text-muted">負責人：小波 | 期限：今天 17:00</div>
-                                    </div>
-                                </label>
-                                <label class="list-group-item d-flex align-items-center border-0 px-0">
-                                    <input class="form-check-input me-3" type="checkbox">
-                                    <div>
-                                        <div class="fw-bold">傳送 04-12 婚禮流程表給主持人</div>
-                                        <div class="extra-small text-muted">負責人：拉拉 | 期限：明天</div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 打卡與 Toast -->
-        <div class="modal fade" id="clockConfirmModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
-                    <div class="modal-header border-bottom-0 pt-4 px-4">
-                        <h5 class="modal-title fw-bold">
-                            <i class="bi bi-clock-history text-primary me-2"></i>系統確認
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body px-4 text-center">
-                        <p class="mb-1 text-muted">打卡時間</p>
-                        <h2 class="fw-bold text-dark mb-3" id="clockConfirmTime">00:00</h2>
-                        <p class="mb-0 fw-bold" id="clockConfirmText">確定要進行打卡嗎？</p>
-                    </div>
-                    <div class="modal-footer border-top-0 pb-4 px-4 justify-content-center">
-                        <button type="button" class="btn btn-light btn-sm px-4" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary btn-sm px-4 shadow-sm"
-                            id="confirmSubmitBtn">確定送出</button>
+                    <div id="user-dropdown"
+                        class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
+                        </a>
+                        <a href="#"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">settings</span> Settings
+                        </a>
+                        <hr class="my-1 border-gray-100">
+                        <a href="login.html"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">logout</span> Log Out
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
-            <div id="clockToast" class="toast shadow-lg border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header text-white" id="toastHeader">
-                    <i class="bi bi-check-circle-fill me-2"></i>
-                    <strong class="me-auto" id="toastTitle">系統通知</strong>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
+        <main
+            class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800">
+            <div class="max-w-7xl mx-auto space-y-6">
+
+                <div class="mb-2">
+                    <p class="text-gray-500 dark:text-gray-400 font-medium text-sm">歡迎回來，Joy 👋 今天也是充滿活力的一天！</p>
                 </div>
-                <div class="toast-body fw-bold bg-white text-dark" id="toastMessage">
-                    打卡成功！
+
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="flex-1 space-y-6">
+
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">打卡狀態</h2>
+                                <div id="status-container"
+                                    class="flex items-center bg-gray-100 dark:bg-gray-800/50 px-3 py-1.5 rounded-full text-gray-500 dark:text-gray-400 text-sm font-medium border border-gray-200 dark:border-gray-700 transition-colors duration-300">
+                                    <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-gray-400 mr-2"></span>
+                                    <span id="status-text">未打卡</span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-center justify-center mb-8 py-6 bg-gray-50/60 dark:bg-gray-800/60 rounded-xl border border-gray-100 dark:border-gray-700/50 shadow-inner">
+                                <div id="live-clock"
+                                    class="text-5xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 tracking-wider font-mono drop-shadow-sm mb-2 transition-all">
+                                    00:00:00</div>
+                                <div id="live-date"
+                                    class="text-gray-500 dark:text-gray-400 font-medium flex items-center">
+                                    <span class="material-icons text-[16px] mr-1.5 opacity-80">calendar_today</span>
+                                    載入中...
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <button id="clockInBtn"
+                                    class="bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-6 flex flex-col items-center justify-center transition-all shadow-md hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                    <div
+                                        class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity">
+                                    </div>
+                                    <span
+                                        class="material-icons text-5xl mb-3 opacity-90 group-hover:scale-110 transition-transform duration-300">login</span>
+                                    <span class="text-xl font-bold tracking-wide">上班打卡</span>
+                                    <span id="in-time-record" class="text-blue-100 text-sm mt-2 font-medium">尚未記錄</span>
+                                </button>
+
+                                <button id="clockOutBtn"
+                                    class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl p-6 flex flex-col items-center justify-center transition-all shadow-sm hover:shadow-md hover:-translate-y-1 group relative overflow-hidden focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-600">
+                                    <div
+                                        class="absolute inset-0 bg-gray-500 dark:bg-white opacity-0 group-hover:opacity-5 transition-opacity">
+                                    </div>
+                                    <span
+                                        class="material-icons text-5xl mb-3 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300 transition-colors duration-300 group-hover:scale-110">logout</span>
+                                    <span class="text-xl font-bold tracking-wide">下班打卡</span>
+                                    <span id="out-time-record"
+                                        class="text-gray-400 text-sm mt-2 font-medium">尚未記錄</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div
+                                class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 shadow-sm hover:shadow-md">
+                                <div class="flex items-center justify-between mb-4 relative z-10">
+                                    <div
+                                        class="w-12 h-12 bg-pink-100 dark:bg-pink-900/40 rounded-full flex items-center justify-center text-pink-500 dark:text-pink-400">
+                                        <span class="material-symbols-outlined text-2xl">favorite</span>
+                                    </div>
+                                    <span
+                                        class="text-xs font-medium text-green-500 bg-green-50 dark:bg-green-900/30 px-2.5 py-1 rounded-full flex items-center">
+                                        <span class="material-symbols-outlined text-[14px] mr-1">trending_up</span> +15%
+                                    </span>
+                                </div>
+                                <div class="relative z-10">
+                                    <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">本月服務新人</h3>
+                                    <div class="flex items-baseline space-x-1.5">
+                                        <span class="text-3xl font-bold text-gray-800 dark:text-white">12</span>
+                                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">對</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 shadow-sm hover:shadow-md">
+                                <div class="flex items-center justify-between mb-4 relative z-10">
+                                    <div
+                                        class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 rounded-full flex items-center justify-center text-emerald-500 dark:text-emerald-400">
+                                        <span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+                                    </div>
+                                    <span
+                                        class="text-xs font-medium text-amber-500 bg-amber-50 dark:bg-amber-900/30 px-2.5 py-1 rounded-full flex items-center">
+                                        待核銷
+                                    </span>
+                                </div>
+                                <div class="relative z-10">
+                                    <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">未結預算款項</h3>
+                                    <div class="flex items-baseline space-x-1.5">
+                                        <span class="text-3xl font-bold text-gray-800 dark:text-white">24.5</span>
+                                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">萬</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 shadow-sm hover:shadow-md">
+                                <div class="flex items-center justify-between mb-4 relative z-10">
+                                    <div
+                                        class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 rounded-full flex items-center justify-center text-indigo-500 dark:text-indigo-400">
+                                        <span class="material-symbols-outlined text-2xl">event_available</span>
+                                    </div>
+                                    <span
+                                        class="text-xs font-medium text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-2.5 py-1 rounded-full flex items-center">
+                                        今日行程
+                                    </span>
+                                </div>
+                                <div class="relative z-10">
+                                    <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">今日諮詢預約</h3>
+                                    <div class="flex items-baseline space-x-1.5">
+                                        <span class="text-3xl font-bold text-gray-800 dark:text-white">5</span>
+                                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">組</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-80 flex flex-col space-y-6 flex-shrink-0">
+                        <div class="glass-card rounded-2xl p-6 flex flex-col">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">今日急件清單</h2>
+                            </div>
+                            <div class="space-y-4">
+                                <label class="flex items-start cursor-pointer group">
+                                    <input
+                                        class="mt-1 mr-3 rounded text-blue-500 focus:ring-blue-500 bg-white border-gray-300 transition-colors"
+                                        type="checkbox" />
+                                    <div class="flex-1 group-hover:opacity-80 transition-opacity">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200">確認君品酒店場勘時間
+                                            </h4>
+                                            <span
+                                                class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ml-2">緊急</span>
+                                        </div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">負責人：小波 | 期限：今天 17:00
+                                        </p>
+                                    </div>
+                                </label>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input
+                                        class="mt-1 mr-3 rounded text-blue-500 focus:ring-blue-500 bg-white border-gray-300 transition-colors"
+                                        type="checkbox" />
+                                    <div class="flex-1 group-hover:opacity-80 transition-opacity">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200">傳送 04-12
+                                                婚禮流程表給主持人</h4>
+                                        </div>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">負責人：拉拉 | 期限：明天</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 flex flex-col flex-1">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">行事曆概覽</h2>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><span
+                                            class="material-icons text-sm">chevron_left</span></button>
+                                    <span class="text-sm font-medium text-gray-600 dark:text-gray-300">2月</span>
+                                    <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><span
+                                            class="material-icons text-sm">chevron_right</span></button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1 text-center mb-2">
+                                <div class="text-xs text-gray-400 font-medium pb-2">日</div>
+                                <div class="text-xs text-gray-400 font-medium pb-2">一</div>
+                                <div class="text-xs text-gray-400 font-medium pb-2">二</div>
+                                <div class="text-xs text-gray-400 font-medium pb-2">三</div>
+                                <div class="text-xs text-gray-400 font-medium pb-2">四</div>
+                                <div class="text-xs text-gray-400 font-medium pb-2">五</div>
+                                <div class="text-xs text-gray-400 font-medium pb-2">六</div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1 text-center">
+                                <div class="text-sm text-gray-300 dark:text-gray-600 py-1.5">28</div>
+                                <div
+                                    class="text-sm text-gray-700 dark:text-gray-300 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer relative">
+                                    1<span
+                                        class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-500 rounded-full"></span>
+                                </div>
+                                <div
+                                    class="text-sm text-gray-700 dark:text-gray-300 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer">
+                                    2</div>
+                                <div
+                                    class="text-sm bg-blue-500 text-white font-bold py-1.5 rounded-full shadow-md cursor-pointer relative">
+                                    3</div>
+                                <div
+                                    class="text-sm text-gray-700 dark:text-gray-300 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer">
+                                    4</div>
+                                <div
+                                    class="text-sm text-gray-700 dark:text-gray-300 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer relative">
+                                    5<span
+                                        class="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex space-x-0.5"><span
+                                            class="w-1 h-1 bg-purple-500 rounded-full"></span><span
+                                            class="w-1 h-1 bg-orange-500 rounded-full"></span></span></div>
+                                <div
+                                    class="text-sm text-gray-700 dark:text-gray-300 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full cursor-pointer">
+                                    6</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="clockModal"
+        class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-gray-900 bg-opacity-50 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-80 max-w-[90%] transform transition-all duration-300 scale-95 opacity-0 border border-gray-100 dark:border-gray-700"
+            id="clockModalContent">
+            <div class="p-6 text-center relative">
+                <button id="closeModalCross"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                    <span class="material-icons text-sm">close</span>
+                </button>
+                <div
+                    class="w-14 h-14 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-500 mx-auto flex items-center justify-center mb-4 mt-2">
+                    <span class="material-icons text-3xl">update</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">系統確認</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">目前紀錄時間</p>
+
+                <div class="bg-gray-50 dark:bg-gray-900/50 rounded-lg py-3 mb-4">
+                    <div class="text-3xl font-mono font-bold text-gray-800 dark:text-gray-100" id="clockConfirmTime">
+                        00:00:00</div>
+                </div>
+
+                <p class="text-gray-700 dark:text-gray-300 font-medium mb-6" id="clockConfirmText">確定要進行打卡嗎？</p>
+
+                <div class="flex space-x-3">
+                    <button id="cancelSubmitBtn"
+                        class="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl font-medium transition-colors">取消</button>
+                    <button id="confirmSubmitBtn"
+                        class="flex-1 py-2.5 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium shadow-md shadow-blue-500/30 transition-colors">確定送出</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col space-y-3 pointer-events-none" id="toastContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ================= 2. 即時時鐘邏輯 =================
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                document.getElementById('live-clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                const date = now.getDate();
+                const days = ['日', '一', '二', '三', '四', '五', '六'];
+                const day = days[now.getDay()];
+
+                document.getElementById('live-date').innerHTML = `<span class="material-icons text-[16px] mr-1.5 opacity-80">calendar_today</span>${year}年 ${month}月 ${date}日 星期${day}`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // ================= 3. 打卡 Modal 與 Toast 邏輯 =================
+            let currentAction = '';
+            const modal = document.getElementById('clockModal');
+            const modalContent = document.getElementById('clockModalContent');
+            const clockConfirmTime = document.getElementById('clockConfirmTime');
+            const clockConfirmText = document.getElementById('clockConfirmText');
+
+            function openModal(action) {
+                currentAction = action;
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                clockConfirmTime.textContent = `${hours}:${minutes}:${seconds}`;
+                clockConfirmText.innerHTML = `確定要進行<span class="${action === 'in' ? 'text-blue-500' : 'text-orange-500'} font-bold mx-1">「${action === 'in' ? '上班' : '下班'}打卡」</span>嗎？`;
+
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function closeModal() {
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+
+            document.getElementById('clockInBtn').addEventListener('click', () => openModal('in'));
+            document.getElementById('clockOutBtn').addEventListener('click', () => openModal('out'));
+            document.getElementById('cancelSubmitBtn').addEventListener('click', closeModal);
+            document.getElementById('closeModalCross').addEventListener('click', closeModal);
+
+            document.getElementById('confirmSubmitBtn').addEventListener('click', () => {
+                const actionName = currentAction === 'in' ? '上班' : '下班';
+                showToast('打卡成功', `您已於剛剛成功完成 ${actionName}打卡！`, 'success');
+                closeModal();
+
+                const statusDot = document.getElementById('status-dot');
+                const statusText = document.getElementById('status-text');
+                const statusContainer = document.getElementById('status-container');
+                const now = new Date();
+                const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+                if (currentAction === 'in') {
+                    document.getElementById('in-time-record').innerHTML = `<span class="text-green-300">今日 ${timeStr} 已記錄</span>`;
+                    statusContainer.className = "flex items-center bg-green-100 dark:bg-green-900/30 px-3 py-1.5 rounded-full text-green-700 dark:text-green-400 text-sm font-medium border border-green-200 dark:border-green-800 transition-colors duration-300";
+                    statusDot.className = "w-2.5 h-2.5 rounded-full bg-green-500 mr-2 animate-pulse-dot";
+                    statusText.textContent = "已上班打卡";
+                } else {
+                    document.getElementById('out-time-record').innerHTML = `<span class="text-blue-500 dark:text-blue-400">今日 ${timeStr} 已記錄</span>`;
+                    statusContainer.className = "flex items-center bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full text-gray-700 dark:text-gray-400 text-sm font-medium border border-gray-200 dark:border-gray-700 transition-colors duration-300";
+                    statusDot.className = "w-2.5 h-2.5 rounded-full bg-gray-400 mr-2";
+                    statusText.textContent = "已下班打卡";
+                }
+            });
+
+            // ================= 4. Toast 通知產生器 =================
+            function showToast(title, message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+
+                const borderColor = type === 'success' ? 'border-green-500' : 'border-blue-500';
+                const iconColor = type === 'success' ? 'text-green-500' : 'text-blue-500';
+                const iconName = type === 'success' ? 'check_circle' : 'info';
+
+                toast.className = `bg-white dark:bg-gray-800 border-l-4 ${borderColor} rounded-lg shadow-xl p-4 w-80 transform transition-all duration-300 translate-x-full opacity-0 flex items-start pointer-events-auto border-t border-r border-b border-gray-100 dark:border-gray-700`;
+
+                toast.innerHTML = `
+                    <span class="material-icons ${iconColor} mr-3 text-2xl mt-0.5">${iconName}</span>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white">${title}</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${message}</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 focus:outline-none ml-2" onclick="this.parentElement.remove()">
+                        <span class="material-icons text-[16px]">close</span>
+                    </button>
+                `;
+
+                container.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-x-full', 'opacity-0');
+                }, 10);
+
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full', 'opacity-0');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 
 </html>
