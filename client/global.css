@@ -1,4 +1,4 @@
- /* 字的顏色/自型 */
+ /* 字的顏色/字型 */
  :root {
      --pure-white: #FFFFFF;
      --soft-grey: #FBFBFB;
@@ -18,7 +18,7 @@
  body {
      font-family: var(--font-sans);
      color: var(--text-main);
-     background-color: var(--pure-white);
+     background-color: #faf7f2;
      -webkit-font-smoothing: antialiased;
      overflow-x: hidden;
  }
@@ -30,7 +30,7 @@
  }
 
 
- /* ─── NAVBAR ─── */
+ /* ─── Navbor ─── */
  .navbar {
      background-color: rgba(255, 255, 255, 0.87) !important;
      backdrop-filter: blur(12px);
@@ -104,6 +104,7 @@
      align-items: center;
      gap: 20px;
  }
+
 
  /* 目前頁面金線標示 */
  .nav-link-item.active-page {
@@ -220,110 +221,51 @@
      }
  }
 
- /* ─── FOOTER ─── */
- .site-footer {
-     border-top: 1px solid var(--border-grey);
+ /* ───AGE WRAP ─── */
+ .page-wrap {
+     padding-top: 60px;
+     min-height: 100vh;
+ }
+
+ .page-hero {
      background: white;
-     padding: 64px 40px 24px;
+     border-bottom: 1px solid var(--border-grey);
+     padding: 64px 0 56px;
+     text-align: center;
  }
 
- .footer-inner {
-     max-width: 1400px;
-     margin: 0 auto;
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: space-between;
-     align-items: flex-start;
-     gap: 32px;
- }
-
- .footer-brand {
-     max-width: 300px;
-     text-align: left;
- }
-
- .footer-brand-name {
-     font-size: 18px;
-     font-weight: 300;
-     letter-spacing: 0.4em;
-     color: var(--text-main);
-     display: block;
- }
-
- .footer-brand-sub {
-     font-size: 8px;
-     letter-spacing: 0.4em;
-     color: var(--accent-gold);
-     text-transform: uppercase;
-     margin-top: 6px;
-     display: block;
- }
-
- .footer-desc {
-     font-size: 13px;
-     font-weight: 300;
-     line-height: 1.8;
-     color: var(--text-muted);
-     margin-top: 32px;
- }
-
- .footer-icons {
-     display: flex;
-     gap: 16px;
-     margin-top: 32px;
- }
-
- .footer-icon-btn {
-     width: 36px;
-     height: 36px;
-     border-radius: 50%;
-     border: 1px solid var(--border-grey);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     color: var(--text-muted);
-     text-decoration: none;
-     transition: color 0.3s;
- }
-
- .footer-icon-btn:hover {
-     color: var(--accent-gold);
- }
-
- .footer-nav-cols {
-     display: flex;
-     gap: 96px;
- }
-
- .footer-nav-col {
-     display: flex;
-     flex-direction: column;
- }
-
- .footer-nav-title {
+ .page-hero-eyebrow {
      font-size: 10px;
-     font-weight: 500;
-     letter-spacing: 0.3em;
-     text-transform: uppercase;
-     color: var(--text-main);
-     margin-bottom: 32px;
- }
-
- .footer-nav-link {
-     font-size: 12px;
-     font-weight: 300;
-     letter-spacing: 0.15em;
-     color: var(--text-muted);
-     text-decoration: none;
-     transition: color 0.3s;
-     margin-bottom: 20px;
-     display: block;
- }
-
- .footer-nav-link:hover {
+     letter-spacing: 0.5em;
      color: var(--accent-gold);
+     text-transform: uppercase;
+     font-weight: 500;
  }
 
+ .page-hero-title {
+     font-family: var(--font-serif);
+     font-size: clamp(28px, 4vw, 44px);
+     font-weight: 300;
+     letter-spacing: 0.02em;
+     margin-top: 16px;
+ }
+
+ .page-hero-line {
+     width: 64px;
+     height: 1px;
+     background: var(--accent-gold);
+     margin: 24px auto 0;
+     opacity: 0.5;
+ }
+
+ .page-hero-sub {
+     font-size: 12px;
+     color: var(--text-muted);
+     letter-spacing: 0.2em;
+     margin-top: 20px;
+ }
+
+ /* ─── FOOTER ─── */
  .footer-bottom {
      width: fit-content;
      margin: 24px auto 0;
