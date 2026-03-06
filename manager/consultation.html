@@ -173,44 +173,75 @@
             <div class="flex-1 overflow-auto p-8">
                 <div class="w-full space-y-8">
                     <section>
-                        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">新進預約諮詢</h2>
-                        <div
-                            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden max-w-xl">
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">新進預約</h2>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden max-w-3xl">
                             <div class="p-6">
                                 <div class="flex justify-between items-start mb-4">
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold tracking-wide bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300">
                                         待指派顧問
                                     </span>
-                                    <span class="text-sm text-gray-500 dark:text-gray-400">預約時間：03-03 14:20</span>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium flex items-center">
+                                        <span class="material-icons text-[16px] mr-1">schedule</span> 預約時間：03-03 14:20
+                                    </span>
                                 </div>
-                                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">新郎：陳志明 &amp; 新娘：林春嬌
-                                </h3>
-                                <hr class="my-4 border-gray-200 dark:border-gray-700" />
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span
-                                            class="text-gray-500 dark:text-gray-400 w-16 inline-block">方案：</span>美式戶外婚禮包套
-                                    </p>
-                                    <p><span class="text-gray-500 dark:text-gray-400 w-16 inline-block">風格：</span>清新森系
-                                    </p>
-                                    <p><span
-                                            class="text-gray-500 dark:text-gray-400 w-16 inline-block">選配：</span>婚禮樂團、空拍紀錄
-                                    </p>
+                                
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">新郎：陳志明 &amp; 新娘：林春嬌</h3>
+                                <hr class="my-5 border-gray-100 dark:border-gray-700" />
+                                
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                    <div class="flex flex-col bg-gray-50 dark:bg-gray-900/30 p-3 rounded-lg border border-gray-100 dark:border-gray-700/50">
+                                        <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center mb-1 font-medium"><span class="material-icons text-[14px] mr-1">calendar_month</span>預計婚期</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">2026-10-15</span>
+                                    </div>
+                                    <div class="flex flex-col bg-gray-50 dark:bg-gray-900/30 p-3 rounded-lg border border-gray-100 dark:border-gray-700/50">
+                                        <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center mb-1 font-medium"><span class="material-icons text-[14px] mr-1">group</span>賓客數</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">約 150 人</span>
+                                    </div>
+                                    <div class="flex flex-col bg-gray-50 dark:bg-gray-900/30 p-3 rounded-lg border border-gray-100 dark:border-gray-700/50">
+                                        <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center mb-1 font-medium"><span class="material-icons text-[14px] mr-1">location_on</span>婚禮地點</span>
+                                        <span class="text-sm font-bold text-gray-800 dark:text-gray-200">台北市</span>
+                                    </div>
+                                    <div class="flex flex-col bg-gray-50 dark:bg-gray-900/30 p-3 rounded-lg border border-gray-100 dark:border-gray-700/50">
+                                        <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center mb-1 font-medium"><span class="material-icons text-[14px] mr-1">account_balance_wallet</span>預算範圍</span>
+                                        <span class="text-sm font-bold text-blue-600 dark:text-blue-400">60萬 - 80萬</span>
+                                    </div>
                                 </div>
-                                <div class="mt-4 bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
-                                    <p class="text-sm font-medium text-gray-900 dark:text-white mb-1">顧客備註：</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">希望能有草地證婚儀式...</p>
+
+                                <div class="space-y-4 mb-6">
+                                    <div class="flex items-start">
+                                        <span class="text-gray-500 dark:text-gray-400 w-20 text-sm flex-shrink-0 pt-0.5 font-medium">需求服務：</span>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2.5 py-1 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 text-xs rounded-md border border-blue-100 dark:border-blue-800/50 font-medium">全方位統籌與設計</span>
+                                            <span class="px-2.5 py-1 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 text-xs rounded-md border border-blue-100 dark:border-blue-800/50 font-medium">婚禮當日場控</span>
+                                            <span class="px-2.5 py-1 bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 text-xs rounded-md border border-purple-100 dark:border-purple-800/50 font-medium">婚禮樂團</span>
+                                            <span class="px-2.5 py-1 bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 text-xs rounded-md border border-purple-100 dark:border-purple-800/50 font-medium">空拍紀錄</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="text-gray-500 dark:text-gray-400 w-20 text-sm flex-shrink-0 pt-0.5 font-medium">偏好設定：</span>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs rounded-md font-medium"><span class="material-icons text-[12px] align-text-bottom mr-1 text-pink-500">eco</span>浪漫花園</span>
+                                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs rounded-md font-medium">戶外花園 (場地)</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mt-6 flex space-x-3">
+
+                                <div class="bg-orange-50/50 dark:bg-gray-700/50 p-4 rounded-xl border border-orange-100 dark:border-gray-600">
+                                    <p class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-1.5 flex items-center">
+                                        <span class="material-icons text-[16px] mr-1.5 text-orange-500">notes</span>顧客備註
+                                    </p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed ml-5">希望能有草地證婚儀式，人數約 150 人，預算在 60-80 萬之間。如果可以的話，想先看看之前辦在陽明山的案例。</p>
+                                </div>
+
+                                <div class="mt-8 flex space-x-3">
                                     <button
-                                        class="flex-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors flex items-center justify-center"
+                                        class="flex-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-2.5 px-4 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors flex items-center justify-center shadow-sm"
                                         onclick="toggleModal('modal-modify')">
-                                        <span class="material-icons text-sm mr-2">edit</span>
-                                        更改
+                                        <span class="material-icons text-sm mr-2">edit</span> 更改諮詢細項
                                     </button>
                                     <button
-                                        class="flex-1 bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
-                                        接案處理
+                                        class="flex-1 bg-primary text-white py-2.5 px-4 rounded-lg font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors shadow-sm flex items-center justify-center">
+                                        <span class="material-icons text-sm mr-2">check_circle</span> 接案處理
                                     </button>
                                 </div>
                             </div>
@@ -250,9 +281,10 @@
 
     <div class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
         id="modal-modify">
-        <div class="relative w-full max-w-lg mx-auto my-6">
+        <div class="relative w-full max-w-4xl mx-auto my-6">
             <div
                 class="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+
                 <div
                     class="flex items-start justify-between p-6 border-b border-solid border-gray-200 dark:border-gray-700 rounded-t">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -264,111 +296,215 @@
                         <span class="material-icons">close</span>
                     </button>
                 </div>
-                <div class="relative p-6 flex-auto space-y-6">
+
+                <div class="relative p-6 flex-auto space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
+
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">婚禮方案</label>
-                        <select
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
-                            <option selected="">美式戶外婚禮包套</option>
-                            <option>經典室內婚禮包套</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">偏好風格</label>
-                        <div class="flex rounded-md shadow-sm">
-                            <button
-                                class="relative flex-1 inline-flex items-center justify-center px-4 py-2 text-sm font-medium bg-primary text-white border border-primary rounded-l-md hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                                type="button">
-                                清新森系
-                            </button>
-                            <button
-                                class="relative flex-1 inline-flex items-center justify-center px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-primary border-t border-b border-primary hover:bg-gray-50 dark:hover:bg-gray-600 focus:z-10 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                                type="button">
-                                奢華金迷
-                            </button>
-                            <button
-                                class="relative flex-1 inline-flex items-center justify-center px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-primary border border-primary rounded-r-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:z-10 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                                type="button">
-                                美式簡約
-                            </button>
+                        <h4 class="text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                            <span class="material-icons text-primary mr-2 text-xl">event</span> 大日子的細節
+                        </h4>
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 dark:bg-gray-900/50 p-5 rounded-xl border border-gray-100 dark:border-gray-700">
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">預計婚期</label>
+                                <input type="date" value="2026-10-15"
+                                    class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">預計賓客數</label>
+                                <input type="number" value="150"
+                                    class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">婚禮地點 /
+                                    城市</label>
+                                <input type="text" value="台北市" placeholder="例如：義大利托斯卡尼"
+                                    class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">偏好場地類型</label>
+                                <select
+                                    class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                                    <option>豪華宴會廳</option>
+                                    <option selected>戶外花園</option>
+                                    <option>海濱沙灘</option>
+                                    <option>歷史莊園</option>
+                                    <option>現代工業風</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">選配附加服務</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <label for="addon-1"
-                                class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
-                                <div class="flex items-center h-5">
-                                    <input checked=""
-                                        class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
-                                        id="addon-1" name="addons" type="checkbox" />
-                                </div>
-                                <div class="ml-3 text-sm flex-1">
-                                    <span class="font-medium text-gray-700 dark:text-gray-300 select-none">婚禮樂團</span>
-                                </div>
-                            </label>
-
-                            <label for="addon-2"
-                                class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
-                                <div class="flex items-center h-5">
-                                    <input checked=""
-                                        class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
-                                        id="addon-2" name="addons" type="checkbox" />
-                                </div>
-                                <div class="ml-3 text-sm flex-1">
-                                    <span class="font-medium text-gray-700 dark:text-gray-300 select-none">空拍紀錄</span>
+                        <h4 class="text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                            <span class="material-icons text-primary mr-2 text-xl">auto_awesome</span> 婚禮風格與氛圍
+                        </h4>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                            <label class="group cursor-pointer">
+                                <input class="hidden peer" name="vibe" type="radio" value="經典優雅" />
+                                <div
+                                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-gray-900/50 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-primary dark:peer-checked:text-blue-400 transition-all hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span class="material-symbols-outlined text-3xl">diamond</span>
+                                    <span class="text-xs font-bold text-center">經典優雅</span>
                                 </div>
                             </label>
-
-                            <label for="addon-3"
-                                class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
-                                <div class="flex items-center h-5">
-                                    <input
-                                        class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
-                                        id="addon-3" name="addons" type="checkbox" />
-                                </div>
-                                <div class="ml-3 text-sm flex-1">
-                                    <span class="font-medium text-gray-700 dark:text-gray-300 select-none">禮車租借</span>
+                            <label class="group cursor-pointer">
+                                <input class="hidden peer" name="vibe" type="radio" value="奢華璀璨" />
+                                <div
+                                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-gray-900/50 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-primary dark:peer-checked:text-blue-400 transition-all hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                                    <span class="text-xs font-bold text-center">奢華璀璨</span>
                                 </div>
                             </label>
-
-                            <label for="addon-4"
-                                class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
-                                <div class="flex items-center h-5">
-                                    <input
-                                        class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
-                                        id="addon-4" name="addons" type="checkbox" />
+                            <label class="group cursor-pointer">
+                                <input class="hidden peer" name="vibe" type="radio" value="浪漫花園" checked />
+                                <div
+                                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-gray-900/50 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-primary dark:peer-checked:text-blue-400 transition-all hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span class="material-symbols-outlined text-3xl">eco</span>
+                                    <span class="text-xs font-bold text-center">浪漫花園</span>
                                 </div>
-                                <div class="ml-3 text-sm flex-1">
-                                    <span class="font-medium text-gray-700 dark:text-gray-300 select-none">花藝升級</span>
+                            </label>
+                            <label class="group cursor-pointer">
+                                <input class="hidden peer" name="vibe" type="radio" value="極簡美學" />
+                                <div
+                                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-gray-900/50 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-primary dark:peer-checked:text-blue-400 transition-all hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span class="material-symbols-outlined text-3xl">square_foot</span>
+                                    <span class="text-xs font-bold text-center">極簡美學</span>
+                                </div>
+                            </label>
+                            <label class="group cursor-pointer">
+                                <input class="hidden peer" name="vibe" type="radio" value="波西米亞風" />
+                                <div
+                                    class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-gray-900/50 peer-checked:border-primary peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-primary dark:peer-checked:text-blue-400 transition-all hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span class="material-symbols-outlined text-3xl">waves</span>
+                                    <span class="text-xs font-bold text-center">波西米亞風</span>
                                 </div>
                             </label>
                         </div>
                     </div>
+
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">顧客備註內容</label>
-                        <div class="mt-1">
-                            <textarea
-                                class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md border-2 border-blue-200 p-3 bg-blue-50/50"
-                                rows="4">希望能有草地證婚儀式，人數約 150 人，預算在 60-80 萬之間。</textarea>
+                        <h4 class="text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                            <span class="material-icons text-primary mr-2 text-xl">shopping_bag</span> 服務項目與預算
+                        </h4>
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-50 dark:bg-gray-900/50 p-5 rounded-xl border border-gray-100 dark:border-gray-700">
+                            <div class="space-y-3">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">所需服務
+                                    (可複選)</label>
+                                <div class="grid grid-cols-1 gap-2">
+                                    <label class="relative flex items-center p-3 border border-blue-200 dark:border-blue-800/50 rounded-lg bg-blue-50/50 dark:bg-blue-900/20 cursor-not-allowed transition-colors">
+                                        <input checked disabled class="h-4 w-4 text-blue-500 border-gray-300 rounded cursor-not-allowed opacity-80" type="checkbox"/>
+                                        <span class="ml-3 text-sm font-bold text-blue-700 dark:text-blue-300 select-none flex items-center">
+                                            全方位統籌與設計 
+                                            <span class="text-xs text-blue-500/80 ml-2 font-normal flex items-center">
+                                                <span class="material-icons text-[12px] mr-0.5">lock</span>必選
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors">
+                                        <input
+                                            class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
+                                            type="checkbox" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">部分統籌規劃</span>
+                                    </label>
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors">
+                                        <input checked
+                                            class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
+                                            type="checkbox" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">婚禮當日場控</span>
+                                    </label>
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors">
+                                        <input
+                                            class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded cursor-pointer"
+                                            type="checkbox" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">場地勘察與廠商管理</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">預算範圍
+                                    (單選)</label>
+                                <div class="grid grid-cols-1 gap-2">
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors group">
+                                        <input
+                                            class="text-primary focus:ring-primary h-4 w-4 border-gray-300 cursor-pointer"
+                                            name="budget" type="radio" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">50萬
+                                            以下</span>
+                                    </label>
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors group">
+                                        <input checked
+                                            class="text-primary focus:ring-primary h-4 w-4 border-gray-300 cursor-pointer"
+                                            name="budget" type="radio" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">60萬
+                                            - 80萬</span>
+                                    </label>
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors group">
+                                        <input
+                                            class="text-primary focus:ring-primary h-4 w-4 border-gray-300 cursor-pointer"
+                                            name="budget" type="radio" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">80萬
+                                            - 120萬</span>
+                                    </label>
+                                    <label
+                                        class="relative flex items-center p-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 cursor-pointer hover:border-primary transition-colors group">
+                                        <input
+                                            class="text-primary focus:ring-primary h-4 w-4 border-gray-300 cursor-pointer"
+                                            name="budget" type="radio" />
+                                        <span
+                                            class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300 select-none">120萬
+                                            以上</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div>
+                        <h4 class="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center">
+                            <span class="material-icons text-primary mr-2 text-xl">notes</span> 更多需求與細節
+                        </h4>
+                        <textarea
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg p-4 resize-none bg-white dark:bg-gray-900"
+                            rows="4"
+                            placeholder="請與我們分享您的夢想、靈感或任何特殊要求...">希望能有草地證婚儀式，人數約 150 人，預算在 60-80 萬之間。</textarea>
+                    </div>
+
                 </div>
+
                 <div
-                    class="flex items-center justify-end p-6 border-t border-solid border-gray-200 dark:border-gray-700 rounded-b space-x-3">
+                    class="flex items-center justify-end p-6 border-t border-solid border-gray-200 dark:border-gray-700 rounded-b space-x-3 bg-gray-50/50 dark:bg-gray-800">
                     <button
-                        class="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                        class="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                         type="button" onclick="toggleModal('modal-modify')">
-                        取消
+                        取消修改
                     </button>
                     <button
-                        class="bg-primary hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors shadow-sm"
+                        class="bg-primary hover:bg-blue-600 text-white px-7 py-2.5 rounded-lg font-medium transition-colors shadow-sm flex items-center"
                         type="button" onclick="toggleModal('modal-modify')">
-                        儲存修改
+                        <span class="material-icons text-sm mr-2">save</span>
+                        儲存資料
                     </button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
     </div>
