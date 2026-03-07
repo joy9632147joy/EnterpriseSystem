@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -66,7 +66,13 @@
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">主頁</div>
             </a>
             <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="consultation.html">
+                href="consultation_pm.html">
+                <span
+                    class="material-icons text-[#C5A059] mr-3 group-hover:scale-110 transition-transform">support_agent</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">諮詢單管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="book.html">
                 <span
                     class="material-icons text-orange-400 mr-3 group-hover:scale-110 transition-transform">calendar_month</span>
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
@@ -176,19 +182,17 @@
                 <!-- Page Header -->
                 <div class="flex items-center justify-between">
                     <div>
-                        <h2 class="text-2xl font-bold tracking-tight"  >部門任務看板</h2>
-                        <p class="text-slate-500 text-sm mt-1"  >追蹤所有進行中及已完成的部門任務</p>
+                        <h2 class="text-2xl font-bold tracking-tight">部門任務看板</h2>
+                        <p class="text-slate-500 text-sm mt-1">追蹤所有進行中及已完成的部門任務</p>
                     </div>
                     <div class="flex gap-2">
                         <button
-                            class="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-slate-900 shadow-sm transition-colors"
-                             >
+                            class="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-slate-900 shadow-sm transition-colors">
                             匯出報表
                         </button>
                         <button
-                            class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-medium shadow-sm flex items-center gap-2"
-                             >
-                            <span class="material-symbols-outlined text-sm"  >filter_list</span>
+                            class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-medium shadow-sm flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">filter_list</span>
                             篩選條件
                         </button>
                     </div>
@@ -196,8 +200,8 @@
                 <!-- Ongoing Projects Section -->
                 <section>
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold"  >場地組 - 進行中任務 (4)</h3>
-                        <a class="text-primary text-sm font-semibold hover:underline" href="#"  >查看全部</a>
+                        <h3 class="text-lg font-bold">場地組 - 進行中任務 (4)</h3>
+                        <a class="text-primary text-sm font-semibold hover:underline" href="#">查看全部</a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         <!-- Card 1 -->
@@ -205,27 +209,25 @@
                             class="bg-white dark:bg-slate-900 border rounded-xl p-5 shadow-sm flex flex-col h-full border-2 border-red-500">
                             <div class="flex justify-between items-start mb-3">
                                 <span
-                                    class="px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold rounded"
-                                     >緊急</span>
+                                    class="px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold rounded">緊急</span>
                                 <div class="flex items-center -space-x-2">
                                     <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHmowoODGONqXrZqzMpg5ePK8F0QUxfEzVrViE3qnNFc6d1zCE3EKV4HnP50qIESLOu_GDB_aS3A7gkKsANlsORRtDtgY9bgVkWseIdLcPPGHlHDYALDqyNh9OECNfzuHTCa7FAeg2H7ixS1CA3USjhudz5pJdsm0xll5S6DfqhwDvG-Y1gxO3Ty3h8trSDKct-VeQ15yeHE1-SG8JteU2nMuLmfN7cRCJoCpnkrVkhtOCHiYCv2HDkscBJxjld_eP3ubNxlX_SSw"
-                                          />
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHmowoODGONqXrZqzMpg5ePK8F0QUxfEzVrViE3qnNFc6d1zCE3EKV4HnP50qIESLOu_GDB_aS3A7gkKsANlsORRtDtgY9bgVkWseIdLcPPGHlHDYALDqyNh9OECNfzuHTCa7FAeg2H7ixS1CA3USjhudz5pJdsm0xll5S6DfqhwDvG-Y1gxO3Ty3h8trSDKct-VeQ15yeHE1-SG8JteU2nMuLmfN7cRCJoCpnkrVkhtOCHiYCv2HDkscBJxjld_eP3ubNxlX_SSw" />
                                     <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWosNZjSX31shkm_GqEgwm-QzJchsgZR3Icp2Ob3nnBEHfJBzGsRZqw-ocbIzfc6jwV-ojiWwhRlUeORVHFk1gtSpiGjSnRaIoRlF80uCJjO0HoPuf2gUC3A21UmIkLJCbaaCMmzNhd2ZJ-qHvTytcRsEMD5G1NUKhkpryx2-mT8D1CpBOJrlONa16E0LBCz2CJQJa3BF9h95BJspZcL_NIwsh6VTgFKAdTByy1NQSA7XT2khcsFnLohuhoQFdquCBRZrKJN1Zol4"
-                                          />
-                                    <div class="size-6 rounded-full border border-white dark:border-slate-900 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[8px] font-bold"
-                                         >+2</div>
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWosNZjSX31shkm_GqEgwm-QzJchsgZR3Icp2Ob3nnBEHfJBzGsRZqw-ocbIzfc6jwV-ojiWwhRlUeORVHFk1gtSpiGjSnRaIoRlF80uCJjO0HoPuf2gUC3A21UmIkLJCbaaCMmzNhd2ZJ-qHvTytcRsEMD5G1NUKhkpryx2-mT8D1CpBOJrlONa16E0LBCz2CJQJa3BF9h95BJspZcL_NIwsh6VTgFKAdTByy1NQSA7XT2khcsFnLohuhoQFdquCBRZrKJN1Zol4" />
+                                    <div
+                                        class="size-6 rounded-full border border-white dark:border-slate-900 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[8px] font-bold">
+                                        +2</div>
                                 </div>
                             </div>
-                            <h4 class="text-base font-bold mb-1"  >美式戶外場地佈置 - 陽明山莊</h4>
-                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-4"  >
-                                <span class="material-symbols-outlined text-sm"  >person</span> 王小明 &amp; 李美玲
+                            <h4 class="text-base font-bold mb-1">美式戶外場地佈置 - 陽明山莊</h4>
+                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-4">
+                                <span class="material-symbols-outlined text-sm">person</span> 王小明 &amp; 李美玲
                             </div>
                             <div class="flex-1 mb-6">
-                                <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2"  >
+                                <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
                                     任務詳情</h5>
-                                <p class="text-xs text-slate-500 leading-relaxed"  >場地佈置確認、花藝清單校對、燈光音響租借聯繫。</p>
+                                <p class="text-xs text-slate-500 leading-relaxed">場地佈置確認、花藝清單校對、燈光音響租借聯繫。</p>
                             </div>
                             <div class="flex gap-2 w-full mt-auto relative">
                                 <div class="relative flex-1 group">
@@ -248,21 +250,19 @@
                             <div class="flex justify-end items-start mb-3">
                                 <div class="flex items-center -space-x-2">
                                     <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMlfrO3AE2DEkzlkG2Tci6TZ2pigeuKW1G41xbHVymmbu-U26iL3hpMgWZQHFQxEDc3iKda9FDYiThr_G_EsehVeEp3i51yguh5JhoVm6WUPJbDioet_1XznnRdCFMOTHqtp-lJiIj5yo44CjqFPbW88FqLRAg2doeD2bcbTANCPVgnR-tCerxftMVaSAnuzaQMIwig4LNarDnKmWZCqFTyPebpukshFT9IRIer2RjXhY0HPbLxMb2Bcr2d-MeOSzUNyT79bEcY-o"
-                                          />
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMlfrO3AE2DEkzlkG2Tci6TZ2pigeuKW1G41xbHVymmbu-U26iL3hpMgWZQHFQxEDc3iKda9FDYiThr_G_EsehVeEp3i51yguh5JhoVm6WUPJbDioet_1XznnRdCFMOTHqtp-lJiIj5yo44CjqFPbW88FqLRAg2doeD2bcbTANCPVgnR-tCerxftMVaSAnuzaQMIwig4LNarDnKmWZCqFTyPebpukshFT9IRIer2RjXhY0HPbLxMb2Bcr2d-MeOSzUNyT79bEcY-o" />
                                     <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6iMPCUGq4fCZ7d2eDO9U4Q00-DmUcxYXJ57TVWa_KGV26U99Am42O_PQx8hcAQrNUWE1jlm7kIBT-ZzsChsTOSNr44VwHbxXqKTsHeeSkYznEJ-bJwM5QUtgSW01_q9ON8G2nL4UeG854ZA-mujopZwfBzeGLZ0Ia_hkCx5CXKZnh2P7Fdhtg90-3WZlyK_1nIgTCQkDh4d8x3dXV4qnlRQM8ql7dja4EbjhsUGRsGKgYty6sw889EYEDRVYTSAscHEZtZmZRABc"
-                                          />
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6iMPCUGq4fCZ7d2eDO9U4Q00-DmUcxYXJ57TVWa_KGV26U99Am42O_PQx8hcAQrNUWE1jlm7kIBT-ZzsChsTOSNr44VwHbxXqKTsHeeSkYznEJ-bJwM5QUtgSW01_q9ON8G2nL4UeG854ZA-mujopZwfBzeGLZ0Ia_hkCx5CXKZnh2P7Fdhtg90-3WZlyK_1nIgTCQkDh4d8x3dXV4qnlRQM8ql7dja4EbjhsUGRsGKgYty6sw889EYEDRVYTSAscHEZtZmZRABc" />
                                 </div>
                             </div>
-                            <h4 class="text-base font-bold mb-1"  >飯店宴客流程規劃 - 台北君悅</h4>
-                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-4"  >
-                                <span class="material-symbols-outlined text-sm"  >person</span> 張偉強 &amp; 林雅婷
+                            <h4 class="text-base font-bold mb-1">飯店宴客流程規劃 - 台北君悅</h4>
+                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-4">
+                                <span class="material-symbols-outlined text-sm">person</span> 張偉強 &amp; 林雅婷
                             </div>
                             <div class="flex-1 mb-6">
-                                <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2"  >
+                                <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
                                     任務詳情</h5>
-                                <p class="text-xs text-slate-500 leading-relaxed"  >婚宴流程表審核、菜單確認、司儀腳本對稿。</p>
+                                <p class="text-xs text-slate-500 leading-relaxed">婚宴流程表審核、菜單確認、司儀腳本對稿。</p>
                             </div>
                             <div class="flex gap-2 w-full mt-auto relative">
                                 <div class="relative flex-1 group">
@@ -296,7 +296,7 @@
                             </div>
                             <h4 class="text-base font-bold mb-1">中式婚禮傳統禮俗諮詢</h4>
                             <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
-                                <span class="material-symbols-outlined text-sm">person</span> 企劃部 - 陳大文 &amp; 禮儀組 - 趙小蘭
+                                <span class="material-symbols-outlined text-sm">person</span> 陳大文 &amp;趙小蘭
                             </div>
                             <!-- Progress Bar -->
                             <div class="flex-1 mb-6">
@@ -323,7 +323,7 @@
                 <!-- Completed Projects Table -->
                 <section>
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold"  >部門已完成任務紀錄</h3>
+                        <h3 class="text-lg font-bold">部門已完成任務紀錄</h3>
                     </div>
                     <div
                         class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
@@ -331,54 +331,53 @@
                             <thead
                                 class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs font-bold uppercase tracking-wider">
                                 <tr>
-                                    <th class="px-6 py-4"  >婚禮名稱</th>
-                                    <th class="px-6 py-4"  >客戶名稱</th>
-                                    <th class="px-6 py-4"  >日期</th>
-                                    <th class="px-6 py-4"  >狀態</th>
-                                    <th class="px-6 py-4 text-right"  >操作</th>
+                                    <th class="px-6 py-4">婚禮名稱</th>
+                                    <th class="px-6 py-4">客戶名稱</th>
+                                    <th class="px-6 py-4">日期</th>
+                                    <th class="px-6 py-4">狀態</th>
+                                    <th class="px-6 py-4 text-right">操作</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
-                                    <td class="px-6 py-4 font-semibold"  >森林系主題婚禮 - 台中新社</td>
-                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400"  >許志榮 &amp; 陳思妤</td>
-                                    <td class="px-6 py-4 text-slate-500"  >2024.03.15</td>
-                                    <td class="px-6 py-4"  ><span
+                                    <td class="px-6 py-4 font-semibold">森林系主題婚禮 - 台中新社</td>
+                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">許志榮 &amp; 陳思妤</td>
+                                    <td class="px-6 py-4 text-slate-500">2024.03.15</td>
+                                    <td class="px-6 py-4"><span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
                                     </td>
-                                    <td class="px-6 py-4 text-right"  >
-                                        <button class="text-slate-400 hover:text-primary transition-colors"  >
-                                            <span class="material-symbols-outlined"  >visibility</span>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined">visibility</span>
                                         </button>
                                     </td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
-                                    <td class="px-6 py-4 font-semibold"  >精緻小型午茶派對 - 故宮晶華</td>
-                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400"  >廖健宏 &amp; 黃曉芬</td>
-                                    <td class="px-6 py-4 text-slate-500"  >2024.02.28</td>
-                                    <td class="px-6 py-4"  ><span
+                                    <td class="px-6 py-4 font-semibold">精緻小型午茶派對 - 故宮晶華</td>
+                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">廖健宏 &amp; 黃曉芬</td>
+                                    <td class="px-6 py-4 text-slate-500">2024.02.28</td>
+                                    <td class="px-6 py-4"><span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
                                     </td>
-                                    <td class="px-6 py-4 text-right"  >
-                                        <button class="text-slate-400 hover:text-primary transition-colors"  >
-                                            <span class="material-symbols-outlined"  >visibility</span>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined">visibility</span>
                                         </button>
                                     </td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
-                                    <td class="px-6 py-4 font-semibold"  >古典莊園世紀婚禮 - 高雄漢來</td>
-                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400"  >林書豪 &amp; 吳嘉嘉</td>
-                                    <td class="px-6 py-4 text-slate-500"  >2024.01.10</td>
-                                    <td class="px-6 py-4"  >
+                                    <td class="px-6 py-4 font-semibold">古典莊園世紀婚禮 - 高雄漢來</td>
+                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">林書豪 &amp; 吳嘉嘉</td>
+                                    <td class="px-6 py-4 text-slate-500">2024.01.10</td>
+                                    <td class="px-6 py-4">
                                         <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                                             >
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
                                             已圓滿
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 text-right"  >
-                                        <button class="text-slate-400 hover:text-primary transition-colors"  >
-                                            <span class="material-symbols-outlined"  >visibility</span>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined">visibility</span>
                                         </button>
                                     </td>
                                 </tr>
@@ -386,19 +385,16 @@
                         </table>
                         <div
                             class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                            <p class="text-xs text-slate-500"  >顯示 3 筆，共 42 筆紀錄</p>
+                            <p class="text-xs text-slate-500">顯示 3 筆，共 42 筆紀錄</p>
                             <div class="flex gap-2">
                                 <button
                                     class="p-1 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-400 hover:text-primary disabled:opacity-50"
-                                    disabled=""  >
-                                    <span class="material-symbols-outlined text-base leading-none"
-                                         >chevron_left</span>
+                                    disabled="">
+                                    <span class="material-symbols-outlined text-base leading-none">chevron_left</span>
                                 </button>
                                 <button
-                                    class="p-1 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-400 hover:text-primary"
-                                     >
-                                    <span class="material-symbols-outlined text-base leading-none"
-                                         >chevron_right</span>
+                                    class="p-1 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-400 hover:text-primary">
+                                    <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
                                 </button>
                             </div>
                         </div>
