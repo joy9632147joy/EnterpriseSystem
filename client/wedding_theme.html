@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="./global.css">
     <script src="../js/bootstrap.bundle.js"></script>
+    <script src="./global.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <style>
+        /* ── FIX 1: 防止頁面水平溢出 ── */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         /* slide */
         .hs-slide {
             position: absolute;
@@ -303,7 +310,10 @@
         .themes-wrap {
             max-width: 1520px;
             margin: 0 auto;
-            padding: 0 40px 120px;
+            padding: 0 60px 80px;
+            /* ── FIX 1b: 防止 mosaic grid 溢出 ── */
+            box-sizing: border-box;
+            width: 100%;
         }
 
         @media(max-width:767px) {
@@ -313,7 +323,7 @@
         }
 
         .theme-section {
-            padding: 80px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--border-grey);
             display: none;
         }
@@ -375,7 +385,18 @@
             }
         }
 
-        /* ── Mosaic grids (same as original) ── */
+        /* ── Mosaic grids ── */
+        /* ── FIX 1c: 所有 mosaic 加 width:100% box-sizing:border-box ── */
+        .mosaic-forest,
+        .mosaic-vintage,
+        .mosaic-chapel,
+        .mosaic-chinese,
+        .mosaic-minimal {
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+
         .mosaic-forest {
             display: grid;
             grid-template-columns: 1.6fr 1fr 1fr;
@@ -507,6 +528,7 @@
             opacity: 0;
             transform: translateY(16px);
             transition: opacity .7s ease, transform .7s ease;
+            min-width: 0; /* FIX: 防止 grid 子項目溢出 */
         }
 
         .tile.vis {
@@ -747,6 +769,7 @@
         }
 
         /* ════ LIGHTBOX ════ */
+        /* ── FIX 3: Lightbox 修正 ── */
         .lb-overlay {
             position: fixed;
             inset: 0;
@@ -755,6 +778,8 @@
             display: none;
             align-items: center;
             justify-content: center;
+            /* 點擊背景關閉 — overlay 本身接收 click */
+            cursor: pointer;
         }
 
         .lb-overlay.open {
@@ -763,13 +788,8 @@
         }
 
         @keyframes lbIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
+            from { opacity: 0 }
+            to   { opacity: 1 }
         }
 
         .lb-inner {
@@ -779,12 +799,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            /* FIX: pointer-events none 讓 overlay 背景 click 可穿透到 overlay */
+            pointer-events: none;
         }
 
         .lb-img-wrap {
             position: relative;
             max-width: 86vw;
             max-height: 82vh;
+            /* FIX: 恢復 pointer-events */
+            pointer-events: auto;
+            cursor: default; /* 圖片區不顯示關閉游標 */
         }
 
         .lb-img-wrap img {
@@ -822,6 +847,7 @@
             margin-top: 4px;
         }
 
+        /* FIX: lb-btn pointer-events auto + z-index 確保可點 */
         .lb-btn {
             position: absolute;
             top: 50%;
@@ -835,9 +861,10 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 2;
+            z-index: 9002;
             transition: background .3s, color .3s, border-color .3s;
             font-size: 20px;
+            pointer-events: auto;
         }
 
         .lb-btn:hover {
@@ -846,13 +873,8 @@
             border-color: rgba(197, 160, 89, .4);
         }
 
-        .lb-prev {
-            left: 20px;
-        }
-
-        .lb-next {
-            right: 20px;
-        }
+        .lb-prev { left: 20px; }
+        .lb-next { right: 20px; }
 
         @media(max-width:767px) {
             .lb-btn {
@@ -860,31 +882,33 @@
                 height: 36px;
                 font-size: 16px;
             }
-
-            .lb-prev {
-                left: 6px;
-            }
-
-            .lb-next {
-                right: 6px;
-            }
+            .lb-prev { left: 6px; }
+            .lb-next { right: 6px; }
         }
 
+        /* FIX: lb-close z-index 最高，pointer-events auto */
         .lb-close {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 24px;
-            z-index: 3;
-            background: none;
-            border: none;
+            z-index: 9010;
+            background: rgba(0,0,0,.35);
+            border: 1px solid rgba(255,255,255,.15);
             cursor: pointer;
-            color: rgba(255, 255, 255, .45);
+            color: rgba(255, 255, 255, .75);
             font-size: 22px;
-            transition: color .3s;
+            transition: color .3s, background .3s;
+            pointer-events: auto;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .lb-close:hover {
             color: white;
+            background: rgba(197,160,89,.25);
         }
 
         .lb-dots {
@@ -894,6 +918,8 @@
             transform: translateX(-50%);
             display: flex;
             gap: 7px;
+            pointer-events: auto;
+            z-index: 9003;
         }
 
         .lb-dot {
@@ -918,6 +944,8 @@
             font-size: 10px;
             letter-spacing: .3em;
             color: rgba(255, 255, 255, .28);
+            pointer-events: none;
+            z-index: 9003;
         }
 
         /* ── THEME NAV (sticky, minimal) ── */
@@ -938,7 +966,8 @@
         .theme-nav-inner {
             max-width: 1520px;
             margin: 0 auto;
-            padding: 0 0 0 16px;
+            /* ── FIX 2: 手機版左右 padding，確保最後按鈕可點 ── */
+            padding: 0 16px;
             display: flex;
             align-items: center;
             overflow-x: auto;
@@ -946,24 +975,15 @@
             scrollbar-width: none;
         }
 
-        .theme-nav-inner::after {
-            content: '';
-            flex-shrink: 0;
-            width: 16px;
+        /* FIX 2: 移除 ::after pseudo，改用 padding-right 確保滾動到底 */
+        .theme-nav-inner::-webkit-scrollbar {
+            display: none;
         }
 
         @media(min-width:992px) {
             .theme-nav-inner {
                 padding: 0 40px;
             }
-
-            .theme-nav-inner::after {
-                display: none;
-            }
-        }
-
-        .theme-nav-inner::-webkit-scrollbar {
-            display: none;
         }
 
         .theme-pill {
@@ -1410,11 +1430,14 @@
             </section>
 
         </div>
-    </div><!-- end page-wrap -->
+    </div>
 
     <!-- LIGHTBOX -->
     <div class="lb-overlay" id="lbOverlay">
-        <button class="lb-close" id="lbClose"><span class="material-symbols-outlined">close</span></button>
+        <!-- FIX: lb-close 移到 overlay 直接子層，fixed 定位，確保不被 lb-inner 遮住 -->
+        <button class="lb-close" id="lbClose" title="關閉">
+            <span class="material-symbols-outlined">close</span>
+        </button>
         <div class="lb-inner">
             <button class="lb-btn lb-prev" id="lbPrev"><span
                     class="material-symbols-outlined">chevron_left</span></button>
@@ -1436,6 +1459,11 @@
     <footer>
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
+
+    <!-- 至頂按鈕 -->
+    <button id="backToTop" class="back-to-top">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1462,22 +1490,6 @@
             document.addEventListener('mousemove', e => {
                 if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
             });
-
-            /* ── Desktop dropdown ── */
-            const ddt = document.getElementById('desktopDropdown');
-            if (ddt) ddt.addEventListener('click', e => {
-                if (window.innerWidth >= 992 && !ddt.closest('.nav-item').classList.contains('show')) e.preventDefault();
-            });
-
-            /* ── Search ── */
-            const sBtn = document.getElementById('search-btn');
-            const sIn = document.getElementById('search-input');
-            sBtn.addEventListener('click', () => {
-                if (!sIn.classList.contains('open')) { sIn.classList.add('open'); sIn.focus(); }
-                else { if (sIn.value.trim()) alert('搜尋：' + sIn.value); else sIn.classList.remove('open'); }
-            });
-
-
 
             /* ── Theme nav pills ── */
             const pills = document.querySelectorAll('.theme-pill');
@@ -1532,8 +1544,17 @@
 
             let curG = null, curI = 0;
 
-            function openLb(g, i) { curG = g; curI = i; renderLb(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-            function closeLb() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+            function openLb(g, i) {
+                curG = g; curI = i;
+                renderLb();
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLb() {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
 
             function renderLb() {
                 const item = galleries[curG][curI];
@@ -1554,11 +1575,21 @@
                 });
             }
 
-            function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
+            function navLb(dir) {
+                curI = (curI + dir + galleries[curG].length) % galleries[curG].length;
+                renderLb();
+            }
+
             document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
             document.getElementById('lbNext').addEventListener('click', () => navLb(1));
             document.getElementById('lbClose').addEventListener('click', closeLb);
-            overlay.addEventListener('click', e => { if (e.target === overlay) closeLb(); });
+
+            /* ── FIX 3: 點擊背景（overlay 本身）關閉 lightbox ── */
+            overlay.addEventListener('click', e => {
+                // 只有直接點 overlay 背景才關閉（不是點圖片、按鈕、dots 等）
+                if (e.target === overlay) closeLb();
+            });
+
             document.addEventListener('keydown', e => {
                 if (!overlay.classList.contains('open')) return;
                 if (e.key === 'ArrowLeft') navLb(-1);
@@ -1566,6 +1597,7 @@
                 if (e.key === 'Escape') closeLb();
             });
 
+            /* Touch swipe */
             let lbTX = null;
             overlay.addEventListener('touchstart', e => { lbTX = e.touches[0].clientX; }, { passive: true });
             overlay.addEventListener('touchend', e => {
@@ -1586,19 +1618,15 @@
             function triggerAnim() {
                 const obs = new IntersectionObserver(entries => {
                     entries.forEach((e, i) => {
-                        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('vis'), i * 60); obs.unobserve(e.target); }
+                        if (e.isIntersecting) {
+                            setTimeout(() => e.target.classList.add('vis'), i * 60);
+                            obs.unobserve(e.target);
+                        }
                     });
                 }, { threshold: 0.08 });
                 document.querySelectorAll('.tile:not(.vis),.detail-card:not(.vis)').forEach(el => obs.observe(el));
             }
             triggerAnim();
-
-
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.nav-link-item').forEach(link => {
-                const href = (link.getAttribute('href') || '').split('/').pop();
-                if (href && href === currentPath) link.classList.add('active-page');
-            });
         });
     </script>
 </body>

@@ -29,7 +29,50 @@
      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
  }
 
+/* ───AGE WRAP ─── */
+ .page-wrap {
+     padding-top: 45px;
+     min-height: 100vh;
+ }
 
+ .page-hero {
+     background: white;
+     border-bottom: 1px solid var(--border-grey);
+     padding: 64px 0 25px;
+     text-align: center;
+ }
+
+ .page-hero-eyebrow {
+     font-size: 10px;
+     letter-spacing: 0.5em;
+     color: var(--accent-gold);
+     text-transform: uppercase;
+     font-weight: 500;
+ }
+
+ .page-hero-title {
+     font-family: var(--font-serif);
+     font-size: clamp(28px, 4vw, 44px);
+     font-weight: 300;
+     letter-spacing: 0.02em;
+     margin-top: 10px;
+ }
+
+ .page-hero-line {
+     width: 64px;
+     height: 1px;
+     background: var(--accent-gold);
+     margin: 24px auto 0;
+     opacity: 0.5;
+ }
+
+ .page-hero-sub {
+     font-size: 12px;
+     color: var(--text-muted);
+     letter-spacing: 0.2em;
+     margin-top: 20px;
+ }
+ 
  /* ─── Navbor ─── */
  .navbar {
      background-color: rgba(255, 255, 255, 0.87) !important;
@@ -43,6 +86,8 @@
 
  .navbar.nav-hidden {
      transform: translateY(-100%);
+     box-shadow: none; 
+     border-top: none;
  }
 
  .navbar-brand {
@@ -221,49 +266,7 @@
      }
  }
 
- /* ───AGE WRAP ─── */
- .page-wrap {
-     padding-top: 60px;
-     min-height: 100vh;
- }
-
- .page-hero {
-     background: white;
-     border-bottom: 1px solid var(--border-grey);
-     padding: 64px 0 56px;
-     text-align: center;
- }
-
- .page-hero-eyebrow {
-     font-size: 10px;
-     letter-spacing: 0.5em;
-     color: var(--accent-gold);
-     text-transform: uppercase;
-     font-weight: 500;
- }
-
- .page-hero-title {
-     font-family: var(--font-serif);
-     font-size: clamp(28px, 4vw, 44px);
-     font-weight: 300;
-     letter-spacing: 0.02em;
-     margin-top: 16px;
- }
-
- .page-hero-line {
-     width: 64px;
-     height: 1px;
-     background: var(--accent-gold);
-     margin: 24px auto 0;
-     opacity: 0.5;
- }
-
- .page-hero-sub {
-     font-size: 12px;
-     color: var(--text-muted);
-     letter-spacing: 0.2em;
-     margin-top: 20px;
- }
+ 
 
 
  /* ─── FOOTER ─── */
