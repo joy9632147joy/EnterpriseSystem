@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>我的婚禮進度 | DREAM VENUES</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../client/global.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../client/global.js"></script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background-color: #faf7f2;
+        }
+
+        .dashboard-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+
+        .lux-card {
+            background: #ffffff;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: 100%;
+        }
+
+        .lux-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(197, 160, 89, 0.06);
+        }
+
+        .card-eyebrow {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* ─── 進度圓環動畫 ─── */
+        .progress-ring-circle {
+            transition: stroke-dashoffset 1s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .countdown-number {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 200;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .countdown-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(197, 160, 89, 0.3);
+            margin: 24px auto;
+        }
+
+        .doc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-grey);
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .doc-item:last-child {
+            border-bottom: none;
+        }
+
+        .doc-item:hover {
+            color: var(--accent-gold);
+        }
+
+        /* ─── 時間軸樣式優化 ─── */
+        .timeline-container {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        /* 加入漸層淡出的時間軸線 */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            bottom: 0px;
+            left: 28px;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(197, 160, 89, 0.4) 80%, transparent 100%);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 16px;
+            background: transparent;
+            border: none;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #faf7f2;
+            border: 2px solid #ddd;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item.COMPLETED .timeline-marker {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .timeline-item.IN_PROGRESS .timeline-marker {
+            background: #ffffff;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.15);
+        }
+
+        .accordion-button {
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 16px 0;
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            color: var(--text-main) !important;
+            letter-spacing: 0.05em;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: var(--accent-gold) !important;
+        }
+
+        .accordion-body {
+            padding: 0 0 24px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            line-height: 1.8;
+        }
+
+        .status-badge {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-left: 12px;
+            font-weight: 500;
+        }
+
+        .badge-COMPLETED {
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .badge-IN_PROGRESS {
+            background: var(--accent-gold);
+            color: #ffffff;
+        }
+
+        .badge-PENDING {
+            border: 1px solid var(--border-grey);
+            color: #aaa;
+        }
+
+        .pm-update-box {
+            background: #ffffff;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .task-list {
+            list-style: none;
+            padding-left: 4px;
+        }
+
+        .task-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .task-done {
+            color: var(--text-main);
+        }
+
+        .task-done .material-symbols-outlined {
+            color: var(--accent-gold);
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .task-pending {
+            color: #aaa;
+        }
+
+        .task-pending .material-symbols-outlined {
+            color: #ddd;
+        }
+
+        /* 聯絡顧問小按鈕 */
+        .btn-contact-pm {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--accent-gold);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-contact-pm:hover {
+            background: var(--accent-gold);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom border-light">
+        <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+            <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
+                <a class="nav-link nav-link-item active-page" href="./my_wedding.html">我的婚禮</a>
+                <a class="nav-link nav-link-item" href="./index.html" id="logoutBtn">登出</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app" class="dashboard-wrap">
+        <div class="mb-5">
+            <span class="card-eyebrow">My Wedding Journey</span>
+            <h1 class="font-serif" style="font-size: 2rem; font-weight: 300;">專屬籌備進度</h1>
+        </div>
+
+        <div class="row g-4 lg-g-5">
+            <div class="col-lg-4">
+                <div class="d-flex flex-column gap-4">
+
+                    <div class="lux-card text-center position-relative">
+                        <span class="card-eyebrow">Overall Progress</span>
+
+                        <div class="position-relative mx-auto my-4" style="width: 160px; height: 160px;">
+                            <svg class="w-100 h-100" viewBox="0 0 256 256">
+                                <circle cx="128" cy="128" r="120" fill="transparent" stroke="#f0f0f0" stroke-width="8">
+                                </circle>
+                                <circle class="progress-ring-circle" cx="128" cy="128" r="120" fill="transparent"
+                                    stroke="#C5A059" stroke-width="8" stroke-dasharray="753.6"
+                                    :stroke-dashoffset="dashOffset" stroke-linecap="round"></circle>
+                            </svg>
+                            <div class="position-absolute top-50 start-50 translate-middle w-100">
+                                <div class="countdown-number">{{ data.countdownDays }}</div>
+                                <div style="font-size: 10px; letter-spacing: 0.2em; color: var(--text-muted);">DAYS TO
+                                    GO</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span style="font-size: 12px; color: var(--text-muted);">大囍之日</span>
+                            <span style="font-size: 13px; font-weight: 500;">{{ data.weddingDate }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span style="font-size: 12px; color: var(--text-muted);">專屬顧問</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <span style="font-size: 13px; font-weight: 500;">{{ data.pmName }}</span>
+                                <a href="mailto:contact@dreamvenues.com" class="btn-contact-pm" title="聯絡顧問">
+                                    <span class="material-symbols-outlined" style="font-size: 16px;">chat</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lux-card">
+                        <span class="card-eyebrow mb-4">Payment Status</span>
+                        <ul class="doc-list">
+                            <li v-for="pay in data.payments" :key="pay.title" class="doc-item">
+                                <span style="font-size: 13px; color: var(--text-main);">{{ pay.title }}</span>
+                                <span v-if="pay.status === 'PAID'"
+                                    style="font-size: 12px; color: var(--accent-gold);">已結清</span>
+                                <span v-else-if="pay.status === 'PENDING'" style="font-size: 11px; color: #888;">期限: {{
+                                    pay.dueDate }}</span>
+                                <span v-else style="font-size: 11px; color: #ccc;">未產生</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="lux-card">
+                        <span class="card-eyebrow mb-4">Documents</span>
+                        <ul class="doc-list">
+                            <a v-for="doc in data.documents" :key="doc.name" href="#" class="doc-item">
+                                <div class="d-flex align-items-center">
+                                    <span class="material-symbols-outlined">{{ doc.icon }}</span>
+                                    <span style="font-size: 13px;">{{ doc.name }}</span>
+                                </div>
+                                <span class="material-symbols-outlined"
+                                    style="font-size: 16px; color: #ccc;">download</span>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="lux-card" style="padding: 40px 48px;">
+                    <div class="d-flex align-items-center gap-2 mb-5">
+                        <span class="material-symbols-outlined"
+                            style="color: var(--accent-gold); font-weight: 300;">hourglass_top</span>
+                        <h4 class="font-serif m-0" style="font-size: 1.25rem;">任務追蹤中心</h4>
+                    </div>
+
+                    <div class="timeline-container accordion" id="progressAccordion">
+
+                        <div v-for="(phase, index) in data.phases" :key="phase.id" class="accordion-item timeline-item"
+                            :class="phase.status">
+                            <div class="timeline-marker"></div>
+                            <h2 class="accordion-header" :id="'heading' + index">
+                                <button class="accordion-button"
+                                    :class="{ 'collapsed': phase.status !== 'IN_PROGRESS' }" type="button"
+                                    data-bs-toggle="collapse" :data-bs-target="'#collapse' + index">
+                                    {{ phase.title }}
+                                    <span class="status-badge" :class="'badge-' + phase.status">
+                                        {{ phase.status === 'COMPLETED' ? '已完成' : (phase.status === 'IN_PROGRESS' ?
+                                        '進行中' : '待開始') }}
+                                    </span>
+                                </button>
+                            </h2>
+                            <div :id="'collapse' + index" class="accordion-collapse collapse"
+                                :class="{ 'show': phase.status === 'IN_PROGRESS' }" data-bs-parent="#progressAccordion">
+                                <div class="accordion-body">
+
+                                    <div v-if="phase.pmMessage" class="pm-update-box">
+                                        <span class="material-symbols-outlined">campaign</span>
+                                        <div>
+                                            <div
+                                                style="font-size: 11px; color: var(--accent-gold); margin-bottom: 4px;">
+                                                顧問更新於 {{ phase.pmUpdateTime }}</div>
+                                            <div style="color: var(--text-main);">{{ phase.pmMessage }}</div>
+                                        </div>
+                                    </div>
+
+                                    <ul class="task-list mt-4">
+                                        <li v-for="task in phase.tasks" :key="task.id"
+                                            :class="task.isDone ? 'task-done' : 'task-pending'">
+                                            <span class="material-symbols-outlined">{{ task.isDone ? 'check_circle' :
+                                                'radio_button_unchecked' }}</span>
+                                            {{ task.name }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" style="margin-top: 32px; padding-left: 36px; border: none;">
+                            <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                <span class="material-symbols-outlined"
+                                    style="color: var(--accent-gold); font-variation-settings: 'FILL' 1; font-size: 24px;">favorite</span>
+                                <span class="font-serif" style="font-size: 1.1rem; color: var(--accent-gold);">Happy
+                                    Ending</span>
+                            </div>
+                            <p class="mt-2"
+                                style="font-size: 12px; color: var(--text-muted); position: relative; z-index: 2;">感謝您讓
+                                DREAM VENUES 參與您人生最重要的時刻。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer mt-5">
+        <div class="footer-bottom"
+            style="width: fit-content; margin: 0 auto; border-top: 1px solid var(--border-grey); padding-top: 16px; text-align: center; font-size: 9px; letter-spacing: 0.3em; color: var(--text-muted); text-transform: uppercase;">
+            © 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        const { createApp, reactive, onMounted, computed } = Vue;
+
+        createApp({
+            setup() {
+                // 模擬未來從 Spring Boot Controller 取得的 DTO 資料
+                const data = reactive({
+                    countdownDays: 33,
+                    weddingDate: '2026.04.10',
+                    pmName: '小傑 (Jack)',
+                    progressPercent: 65, // 總體進度 65%
+                    payments: [
+                        { title: '訂金 20%', status: 'PAID', dueDate: '' },
+                        { title: '期中款 50%', status: 'PENDING', dueDate: '2026.04.01' },
+                        { title: '尾款 30%', status: 'NONE', dueDate: '' }
+                    ],
+                    documents: [
+                        { name: '婚宴定案合約書.pdf', icon: 'description' },
+                        { name: '主視覺模擬圖_V2.jpg', icon: 'image' },
+                        { name: '第一期款項收據.pdf', icon: 'receipt_long' }
+                    ],
+                    phases: [
+                        {
+                            id: 1, title: '第一階段：簽約與初步構想', status: 'COMPLETED',
+                            pmMessage: null,
+                            tasks: [
+                                { id: 101, name: '確認婚期與預估桌數 (2026.03.01)', isDone: true },
+                                { id: 102, name: '簽訂統包服務合約', isDone: true },
+                                { id: 103, name: '建立專屬聯繫群組', isDone: true }
+                            ]
+                        },
+                        {
+                            id: 2, title: '第二階段：視覺設計與場地規劃', status: 'IN_PROGRESS',
+                            pmMessage: '已與花藝師確認當季花材，預計下週三提供第二版主視覺設計圖，屆時再請您們確認色系細節。',
+                            pmUpdateTime: '2小時前',
+                            tasks: [
+                                { id: 201, name: '確認主題色系與背板樣式草圖', isDone: true },
+                                { id: 202, name: '場地動線規劃圖繪製 (製作中)', isDone: false },
+                                { id: 203, name: '輸出物設計：桌卡、菜單', isDone: false }
+                            ]
+                        },
+                        {
+                            id: 3, title: '第三階段：廠商對接與流程細節', status: 'PENDING',
+                            pmMessage: null,
+                            tasks: [
+                                { id: 301, name: '與攝影師溝通拍攝重點', isDone: false },
+                                { id: 302, name: '婚禮當日流程表 (Rundown) 初版', isDone: false }
+                            ]
+                        }
+                    ]
+                });
+
+                // 計算圓環動畫的偏移量 (圓周長度約 753.6)
+                const dashOffset = computed(() => {
+                    const circumference = 2 * Math.PI * 120; // 753.6
+                    return circumference - (data.progressPercent / 100) * circumference;
+                });
+
+                // 模擬從後端撈取資料的載入動畫效果
+                onMounted(() => {
+                    // 初始化為 0，透過 Vue 的特性觸發動畫畫出圓環
+                    let targetProgress = data.progressPercent;
+                    data.progressPercent = 0;
+                    setTimeout(() => {
+                        data.progressPercent = targetProgress;
+                    }, 300);
+                });
+
+                return {
+                    data,
+                    dashOffset
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
