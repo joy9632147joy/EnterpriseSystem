@@ -1010,16 +1010,6 @@
                 if (e.clientY < 50) navbar.classList.remove('nav-hidden');
             });
 
-            // ─── 桌面版 dropdown：第一下展開，第二下跳頁 ───
-            const desktopDropdownToggle = document.getElementById('desktopDropdown');
-            if (desktopDropdownToggle) {
-                desktopDropdownToggle.addEventListener('click', (e) => {
-                    if (window.innerWidth >= 992) {
-                        const isOpen = desktopDropdownToggle.closest('.nav-item').classList.contains('show');
-                        if (!isOpen) e.preventDefault();
-                    }
-                });
-            }
 
             // ─── 桌面版搜尋列 ───
             const searchBtn = document.getElementById('search-btn');
@@ -1123,6 +1113,8 @@
                 applyFilter(catFromUrl);
             }
 
+
+            // ─── 自動標示目前頁面導覽項目 ───
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-link-item').forEach(link => {
                 const href = (link.getAttribute('href') || '').split('/').pop();

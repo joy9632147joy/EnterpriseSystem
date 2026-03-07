@@ -49,13 +49,36 @@
         .filter-btn.active .filter-dot { background: var(--accent-gold); }
         .filter-dot { width: 5px; height: 5px; border-radius: 50%; background: transparent; transition: background 0.25s; flex-shrink: 0; }
 
+        /* ═══════════════════════════════════
+           MOBILE FILTER BAR — 修正項目
+           1. sticky 固定在 navbar 下方，往下滑不消失
+           2. 右側加 padding 讓最後一個 chip 完整顯示
+        ═══════════════════════════════════ */
         .mobile-filter-bar {
-            display: none; overflow-x: auto; gap: 8px;
-            padding: 20px 0 16px; border-bottom: 1px solid var(--border-grey);
-            -webkit-overflow-scrolling: touch; scrollbar-width: none;
+            display: none;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 12px 20px 12px 20px; /* 左右各留空間 */
+            border-bottom: 1px solid var(--border-grey);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            background: #fafaf8; /* 配合頁面底色，遮住下方內容 */
+            z-index: 200;        /* 在 navbar(通常 z-index ~300) 之下，內容之上 */
+        }
+        /* 最後一個 chip 右側補白，確保不被截斷 */
+        .mobile-filter-bar .mobile-filter-chip:last-child {
+            margin-right: 20px;
         }
         .mobile-filter-bar::-webkit-scrollbar { display: none; }
-        @media (max-width: 991.98px) { .mobile-filter-bar { display: flex; } }
+
+        @media (max-width: 991.98px) {
+            .mobile-filter-bar {
+                display: flex;
+                position: sticky;          /* ← 修正：改為 sticky */
+                top: 60px;                 /* ← navbar 高度，依你的 global.css 調整 */
+            }
+        }
+
         .mobile-filter-chip {
             flex-shrink: 0; border: 1px solid var(--border-grey); background: white;
             padding: 8px 20px; font-size: 11px; letter-spacing: 0.1em;
@@ -356,14 +379,13 @@
             <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
         </div>
 
-        <div style="max-width:1520px; margin:0 auto; padding:0 20px;">
-            <div class="mobile-filter-bar" id="mobileFilterBar">
-                <button class="mobile-filter-chip" data-cat="planner">婚禮顧問</button>
-                <button class="mobile-filter-chip" data-cat="host">主持人</button>
-                <button class="mobile-filter-chip" data-cat="photo">攝影師</button>
-                <button class="mobile-filter-chip" data-cat="sound">場控/音控</button>
-                <button class="mobile-filter-chip" data-cat="makeup">新秘造型師</button>
-            </div>
+        <!-- ★ mobile-filter-bar 移到 page-wrap 最外層，脫離 max-width 容器，才能正確 sticky ★ -->
+        <div class="mobile-filter-bar" id="mobileFilterBar">
+            <button class="mobile-filter-chip" data-cat="planner">婚禮顧問</button>
+            <button class="mobile-filter-chip" data-cat="host">主持人</button>
+            <button class="mobile-filter-chip" data-cat="photo">攝影師</button>
+            <button class="mobile-filter-chip" data-cat="sound">場控/音控</button>
+            <button class="mobile-filter-chip" data-cat="makeup">新秘造型師</button>
         </div>
 
         <div class="content-wrap">
@@ -906,9 +928,9 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
-    <!-- ═══════════════════════════════════
-         CENTERED PROFILE MODAL
-    ═══════════════════════════════════ -->
+
+
+    <!-- 介紹卡 -->
     <div class="modal-backdrop-custom" id="profileBackdrop">
         <div class="profile-modal" id="profileModal">
             <button class="modal-close" id="modalClose">
@@ -1037,9 +1059,8 @@
                 if (href && href === currentPath) link.classList.add('active-page');
             });
 
-            // ═══════════════════════════════════
+            
             // PROFILE MODAL
-            // ═══════════════════════════════════
             const backdrop = document.getElementById('profileBackdrop');
             const modal = document.getElementById('profileModal');
             const closeBtn = document.getElementById('modalClose');
