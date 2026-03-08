@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./global.js"></script>
 
     <style>
         /* ── LAYOUT ── */
@@ -186,7 +187,6 @@
             outline: none;
             border-radius: 8px;
             transition: border-color 0.3s;
-            -webkit-appearance: none;
         }
 
         .lux-input:focus {
@@ -449,7 +449,7 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
@@ -482,7 +482,7 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
             <a href="client_login.html" class="offcanvas-login">
                 <span class="material-symbols-outlined"
@@ -698,6 +698,11 @@
     <footer class="site-footer">
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
+
+    <!-- 回到頂部按鈕 -->
+    <button id="backToTop" class="back-to-top">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
 
     <script>
         const { createApp, reactive, ref, computed } = Vue;
