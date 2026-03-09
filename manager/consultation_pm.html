@@ -132,12 +132,6 @@
         <nav class="flex-1 py-2 overflow-y-auto overflow-x-hidden">
             <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
                 GENERAL</div>
-
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="main_page.html">
-                <span class="material-icons text-blue-400 mr-3 group-hover:scale-110 transition-transform">home</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">主頁</div>
-            </a>
             <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
                 href="consultation_pm.html">
                 <span
@@ -161,18 +155,6 @@
                 <span
                     class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理-PM(待整合)</div>
-            </a>
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="attendance.html">
-                <span
-                    class="material-icons text-purple-400 mr-3 group-hover:scale-110 transition-transform">schedule</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">差勤系統</div>
-            </a>
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="contacts.html">
-                <span
-                    class="material-icons text-red-400 mr-3 group-hover:scale-110 transition-transform">contacts</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">聯絡資訊</div>
             </a>
             <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
                 系統設定</div>
@@ -199,7 +181,6 @@
                 <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">諮詢單總覽 (PM 專用)</h1>
             </div>
 
-            <!-- 右側使用者與通知 -->
             <div class="flex items-center space-x-4">
                 <div class="relative">
                     <div id="user-menu-button"
@@ -208,6 +189,19 @@
                             src="../Img/smile.jpg" />
                         <span class="text-sm font-medium mr-1 text-gray-200">Joy</span>
                         <span class="material-icons text-sm text-gray-400">arrow_drop_down</span>
+                    </div>
+
+                    <div id="user-dropdown"
+                        class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
+                        <a href="account.html"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
+                        </a>
+                        <hr class="my-1 border-gray-100">
+                        <a href="login.html"
+                            class="flex items-center px-4 py-2.5 text-sm text-danger hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-danger">logout</span> Log Out
+                        </a>
                     </div>
                 </div>
             </div>
