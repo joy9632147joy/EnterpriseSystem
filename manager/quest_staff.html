@@ -185,23 +185,11 @@
                         <h2 class="text-2xl font-bold tracking-tight">部門任務看板</h2>
                         <p class="text-slate-500 text-sm mt-1">追蹤所有進行中及已完成的部門任務</p>
                     </div>
-                    <div class="flex gap-2">
-                        <button
-                            class="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-medium hover:bg-white dark:hover:bg-slate-900 shadow-sm transition-colors">
-                            匯出報表
-                        </button>
-                        <button
-                            class="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-medium shadow-sm flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">filter_list</span>
-                            篩選條件
-                        </button>
-                    </div>
                 </div>
                 <!-- Ongoing Projects Section -->
                 <section>
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-bold">場地組 - 進行中任務 (4)</h3>
-                        <a class="text-primary text-sm font-semibold hover:underline" href="#">查看全部</a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         <!-- Card 1 -->
@@ -231,16 +219,20 @@
                             </div>
                             <div class="flex gap-2 w-full mt-auto relative">
                                 <div class="relative flex-1 group">
-                                    <button
-                                        class="w-full px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-lg text-xs font-bold cursor-not-allowed">回報問題</button>
+                                    <button id="btn-report-issue"
+                                        class="w-full px-3 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-red-100 hover:text-red-600 rounded-lg text-xs font-bold transition-colors">
+                                        回報問題
+                                    </button>
                                     <span
-                                        class="absolute -top-2 -right-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管權限</span>
+                                        class="absolute -top-2 -right-1 bg-red-500 text-white text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管示範</span>
                                 </div>
                                 <div class="relative flex-[2] group">
-                                    <button
-                                        class="w-full py-2 bg-primary/50 text-white/70 rounded-lg text-xs font-bold cursor-not-allowed">提交任務</button>
+                                    <button id="btn-submit-task"
+                                        class="w-full py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition-colors shadow-md">
+                                        審核並提交任務
+                                    </button>
                                     <span
-                                        class="absolute -top-2 -right-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管權限</span>
+                                        class="absolute -top-2 -right-1 bg-blue-700 text-white text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管示範</span>
                                 </div>
                             </div>
                         </div>
@@ -335,50 +327,34 @@
                                     <th class="px-6 py-4">客戶名稱</th>
                                     <th class="px-6 py-4">日期</th>
                                     <th class="px-6 py-4">狀態</th>
-                                    <th class="px-6 py-4 text-right">操作</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">森林系主題婚禮 - 台中新社</td>
-                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">許志榮 &amp; 陳思妤</td>
+                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">許志榮 & 陳思妤</td>
                                     <td class="px-6 py-4 text-slate-500">2024.03.15</td>
-                                    <td class="px-6 py-4"><span
+                                    <td class="px-6 py-4">
+                                        <span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-slate-400 hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined">visibility</span>
-                                        </button>
                                     </td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">精緻小型午茶派對 - 故宮晶華</td>
-                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">廖健宏 &amp; 黃曉芬</td>
+                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">廖健宏 & 黃曉芬</td>
                                     <td class="px-6 py-4 text-slate-500">2024.02.28</td>
-                                    <td class="px-6 py-4"><span
+                                    <td class="px-6 py-4">
+                                        <span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-slate-400 hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined">visibility</span>
-                                        </button>
                                     </td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">古典莊園世紀婚禮 - 高雄漢來</td>
-                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">林書豪 &amp; 吳嘉嘉</td>
+                                    <td class="px-6 py-4 text-slate-600 dark:text-slate-400">林書豪 & 吳嘉嘉</td>
                                     <td class="px-6 py-4 text-slate-500">2024.01.10</td>
                                     <td class="px-6 py-4">
                                         <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
-                                            已圓滿
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button class="text-slate-400 hover:text-primary transition-colors">
-                                            <span class="material-symbols-outlined">visibility</span>
-                                        </button>
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -389,7 +365,7 @@
                             <div class="flex gap-2">
                                 <button
                                     class="p-1 border border-slate-200 dark:border-slate-700 rounded bg-white dark:bg-slate-900 text-slate-400 hover:text-primary disabled:opacity-50"
-                                    disabled="">
+                                    disabled>
                                     <span class="material-symbols-outlined text-base leading-none">chevron_left</span>
                                 </button>
                                 <button
@@ -439,6 +415,77 @@
 
     <div class="fixed bottom-6 right-6 z-[100] flex flex-col space-y-3 pointer-events-none" id="toastContainer"></div>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 建立通用彈出視窗的 HTML 結構
+            const modalHtml = `
+    <div id="adminActionModal" class="fixed inset-0 z-[110] flex items-center justify-center hidden bg-gray-900/60 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[400px] max-w-[90%] transform transition-all p-6 border border-gray-100 dark:border-gray-700">
+            <div class="text-center">
+                <div id="modal-icon-bg" class="w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
+                    <span id="modal-icon" class="material-icons text-3xl"></span>
+                </div>
+                <h3 id="modal-title" class="text-xl font-bold text-gray-900 dark:text-white mb-2"></h3>
+                <p id="modal-desc" class="text-sm text-gray-500 dark:text-gray-400 mb-6"></p>
+                
+                <div class="mb-6 text-left">
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2">主管批註 / 說明</label>
+                    <textarea id="modal-input" class="w-full bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-primary focus:border-primary" rows="3" placeholder="請輸入處理內容..."></textarea>
+                </div>
+
+                <div class="flex space-x-3">
+                    <button onclick="closeAdminModal()" class="flex-1 py-2.5 px-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-200 transition-colors">返回</button>
+                    <button id="modal-confirm-btn" class="flex-1 py-2.5 px-4 text-white rounded-xl font-medium shadow-md transition-colors"></button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            const modal = document.getElementById('adminActionModal');
+            const mTitle = document.getElementById('modal-title');
+            const mDesc = document.getElementById('modal-desc');
+            const mIcon = document.getElementById('modal-icon');
+            const mIconBg = document.getElementById('modal-icon-bg');
+            const mBtn = document.getElementById('modal-confirm-btn');
+
+            // 開啟彈窗函式
+            function openAdminModal(type) {
+                modal.classList.remove('hidden');
+                if (type === 'report') {
+                    mTitle.innerText = "回報異常狀況";
+                    mDesc.innerText = "針對「陽明山莊」任務標記異常，系統將通知相關人員。";
+                    mIcon.innerText = "report_problem";
+                    mIconBg.className = "w-16 h-16 rounded-full bg-red-50 text-red-500 mx-auto flex items-center justify-center mb-4";
+                    mBtn.innerText = "確認回報";
+                    mBtn.className = "flex-1 py-2.5 px-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium shadow-md transition-colors";
+                } else {
+                    mTitle.innerText = "任務結案審核";
+                    mDesc.innerText = "您正在以主管權限核准「陽明山莊」佈置任務，確認後將移至已完成紀錄。";
+                    mIcon.innerText = "verified";
+                    mIconBg.className = "w-16 h-16 rounded-full bg-green-50 text-green-500 mx-auto flex items-center justify-center mb-4";
+                    mBtn.innerText = "核准結案";
+                    mBtn.className = "flex-1 py-2.5 px-4 bg-primary hover:bg-blue-600 text-white rounded-xl font-medium shadow-md transition-colors";
+                }
+            }
+
+            window.closeAdminModal = function () {
+                modal.classList.add('hidden');
+            };
+
+            // 綁定事件
+            document.getElementById('btn-report-issue').addEventListener('click', () => openAdminModal('report'));
+            document.getElementById('btn-submit-task').addEventListener('click', () => openAdminModal('submit'));
+
+            // 模擬送出後的反饋
+            mBtn.addEventListener('click', () => {
+                alert("操作已成功！(此為示範功能)");
+                closeAdminModal();
+            });
+        });
+    </script>
 </body>
 
 </html>
