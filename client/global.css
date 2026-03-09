@@ -1,4 +1,4 @@
- /* 字的顏色/字型 */
+/* 字的顏色/字型 */
  :root {
      --pure-white: #FFFFFF;
      --soft-grey: #FBFBFB;
@@ -14,7 +14,6 @@
      box-sizing: border-box;
  }
 
-
  body {
      font-family: var(--font-sans);
      color: var(--text-main);
@@ -23,57 +22,105 @@
      overflow-x: hidden;
  }
 
-
-
  .material-symbols-outlined {
      font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
  }
 
-/* ───AGE WRAP ─── */
+ /* ─── PAGE WRAP ─── */
  .page-wrap {
      padding-top: 45px;
      min-height: 100vh;
  }
 
+ /* PAGE HERO 浮現動畫 */
  .page-hero {
-     background: white;
+     position: relative;
+     overflow: hidden;
+     background: white; /* 預設白底，各頁面可用 background-image 覆蓋 */
      border-bottom: 1px solid var(--border-grey);
-     padding: 64px 0 25px;
+     padding-top: 60px;
+     padding-bottom: 10px;
      text-align: center;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
  }
 
+ /* 有背景圖時加深色遮罩*/
+ .page-hero.has-bg::before {
+     content: '';
+     position: absolute;
+     inset: 0;
+     /* background: rgba(10, 8, 5, 0.48); */
+     background-color: #faf7f2;
+ }
+
+ .page-hero > * {
+     position: relative;
+     z-index: 1;
+ }
+
+ /* 浮現動畫 */
+ @keyframes heroFadeUp {
+     from { opacity: 0; transform: translateY(24px); }
+     to   { opacity: 1; transform: translateY(0); }
+ }
+
+ /* 英文小標 */
  .page-hero-eyebrow {
-     font-size: 10px;
-     letter-spacing: 0.5em;
+     font-family: 'Cormorant Garamond', "Noto Serif TC", serif;
+     font-style: italic;
+     font-weight: 500;
+     font-size: clamp(12px, 1.6vw, 13px);
+     letter-spacing: 0.45em;
      color: var(--accent-gold);
      text-transform: uppercase;
-     font-weight: 500;
+     margin: 0;
+     opacity: 0;
+     animation: heroFadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
  }
 
+ /* 中文大標 */
  .page-hero-title {
-     font-family: var(--font-serif);
-     font-size: clamp(28px, 4vw, 44px);
+     font-family: 'Cormorant Garamond', "Noto Serif TC", serif;
      font-weight: 300;
-     letter-spacing: 0.02em;
+     font-size: clamp(20px, 4.5vw, 30px);
+     color:black;
+     letter-spacing: 0.1em;
      margin-top: 10px;
+     margin-bottom: 0;
+     line-height: 1.2;
+     opacity: 0;
+     animation: heroFadeUp 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.45s forwards;
  }
 
+ /* 有背景圖時標題改白色，加 .page-hero.has-bg 即可 */
+ .page-hero.has-bg .page-hero-title {
+     color: black;
+ }
+
+ /* 金線 */
  .page-hero-line {
-     width: 64px;
+     width: 40px;
      height: 1px;
-     background: var(--accent-gold);
-     margin: 24px auto 0;
-     opacity: 0.5;
+     background: rgba(197, 160, 89, 0.75);
+     margin: 20px auto 0;
+     opacity: 0;
+     animation: heroFadeUp 0.8s ease 0.75s forwards;
  }
 
+ /* 副標（預設保留，不顯示可各頁面自行 display:none） */
  .page-hero-sub {
-     font-size: 12px;
-     color: var(--text-muted);
+     font-size: 11px;
+     color: black;
      letter-spacing: 0.2em;
-     margin-top: 20px;
+     margin-top: 16px;
+     opacity: 0;
+     animation: heroFadeUp 0.8s ease 0.9s forwards;
  }
- 
- /* ─── Navbor ─── */
+
+ /* ─── Navbar ─── */
  .navbar {
      background-color: rgba(255, 255, 255, 0.87) !important;
      backdrop-filter: blur(12px);
@@ -86,7 +133,7 @@
 
  .navbar.nav-hidden {
      transform: translateY(-100%);
-     box-shadow: none; 
+     box-shadow: none;
      border-top: none;
  }
 
@@ -110,13 +157,11 @@
      letter-spacing: 0.5em;
      color: var(--accent-gold);
      text-transform: uppercase;
-     font-weight: 200;
+     font-weight: 500;
      display: block;
      margin-top: 4px;
-     font-weight: 500;
      text-align: center;
  }
-
 
  .navbar-toggler {
      border: none !important;
@@ -150,7 +195,6 @@
      gap: 20px;
  }
 
-
  /* 目前頁面金線標示 */
  .nav-link-item.active-page {
      color: var(--accent-gold) !important;
@@ -168,7 +212,6 @@
          background: var(--accent-gold);
      }
  }
-
 
  /* 搜尋框 */
  #search-input {
@@ -191,9 +234,43 @@
      opacity: 1;
  }
 
+ /* 桌面版下拉選單 */
+ #userDropdownWrap .dropdown-menu {
+     border-radius: 0;
+     border: 1px solid var(--border-grey);
+     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+     padding: 8px 0;
+     min-width: 120px;
+ }
 
- /* ───手機模式Navbar─── */
+ #userDropdownWrap .dropdown-item {
+     font-size: 12px;
+     letter-spacing: 0.1em;
+     color: var(--text-main);
+     padding: 10px 20px;
+ }
 
+ #userDropdownWrap .dropdown-item:hover {
+     background: rgba(197, 160, 89, 0.06);
+     color: var(--accent-gold);
+ }
+
+ #userDropdownWrap .dropdown-toggle::after {
+     display: none;
+ }
+
+ #mobileUserMenu {
+     display: none;
+     margin-top: 12px;
+     padding-top: 12px;
+ }
+
+ #mobileUserMenu.visible {
+     display: block;
+     border-top: 1px solid var(--border-grey);
+ }
+
+ /* ─── 手機模式 Navbar ─── */
  .offcanvas.offcanvas-end {
      width: 280px;
      border-left: 1px solid var(--border-grey);
@@ -251,23 +328,17 @@
      color: white;
  }
 
-
  #navMenu .nav-link-item {
      font-size: 14px !important;
      padding: 12px 0 !important;
      border-bottom: 1px solid var(--border-grey);
  }
 
-
-
- @media(max-width:991.98px) {
+ @media (max-width: 991.98px) {
      .page-wrap {
          padding-top: 64px;
      }
  }
-
- 
-
 
  /* ─── FOOTER ─── */
  .footer-bottom {
@@ -284,16 +355,14 @@
      white-space: nowrap;
  }
 
- /* ── 回到頂部按鈕 ── */
+ /* ─── 回到頂部按鈕 ─── */
  .back-to-top {
      position: fixed;
      bottom: 100px;
-     /* 避開底部結算欄的高度 */
      right: 30px;
      width: 48px;
      height: 48px;
      background-color: var(--accent-gold);
-     /* 使用燕麥奶茶金 #BCAE9B */
      color: #FFFFFF;
      border: none;
      border-radius: 50%;
@@ -317,7 +386,6 @@
 
  .back-to-top:hover {
      background-color: #A69683;
-     /* 懸停時顏色加深 */
      transform: translateY(-5px);
  }
 
