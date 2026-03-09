@@ -214,18 +214,12 @@
         .testi-name { font-size:13px; font-weight:600; letter-spacing:0.1em; color:#2b2520; display:block; }
         .testi-meta { font-size:10px; letter-spacing:0.2em; color:var(--accent-gold); text-transform:uppercase; margin-top:4px; display:block; }
 
-        /* ─── 桌面版下拉選單 ─── */
-        #userDropdownWrap .dropdown-menu { border-radius:0; border:1px solid var(--border-grey); box-shadow:0 4px 16px rgba(0,0,0,0.06); padding:8px 0; min-width:120px; }
-        #userDropdownWrap .dropdown-item { font-size:12px; letter-spacing:0.1em; color:var(--text-main); padding:10px 20px; }
-        #userDropdownWrap .dropdown-item:hover { background:rgba(197,160,89,0.06); color:var(--accent-gold); }
-        #userDropdownWrap .dropdown-toggle::after { display:none; }
-        #mobileUserMenu { display:none; margin-top:12px; padding-top:12px; }
-        #mobileUserMenu.visible { display:block; border-top:1px solid var(--border-grey); }
+       
     </style>
 </head>
 
 <body>
-
+    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
@@ -263,6 +257,7 @@
         </div>
     </nav>
 
+    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
             <div>
@@ -289,7 +284,7 @@
             </a>
             <div id="mobileUserMenu">
                 <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮</a>
+                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
             </div>
@@ -607,6 +602,7 @@
         </div>
     </div>
 
+    <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>

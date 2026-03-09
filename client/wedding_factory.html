@@ -48,7 +48,7 @@
         }
 
         .sidebar-title {
-            font-size: 12px;
+            font-size: 18px;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: #C5A059;
@@ -66,7 +66,7 @@
             background: none;
             border: none;
             padding: 14px 0;
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 400;
             letter-spacing: 0.08em;
             color: var(--text-muted);
@@ -252,14 +252,14 @@
 
 <body>
 
+    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
-                aria-controls="navMenu" aria-label="開啟選單">
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMenuDesktop">
@@ -273,15 +273,24 @@
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
                         <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                            style="color:var(--text-muted); font-size:20px;">search</button>
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined" style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
+                    <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
             <div>
@@ -296,26 +305,22 @@
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
             <ul class="navbar-nav gap-0">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a>
-                </li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-            <a href="client_login.html" class="offcanvas-login">
+            <a href="#" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
+            <div id="mobileUserMenu">
+                <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
+                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的籌備進度</a>
+                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
+            </div>
         </div>
     </div>
 
@@ -368,7 +373,6 @@
                                 <span class="card-tag">Bridal House</span>
                                 <p class="card-name">君品酒店</p>
                                 <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
                                     <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北大安</span>
                                 </div>
                                 <div class="card-line"></div>
@@ -765,6 +769,18 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
+     <!-- 模擬登入 -->
+    <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
+        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
+            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)" style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
+            <div style="text-align:right;">
+                <button id="loginSubmit" style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>
