@@ -409,7 +409,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-5">
                         <div class="d-flex align-items-center gap-2">
                             <span class="material-symbols-outlined"
-                                style="color: var(--accent-gold); font-weight: 300;">task_alt</span>
+                                style="color: var(--accent-gold); font-weight: 300;">hourglass_top</span>
                             <h4 class="font-serif m-0" style="font-size: 1.25rem;">籌備進度追蹤</h4>
                         </div>
                         <span style="font-size: 12px; color: var(--text-muted);">
@@ -418,9 +418,11 @@
                     </div>
 
                     <div>
-                        <div v-for="task in data.tasks" :key="task.id"
-                            class="task-confirm-item" :class="'task-' + task.status">
-                            <span class="material-symbols-outlined task-icon">{{task.status === 'completed' ? 'check_circle' : task.status === 'active' ? 'pending' : 'radio_button_unchecked'}}</span>
+                        <div v-for="task in data.tasks" :key="task.id" class="task-confirm-item"
+                            :class="'task-' + task.status">
+                            <span class="material-symbols-outlined task-icon">{{task.status === 'completed' ?
+                                'check_circle' : task.status === 'active' ? 'pending' :
+                                'radio_button_unchecked'}}</span>
                             <span class="task-name">{{ task.name }}</span>
                             <span class="task-category-badge">{{ task.category }}</span>
                             <span v-if="task.deadline" class="task-deadline">{{ task.deadline }}</span>
@@ -499,14 +501,14 @@
                     ],
                     // project_task：籌備進度追蹤（由 manager 更新 status；之後可由 Axios 注入）
                     tasks: [
-                        { id: 1, name: '婚宴全時統籌簽約確認',   category: '核心', status: 'completed', deadline: null },
+                        { id: 1, name: '婚宴全時統籌簽約確認', category: '核心', status: 'completed', deadline: null },
                         { id: 2, name: '專屬顧問指派與首次會議', category: '核心', status: 'completed', deadline: null },
-                        { id: 3, name: '專業新娘秘書確認',       category: '團隊', status: 'completed', deadline: null },
-                        { id: 4, name: '婚禮企劃主持人確認',     category: '團隊', status: 'active',    deadline: '2026.04.01' },
-                        { id: 5, name: '平面/動態紀實攝影師確認', category: '團隊', status: 'pending',   deadline: null },
-                        { id: 6, name: '燈光音響場控確認',       category: '團隊', status: 'pending',   deadline: null },
-                        { id: 7, name: '文定儀式引導規劃',       category: '儀式', status: 'pending',   deadline: null },
-                        { id: 8, name: '全鮮花主題佈置定稿',     category: '佈置', status: 'pending',   deadline: '2026.04.05' }
+                        { id: 3, name: '專業新娘秘書確認', category: '團隊', status: 'completed', deadline: null },
+                        { id: 4, name: '婚禮企劃主持人確認', category: '團隊', status: 'active', deadline: '2026.04.01' },
+                        { id: 5, name: '平面/動態紀實攝影師確認', category: '團隊', status: 'pending', deadline: null },
+                        { id: 6, name: '燈光音響場控確認', category: '團隊', status: 'pending', deadline: null },
+                        { id: 7, name: '文定儀式引導規劃', category: '儀式', status: 'pending', deadline: null },
+                        { id: 8, name: '全鮮花主題佈置定稿', category: '佈置', status: 'pending', deadline: '2026.04.05' }
                     ]
                 });
 
