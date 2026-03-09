@@ -20,7 +20,8 @@
             background: #fff;
             border-radius: 12px;
             padding: 50px 60px; /* 增加內部留白空間 */
-            margin: 60px auto 80px auto; /* 增加與上方的距離 */
+            /* ▼ 將底部的 margin 從 80px 縮小到 40px，讓下方的加購區塊往上提 ▼ */
+            margin: 60px auto 40px auto; 
             max-width: 100vh;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--accent-gold);
@@ -435,7 +436,7 @@
             </a>
             <div id="mobileUserMenu">
                 <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮</a>
+                <a href="./customer_system.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
             </div>
@@ -564,7 +565,52 @@
 
                 </div>
             </section>
-        </main>
+
+            <section class="container mb-5" style="border-top: 1px solid var(--border-grey); padding-top: 60px; padding-bottom: 120px; margin-top: -40px;">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="d-flex align-items-center mb-4">
+                            <span style="width: 30px; height: 1px; background: var(--accent-gold); display: inline-block; margin-right: 15px;"></span>
+                            <h4 style="font-family: var(--font-serif); letter-spacing: 0.1em; margin: 0; color: var(--accent-gold); font-size: 20px;">Service Terms / 注意事項</h4>
+                        </div>
+                        
+                        <div class="row g-4" style="font-size: 13px; color: var(--text-muted); line-height: 1.8;">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-4">
+                                        <strong style="color: var(--text-main); display: block; margin-bottom: 5px; font-weight: 500; font-size: 14px;">01. 預約與訂金</strong>
+                                        確認方案後需支付總金額 30% 作為預訂金，方可保留當日服務檔期。
+                                    </li>
+                                    <li class="mb-4">
+                                        <strong style="color: var(--text-main); display: block; margin-bottom: 5px; font-weight: 500; font-size: 14px;">02. 服務時段及車馬費用說明</strong>
+                                        <span style="display: block; margin-bottom: 4px;">▪ 單儀式加午宴服務以 8 小時為限，超時費為 NT$ 2,000/hr。</span>
+                                        <span style="display: block; color: #A69683;">▪ 台中市免車馬費，外縣市需另付。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-4">
+                                        <strong style="color: var(--text-main); display: block; margin-bottom: 5px; font-weight: 500; font-size: 14px;">03. 方案訂購說明</strong>
+                                        A方案可單獨訂購。
+                                    </li>
+                                    <li class="mb-4">
+                                        <strong style="color: var(--text-main); display: block; margin-bottom: 5px; font-weight: 500; font-size: 14px;">04. 變更與取消</strong>
+                                        如遇不可抗力之因素（如政府公告停班停課），可無條件改期乙次。<br> 個人因素取消則按合約比例退回訂金。
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 p-3 rounded">
+                            <p class="m-0" style="font-size: 12px; color: var(--accent-gold); letter-spacing: 0.05em;">
+                                * 以上價格均為未稅價。DREAM VENUES 保有方案最終解釋權與內容調整之權利。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </main>
     </div>
 
     <footer class="sticky-checkout">
@@ -575,12 +621,11 @@
             </div>
             <div class="action-btns">
                 <button class="btn-reset">重置選項</button>
-                <a href="./contact.html" class="btn-reserve" style="text-decoration: none; display: inline-block;">預約諮詢此方案</a>
+                <a href="./customer_progress.html" class="btn-reserve" style="text-decoration: none; display: inline-block;">預約諮詢此方案</a>
             </div>
         </div>
     </footer>
 
-    <!-- 模擬登入 -->
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
         <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
             <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
