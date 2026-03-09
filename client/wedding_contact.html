@@ -428,6 +428,97 @@
             gap: 12px;
             margin-bottom: 48px;
         }
+
+        /* ── COMPANY INFO (NEW LAYOUT) ── */
+        .company-info-wrapper {
+            padding: 40px 0;
+            display: flex;
+            flex-direction: row;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .info-text-col {
+            flex: 1;
+        }
+
+        .info-image-col {
+            flex: 1;
+            background-color: #fcfcfc;
+            border: 1px solid var(--border-grey);
+            border-radius: 12px;
+            min-height: 480px;
+            height: 480px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-image-col img,
+        .info-image-col iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        .info-title {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .info-subtitle {
+            font-size: 13px;
+            color: var(--accent-gold);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+            display: block;
+        }
+
+        .info-item {
+            margin-bottom: 32px;
+        }
+
+        .info-item-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item-label .material-symbols-outlined {
+            font-size: 16px;
+            color: var(--accent-gold);
+        }
+
+        .info-item-value {
+            font-size: 16px;
+            color: var(--text-main);
+            line-height: 1.8;
+            font-family: var(--font-sans);
+        }
+
+        @media (max-width: 767px) {
+            .company-info-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .info-image-col {
+                width: 100%;
+                min-height: 300px;
+                height: 300px;
+            }
+        }
     </style>
 </head>
 
@@ -512,6 +603,10 @@
             <button class="page-tab" :class="{ active: activeTab === 'faq' }" @click="activeTab = 'faq'">
                 <span class="material-symbols-outlined">help_outline</span>
                 常見問題
+            </button>
+            <button class="page-tab" :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">
+                <span class="material-symbols-outlined">location_on</span>
+                公司資訊
             </button>
         </div>
 
@@ -611,7 +706,7 @@
                                 </div>
                             </div>
                             <div class="row g-3">
-                                <div v-for="service in availableServices" :key="service.title" class="col-6 col-lg-3">
+                                <div v-for="service in availableServices" :key="service.title" class="col-4">
                                     <div class="lux-service-card d-flex flex-column"
                                         :class="{ 'selected': form.services.includes(service.title) }"
                                         @click="toggleService(service.title)">
@@ -691,6 +786,62 @@
                 </div>
             </div>
 
+            <!-- ── 公司資訊 ── -->
+            <div v-show="activeTab === 'info'" class="company-info-wrapper">
+                <div class="info-text-col">
+                    <h2 class="info-title">DREAM VENUES</h2>
+                    <span class="info-subtitle">Headquarters</span>
+
+                    <div class="info-item">
+                        <div class="info-item-label">
+                            <span class="material-symbols-outlined">call</span>
+                            聯絡專線
+                        </div>
+                        <div class="info-item-value">
+                            +886 2 2345 6789<br>
+                            <span style="font-size: 14px; color: var(--text-muted);">緊急專線: +886 987 654 321</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-item-label">
+                            <span class="material-symbols-outlined">mail</span>
+                            電子信箱
+                        </div>
+                        <div class="info-item-value">
+                            service@dreamvenues.com
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-item-label">
+                            <span class="material-symbols-outlined">schedule</span>
+                            營業時間
+                        </div>
+                        <div class="info-item-value">
+                            週一至週日 10:00 - 19:00<br>
+                            <span style="font-size: 14px; color: var(--text-muted);">（全面採預約制，敬請提前預約以享有專屬服務）</span>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-item-label">
+                            <span class="material-symbols-outlined">place</span>
+                            公司地址
+                        </div>
+                        <div class="info-item-value">
+                            110 台北市信義區信義路五段 100 號 42 樓<br>
+                            <span style="font-size: 14px; color: var(--text-muted);">（出電梯後請至接待大廳，由專人為您引導）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-image-col">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0033100869383!2d121.56417751500662!3d25.033959983972234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6cdbf8c4d%3A0xc39110b1718105cb!2sTaipei%20101!5e0!3m2!1sen!2stw!4v1680000000000!5m2!1sen!2stw"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
         </div><!-- /content-wrap -->
     </div><!-- /page-wrap#app -->
 
@@ -725,10 +876,9 @@
 
                 const availableStyles = ['美式戶外', '奢華飯店', '極簡現代', '經典歐式', '中式當代', '森林系', '異國風情'];
                 const availableServices = [
-                    { icon: 'auto_fix_high', title: '全程統籌', en: 'Full Planning' },
-                    { icon: 'architecture', title: '場地佈置', en: 'Venue Decor' },
-                    { icon: 'photo_camera', title: '婚禮紀錄', en: 'Photography' },
-                    { icon: 'face_6', title: '新娘秘書', en: 'Styling' }
+                    { icon: 'groups', title: '婚禮團隊', en: 'Wedding Team' },
+                    { icon: 'event', title: '儀式規劃', en: 'Ceremony Planning' },
+                    { icon: 'palette', title: '客製化佈置', en: 'Custom Decor' }
                 ];
 
                 const toggleStyle = (styleName) => {

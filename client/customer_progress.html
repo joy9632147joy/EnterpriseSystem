@@ -115,190 +115,100 @@
             font-variation-settings: 'wght' 300;
         }
 
-        /* ─── 手風琴時間軸 (Timeline Accordion) ─── */
-        .timeline-container {
-            position: relative;
-            padding-left: 20px;
-        }
-
-        /* (修改) 貫穿全域的漸層細金線 */
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            top: 24px;
-            bottom: 28px;
-            left: 28px;
-            width: 1px;
-            background: linear-gradient(to bottom, rgba(197, 160, 89, 0.4) 80%, transparent 100%);
-            z-index: 1;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 16px;
-            background: transparent;
-            border: none;
-        }
-
-        /* 狀態圓點 */
-        .timeline-marker {
-            position: absolute;
-            left: 0;
-            top: 18px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #faf7f2;
-            border: 2px solid #ddd;
-            z-index: 2;
-            transition: all 0.4s ease;
-        }
-
-        /* 已完成狀態 */
-        .timeline-item.completed .timeline-marker {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
-
-        /* 進行中狀態 */
-        .timeline-item.active .timeline-marker {
-            background: #ffffff;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.15);
-        }
-
-        /* Bootstrap Accordion 覆寫 */
-        .accordion-button {
-            background: transparent !important;
-            box-shadow: none !important;
-            padding: 16px 0;
-            font-family: var(--font-serif);
-            font-size: 1.15rem;
-            font-weight: 400;
-            color: var(--text-main) !important;
-            letter-spacing: 0.05em;
-        }
-
-        .accordion-button:not(.collapsed) {
-            color: var(--accent-gold) !important;
-        }
-
-        .accordion-button::after {
-            background-size: 1rem;
-            transition: transform 0.4s ease;
-        }
-
-        .accordion-body {
-            padding: 0 0 24px 0;
-            color: var(--text-muted);
-            font-size: 13px;
-            letter-spacing: 0.08em;
-            line-height: 1.8;
-        }
-
-        /* 進度標籤 */
-        .status-badge {
-            font-size: 9px;
-            letter-spacing: 0.2em;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-left: 12px;
-            font-weight: 500;
-            font-family: var(--font-sans);
-        }
-
-        .badge-completed {
-            background: rgba(197, 160, 89, 0.1);
-            color: var(--accent-gold);
-        }
-
-        .badge-active {
-            background: var(--accent-gold);
-            color: #ffffff;
-        }
-
-        .badge-pending {
-            border: 1px solid var(--border-grey);
-            color: #aaa;
-        }
-
-        /* 顧問更新留言框 */
-        .pm-update-box {
-            background: #ffffff;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-
-        .pm-update-box .material-symbols-outlined {
-            color: var(--accent-gold);
-            font-size: 20px;
-        }
-
-        /* 內部任務清單 */
-        .task-list {
-            list-style: none;
-            padding-left: 4px;
-        }
-
-        .task-list li {
-            margin-bottom: 12px;
+        /* ─── 籌備進度追蹤 ─── */
+        .task-confirm-item {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(197, 160, 89, 0.12);
+            background: #ffffff;
+            margin-bottom: 10px;
+            transition: box-shadow 0.3s;
         }
 
-        .task-list .material-symbols-outlined {
-            font-size: 16px;
+        .task-confirm-item:last-child {
+            margin-bottom: 0;
         }
 
-        .task-done {
-            color: var(--text-main);
+        .task-confirm-item.task-completed {
+            background: rgba(197, 160, 89, 0.03);
         }
 
-        .task-done .material-symbols-outlined {
+        .task-confirm-item.task-active {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.08);
+        }
+
+        .task-confirm-item .task-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .task-confirm-item.task-completed .task-icon {
             color: var(--accent-gold);
             font-variation-settings: 'FILL' 1;
         }
 
-        .task-pending {
-            color: #aaa;
+        .task-confirm-item.task-active .task-icon {
+            color: var(--accent-gold);
         }
 
-        .task-pending .material-symbols-outlined {
+        .task-confirm-item.task-pending .task-icon {
             color: #ddd;
         }
 
-        /* ─── (新增) 聯絡顧問小按鈕 ─── */
-        .btn-contact-pm {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
+        .task-name {
+            flex: 1;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            color: var(--text-main);
+        }
+
+        .task-confirm-item.task-pending .task-name {
+            color: #bbb;
+        }
+
+        .task-category-badge {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            padding: 3px 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border-grey);
+            color: #aaa;
+            flex-shrink: 0;
+        }
+
+        .task-status-badge {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .task-status-completed {
             background: rgba(197, 160, 89, 0.1);
             color: var(--accent-gold);
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
         }
 
-        .btn-contact-pm:hover {
+        .task-status-active {
             background: var(--accent-gold);
-            color: white;
+            color: #ffffff;
         }
 
-        /* ─── Happy Ending 結尾區塊 ─── */
-        .happy-ending {
-            position: relative;
-            padding-left: 40px;
-            margin-top: 32px;
+        .task-status-pending {
+            border: 1px solid var(--border-grey);
+            color: #ccc;
+        }
+
+        .task-deadline {
+            font-size: 10px;
+            color: #aaa;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
         }
 
         /* ─── 桌面版 User Dropdown ─── */
@@ -496,72 +406,27 @@
 
             <div class="col-lg-8">
                 <div class="lux-card" style="padding: 40px 48px;">
-                    <div class="d-flex align-items-center gap-2 mb-5">
-                        <span class="material-symbols-outlined"
-                            style="color: var(--accent-gold); font-weight: 300;">hourglass_top</span>
-                        <h4 class="font-serif m-0" style="font-size: 1.25rem;">籌備進度追蹤</h4>
+                    <div class="d-flex align-items-center justify-content-between mb-5">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined"
+                                style="color: var(--accent-gold); font-weight: 300;">task_alt</span>
+                            <h4 class="font-serif m-0" style="font-size: 1.25rem;">籌備進度追蹤</h4>
+                        </div>
+                        <span style="font-size: 12px; color: var(--text-muted);">
+                            {{ data.tasks.filter(t => t.status === 'completed').length }} / {{ data.tasks.length }} 已完成
+                        </span>
                     </div>
 
-                    <div class="timeline-container">
-                        <div class="accordion" id="progressAccordion">
-
-                            <div v-for="(phase, index) in data.phases" :key="phase.id"
-                                class="accordion-item timeline-item" :class="phase.status.toLowerCase()">
-                                <div class="timeline-marker"></div>
-                                <h2 class="accordion-header" :id="'heading' + index">
-                                    <button class="accordion-button" :class="{'collapsed': phase.status !== 'active'}"
-                                        type="button" data-bs-toggle="collapse" :data-bs-target="'#collapse' + index">
-                                        {{ phase.title }}
-                                        <span class="status-badge" :class="'badge-' + phase.status.toLowerCase()">
-                                            {{ phase.status === 'completed' ? '已完成' : (phase.status === 'active' ? '進行中'
-                                            : '待開始') }}
-                                        </span>
-                                    </button>
-                                </h2>
-                                <div :id="'collapse' + index" class="accordion-collapse collapse"
-                                    :class="{'show': phase.status === 'active'}" data-bs-parent="#progressAccordion">
-                                    <div class="accordion-body">
-
-                                        <div v-if="phase.pmMessage" class="pm-update-box">
-                                            <span class="material-symbols-outlined">campaign</span>
-                                            <div>
-                                                <div
-                                                    style="font-size: 11px; color: var(--accent-gold); margin-bottom: 4px;">
-                                                    顧問更新於 {{ phase.pmUpdateTime }}
-                                                </div>
-                                                <div style="color: var(--text-main);">
-                                                    {{ phase.pmMessage }}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p v-if="phase.startDate"
-                                            style="font-size: 11px; color: #aaa; margin-bottom: 16px;">
-                                            預計開始時間：{{ phase.startDate }}
-                                        </p>
-
-                                        <ul class="task-list mt-4">
-                                            <li v-for="task in phase.tasks" :key="task.id"
-                                                :class="task.isDone ? 'task-done' : 'task-pending'">
-                                                <span class="material-symbols-outlined">{{ task.isDone ? 'check_circle'
-                                                    : 'radio_button_unchecked' }}</span>
-                                                {{ task.name }}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="happy-ending">
-                            <span class="material-symbols-outlined"
-                                style="color: var(--accent-gold); font-variation-settings: 'FILL' 1; font-size: 24px;position: absolute; left: 8px; top: 14px; transform: translateX(-50%); z-index: 2; background: #faf7f2; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;">favorite</span>
-                            <div class=" d-flex align-items-center gap-2">
-                                <span class="font-serif" style="font-size: 1.1rem; color: var(--accent-gold);">Happy
-                                    Ending</span>
-                            </div>
-                            <p class="mt-2" style="font-size: 12px; color: var(--text-muted);">感謝您讓 DREAM VENUES
-                                參與您人生最重要的時刻。</p>
+                    <div>
+                        <div v-for="task in data.tasks" :key="task.id"
+                            class="task-confirm-item" :class="'task-' + task.status">
+                            <span class="material-symbols-outlined task-icon">{{task.status === 'completed' ? 'check_circle' : task.status === 'active' ? 'pending' : 'radio_button_unchecked'}}</span>
+                            <span class="task-name">{{ task.name }}</span>
+                            <span class="task-category-badge">{{ task.category }}</span>
+                            <span v-if="task.deadline" class="task-deadline">{{ task.deadline }}</span>
+                            <span class="task-status-badge" :class="'task-status-' + task.status">
+                                {{ task.status === 'completed' ? '已完成' : (task.status === 'active' ? '處理中' : '待開始') }}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -613,7 +478,7 @@
         })();
 
         // ─── Vue 3 綁定資料 ───
-        const { createApp, reactive, onMounted, computed } = Vue;
+        const { createApp, reactive, ref, onMounted, computed } = Vue;
 
         createApp({
             setup() {
@@ -622,7 +487,6 @@
                     countdownDays: 33,
                     weddingDate: '2026.04.10',
                     pmName: '小傑 (Jack)',
-                    progressPercent: 65, // 進度 65%
                     payments: [
                         { title: '訂金 20%', status: 'PAID', dueDate: '' },
                         { title: '期中款 50%', status: 'PENDING', dueDate: '2026.04.01' },
@@ -633,92 +497,33 @@
                         { name: '主視覺模擬圖_V2.jpg', icon: 'image' },
                         { name: '第一期款項收據.pdf', icon: 'receipt_long' }
                     ],
-                    phases: [
-                        {
-                            id: 1, title: '第一階段：簽約與初步構想', status: 'completed',
-                            pmMessage: null, startDate: null,
-                            tasks: [
-                                { id: 101, name: '確認婚期與預估桌數 (2026.03.01)', isDone: true },
-                                { id: 102, name: '簽訂統包服務合約', isDone: true },
-                                { id: 103, name: '建立專屬聯繫群組', isDone: true }
-                            ]
-                        },
-                        {
-                            id: 2, title: '第二階段：視覺設計與場地規劃', status: 'active',
-                            pmMessage: '已與花藝師確認當季花材，預計下週三提供第二版主視覺設計圖，屆時再請您們確認色系細節。',
-                            pmUpdateTime: '2小時前', startDate: null,
-                            tasks: [
-                                { id: 201, name: '確認主題色系與背板樣式草圖', isDone: true },
-                                { id: 202, name: '場地動線規劃圖繪製 (製作中)', isDone: false },
-                                { id: 203, name: '輸出物設計：桌卡、菜單', isDone: false }
-                            ]
-                        },
-                        {
-                            id: 3, title: '第三階段：廠商對接與流程細節', status: 'pending',
-                            pmMessage: null, startDate: '婚前 3 個月',
-                            tasks: [
-                                { id: 301, name: '與攝影師溝通拍攝重點', isDone: false },
-                                { id: 302, name: '婚禮當日流程表 (Rundown) 初版', isDone: false }
-                            ]
-                        },
-                        {
-                            id: 4, title: '第四階段：婚禮當週最後確認', status: 'pending',
-                            pmMessage: null, startDate: '婚前 1 週',
-                            tasks: [
-                                { id: 401, name: '最終桌數與座位表確認', isDone: false },
-                                { id: 402, name: '婚禮現場彩排 (Rehearsal)', isDone: false }
-                            ]
-                        }
-                        ,
-                        {
-                            id: 5, title: '第五階段：婚禮前準備', status: 'pending',
-                            pmMessage: null, startDate: '婚前 3 天',
-                            tasks: [
-                                { id: 501, name: '確認婚禮物資與禮品', isDone: false },
-                                { id: 502, name: '與主持人確認流程', isDone: false },
-                                { id: 503, name: '確認賓客名單與座位', isDone: false }
-                            ]
-                        },
-                        {
-                            id: 6, title: '第六階段：婚禮當日執行', status: 'pending',
-                            pmMessage: null, startDate: '婚禮當日',
-                            tasks: [
-                                { id: 601, name: '現場迎賓與流程控管', isDone: false },
-                                { id: 602, name: '婚禮儀式執行', isDone: false },
-                                { id: 603, name: '現場協助賓客', isDone: false }
-                            ]
-                        },
-                        {
-                            id: 7, title: '第七階段：婚禮後回饋與結案', status: 'pending',
-                            pmMessage: null, startDate: '婚禮後 1 週',
-                            tasks: [
-                                { id: 701, name: '收集賓客回饋', isDone: false },
-                                { id: 702, name: '結案資料整理', isDone: false },
-                                { id: 703, name: '婚禮照片與影片交付', isDone: false }
-                            ]
-                        }
+                    // project_task：籌備進度追蹤（由 manager 更新 status；之後可由 Axios 注入）
+                    tasks: [
+                        { id: 1, name: '婚宴全時統籌簽約確認',   category: '核心', status: 'completed', deadline: null },
+                        { id: 2, name: '專屬顧問指派與首次會議', category: '核心', status: 'completed', deadline: null },
+                        { id: 3, name: '專業新娘秘書確認',       category: '團隊', status: 'completed', deadline: null },
+                        { id: 4, name: '婚禮企劃主持人確認',     category: '團隊', status: 'active',    deadline: '2026.04.01' },
+                        { id: 5, name: '平面/動態紀實攝影師確認', category: '團隊', status: 'pending',   deadline: null },
+                        { id: 6, name: '燈光音響場控確認',       category: '團隊', status: 'pending',   deadline: null },
+                        { id: 7, name: '文定儀式引導規劃',       category: '儀式', status: 'pending',   deadline: null },
+                        { id: 8, name: '全鮮花主題佈置定稿',     category: '佈置', status: 'pending',   deadline: '2026.04.05' }
                     ]
                 });
 
-                // 計算 SVG 圓環偏移量 (2 * PI * r)
+                // 進度圓環：依 completed 任務數自動計算，掛載後觸發動畫
+                const animReady = ref(false);
                 const dashOffset = computed(() => {
                     const circumference = 753.6;
-                    return circumference - (data.progressPercent / 100) * circumference;
+                    if (!animReady.value) return circumference;
+                    const done = data.tasks.filter(t => t.status === 'completed').length;
+                    return circumference - (done / data.tasks.length) * circumference;
                 });
 
-                // 畫面掛載時觸發進度條畫圓圈的動畫
                 onMounted(() => {
-                    let targetProgress = data.progressPercent;
-                    data.progressPercent = 0;
-                    setTimeout(() => {
-                        data.progressPercent = targetProgress;
-                    }, 300);
+                    setTimeout(() => { animReady.value = true; }, 300);
                 });
 
-                return {
-                    data,
-                    dashOffset
-                }
+                return { data, dashOffset };
             }
         }).mount('#app');
     </script>
