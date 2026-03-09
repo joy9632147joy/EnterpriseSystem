@@ -59,12 +59,6 @@
         <nav class="flex-1 py-2 overflow-y-auto overflow-x-hidden">
             <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
                 GENERAL</div>
-
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="main_page.html">
-                <span class="material-icons text-blue-400 mr-3 group-hover:scale-110 transition-transform">home</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">主頁</div>
-            </a>
             <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
                 href="consultation_pm.html">
                 <span
@@ -88,18 +82,6 @@
                 <span
                     class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理-PM(待整合)</div>
-            </a>
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="attendance.html">
-                <span
-                    class="material-icons text-purple-400 mr-3 group-hover:scale-110 transition-transform">schedule</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">差勤系統</div>
-            </a>
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="contacts.html">
-                <span
-                    class="material-icons text-red-400 mr-3 group-hover:scale-110 transition-transform">contacts</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">聯絡資訊</div>
             </a>
 
             <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
@@ -127,24 +109,6 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <div class="relative w-64 lg:w-80 hidden md:block">
-                    <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
-                        <span class="material-icons text-sm">search</span>
-                    </span>
-                    <input
-                        class="w-full bg-[#353A45] border-none rounded-full py-2 pl-4 pr-10 text-sm focus:ring-1 focus:ring-blue-500 focus:outline-none text-gray-200 placeholder-gray-400"
-                        placeholder="搜尋功能或公告..." type="text" />
-                </div>
-
-                <button class="relative text-gray-400 hover:text-white focus:outline-none mt-1">
-                    <span class="material-icons">notifications</span>
-                    <span
-                        class="absolute top-0 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/4 border-2 border-[#2B303B]"></span>
-                </button>
-
-                <button class="relative text-gray-400 hover:text-white focus:outline-none me-2" id="envelope">
-                    <i class="bi bi-envelope fs-5"></i>
-                </button>
 
                 <div class="relative">
                     <div id="user-menu-button"
@@ -157,18 +121,14 @@
 
                     <div id="user-dropdown"
                         class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
-                        <a href="#"
+                        <a href="account.html"
                             class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                             <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
                         </a>
-                        <a href="#"
-                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                            <span class="material-icons text-[18px] mr-3 text-gray-500">settings</span> Settings
-                        </a>
                         <hr class="my-1 border-gray-100">
                         <a href="login.html"
-                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                            <span class="material-icons text-[18px] mr-3 text-gray-500">logout</span> Log Out
+                            class="flex items-center px-4 py-2.5 text-sm text-danger hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-danger">logout</span> Log Out
                         </a>
                     </div>
                 </div>
@@ -193,17 +153,9 @@
                         <div class="text-center md:text-left">
                             <h1
                                 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center md:justify-start">
-                                Joy Chen <span
-                                    class="text-gray-500 dark:text-gray-400 text-lg font-normal ml-2">(Joy)</span>
+                                Joy Chen
                             </h1>
                             <p class="text-primary font-medium mt-1">Full-stack Developer</p>
-                            <div class="flex items-center justify-center md:justify-start space-x-2 mt-3">
-                                <span
-                                    class="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300 font-medium">ACTIVE</span>
-                                <span
-                                    class="bg-gray-100 text-gray-800 text-xs px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300 font-medium">FULL
-                                    TIME</span>
-                            </div>
                         </div>
                     </div>
                     <div class="mt-6 md:mt-0">
@@ -244,28 +196,22 @@
                                         Chen</p>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-500 mb-1">暱稱</p>
-                                    <p id="view-nickname" class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                                        Joy</p>
-                                </div>
-                                <div>
                                     <p class="text-xs text-gray-500 mb-1">員工編號 (ID)</p>
                                     <p class="text-sm font-medium text-gray-900 dark:text-gray-100">00001</p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 mb-1">性別</p>
-                                    <p id="view-gender" class="text-sm font-medium text-gray-900 dark:text-gray-100">男
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 mb-1">生日</p>
-                                    <p id="view-birthday" class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                                        2026-02-26</p>
                                 </div>
                                 <div>
                                     <p class="text-xs text-gray-500 mb-1">身分證字號</p>
                                     <p id="view-idcard" class="text-sm font-medium text-gray-900 dark:text-gray-100">
                                         S123456789</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 mb-1">手機號碼</p>
+                                    <p id="view-phone" class="text-sm font-medium text-gray-900">0912-234566</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 mb-1">電子郵件</p>
+                                    <p id="view-email" class="text-sm font-medium text-gray-900">joy.chen@company.com
+                                    </p>
                                 </div>
                             </div>
                             <form id="basic-form" class="hidden grid grid-cols-2 gap-y-5 gap-x-4">
@@ -275,31 +221,25 @@
                                         class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
                                 </div>
                                 <div>
-                                    <label class="text-xs text-gray-500 mb-1 block">暱稱</label>
-                                    <input type="text" id="edit-nickname" value="Joy"
-                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                </div>
-                                <div>
                                     <label class="text-xs text-gray-500 mb-1 block">員工編號 (ID)</label>
                                     <input type="text" value="00001" disabled
                                         class="w-full rounded-md border-gray-200 bg-gray-100 text-gray-500 text-sm py-1.5 px-3 cursor-not-allowed">
                                 </div>
                                 <div>
-                                    <label class="text-xs text-gray-500 mb-1 block">性別</label>
-                                    <select id="edit-gender"
-                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                        <option value="男" selected>男</option>
-                                        <option value="女">女</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="text-xs text-gray-500 mb-1 block">生日</label>
-                                    <input type="date" id="edit-birthday" value="2026-02-26"
-                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                </div>
-                                <div>
                                     <label class="text-xs text-gray-500 mb-1 block">身分證字號</label>
                                     <input type="text" id="edit-idcard" value="S123456789"
+                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">手機號碼</label>
+                                    <input type="text" id="edit-phone" value="0912-234566"
+                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3 transition-colors">
+                                    <p id="phone-error" class="text-red-500 text-xs mt-1 font-medium hidden">
+                                        格式錯誤，請輸入正確的手機號碼</p>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">電子郵件</label>
+                                    <input type="email" id="edit-email" value="joy.chen@company.com"
                                         class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
                                 </div>
                             </form>
@@ -317,10 +257,6 @@
                         <div class="p-6 flex-1">
                             <div class="grid grid-cols-2 gap-y-6 gap-x-4">
                                 <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">目前年資</p>
-                                    <p class="text-sm font-medium text-green-600 dark:text-green-400">2 年 1 個月</p>
-                                </div>
-                                <div>
                                     <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">職位名稱</p>
                                     <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Full-stack
                                         Developer</p>
@@ -335,119 +271,8 @@
                                     <p class="text-sm font-medium text-gray-900 dark:text-gray-100">王大明 (Manager)
                                     </p>
                                 </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">到職日期</p>
-                                    <p class="text-sm font-medium text-gray-900 dark:text-gray-100">2024-01-01</p>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded shadow-sm overflow-hidden border border-transparent transition-colors"
-                    id="contact-container">
-                    <div
-                        class="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
-                        <h2 class="text-lg font-medium text-gray-800 dark:text-gray-200 flex items-center">
-                            <span class="material-icons text-primary mr-2 text-xl">phone_in_talk</span> 聯絡資訊
-                        </h2>
-                        <button id="contact-edit-btn" type="button"
-                            class="text-sm border border-blue-200 text-primary hover:bg-blue-50 dark:border-blue-800 dark:hover:bg-blue-900/30 px-3 py-1 rounded flex items-center transition-colors">
-                            <span class="material-icons text-xs mr-1">edit</span> 修改資料
-                        </button>
-                        <div id="contact-action-btns" class="hidden flex space-x-2">
-                            <button id="contact-cancel-btn" type="button"
-                                class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-1.5 rounded transition-colors font-medium">取消</button>
-                            <button form="contact-form" type="submit"
-                                class="text-sm bg-primary hover:bg-blue-700 text-white px-4 py-1.5 rounded flex items-center transition-colors font-medium shadow-sm">
-                                <span class="material-icons text-[16px] mr-1">save</span> 儲存
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-6 relative">
-                        <div id="contact-view" class="flex flex-col lg:flex-row gap-8">
-                            <div class="flex-1 space-y-6">
-                                <div>
-                                    <p class="text-xs text-gray-500 mb-1">手機號碼</p>
-                                    <p id="view-phone" class="text-sm font-medium text-gray-900">0912-234566</p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 mb-1">電子郵件</p>
-                                    <p id="view-email" class="text-sm font-medium text-gray-900">joy.chen@company.com
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 mb-1">通訊地址</p>
-                                    <p id="view-address" class="text-sm font-medium text-gray-900">台中市公益路二段51號</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="bg-orange-50 border border-orange-100 rounded-lg p-5">
-                                    <h3 class="text-orange-600 font-medium flex items-center mb-4 text-sm"><span
-                                            class="material-icons mr-1 text-base">emergency</span> 緊急聯絡人</h3>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <p class="text-xs text-gray-500 mb-1">姓名</p>
-                                            <p id="view-em-name" class="text-sm font-medium text-gray-900">陳大明</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs text-gray-500 mb-1">關係</p>
-                                            <p id="view-em-relation" class="text-sm font-medium text-gray-900">父親</p>
-                                        </div>
-                                        <div class="col-span-2">
-                                            <p class="text-xs text-gray-500 mb-1">聯絡電話</p>
-                                            <p id="view-em-phone" class="text-sm font-medium text-gray-900">0988-123456
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <form id="contact-form" class="hidden flex flex-col lg:flex-row gap-8">
-                            <div class="flex-1 space-y-5">
-                                <div>
-                                    <label class="text-xs text-gray-500 mb-1 block">手機號碼</label>
-                                    <input type="text" id="edit-phone" value="0912-234566"
-                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3 transition-colors">
-                                    <p id="phone-error" class="text-red-500 text-xs mt-1 font-medium hidden">
-                                        格式錯誤，請輸入正確的手機號碼</p>
-                                </div>
-                                <div>
-                                    <label class="text-xs text-gray-500 mb-1 block">電子郵件</label>
-                                    <input type="email" id="edit-email" value="joy.chen@company.com"
-                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                </div>
-                                <div>
-                                    <label class="text-xs text-gray-500 mb-1 block">通訊地址</label>
-                                    <input type="text" id="edit-address" value="台中市公益路二段51號"
-                                        class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="bg-orange-50/50 border border-orange-200 rounded-lg p-5 h-full">
-                                    <h3 class="text-orange-600 font-medium flex items-center mb-4 text-sm"><span
-                                            class="material-icons mr-1 text-base text-orange-500">emergency</span> 緊急聯絡人
-                                    </h3>
-                                    <div class="grid grid-cols-2 gap-x-4 gap-y-5">
-                                        <div>
-                                            <label class="text-xs text-gray-500 mb-1 block">姓名</label>
-                                            <input type="text" id="edit-em-name" value="陳大明"
-                                                class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                        </div>
-                                        <div>
-                                            <label class="text-xs text-gray-500 mb-1 block">關係</label>
-                                            <input type="text" id="edit-em-relation" value="父親"
-                                                class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3">
-                                        </div>
-                                        <div class="col-span-2">
-                                            <label class="text-xs text-gray-500 mb-1 block">聯絡電話</label>
-                                            <input type="text" id="edit-em-phone" value="0988-123456"
-                                                class="w-full rounded-md border-gray-300 text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-1.5 px-3 transition-colors">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
