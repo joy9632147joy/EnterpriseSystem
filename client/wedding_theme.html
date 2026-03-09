@@ -16,18 +16,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <style>
-
         .themes-wrap {
             max-width: 1520px;
             margin: 0 auto;
-            padding: 0 60px 80px;
+            padding: 60px 60px 80px;
             box-sizing: border-box;
             width: 100%;
         }
 
         @media(max-width:767px) {
             .themes-wrap {
-                padding: 0 16px 80px;
+                padding:32px 16px 80px;
             }
         }
 
@@ -49,7 +48,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            margin-bottom: 56px;
+            margin-bottom: 24px;
         }
 
         @media(max-width:767px) {
@@ -660,18 +659,14 @@
         }
 
         .theme-nav {
-            position: sticky;
+            position: relative;
             top: 80px;
             z-index: 99;
             background: #fff;
             border-bottom: 1px solid var(--border-grey);
+            margin-top: -70px;
         }
 
-        @media(max-width:991.98px) {
-            .theme-nav {
-                top: 64px;
-            }
-        }
 
         .theme-nav-inner {
             max-width: 1520px;
@@ -698,7 +693,7 @@
             flex-shrink: 0;
             background: none;
             border: none;
-            padding: 16px 16px;
+            padding: 20px 16px;
             font-size: 14px;
             letter-spacing: .15em;
             text-transform: uppercase;
@@ -712,7 +707,7 @@
 
         @media(min-width:992px) {
             .theme-pill {
-                padding: 20px 24px;
+                padding: 16px 24px;
                 letter-spacing: .18em;
             }
         }
@@ -835,8 +830,8 @@
     </div>
 
     <!-- hero -->
-    <div class="page-wrap has-bg">
-        <div class="page-hero">
+    <div class="page-wrap ">
+        <div class="page-hero has-bg">
             <p class="page-hero-eyebrow">Wedding Theme</p>
             <h1 class="page-hero-title">婚禮主題</h1>
             <div class="page-hero-line"></div>
@@ -910,11 +905,11 @@
                 desc: '枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景',
                 mosaic: 'mosaic-forest',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&fit=crop', name: '山間祕境婚宴', label: 'Featured Venue', sub: 'Cedar Hall · 台北烏來', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80&fit=crop', name: '自然系花藝佈置', label: 'Florals' },
-                    { img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=80&fit=crop', name: '戶外儀式區', label: 'Ceremony' },
-                    { img: 'https://images.unsplash.com/photo-1520854221256-17d7dc783f06?w=700&q=80&fit=crop', name: '晚宴燈光氛圍', label: 'Reception' },
-                    { img: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80&fit=crop', name: '綠葉桌花細節', label: 'Details' },
+                    { img: 'https://i.pinimg.com/1200x/25/19/9c/25199c5a5e7f25e4d0682b39e4c7ee16.jpg', name: '山間祕境婚宴', label: 'Featured Venue', sub: 'Cedar Hall · 台北烏來', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/1200x/1a/59/93/1a5993bffcce0c5090ac3d4320aaa5e0.jpg', name: '自然系花藝佈置', label: 'Florals' },
+                    { img: 'https://i.pinimg.com/1200x/2b/81/74/2b81749de349f1699156dcca1bf910c0.jpg', name: '戶外儀式區', label: 'Ceremony' },
+                    { img: 'https://i.pinimg.com/736x/ab/27/6d/ab276d9976cb0065d86d9cd6ee6a871a.jpg', name: '晚宴燈光氛圍', label: 'Reception' },
+                    { img: 'https://i.pinimg.com/736x/45/62/60/456260c1129e597dbbe5159370b01d41.jpg', name: '綠葉桌花細節', label: 'Details' },
                 ]
             },
             {
@@ -924,9 +919,9 @@
                 desc: '穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面',
                 mosaic: 'mosaic-vintage',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=900&q=80&fit=crop', name: '穀倉婚禮', label: 'Barn Wedding', sub: 'Rustic Barn · 宜蘭', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=80&fit=crop', name: '長桌宴席佈置', label: 'Tablescape' },
-                    { img: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80&fit=crop', name: '復古婚紗造型', label: 'Bridal' },
+                    { img: 'https://i.pinimg.com/736x/03/83/4e/03834e35abe51fed8838f5d9cc46f138.jpg', name: '復古建築', label: 'Barn Wedding', sub: 'Rustic Barn · 宜蘭', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/54/bf/66/54bf66dc24f8641f2b53f7ac3ac6bf70.jpg', name: '沉穩復古', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/736x/e3/8f/39/e38f39230ed22c4ce844c110e7b5e6bd.jpg', name: '復古婚紗造型', label: 'Bridal' },
                 ]
             },
             {
@@ -936,9 +931,9 @@
                 desc: '彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證',
                 mosaic: 'mosaic-chapel',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1543738435-59d1e5a3ef1b?w=700&q=80&fit=crop', name: '教堂側廊光影', label: 'Interior' },
-                    { img: 'https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=900&q=80&fit=crop', name: '純白教堂誓約', label: 'Featured Chapel', sub: 'Chapel blanc · 台南', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop', name: '白玫瑰花道', label: 'Florals' },
+                    { img: 'https://i.pinimg.com/736x/df/0c/fb/df0cfb7adc15d26017a2a5b0a64621f0.jpg', name: '教堂側廊光影', label: 'Interior' },
+                    { img: 'https://i.pinimg.com/736x/dd/22/53/dd22536014a8902886dd10b546db318a.jpg', name: '純白教堂誓約', label: 'Featured Chapel', sub: 'Chapel blanc · 台南', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/1c/4d/8b/1c4d8b140e34709cde57d11c82ee7556.jpg', name: '教堂', label: 'Florals' },
                 ]
             },
             {
@@ -950,9 +945,9 @@
                 // 特殊：含一個 text panel，用 textPanel 標記位置（插在第幾張之後）
                 textPanel: { after: 1, quote: '「執子之手<br>與子偕老」', en: 'A Vow Across Lifetimes' },
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80&fit=crop', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&q=80&fit=crop', name: '漆器與囍字擺設', label: 'Details' },
-                    { img: 'https://images.unsplash.com/photo-1569521843991-e45bfbbb2fd3?w=700&q=80&fit=crop', name: '紅木圓桌宴席', label: 'Banquet' },
+                    { img: 'https://images.pexels.com/photos/13111964/pexels-photo-13111964.jpeg', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
+                    { img: 'https://images.pexels.com/photos/35018683/pexels-photo-35018683.jpeg', name: '漆器與囍字擺設', label: 'Details' },
+                    { img: 'https://images.pexels.com/photos/4066903/pexels-photo-4066903.jpeg', name: '紅木圓桌宴席', label: 'Banquet' },
                 ]
             },
             {
@@ -962,9 +957,9 @@
                 desc: 'Less is more<br>讓空間本身成為最有力量的表達',
                 mosaic: 'mosaic-minimal',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&fit=crop', name: '建築感白盒子婚宴', label: 'Featured Venue', sub: 'White Box Studio · 台北信義', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80&fit=crop', name: '單支芒草桌花', label: 'Tablescape' },
-                    { img: 'https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop', name: '俐落婚紗輪廓', label: 'Bridal' },
+                    { img: 'https://i.pinimg.com/736x/ba/f7/25/baf7250521d4efbfbd026bfcb4fe6687.jpg', name: '建築感白盒子婚宴', label: 'Featured Venue', sub: 'White Box Studio · 台北信義', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/b5/e3/79/b5e3796fb3fb2c36ad01c70cb2f6bea4.jpg', name: '單支芒草桌花', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/736x/34/0b/e8/340be80d146a6c5a18de0bbe20116d76.jpg', name: '俐落婚紗輪廓', label: 'Bridal' },
                 ]
             },
         ];
@@ -1049,25 +1044,18 @@
             renderAll();
 
             const navbar = document.querySelector('.navbar');
-            const themeNav = document.getElementById('themeNav');
             let lastST = 0;
-
-            function syncThemeNavTop() {
-                themeNav.style.top = navbar.getBoundingClientRect().height + 'px';
-            }
-            syncThemeNavTop();
-            window.addEventListener('resize', syncThemeNavTop);
 
             window.addEventListener('scroll', () => {
                 const st = window.pageYOffset;
                 if (Math.abs(lastST - st) <= 8) return;
                 const hiding = st > lastST && st > 80;
                 navbar.classList.toggle('nav-hidden', hiding);
-                themeNav.style.top = hiding ? '0px' : navbar.getBoundingClientRect().height + 'px';
                 lastST = st;
             });
+
             document.addEventListener('mousemove', e => {
-                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
+                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); }
             });
 
             /* ── Theme nav pills ── */

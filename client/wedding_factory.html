@@ -31,7 +31,7 @@
         .sidebar {
             width: 180px;
             flex-shrink: 0;
-            padding-top: 56px;
+            padding-top: 35px;
             position: sticky;
             top: 96px;
             max-height: calc(100vh - 96px);
@@ -41,7 +41,7 @@
         @media (max-width: 991.98px) { .sidebar { display: none; } }
 
         .sidebar-title {
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: #C5A059;
@@ -59,7 +59,7 @@
             background: none;
             border: none;
             padding: 14px 0;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
             letter-spacing: 0.08em;
             color: var(--text-muted);
@@ -113,13 +113,19 @@
             background: rgba(197, 160, 89, 0.06);
         }
 
-        .grid-area { flex: 1; padding-left: 56px; padding-top: 56px; }
+        .grid-area { flex: 1; padding-left: 56px; padding-top: 35px; }
 
         @media (max-width: 991.98px) { .grid-area { padding-left: 0; padding-top: 24px; } }
 
         .category-header {
-            display: flex; align-items: flex-end;
-            justify-content: space-between; margin-bottom: 40px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            /* 從 40px 縮小 */
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            /* 加上極淡的金色底線定錨 */
         }
 
         .category-label {
@@ -356,150 +362,199 @@
     ];
 
     const PARTNERS = {
-        venues: [
-            {
-                name: '君品酒店',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Venue',
-                meta: [{ icon: 'location_on', text: '台北大安' }],
-            },
-            {
-                name: 'Pure White Studio',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80',
-                tag: 'Venue',
-                meta: [{ icon: 'workspace_premium', text: '輕婚紗' }, { icon: 'location_on', text: '台中' }],
-            },
-            {
-                name: 'La Lumière',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80',
-                tag: 'Venue',
-                meta: [{ icon: 'workspace_premium', text: '法式蕾絲' }, { icon: 'location_on', text: '台北信義' }],
-            },
-            {
-                name: 'Ivory & Silk',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1522413452208-99690627115c?auto=format&fit=crop&w=600&q=80',
-                tag: 'Venue',
-                meta: [{ icon: 'workspace_premium', text: '日系清新' }, { icon: 'location_on', text: '高雄' }],
-            },
-        ],
-        gown: [
-            {
-                name: 'Blanc Atelier',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1594552072238-185038c03525?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '訂製系列' }, { icon: 'location_on', text: '台北大安' }],
-            },
-            {
-                name: 'Pure White Studio',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1546804784-816d8a395c51?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '輕婚紗' }, { icon: 'location_on', text: '台中' }],
-            },
-            {
-                name: 'La Lumière',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '法式蕾絲' }, { icon: 'location_on', text: '台北信義' }],
-            },
-            {
-                name: 'Ivory & Silk',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '日系清新' }, { icon: 'location_on', text: '高雄' }],
-            },
-        ],
-        suit: [
-            {
-                name: 'The Groom Co.',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '手工訂製' }, { icon: 'location_on', text: '台北' }],
-            },
-            {
-                name: 'Charcoal & Linen',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '英式剪裁' }, { icon: 'location_on', text: '台中' }],
-            },
-            {
-                name: 'Maison Élégant',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '義式風格' }, { icon: 'location_on', text: '台北' }],
-            },
-            {
-                name: 'Noble Tailor',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1550614000-4b95d466f2bc?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '美式休閒' }, { icon: 'location_on', text: '高雄' }],
-            },
-        ],
-        cake: [
-            {
-                name: 'Pâtisserie Dorée',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80',
-                tag: 'Patisserie',
-                meta: [{ icon: 'workspace_premium', text: '法式手工' }, { icon: 'location_on', text: '台北' }],
-            },
-            {
-                name: 'Velvet Truffle',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=600&q=80',
-                tag: 'Chocolatier',
-                meta: [{ icon: 'workspace_premium', text: '比利時可可' }, { icon: 'location_on', text: '台北' }],
-            },
-            {
-                name: 'Mille Feuille',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1558961363-a0f1b2d073d3?auto=format&fit=crop&w=600&q=80',
-                tag: 'Boulangerie',
-                meta: [{ icon: 'workspace_premium', text: '酥皮點心' }, { icon: 'location_on', text: '台中' }],
-            },
-            {
-                name: 'Maison du Cadeau',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1621236378699-8597fc6a05b6?auto=format&fit=crop&w=600&q=80',
-                tag: 'Gift Box',
-                meta: [{ icon: 'workspace_premium', text: '木盒訂製' }, { icon: 'location_on', text: '高雄' }],
-            },
-        ],
-        gift: [
-            {
-                name: 'Petite Maison',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Favors',
-                meta: [{ icon: 'workspace_premium', text: '手工訂製' }, { icon: 'location_on', text: '台北' }],
-            },
-            {
-                name: 'Bloom & Thread',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Favors',
-                meta: [{ icon: 'workspace_premium', text: '乾燥花藝' }, { icon: 'location_on', text: '台中' }],
-            },
-            {
-                name: 'Story & Co.',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Favors',
-                meta: [{ icon: 'workspace_premium', text: '客製刻印' }, { icon: 'location_on', text: '高雄' }],
-            },
-        ],
-    };
+    venues: [
+        {
+            name: '君品酒店',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80',
+            tag: 'Wedding Venue',
+            meta: [{ icon: 'workspace_premium', text: '五星飯店' }, { icon: 'location_on', text: '台北大同' }],
+        },
+        {
+            name: 'Pure White Studio',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80',
+            tag: 'Venue',
+            meta: [{ icon: 'nature_people', text: '森林秘境' }, { icon: 'location_on', text: '台中新社' }],
+        },
+        {
+            name: 'La Lumière',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80',
+            tag: 'Venue',
+            meta: [{ icon: 'wb_incandescent', text: '玻璃溫室' }, { icon: 'location_on', text: '台北信義' }],
+        },
+        {
+            name: 'Ivory & Silk',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1522413452208-99690627115c?auto=format&fit=crop&w=600&q=80',
+            tag: 'Venue',
+            meta: [{ icon: 'waves', text: '海景渡假' }, { icon: 'location_on', text: '屏東墾丁' }],
+        },
+        {
+            name: 'Heritage Manor',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1545328988-756170d10b78?auto=format&fit=crop&w=600&q=80',
+            tag: 'Venue',
+            meta: [{ icon: 'account_balance', text: '歐式莊園' }, { icon: 'location_on', text: '南投' }],
+        },
+        {
+            name: 'The Gallery',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1551887196-72e32cbafa0d?auto=format&fit=crop&w=600&q=80',
+            tag: 'Venue',
+            meta: [{ icon: 'museum', text: '藝術空間' }, { icon: 'location_on', text: '台北中山' }],
+        },
+    ],
+    gown: [
+        {
+            name: 'Blanc Atelier',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1594552072238-185038c03525?auto=format&fit=crop&w=600&q=80',
+            tag: 'Bridal House',
+            meta: [{ icon: 'workspace_premium', text: '高訂系列' }, { icon: 'location_on', text: '台北大安' }],
+        },
+        {
+            name: 'Aetherea Bridal',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1546804784-816d8a395c51?auto=format&fit=crop&w=600&q=80',
+            tag: 'Bridal House',
+            meta: [{ icon: 'styler', text: '輕婚紗' }, { icon: 'location_on', text: '台中西屯' }],
+        },
+        {
+            name: 'Lace & Grace',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80',
+            tag: 'Bridal House',
+            meta: [{ icon: 'dry_cleaning', text: '法式古董' }, { icon: 'location_on', text: '台北中山' }],
+        },
+        {
+            name: 'Opaline',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=600&q=80',
+            tag: 'Bridal House',
+            meta: [{ icon: 'auto_awesome', text: '極簡俐落' }, { icon: 'location_on', text: '高雄鼓山' }],
+        },
+        {
+            name: 'The Veil',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1549416878-b9ca95e26903?auto=format&fit=crop&w=600&q=80',
+            tag: 'Bridal House',
+            meta: [{ icon: 'checkroom', text: '歐美代理' }, { icon: 'location_on', text: '新竹' }],
+        }
+    ],
+    suit: [
+        {
+            name: 'The Groom Co.',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80',
+            tag: 'Suit Atelier',
+            meta: [{ icon: 'content_cut', text: 'Bespoke' }, { icon: 'location_on', text: '台北信義' }],
+        },
+        {
+            name: 'Charcoal & Linen',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80',
+            tag: 'Suit Atelier',
+            meta: [{ icon: 'checkroom', text: '英式挺拔' }, { icon: 'location_on', text: '台中西區' }],
+        },
+        {
+            name: 'Maison Élégant',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+            tag: 'Suit Atelier',
+            meta: [{ icon: 'styler', text: '義式軟襯' }, { icon: 'location_on', text: '台北大安' }],
+        },
+        {
+            name: 'Noble Tailor',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1550614000-4b95d466f2bc?auto=format&fit=crop&w=600&q=80',
+            tag: 'Suit Atelier',
+            meta: [{ icon: 'auto_fix_high', text: '美式休閒' }, { icon: 'location_on', text: '高雄前鎮' }],
+        },
+        {
+            name: 'Oxford & Co.',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=600&q=80',
+            tag: 'Suit Atelier',
+            meta: [{ icon: 'straighten', text: '商務婚服' }, { icon: 'location_on', text: '桃園' }],
+        }
+    ],
+    cake: [
+        {
+            name: 'Pâtisserie Dorée',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80',
+            tag: 'Patisserie',
+            meta: [{ icon: 'cake', text: '法式甜點' }, { icon: 'location_on', text: '台北松山' }],
+        },
+        {
+            name: 'Velvet Truffle',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=600&q=80',
+            tag: 'Chocolatier',
+            meta: [{ icon: 'redeem', text: '頂級黑可可' }, { icon: 'location_on', text: '台北大安' }],
+        },
+        {
+            name: 'Mille Feuille',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1558961363-a0f1b2d073d3?auto=format&fit=crop&w=600&q=80',
+            tag: 'Boulangerie',
+            meta: [{ icon: 'bakery_dining', text: '千層酥盒' }, { icon: 'location_on', text: '台中南屯' }],
+        },
+        {
+            name: 'Maison du Cadeau',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1621236378699-8597fc6a05b6?auto=format&fit=crop&w=600&q=80',
+            tag: 'Gift Box',
+            meta: [{ icon: 'inventory_2', text: '木盒緞帶' }, { icon: 'location_on', text: '高雄新興' }],
+        },
+        {
+            name: 'Botanic Sweets',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80',
+            tag: 'Vegan Bakery',
+            meta: [{ icon: 'eco', text: '純素無麩質' }, { icon: 'location_on', text: '台南' }],
+        }
+    ],
+    gift: [
+        {
+            name: 'Petite Maison',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=600&q=80',
+            tag: 'Wedding Favors',
+            meta: [{ icon: 'soap', text: '香氛蠟燭' }, { icon: 'location_on', text: '台北' }],
+        },
+        {
+            name: 'Bloom & Thread',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80',
+            tag: 'Wedding Favors',
+            meta: [{ icon: 'local_florist', text: '永生花束' }, { icon: 'location_on', text: '台中' }],
+        },
+        {
+            name: 'Story & Co.',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80',
+            tag: 'Wedding Favors',
+            meta: [{ icon: 'edit', text: '黃銅刻印' }, { icon: 'location_on', text: '高雄' }],
+        },
+        {
+            name: 'Tea & Tales',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1576092762791-dd9e2220bac1?auto=format&fit=crop&w=600&q=80',
+            tag: 'Wedding Favors',
+            meta: [{ icon: 'emoji_food_beverage', text: '百年茶莊' }, { icon: 'location_on', text: '南投' }],
+        },
+        {
+            name: 'Glassary',
+            url: 'https://example.com',
+            img: 'https://images.unsplash.com/photo-1610705298155-24c6e90da6cb?auto=format&fit=crop&w=600&q=80',
+            tag: 'Wedding Favors',
+            meta: [{ icon: 'wine_bar', text: '水晶對杯' }, { icon: 'location_on', text: '新竹' }],
+        }
+    ],
+};
 
 
     //  渲染邏輯

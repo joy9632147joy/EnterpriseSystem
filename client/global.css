@@ -37,8 +37,8 @@
      position: relative;
      overflow: hidden;
      background: white; /* 預設白底，各頁面可用 background-image 覆蓋 */
-     border-bottom: 1px solid var(--border-grey);
-     padding-top: 60px;
+     border-bottom: none;
+     padding-top: 70px;
      padding-bottom: 10px;
      text-align: center;
      display: flex;
@@ -73,7 +73,7 @@
      font-style: italic;
      font-weight: 500;
      font-size: clamp(12px, 1.6vw, 13px);
-     letter-spacing: 0.45em;
+     letter-spacing: 0.25em;
      color: var(--accent-gold);
      text-transform: uppercase;
      margin: 0;
@@ -105,7 +105,7 @@
      width: 40px;
      height: 1px;
      background: rgba(197, 160, 89, 0.75);
-     margin: 20px auto 0;
+     margin: 10px auto 0;
      opacity: 0;
      animation: heroFadeUp 0.8s ease 0.75s forwards;
  }
@@ -170,7 +170,7 @@
  }
 
  .nav-link-item {
-     font-size: 12px;
+     font-size: 13px;
      font-weight: 500;
      color: var(--text-main) !important;
      letter-spacing: 0.1em;
