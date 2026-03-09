@@ -10,14 +10,12 @@
     <link rel="stylesheet" href="./global.css">
     <script src="./global.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
     <style>
-
+    
+        
         .content-wrap {
             max-width: 1520px;
             margin: 0 auto;
@@ -27,10 +25,7 @@
         }
 
         @media (max-width: 991.98px) {
-            .content-wrap {
-                flex-direction: column;
-                padding: 0 20px 80px;
-            }
+            .content-wrap { flex-direction: column; padding: 0 20px 80px; }
         }
 
         .sidebar {
@@ -43,9 +38,7 @@
             overflow-y: auto;
         }
 
-        @media (max-width: 991.98px) {
-            .sidebar { display: none; }
-        }
+        @media (max-width: 991.98px) { .sidebar { display: none; } }
 
         .sidebar-title {
             font-size: 18px;
@@ -85,17 +78,7 @@
             background: transparent; transition: background 0.25s; flex-shrink: 0;
         }
 
-        .filter-count {
-            font-size: 10px; color: var(--text-muted);
-            margin-left: auto; margin-right: 12px;
-        }
-
-        /* ═══════════════════════════════════
-           MOBILE FILTER BAR — 橫向單排滾動
-        ═══════════════════════════════════ */
-        .mobile-filter-bar {
-            display: none;
-        }
+        .mobile-filter-bar { display: none; }
 
         @media (max-width: 991.98px) {
             .mobile-filter-bar {
@@ -108,11 +91,7 @@
                 width: 100%;
                 box-sizing: border-box;
             }
-            .mobile-filter-bar .mobile-filter-chip {
-                flex: 1;
-                text-align: center;
-                padding: 8px 4px;
-            }
+            .mobile-filter-bar .mobile-filter-chip { flex: 1; text-align: center; padding: 8px 4px; }
         }
 
         .mobile-filter-chip {
@@ -136,9 +115,7 @@
 
         .grid-area { flex: 1; padding-left: 56px; padding-top: 56px; }
 
-        @media (max-width: 991.98px) {
-            .grid-area { padding-left: 0; padding-top: 24px; }
-        }
+        @media (max-width: 991.98px) { .grid-area { padding-left: 0; padding-top: 24px; } }
 
         .category-header {
             display: flex; align-items: flex-end;
@@ -189,7 +166,6 @@
         .card-overlay {
             position: absolute; inset: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
-            opacity: 1;
             display: flex; align-items: flex-end;
             justify-content: space-between; padding: 0 16px 16px;
             transition: background 0.5s;
@@ -246,7 +222,6 @@
 
         .category-section { display: none; }
         .category-section.active { display: block; }
-        .show-all .category-section { display: block; }
     </style>
 </head>
 
@@ -324,444 +299,27 @@
         </div>
     </div>
 
+    <!-- hero -->
     <div class="page-wrap">
-        <div class="page-hero">
+        <div class="page-hero has-bg">
             <p class="page-hero-eyebrow">Elite Partners</p>
             <h1 class="page-hero-title">精選合作夥伴</h1>
             <div class="page-hero-line"></div>
             <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
         </div>
 
-        <div class="mobile-filter-bar" id="mobileFilterBar">
-            <button class="mobile-filter-chip" data-cat="venues">婚禮場地</button>
-            <button class="mobile-filter-chip" data-cat="gown">新娘婚紗</button>
-            <button class="mobile-filter-chip" data-cat="suit">新郎西服</button>
-            <button class="mobile-filter-chip" data-cat="cake">喜餅禮盒</button>
-            <button class="mobile-filter-chip" data-cat="gift">婚禮小物</button>
-        </div>
+        <!-- ─── 手機篩選列（JS 動態產生） ─── -->
+        <div class="mobile-filter-bar" id="mobileFilterBar"></div>
 
         <div class="content-wrap">
+            <!-- ─── 側邊欄（JS 動態產生） ─── -->
             <aside class="sidebar">
                 <p class="sidebar-title">類別篩選</p>
-                <button class="filter-btn" data-cat="venues">婚禮場地</button>
-                <button class="filter-btn" data-cat="gown">新娘婚紗</button>
-                <button class="filter-btn" data-cat="suit">新郎西服</button>
-                <button class="filter-btn" data-cat="cake">喜餅禮盒</button>
-                <button class="filter-btn" data-cat="gift">婚禮小物</button>
+                <div id="sidebarFilters"></div>
             </aside>
 
-            <div class="grid-area" id="gridArea">
-
-                <div class="category-section active" data-section="venues">
-                    <div class="category-header">
-                        <div>
-                            <span class="category-label">Wedding Venue · Exclusive</span>
-                            <h2 class="category-title">婚禮場地</h2>
-                        </div>
-                        <span class="result-count">4 位夥伴</span>
-                    </div>
-                    <div class="partner-grid">
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80" alt="Venue1">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">君品酒店</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">君品酒店</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北大安</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80" alt="Venue2">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Pure White Studio</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">Pure White Studio</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Venue3">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">La Lumière</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">La Lumière</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北信義</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1522413452208-99690627115c?auto=format&fit=crop&w=600&q=80" alt="Venue4">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Ivory & Silk</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">Ivory & Silk</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>日系清新</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <hr class="category-divider">
-
-                <div class="category-section active" data-section="gown">
-                    <div class="category-header">
-                        <div>
-                            <span class="category-label">Bridal Gown · Couture</span>
-                            <h2 class="category-title">新娘婚紗</h2>
-                        </div>
-                        <span class="result-count">4 位夥伴</span>
-                    </div>
-                    <div class="partner-grid">
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1594552072238-185038c03525?auto=format&fit=crop&w=600&q=80" alt="Gown1">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Blanc Atelier</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">Blanc Atelier</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>訂製系列</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北大安</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1546804784-816d8a395c51?auto=format&fit=crop&w=600&q=80" alt="Gown2">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Pure White Studio</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">Pure White Studio</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>輕婚紗</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Gown3">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">La Lumière</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">La Lumière</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>法式蕾絲</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北信義</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=600&q=80" alt="Gown4">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Ivory & Silk</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Bridal House</span>
-                                <p class="card-name">Ivory & Silk</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>日系清新</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <hr class="category-divider">
-
-                <div class="category-section active" data-section="suit">
-                    <div class="category-header">
-                        <div>
-                            <span class="category-label">Gentleman's Tailoring</span>
-                            <h2 class="category-title">新郎西服</h2>
-                        </div>
-                        <span class="result-count">4 位夥伴</span>
-                    </div>
-                    <div class="partner-grid">
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80" alt="Suit1">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">The Groom Co.</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Suit Atelier</span>
-                                <p class="card-name">The Groom Co.</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>手工訂製</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Suit2">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Charcoal & Linen</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Suit Atelier</span>
-                                <p class="card-name">Charcoal & Linen</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>英式剪裁</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Suit3">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Maison Élégant</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Suit Atelier</span>
-                                <p class="card-name">Maison Élégant</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>義式風格</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1550614000-4b95d466f2bc?auto=format&fit=crop&w=600&q=80" alt="Suit4">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Noble Tailor</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Suit Atelier</span>
-                                <p class="card-name">Noble Tailor</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>美式休閒</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <hr class="category-divider">
-
-                <div class="category-section active" data-section="cake">
-                    <div class="category-header">
-                        <div>
-                            <span class="category-label">Wedding Cake · Gift Box</span>
-                            <h2 class="category-title">喜餅禮盒</h2>
-                        </div>
-                        <span class="result-count">4 位夥伴</span>
-                    </div>
-                    <div class="partner-grid">
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80" alt="Cake1">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Pâtisserie Dorée</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Patisserie</span>
-                                <p class="card-name">Pâtisserie Dorée</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>法式手工</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=600&q=80" alt="Cake2">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Velvet Truffle</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Chocolatier</span>
-                                <p class="card-name">Velvet Truffle</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>比利時可可</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1558961363-a0f1b2d073d3?auto=format&fit=crop&w=600&q=80" alt="Cake3">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Mille Feuille</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Boulangerie</span>
-                                <p class="card-name">Mille Feuille</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>酥皮點心</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1621236378699-8597fc6a05b6?auto=format&fit=crop&w=600&q=80" alt="Cake4">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Maison du Cadeau</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Gift Box</span>
-                                <p class="card-name">Maison du Cadeau</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>木盒訂製</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <hr class="category-divider">
-
-                <div class="category-section active" data-section="gift">
-                    <div class="category-header">
-                        <div>
-                            <span class="category-label">Wedding Favors · Details</span>
-                            <h2 class="category-title">婚禮小物</h2>
-                        </div>
-                        <span class="result-count">3 位夥伴</span>
-                    </div>
-                    <div class="partner-grid">
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=600&q=80" alt="Gift1">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Petite Maison</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Wedding Favors</span>
-                                <p class="card-name">Petite Maison</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>手工訂製</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台北</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Gift2">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Bloom & Thread</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Wedding Favors</span>
-                                <p class="card-name">Bloom & Thread</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>乾燥花藝</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>台中</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                        <a class="partner-card" href="https://example.com" target="_blank">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Gift3">
-                                <div class="card-overlay">
-                                    <span class="card-overlay-name">Story & Co.</span>
-                                    <span class="overlay-btn">前往官網</span>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-tag">Wedding Favors</span>
-                                <p class="card-name">Story & Co.</p>
-                                <div class="card-meta">
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">workspace_premium</span>客製刻印</span>
-                                    <span class="card-meta-item"><span class="material-symbols-outlined">location_on</span>高雄</span>
-                                </div>
-                                <div class="card-line"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+            <!-- ─── 內容區（JS 動態產生） ─── -->
+            <div class="grid-area" id="gridArea"></div>
         </div>
     </div>
 
@@ -769,7 +327,7 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
-     <!-- 模擬登入 -->
+    <!-- 模擬登入 -->
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
         <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
             <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
@@ -786,36 +344,261 @@
     </button>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
+    //  資料來源：只需編輯這裡，HTML 完全不用動
+    
 
-            // ─── 篩選邏輯 ───
-            const sections = document.querySelectorAll('.category-section');
-            const dividers = document.querySelectorAll('.category-divider');
-            const sidebarBtns = document.querySelectorAll('.sidebar .filter-btn');
-            const mobileBtns = document.querySelectorAll('.mobile-filter-chip');
-            const gridArea = document.getElementById('gridArea');
+    const CATEGORIES = [
+        { id: 'venues', label: '婚禮場地', eyebrow: 'Wedding Venue · Exclusive' },
+        { id: 'gown',   label: '新娘婚紗', eyebrow: 'Bridal Gown · Couture' },
+        { id: 'suit',   label: '新郎西服', eyebrow: "Gentleman's Tailoring" },
+        { id: 'cake',   label: '喜餅禮盒', eyebrow: 'Wedding Cake · Gift Box' },
+        { id: 'gift',   label: '婚禮小物', eyebrow: 'Wedding Favors · Details' },
+    ];
 
-            function applyFilter(cat) {
-                if (cat === 'all') {
-                    sections.forEach(s => s.style.display = 'block');
-                    dividers.forEach(d => d.style.display = 'block');
-                } else {
-                    sections.forEach(s => {
-                        s.style.display = s.dataset.section === cat ? 'block' : 'none';
-                    });
-                    dividers.forEach(d => d.style.display = 'none');
-                }
-                document.querySelectorAll('.partner-card').forEach(c => c.classList.remove('visible'));
-                setTimeout(triggerVisible, 50);
-            }
+    const PARTNERS = {
+        venues: [
+            {
+                name: '君品酒店',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80',
+                tag: 'Wedding Venue',
+                meta: [{ icon: 'location_on', text: '台北大安' }],
+            },
+            {
+                name: 'Pure White Studio',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80',
+                tag: 'Venue',
+                meta: [{ icon: 'workspace_premium', text: '輕婚紗' }, { icon: 'location_on', text: '台中' }],
+            },
+            {
+                name: 'La Lumière',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80',
+                tag: 'Venue',
+                meta: [{ icon: 'workspace_premium', text: '法式蕾絲' }, { icon: 'location_on', text: '台北信義' }],
+            },
+            {
+                name: 'Ivory & Silk',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1522413452208-99690627115c?auto=format&fit=crop&w=600&q=80',
+                tag: 'Venue',
+                meta: [{ icon: 'workspace_premium', text: '日系清新' }, { icon: 'location_on', text: '高雄' }],
+            },
+        ],
+        gown: [
+            {
+                name: 'Blanc Atelier',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1594552072238-185038c03525?auto=format&fit=crop&w=600&q=80',
+                tag: 'Bridal House',
+                meta: [{ icon: 'workspace_premium', text: '訂製系列' }, { icon: 'location_on', text: '台北大安' }],
+            },
+            {
+                name: 'Pure White Studio',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1546804784-816d8a395c51?auto=format&fit=crop&w=600&q=80',
+                tag: 'Bridal House',
+                meta: [{ icon: 'workspace_premium', text: '輕婚紗' }, { icon: 'location_on', text: '台中' }],
+            },
+            {
+                name: 'La Lumière',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80',
+                tag: 'Bridal House',
+                meta: [{ icon: 'workspace_premium', text: '法式蕾絲' }, { icon: 'location_on', text: '台北信義' }],
+            },
+            {
+                name: 'Ivory & Silk',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=600&q=80',
+                tag: 'Bridal House',
+                meta: [{ icon: 'workspace_premium', text: '日系清新' }, { icon: 'location_on', text: '高雄' }],
+            },
+        ],
+        suit: [
+            {
+                name: 'The Groom Co.',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80',
+                tag: 'Suit Atelier',
+                meta: [{ icon: 'workspace_premium', text: '手工訂製' }, { icon: 'location_on', text: '台北' }],
+            },
+            {
+                name: 'Charcoal & Linen',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80',
+                tag: 'Suit Atelier',
+                meta: [{ icon: 'workspace_premium', text: '英式剪裁' }, { icon: 'location_on', text: '台中' }],
+            },
+            {
+                name: 'Maison Élégant',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+                tag: 'Suit Atelier',
+                meta: [{ icon: 'workspace_premium', text: '義式風格' }, { icon: 'location_on', text: '台北' }],
+            },
+            {
+                name: 'Noble Tailor',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1550614000-4b95d466f2bc?auto=format&fit=crop&w=600&q=80',
+                tag: 'Suit Atelier',
+                meta: [{ icon: 'workspace_premium', text: '美式休閒' }, { icon: 'location_on', text: '高雄' }],
+            },
+        ],
+        cake: [
+            {
+                name: 'Pâtisserie Dorée',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80',
+                tag: 'Patisserie',
+                meta: [{ icon: 'workspace_premium', text: '法式手工' }, { icon: 'location_on', text: '台北' }],
+            },
+            {
+                name: 'Velvet Truffle',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=600&q=80',
+                tag: 'Chocolatier',
+                meta: [{ icon: 'workspace_premium', text: '比利時可可' }, { icon: 'location_on', text: '台北' }],
+            },
+            {
+                name: 'Mille Feuille',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1558961363-a0f1b2d073d3?auto=format&fit=crop&w=600&q=80',
+                tag: 'Boulangerie',
+                meta: [{ icon: 'workspace_premium', text: '酥皮點心' }, { icon: 'location_on', text: '台中' }],
+            },
+            {
+                name: 'Maison du Cadeau',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1621236378699-8597fc6a05b6?auto=format&fit=crop&w=600&q=80',
+                tag: 'Gift Box',
+                meta: [{ icon: 'workspace_premium', text: '木盒訂製' }, { icon: 'location_on', text: '高雄' }],
+            },
+        ],
+        gift: [
+            {
+                name: 'Petite Maison',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=600&q=80',
+                tag: 'Wedding Favors',
+                meta: [{ icon: 'workspace_premium', text: '手工訂製' }, { icon: 'location_on', text: '台北' }],
+            },
+            {
+                name: 'Bloom & Thread',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80',
+                tag: 'Wedding Favors',
+                meta: [{ icon: 'workspace_premium', text: '乾燥花藝' }, { icon: 'location_on', text: '台中' }],
+            },
+            {
+                name: 'Story & Co.',
+                url: 'https://example.com',
+                img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80',
+                tag: 'Wedding Favors',
+                meta: [{ icon: 'workspace_premium', text: '客製刻印' }, { icon: 'location_on', text: '高雄' }],
+            },
+        ],
+    };
 
-            function setActive(cat) {
-                sidebarBtns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
-                mobileBtns.forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
-            }
 
-            sidebarBtns.forEach(btn => {
+    //  渲染邏輯
+
+    function renderCard(partner) {
+        const metaHTML = partner.meta.map(m => /*html*/`
+            <span class="card-meta-item">
+                <span class="material-symbols-outlined">${m.icon}</span>${m.text}
+            </span>`).join('');
+
+        return /*html*/`
+        <a class="partner-card" href="${partner.url}" target="_blank">
+            <div class="card-img-wrap">
+                <img src="${partner.img}" alt="${partner.name}" loading="lazy">
+                <div class="card-overlay">
+                    <span class="card-overlay-name">${partner.name}</span>
+                    <span class="overlay-btn">前往官網</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">${partner.tag}</span>
+                <p class="card-name">${partner.name}</p>
+                <div class="card-meta">${metaHTML}</div>
+                <div class="card-line"></div>
+            </div>
+        </a>`;
+    }
+
+    function renderAll() {
+        const gridArea = document.getElementById('gridArea');
+        const sidebarFilters = document.getElementById('sidebarFilters');
+        const mobileFilterBar = document.getElementById('mobileFilterBar');
+
+        // 側邊欄按鈕
+        sidebarFilters.innerHTML = CATEGORIES.map(cat => /*html*/`
+            <button class="filter-btn" data-cat="${cat.id}">
+                ${cat.label}
+                <span class="filter-dot"></span>
+            </button>`).join('');
+
+        // 手機篩選按鈕
+        mobileFilterBar.innerHTML = CATEGORIES.map(cat => /*html*/`
+            <button class="mobile-filter-chip" data-cat="${cat.id}">${cat.label}</button>`).join('');
+
+        // 各分類區塊 + 分隔線
+        gridArea.innerHTML = CATEGORIES.map((cat, idx) => {
+            const partners = PARTNERS[cat.id] || [];
+            const cardsHTML = partners.map(renderCard).join('');
+            const divider = idx < CATEGORIES.length - 1 ? '<hr class="category-divider">' : '';
+
+            return /*html*/`
+            <div class="category-section active" data-section="${cat.id}">
+                <div class="category-header">
+                    <div>
+                        <span class="category-label">${cat.eyebrow}</span>
+                        <h2 class="category-title">${cat.label}</h2>
+                    </div>
+                    <span class="result-count">${partners.length} 位夥伴</span>
+                </div>
+                <div class="partner-grid">${cardsHTML}</div>
+            </div>
+            ${divider}`;
+        }).join('');
+    }
+
+    //   篩選 + 動畫邏輯
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderAll();
+
+        const gridArea = document.getElementById('gridArea');
+
+        function getSections()      { return document.querySelectorAll('.category-section'); }
+        function getDividers()      { return document.querySelectorAll('.category-divider'); }
+        function getSidebarBtns()   { return document.querySelectorAll('#sidebarFilters .filter-btn'); }
+        function getMobileBtns()    { return document.querySelectorAll('.mobile-filter-chip'); }
+
+        function applyFilter(cat) {
+            const sections = getSections();
+            const dividers = getDividers();
+
+            sections.forEach(s => {
+                s.style.display = (cat === 'all' || s.dataset.section === cat) ? 'block' : 'none';
+            });
+            dividers.forEach(d => {
+                d.style.display = cat === 'all' ? 'block' : 'none';
+            });
+
+            document.querySelectorAll('.partner-card').forEach(c => c.classList.remove('visible'));
+            setTimeout(triggerVisible, 50);
+        }
+
+        function setActive(cat) {
+            getSidebarBtns().forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+            getMobileBtns().forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+        }
+
+        function bindFilterBtns() {
+            getSidebarBtns().forEach(btn => {
                 btn.addEventListener('click', () => {
                     setActive(btn.dataset.cat);
                     applyFilter(btn.dataset.cat);
@@ -825,40 +608,39 @@
                 });
             });
 
-            mobileBtns.forEach(btn => {
+            getMobileBtns().forEach(btn => {
                 btn.addEventListener('click', () => {
                     setActive(btn.dataset.cat);
                     applyFilter(btn.dataset.cat);
                     gridArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
+        }
 
-            // ─── 卡片進場動畫 ───
-            function triggerVisible() {
-                const cards = document.querySelectorAll('.partner-card:not(.visible)');
-                const obs = new IntersectionObserver((entries) => {
-                    entries.forEach((e, i) => {
-                        if (e.isIntersecting) {
-                            setTimeout(() => e.target.classList.add('visible'), i * 80);
-                            obs.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-                cards.forEach(c => obs.observe(c));
-            }
+        function triggerVisible() {
+            const cards = document.querySelectorAll('.partner-card:not(.visible)');
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach((e, i) => {
+                    if (e.isIntersecting) {
+                        setTimeout(() => e.target.classList.add('visible'), i * 80);
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(c => obs.observe(c));
+        }
 
-            triggerVisible();
+        bindFilterBtns();
+        triggerVisible();
 
-            // ─── URL 參數篩選 ───
-            const urlParams = new URLSearchParams(window.location.search);
-            const catFromUrl = urlParams.get('cat');
-            if (catFromUrl) {
-                setActive(catFromUrl);
-                applyFilter(catFromUrl);
-            }
-
-        });
+        // URL 參數篩選
+        const urlParams = new URLSearchParams(window.location.search);
+        const catFromUrl = urlParams.get('cat');
+        if (catFromUrl) {
+            setActive(catFromUrl);
+            applyFilter(catFromUrl);
+        }
+    });
     </script>
 </body>
-
 </html>
