@@ -519,6 +519,42 @@
                 height: 300px;
             }
         }
+
+        /* ─── 桌面版下拉選單 ─── */
+        #userDropdownWrap .dropdown-menu {
+            border-radius: 0;
+            border: 1px solid var(--border-grey);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            padding: 8px 0;
+            min-width: 120px;
+        }
+
+        #userDropdownWrap .dropdown-item {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            padding: 10px 20px;
+        }
+
+        #userDropdownWrap .dropdown-item:hover {
+            background: rgba(197, 160, 89, 0.06);
+            color: var(--accent-gold);
+        }
+
+        #userDropdownWrap .dropdown-toggle::after {
+            display: none;
+        }
+
+        #mobileUserMenu {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+        }
+
+        #mobileUserMenu.visible {
+            display: block;
+            border-top: 1px solid var(--border-grey);
+        }
     </style>
 </head>
 
@@ -548,7 +584,18 @@
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
+                    <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
@@ -575,11 +622,21 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-            <a href="client_login.html" class="offcanvas-login">
+            <a href="#" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
+            <div id="mobileUserMenu">
+                <p id="mobileWelcome"
+                    style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
+                <a href="./my_wedding.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
+            </div>
         </div>
     </div>
 
@@ -830,15 +887,16 @@
                             公司地址
                         </div>
                         <div class="info-item-value">
-                            110 台北市信義區信義路五段 100 號 42 樓<br>
+                            408 臺中市南屯區公益路二段 51 號 18 樓<br>
                             <span style="font-size: 14px; color: var(--text-muted);">（出電梯後請至接待大廳，由專人為您引導）</span>
                         </div>
                     </div>
                 </div>
                 <div class="info-image-col">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0033100869383!2d121.56417751500662!3d25.033959983972234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6cdbf8c4d%3A0xc39110b1718105cb!2sTaipei%20101!5e0!3m2!1sen!2stw!4v1680000000000!5m2!1sen!2stw"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227.53789800434996!2d120.65095258264513!3d24.150458230454205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d69a2dcccf1%3A0x664964d28300759b!2z6LOH5bGV5ZyL6Zqb6IKh5Lu95pyJ6ZmQ5YWs5Y-4LeS4reWNgOS4reW_gw!5e0!3m2!1szh-TW!2stw!4v1773041908120!5m2!1szh-TW!2stw"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -849,6 +907,20 @@
     <footer class="site-footer">
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
+
+    <!-- 模擬登入 -->
+    <div id="loginModal"
+        style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
+        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
+            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)"
+                style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
+            <div style="text-align:right;">
+                <button id="loginSubmit"
+                    style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
+            </div>
+        </div>
+    </div>
 
     <!-- 回到頂部按鈕 -->
     <button id="backToTop" class="back-to-top">
@@ -937,7 +1009,7 @@
             }
         }).mount('#app');
 
-        // ─── Navbar 捲動隱藏 & 搜尋框 ───
+        // ── 導覽列滾動隱藏 ──
         document.addEventListener('DOMContentLoaded', () => {
             const navbar = document.querySelector('.navbar');
             const tabBar = document.querySelector('.page-tab-bar');
@@ -966,28 +1038,6 @@
                 navbar.addEventListener('mouseenter', () => { navLocked = true; });
                 navbar.addEventListener('mouseleave', () => { navLocked = false; });
             }
-
-            // ─── 搜尋框 ───
-            const searchBtn = document.getElementById('search-btn');
-            const searchInput = document.getElementById('search-input');
-            if (searchBtn && searchInput) {
-                searchBtn.addEventListener('click', () => {
-                    if (!searchInput.classList.contains('open')) {
-                        searchInput.classList.add('open');
-                        setTimeout(() => searchInput.focus(), 500);
-                    } else {
-                        if (searchInput.value.trim() !== '') alert('搜尋：' + searchInput.value.trim());
-                        else searchInput.classList.remove('open');
-                    }
-                });
-            }
-
-            // ─── Active nav highlight ───
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.nav-link-item').forEach(link => {
-                const href = (link.getAttribute('href') || '').split('/').pop();
-                if (href && href === currentPath) link.classList.add('active-page');
-            });
 
             // ─── 表單各 section 滾動進場動畫 ───
             const obs = new IntersectionObserver((entries) => {
