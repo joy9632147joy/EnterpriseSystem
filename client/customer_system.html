@@ -5,6 +5,13 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>DREAM VENUES - 專屬方案擬定</title>
+
+    <script>
+        if (!sessionStorage.getItem('dv_username')) {
+            alert('親愛的賓客您好，請先登入會員以查看您的專屬婚禮提案！');
+            window.location.href = './index.html'; 
+        }
+    </script>
     
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
@@ -159,7 +166,6 @@
         .check-item:hover { border-color: var(--rose-dark); }
         .check-item input[type="checkbox"] { margin-right: 15px; accent-color: var(--rose-dark); width: 18px; height: 18px; }
 
-        /* 價格標示樣式 */
         .price-tag {
             font-size: 11px;
             color: var(--accent-gold);
@@ -188,7 +194,6 @@
         }
         .sub-addon-item input { margin-right: 10px; accent-color: var(--rose-dark); width: 16px; height: 16px; }
 
-        /* 佈置區塊的微型標題 */
         .decor-group-title {
             font-size: 13px; 
             font-weight: bold; 
@@ -270,7 +275,6 @@
             box-shadow: 0 10px 30px rgba(194, 142, 142, 0.1);
         }
 
-        /* 區隔線樣式 */
         .section-divider {
             text-align: center;
             margin: 50px 0 40px;
@@ -294,7 +298,6 @@
             border-radius: 50px;
         }
 
-        /* 修改與取消按鈕樣式 */
         .edit-info-btn {
             background: transparent;
             border: 1px solid var(--rose-dark);
@@ -318,7 +321,6 @@
             color: white;
         }
 
-        /* 取消按鈕的專屬樣式 */
         .edit-info-btn.cancel-btn {
             border-color: #B0A8A0;
             color: #8C867F;
@@ -530,7 +532,8 @@
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                     <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="18000"><span>新娘妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
                                     <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="1200"><span>新郎專屬妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 1,200)</span></span></label>
-                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>主婚人/親友單妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>主婚人妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>親友妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
                                 </div>
                             </div>
                             
@@ -712,6 +715,19 @@
         </div>
     </footer>
 
+    <div class="modal fade" id="saveSuccessModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content" style="border:none; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                <div class="modal-body text-center" style="padding: 40px 20px;">
+                    <i class="fa-regular fa-circle-check" style="font-size: 55px; color: var(--rose-dark); margin-bottom: 15px;"></i>
+                    <h4 class="serif" style="margin-bottom: 10px; color: var(--text-main); font-size: 1.2rem;">資料已儲存</h4>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 25px;">您的婚宴資訊已成功更新！</p>
+                    <button type="button" class="consult-btn" style="background: var(--rose-dark); color: white; border: none; padding: 8px 30px;" data-bs-dismiss="modal">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
         <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
             <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
@@ -721,7 +737,7 @@
     </div>
 
     <script>
-        // ─── 登入狀態管理（sessionStorage 跨頁面保持） ───
+        // ─── 登入狀態管理 ───
         (function () {
             const savedUsername = sessionStorage.getItem('dv_username');
             const loginLinkDesktop = document.getElementById('loginLinkDesktop');
@@ -752,9 +768,8 @@
             });
         })();
         
-        const BASE_PRICE = 43800; // A方案基底費用
+        const BASE_PRICE = 43800; 
 
-        // --- 試算總金額 ---
         function calculateTotal() {
             let total = BASE_PRICE;
             const checkedBoxes = document.querySelectorAll('.check-item input[type="checkbox"]:checked, .sub-addon-checkbox:checked');
@@ -768,7 +783,6 @@
             return total;
         }
 
-        // 綁定全域 Checkbox 事件 (處理點擊變色與試算)
         document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
             cb.addEventListener('change', function() {
                 if(this.checked) this.parentElement.classList.add('active');
@@ -781,7 +795,6 @@
             cb.addEventListener('change', calculateTotal);
         });
 
-        // --- 主副選項連動引擎 ---
         document.querySelectorAll('.group-main-trigger').forEach(trigger => {
             trigger.addEventListener('change', function() {
                 const targetId = this.getAttribute('data-target');
@@ -794,7 +807,6 @@
                         addonBox.style.display = 'block'; 
                     } else {
                         addonBox.style.display = 'none'; 
-                        // 清空裡面的子選項
                         addonBox.querySelectorAll('.sub-addon-checkbox').forEach(cb => {
                             cb.checked = false;
                         });
@@ -805,73 +817,55 @@
         });
 
         // ==========================================
-        // 婚宴資訊 修改與唯讀切換邏輯
+        // 婚宴資訊 修改與唯讀切換邏輯 (結合 Modal 顯示)
         // ==========================================
         const editInfoBtn = document.getElementById('editWeddingInfoBtn');
         const cancelEditBtn = document.getElementById('cancelEditBtn');
         const editableFields = document.querySelectorAll('.editable-field');
         let isEditing = false;
-        let originalValues = []; // 用來記錄點擊修改前的原始值
+        let originalValues = []; 
 
         if (editInfoBtn) {
             editInfoBtn.addEventListener('click', function() {
                 if (!isEditing) {
-                    // --- 進入編輯狀態 ---
+                    // 進入編輯狀態
                     isEditing = true;
-                    
-                    // 1. 記錄當前的資料，以便取消時回復
                     originalValues = Array.from(editableFields).map(field => field.value);
-                    
-                    // 2. 解除唯讀狀態
                     editableFields.forEach(field => field.removeAttribute('readonly'));
-                    
-                    // 3. 變更按鈕外觀 (無圖示)
                     this.textContent = '儲存';
                     this.classList.add('active');
-                    
-                    // 4. 顯示取消按鈕
                     cancelEditBtn.style.display = 'inline-flex';
                 } else {
-                    // --- 儲存邏輯 (離開編輯狀態) ---
+                    // 離開編輯狀態 (儲存)
                     isEditing = false;
-                    
-                    // 1. 恢復唯讀狀態
                     editableFields.forEach(field => field.setAttribute('readonly', true));
-                    
-                    // 2. 恢復按鈕外觀 (無圖示)
                     this.textContent = '修改';
                     this.classList.remove('active');
-                    
-                    // 3. 隱藏取消按鈕
                     cancelEditBtn.style.display = 'none';
                     
-                    // 4. 提示
-                    alert('資料已更新保存！');
+                    // 呼叫 Bootstrap Modal 顯示儲存成功
+                    const saveModal = new bootstrap.Modal(document.getElementById('saveSuccessModal'));
+                    saveModal.show();
                 }
             });
         }
 
         if (cancelEditBtn) {
             cancelEditBtn.addEventListener('click', function() {
-                // --- 取消邏輯 ---
                 isEditing = false;
-                
-                // 1. 回復之前記錄的原始資料，並設定為唯讀
                 editableFields.forEach((field, index) => {
                     field.value = originalValues[index];
                     field.setAttribute('readonly', true);
                 });
-                
-                // 2. 恢復修改按鈕的狀態 (無圖示)
                 editInfoBtn.textContent = '修改';
                 editInfoBtn.classList.remove('active');
-                
-                // 3. 隱藏自己(取消按鈕)
                 this.style.display = 'none';
             });
         }
 
+        // ==========================================
         // 步驟控制邏輯
+        // ==========================================
         let current = 1; 
         const totalSteps = 4;
 
@@ -894,9 +888,6 @@
             document.getElementById('progress-2').style.width = current >= 3 ? '100%' : '0%';
             document.getElementById('progress-3').style.width = current === 4 ? '100%' : '0%';
 
-            // ==========================================
-            // 動態生成第 3 步的「專屬需求報價清單」
-            // ==========================================
             if (current === 3) {
                 const summaryServices = document.getElementById('summary-services');
                 summaryServices.innerHTML = ''; 
@@ -905,21 +896,16 @@
                 const mainCheckboxes = document.querySelectorAll('.check-item input[type="checkbox"]:checked');
                 
                 mainCheckboxes.forEach(box => {
-                    // 如果這個主要 checkbox 有帶 data-price="0" (如專業造型師)，我們可以選擇隱藏它
-                    // 或是顯示但金額為 0。這邊會顯示出來。
-                    
                     let serviceName = box.nextElementSibling.innerText;
                     const price = parseInt(box.getAttribute('data-price') || 0);
                     const category = box.getAttribute('data-category'); 
                     
-                    // 檢查這是否為主選項，如果是且裡面有勾選子項目才算數
                     let htmlString = '';
                     
                     if (box.classList.contains('group-main-trigger')) {
                         const targetId = box.getAttribute('data-target');
                         const subAddons = document.querySelectorAll(`#${targetId} .sub-addon-checkbox:checked`);
                         
-                        // 有勾選子項目才渲染這個主項目的名字
                         if(subAddons.length > 0) {
                             hasAddons = true;
                             htmlString += `
@@ -930,7 +916,7 @@
                                             <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
                                             <span style="font-size: 14px;">${serviceName}</span>
                                         </div>
-                                        <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
+                                        <span style="font-family: var(--font-sans); color: var(--text-main);">${price > 0 ? 'NT$ ' + price.toLocaleString() : ''}</span>
                                     </div>
                                     <ul style="margin: 6px 0 0 45px; padding: 0; list-style: none; font-size: 13px; color: var(--text-muted);">`;
                             
@@ -947,7 +933,6 @@
                             htmlString += `</ul></li>`;
                         }
                     } else {
-                        // 一般的 Checkbox (沒有子選項)
                         hasAddons = true;
                         htmlString += `
                             <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
