@@ -331,12 +331,11 @@
  #navMenu .nav-link-item {
      font-size: 14px !important;
      padding: 12px 0 !important;
-     border-bottom: 1px solid var(--border-grey);
  }
 
  @media (max-width: 991.98px) {
      .page-wrap {
-         padding-top: 64px;
+         padding-top: 40px;
      }
  }
 
