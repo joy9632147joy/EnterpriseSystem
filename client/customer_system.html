@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="global.css">
 
     <style>
-        /* =========================================
-           諮詢系統專屬樣式 (深淺玫瑰色系)
-           ========================================= */
         :root {
             --accent-gold: #C5A059; 
             --rose-dark: #C28E8E;  
@@ -296,6 +293,40 @@
             letter-spacing: 2px;
             border-radius: 50px;
         }
+
+        /* 修改與取消按鈕樣式 */
+        .edit-info-btn {
+            background: transparent;
+            border: 1px solid var(--rose-dark);
+            color: var(--rose-dark);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .edit-info-btn:hover {
+            background: rgba(194, 142, 142, 0.1);
+        }
+        .edit-info-btn.active {
+            background: var(--rose-dark);
+            color: white;
+        }
+
+        /* 取消按鈕的專屬樣式 */
+        .edit-info-btn.cancel-btn {
+            border-color: #B0A8A0;
+            color: #8C867F;
+        }
+        .edit-info-btn.cancel-btn:hover {
+            background: rgba(176, 168, 160, 0.1);
+            color: #736E68;
+        }
     </style>
 </head>
 
@@ -321,17 +352,22 @@
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
                         <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined" style="color:var(--text-muted); font-size:20px;">search</button>
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
-                        <a class="nav-link nav-link-item active-page" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <a class="nav-link nav-link-item active-page" href="#" id="userDropdownBtn"
+                            data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="./index.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
@@ -399,7 +435,11 @@
                                 <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>聯絡手機 Phone</label>
                                 <input type="tel" class="form-control-custom" value="0912-345-678" readonly>
                             </div>
-                            <div style="grid-column: span 2;">
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>LINE ID</label>
+                                <input type="text" class="form-control-custom" value="joy_wedding_123" readonly>
+                            </div>
+                            <div>
                                 <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>電子郵件 Email</label>
                                 <input type="email" class="form-control-custom" value="joy.wedding@example.com" readonly>
                             </div>
@@ -413,23 +453,32 @@
                                 <i class="fa-regular fa-calendar-check" style="font-size: 22px; color: var(--rose-dark); margin-right: 12px;"></i>
                                 <h3 class="serif" style="margin: 0; font-size: 1.3rem;">婚宴資訊</h3>
                             </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button type="button" id="cancelEditBtn" class="edit-info-btn cancel-btn" style="display: none;">
+                                    取消
+                                </button>
+                                <button type="button" id="editWeddingInfoBtn" class="edit-info-btn">
+                                    修改
+                                </button>
+                            </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        
+                        <div id="weddingInfoFields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
                             <div>
                                 <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">預計婚期 Wedding Date</label>
-                                <input type="date" class="form-control-custom" value="2026-10-15">
+                                <input type="date" class="form-control-custom editable-field" value="2026-10-15" readonly>
                             </div>
                             <div>
-                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">賓客規模 Guest Scale</label>
-                                <input type="text" class="form-control-custom" value="20-25桌">
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">賓客規模 (人數) Guest Scale</label>
+                                <input type="number" class="form-control-custom editable-field" value="250" placeholder="請輸入預計人數" readonly>
                             </div>
                             <div style="grid-column: span 2;">
                                 <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">宴客場地 Venue</label>
-                                <input type="text" class="form-control-custom" placeholder="請輸入您屬意的飯店或場地 (若尚未決定可留空)">
+                                <input type="text" class="form-control-custom editable-field" value="東方文華酒店" placeholder="請輸入您屬意的飯店或場地 (若尚未決定可留空)" readonly>
                             </div>
                             <div style="grid-column: span 2;">
                                 <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">婚宴備註 Notes</label>
-                                <textarea class="form-control-custom" style="min-height: 80px;" placeholder="例如：全素桌需求、是否有特殊忌諱等..."></textarea>
+                                <textarea class="form-control-custom editable-field" style="min-height: 80px;" placeholder="例如：全素桌需求、是否有特殊忌諱等..." readonly>全素桌 2 桌，需要戶外證婚場地規劃。</textarea>
                             </div>
                         </div>
                     </div>
@@ -670,6 +719,37 @@
     </div>
 
     <script>
+        // ─── 登入狀態管理（sessionStorage 跨頁面保持） ───
+        (function () {
+            const savedUsername = sessionStorage.getItem('dv_username');
+            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
+            const loginLinkMobile = document.getElementById('loginLinkMobile');
+            const userDropdownWrap = document.getElementById('userDropdownWrap');
+            const userDropdownBtn = document.getElementById('userDropdownBtn');
+            const mobileUserMenu = document.getElementById('mobileUserMenu');
+            const mobileWelcome = document.getElementById('mobileWelcome');
+
+            if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
+            if (userDropdownWrap) {
+                userDropdownWrap.style.display = 'block';
+                if (userDropdownBtn) userDropdownBtn.textContent = `歡迎, ${savedUsername} ▾`;
+            }
+            if (loginLinkMobile) loginLinkMobile.style.display = 'none';
+            if (mobileUserMenu) mobileUserMenu.classList.add('visible');
+            if (mobileWelcome) mobileWelcome.textContent = `歡迎, ${savedUsername}`;
+
+            document.getElementById('logoutBtn')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                window.location.href = './index.html';
+            });
+            document.getElementById('logoutBtnMobile')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                window.location.href = './index.html';
+            });
+        })();
+        
         const BASE_PRICE = 43800; // A方案基底費用
 
         // --- 試算總金額 ---
@@ -721,6 +801,73 @@
                 }
             });
         });
+
+        // ==========================================
+        // 婚宴資訊 修改與唯讀切換邏輯
+        // ==========================================
+        const editInfoBtn = document.getElementById('editWeddingInfoBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const editableFields = document.querySelectorAll('.editable-field');
+        let isEditing = false;
+        let originalValues = []; // 用來記錄點擊修改前的原始值
+
+        if (editInfoBtn) {
+            editInfoBtn.addEventListener('click', function() {
+                if (!isEditing) {
+                    // --- 進入編輯狀態 ---
+                    isEditing = true;
+                    
+                    // 1. 記錄當前的資料，以便取消時回復
+                    originalValues = Array.from(editableFields).map(field => field.value);
+                    
+                    // 2. 解除唯讀狀態
+                    editableFields.forEach(field => field.removeAttribute('readonly'));
+                    
+                    // 3. 變更按鈕外觀 (無圖示)
+                    this.textContent = '儲存';
+                    this.classList.add('active');
+                    
+                    // 4. 顯示取消按鈕
+                    cancelEditBtn.style.display = 'inline-flex';
+                } else {
+                    // --- 儲存邏輯 (離開編輯狀態) ---
+                    isEditing = false;
+                    
+                    // 1. 恢復唯讀狀態
+                    editableFields.forEach(field => field.setAttribute('readonly', true));
+                    
+                    // 2. 恢復按鈕外觀
+                    this.textContent = '修改';
+                    this.classList.remove('active');
+                    
+                    // 3. 隱藏取消按鈕
+                    cancelEditBtn.style.display = 'none';
+                    
+                    // 4. 提示
+                    alert('資料已更新保存！');
+                }
+            });
+        }
+
+        if (cancelEditBtn) {
+            cancelEditBtn.addEventListener('click', function() {
+                // --- 取消邏輯 ---
+                isEditing = false;
+                
+                // 1. 回復之前記錄的原始資料，並設定為唯讀
+                editableFields.forEach((field, index) => {
+                    field.value = originalValues[index];
+                    field.setAttribute('readonly', true);
+                });
+                
+                // 2. 恢復修改按鈕的狀態
+                editInfoBtn.textContent = '修改';
+                editInfoBtn.classList.remove('active');
+                
+                // 3. 隱藏自己(取消按鈕)
+                this.style.display = 'none';
+            });
+        }
 
         // 步驟控制邏輯
         let current = 1; 
