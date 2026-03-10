@@ -469,15 +469,18 @@
             background: var(--accent-gold);
         }
 
+        /* ════ LIGHTBOX ════ */
         .lb-overlay {
             position: fixed;
             inset: 0;
             z-index: 9000;
-            background: rgba(8, 7, 5, .97);
+            background: rgba(6, 4, 2, 0.92);
             display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
 
         .lb-overlay.open {
@@ -486,13 +489,8 @@
         }
 
         @keyframes lbIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
+            from { opacity: 0 }
+            to   { opacity: 1 }
         }
 
         .lb-inner {
@@ -548,114 +546,173 @@
             margin-top: 4px;
         }
 
+        /* ── Nav arrows：圓形，與 index.html 一致 ── */
         .lb-btn {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(255, 255, 255, .1);
-            color: rgba(255, 255, 255, .65);
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 9002;
-            transition: background .3s, color .3s, border-color .3s;
-            font-size: 20px;
+            transition: background .25s, border-color .25s, transform .25s;
             pointer-events: auto;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .lb-btn .material-symbols-outlined {
+            font-size: 22px;
         }
 
         .lb-btn:hover {
-            background: rgba(197, 160, 89, .18);
-            color: var(--accent-gold);
-            border-color: rgba(197, 160, 89, .4);
+            background: rgba(197, 160, 89, 0.18);
+            border-color: rgba(197, 160, 89, 0.45);
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .lb-prev {
-            left: 20px;
+            left: 24px;
+        }
+
+        .lb-prev:hover {
+            transform: translateY(-50%) translateX(-3px);
         }
 
         .lb-next {
-            right: 20px;
+            right: 24px;
         }
 
+        .lb-next:hover {
+            transform: translateY(-50%) translateX(3px);
+        }
+
+        /* 手機版：移至照片下方中央 */
         @media(max-width:767px) {
             .lb-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
+                width: 40px;
+                height: 40px;
+                top: auto;
+                bottom: 72px;
+                transform: none;
             }
 
             .lb-prev {
-                left: 6px;
+                left: calc(50% - 52px);
+            }
+
+            .lb-prev:hover {
+                transform: none;
             }
 
             .lb-next {
-                right: 6px;
+                right: calc(50% - 52px);
+            }
+
+            .lb-next:hover {
+                transform: none;
+            }
+
+            /* 修復 iPhone 12 (390px) 圖片被裁切問題：
+               頂部：計數器 ~56px、底部：箭頭 72px + dots 48px ≈ 留出 140px */
+            .lb-img-wrap {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
+
+            .lb-img-wrap img {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
+        }
+
+        /* 針對極小螢幕 (height ≤ 700px，如 iPhone SE / 12 mini) 再縮一點 */
+        @media(max-width:767px) and (max-height:700px) {
+            .lb-img-wrap {
+                max-height: calc(100dvh - 180px);
+            }
+
+            .lb-img-wrap img {
+                max-height: calc(100dvh - 180px);
             }
         }
 
         .lb-close {
             position: fixed;
-            top: 20px;
-            right: 24px;
+            top: 24px;
+            right: 28px;
             z-index: 9010;
-            background: rgba(0, 0, 0, .35);
-            border: 1px solid rgba(255, 255, 255, .15);
-            cursor: pointer;
-            color: rgba(255, 255, 255, .75);
-            font-size: 22px;
-            transition: color .3s, background .3s;
-            pointer-events: auto;
             width: 44px;
             height: 44px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: auto;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+
+        .lb-close .material-symbols-outlined {
+            font-size: 20px;
         }
 
         .lb-close:hover {
-            color: white;
-            background: rgba(197, 160, 89, .25);
+            background: rgba(197, 160, 89, 0.2);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: rotate(90deg);
         }
 
         .lb-dots {
-            position: absolute;
-            bottom: 46px;
+            position: fixed;
+            bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 7px;
+            gap: 8px;
             pointer-events: auto;
             z-index: 9003;
         }
 
+        @media(max-width:767px) {
+            .lb-dots {
+                bottom: 20px;
+            }
+        }
+
         .lb-dot {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .22);
+            background: rgba(255, 255, 255, 0.25);
             cursor: pointer;
             transition: background .3s, transform .3s;
         }
 
         .lb-dot.active {
             background: var(--accent-gold);
-            transform: scale(1.5);
+            transform: scale(1.4);
         }
 
         .lb-counter {
-            position: absolute;
-            bottom: 24px;
+            position: fixed;
+            top: 32px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 10px;
-            letter-spacing: .3em;
-            color: rgba(255, 255, 255, .28);
+            letter-spacing: .4em;
+            color: rgba(197, 160, 89, 0.6);
             pointer-events: none;
             z-index: 9003;
+            white-space: nowrap;
         }
 
         .theme-nav {
@@ -666,7 +723,6 @@
             border-bottom: 1px solid var(--border-grey);
             margin-top: -70px;
         }
-
 
         .theme-nav-inner {
             max-width: 1520px;
@@ -693,9 +749,9 @@
             flex-shrink: 0;
             background: none;
             border: none;
-            padding: 20px 16px;
-            font-size: 14px;
-            letter-spacing: .15em;
+            padding: 16px 10px;
+            font-size: 12px;
+            letter-spacing: .06em;
             text-transform: uppercase;
             color: var(--text-muted);
             cursor: pointer;
@@ -705,9 +761,18 @@
             font-family: var(--font-sans);
         }
 
+        @media(min-width:576px) {
+            .theme-pill {
+                padding: 18px 14px;
+                font-size: 13px;
+                letter-spacing: .10em;
+            }
+        }
+
         @media(min-width:992px) {
             .theme-pill {
                 padding: 16px 24px;
+                font-size: 14px;
                 letter-spacing: .18em;
             }
         }
@@ -776,7 +841,7 @@
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -789,6 +854,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
@@ -819,8 +885,8 @@
             <div id="mobileUserMenu">
                 <p id="mobileWelcome"
                     style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">婚禮規劃</a>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
@@ -852,9 +918,8 @@
         <button class="lb-close" id="lbClose" title="關閉">
             <span class="material-symbols-outlined">close</span>
         </button>
+        <div class="lb-counter" id="lbCounter"></div>
         <div class="lb-inner">
-            <button class="lb-btn lb-prev" id="lbPrev"><span
-                    class="material-symbols-outlined">chevron_left</span></button>
             <div class="lb-img-wrap" id="lbImgWrap">
                 <img id="lbImg" src="" alt="">
                 <div class="lb-caption">
@@ -862,11 +927,10 @@
                     <p class="lb-caption-label" id="lbLabel"></p>
                 </div>
             </div>
-            <button class="lb-btn lb-next" id="lbNext"><span
-                    class="material-symbols-outlined">chevron_right</span></button>
         </div>
+        <button class="lb-btn lb-prev" id="lbPrev"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button class="lb-btn lb-next" id="lbNext"><span class="material-symbols-outlined">chevron_right</span></button>
         <div class="lb-dots" id="lbDots"></div>
-        <div class="lb-counter" id="lbCounter"></div>
     </div>
 
     <!-- FOOTER -->
@@ -894,9 +958,6 @@
     </button>
 
     <script>
-        //  資料來源：只需編輯這裡，HTML 完全不用動
-
-
         const THEMES = [
             {
                 id: 'forest',
@@ -942,7 +1003,6 @@
                 eyebrow: 'Chinese Heritage · Courtyard · Ink',
                 desc: '紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生',
                 mosaic: 'mosaic-chinese',
-                // 特殊：含一個 text panel，用 textPanel 標記位置（插在第幾張之後）
                 textPanel: { after: 1, quote: '「執子之手<br>與子偕老」', en: 'A Vow Across Lifetimes' },
                 tiles: [
                     { img: 'https://images.pexels.com/photos/13111964/pexels-photo-13111964.jpeg', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
@@ -963,9 +1023,6 @@
                 ]
             },
         ];
-
-
-        //  渲染邏輯
 
         function renderTile(tile, galleryId, idx) {
             const featuredCorner = tile.featured ? '<div class="tile-accent-corner"></div>' : '';
@@ -1001,7 +1058,6 @@
             let tilesHTML = '';
             theme.tiles.forEach((tile, idx) => {
                 tilesHTML += renderTile(tile, theme.id, idx);
-                // 插入 text panel（若有，且在指定 index 之後）
                 if (theme.textPanel && idx === theme.textPanel.after - 1) {
                     tilesHTML += renderTextPanel(theme.textPanel);
                 }
@@ -1027,18 +1083,13 @@
             const navInner = document.getElementById('themeNavInner');
             const themesWrap = document.getElementById('themesWrap');
 
-            // 主題導覽列
             navInner.innerHTML = THEMES.map((t, i) =>
                 (i > 0 ? '<div class="theme-pill-divider"></div>' : '') +
                 `<button class="theme-pill" data-target="${t.id}">${t.label}</button>`
             ).join('');
 
-            // 各主題區塊
             themesWrap.innerHTML = THEMES.map(renderThemeSection).join('');
         }
-
-
-        //  互動邏輯
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAll();
@@ -1058,19 +1109,15 @@
                 if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); }
             });
 
-            /* ── Theme nav pills ── */
             function getPills() { return document.querySelectorAll('.theme-pill'); }
-
             function getSectionEl(id) { return document.getElementById('sec-' + id); }
 
             function showTheme(target) {
                 getPills().forEach(p => p.classList.toggle('active', p.dataset.target === target));
-
                 THEMES.forEach(t => {
                     const el = getSectionEl(t.id);
                     if (el) el.classList.toggle('active', target === 'all' || t.id === target);
                 });
-
                 if (target !== 'all') {
                     setTimeout(() => {
                         const el = getSectionEl(target);
@@ -1081,7 +1128,6 @@
                         }
                     }, 50);
                 }
-
                 document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
                 setTimeout(triggerAnim, 80);
             }
@@ -1099,7 +1145,6 @@
             const lbDots = document.getElementById('lbDots');
             const lbCounter = document.getElementById('lbCounter');
 
-            // 從已渲染 DOM 收集 gallery 資料
             const galleries = {};
             document.querySelectorAll('.tile[data-lb]').forEach(tile => {
                 const g = tile.dataset.lb;
@@ -1124,7 +1169,7 @@
                     lbImg.src = item.src;
                     lbName.textContent = item.name;
                     lbLabel.textContent = item.label;
-                    lbCounter.textContent = (curI + 1) + ' / ' + galleries[curG].length;
+                    lbCounter.textContent = String(curI + 1).padStart(2, '0') + ' / ' + String(galleries[curG].length).padStart(2, '0');
                     lbImg.classList.remove('fade');
                 }, 200);
                 lbDots.innerHTML = '';
@@ -1138,8 +1183,8 @@
 
             function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
 
-            document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
-            document.getElementById('lbNext').addEventListener('click', () => navLb(1));
+            document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+            document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
             document.getElementById('lbClose').addEventListener('click', closeLb);
             overlay.addEventListener('click', e => { if (e.target === overlay) closeLb(); });
             document.addEventListener('keydown', e => {
@@ -1164,7 +1209,6 @@
                 openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
             });
 
-            /* ── Scroll reveal ── */
             function triggerAnim() {
                 const obs = new IntersectionObserver(entries => {
                     entries.forEach((e, i) => {

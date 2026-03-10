@@ -25,7 +25,7 @@
             min-height: 480px;
             overflow: hidden;
             background: #0c0b09;
-            margin-top: 80px;
+            margin-top: 70px;
         }
 
         .hs-slide {
@@ -798,6 +798,252 @@
             margin-top: 4px;
             display: block;
         }
+
+        /* ════ LIGHTBOX ════ */
+        .lb-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(6, 4, 2, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .lb-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lb-stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lb-img-wrap {
+            position: relative;
+            max-width: min(92vw, 1100px);
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lb-img-wrap img {
+            display: block;
+            max-width: 100%;
+            max-height: 85vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .lb-img-wrap img.lb-img-ready {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Caption */
+        .lb-caption {
+            position: absolute;
+            bottom: -52px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .lb-caption-tag {
+            font-size: 8px;
+            letter-spacing: 0.45em;
+            color: rgba(197, 160, 89, 0.75);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .lb-caption-name {
+            font-family: var(--font-serif, 'Noto Serif TC', serif);
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.1em;
+        }
+
+        /* Close button */
+        .lb-close {
+            position: fixed;
+            top: 24px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.25s, border-color 0.25s, transform 0.25s;
+            z-index: 2;
+        }
+
+        .lb-close:hover {
+            background: rgba(197, 160, 89, 0.2);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: rotate(90deg);
+        }
+
+        .lb-close .material-symbols-outlined {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Counter */
+        .lb-counter {
+            position: fixed;
+            top: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            color: rgba(197, 160, 89, 0.6);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        /* Nav arrows */
+        .lb-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.25s, border-color 0.25s, transform 0.25s;
+            z-index: 2;
+        }
+
+        .lb-nav:hover {
+            background: rgba(197, 160, 89, 0.18);
+            border-color: rgba(197, 160, 89, 0.45);
+        }
+
+        .lb-nav-prev {
+            left: 24px;
+        }
+
+        .lb-nav-prev:hover {
+            transform: translateY(-50%) translateX(-3px);
+        }
+
+        .lb-nav-next {
+            right: 24px;
+        }
+
+        .lb-nav-next:hover {
+            transform: translateY(-50%) translateX(3px);
+        }
+
+        .lb-nav .material-symbols-outlined {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Dot indicators */
+        .lb-dots {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .lb-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .lb-dot.active {
+            background: var(--accent-gold, #c5a059);
+            transform: scale(1.4);
+        }
+
+        @media(max-width:767px) {
+            .lb-nav {
+                width: 40px;
+                height: 40px;
+                top: auto;
+                bottom: 72px;
+                transform: none;
+            }
+
+            .lb-nav-prev {
+                left: calc(50% - 52px);
+            }
+
+            .lb-nav-prev:hover {
+                transform: none;
+            }
+
+            .lb-nav-next {
+                right: calc(50% - 52px);
+            }
+
+            .lb-nav-next:hover {
+                transform: none;
+            }
+
+            .lb-img-wrap {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
+
+            .lb-img-wrap img {
+                max-height: calc(100dvh - 160px);
+            }
+
+            .lb-dots {
+                bottom: 20px;
+            }
+        }
+
+        @media(max-width:767px) and (max-height:700px) {
+            .lb-img-wrap {
+                max-height: calc(100dvh - 180px);
+            }
+
+            .lb-img-wrap img {
+                max-height: calc(100dvh - 180px);
+            }
+        }
     </style>
 </head>
 
@@ -830,7 +1076,7 @@
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -873,8 +1119,8 @@
             <div id="mobileUserMenu">
                 <p id="mobileWelcome"
                     style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">婚禮規劃</a>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
@@ -968,9 +1214,6 @@
                 <span class="material-symbols-outlined">keyboard_arrow_down</span>
             </div>
         </div>
-
-
-
 
 
         <!-- ════ 服務流程 ════ -->
@@ -1094,11 +1337,11 @@
                 </h3>
                 <p
                     style="font-size:10px; letter-spacing:0.28em; color:#9c8e7f; text-transform:uppercase; margin-top:14px;">
-                    移入暫停 · 細細感受</p>
+                    點擊放大 · 左右滑動瀏覽</p>
             </div>
             <div class="gallery-belt">
                 <div class="gallery-row gallery-row-1">
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="0" data-tag="Forest · 2024.05" data-name="陳怡君 &amp; 王志偉">
                         <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=82&fit=crop"
                             alt="陳怡君 & 王志偉" loading="lazy">
                         <div class="gallery-img-label">
@@ -1106,7 +1349,7 @@
                             <span class="gallery-img-name">陳怡君 & 王志偉</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="1" data-tag="Chapel · 2024.03" data-name="林美慧 &amp; 張宏傑">
                         <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=82&fit=crop"
                             alt="林美慧 & 張宏傑" loading="lazy">
                         <div class="gallery-img-label">
@@ -1114,7 +1357,7 @@
                             <span class="gallery-img-name">林美慧 & 張宏傑</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="2" data-tag="Minimal · 2024.08" data-name="黃思穎 &amp; 李承翰">
                         <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=82&fit=crop"
                             alt="黃思穎 & 李承翰" loading="lazy">
                         <div class="gallery-img-label">
@@ -1122,7 +1365,7 @@
                             <span class="gallery-img-name">黃思穎 & 李承翰</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="3" data-tag="Vintage · 2024.06" data-name="許庭瑜 &amp; 蔡明宏">
                         <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=82&fit=crop"
                             alt="許庭瑜 & 蔡明宏" loading="lazy">
                         <div class="gallery-img-label">
@@ -1130,7 +1373,7 @@
                             <span class="gallery-img-name">許庭瑜 & 蔡明宏</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="4" data-tag="Chinese · 2024.09" data-name="廖雨晴 &amp; 吳承澤">
                         <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=82&fit=crop"
                             alt="廖雨晴 & 吳承澤" loading="lazy">
                         <div class="gallery-img-label">
@@ -1138,7 +1381,7 @@
                             <span class="gallery-img-name">廖雨晴 & 吳承澤</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="5" data-tag="Outdoor · 2024.11" data-name="蘇依琳 &amp; 鄭家豪">
                         <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=82&fit=crop"
                             alt="蘇依琳 & 鄭家豪" loading="lazy">
                         <div class="gallery-img-label">
@@ -1146,7 +1389,7 @@
                             <span class="gallery-img-name">蘇依琳 & 鄭家豪</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="6" data-tag="Romantic · 2024.10" data-name="吳雅婷 &amp; 陳建宇">
                         <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=700&q=82&fit=crop"
                             alt="吳雅婷 & 陳建宇" loading="lazy">
                         <div class="gallery-img-label">
@@ -1154,7 +1397,7 @@
                             <span class="gallery-img-name">吳雅婷 & 陳建宇</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img" data-index="7" data-tag="Garden · 2023.12" data-name="江雅雯 &amp; 林俊傑">
                         <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&q=82&fit=crop"
                             alt="江雅雯 & 林俊傑" loading="lazy">
                         <div class="gallery-img-label">
@@ -1162,7 +1405,8 @@
                             <span class="gallery-img-name">江雅雯 & 林俊傑</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <!-- Duplicate set for seamless loop (no data-index so lightbox ignores them) -->
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=82&fit=crop"
                             alt="陳怡君 & 王志偉" loading="lazy">
                         <div class="gallery-img-label">
@@ -1170,7 +1414,7 @@
                             <span class="gallery-img-name">陳怡君 & 王志偉</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=82&fit=crop"
                             alt="林美慧 & 張宏傑" loading="lazy">
                         <div class="gallery-img-label">
@@ -1178,7 +1422,7 @@
                             <span class="gallery-img-name">林美慧 & 張宏傑</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=82&fit=crop"
                             alt="黃思穎 & 李承翰" loading="lazy">
                         <div class="gallery-img-label">
@@ -1186,7 +1430,7 @@
                             <span class="gallery-img-name">黃思穎 & 李承翰</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=82&fit=crop"
                             alt="許庭瑜 & 蔡明宏" loading="lazy">
                         <div class="gallery-img-label">
@@ -1194,7 +1438,7 @@
                             <span class="gallery-img-name">許庭瑜 & 蔡明宏</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=82&fit=crop"
                             alt="廖雨晴 & 吳承澤" loading="lazy">
                         <div class="gallery-img-label">
@@ -1202,7 +1446,7 @@
                             <span class="gallery-img-name">廖雨晴 & 吳承澤</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=82&fit=crop"
                             alt="蘇依琳 & 鄭家豪" loading="lazy">
                         <div class="gallery-img-label">
@@ -1210,7 +1454,7 @@
                             <span class="gallery-img-name">蘇依琳 & 鄭家豪</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=700&q=82&fit=crop"
                             alt="吳雅婷 & 陳建宇" loading="lazy">
                         <div class="gallery-img-label">
@@ -1218,7 +1462,7 @@
                             <span class="gallery-img-name">吳雅婷 & 陳建宇</span>
                         </div>
                     </div>
-                    <div class="gallery-img">
+                    <div class="gallery-img lb-clone">
                         <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&q=82&fit=crop"
                             alt="江雅雯 & 林俊傑" loading="lazy">
                         <div class="gallery-img-label">
@@ -1229,9 +1473,6 @@
                 </div>
             </div>
         </section>
-
-
-
 
 
         <!-- ════ 客戶回饋 ════ -->
@@ -1368,6 +1609,30 @@
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>
 
+    <!-- ════ LIGHTBOX HTML ════ -->
+    <div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="照片燈箱">
+        <button class="lb-close" id="lbClose" aria-label="關閉">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <div class="lb-counter" id="lbCounter">01 / 08</div>
+        <div class="lb-stage" id="lbStage">
+            <div class="lb-img-wrap" id="lbImgWrap">
+                <img id="lbImg" src="" alt="">
+                <div class="lb-caption" id="lbCaption">
+                    <span class="lb-caption-tag" id="lbTag"></span>
+                    <span class="lb-caption-name" id="lbName"></span>
+                </div>
+            </div>
+        </div>
+        <button class="lb-nav lb-nav-prev" id="lbPrev" aria-label="上一張">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="lb-nav lb-nav-next" id="lbNext" aria-label="下一張">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+        <div class="lb-dots" id="lbDots"></div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -1375,8 +1640,6 @@
             document.getElementById('hsScrollHint')?.addEventListener('click', () => {
                 document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
             });
-
-            // 登入邏輯統一由 global.js 處理
 
             // ── Slideshow ──
             const INTERVAL = 4000;
@@ -1447,6 +1710,130 @@
             }, { threshold: 0.5 });
             document.querySelectorAll('.count-num').forEach(el => countObserver.observe(el));
 
+
+            // ════ LIGHTBOX ════
+            // Collect unique images (non-clone items with data-index)
+            const lbItems = [];
+            document.querySelectorAll('.gallery-img[data-index]').forEach(el => {
+                lbItems.push({
+                    src: el.querySelector('img').src,
+                    tag: el.dataset.tag || '',
+                    name: el.dataset.name || ''
+                });
+            });
+
+            const lbOverlay = document.getElementById('lbOverlay');
+            const lbImg = document.getElementById('lbImg');
+            const lbTag = document.getElementById('lbTag');
+            const lbName = document.getElementById('lbName');
+            const lbCounter = document.getElementById('lbCounter');
+            const lbDots = document.getElementById('lbDots');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+            const lbClose = document.getElementById('lbClose');
+            const lbImgWrap = document.getElementById('lbImgWrap');
+
+            let lbCurrent = 0;
+            const total = lbItems.length;
+
+            // Build dots
+            lbItems.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => lbShow(i));
+                lbDots.appendChild(dot);
+            });
+
+            function lbUpdateDots(idx) {
+                lbDots.querySelectorAll('.lb-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === idx);
+                });
+            }
+
+            function lbShow(idx) {
+                lbCurrent = (idx + total) % total;
+                const item = lbItems[lbCurrent];
+
+                lbImg.classList.remove('lb-img-ready');
+                lbImg.src = '';
+
+                // Use high-res version
+                const hiRes = item.src.replace(/w=\d+/, 'w=1400').replace(/q=\d+/, 'q=90');
+                lbImg.alt = item.name;
+                lbTag.textContent = item.tag;
+                lbName.textContent = item.name;
+                lbCounter.textContent = String(lbCurrent + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+                lbUpdateDots(lbCurrent);
+
+                const tmpImg = new Image();
+                tmpImg.onload = () => {
+                    lbImg.src = hiRes;
+                    requestAnimationFrame(() => requestAnimationFrame(() => lbImg.classList.add('lb-img-ready')));
+                };
+                tmpImg.onerror = () => {
+                    lbImg.src = item.src;
+                    requestAnimationFrame(() => requestAnimationFrame(() => lbImg.classList.add('lb-img-ready')));
+                };
+                tmpImg.src = hiRes;
+            }
+
+            function lbOpen(idx) {
+                lbShow(idx);
+                lbOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function lbCloseFn() {
+                lbOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+                setTimeout(() => { lbImg.src = ''; lbImg.classList.remove('lb-img-ready'); }, 350);
+            }
+
+            // Click on gallery images (only non-clones)
+            document.querySelectorAll('.gallery-img[data-index]').forEach(el => {
+                el.addEventListener('click', () => lbOpen(parseInt(el.dataset.index)));
+            });
+
+            // Nav buttons
+            lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbCurrent - 1); });
+            lbNext.addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbCurrent + 1); });
+            lbClose.addEventListener('click', lbCloseFn);
+
+            // Click backdrop to close
+            lbOverlay.addEventListener('click', (e) => {
+                if (e.target === lbOverlay || e.target.id === 'lbStage') lbCloseFn();
+            });
+
+            // Keyboard
+            document.addEventListener('keydown', (e) => {
+                if (!lbOverlay.classList.contains('open')) return;
+                if (e.key === 'ArrowLeft') lbShow(lbCurrent - 1);
+                else if (e.key === 'ArrowRight') lbShow(lbCurrent + 1);
+                else if (e.key === 'Escape') lbCloseFn();
+            });
+
+            // Touch swipe on lightbox
+            let lbTouchX = null;
+            lbImgWrap.addEventListener('touchstart', e => {
+                lbTouchX = e.touches[0].clientX;
+            }, { passive: true });
+            lbImgWrap.addEventListener('touchend', e => {
+                if (lbTouchX === null) return;
+                const dx = e.changedTouches[0].clientX - lbTouchX;
+                if (Math.abs(dx) > 40) lbShow(lbCurrent + (dx < 0 ? 1 : -1));
+                lbTouchX = null;
+            });
+
+            // Also allow swipe anywhere in overlay on mobile
+            lbOverlay.addEventListener('touchstart', e => {
+                lbTouchX = e.touches[0].clientX;
+            }, { passive: true });
+            lbOverlay.addEventListener('touchend', e => {
+                if (lbTouchX === null) return;
+                const dx = e.changedTouches[0].clientX - lbTouchX;
+                if (Math.abs(dx) > 40) lbShow(lbCurrent + (dx < 0 ? 1 : -1));
+                lbTouchX = null;
+            });
 
         });
     </script>

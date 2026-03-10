@@ -62,7 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ─── 模擬登入（使用 sessionStorage 跨頁面保持狀態） ───
+
+
+
+
+    // ─── 登入邏輯（使用 sessionStorage 跨頁面保持狀態） ───
     const loginModal = document.getElementById('loginModal');
     const loginSubmit = document.getElementById('loginSubmit');
     const loginLinkDesktop = document.getElementById('loginLinkDesktop');

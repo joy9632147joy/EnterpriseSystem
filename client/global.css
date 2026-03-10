@@ -126,7 +126,7 @@
      backdrop-filter: blur(12px);
      border-bottom: 1px solid rgba(240, 240, 240, 0.5);
      padding: 0 48px;
-     min-height: 80px;
+     min-height: 70px;
      transition: transform 0.4s ease-in-out, background-color 0.3s;
      transform: translateY(0);
  }

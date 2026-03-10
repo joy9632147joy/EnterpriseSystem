@@ -709,7 +709,7 @@
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -722,6 +722,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
@@ -752,8 +753,8 @@
             <div id="mobileUserMenu">
                 <p id="mobileWelcome"
                     style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">婚禮規劃</a>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
@@ -833,7 +834,7 @@
                     <p class="modal-bio" id="modalBio"></p>
                     <div class="modal-style-tags" id="modalStyleTags"></div>
                     <div class="modal-cta">
-                        <a href="./contact.html" class="cta-btn-gold">立即詢問洽談</a>
+                        <a href="./wedding_contact.html" class="cta-btn-gold">立即詢問洽談</a>
                     </div>
                 </div>
             </div>
@@ -847,7 +848,7 @@
             { id: 'planner', label: '婚禮顧問', eyebrow: 'Wedding Planner' },
             { id: 'host', label: '主持人', eyebrow: 'MC · Wedding Host' },
             { id: 'photo', label: '攝影師', eyebrow: 'Photography · Film' },
-            { id: 'sound', label: '場控/音控', eyebrow: 'Venue Space · Sound Control' },
+            { id: 'sound', label: '影音/燈光場控', eyebrow: 'Venue Space · Sound Control' },
             { id: 'makeup', label: '造型師', eyebrow: 'Bridal Makeup · Hair' },
         ];
 
@@ -857,7 +858,7 @@
             name: '李宜瑾 Tina', tag: 'Wedding Planner', years: '12+',
             bio: '李宜瑾 Tina 擁有超過 12 年的頂級婚禮策劃經驗，專精於五星飯店及莊園婚禮。她以精準的細節掌控和溫暖的溝通風格，讓每對新人在籌備過程中都感到從容優雅。曾協辦超過 300 場婚禮。',
             styles: ['奢華宴廳', '戶外莊園', '歐式古典', '海外婚禮'],
-            cardImg: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80',
+            cardImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
             modalImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
             meta: [{ icon: 'workspace_premium', text: '12+ Years' }],
         },
@@ -933,6 +934,14 @@
             styles: ['大氣穩重', '舞台表演', '大型宴席', '司儀培訓'],
             cardImg: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80',
             modalImg: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=600&q=80',
+            meta: [{ icon: 'workspace_premium', text: '10+ Years' }],
+        },
+        {
+            name: '陳嘉美 Jiny', tag: 'Wedding MC', years: '10+',
+            bio: '王志明 Kevin 擁有深厚的舞台表演底蘊，主持風格大氣而不失風趣。他特別擅長駕馭大場面，數百桌的宴席也能讓每位賓客都感受到被重視。近年更積極投入婚禮主持培訓課程。',
+            styles: ['大氣穩重', '舞台表演', '大型宴席', '司儀培訓'],
+            cardImg: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80',
+            modalImg: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80',
             meta: [{ icon: 'workspace_premium', text: '10+ Years' }],
         },
     ],
