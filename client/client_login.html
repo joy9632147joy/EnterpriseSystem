@@ -1,349 +1,509 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員登入 | MEMBER LOGIN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500&family=Noto+Sans+TC:wght@300;400&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>會員登入 | DREAM VENUES</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="./global.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="./global.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
     <style>
         :root {
             --champagne-gold: #C5A059;
             --dark-gold: #A68648;
             --text-main: #2D2520;
-            --text-muted: #5e5248;
-            --serif-luxury: 'Bodoni Moda', serif;
+            --text-muted: #7A6F66;
+            --text-light: #B0A49A;
+            --serif-luxury: 'Bodoni Moda', 'Noto Serif TC', serif;
             --sans: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-style: normal;
-        }
-
         body {
-            font-family: var(--sans);
+            background-color: #faf7f2;
+            display: flex;
+            flex-direction: column;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
+            margin: 0;
+            font-family: var(--sans);
             -webkit-font-smoothing: antialiased;
-            background-color: #D9CFC4;
-            background-image:
-                radial-gradient(ellipse 70% 50% at 15% 20%, rgba(197, 160, 89, 0.22) 0%, transparent 55%),
-                radial-gradient(ellipse 60% 60% at 85% 80%, rgba(180, 140, 70, 0.15) 0%, transparent 50%);
+            overflow-y: scroll; /* 強制顯示滾動條，與首頁寬度一致 */
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(197, 160, 89, 0.09) 1px, transparent 1px);
-            background-size: 52px 52px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .watermark {
-            position: fixed;
-            inset: 0;
+        .login-wrapper {
+            flex: 1;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
+            padding-top: 160px;
+            padding-bottom: 40px;
         }
 
-        .wm-text {
-            font-family: var(--serif-luxury);
-            font-weight: 400;
-            line-height: 0.82;
-            text-transform: uppercase;
-            white-space: nowrap;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(197, 160, 89, 0.1);
-        }
-
-        .wm-1 { font-size: 36vw; transform: translateY(-4vh); }
-        .wm-2 { font-size: 22vw; transform: translate(12vw, -6vh); opacity: 0.55; }
-
-        .page-wrapper {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 1rem;
+        /* ── 單欄置中容器 ── */
+        .login-container {
             width: 100%;
+            max-width: 480px;
+            padding: 0 2rem;
+            animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        /* ── 卡片：加寬加高 ── */
-        .login-card {
-            background: rgba(255, 253, 249, 0.95);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 14px;
-            padding: 3.5rem 3rem;       /* 加大內距 */
-            width: 100%;
-            max-width: 520px;           /* 加寬 */
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.75) inset,
-                0 20px 70px rgba(100, 70, 20, 0.18),
-                0 4px 16px rgba(197, 160, 89, 0.1);
-            animation: card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        @keyframes card-in {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(18px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        @media (min-width: 640px) {
-            .login-card { padding: 4rem 3.5rem; }
-        }
-
-        /* ── 標題 ── */
-        .card-header {
-            text-align: center;
-            margin-bottom: 2.75rem;
-        }
-
-        .luxury-title {
-            font-family: var(--serif-luxury);
-            font-size: 26px;            /* 放大 */
-            font-weight: 500;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            color: var(--text-main);
-        }
-
-        .luxury-subtitle {
-            font-size: 10px;            /* 放大 */
-            letter-spacing: 0.55em;
-            color: var(--champagne-gold);
-            text-transform: uppercase;
-            margin-top: 0.7rem;
-            font-weight: 400;
-        }
-
-        .header-divider {
-            width: 36px;
-            height: 1px;
-            background: rgba(197, 160, 89, 0.3);
-            margin: 1.25rem auto 0;
-        }
-
-        /* ── 表單 ── */
-        .form-field {
-            margin-bottom: 2rem;        /* 間距加大 */
-        }
-
-        .label-minimal {
+        /* ── 共用區塊樣式 ── */
+        .section-eyebrow {
             display: block;
-            font-size: 11px;            /* 放大 */
-            font-weight: 500;           /* 加粗 */
+            font-size: 10px;
+            letter-spacing: 0.55em;
             text-transform: uppercase;
-            letter-spacing: 0.4em;
-            color: var(--text-muted);
-            margin-bottom: 0.6rem;
+            color: var(--champagne-gold);
+            font-weight: 400;
+            margin-bottom: 0.75rem;
         }
 
-        .field-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 0.6rem;
+        .section-title {
+            font-family: var(--serif-luxury);
+            font-size: 34px;
+            font-weight: 400;
+            color: var(--text-main);
+            letter-spacing: 0.04em;
+            margin-bottom: 2.6rem;
+            line-height: 1.15;
         }
 
-        .input-wrap { position: relative; }
+        /* ── 底線式輸入框 ── */
+        .form-field { margin-bottom: 2rem; }
 
-        .input-minimal-gold {
+        .input-underline-wrap { position: relative; }
+
+        .input-underline {
             width: 100%;
-            background: rgba(245, 240, 232, 0.6);
-            border: 1px solid rgba(197, 160, 89, 0.28);
-            border-radius: 8px;
-            padding: 1rem 1.1rem;       /* 加高輸入框 */
-            font-size: 15px;            /* 放大 */
-            font-weight: 400;           /* 加粗 */
-            letter-spacing: 0.05em;
-            color: #2D2520;
-            font-family: var(--sans);
-            transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .input-minimal-gold:focus {
-            outline: none;
-            border-color: rgba(197, 160, 89, 0.6);
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
-        }
-
-        .input-minimal-gold::placeholder {
-            color: rgba(80, 65, 50, 0.4);
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(197,160,89,0.28);
+            border-radius: 0;
+            padding: 0.65rem 2.2rem 0.65rem 0;
+            font-size: 14px;
             font-weight: 300;
+            color: var(--text-main);
+            font-family: var(--sans);
+            letter-spacing: 0.02em;
+            transition: border-color 0.3s;
         }
 
-        .input-minimal-gold.has-icon {
-            padding-right: 3.2rem;
+        .input-underline:focus { outline: none; border-bottom-color: transparent; }
+        .input-underline::placeholder { color: var(--text-light); font-weight: 300; }
+
+        /* focus 底部金線動畫 */
+        .input-underline-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--champagne-gold);
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
         }
+
+        .input-underline-wrap:focus-within::after { width: 100%; }
 
         .toggle-btn {
             position: absolute;
-            right: 1rem;
-            top: 50%;
+            right: 0; top: 50%;
             transform: translateY(-50%);
-            background: none;
-            border: none;
+            background: none; border: none;
             cursor: pointer;
-            color: rgba(138, 125, 112, 0.5);
+            color: var(--text-light);
+            display: flex; align-items: center;
             padding: 0;
-            display: flex;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
         .toggle-btn:hover { color: var(--champagne-gold); }
+        .toggle-btn .material-symbols-outlined { font-size: 18px; }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
-            font-size: 20px;
+        /* ── 記住我 & 忘記密碼 ── */
+        .form-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+        }
+
+        .remember-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .remember-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 14px; height: 14px;
+            border: 1px solid rgba(197,160,89,0.45);
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+
+        .remember-checkbox:checked {
+            background: var(--champagne-gold);
+            border-color: var(--champagne-gold);
+        }
+
+        .remember-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            width: 4px; height: 7px;
+            border: 1.5px solid white;
+            border-top: none; border-left: none;
+            transform: rotate(42deg);
+            left: 3px; top: 0px;
+        }
+
+        .remember-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 300;
         }
 
         .forgot-link {
-            font-size: 11px;            /* 放大 */
-            font-weight: 400;
-            letter-spacing: 0.25em;
-            color: var(--champagne-gold);
+            font-size: 11.5px;
+            color: var(--text-light);
             text-decoration: none;
-            opacity: 0.85;
-            transition: opacity 0.3s;
+            letter-spacing: 0.04em;
+            transition: color 0.3s;
         }
 
-        .forgot-link:hover { opacity: 1; }
+        .forgot-link:hover { color: var(--champagne-gold); }
 
-        /* ── 按鈕 ── */
-        .btn-gold-submit {
+        /* ── 登入按鈕（金色空心框，hover 填滿） ── */
+        .btn-login {
             width: 100%;
-            background: linear-gradient(135deg, #C5A059 0%, #A68648 100%);
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            padding: 1.1rem;            /* 加高 */
-            font-size: 13px;            /* 放大 */
-            font-weight: 500;           /* 加粗 */
-            letter-spacing: 0.5em;
+            background: transparent;
+            border: 1px solid rgba(197,160,89,0.55);
+            color: var(--text-main);
+            padding: 1rem;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.42em;
             text-transform: uppercase;
             font-family: var(--sans);
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 18px rgba(197, 160, 89, 0.3);
-            margin-top: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.35s ease, border-color 0.35s ease;
         }
 
-        .btn-gold-submit:hover {
-            background: linear-gradient(135deg, #d4b06a 0%, #C5A059 100%);
-            box-shadow: 0 6px 28px rgba(197, 160, 89, 0.4);
-            transform: translateY(-1px);
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--champagne-gold) 0%, var(--dark-gold) 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
         }
 
-        .btn-gold-submit:active { transform: translateY(0); }
+        .btn-login:hover { color: #fff; border-color: var(--champagne-gold); }
+        .btn-login:hover::before { opacity: 1; }
+        .btn-login-text { position: relative; z-index: 1; }
 
-        /* ── 底部裝飾 ── */
-        .bottom-decoration {
+
+        /* ── 標題區金線裝飾 ── */
+        .login-header-deco {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.25rem;
-            margin-top: 3rem;
-            opacity: 0.22;
+            gap: 16px;
+            margin-bottom: 0.6rem;
         }
-
-        .deco-line {
-            height: 0.5px;
-            width: 28px;
+        .login-header-deco::before,
+        .login-header-deco::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 1px;
+            background: rgba(197,160,89,0.45);
+        }
+        .login-header-deco-diamond {
+            width: 5px; height: 5px;
             background: var(--champagne-gold);
+            transform: rotate(45deg);
+            opacity: 0.6;
         }
 
-        .deco-text {
-            font-size: 8px;
-            font-weight: 400;
-            letter-spacing: 0.7em;
-            text-transform: uppercase;
+        /* ── 按鈕下方信任文字 ── */
+        .login-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 1.8rem;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10.5px;
+            color: var(--text-light);
+            letter-spacing: 0.08em;
+        }
+        .trust-item .material-symbols-outlined {
+            font-size: 13px;
+            color: rgba(197,160,89,0.5);
+        }
+        .trust-divider {
+            width: 1px; height: 12px;
+            background: rgba(197,160,89,0.2);
+        }
+
+        /* ── 底部「還沒有帳號」區 ── */
+        .login-contact-hint {
+            margin-top: 2.8rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(197,160,89,0.1);
+            text-align: center;
+        }
+        .login-contact-hint p {
+            font-size: 12px;
+            color: var(--text-light);
+            letter-spacing: 0.08em;
+            line-height: 2;
+            margin: 0;
+        }
+        .login-contact-hint a {
             color: var(--champagne-gold);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(197,160,89,0.35);
+            padding-bottom: 1px;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .login-contact-hint a:hover {
+            color: var(--dark-gold);
+            border-bottom-color: var(--dark-gold);
+        }
+
+        /* ── 手機版 ── */
+        @media (max-width: 480px) {
+            .login-container { max-width: 100%; }
+            .section-title { font-size: 28px; margin-bottom: 2rem; }
         }
     </style>
 </head>
-<body>
 
-    <div class="watermark">
-        <div class="wm-text wm-1">ETERNAL</div>
-        <div class="wm-text wm-2">VENUES</div>
+<body>
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#navMenu" aria-controls="navMenu" aria-label="開啟選單">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenuDesktop">
+                <ul class="navbar-nav ms-lg-4 gap-lg-1">
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
+                </ul>
+                <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
+                    <div class="d-flex align-items-center gap-2">
+                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted); font-size:20px;">search</button>
+                    </div>
+                    <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav-link-item active-page" href="./login.html" id="loginLinkDesktop">會員登入</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Offcanvas 手機選單 -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
+        <div class="offcanvas-header">
+            <div>
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+            <ul class="navbar-nav gap-0">
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
+            </ul>
+            <a href="./login.html" class="offcanvas-login active-page" id="loginLinkMobile">
+                <span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                會員登入
+            </a>
+            <div id="mobileUserMenu">
+                <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
+                <a href="./customer_system.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的籌備進度</a>
+                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
+            </div>
+        </div>
     </div>
 
-    <main class="page-wrapper">
-        <div class="login-card">
+    <!-- 登入主體 -->
+    <main class="login-wrapper">
+        <div class="login-container">
 
-            <div class="card-header">
-                <h2 class="luxury-title">會員登入</h2>
-                <p class="luxury-subtitle">The Art of Eternal Celebration</p>
-                <div class="header-divider"></div>
-            </div>
+            <!-- 登入表單 -->
+            <div class="login-form-section">
+                <div class="login-header-deco"><div class="login-header-deco-diamond"></div></div>
+                <span class="section-eyebrow" style="text-align:center; display:block;">Member Login</span>
+                <h2 class="section-title" style="text-align:center;">登入</h2>
 
-            <form onsubmit="return false;">
-
-                <div class="form-field">
-                    <label class="label-minimal">Account / Email</label>
-                    <div class="input-wrap">
-                        <input type="text" class="input-minimal-gold" placeholder="電子郵件或手機號碼" autocomplete="email">
+                <form id="realLoginForm" onsubmit="return false;">
+                    <div class="form-field">
+                        <div class="input-underline-wrap">
+                            <input type="email" id="loginName" class="input-underline"
+                                placeholder="電郵或手機號碼" autocomplete="email">
+                        </div>
                     </div>
+
+                    <div class="form-field">
+                        <div class="input-underline-wrap">
+                            <input type="password" id="passwordInput" class="input-underline"
+                                placeholder="密碼" autocomplete="current-password">
+                            <button class="toggle-btn" type="button" onclick="togglePassword(this)" aria-label="顯示/隱藏密碼">
+                                <span class="material-symbols-outlined">visibility_off</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-meta">
+                        <label class="remember-label">
+                            <input type="checkbox" class="remember-checkbox" id="rememberMe">
+                            <span class="remember-text">記住我</span>
+                        </label>
+                        <a href="#" class="forgot-link">忘記密碼？</a>
+                    </div>
+
+                    <button type="submit" id="loginSubmitBtn" class="btn-login">
+                        <span class="btn-login-text">開始探索吧</span>
+                    </button>
+
+                    <!-- 信任標語 -->
+                    <div class="login-trust">
+                        <span class="trust-item">
+                            <span class="material-symbols-outlined">lock</span>安全加密
+                        </span>
+                        <span class="trust-divider"></span>
+                        <span class="trust-item">
+                            <span class="material-symbols-outlined">verified_user</span>隱私保護
+                        </span>
+                        <span class="trust-divider"></span>
+                        <span class="trust-item">
+                            <span class="material-symbols-outlined">support_agent</span>專人服務
+                        </span>
+                    </div>
+                </form>
+
+                <!-- 底部聯絡提示 -->
+                <div class="login-contact-hint">
+                    <p>尚未與我們接觸？<a href="./wedding_contact.html">立即預約諮詢</a></p>
+                    <p style="margin-top:0.4rem; font-size:11px; opacity:0.7;">DREAM VENUES · 您的專屬婚禮顧問</p>
                 </div>
-
-                <div class="form-field">
-                    <div class="field-header">
-                        <label class="label-minimal" style="margin-bottom:0;">Password</label>
-                        <a href="#" class="forgot-link">忘記密碼?</a>
-                    </div>
-                    <div class="input-wrap">
-                        <input type="password" id="passwordInput" class="input-minimal-gold has-icon" placeholder="請輸入密碼" autocomplete="current-password">
-                        <button class="toggle-btn" type="button" onclick="togglePassword(this)">
-                            <span class="material-symbols-outlined">visibility</span>
-                        </button>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-gold-submit">
-                    立即登入 &nbsp;|&nbsp; LOGIN
-                </button>
-
-            </form>
-
-            <div class="bottom-decoration">
-                <div class="deco-line"></div>
-                <span class="deco-text">Fine Wedding Selection</span>
-                <div class="deco-line"></div>
             </div>
 
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+    </footer>
+
     <script>
+        // 密碼顯示/隱藏
         function togglePassword(btn) {
             const input = document.getElementById('passwordInput');
             const icon = btn.querySelector('.material-symbols-outlined');
             if (input.type === 'password') {
                 input.type = 'text';
-                icon.textContent = 'visibility_off';
+                icon.textContent = 'visibility';
             } else {
                 input.type = 'password';
-                icon.textContent = 'visibility';
+                icon.textContent = 'visibility_off';
             }
         }
+
+        // 頁面載入：還原記住我
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('dv_remember');
+            if (saved) {
+                const { email } = JSON.parse(saved);
+                document.getElementById('loginName').value = email || '';
+                document.getElementById('rememberMe').checked = true;
+            }
+        });
+
+        // 登入送出
+        document.getElementById('loginSubmitBtn').addEventListener('click', () => {
+            const email = document.getElementById('loginName').value.trim();
+            const pass  = document.getElementById('passwordInput').value.trim();
+            const remember = document.getElementById('rememberMe').checked;
+
+            if (!email || !pass) {
+                alert('請輸入電子郵件與密碼！');
+                return;
+            }
+
+            if (remember) {
+                localStorage.setItem('dv_remember', JSON.stringify({ email }));
+                localStorage.setItem('dv_username', email);
+            } else {
+                localStorage.removeItem('dv_remember');
+                sessionStorage.setItem('dv_username', email);
+            }
+
+            // TODO: 替換成實際 fetch API
+            console.log('登入中...', { email, remember });
+            alert('登入成功！準備跳轉至首頁...');
+            window.location.href = './index.html';
+        });
+
+        // Enter 快捷鍵
+        document.getElementById('passwordInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('loginSubmitBtn').click();
+            }
+        });
     </script>
 </body>
 </html>
