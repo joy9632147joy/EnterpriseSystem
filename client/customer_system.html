@@ -519,23 +519,25 @@
                             <span style="font-size: 11px; color: var(--text-muted);">自由加選</span>
                         </div>
                         <div class="check-grid">
+                            
                             <label class="check-item">
-                                <input type="checkbox" class="group-main-trigger" data-target="makeup-addons" data-category="團隊" data-price="18000">
-                                <span>專業新娘秘書 (新娘妝髮)</span>
-                                <span class="price-tag">+NT$ 18,000</span>
+                                <input type="checkbox" class="group-main-trigger" data-target="makeup-addons" data-category="團隊" data-price="0">
+                                <span>專業造型師</span>
                             </label>
+
+                            <div class="sub-addon-box" id="makeup-addons">
+                                <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 造型服務細項 (請勾選需要服務的對象)</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="18000"><span>新娘妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="1200"><span>新郎專屬妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 1,200)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>主婚人/親友單妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
+                                </div>
+                            </div>
                             
                             <label class="check-item"><input type="checkbox" data-category="團隊" data-price="18000"><span>婚禮企劃主持人</span><span class="price-tag">+NT$ 18,000</span></label>
                             <label class="check-item"><input type="checkbox" data-category="團隊" data-price="18000"><span>平面/動態紀實攝影師</span><span class="price-tag">+NT$ 18,000</span></label>
                             <label class="check-item"><input type="checkbox" data-category="團隊" data-price="18000"><span>燈光音響與影音場控</span><span class="price-tag">+NT$ 18,000</span></label>
                             
-                            <div class="sub-addon-box" id="makeup-addons">
-                                <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 造型團隊延伸加購</div>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="1200"><span>新郎專屬妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 1,200)</span></span></label>
-                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>主婚人/親友單妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -836,7 +838,7 @@
                     // 1. 恢復唯讀狀態
                     editableFields.forEach(field => field.setAttribute('readonly', true));
                     
-                    // 2. 恢復按鈕外觀
+                    // 2. 恢復按鈕外觀 (無圖示)
                     this.textContent = '修改';
                     this.classList.remove('active');
                     
@@ -860,7 +862,7 @@
                     field.setAttribute('readonly', true);
                 });
                 
-                // 2. 恢復修改按鈕的狀態
+                // 2. 恢復修改按鈕的狀態 (無圖示)
                 editInfoBtn.textContent = '修改';
                 editInfoBtn.classList.remove('active');
                 
@@ -903,45 +905,63 @@
                 const mainCheckboxes = document.querySelectorAll('.check-item input[type="checkbox"]:checked');
                 
                 mainCheckboxes.forEach(box => {
-                    hasAddons = true;
+                    // 如果這個主要 checkbox 有帶 data-price="0" (如專業造型師)，我們可以選擇隱藏它
+                    // 或是顯示但金額為 0。這邊會顯示出來。
+                    
                     let serviceName = box.nextElementSibling.innerText;
                     const price = parseInt(box.getAttribute('data-price') || 0);
                     const category = box.getAttribute('data-category'); 
                     
-                    let htmlString = `
-                        <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
-                                    <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
-                                    <span style="font-size: 14px;">${serviceName}</span>
-                                </div>
-                                <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
-                            </div>`;
+                    // 檢查這是否為主選項，如果是且裡面有勾選子項目才算數
+                    let htmlString = '';
                     
-                    // 處理萬用的子選項
                     if (box.classList.contains('group-main-trigger')) {
                         const targetId = box.getAttribute('data-target');
-                        const allCheckedTriggers = Array.from(document.querySelectorAll(`.group-main-trigger[data-target="${targetId}"]:checked`));
+                        const subAddons = document.querySelectorAll(`#${targetId} .sub-addon-checkbox:checked`);
                         
-                        if (allCheckedTriggers[0] === box) {
-                            const subAddons = document.querySelectorAll(`#${targetId} .sub-addon-checkbox:checked`);
-                            if(subAddons.length > 0) {
-                                htmlString += `<ul style="margin: 6px 0 0 45px; padding: 0; list-style: none; font-size: 13px; color: var(--text-muted);">`;
-                                subAddons.forEach(sub => {
-                                    let subName = sub.nextElementSibling.innerText.split(' (+')[0];
-                                    let subPrice = parseInt(sub.getAttribute('data-price') || 0);
-                                    htmlString += `
-                                        <li style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                                            <span>↳ 包含加購：${subName}</span>
-                                            <span style="font-family: var(--font-sans);">NT$ ${subPrice.toLocaleString()}</span>
-                                        </li>`;
-                                });
-                                htmlString += `</ul>`;
-                            }
+                        // 有勾選子項目才渲染這個主項目的名字
+                        if(subAddons.length > 0) {
+                            hasAddons = true;
+                            htmlString += `
+                                <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
+                                            <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
+                                            <span style="font-size: 14px;">${serviceName}</span>
+                                        </div>
+                                        <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
+                                    </div>
+                                    <ul style="margin: 6px 0 0 45px; padding: 0; list-style: none; font-size: 13px; color: var(--text-muted);">`;
+                            
+                            subAddons.forEach(sub => {
+                                let subName = sub.nextElementSibling.innerText.split(' (+')[0];
+                                let subPrice = parseInt(sub.getAttribute('data-price') || 0);
+                                htmlString += `
+                                    <li style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                        <span>↳ 包含加購：${subName}</span>
+                                        <span style="font-family: var(--font-sans);">NT$ ${subPrice.toLocaleString()}</span>
+                                    </li>`;
+                            });
+                            
+                            htmlString += `</ul></li>`;
                         }
+                    } else {
+                        // 一般的 Checkbox (沒有子選項)
+                        hasAddons = true;
+                        htmlString += `
+                            <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
+                                        <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
+                                        <span style="font-size: 14px;">${serviceName}</span>
+                                    </div>
+                                    <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
+                                </div>
+                            </li>`;
                     }
-                    htmlString += `</li>`;
+                    
                     summaryServices.innerHTML += htmlString;
                 });
 
