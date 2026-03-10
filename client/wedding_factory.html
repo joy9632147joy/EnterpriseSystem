@@ -14,8 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
     <style>
-    
-        
         .content-wrap {
             max-width: 1520px;
             margin: 0 auto;
@@ -31,7 +29,7 @@
         .sidebar {
             width: 180px;
             flex-shrink: 0;
-            padding-top: 56px;
+            padding-top: 35px;
             position: sticky;
             top: 96px;
             max-height: calc(100vh - 96px);
@@ -41,7 +39,7 @@
         @media (max-width: 991.98px) { .sidebar { display: none; } }
 
         .sidebar-title {
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: #C5A059;
@@ -59,7 +57,7 @@
             background: none;
             border: none;
             padding: 14px 0;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
             letter-spacing: 0.08em;
             color: var(--text-muted);
@@ -90,7 +88,11 @@
                 background: #fafaf8;
                 width: 100%;
                 box-sizing: border-box;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
             }
+            .mobile-filter-bar::-webkit-scrollbar { display: none; }
             .mobile-filter-bar .mobile-filter-chip { flex: 1; text-align: center; padding: 8px 4px; }
         }
 
@@ -113,13 +115,17 @@
             background: rgba(197, 160, 89, 0.06);
         }
 
-        .grid-area { flex: 1; padding-left: 56px; padding-top: 56px; }
+        .grid-area { flex: 1; padding-left: 56px; padding-top: 35px; }
 
         @media (max-width: 991.98px) { .grid-area { padding-left: 0; padding-top: 24px; } }
 
         .category-header {
-            display: flex; align-items: flex-end;
-            justify-content: space-between; margin-bottom: 40px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
 
         .category-label {
@@ -163,16 +169,17 @@
 
         .partner-card:hover .card-img-wrap img { transform: scale(1.06); }
 
+        /* ── 遮罩調淡：opacity 降低，漸層範圍縮小 ── */
         .card-overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(0,0,0,0.32) 0%, transparent 48%);
             display: flex; align-items: flex-end;
             justify-content: space-between; padding: 0 16px 16px;
             transition: background 0.5s;
         }
 
         .partner-card:hover .card-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 65%);
+            background: linear-gradient(to top, rgba(0,0,0,0.46) 0%, transparent 56%);
         }
 
         .card-overlay-name {
@@ -234,7 +241,8 @@
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-controls="navMenu" aria-label="開啟選單">
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMenuDesktop">
@@ -248,14 +256,17 @@
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
                         <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined" style="color:var(--text-muted); font-size:20px;">search</button>
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
@@ -264,6 +275,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
@@ -292,7 +304,7 @@
             </a>
             <div id="mobileUserMenu">
                 <p id="mobileWelcome" style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">婚禮規劃</a>
+                <a href="./customer_system.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item" style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item" style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
             </div>
@@ -308,17 +320,13 @@
             <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
         </div>
 
-        <!-- ─── 手機篩選列（JS 動態產生） ─── -->
         <div class="mobile-filter-bar" id="mobileFilterBar"></div>
 
         <div class="content-wrap">
-            <!-- ─── 側邊欄（JS 動態產生） ─── -->
             <aside class="sidebar">
                 <p class="sidebar-title">類別篩選</p>
                 <div id="sidebarFilters"></div>
             </aside>
-
-            <!-- ─── 內容區（JS 動態產生） ─── -->
             <div class="grid-area" id="gridArea"></div>
         </div>
     </div>
@@ -327,7 +335,6 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
-    <!-- 模擬登入 -->
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
         <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
             <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
@@ -338,15 +345,11 @@
         </div>
     </div>
 
-    <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>
 
     <script>
-    //  資料來源：只需編輯這裡，HTML 完全不用動
-    
-
     const CATEGORIES = [
         { id: 'venues', label: '婚禮場地', eyebrow: 'Wedding Venue · Exclusive' },
         { id: 'gown',   label: '新娘婚紗', eyebrow: 'Bridal Gown · Couture' },
@@ -358,151 +361,223 @@
     const PARTNERS = {
         venues: [
             {
-                name: '君品酒店',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80',
+                // 圖片：飯店宴會廳、奢華燭光長桌 → 法式宮廷風格命名
+                name: 'Château Lumière',
+                url: '#',
+                img: 'https://template.canva.com/EAGxOI6TB0Y/1/0/1600w-IEo6i8WDC6M.jpg',
                 tag: 'Wedding Venue',
-                meta: [{ icon: 'location_on', text: '台北大安' }],
+                meta: [{ icon: 'workspace_premium', text: '五星飯店' }, { icon: 'location_on', text: '台北大同' }],
             },
             {
-                name: 'Pure White Studio',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80',
-                tag: 'Venue',
-                meta: [{ icon: 'workspace_premium', text: '輕婚紗' }, { icon: 'location_on', text: '台中' }],
+                // 圖片：戶外草地、白色帳篷、自然光 → 輕盈自然風格命名
+                name: 'Verdure Estate',
+                url: '#',
+                img: 'https://template.canva.com/EAGv9X_Aa9g/1/0/1600w-oshdANmiHmk.jpg',
+                tag: 'Garden Venue',
+                meta: [{ icon: 'nature_people', text: '森林秘境' }, { icon: 'location_on', text: '台中新社' }],
             },
             {
-                name: 'La Lumière',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80',
-                tag: 'Venue',
-                meta: [{ icon: 'workspace_premium', text: '法式蕾絲' }, { icon: 'location_on', text: '台北信義' }],
+                // 圖片：玻璃溫室、植物環繞、日光漫射 → 光影溫室風格命名
+                name: 'Soleil Glasshouse',
+                url: '#',
+                img: 'https://template.canva.com/EAGrJbaZVU4/1/0/1600w-IgfrLbcs0o0.jpg',
+                tag: 'Glasshouse Venue',
+                meta: [{ icon: 'wb_incandescent', text: '玻璃溫室' }, { icon: 'location_on', text: '台北信義' }],
             },
             {
-                name: 'Ivory & Silk',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1522413452208-99690627115c?auto=format&fit=crop&w=600&q=80',
-                tag: 'Venue',
-                meta: [{ icon: 'workspace_premium', text: '日系清新' }, { icon: 'location_on', text: '高雄' }],
+                // 圖片：海景、白色礁岩、藍天 → 地中海度假命名
+                name: 'Azure Cove',
+                url: '#',
+                img: 'https://template.canva.com/EAF5mL0GhEk/2/0/1600w-8LI8rgA6dKk.jpg',
+                tag: 'Seaside Venue',
+                meta: [{ icon: 'waves', text: '海景渡假' }, { icon: 'location_on', text: '屏東墾丁' }],
+            },
+            {
+                // 圖片：歐式拱廊、石柱莊園 → 英式莊園命名
+                name: 'Ashford Manor',
+                url: '#',
+                img: 'https://template.canva.com/EAFWyOgNGeA/1/0/1600w-aY81QyOw8hQ.jpg',
+                tag: 'Manor Venue',
+                meta: [{ icon: 'account_balance', text: '歐式莊園' }, { icon: 'location_on', text: '南投' }],
+            },
+            {
+                // 圖片：白牆藝廊、極簡挑高空間 → 當代藝術空間命名
+                name: 'The White Gallery',
+                url: '#',
+                img: 'https://template.canva.com/EAFG-OE67WE/1/0/1600w-MxEbnLH5vmQ.jpg',
+                tag: 'Art Space Venue',
+                meta: [{ icon: 'museum', text: '藝術空間' }, { icon: 'location_on', text: '台北中山' }],
             },
         ],
         gown: [
             {
-                name: 'Blanc Atelier',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1594552072238-185038c03525?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '訂製系列' }, { icon: 'location_on', text: '台北大安' }],
+                // 圖片：純白高訂蕾絲長裙，工作室燈光 → 法式高定命名
+                name: 'Maison Blanche',
+                url: '#',
+                img: 'https://template.canva.com/EAGP-xUw1CA/1/0/1600w-suFmuyMKYYs.jpg',
+                tag: 'Bridal Couture',
+                meta: [{ icon: 'workspace_premium', text: '高訂系列' }, { icon: 'location_on', text: '台北大安' }],
             },
             {
-                name: 'Pure White Studio',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1546804784-816d8a395c51?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '輕婚紗' }, { icon: 'location_on', text: '台中' }],
+                // 圖片：輕薄飄逸婚紗、自然光 → 仙氣輕盈命名
+                name: 'Plume Bridal',
+                url: '#',
+                img: 'https://template.canva.com/EAGhhkc-nTc/1/0/1600w-1GazXRbJKOY.jpg',
+                tag: 'Light Bridal',
+                meta: [{ icon: 'styler', text: '輕婚紗' }, { icon: 'location_on', text: '台中西屯' }],
             },
             {
-                name: 'La Lumière',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80',
-                tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '法式蕾絲' }, { icon: 'location_on', text: '台北信義' }],
+                // 圖片：古董蕾絲、收腰剪裁、復古感 → 法式古董命名
+                name: 'Dentelle & Co.',
+                url: '#',
+                img: 'https://template.canva.com/EAE1cUuY26E/2/1/1600w-tyUrx0odhpI.jpg',
+                tag: 'Vintage Bridal',
+                meta: [{ icon: 'dry_cleaning', text: '法式古董' }, { icon: 'location_on', text: '台北中山' }],
             },
             {
-                name: 'Ivory & Silk',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=600&q=80',
+                // 圖片：俐落線條、極簡白色禮服 → 現代極簡命名
+                name: 'Ligne Pure',
+                url: '#',
+                img: 'https://template.canva.com/EAGPZjiH9Mk/1/0/1600w-w5bnWMRfX6g.jpg',
+                tag: 'Minimal Bridal',
+                meta: [{ icon: 'auto_awesome', text: '極簡俐落' }, { icon: 'location_on', text: '高雄鼓山' }],
+            },
+            {
+                // 圖片：歐美風格展示間、多款禮服陳列 → 歐美精選命名
+                name: 'The Vow Atelier',
+                url: '#',
+                img: 'https://template.canva.com/EAFMGznsS_U/3/0/1600w-kCRpIPeR7gs.jpg',
                 tag: 'Bridal House',
-                meta: [{ icon: 'workspace_premium', text: '日系清新' }, { icon: 'location_on', text: '高雄' }],
+                meta: [{ icon: 'checkroom', text: '歐美代理' }, { icon: 'location_on', text: '新竹' }],
             },
         ],
         suit: [
             {
-                name: 'The Groom Co.',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '手工訂製' }, { icon: 'location_on', text: '台北' }],
+                // 圖片：深色西裝特寫、手工縫線細節 → 訂製工坊命名
+                name: 'Bespoke & Sons',
+                url: '#',
+                img: 'https://template.canva.com/EAG8cJt_G-E/1/0/1600w-Xtfo4STILEs.jpg',
+                tag: 'Bespoke Tailor',
+                meta: [{ icon: 'content_cut', text: 'Bespoke' }, { icon: 'location_on', text: '台北信義' }],
             },
             {
-                name: 'Charcoal & Linen',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '英式剪裁' }, { icon: 'location_on', text: '台中' }],
+                // 圖片：英倫格紋、挺立剪裁、木質陳設 → 英倫傳統命名
+                name: 'Savile & Grey',
+                url: '#',
+                img: 'https://template.canva.com/EAGT7E-WatA/1/0/1600w-bcE23LJrh-E.jpg',
+                tag: 'British Tailor',
+                meta: [{ icon: 'checkroom', text: '英式挺拔' }, { icon: 'location_on', text: '台中西區' }],
             },
             {
-                name: 'Maison Élégant',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '義式風格' }, { icon: 'location_on', text: '台北' }],
+                // 圖片：義式軟肩西裝、米白色調、工作室感 → 義式精工命名
+                name: 'Sarto Milano',
+                url: '#',
+                img: 'https://template.canva.com/EAGLyUJc5H4/1/0/1600w-2nyBc7l0Jno.jpg',
+                tag: 'Italian Tailor',
+                meta: [{ icon: 'styler', text: '義式軟襯' }, { icon: 'location_on', text: '台北大安' }],
             },
             {
-                name: 'Noble Tailor',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1550614000-4b95d466f2bc?auto=format&fit=crop&w=600&q=80',
-                tag: 'Suit Atelier',
-                meta: [{ icon: 'workspace_premium', text: '美式休閒' }, { icon: 'location_on', text: '高雄' }],
+                // 圖片：深藍休閒西裝、美式放鬆感 → 美式休閒命名
+                name: 'Hudson & Clark',
+                url: '#',
+                img: 'https://template.canva.com/EAGTSR0Ee2M/3/0/1600w-8-QmXl7zT2w.jpg',
+                tag: 'American Tailor',
+                meta: [{ icon: 'auto_fix_high', text: '美式休閒' }, { icon: 'location_on', text: '高雄前鎮' }],
+            },
+            {
+                // 圖片：商務俐落西裝、正式感 → 商務正裝命名
+                name: 'Formal House',
+                url: '#',
+                img: 'https://template.canva.com/EAEtp5W_CyY/1/0/1600w-cwgo3WI-GeM.jpg',
+                tag: 'Formal Tailor',
+                meta: [{ icon: 'straighten', text: '商務婚服' }, { icon: 'location_on', text: '桃園' }],
             },
         ],
         cake: [
             {
-                name: 'Pâtisserie Dorée',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=600&q=80',
-                tag: 'Patisserie',
-                meta: [{ icon: 'workspace_premium', text: '法式手工' }, { icon: 'location_on', text: '台北' }],
+                // 圖片：法式甜點塔、馬卡龍、精緻糕點盤 → 法式甜點命名
+                name: 'Dorée Pâtisserie',
+                url: '#',
+                img: 'https://template.canva.com/EAGOfHef_gI/1/0/1600w-rIBMFUlEJuU.jpg',
+                tag: 'French Patisserie',
+                meta: [{ icon: 'cake', text: '法式甜點' }, { icon: 'location_on', text: '台北松山' }],
             },
             {
-                name: 'Velvet Truffle',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=600&q=80',
+                // 圖片：巧克力禮盒、黑金配色包裝 → 頂級巧克力命名
+                name: 'Noir Chocolat',
+                url: '#',
+                img: 'https://template.canva.com/EAG9W39UyQI/1/0/1600w-YMB60P3Dncs.jpg',
                 tag: 'Chocolatier',
-                meta: [{ icon: 'workspace_premium', text: '比利時可可' }, { icon: 'location_on', text: '台北' }],
+                meta: [{ icon: 'redeem', text: '頂級黑可可' }, { icon: 'location_on', text: '台北大安' }],
             },
             {
-                name: 'Mille Feuille',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1558961363-a0f1b2d073d3?auto=format&fit=crop&w=600&q=80',
-                tag: 'Boulangerie',
-                meta: [{ icon: 'workspace_premium', text: '酥皮點心' }, { icon: 'location_on', text: '台中' }],
+                // 圖片：千層派、精緻法式餅盒 → 烘焙工坊命名
+                name: 'Feuilletine',
+                url: '#',
+                img: 'https://template.canva.com/EAGZiSwIeuA/1/0/1600w-LgQK4ov4kL8.jpg',
+                tag: 'Artisan Bakery',
+                meta: [{ icon: 'bakery_dining', text: '千層酥盒' }, { icon: 'location_on', text: '台中南屯' }],
             },
             {
-                name: 'Maison du Cadeau',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1621236378699-8597fc6a05b6?auto=format&fit=crop&w=600&q=80',
-                tag: 'Gift Box',
-                meta: [{ icon: 'workspace_premium', text: '木盒訂製' }, { icon: 'location_on', text: '高雄' }],
+                // 圖片：緞帶木盒禮盒、精裝喜餅 → 禮品工坊命名
+                name: 'Ruban & Box',
+                url: '#',
+                img: 'https://template.canva.com/EAEffFvayWk/2/0/1600w-WSoy1fXxu7w.jpg',
+                tag: 'Gift Box Studio',
+                meta: [{ icon: 'inventory_2', text: '木盒緞帶' }, { icon: 'location_on', text: '高雄新興' }],
+            },
+            {
+                // 圖片：植物系蛋糕、花草裝飾、清新色調 → 純植物命名
+                name: 'Botanica Sweets',
+                url: '#',
+                img: 'https://template.canva.com/EAGtk7Qzz-0/1/0/1600w-eXru8YFTK2k.jpg',
+                tag: 'Vegan Bakery',
+                meta: [{ icon: 'eco', text: '純素無麩質' }, { icon: 'location_on', text: '台南' }],
             },
         ],
         gift: [
             {
-                name: 'Petite Maison',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Favors',
-                meta: [{ icon: 'workspace_premium', text: '手工訂製' }, { icon: 'location_on', text: '台北' }],
+                // 圖片：香氛蠟燭、奶油色包裝、極簡質感 → 生活香氛命名
+                name: 'Lumière Douce',
+                url: '#',
+                img: 'https://template.canva.com/EAGGgm7vhqs/1/0/1600w-GEoIfPdojXY.jpg',
+                tag: 'Scented Candle',
+                meta: [{ icon: 'soap', text: '香氛蠟燭' }, { icon: 'location_on', text: '台北' }],
             },
             {
-                name: 'Bloom & Thread',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Favors',
-                meta: [{ icon: 'workspace_premium', text: '乾燥花藝' }, { icon: 'location_on', text: '台中' }],
+                // 圖片：永生花束、乾燥花組合 → 花藝工坊命名
+                name: 'Ever & Bloom',
+                url: '#',
+                img: 'https://template.canva.com/EAGsiPAov4g/1/0/1280w-E_xXeCKPBz0.jpg',
+                tag: 'Preserved Florals',
+                meta: [{ icon: 'local_florist', text: '永生花束' }, { icon: 'location_on', text: '台中' }],
             },
             {
-                name: 'Story & Co.',
-                url: 'https://example.com',
-                img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80',
-                tag: 'Wedding Favors',
-                meta: [{ icon: 'workspace_premium', text: '客製刻印' }, { icon: 'location_on', text: '高雄' }],
+                // 圖片：黃銅刻印名片夾、金屬小物 → 金工刻印命名
+                name: 'Engrave & Co.',
+                url: '#',
+                img: 'https://template.canva.com/EAE94_gxFDQ/1/0/1600w-xJpOsExYs6I.jpg',
+                tag: 'Brass Engraving',
+                meta: [{ icon: 'edit', text: '黃銅刻印' }, { icon: 'location_on', text: '高雄' }],
+            },
+            {
+                // 圖片：茶葉罐、典雅包裝盒 → 茶葉禮品命名（保留品茶文化，不強套西式）
+                name: 'Feuille de Thé',
+                url: '#',
+                img: 'https://template.canva.com/EAGLupy4DbQ/1/0/1600w-CTZOPZ4Un_U.jpg',
+                tag: 'Tea Gift',
+                meta: [{ icon: 'emoji_food_beverage', text: '百年茶莊' }, { icon: 'location_on', text: '南投' }],
+            },
+            {
+                // 圖片：水晶對杯、透明禮盒 → 水晶禮品命名
+                name: 'Cristal & Verre',
+                url: '#',
+                img: 'https://template.canva.com/EAExlsxLhCI/1/0/1600w-m9t1d2IazRk.jpg',
+                tag: 'Crystal Gift',
+                meta: [{ icon: 'wine_bar', text: '水晶對杯' }, { icon: 'location_on', text: '新竹' }],
             },
         ],
     };
-
-
-    //  渲染邏輯
 
     function renderCard(partner) {
         const metaHTML = partner.meta.map(m => /*html*/`
@@ -533,18 +608,15 @@
         const sidebarFilters = document.getElementById('sidebarFilters');
         const mobileFilterBar = document.getElementById('mobileFilterBar');
 
-        // 側邊欄按鈕
         sidebarFilters.innerHTML = CATEGORIES.map(cat => /*html*/`
             <button class="filter-btn" data-cat="${cat.id}">
                 ${cat.label}
                 <span class="filter-dot"></span>
             </button>`).join('');
 
-        // 手機篩選按鈕
         mobileFilterBar.innerHTML = CATEGORIES.map(cat => /*html*/`
             <button class="mobile-filter-chip" data-cat="${cat.id}">${cat.label}</button>`).join('');
 
-        // 各分類區塊 + 分隔線
         gridArea.innerHTML = CATEGORIES.map((cat, idx) => {
             const partners = PARTNERS[cat.id] || [];
             const cardsHTML = partners.map(renderCard).join('');
@@ -565,29 +637,23 @@
         }).join('');
     }
 
-    //   篩選 + 動畫邏輯
-
     document.addEventListener('DOMContentLoaded', () => {
         renderAll();
 
         const gridArea = document.getElementById('gridArea');
 
-        function getSections()      { return document.querySelectorAll('.category-section'); }
-        function getDividers()      { return document.querySelectorAll('.category-divider'); }
-        function getSidebarBtns()   { return document.querySelectorAll('#sidebarFilters .filter-btn'); }
-        function getMobileBtns()    { return document.querySelectorAll('.mobile-filter-chip'); }
+        function getSections()    { return document.querySelectorAll('.category-section'); }
+        function getDividers()    { return document.querySelectorAll('.category-divider'); }
+        function getSidebarBtns() { return document.querySelectorAll('#sidebarFilters .filter-btn'); }
+        function getMobileBtns()  { return document.querySelectorAll('.mobile-filter-chip'); }
 
         function applyFilter(cat) {
-            const sections = getSections();
-            const dividers = getDividers();
-
-            sections.forEach(s => {
+            getSections().forEach(s => {
                 s.style.display = (cat === 'all' || s.dataset.section === cat) ? 'block' : 'none';
             });
-            dividers.forEach(d => {
+            getDividers().forEach(d => {
                 d.style.display = cat === 'all' ? 'block' : 'none';
             });
-
             document.querySelectorAll('.partner-card').forEach(c => c.classList.remove('visible'));
             setTimeout(triggerVisible, 50);
         }
@@ -633,7 +699,6 @@
         bindFilterBtns();
         triggerVisible();
 
-        // URL 參數篩選
         const urlParams = new URLSearchParams(window.location.search);
         const catFromUrl = urlParams.get('cat');
         if (catFromUrl) {

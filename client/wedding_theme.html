@@ -16,18 +16,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <style>
-
         .themes-wrap {
             max-width: 1520px;
             margin: 0 auto;
-            padding: 0 60px 80px;
+            padding: 60px 60px 80px;
             box-sizing: border-box;
             width: 100%;
         }
 
         @media(max-width:767px) {
             .themes-wrap {
-                padding: 0 16px 80px;
+                padding: 32px 16px 80px;
             }
         }
 
@@ -49,7 +48,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            margin-bottom: 56px;
+            margin-bottom: 24px;
         }
 
         @media(max-width:767px) {
@@ -470,15 +469,18 @@
             background: var(--accent-gold);
         }
 
+        /* ════ LIGHTBOX ════ */
         .lb-overlay {
             position: fixed;
             inset: 0;
             z-index: 9000;
-            background: rgba(8, 7, 5, .97);
+            background: rgba(6, 4, 2, 0.92);
             display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
 
         .lb-overlay.open {
@@ -549,128 +551,185 @@
             margin-top: 4px;
         }
 
+        /* ── Nav arrows：圓形，與 index.html 一致 ── */
         .lb-btn {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(255, 255, 255, .1);
-            color: rgba(255, 255, 255, .65);
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 9002;
-            transition: background .3s, color .3s, border-color .3s;
-            font-size: 20px;
+            transition: background .25s, border-color .25s, transform .25s;
             pointer-events: auto;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .lb-btn .material-symbols-outlined {
+            font-size: 22px;
         }
 
         .lb-btn:hover {
-            background: rgba(197, 160, 89, .18);
-            color: var(--accent-gold);
-            border-color: rgba(197, 160, 89, .4);
+            background: rgba(197, 160, 89, 0.18);
+            border-color: rgba(197, 160, 89, 0.45);
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .lb-prev {
-            left: 20px;
+            left: 24px;
+        }
+
+        .lb-prev:hover {
+            transform: translateY(-50%) translateX(-3px);
         }
 
         .lb-next {
-            right: 20px;
+            right: 24px;
         }
 
+        .lb-next:hover {
+            transform: translateY(-50%) translateX(3px);
+        }
+
+        /* 手機版：移至照片下方中央 */
         @media(max-width:767px) {
             .lb-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
+                width: 40px;
+                height: 40px;
+                top: auto;
+                bottom: 72px;
+                transform: none;
             }
 
             .lb-prev {
-                left: 6px;
+                left: calc(50% - 52px);
+            }
+
+            .lb-prev:hover {
+                transform: none;
             }
 
             .lb-next {
-                right: 6px;
+                right: calc(50% - 52px);
+            }
+
+            .lb-next:hover {
+                transform: none;
+            }
+
+            /* 修復 iPhone 12 (390px) 圖片被裁切問題：
+               頂部：計數器 ~56px、底部：箭頭 72px + dots 48px ≈ 留出 140px */
+            .lb-img-wrap {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
+
+            .lb-img-wrap img {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
+        }
+
+        /* 針對極小螢幕 (height ≤ 700px，如 iPhone SE / 12 mini) 再縮一點 */
+        @media(max-width:767px) and (max-height:700px) {
+            .lb-img-wrap {
+                max-height: calc(100dvh - 180px);
+            }
+
+            .lb-img-wrap img {
+                max-height: calc(100dvh - 180px);
             }
         }
 
         .lb-close {
             position: fixed;
-            top: 20px;
-            right: 24px;
+            top: 24px;
+            right: 28px;
             z-index: 9010;
-            background: rgba(0, 0, 0, .35);
-            border: 1px solid rgba(255, 255, 255, .15);
-            cursor: pointer;
-            color: rgba(255, 255, 255, .75);
-            font-size: 22px;
-            transition: color .3s, background .3s;
-            pointer-events: auto;
             width: 44px;
             height: 44px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: auto;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+
+        .lb-close .material-symbols-outlined {
+            font-size: 20px;
         }
 
         .lb-close:hover {
-            color: white;
-            background: rgba(197, 160, 89, .25);
+            background: rgba(197, 160, 89, 0.2);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: rotate(90deg);
         }
 
         .lb-dots {
-            position: absolute;
-            bottom: 46px;
+            position: fixed;
+            bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 7px;
+            gap: 8px;
             pointer-events: auto;
             z-index: 9003;
         }
 
+        @media(max-width:767px) {
+            .lb-dots {
+                bottom: 20px;
+            }
+        }
+
         .lb-dot {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .22);
+            background: rgba(255, 255, 255, 0.25);
             cursor: pointer;
             transition: background .3s, transform .3s;
         }
 
         .lb-dot.active {
             background: var(--accent-gold);
-            transform: scale(1.5);
+            transform: scale(1.4);
         }
 
         .lb-counter {
-            position: absolute;
-            bottom: 24px;
+            position: fixed;
+            top: 32px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 10px;
-            letter-spacing: .3em;
-            color: rgba(255, 255, 255, .28);
+            letter-spacing: .4em;
+            color: rgba(197, 160, 89, 0.6);
             pointer-events: none;
             z-index: 9003;
+            white-space: nowrap;
         }
 
         .theme-nav {
-            position: sticky;
+            position: relative;
             top: 80px;
             z-index: 99;
-            background: #fff;
-            border-bottom: 1px solid var(--border-grey);
-        }
-
-        @media(max-width:991.98px) {
-            .theme-nav {
-                top: 64px;
-            }
+            background: rgba(250, 246, 240, 0.6);
+            /* 半透明奶白 */
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+            /* 邊框換成極淡金色 */
+            margin-top: -70px;
         }
 
         .theme-nav-inner {
@@ -682,6 +741,7 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            justify-content: center;
         }
 
         .theme-nav-inner::-webkit-scrollbar {
@@ -698,9 +758,9 @@
             flex-shrink: 0;
             background: none;
             border: none;
-            padding: 16px 16px;
-            font-size: 14px;
-            letter-spacing: .15em;
+            padding: 16px 10px;
+            font-size: 12px;
+            letter-spacing: .06em;
             text-transform: uppercase;
             color: var(--text-muted);
             cursor: pointer;
@@ -710,9 +770,18 @@
             font-family: var(--font-sans);
         }
 
+        @media(min-width:576px) {
+            .theme-pill {
+                padding: 18px 14px;
+                font-size: 13px;
+                letter-spacing: .10em;
+            }
+        }
+
         @media(min-width:992px) {
             .theme-pill {
-                padding: 20px 24px;
+                padding: 16px 24px;
+                font-size: 14px;
                 letter-spacing: .18em;
             }
         }
@@ -781,7 +850,7 @@
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -794,6 +863,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
@@ -824,8 +894,8 @@
             <div id="mobileUserMenu">
                 <p id="mobileWelcome"
                     style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./my_wedding.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">婚禮規劃</a>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
                 <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
@@ -835,8 +905,8 @@
     </div>
 
     <!-- hero -->
-    <div class="page-wrap has-bg">
-        <div class="page-hero">
+    <div class="page-wrap ">
+        <div class="page-hero has-bg">
             <p class="page-hero-eyebrow">Wedding Theme</p>
             <h1 class="page-hero-title">婚禮主題</h1>
             <div class="page-hero-line"></div>
@@ -857,9 +927,8 @@
         <button class="lb-close" id="lbClose" title="關閉">
             <span class="material-symbols-outlined">close</span>
         </button>
+        <div class="lb-counter" id="lbCounter"></div>
         <div class="lb-inner">
-            <button class="lb-btn lb-prev" id="lbPrev"><span
-                    class="material-symbols-outlined">chevron_left</span></button>
             <div class="lb-img-wrap" id="lbImgWrap">
                 <img id="lbImg" src="" alt="">
                 <div class="lb-caption">
@@ -867,11 +936,10 @@
                     <p class="lb-caption-label" id="lbLabel"></p>
                 </div>
             </div>
-            <button class="lb-btn lb-next" id="lbNext"><span
-                    class="material-symbols-outlined">chevron_right</span></button>
         </div>
+        <button class="lb-btn lb-prev" id="lbPrev"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button class="lb-btn lb-next" id="lbNext"><span class="material-symbols-outlined">chevron_right</span></button>
         <div class="lb-dots" id="lbDots"></div>
-        <div class="lb-counter" id="lbCounter"></div>
     </div>
 
     <!-- FOOTER -->
@@ -899,9 +967,6 @@
     </button>
 
     <script>
-        //  資料來源：只需編輯這裡，HTML 完全不用動
-
-
         const THEMES = [
             {
                 id: 'forest',
@@ -910,11 +975,11 @@
                 desc: '枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景',
                 mosaic: 'mosaic-forest',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&fit=crop', name: '山間祕境婚宴', label: 'Featured Venue', sub: 'Cedar Hall · 台北烏來', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80&fit=crop', name: '自然系花藝佈置', label: 'Florals' },
-                    { img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=80&fit=crop', name: '戶外儀式區', label: 'Ceremony' },
-                    { img: 'https://images.unsplash.com/photo-1520854221256-17d7dc783f06?w=700&q=80&fit=crop', name: '晚宴燈光氛圍', label: 'Reception' },
-                    { img: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80&fit=crop', name: '綠葉桌花細節', label: 'Details' },
+                    { img: 'https://i.pinimg.com/1200x/25/19/9c/25199c5a5e7f25e4d0682b39e4c7ee16.jpg', name: '山間祕境婚宴', label: 'Featured Venue', sub: 'Cedar Hall · 台北烏來', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/1200x/1a/59/93/1a5993bffcce0c5090ac3d4320aaa5e0.jpg', name: '自然系花藝佈置', label: 'Florals' },
+                    { img: 'https://i.pinimg.com/1200x/2b/81/74/2b81749de349f1699156dcca1bf910c0.jpg', name: '戶外儀式區', label: 'Ceremony' },
+                    { img: 'https://i.pinimg.com/736x/ab/27/6d/ab276d9976cb0065d86d9cd6ee6a871a.jpg', name: '晚宴燈光氛圍', label: 'Reception' },
+                    { img: 'https://i.pinimg.com/736x/45/62/60/456260c1129e597dbbe5159370b01d41.jpg', name: '綠葉桌花細節', label: 'Details' },
                 ]
             },
             {
@@ -924,9 +989,9 @@
                 desc: '穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面',
                 mosaic: 'mosaic-vintage',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=900&q=80&fit=crop', name: '穀倉婚禮', label: 'Barn Wedding', sub: 'Rustic Barn · 宜蘭', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=80&fit=crop', name: '長桌宴席佈置', label: 'Tablescape' },
-                    { img: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80&fit=crop', name: '復古婚紗造型', label: 'Bridal' },
+                    { img: 'https://i.pinimg.com/736x/03/83/4e/03834e35abe51fed8838f5d9cc46f138.jpg', name: '復古建築', label: 'Barn Wedding', sub: 'Rustic Barn · 宜蘭', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/54/bf/66/54bf66dc24f8641f2b53f7ac3ac6bf70.jpg', name: '沉穩復古', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/736x/e3/8f/39/e38f39230ed22c4ce844c110e7b5e6bd.jpg', name: '復古婚紗造型', label: 'Bridal' },
                 ]
             },
             {
@@ -936,9 +1001,9 @@
                 desc: '彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證',
                 mosaic: 'mosaic-chapel',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1543738435-59d1e5a3ef1b?w=700&q=80&fit=crop', name: '教堂側廊光影', label: 'Interior' },
-                    { img: 'https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=900&q=80&fit=crop', name: '純白教堂誓約', label: 'Featured Chapel', sub: 'Chapel blanc · 台南', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop', name: '白玫瑰花道', label: 'Florals' },
+                    { img: 'https://i.pinimg.com/736x/df/0c/fb/df0cfb7adc15d26017a2a5b0a64621f0.jpg', name: '教堂側廊光影', label: 'Interior' },
+                    { img: 'https://i.pinimg.com/736x/dd/22/53/dd22536014a8902886dd10b546db318a.jpg', name: '純白教堂誓約', label: 'Featured Chapel', sub: 'Chapel blanc · 台南', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/1c/4d/8b/1c4d8b140e34709cde57d11c82ee7556.jpg', name: '教堂', label: 'Florals' },
                 ]
             },
             {
@@ -947,12 +1012,11 @@
                 eyebrow: 'Chinese Heritage · Courtyard · Ink',
                 desc: '紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生',
                 mosaic: 'mosaic-chinese',
-                // 特殊：含一個 text panel，用 textPanel 標記位置（插在第幾張之後）
                 textPanel: { after: 1, quote: '「執子之手<br>與子偕老」', en: 'A Vow Across Lifetimes' },
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80&fit=crop', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&q=80&fit=crop', name: '漆器與囍字擺設', label: 'Details' },
-                    { img: 'https://images.unsplash.com/photo-1569521843991-e45bfbbb2fd3?w=700&q=80&fit=crop', name: '紅木圓桌宴席', label: 'Banquet' },
+                    { img: 'https://images.pexels.com/photos/13111964/pexels-photo-13111964.jpeg', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
+                    { img: 'https://images.pexels.com/photos/35018683/pexels-photo-35018683.jpeg', name: '漆器與囍字擺設', label: 'Details' },
+                    { img: 'https://images.pexels.com/photos/4066903/pexels-photo-4066903.jpeg', name: '紅木圓桌宴席', label: 'Banquet' },
                 ]
             },
             {
@@ -962,15 +1026,12 @@
                 desc: 'Less is more<br>讓空間本身成為最有力量的表達',
                 mosaic: 'mosaic-minimal',
                 tiles: [
-                    { img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&fit=crop', name: '建築感白盒子婚宴', label: 'Featured Venue', sub: 'White Box Studio · 台北信義', featured: true, cta: '#' },
-                    { img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80&fit=crop', name: '單支芒草桌花', label: 'Tablescape' },
-                    { img: 'https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop', name: '俐落婚紗輪廓', label: 'Bridal' },
+                    { img: 'https://i.pinimg.com/736x/ba/f7/25/baf7250521d4efbfbd026bfcb4fe6687.jpg', name: '建築感白盒子婚宴', label: 'Featured Venue', sub: 'White Box Studio · 台北信義', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/b5/e3/79/b5e3796fb3fb2c36ad01c70cb2f6bea4.jpg', name: '單支芒草桌花', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/736x/34/0b/e8/340be80d146a6c5a18de0bbe20116d76.jpg', name: '俐落婚紗輪廓', label: 'Bridal' },
                 ]
             },
         ];
-
-
-        //  渲染邏輯
 
         function renderTile(tile, galleryId, idx) {
             const featuredCorner = tile.featured ? '<div class="tile-accent-corner"></div>' : '';
@@ -1006,7 +1067,6 @@
             let tilesHTML = '';
             theme.tiles.forEach((tile, idx) => {
                 tilesHTML += renderTile(tile, theme.id, idx);
-                // 插入 text panel（若有，且在指定 index 之後）
                 if (theme.textPanel && idx === theme.textPanel.after - 1) {
                     tilesHTML += renderTextPanel(theme.textPanel);
                 }
@@ -1032,57 +1092,41 @@
             const navInner = document.getElementById('themeNavInner');
             const themesWrap = document.getElementById('themesWrap');
 
-            // 主題導覽列
             navInner.innerHTML = THEMES.map((t, i) =>
                 (i > 0 ? '<div class="theme-pill-divider"></div>' : '') +
                 `<button class="theme-pill" data-target="${t.id}">${t.label}</button>`
             ).join('');
 
-            // 各主題區塊
             themesWrap.innerHTML = THEMES.map(renderThemeSection).join('');
         }
-
-
-        //  互動邏輯
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAll();
 
             const navbar = document.querySelector('.navbar');
-            const themeNav = document.getElementById('themeNav');
             let lastST = 0;
-
-            function syncThemeNavTop() {
-                themeNav.style.top = navbar.getBoundingClientRect().height + 'px';
-            }
-            syncThemeNavTop();
-            window.addEventListener('resize', syncThemeNavTop);
 
             window.addEventListener('scroll', () => {
                 const st = window.pageYOffset;
                 if (Math.abs(lastST - st) <= 8) return;
                 const hiding = st > lastST && st > 80;
                 navbar.classList.toggle('nav-hidden', hiding);
-                themeNav.style.top = hiding ? '0px' : navbar.getBoundingClientRect().height + 'px';
                 lastST = st;
             });
+
             document.addEventListener('mousemove', e => {
-                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
+                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); }
             });
 
-            /* ── Theme nav pills ── */
             function getPills() { return document.querySelectorAll('.theme-pill'); }
-
             function getSectionEl(id) { return document.getElementById('sec-' + id); }
 
             function showTheme(target) {
                 getPills().forEach(p => p.classList.toggle('active', p.dataset.target === target));
-
                 THEMES.forEach(t => {
                     const el = getSectionEl(t.id);
                     if (el) el.classList.toggle('active', target === 'all' || t.id === target);
                 });
-
                 if (target !== 'all') {
                     setTimeout(() => {
                         const el = getSectionEl(target);
@@ -1093,7 +1137,6 @@
                         }
                     }, 50);
                 }
-
                 document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
                 setTimeout(triggerAnim, 80);
             }
@@ -1111,7 +1154,6 @@
             const lbDots = document.getElementById('lbDots');
             const lbCounter = document.getElementById('lbCounter');
 
-            // 從已渲染 DOM 收集 gallery 資料
             const galleries = {};
             document.querySelectorAll('.tile[data-lb]').forEach(tile => {
                 const g = tile.dataset.lb;
@@ -1136,7 +1178,7 @@
                     lbImg.src = item.src;
                     lbName.textContent = item.name;
                     lbLabel.textContent = item.label;
-                    lbCounter.textContent = (curI + 1) + ' / ' + galleries[curG].length;
+                    lbCounter.textContent = String(curI + 1).padStart(2, '0') + ' / ' + String(galleries[curG].length).padStart(2, '0');
                     lbImg.classList.remove('fade');
                 }, 200);
                 lbDots.innerHTML = '';
@@ -1150,8 +1192,8 @@
 
             function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
 
-            document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
-            document.getElementById('lbNext').addEventListener('click', () => navLb(1));
+            document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+            document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
             document.getElementById('lbClose').addEventListener('click', closeLb);
             overlay.addEventListener('click', e => { if (e.target === overlay) closeLb(); });
             document.addEventListener('keydown', e => {
@@ -1176,7 +1218,6 @@
                 openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
             });
 
-            /* ── Scroll reveal ── */
             function triggerAnim() {
                 const obs = new IntersectionObserver(entries => {
                     entries.forEach((e, i) => {
