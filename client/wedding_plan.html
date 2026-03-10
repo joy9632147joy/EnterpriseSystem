@@ -575,7 +575,7 @@
             </div>
             <div class="action-btns">
                 <button class="btn-reset">重置選項</button>
-                <a href="./contact.html" class="btn-reserve" style="text-decoration: none; display: inline-block;">預約諮詢此方案</a>
+                <a href="./wedding_contact.html" class="btn-reserve" style="text-decoration: none; display: inline-block;">預約諮詢此方案</a>
             </div>
         </div>
     </footer>
@@ -636,21 +636,6 @@
                         b.innerText = b.dataset.price === "0" ? '點擊加購' : '點擊加購';
                     });
                     calculateTotal();
-                });
-            }
-
-            // 處理搜尋按鈕
-            const sBtn = document.getElementById('search-btn');
-            const sIn = document.getElementById('search-input');
-            if (sBtn && sIn) {
-                sBtn.addEventListener('click', () => {
-                    if (!sIn.classList.contains('open')) {
-                        sIn.classList.add('open');
-                        sIn.focus();
-                    } else {
-                        if (sIn.value.trim()) alert('搜尋：' + sIn.value);
-                        else sIn.classList.remove('open');
-                    }
                 });
             }
         });
