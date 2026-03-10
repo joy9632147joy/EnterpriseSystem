@@ -26,7 +26,7 @@
 
         @media(max-width:767px) {
             .themes-wrap {
-                padding:32px 16px 80px;
+                padding: 32px 16px 80px;
             }
         }
 
@@ -489,8 +489,13 @@
         }
 
         @keyframes lbIn {
-            from { opacity: 0 }
-            to   { opacity: 1 }
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
         }
 
         .lb-inner {
@@ -719,8 +724,11 @@
             position: relative;
             top: 80px;
             z-index: 99;
-            background: #fff;
-            border-bottom: 1px solid var(--border-grey);
+            background: rgba(250, 246, 240, 0.6);
+            /* 半透明奶白 */
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+            /* 邊框換成極淡金色 */
             margin-top: -70px;
         }
 
@@ -733,6 +741,7 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            justify-content: center;
         }
 
         .theme-nav-inner::-webkit-scrollbar {
