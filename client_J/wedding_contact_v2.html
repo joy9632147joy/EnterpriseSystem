@@ -7,7 +7,7 @@
     <title>DREAM VENUES - 聯絡我們</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="../client/global.css">
     <script src="../js/bootstrap.bundle.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./global.js"></script>
+    <script src="../client/global.js"></script>
 
     <style>
         /* ── LAYOUT ── */
@@ -45,14 +45,11 @@
             z-index: 90;
             display: flex;
             justify-content: center;
-            margin-top: 16px;
+            margin-top: -32px;
+            /* 往上推，疊加在 Hero 的邊緣 */
+            margin-bottom: 48px;
             pointer-events: none;
             /* 讓兩側透明區域不阻擋點擊 */
-            transition: top 0.4s ease-in-out;
-        }
-
-        .page-tab-wrapper.nav-hidden {
-            top: 20px;
         }
 
         .page-tab-bar {
@@ -678,7 +675,6 @@
                 </button>
             </div>
         </div>
-
         <!-- ─── Content Wrap ─── -->
         <div class="content-wrap">
 
@@ -1024,7 +1020,7 @@
         // ── 導覽列滾動隱藏 ──
         document.addEventListener('DOMContentLoaded', () => {
             const navbar = document.querySelector('.navbar');
-            const tabBar = document.querySelector('.page-tab-wrapper');
+            const tabBar = document.querySelector('.page-tab-bar');
 
             if (navbar) {
                 let lastScrollTop = 0;

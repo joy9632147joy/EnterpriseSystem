@@ -294,12 +294,60 @@
             color: white;
         }
 
+        /* ─── 婚禮籌備分類標題 ─── */
+        .category-block {
+            background: #faf7f2;
+            border-left: 3px solid rgba(197, 160, 89, 0.35);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px 8px;
+            margin-bottom: 20px;
+        }
+
+        .category-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-serif);
+            font-size: 16px;
+            letter-spacing: 0.25em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.2);
+            width: 100%;
+        }
+
+        .category-label .material-symbols-outlined {
+            font-size: 16px;
+            font-variation-settings: 'wght' 300;
+        }
+
+        .category-progress {
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            color: #bbb;
+            margin-left: auto;
+            font-family: var(--font-sans);
+        }
+
         /* ─── Happy Ending 結尾區塊 ─── */
         .happy-ending {
             position: relative;
             padding-left: 40px;
             margin-top: 32px;
         }
+/* 
+        .happy-ending-inner {
+            background: linear-gradient(135deg, rgba(197,160,89,0.04) 0%, rgba(197,160,89,0.02) 100%);
+            border: 1px solid rgba(197,160,89,0.15);
+            border-radius: 12px;
+            padding: 20px 24px;
+        } */
 
         /* ─── 桌面版 User Dropdown ─── */
         #userDropdownWrap .dropdown-menu {
@@ -504,47 +552,22 @@
 
                     <div class="timeline-container">
                         <div class="accordion" id="progressAccordion">
-
-                            <div v-for="(phase, index) in data.phases" :key="phase.id"
-                                class="accordion-item timeline-item" :class="phase.status.toLowerCase()">
+                            <!-- 初步規劃階段 -->
+                            <div class="accordion-item timeline-item" :class="data.phases[0].status.toLowerCase()">
                                 <div class="timeline-marker"></div>
-                                <h2 class="accordion-header" :id="'heading' + index">
-                                    <button class="accordion-button" :class="{'collapsed': phase.status !== 'active'}"
-                                        type="button" data-bs-toggle="collapse" :data-bs-target="'#collapse' + index">
-                                        {{ phase.title }}
-                                        <span class="status-badge" :class="'badge-' + phase.status.toLowerCase()">
-                                            {{ phase.status === 'completed' ? '已完成' : (phase.status === 'active' ? '進行中'
-                                            : '待開始') }}
-                                        </span>
+                                <h2 class="accordion-header" id="heading0">
+                                    <button class="accordion-button collapsed"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapse0">
+                                        {{ data.phases[0].title }}
+                                        <span class="status-badge badge-completed">已完成</span>
                                     </button>
                                 </h2>
-                                <div :id="'collapse' + index" class="accordion-collapse collapse"
-                                    :class="{'show': phase.status === 'active'}" data-bs-parent="#progressAccordion">
+                                <div id="collapse0" class="accordion-collapse collapse">
                                     <div class="accordion-body">
-
-                                        <div v-if="phase.pmMessage" class="pm-update-box">
-                                            <span class="material-symbols-outlined">campaign</span>
-                                            <div>
-                                                <div
-                                                    style="font-size: 11px; color: var(--accent-gold); margin-bottom: 4px;">
-                                                    顧問更新於 {{ phase.pmUpdateTime }}
-                                                </div>
-                                                <div style="color: var(--text-main);">
-                                                    {{ phase.pmMessage }}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p v-if="phase.startDate"
-                                            style="font-size: 11px; color: #aaa; margin-bottom: 16px;">
-                                            預計開始時間：{{ phase.startDate }}
-                                        </p>
-
                                         <ul class="task-list mt-4">
-                                            <li v-for="task in phase.tasks" :key="task.id"
+                                            <li v-for="task in data.phases[0].tasks" :key="task.id"
                                                 :class="task.isDone ? 'task-done' : 'task-pending'">
-                                                <span class="material-symbols-outlined">{{ task.isDone ? 'check_circle'
-                                                    : 'radio_button_unchecked' }}</span>
+                                                <span class="material-symbols-outlined">{{ task.isDone ? 'check_circle' : 'radio_button_unchecked' }}</span>
                                                 {{ task.name }}
                                             </li>
                                         </ul>
@@ -552,16 +575,58 @@
                                 </div>
                             </div>
 
+                            <!-- 婚禮籌備階段（分類分段） -->
+                            <div class="accordion-item timeline-item" :class="data.phases[1].status.toLowerCase()">
+                                <div class="timeline-marker"></div>
+                                <h2 class="accordion-header" id="heading1">
+                                    <button class="accordion-button"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                        {{ data.phases[1].title }}
+                                        <span class="status-badge badge-active">進行中</span>
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <div v-if="data.phases[1].pmMessage" class="pm-update-box">
+                                            <span class="material-symbols-outlined">campaign</span>
+                                            <div>
+                                                <div style="font-size: 11px; color: var(--accent-gold); margin-bottom: 4px;">
+                                                    顧問更新於 {{ data.phases[1].pmUpdateTime }}
+                                                </div>
+                                                <div style="color: var(--text-main);">
+                                                    {{ data.phases[1].pmMessage }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-for="(cat, catIdx) in data.phases[1].categories" :key="cat.name" class="category-block">
+                                            <div class="category-label">
+                                                <span class="material-symbols-outlined">{{ getCatIcon(cat.name) }}</span>
+                                                {{ cat.name }}
+                                                <span class="category-progress">{{ cat.tasks.filter(t=>t.isDone).length }} / {{ cat.tasks.length }}</span>
+                                            </div>
+                                            <ul class="task-list">
+                                                <li v-for="task in cat.tasks" :key="task.id"
+                                                    :class="task.isDone ? 'task-done' : 'task-pending'">
+                                                    <span class="material-symbols-outlined">{{ task.isDone ? 'check_circle' : 'radio_button_unchecked' }}</span>
+                                                    {{ task.name }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="happy-ending">
                             <span class="material-symbols-outlined"
-                                style="color: var(--accent-gold); font-variation-settings: 'FILL' 1; font-size: 24px;position: absolute; left: 8px; top: 14px; transform: translateX(-50%); z-index: 2; background: #faf7f2; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;">favorite</span>
-                            <div class=" d-flex align-items-center gap-2">
-                                <span class="font-serif" style="font-size: 1.1rem; color: var(--accent-gold);">Happy
-                                    Ending</span>
+                                style="color: var(--accent-gold); font-variation-settings: 'FILL' 1; font-size: 20px; position: absolute; left: 8px; top: 18px; transform: translateX(-50%); z-index: 2; background: #faf7f2; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;">favorite</span>
+                            <div class="happy-ending-inner">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="font-serif" style="font-size: 1.1rem; color: var(--accent-gold); letter-spacing: 0.08em;">Happy Ending</span>
+                                    <span style="font-size: 9px; letter-spacing: 0.2em; color: #ccc; font-family: var(--font-sans); margin-top: 2px;">YOUR PERFECT DAY</span>
+                                </div>
+                                <p style="font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.8;">感謝您讓 DREAM VENUES 參與您人生最重要的時刻。<br>我們期待與您共同創造永難忘懷的幸福回憶。</p>
                             </div>
-                            <p class="mt-2" style="font-size: 12px; color: var(--text-muted);">感謝您讓 DREAM VENUES
-                                參與您人生最重要的時刻。</p>
                         </div>
                     </div>
                 </div>
@@ -617,51 +682,90 @@
 
         createApp({
             setup() {
-                // 未來這包 data 可直接用 Axios 替換從 Spring Boot 取得的 DTO 格式
-                const data = reactive({
-                    countdownDays: 33,
-                    weddingDate: '2026.04.10',
-                    pmName: '小傑 (Jack)',
-                    progressPercent: 65, // 進度 65%
-                    payments: [
-                        { title: '訂金 20%', status: 'PAID', dueDate: '' },
-                        { title: '期中款 50%', status: 'PENDING', dueDate: '2026.04.01' },
-                        { title: '尾款 30%', status: 'NONE', dueDate: '' }
-                    ],
-                    documents: [
-                        { name: '婚宴定案合約書.pdf', icon: 'description' },
-                        { name: '主視覺模擬圖_V2.jpg', icon: 'image' },
-                        { name: '第一期款項收據.pdf', icon: 'receipt_long' }
-                    ],
-                    phases: [
-                        {
-                            id: 1, title: '簽約與初步構想', status: 'completed',
-                            pmMessage: null, startDate: null,
-                            tasks: [
-                                { id: 101, name: '婚宴資訊確認', isDone: true },
-                                { id: 102, name: '專屬顧問指派', isDone: true },
-                            ]
-                        },
-                        {
-                            id: 2, title: '婚禮團隊協調', status: 'active',
-                            pmMessage: '',
-                            pmUpdateTime: '2小時前', startDate: null,
-                            tasks: [
-                                { id: 201, name: '專業新娘秘書確認', isDone: true },
-                                { id: 202, name: '婚禮企劃主持人確認', isDone: false },
-                                { id: 203, name: '平面/動態紀實攝影師確認', isDone: false },
-                                { id: 204, name: '燈光音響場控確認', isDone: false }
-                            ]
-                        },
-                        {
-                            id: 3, title: '場地佈置', status: 'pending',
-                            pmMessage: null, startDate: null,
-                            tasks: [
-                                { id: 301, name: '全鮮花主題佈置定稿', isDone: false },
-                            ]
-                        },
-                    ]
-                });
+                    // 未來可用 Axios 串接 API 取得資料
+                    const data = reactive({
+                        countdownDays: 33,
+                        weddingDate: '2026.04.10',
+                        pmName: '小傑 (Jack)',
+                        progressPercent: 65,
+                        payments: [
+                            { title: '訂金 20%', status: 'PAID', dueDate: '' },
+                            { title: '期中款 50%', status: 'PENDING', dueDate: '2026.04.01' },
+                            { title: '尾款 30%', status: 'NONE', dueDate: '' }
+                        ],
+                        documents: [
+                            { name: '婚宴定案合約書.pdf', icon: 'description' },
+                            { name: '主視覺模擬圖_V2.jpg', icon: 'image' },
+                            { name: '第一期款項收據.pdf', icon: 'receipt_long' }
+                        ],
+                        phases: [
+                            {
+                                id: 1,
+                                title: '初步規劃',
+                                status: 'completed',
+                                pmMessage: null,
+                                startDate: null,
+                                tasks: [
+                                    { id: 101, name: '婚宴資訊確認', isDone: true },
+                                    { id: 102, name: '專屬顧問指派', isDone: true },
+                                ]
+                            },
+                            {
+                                id: 2,
+                                title: '婚禮籌備',
+                                status: 'active',
+                                pmMessage: null,
+                                pmUpdateTime: '2小時前',
+                                startDate: null,
+                                categories: [
+                                    {
+                                        name: '婚禮團隊協調',
+                                        tasks: [
+                                            { id: 201, name: '新娘秘書/造型師確認', isDone: true },
+                                            { id: 202, name: '婚禮企劃主持人確認', isDone: false },
+                                            { id: 203, name: '平面/動態紀實攝影師確認', isDone: false },
+                                            { id: 204, name: '燈光音響場控確認', isDone: false }
+                                        ]
+                                    },
+                                    {
+                                        name: '場地佈置',
+                                        tasks: [
+                                            { id: 205, name: '場地場勘', isDone: false },
+                                            { id: 206, name: '空間動線規劃', isDone: false },
+                                            { id: 207, name: '花藝與裝飾規劃', isDone: false },
+                                            { id: 208, name: '主題佈置定稿', isDone: false }
+                                        ]
+                                    },
+                                    {
+                                        name: '顧問統籌',
+                                        tasks: [
+                                            { id: 209, name: '期程規劃建議', isDone: false },
+                                            { id: 210, name: '細節安排', isDone: false },
+                                            { id: 211, name: '廠商媒合推薦', isDone: false },
+                                            { id: 212, name: '細節確認會議', isDone: false }
+                                        ]
+                                    },
+                                    {
+                                        name: '宴會企劃執行',
+                                        tasks: [
+                                            { id: 213, name: '流程規劃', isDone: false },
+                                            { id: 214, name: '團隊協調', isDone: false },
+                                            { id: 215, name: '時程掌控', isDone: false },
+                                            { id: 216, name: '彩排引導', isDone: false }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                id: 3,
+                                title: 'Happy Ending',
+                                status: 'pending',
+                                pmMessage: null,
+                                startDate: null,
+                                tasks: []
+                            }
+                        ]
+                    });
 
                 // 計算 SVG 圓環偏移量 (2 * PI * r)
                 const dashOffset = computed(() => {
@@ -678,9 +782,21 @@
                     }, 300);
                 });
 
+                // 分類對應圖示
+                function getCatIcon(name) {
+                    const map = {
+                        '婚禮團隊協調': 'groups',
+                        '場地佈置': 'chair',
+                        '顧問統籌': 'manage_accounts',
+                        '宴會企劃執行': 'event_note'
+                    };
+                    return map[name] || 'label';
+                }
+
                 return {
                     data,
-                    dashOffset
+                    dashOffset,
+                    getCatIcon
                 }
             }
         }).mount('#app');
