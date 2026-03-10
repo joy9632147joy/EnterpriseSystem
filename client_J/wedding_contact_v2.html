@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>DREAM VENUES - 聯絡我們</title>
+    <title>預約專屬諮詢 | BOOK YOUR CONSULTATION</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../client/global.css">
@@ -37,80 +37,73 @@
             }
         }
 
-        /* ── PAGE TAB BAR (懸浮膠囊設計) ── */
-        .page-tab-wrapper {
+        /* ── PAGE TAB BAR ── */
+        .page-tab-bar {
             position: sticky;
-            top: 100px;
-            /* 剛好躲在 Navbar 下方 */
-            z-index: 90;
+            top: 80px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-grey);
             display: flex;
             justify-content: center;
-            margin-top: -32px;
-            /* 往上推，疊加在 Hero 的邊緣 */
-            margin-bottom: 48px;
-            pointer-events: none;
-            /* 讓兩側透明區域不阻擋點擊 */
+            transition: top 0.4s ease-in-out;
         }
 
-        .page-tab-bar {
-            pointer-events: auto;
-            /* 恢復選單本身的點擊 */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 8px;
-            border-radius: 50px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(197, 160, 89, 0.15);
-            display: flex;
-            gap: 4px;
+        .page-tab-bar.nav-hidden {
+            top: 0;
         }
 
         .page-tab {
-            padding: 12px 32px;
-            border-radius: 40px;
-            font-size: 13px;
+            position: relative;
+            padding: 20px 56px;
+            font-size: 12px;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
             color: var(--text-muted);
             background: transparent;
             border: none;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .page-tab.active {
+        .page-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
             background: var(--accent-gold);
-            color: #ffffff;
-            box-shadow: 0 4px 16px rgba(197, 160, 89, 0.25);
+            transform: scaleX(0);
+            transition: transform 0.35s ease;
         }
 
-        .page-tab:hover:not(.active) {
+        .page-tab.active {
+            color: var(--text-main);
+        }
+
+        .page-tab.active::after {
+            transform: scaleX(1);
+        }
+
+        .page-tab:hover {
             color: var(--accent-gold);
-            background: rgba(197, 160, 89, 0.05);
         }
 
         .page-tab .material-symbols-outlined {
             font-size: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .page-tab.active .material-symbols-outlined {
-            transform: scale(1.1);
         }
 
         @media (max-width: 575px) {
             .page-tab {
-                padding: 10px 16px;
+                padding: 16px 28px;
                 font-size: 11px;
-                letter-spacing: 0.1em;
-            }
-
-            .page-tab .material-symbols-outlined {
-                display: none;
-                /* 手機版隱藏 icon 保持清爽 */
+                letter-spacing: 0.15em;
             }
         }
 
@@ -659,22 +652,21 @@
         </div>
 
         <!-- ─── Tab 切換列 ─── -->
-        <div class="page-tab-wrapper">
-            <div class="page-tab-bar">
-                <button class="page-tab" :class="{ active: activeTab === 'booking' }" @click="activeTab = 'booking'">
-                    <span class="material-symbols-outlined">edit_calendar</span>
-                    預約諮詢
-                </button>
-                <button class="page-tab" :class="{ active: activeTab === 'faq' }" @click="activeTab = 'faq'">
-                    <span class="material-symbols-outlined">help_outline</span>
-                    常見問題
-                </button>
-                <button class="page-tab" :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">
-                    <span class="material-symbols-outlined">location_on</span>
-                    公司資訊
-                </button>
-            </div>
+        <div class="page-tab-bar">
+            <button class="page-tab" :class="{ active: activeTab === 'booking' }" @click="activeTab = 'booking'">
+                <span class="material-symbols-outlined">edit_calendar</span>
+                預約諮詢
+            </button>
+            <button class="page-tab" :class="{ active: activeTab === 'faq' }" @click="activeTab = 'faq'">
+                <span class="material-symbols-outlined">help_outline</span>
+                常見問題
+            </button>
+            <button class="page-tab" :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">
+                <span class="material-symbols-outlined">location_on</span>
+                公司資訊
+            </button>
         </div>
+
         <!-- ─── Content Wrap ─── -->
         <div class="content-wrap">
 
