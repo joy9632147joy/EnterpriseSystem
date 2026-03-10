@@ -8,13 +8,15 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="./global.css">
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script src="./global.js"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
+
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="./global.js"></script>
+    <script src="./login.js"></script>
 
     <style>
         /* ════ HERO SLIDESHOW ════ */
@@ -1078,8 +1080,10 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="client_login.html" id="logoutBtn">登出</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
                     <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
@@ -1091,10 +1095,10 @@
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div>
+            <a class="navbar-brand" href="./index.html">
                 <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
-            </div>
+            </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
@@ -1102,6 +1106,20 @@
                 <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
+
+            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
+            <div id="mobileUserMenu"
+                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
+                <p id="mobileWelcome"
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+            </div>
+
+            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -1109,21 +1127,21 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
+
+            <!-- 未登入顯示：會員登入在導覽選單下方 -->
             <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
-                    style="font-size:16px; vertical-align:middle; margin-right:6px;" id="loginLinkDesktop">person</span>
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-            <div id="mobileUserMenu">
-                <p id="mobileWelcome"
-                    style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./customer_system.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
-                <a href="./customer_progress.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的籌備進度</a>
-                <a href="./client_login.html" id="logoutBtnMobile" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
-            </div>
+
+            <!-- 登出：最下方，登入後才顯示，紅字 -->
+            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                style="padding:14px 0; display:none; letter-spacing:0.08em;">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
+                登出
+            </a>
         </div>
     </div>
 
@@ -1132,7 +1150,8 @@
         <!-- ════ HERO SLIDESHOW ════ -->
         <div class="hero-slideshow" id="heroSlideshow">
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1674232636474-0488df660ccb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="森林系婚禮">
+                <img src="https://images.unsplash.com/photo-1674232636474-0488df660ccb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="森林系婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">01 / 05</span>
@@ -1588,19 +1607,6 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
-    <!-- 模擬登入 -->
-    <div id="loginModal"
-        style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
-        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
-            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
-            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)"
-                style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
-            <div style="text-align:right;">
-                <button id="loginSubmit"
-                    style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
-            </div>
-        </div>
-    </div>
 
     <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
