@@ -683,21 +683,6 @@
                     calculateTotal();
                 });
             }
-
-            // 處理搜尋按鈕
-            const sBtn = document.getElementById('search-btn');
-            const sIn = document.getElementById('search-input');
-            if (sBtn && sIn) {
-                sBtn.addEventListener('click', () => {
-                    if (!sIn.classList.contains('open')) {
-                        sIn.classList.add('open');
-                        sIn.focus();
-                    } else {
-                        if (sIn.value.trim()) alert('搜尋：' + sIn.value);
-                        else sIn.classList.remove('open');
-                    }
-                });
-            }
         });
     </script>
 </body>
