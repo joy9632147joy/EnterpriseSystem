@@ -311,6 +311,9 @@
                                             </div>
                                             <button class="btn-assign text-xs bg-indigo-50 text-indigo-600 hover:bg-indigo-100 px-3 py-1.5 rounded-md font-bold transition-colors shadow-sm" data-task="新娘秘書試妝與合約" data-category="新娘秘書">+ 修改名單</button>
                                         </div>
+                                        <button onclick="openChatModal('task_1')" class="mt-4 w-full flex items-center justify-center py-2 px-4 border border-indigo-100 dark:border-indigo-800/30 text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/10 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 rounded-xl transition-colors text-sm font-bold shadow-sm group">
+                                            <span class="material-icons text-[18px] mr-2 group-hover:scale-110 transition-transform">forum</span> 任務協調留言板
+                                        </button>
                                     </div>
                                 </div>
 
@@ -484,6 +487,42 @@
         </div>
     </div>
 
+    <div id="chatModal" class="hidden fixed inset-0 z-[120] flex items-center justify-center bg-gray-900/60 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[450px] max-w-[95%] flex flex-col h-[550px] border border-gray-100 dark:border-gray-700 transform transition-all">
+            <div class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50 rounded-t-2xl">
+                <h3 class="font-bold text-lg text-gray-900 dark:text-white flex items-center">
+                    <span class="material-icons text-indigo-500 mr-2">forum</span> 任務協調留言板
+                </h3>
+                <button onclick="closeChatModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 focus:outline-none bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full p-1 transition-colors">
+                    <span class="material-icons text-sm">close</span>
+                </button>
+            </div>
+            
+            <div id="chat-content" class="flex-1 overflow-y-auto p-5 space-y-5 bg-gray-50 dark:bg-gray-900/50 custom-scrollbar">
+                <div class="flex flex-col items-start">
+                    <span class="text-xs text-gray-500 dark:text-gray-400 mb-1.5 font-medium flex items-center"><span class="w-2 h-2 rounded-full bg-gray-400 mr-1.5"></span>王大明 (企劃部) • 10:30</span>
+                    <div class="bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-sm text-gray-700 dark:text-gray-200 border border-gray-100 dark:border-gray-700 leading-relaxed">
+                        這場婚禮的色調客戶想改為粉櫻色，請確認目前的佈置材料與花藝設定是否需要調整？
+                    </div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="text-xs text-gray-500 dark:text-gray-400 mb-1.5 font-medium flex items-center">本人 (PM) • 11:15<span class="w-2 h-2 rounded-full bg-indigo-500 ml-1.5"></span></span>
+                    <div class="bg-indigo-500 p-3.5 rounded-2xl rounded-tr-none shadow-md max-w-[85%] text-sm text-white leading-relaxed">
+                        收到！我立刻與設計部及花藝組確認庫存，預計下午回覆更新方案。
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b-2xl">
+                <div class="flex items-center space-x-3">
+                    <input type="text" placeholder="輸入要溝通的訊息..." class="flex-1 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 px-4 py-3 dark:text-white transition-colors">
+                    <button class="btn-send-msg p-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors shadow-sm flex items-center justify-center flex-shrink-0">
+                        <span class="material-icons text-[20px]">send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
         document.addEventListener('DOMContentLoaded', () => {
             // ================= 分派任務 Modal 與即時 UI 更新邏輯 =================
@@ -677,6 +716,34 @@
                     }, 100);
                 });
             }
+
+            // ================= 任務協調留言板 Modal 邏輯 =================
+            // 定義在 window 讓 HTML onclick 可以直接呼叫
+            window.openChatModal = function (taskId) {
+                document.getElementById('chatModal').classList.remove('hidden');
+                // 可擴充：這裡可以透過 taskId 去向後端撈取歷史訊息
+            };
+
+            window.closeChatModal = function () {
+                document.getElementById('chatModal').classList.add('hidden');
+            };
+
+            // 留言發送模擬
+            document.addEventListener('click', function (e) {
+                const sendBtn = e.target.closest('.btn-send-msg');
+                if (sendBtn) {
+                    const input = sendBtn.previousElementSibling;
+                    if (input && input.value.trim() !== '') {
+                        // 模擬訊息發送成功
+                        alert(`訊息已送出：\n"${input.value}"`);
+                        
+                        // 實務上這裡會生成新的 DOM 塞入 #chat-content 中
+                        input.value = ''; // 清空輸入框
+                    } else {
+                        alert('請先輸入訊息內容！');
+                    }
+                }
+            });
         });
     </script>
 </body>
