@@ -5,13 +5,6 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>DREAM VENUES - 專屬方案擬定</title>
-
-    <script>
-        if (!sessionStorage.getItem('dv_username')) {
-            alert('親愛的賓客您好，請先登入會員以查看您的專屬婚禮提案！');
-            window.location.href = './index.html'; 
-        }
-    </script>
     
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
@@ -20,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="global.css">
-    <script src="./login.js"></script>
 
     <style>
         :root {
@@ -335,15 +327,13 @@
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
-                aria-controls="navMenu" aria-label="開啟選單">
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMenuDesktop">
@@ -364,7 +354,7 @@
                         <a class="nav-link nav-link-item active-page" href="#" id="userDropdownBtn"
                             data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -372,62 +362,25 @@
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="./index.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <a class="navbar-brand" href="./index.html">
-                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
-                <span class="brand-sub">High-End Wedding Journal</span>
-            </a>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
+            <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End Wedding Journal</span></div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
-            <div class="offcanvas-search">
-                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
-                <input type="text" placeholder="搜尋場地或職人...">
-            </div>
-
-            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
-            <div id="mobileUserMenu"
-                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
-                <p id="mobileWelcome"
-                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
-                </p>
-                <a href="./customer_system.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
-                <a href="./customer_progress.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的籌備進度</a>
-            </div>
-
-            <!-- 導覽選單 -->
-            <ul class="navbar-nav gap-0">
+            <ul class="navbar-nav gap-0 mt-3">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-
-            <!-- 未登入顯示：會員登入在導覽選單下方 -->
-            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
-                <span class="material-symbols-outlined"
-                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
-                會員登入
-            </a>
-
-            <!-- 登出：最下方，登入後才顯示，紅字 -->
-            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
-                style="padding:14px 0; display:none; letter-spacing:0.08em;">
-                <span class="material-symbols-outlined"
-                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
-                登出
-            </a>
         </div>
     </div>
 
@@ -602,73 +555,52 @@
                             <span style="font-size: 11px; color: var(--text-muted);">多維度自由加選</span>
                         </div>
 
-                        <div class="mb-4 pb-2" style="border-bottom: 1px dashed var(--border-grey);">
-                            <h4 class="decor-group-title">🌸 迎賓與拍照區 <span>Welcome & Gallery Area</span></h4>
-                            <div class="check-grid">
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-welcome" data-category="佈置" data-price="35000"><span>全鮮花主題拍照背板</span><span class="price-tag">+NT$ 35,000</span></label>
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-welcome" data-category="佈置" data-price="25000"><span>極簡立體結構拍照區</span><span class="price-tag">+NT$ 25,000</span></label>
-                                
-                                <div class="sub-addon-box" id="addon-welcome">
-                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 迎賓區延伸加購</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="6000"><span>精緻相簿與收禮桌佈置 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="4500"><span>客製化迎賓立牌/指引牌 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 4,500)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="8500"><span>互動式拍立得留言區 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 8,500)</span></span></label>
-                                    </div>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 15px;">
+                            
+                            <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                <div style="display: flex; width: 100%; align-items: center;">
+                                    <input type="checkbox" data-category="佈置" data-price="35000">
+                                    <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">迎賓與拍照區主題設計</span>
+                                    <span class="price-tag">+NT$ 35,000 起</span>
                                 </div>
-                            </div>
-                        </div>
+                                <div style="margin-left: 33px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                    包含：迎賓指引、收禮桌佈置、大型拍照背板或立體結構。
+                                </div>
+                            </label>
 
-                        <div class="mb-4 pb-2" style="border-bottom: 1px dashed var(--border-grey);">
-                            <h4 class="decor-group-title">🍽️ 宴客桌景與舞台 <span>Banquet Tablescape & Stage</span></h4>
-                            <div class="check-grid">
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-banquet" data-category="佈置" data-price="12000"><span>主桌奢華花藝設計</span><span class="price-tag">+NT$ 12,000</span></label>
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-banquet" data-category="佈置" data-price="15000"><span>舞台主視覺Logo與地貼</span><span class="price-tag">+NT$ 15,000</span></label>
-                                
-                                <div class="sub-addon-box" id="addon-banquet">
-                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 宴客空間延伸加購</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="24000"><span>客桌微型花藝裝飾 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 24,000/20桌估)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="18000"><span>紅毯走道/進場兩側花柱 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="35000"><span>懸吊式空中花藝/星空燈串 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 35,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="3600"><span>主桌/新人椅背專屬花藝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 3,600)</span></span></label>
-                                    </div>
+                            <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                <div style="display: flex; width: 100%; align-items: center;">
+                                    <input type="checkbox" data-category="佈置" data-price="20000">
+                                    <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">宴客桌景與舞台視覺</span>
+                                    <span class="price-tag">+NT$ 20,000 起</span>
                                 </div>
-                            </div>
-                        </div>
+                                <div style="margin-left: 33px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                    包含：主客桌花藝、專屬椅背裝飾、舞台 Logo 與地貼設計。
+                                </div>
+                            </label>
 
-                        <div class="mb-4 pb-2" style="border-bottom: 1px dashed var(--border-grey);">
-                            <h4 class="decor-group-title">🕊️ 戶外證婚/儀式空間 <span>Ceremony Space</span></h4>
-                            <div class="check-grid">
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-ceremony" data-category="佈置" data-price="28000"><span>經典美式證婚拱門/花亭</span><span class="price-tag">+NT$ 28,000</span></label>
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-ceremony" data-category="佈置" data-price="32000"><span>無邊際地排花佈置</span><span class="price-tag">+NT$ 32,000</span></label>
-                                
-                                <div class="sub-addon-box" id="addon-ceremony">
-                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 儀式空間延伸加購</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="12000"><span>觀禮座椅兩側走道花 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 12,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="6000"><span>花瓣步道/浪漫撒花機 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="15000"><span>迎賓冷泡茶/微醺調酒Bar <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 15,000)</span></span></label>
-                                    </div>
+                            <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                <div style="display: flex; width: 100%; align-items: center;">
+                                    <input type="checkbox" data-category="佈置" data-price="25000">
+                                    <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">鮮花花藝佈置</span>
+                                    <span class="price-tag">+NT$ 25,000 起</span>
                                 </div>
-                            </div>
-                        </div>
+                                <div style="margin-left: 33px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                    包含：證婚拱門/無邊際地排花、觀禮走道佈置。
+                                </div>
+                            </label>
 
-                        <div class="mb-2">
-                            <h4 class="decor-group-title">📜 品牌級平面視覺 <span>Personalized Print & Branding</span></h4>
-                            <div class="check-grid">
-                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-print" data-category="佈置" data-price="12000"><span>婚禮主視覺Logo與色盤提案</span><span class="price-tag">+NT$ 12,000</span></label>
-                                
-                                <div class="sub-addon-box" id="addon-print">
-                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 視覺設計延伸加購</div>
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="8000"><span>客製化喜帖設計與印製 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 8,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="6000"><span>專屬菜單、桌卡與座位圖 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="5000"><span>位上禮/伴手禮客製包裝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 5,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="9000"><span>婚禮日報/迎賓報紙設計 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 9,000)</span></span></label>
-                                    </div>
+                            <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                <div style="display: flex; width: 100%; align-items: center;">
+                                    <input type="checkbox" data-category="佈置" data-price="15000">
+                                    <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">品牌級平面視覺套組</span>
+                                    <span class="price-tag">+NT$ 15,000 起</span>
                                 </div>
-                            </div>
+                                <div style="margin-left: 33px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                    包含：專屬婚禮 Logo、客製喜帖、菜單、桌卡與歡迎牌設計。
+                                </div>
+                            </label>
+
                         </div>
 
                         <div style="margin-top: 25px;">

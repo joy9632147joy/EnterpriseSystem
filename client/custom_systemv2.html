@@ -71,7 +71,6 @@
 
         .decor-group-title { font-size: 14px; font-weight: bold; color: var(--rose-dark); margin-bottom: 15px; border-left: 4px solid var(--rose-dark); padding-left: 10px; display: flex; align-items: center; }
         .decor-group-title span { font-weight: normal; font-size: 11px; color: var(--text-muted); margin-left: 8px; font-family: var(--font-sans); letter-spacing: 1px; }
-        .decor-sub-section { background: #FAFAFA; border-radius: 16px; padding: 25px; margin-bottom: 25px; border: 1px solid #F0F0F0; }
 
         .form-control-custom { width: 100%; padding: 14px 18px; border: 1px solid var(--border-grey); border-radius: 12px; background-color: var(--soft-grey); font-size: 14px; color: var(--text-main); transition: 0.3s; margin-top: 8px; font-family: var(--font-sans); }
         .form-control-custom:focus { border-color: var(--rose-dark); outline: none; background-color: var(--pure-white); box-shadow: 0 0 0 3px rgba(194, 142, 142, 0.15); }
@@ -117,27 +116,10 @@
         .bundle-card:hover .bundle-btn { border-color: var(--accent-gold); color: var(--accent-gold); }
         .bundle-card.active .bundle-btn { background: var(--rose-dark); border-color: var(--rose-dark); color: white; }
 
-        /* 新增：組合包內容顯示區塊 */
-        .bundle-includes-wrap {
-            background: #FAFAFA;
-            border-radius: 15px;
-            padding: 25px 30px;
-            margin-bottom: 30px;
-            border: 1px solid #F0F0F0;
-            animation: fadeIn 0.4s ease;
-        }
+        .bundle-includes-wrap { background: #FAFAFA; border-radius: 15px; padding: 25px 30px; margin-bottom: 30px; border: 1px solid #F0F0F0; animation: fadeIn 0.4s ease; }
         .includes-title { font-size: 12px; color: var(--text-muted); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px; }
         .includes-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
-        .includes-list li {
-            font-size: 13px;
-            color: var(--text-main);
-            background: white;
-            padding: 6px 15px;
-            border-radius: 50px;
-            border: 1px solid var(--border-grey);
-            display: flex;
-            align-items: center;
-        }
+        .includes-list li { font-size: 13px; color: var(--text-main); background: white; padding: 6px 15px; border-radius: 50px; border: 1px solid var(--border-grey); display: flex; align-items: center; }
         .includes-list li i { color: var(--accent-gold); margin-right: 6px; font-size: 12px; }
 
         .toggle-advanced-btn { background: #fff; border: 1px solid var(--rose-dark); color: var(--rose-dark); padding: 10px 25px; border-radius: 50px; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(194, 142, 142, 0.1); }
@@ -346,28 +328,56 @@
                                 <span style="font-size: 11px; color: var(--text-muted);">自由加選</span>
                             </div>
                             <div class="check-grid">
+                                
                                 <label class="check-item">
-                                    <input type="checkbox" class="group-main-trigger hidden-chk" data-target="makeup-addons" data-category="團隊" data-price="5000" id="cb-makeup">
-                                    <span class="custom-chk"></span><span class="chk-text">專業造型師 (基礎車馬/試妝)</span><span class="price-tag">+NT$ 5,000</span>
+                                    <input type="checkbox" class="group-main-trigger hidden-chk" data-target="makeup-addons" data-category="團隊" data-price="18000" id="cb-makeup">
+                                    <span class="custom-chk"></span><span class="chk-text">新秘造型師</span><span class="price-tag">+NT$ 18,000</span>
                                 </label>
-
                                 <div class="sub-addon-box" id="makeup-addons">
-                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">造型服務細項 (請勾選需要服務的對象)</div>
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">造型服務加購</div>
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk bundle-target-makeup-bride" data-category="團隊加購" data-price="18000"><span class="custom-chk"></span><span class="chk-text">新娘妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="1200"><span class="custom-chk"></span><span class="chk-text">新郎專屬妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 1,200)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="2500"><span class="custom-chk"></span><span class="chk-text">主婚人妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
-                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="2500"><span class="custom-chk"></span><span class="chk-text">親友妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="5000"><span class="custom-chk"></span><span class="chk-text">新郎妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 5,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="2000"><span class="custom-chk"></span><span class="chk-text">主婚人/親友妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,000)</span></span></label>
                                     </div>
                                 </div>
-                                
-                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="團隊" data-price="18000" id="cb-host"><span class="custom-chk"></span><span class="chk-text">專業婚禮企劃主持人</span><span class="price-tag">+NT$ 18,000</span></label>
-                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="團隊" data-price="25000"><span class="custom-chk"></span><span class="chk-text">品牌總監級主持人</span><span class="price-tag">+NT$ 25,000</span></label>
-                                
-                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="團隊" data-price="18000"><span class="custom-chk"></span><span class="chk-text">平面紀實攝影 (單機)</span><span class="price-tag">+NT$ 18,000</span></label>
-                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="團隊" data-price="45000" id="cb-photo-double"><span class="custom-chk"></span><span class="chk-text">雙攝錄影團隊 (含SDE快剪)</span><span class="price-tag">+NT$ 45,000</span></label>
 
-                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="團隊" data-price="12000" id="cb-sound"><span class="custom-chk"></span><span class="chk-text">燈光音響與影音場控</span><span class="price-tag">+NT$ 12,000</span></label>
+                                <label class="check-item">
+                                    <input type="checkbox" class="group-main-trigger hidden-chk" data-target="host-addons" data-category="團隊" data-price="18000" id="cb-host">
+                                    <span class="custom-chk"></span><span class="chk-text">婚禮企劃主持人</span><span class="price-tag">+NT$ 18,000</span>
+                                </label>
+                                <div class="sub-addon-box" id="host-addons">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">主持人等級選擇 (可選)</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="0"><span class="custom-chk"></span><span class="chk-text">專業婚禮主持人 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 0)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="2000"><span class="custom-chk"></span><span class="chk-text">品牌總監級主持人 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,000)</span></span></label>
+                                    </div>
+                                </div>
+
+                                <label class="check-item">
+                                    <input type="checkbox" class="group-main-trigger hidden-chk" data-target="photo-addons" data-category="團隊" data-price="18000" id="cb-photo">
+                                    <span class="custom-chk"></span><span class="chk-text">平面/動態紀實攝影師</span><span class="price-tag">+NT$ 18,000</span>
+                                </label>
+                                <div class="sub-addon-box" id="photo-addons">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">攝影服務加購</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk bundle-target-sde" data-category="團隊加購" data-price="15000"><span class="custom-chk"></span><span class="chk-text">SDE 當日快剪快播 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 15,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk bundle-target-double-cam" data-category="團隊加購" data-price="12000"><span class="custom-chk"></span><span class="chk-text">雙機位拍攝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 12,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="5000"><span class="custom-chk"></span><span class="chk-text">類婚紗與全家福專屬引導拍攝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 5,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="6000"><span class="custom-chk"></span><span class="chk-text">空拍機壯闊空景拍攝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
+                                    </div>
+                                </div>
+
+                                <label class="check-item">
+                                    <input type="checkbox" class="group-main-trigger hidden-chk" data-target="sound-addons" data-category="團隊" data-price="18000" id="cb-sound">
+                                    <span class="custom-chk"></span><span class="chk-text">燈光音響與影音場控</span><span class="price-tag">+NT$ 18,000</span>
+                                </label>
+                                <div class="sub-addon-box" id="sound-addons">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">硬體工程加購</div>
+                                    <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="團隊加購" data-price="15000"><span class="custom-chk"></span><span class="chk-text">專業 LIVE Band 音響工程系統 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 15,000)</span></span></label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -379,85 +389,83 @@
                             <div class="check-grid">
                                 <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="儀式" data-price="15800"><span class="custom-chk"></span><span class="chk-text">文定儀式引導與司儀</span><span class="price-tag">+NT$ 15,800</span></label>
                                 <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="儀式" data-price="15800"><span class="custom-chk"></span><span class="chk-text">迎娶儀式流程控管</span><span class="price-tag">+NT$ 15,800</span></label>
-                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="儀式" data-price="22800" id="cb-ceremony-double"><span class="custom-chk"></span><span class="chk-text">雙儀式完整統籌 (早文定+午迎娶)</span><span class="price-tag">+NT$ 22,800</span></label>
                                 <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="儀式" data-price="15800" id="cb-ceremony-outdoor"><span class="custom-chk"></span><span class="chk-text">戶外/室內證婚規劃</span><span class="price-tag">+NT$ 15,800</span></label>
+                                <label class="check-item"><input type="checkbox" class="hidden-chk main-trigger" data-category="儀式" data-price="22800" id="cb-ceremony-double"><span class="custom-chk"></span><span class="chk-text">雙儀式完整統籌 (早文定+午迎娶)</span><span class="price-tag">+NT$ 22,800</span></label>
                             </div>
                         </div>
                         
                         <div class="interview-box">
                             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 25px;">
-                                <h3 class="serif" style="margin: 0;">D方案｜客製化視覺與空間佈置</h3>
+                                <h3 class="serif" style="margin: 0;">D方案｜婚宴現場客製化布置</h3>
                                 <span style="font-size: 11px; color: var(--text-muted);">多維度自由加選</span>
                             </div>
 
-                            <div class="decor-sub-section">
-                                <h4 class="decor-group-title">迎賓與拍照區 <span>Welcome & Gallery Area</span></h4>
-                                <div class="check-grid">
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-welcome" data-category="佈置" data-price="35000" id="cb-decor-flower"><span class="custom-chk"></span><span class="chk-text">全鮮花主題拍照背板</span><span class="price-tag">+NT$ 35,000</span></label>
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-welcome" data-category="佈置" data-price="25000" id="cb-decor-simple"><span class="custom-chk"></span><span class="chk-text">極簡立體結構拍照區</span><span class="price-tag">+NT$ 25,000</span></label>
-                                    
-                                    <div class="sub-addon-box" id="addon-welcome">
-                                        <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">迎賓區延伸加購</div>
-                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="6000"><span class="custom-chk"></span><span class="chk-text">精緻相簿與收禮桌佈置 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="4500"><span class="custom-chk"></span><span class="chk-text">客製化迎賓立牌/指引牌 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 4,500)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="8500"><span class="custom-chk"></span><span class="chk-text">互動式拍立得留言區 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 8,500)</span></span></label>
-                                        </div>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 15px;">
+                                
+                                <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                    <div style="display: flex; width: 100%; align-items: center;">
+                                        <input type="checkbox" class="hidden-chk main-trigger" data-category="佈置" data-price="35000" id="cb-decor-welcome">
+                                        <span class="custom-chk"></span>
+                                        <span class="chk-text">迎賓與拍照區主題設計</span>
+                                        <span class="price-tag">+NT$ 35,000</span>
                                     </div>
-                                </div>
+                                    <div style="margin-left: 34px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                        包含：迎賓指引、收禮桌佈置、大型拍照背板或立體結構。
+                                    </div>
+                                </label>
+
+                                <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                    <div style="display: flex; width: 100%; align-items: center;">
+                                        <input type="checkbox" class="hidden-chk main-trigger" data-category="佈置" data-price="20000" id="cb-decor-table">
+                                        <span class="custom-chk"></span>
+                                        <span class="chk-text">宴客桌景與舞台視覺</span>
+                                        <span class="price-tag">+NT$ 20,000</span>
+                                    </div>
+                                    <div style="margin-left: 34px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                        包含：主客桌花藝、專屬椅背裝飾、舞台 Logo 與地貼設計。
+                                    </div>
+                                </label>
+
+                                <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                    <div style="display: flex; width: 100%; align-items: center;">
+                                        <input type="checkbox" class="hidden-chk main-trigger" data-category="佈置" data-price="25000" id="cb-decor-flower-art">
+                                        <span class="custom-chk"></span>
+                                        <span class="chk-text">鮮花花藝佈置</span>
+                                        <span class="price-tag">+NT$ 25,000</span>
+                                    </div>
+                                    <div style="margin-left: 34px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                        包含：鮮花拱門/無邊際地排花、觀禮走道佈置。
+                                    </div>
+                                </label>
+
+                                <label class="check-item" style="align-items: flex-start; flex-direction: column; padding: 20px;">
+                                    <div style="display: flex; width: 100%; align-items: center;">
+                                        <input type="checkbox" class="hidden-chk main-trigger" data-category="佈置" data-price="15000" id="cb-decor-print">
+                                        <span class="custom-chk"></span>
+                                        <span class="chk-text">品牌級平面視覺套組</span>
+                                        <span class="price-tag">+NT$ 15,000</span>
+                                    </div>
+                                    <div style="margin-left: 34px; margin-top: 8px; font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                                        包含：專屬婚禮 Logo、客製喜帖、菜單、桌卡與歡迎牌設計。
+                                    </div>
+                                </label>
+
                             </div>
 
-                            <div class="decor-sub-section">
-                                <h4 class="decor-group-title">宴客桌景與舞台 <span>Banquet Tablescape & Stage</span></h4>
-                                <div class="check-grid">
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-banquet" data-category="佈置" data-price="12000" id="cb-decor-table"><span class="custom-chk"></span><span class="chk-text">主桌奢華花藝設計</span><span class="price-tag">+NT$ 12,000</span></label>
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-banquet" data-category="佈置" data-price="15000"><span class="custom-chk"></span><span class="chk-text">舞台主視覺Logo與地貼</span><span class="price-tag">+NT$ 15,000</span></label>
-                                    
-                                    <div class="sub-addon-box" id="addon-banquet">
-                                        <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">宴客空間延伸加購</div>
-                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="24000"><span class="custom-chk"></span><span class="chk-text">客桌微型花藝裝飾 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 24,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="18000"><span class="custom-chk"></span><span class="chk-text">紅毯走道/進場兩側花柱 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="35000"><span class="custom-chk"></span><span class="chk-text">懸吊式空中花藝/星空燈串 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 35,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="3600"><span class="custom-chk"></span><span class="chk-text">主桌/新人椅背專屬花藝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 3,600)</span></span></label>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div style="margin-top: 25px;">
+                                <textarea id="phase2-notes" class="form-control-custom" style="min-height: 80px;" placeholder="您對整場婚禮的視覺有什麼想像嗎？例如：喜歡白綠色系、想要大氣的拍照背板、不喜歡百合花..."></textarea>
                             </div>
+                        </div>
 
-                            <div class="decor-sub-section">
-                                <h4 class="decor-group-title">戶外證婚/儀式空間 <span>Ceremony Space</span></h4>
-                                <div class="check-grid">
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-ceremony" data-category="佈置" data-price="28000" id="cb-decor-arch"><span class="custom-chk"></span><span class="chk-text">經典美式證婚拱門/花亭</span><span class="price-tag">+NT$ 28,000</span></label>
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-ceremony" data-category="佈置" data-price="32000"><span class="custom-chk"></span><span class="chk-text">無邊際地排花佈置</span><span class="price-tag">+NT$ 32,000</span></label>
-                                    
-                                    <div class="sub-addon-box" id="addon-ceremony">
-                                        <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">儀式空間延伸加購</div>
-                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk bundle-target-outdoor-flower" data-category="佈置加購" data-price="6000"><span class="custom-chk"></span><span class="chk-text">花瓣步道/浪漫撒花機 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk bundle-target-outdoor-drink" data-category="佈置加購" data-price="15000"><span class="custom-chk"></span><span class="chk-text">迎賓冷泡茶/微醺調酒Bar <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 15,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="12000"><span class="custom-chk"></span><span class="chk-text">觀禮座椅兩側走道花 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 12,000)</span></span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
 
-                            <div class="decor-sub-section" style="margin-bottom:0;">
-                                <h4 class="decor-group-title">品牌級平面視覺 <span>Personalized Print & Branding</span></h4>
-                                <div class="check-grid">
-                                    <label class="check-item"><input type="checkbox" class="group-main-trigger hidden-chk" data-target="addon-print" data-category="佈置" data-price="12000" id="cb-decor-print"><span class="custom-chk"></span><span class="chk-text">婚禮主視覺Logo與色盤提案</span><span class="price-tag">+NT$ 12,000</span></label>
-                                    
-                                    <div class="sub-addon-box" id="addon-print">
-                                        <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;">視覺設計延伸加購</div>
-                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk bundle-target-print-card" data-category="佈置加購" data-price="8000"><span class="custom-chk"></span><span class="chk-text">客製化喜帖設計與印製 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 8,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="6000"><span class="custom-chk"></span><span class="chk-text">專屬菜單、桌卡與座位圖 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="5000"><span class="custom-chk"></span><span class="chk-text">位上禮/伴手禮客製包裝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 5,000)</span></span></label>
-                                            <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox hidden-chk" data-category="佈置加購" data-price="9000"><span class="custom-chk"></span><span class="chk-text">婚禮日報/迎賓報紙設計 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 9,000)</span></span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="realtime-total-box">
+                        <div>
+                            <h3 class="serif" style="margin: 0; font-size: 1.2rem;">預估專案總額</h3>
+                            <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 0; margin-top: 5px;">包含 A方案基底費用與您目前勾選的加值服務</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div id="realtime-total-display" style="font-size: 28px; color: var(--rose-dark); font-weight: bold; font-family: var(--font-sans);">NT$ 43,800</div>
                         </div>
                     </div>
 
@@ -553,6 +561,14 @@
         </div>
     </div>
 
+    <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
+        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
+            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)" style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
+            <div style="text-align:right;"><button id="loginSubmit" style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button></div>
+        </div>
+    </div>
+
     <script>
         // ─── 登入狀態管理 ───
         (function () {
@@ -629,15 +645,15 @@
         // 推薦組合動態更新包含項目清單
         function updateBundleIncludesUI(type) {
             const ul = document.getElementById('includes-list-ul');
-            ul.innerHTML = ''; // 清空
+            ul.innerHTML = ''; 
             
             let items = [];
             if (type === 'classic') {
-                items = ['A方案核心統籌', '專業企劃主持人', '燈光音響與影音場控', '極簡立體結構拍照區', '品牌級平面視覺提案', '客製化喜帖設計'];
+                items = ['A方案核心統籌', '專業企劃主持人', '燈光音響與影音場控', '迎賓與拍照區主題設計', '品牌級平面視覺套組'];
             } else if (type === 'premium') {
-                items = ['A方案核心統籌', '專業造型師 (含新娘妝髮)', '專業企劃主持人', '雙攝錄影團隊 (含SDE快剪)', '雙儀式完整統籌', '全鮮花主題拍照背板', '主桌奢華花藝設計'];
+                items = ['A方案核心統籌', '新秘造型師', '平面/動態紀實攝影師 (含SDE快剪/雙機位)', '婚禮企劃主持人', '雙儀式完整統籌', '迎賓與拍照區主題設計', '宴客桌景與舞台視覺'];
             } else if (type === 'outdoor') {
-                items = ['A方案核心統籌', '專業造型師 (含新娘妝髮)', '專業企劃主持人', '燈光音響與影音場控', '戶外證婚規劃', '經典美式證婚拱門', '花瓣步道與撒花機', '迎賓微醺調酒Bar'];
+                items = ['A方案核心統籌', '新秘造型師', '婚禮企劃主持人', '燈光音響與影音場控', '戶外/室內證婚規劃', '鮮花花藝佈置'];
             }
 
             items.forEach(text => {
@@ -663,15 +679,15 @@
 
             let idsToUpdate = [];
             if (type === 'classic') {
-                idsToUpdate = ['cb-host', 'cb-sound', 'cb-decor-simple', '.group-main-trigger[data-target="addon-print"]'];
+                idsToUpdate = ['cb-host', 'cb-sound', 'cb-decor-welcome', 'cb-decor-print'];
             } else if (type === 'premium') {
-                idsToUpdate = ['cb-makeup', 'cb-host', 'cb-photo-double', 'cb-ceremony-double', 'cb-decor-flower', 'cb-decor-table'];
+                idsToUpdate = ['cb-makeup', 'cb-host', 'cb-photo', 'cb-ceremony-double', 'cb-decor-welcome', 'cb-decor-table'];
             } else if (type === 'outdoor') {
-                idsToUpdate = ['cb-makeup', 'cb-host', 'cb-sound', 'cb-ceremony-outdoor', 'cb-decor-arch'];
+                idsToUpdate = ['cb-makeup', 'cb-host', 'cb-sound', 'cb-ceremony-outdoor', 'cb-decor-flower-art'];
             }
 
             idsToUpdate.forEach(selector => {
-                let el = selector.startsWith('.') ? document.querySelector(selector) : document.getElementById(selector);
+                let el = document.getElementById(selector);
                 if(el) {
                     el.parentElement.classList.add('active');
                     el.checked = true;
@@ -681,19 +697,12 @@
                 }
             });
 
-            if(type === 'classic') {
-                let printCard = document.querySelector('.bundle-target-print-card');
-                if(printCard) printCard.checked = true;
-            } else if (type === 'premium') {
-                let makeupBride = document.querySelector('.bundle-target-makeup-bride');
-                if(makeupBride) makeupBride.checked = true;
-            } else if (type === 'outdoor') {
-                let makeupBride = document.querySelector('.bundle-target-makeup-bride');
-                let outdoorFlower = document.querySelector('.bundle-target-outdoor-flower');
-                let outdoorDrink = document.querySelector('.bundle-target-outdoor-drink');
-                if(makeupBride) makeupBride.checked = true;
-                if(outdoorFlower) outdoorFlower.checked = true;
-                if(outdoorDrink) outdoorDrink.checked = true;
+            // 針對有子選項的部分單獨開啟
+            if (type === 'premium') {
+                let sde = document.querySelector('.bundle-target-sde');
+                let doubleCam = document.querySelector('.bundle-target-double-cam');
+                if(sde) sde.checked = true;
+                if(doubleCam) doubleCam.checked = true;
             }
 
             updateBundleIncludesUI(type);
@@ -872,6 +881,19 @@
                             });
                             
                             htmlString += `</ul></li>`;
+                        } else {
+                            hasAddons = true;
+                            htmlString += `
+                                <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
+                                            <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
+                                            <span style="font-size: 14px;">${serviceName}</span>
+                                        </div>
+                                        <span style="font-family: var(--font-sans); color: var(--text-main);">${price > 0 ? 'NT$ ' + price.toLocaleString() : ''}</span>
+                                    </div>
+                                </li>`;
                         }
                     } else {
                         hasAddons = true;
@@ -883,7 +905,7 @@
                                         <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
                                         <span style="font-size: 14px;">${serviceName}</span>
                                     </div>
-                                    <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
+                                    <span style="font-family: var(--font-sans); color: var(--text-main);">${price > 0 ? 'NT$ ' + price.toLocaleString() : ''}</span>
                                 </div>
                             </li>`;
                     }
