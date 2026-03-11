@@ -742,11 +742,11 @@
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">賓客規模 Guest Scale</label>
                                     <select class="lux-input" v-model="form.guest_scale">
-                                        <option value="">請選擇預計人數</option>
-                                        <option>50人以下 (精緻派對)</option>
-                                        <option>50 - 150人 (溫馨婚禮)</option>
-                                        <option>150 - 300人 (豪華盛宴)</option>
-                                        <option>300人以上 (大型慶典)</option>
+                                        <option value="50人以下">50人以下 (精緻派對)</option>
+                                        <option value="50-150人">50 - 150人 (溫馨婚禮)</option>
+                                        <option value="150-300人">150 - 300人 (豪華盛宴)</option>
+                                        <option value="300人以上">300人以上 (大型慶典)</option>
+                                        <option value="尚未決定">尚未決定</option>
                                     </select>
                                 </div>
                             </div>
@@ -956,7 +956,7 @@
                     line_id: '',
                     email: '',
                     wedding_date: '',
-                    guest_scale: '',
+                    guest_scale: '50人以下',
                     services: [],
                     styles: [],
                     additional_notes: ''

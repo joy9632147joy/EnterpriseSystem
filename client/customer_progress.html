@@ -524,7 +524,7 @@
                                     style="font-size: 12px; color: var(--accent-gold);">已結清</span>
                                 <span v-else-if="pay.status === 'PENDING'" style="font-size: 11px; color: #888;">期限: {{
                                     pay.dueDate }}</span>
-                                <span v-else style="font-size: 11px; color: #ccc;">未產生</span>
+                                <span v-else style="font-size: 11px; color: #ccc;">未結清</span>
                             </li>
                         </ul>
                     </div>
@@ -698,9 +698,9 @@
             setup() {
                 // 未來可用 Axios 串接 API 取得資料
                 const data = reactive({
-                    countdownDays: 33,
+                    countdownDays: 25,
                     weddingDate: '2026.04.10',
-                    pmName: '小傑 (Jack)',
+                    pmName: '李宜瑾 (Tina)',
                     progressPercent: 65,
                     payments: [
                         { title: '訂金 20%', status: 'PAID', dueDate: '' },
@@ -728,7 +728,7 @@
                             id: 2,
                             title: '婚禮籌備',
                             status: 'active',
-                            pmMessage: null,
+                            pmMessage: "123",
                             pmUpdateTime: '2小時前',
                             startDate: null,
                             categories: [
