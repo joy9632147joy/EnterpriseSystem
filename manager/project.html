@@ -1,0 +1,560 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ES Admin - 主頁儀表板</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../ESCss/es_new_ver.css">
+    <script src="../ESJS/es_new_ver.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#1F2937",
+                        "sidebar-bg": "#21252D",
+                        "sidebar-hover": "#2C313C",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        /* 隱藏原生捲軸但保留滾動功能 (適用於橫向頁籤) */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+
+        /* 圓環進度條動畫 */
+        @keyframes drawRing {
+            from {
+                stroke-dashoffset: 339.29;
+            }
+
+            to {
+                stroke-dashoffset: 84.82;
+            }
+
+            /* 對應 75% */
+        }
+
+        .progress-ring-circle {
+            animation: drawRing 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
+
+    <aside id="sidebar"
+        class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden relative z-20">
+        <div class="h-16 flex items-center justify-center">
+            <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
+            <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
+        </div>
+
+        <div class="px-4 py-4 mt-2 sidebar-user">
+            <div class="bg-sidebar-hover rounded-xl p-4 flex items-center shadow-sm">
+                <img alt="Joy Avatar" class="w-12 h-12 rounded-full border-2 border-sidebar-bg mr-3 object-cover"
+                    src="../Img/smile.jpg" />
+                <div class="menu-category p-0 m-0">
+                    <div class="text-white font-medium">Joy</div>
+                    <div class="text-xs text-gray-400 mt-1">PM 權限</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 py-2 overflow-y-auto overflow-x-hidden">
+            <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                GENERAL</div>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="consultation_pm.html">
+                <span
+                    class="material-icons text-[#C5A059] mr-3 group-hover:scale-110 transition-transform">support_agent</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">諮詢單管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="book.html">
+                <span
+                    class="material-icons text-orange-400 mr-3 group-hover:scale-110 transition-transform">calendar_month</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
+                href="project.html">
+                <span
+                    class="material-icons text-indigo-400 mr-3 group-hover:scale-110 transition-transform">account_tree</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap text-white">專案管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_staff.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理</div>
+            </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="quest_pm.html">
+                <span
+                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理-PM(待整合)</div>
+            </a>
+
+            <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+                系統設定</div>
+
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="account.html">
+                <span
+                    class="material-icons text-teal-400 mr-3 group-hover:scale-110 transition-transform">settings</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">個人資訊</div>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+
+        <header
+            class="h-16 bg-[#2B303B] flex items-center justify-between px-6 flex-shrink-0 z-10 shadow-sm text-white">
+            <div class="flex items-center flex-1">
+                <button id="sidebar-hamburger"
+                    class="mr-4 text-gray-400 hover:text-white focus:outline-none p-1 rounded-md hover:bg-gray-700 transition-colors">
+                    <span class="material-icons">menu</span>
+                </button>
+                <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">預約管理</h1>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <div id="user-menu-button"
+                        class="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                        <img alt="Joy Avatar" class="w-8 h-8 rounded-full border border-gray-500 mr-2 object-cover"
+                            src="../Img/smile.jpg" />
+                        <span class="text-sm font-medium mr-1 text-gray-200">Joy</span>
+                        <span class="material-icons text-sm text-gray-400">arrow_drop_down</span>
+                    </div>
+
+                    <div id="user-dropdown"
+                        class="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg py-1 hidden z-50 border border-gray-100">
+                        <a href="account.html"
+                            class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-gray-500">person_outline</span> Profile
+                        </a>
+                        <hr class="my-1 border-gray-100">
+                        <a href="login.html"
+                            class="flex items-center px-4 py-2.5 text-sm text-danger hover:bg-gray-50 transition-colors">
+                            <span class="material-icons text-[18px] mr-3 text-danger">logout</span> Log Out
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main
+            class="flex-1 overflow-x-hidden overflow-y-auto bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800 p-6 lg:p-8">
+            <div class="w-full max-w-[1600px] mx-auto space-y-6">
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white flex items-center tracking-wide">
+                            <span class="material-icons text-indigo-500 mr-3 text-3xl">account_tree</span>
+                            專案進度追蹤：陳志明 & 林春嬌
+                        </h2>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 font-medium">專案編號：#WED-20261015<span
+                                class="mx-3">|</span>預計婚期：2026-10-15</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <input type="file" id="file-upload-input" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png">
+                        
+                        <button id="upload-doc-btn"
+                            class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 flex items-center shadow-sm transition-colors">
+                            <span class="material-icons text-[18px] mr-2">upload_file</span> 文件上傳
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                    <div class="lg:col-span-4 xl:col-span-3 space-y-6">
+                        <div
+                            class="glass-card rounded-2xl p-6 flex flex-col items-center shadow-sm relative overflow-hidden">
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-white w-full mb-6 text-center">整體籌備進度
+                            </h3>
+                            <div class="relative w-44 h-44 flex items-center justify-center">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="12"
+                                        class="text-gray-200 dark:text-gray-700" />
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="12"
+                                        stroke-dasharray="339.29" stroke-dashoffset="84.82" stroke-linecap="round"
+                                        class="text-indigo-500 drop-shadow-md" />
+                                </svg>
+                                <div class="absolute flex flex-col items-center justify-center">
+                                    <span class="text-4xl font-bold text-gray-800 dark:text-white">75<span
+                                            class="text-2xl">%</span></span>
+                                </div>
+                            </div>
+                            <div class="w-full mt-8 space-y-3">
+                                <div
+                                    class="flex justify-between items-center text-sm p-3 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-100 dark:border-green-800/30">
+                                    <span class="text-green-700 dark:text-green-400 font-bold flex items-center"><span
+                                            class="material-icons text-[16px] mr-1.5">check_circle</span>已完成</span>
+                                    <span class="font-bold text-green-700 dark:text-green-400">15 項</span>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center text-sm p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800/30">
+                                    <span class="text-blue-700 dark:text-blue-400 font-bold flex items-center"><span
+                                            class="material-icons text-[16px] mr-1.5">play_circle</span>進行中</span>
+                                    <span class="font-bold text-blue-700 dark:text-blue-400">3 項</span>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center text-sm p-3 bg-gray-100 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                                    <span class="text-gray-600 dark:text-gray-400 font-bold flex items-center"><span
+                                            class="material-icons text-[16px] mr-1.5">schedule</span>待處理</span>
+                                    <span class="font-bold text-gray-700 dark:text-gray-300">2 項</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8 xl:col-span-9 flex flex-col h-full">
+                        <div class="glass-card rounded-2xl p-2.5 flex space-x-2 overflow-x-auto custom-scrollbar shadow-sm mb-6 flex-shrink-0"
+                            id="phase-tabs">
+                            <button data-target="phase-1"
+                                class="tab-btn active whitespace-nowrap px-5 py-2.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl text-sm font-bold flex items-center shadow-sm transition-all">
+                                <span class="material-icons text-[18px] mr-2">manage_accounts</span> 顧問統籌 (3/3)
+                            </button>
+                            <button data-target="phase-2"
+                                class="tab-btn whitespace-nowrap px-5 py-2.5 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-xl text-sm font-medium flex items-center transition-all">
+                                <span class="material-icons text-[18px] mr-2">groups</span> 婚禮團隊協調 (2/3)
+                            </button>
+                            <button data-target="phase-3"
+                                class="tab-btn whitespace-nowrap px-5 py-2.5 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-xl text-sm font-medium flex items-center transition-all">
+                                <span class="material-icons text-[18px] mr-2">chair</span> 場地佈置 (0/2)
+                            </button>
+                            <button data-target="phase-4"
+                                class="tab-btn whitespace-nowrap px-5 py-2.5 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-xl text-sm font-medium flex items-center transition-all">
+                                <span class="material-icons text-[18px] mr-2">event_note</span> 宴會企劃執行 (0/5)
+                            </button>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 lg:p-8 shadow-sm flex-1">
+
+                            <div id="phase-1" class="tab-content block animate-[fadeIn_0.3s_ease-out]">
+                                <div class="flex justify-between items-center mb-8">
+                                    <h3 class="text-xl font-bold text-gray-800 dark:text-white flex items-center">
+                                        <span class="material-icons text-indigo-500 mr-2">manage_accounts</span>
+                                        顧問統籌階段任務
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative border-l-2 border-gray-200 dark:border-gray-700 ml-4 space-y-8 pb-4 mt-2">
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-green-500 border-4 border-white dark:border-gray-800 shadow-sm">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/80 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <div>
+                                                    <span
+                                                        class="text-xs font-bold text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-400 px-2.5 py-0.5 rounded-full">已完成</span>
+                                                    <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">
+                                                        初步諮詢與需求確認</h4>
+                                                </div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                                與新人進行首次會議，確認婚禮規模、風格偏好與預算範圍。</p>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[13px] top-2 w-6 h-6 rounded-full bg-blue-500 border-4 border-white dark:border-gray-800 shadow-[0_0_0_3px_rgba(59,130,246,0.2)]">
+                                        </div>
+                                        <div
+                                            class="bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl p-5 border border-blue-200 dark:border-blue-800/50 shadow-sm">
+                                            <span
+                                                class="text-xs font-bold text-blue-700 bg-blue-100 dark:bg-blue-900/40 dark:text-blue-400 px-2.5 py-0.5 rounded-full animate-pulse">進行中</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2 mb-2">
+                                                簽訂專屬婚禮顧問合約</h4>
+
+                                            <div
+                                                class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-xl border border-blue-100 dark:border-blue-800/50 shadow-sm relative">
+                                                <div
+                                                    class="absolute -left-[1px] top-4 bottom-4 w-1 bg-indigo-500 rounded-r-md">
+                                                </div>
+                                                <label
+                                                    class="text-sm font-bold text-indigo-600 dark:text-indigo-400 flex items-center mb-3">
+                                                    <span
+                                                        class="material-icons text-[18px] mr-1.5">mark_email_unread</span>
+                                                    傳送給客戶的進度備註
+                                                </label>
+                                                <textarea
+                                                    class="w-full text-sm border border-gray-200 dark:border-gray-600 dark:bg-gray-700/50 dark:text-white rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-3"
+                                                    rows="2">合約已經寄到您的信箱囉！再麻煩確認。</textarea>
+                                                <div class="flex justify-end mt-3">
+                                                    <button
+                                                        class="text-sm bg-indigo-500 text-white px-5 py-2 rounded-lg font-medium hover:bg-indigo-600 transition-colors shadow-sm">更新推播</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75 hover:opacity-100 transition-opacity">
+                                            <span
+                                                class="text-xs font-bold text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-gray-600">待執行</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">制定整體籌備時程表
+                                            </h4>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">建立專屬的甘特圖與各階段任務死線。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="phase-2" class="tab-content hidden animate-[fadeIn_0.3s_ease-out]">
+                                <div class="flex justify-between items-center mb-8">
+                                    <h3 class="text-xl font-bold text-gray-800 dark:text-white flex items-center">
+                                        <span class="material-icons text-indigo-500 mr-2">groups</span> 婚禮團隊協調任務
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative border-l-2 border-gray-200 dark:border-gray-700 ml-4 space-y-8 pb-4 mt-2">
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-green-500 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/80 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+                                            <span
+                                                class="text-xs font-bold text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-400 px-2.5 py-0.5 rounded-full">已完成</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">確認攝影師與錄影師
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[13px] top-2 w-6 h-6 rounded-full bg-blue-500 border-4 border-white dark:border-gray-800 shadow-[0_0_0_3px_rgba(59,130,246,0.2)]">
+                                        </div>
+                                        <div
+                                            class="bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl p-5 border border-blue-200 dark:border-blue-800/50 shadow-sm">
+                                            <span
+                                                class="text-xs font-bold text-blue-700 bg-blue-100 dark:bg-blue-900/40 dark:text-blue-400 px-2.5 py-0.5 rounded-full animate-pulse">進行中</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">新娘秘書試妝與合約
+                                            </h4>
+                                            <div
+                                                class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-xl border border-blue-100 dark:border-blue-800/50">
+                                                <label
+                                                    class="text-sm font-bold text-indigo-600 dark:text-indigo-400 flex items-center mb-2"><span
+                                                        class="material-icons text-[18px] mr-1">edit_notifications</span>
+                                                    發送給客戶：</label>
+                                                <textarea
+                                                    class="w-full text-sm border-gray-200 dark:border-gray-600 rounded-md p-2"
+                                                    rows="1" placeholder="輸入推播訊息..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75">
+                                            <span
+                                                class="text-xs font-bold text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-gray-600">待執行</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">婚禮主持人面談定稿
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="phase-3" class="tab-content hidden animate-[fadeIn_0.3s_ease-out]">
+                                <div class="flex justify-between items-center mb-8">
+                                    <h3 class="text-xl font-bold text-gray-800 dark:text-white flex items-center">
+                                        <span class="material-icons text-indigo-500 mr-2">chair</span> 場地佈置任務
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative border-l-2 border-gray-200 dark:border-gray-700 ml-4 space-y-8 pb-4 mt-2">
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75">
+                                            <span
+                                                class="text-xs font-bold text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-gray-600">待執行</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">佈置廠商初次場勘
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75">
+                                            <span
+                                                class="text-xs font-bold text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-gray-600">待執行</span>
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">視覺提案定稿與發包
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="phase-4" class="tab-content hidden animate-[fadeIn_0.3s_ease-out]">
+                                <div class="flex justify-between items-center mb-8">
+                                    <h3 class="text-xl font-bold text-gray-800 dark:text-white flex items-center">
+                                        <span class="material-icons text-indigo-500 mr-2">event_note</span> 宴會企劃執行任務
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative border-l-2 border-gray-200 dark:border-gray-700 ml-4 space-y-8 pb-4 mt-2">
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75">
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white">婚禮流程表初稿確認</h4>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75">
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white">菜色試菜與桌次安排</h4>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div
+                                            class="absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800">
+                                        </div>
+                                        <div
+                                            class="bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 opacity-75">
+                                            <h4 class="text-lg font-bold text-gray-800 dark:text-white">全場影片與音樂測試</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <script>
+        function toggleModal(modalID) {
+            document.getElementById(modalID).classList.toggle("hidden");
+            document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 處理階段頁籤切換邏輯
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 1. 重置所有按鈕樣式 (變成灰色未選中狀態)
+                    tabBtns.forEach(b => {
+                        b.classList.remove('bg-indigo-50', 'dark:bg-indigo-900/30', 'text-indigo-600', 'dark:text-indigo-400', 'font-bold', 'shadow-sm');
+                        b.classList.add('bg-transparent', 'text-gray-600', 'dark:text-gray-300', 'font-medium');
+                    });
+                    
+                    // 2. 將點擊的按鈕設為選中狀態 (加上紫色高亮)
+                    btn.classList.remove('bg-transparent', 'text-gray-600', 'dark:text-gray-300', 'font-medium');
+                    btn.classList.add('bg-indigo-50', 'dark:bg-indigo-900/30', 'text-indigo-600', 'dark:text-indigo-400', 'font-bold', 'shadow-sm');
+
+                    // 3. 切換對應的內容區塊 (根據 data-target)
+                    const targetId = btn.getAttribute('data-target');
+                    tabContents.forEach(content => {
+                        if(content.id === targetId) {
+                            content.classList.remove('hidden');
+                            content.classList.add('block');
+                        } else {
+                            content.classList.remove('block');
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // 觸發 SVG 進度環動畫
+            const circle = document.querySelector('.progress-ring-circle');
+            if(circle) {
+                // 重新觸發 animation 以確保載入時播放
+                circle.style.animation = 'none';
+                circle.offsetHeight; /* trigger reflow */
+                circle.style.animation = null; 
+            }
+
+            // ================= 檔案上傳觸發邏輯 =================
+            const uploadBtn = document.getElementById('upload-doc-btn');
+            const fileInput = document.getElementById('file-upload-input');
+
+            if (uploadBtn && fileInput) {
+                // 點擊按鈕時，代為點擊隱藏的 input
+                uploadBtn.addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                // 當使用者選好檔案後的處理邏輯
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        // 取得選取的檔案名稱
+                        const fileNames = Array.from(e.target.files).map(file => file.name).join('\n');
+                        
+                        // 這裡可以替換成你實際的 Toast 或後台上傳 API，目前先用 alert 模擬
+                        alert(`已準備上傳以下檔案：\n\n${fileNames}\n\n(此處未來可串接上傳 API)`);
+                        
+                        // 清空 input 值，確保下次選同一個檔案也能觸發 change 事件
+                        fileInput.value = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
