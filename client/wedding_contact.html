@@ -738,6 +738,21 @@
                                     <input class="lux-input" placeholder="wedding@example.com" type="email"
                                         v-model="form.email" required />
                                 </div>
+
+                                <div class="col-md-6 contact-field">
+                                    <label class="contact-label">期望諮詢日期 Consultation Date <span
+                                            class="text-danger">*</span></label>
+                                    <input class="lux-input" type="date" v-model="form.consultation_date" required />
+                                </div>
+                                <div class="col-md-6 contact-field">
+                                    <label class="contact-label">期望時段 Preferred Time <span
+                                            class="text-danger">*</span></label>
+                                    <select class="lux-input" v-model="form.consultation_time" required>
+                                        <option value="上午 10:00-12:00">上午 10:00 - 12:00</option>
+                                        <option value="下午 14:00-17:00">下午 14:00 - 17:00</option>
+                                        <option value="晚上 18:00-20:00">晚上 18:00 - 20:00</option>
+                                    </select>
+                                </div>
                             </div>
                         </section>
 
@@ -758,11 +773,11 @@
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">賓客規模 Guest Scale</label>
                                     <select class="lux-input" v-model="form.guest_scale">
-                                        <option value="">請選擇預計人數</option>
-                                        <option>50人以下 (精緻派對)</option>
-                                        <option>50 - 150人 (溫馨婚禮)</option>
-                                        <option>150 - 300人 (豪華盛宴)</option>
-                                        <option>300人以上 (大型慶典)</option>
+                                        <option value="50人以下">50人以下 (精緻派對)</option>
+                                        <option value="50-150人">50 - 150人 (溫馨婚禮)</option>
+                                        <option value="150-300人">150 - 300人 (豪華盛宴)</option>
+                                        <option value="300人以上">300人以上 (大型慶典)</option>
+                                        <option value="尚未決定">尚未決定</option>
                                     </select>
                                 </div>
                             </div>
@@ -957,8 +972,10 @@
                     phone: '',
                     line_id: '',
                     email: '',
+                    consultation_date: '',              // 🌟 新增這行：綁定諮詢日期
+                    consultation_time: '下午 14:00-17:00', // 🌟 新增這行：綁定諮詢時段 (給予預設值)
                     wedding_date: '',
-                    guest_scale: '',
+                    guest_scale: '50人以下',
                     services: [],
                     styles: [],
                     additional_notes: ''
