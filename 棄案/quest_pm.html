@@ -255,10 +255,10 @@
                                 </select>
                                 <select class="form-select form-select-sm shadow-sm" style="width: 110px;">
                                     <option value="">狀態</option>
-                                    <option value="new">新進件</option>
-                                    <option value="urgent">急件</option>
-                                    <option value="normal">一般</option>
-                                    <option value="overdue">逾期</option>
+                                    <option value="pending">待處理</option>
+                                    <option value="progress">進行中</option>
+                                    <option value="review">審核中</option>
+                                    <option value="done">已完成</option>
                                 </select>
                                 <div class="input-group input-group-sm shadow-sm" style="width: 200px;">
                                     <input type="text" class="form-control" placeholder="搜尋單號 / 客戶...">
@@ -287,7 +287,7 @@
                                                 <td>林先生 & 陳小姐</td>
                                                 <td>全套婚顧企劃</td>
                                                 <td>2026-10-20</td>
-                                                <td><span class="badge bg-danger">急件</span></td>
+                                                <td><span class="badge bg-secondary">待處理</span></td>
                                                 <td class="pe-4 text-end">
                                                     <button class="btn btn-sm btn-primary shadow-sm btn-assign"
                                                         data-bs-toggle="modal" data-bs-target="#assignTaskModal"
@@ -300,12 +300,12 @@
                                                 <td>王先生 & 李小姐</td>
                                                 <td>單純攝影+造型</td>
                                                 <td>2026-12-15</td>
-                                                <td><span class="badge bg-warning text-dark">新進件</span></td>
+                                                <td><span class="badge bg-info text-dark">進行中</span></td>
                                                 <td class="pe-4 text-end">
-                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
-                                                        data-bs-toggle="modal" data-bs-target="#assignTaskModal"
+                                                    <button class="btn btn-sm btn-outline-info shadow-sm btn-contact"
+                                                        data-bs-toggle="modal" data-bs-target="#contactDeptModal"
                                                         data-req="#REQ-0306" data-client="王先生 & 李小姐" data-type="單純攝影+造型"
-                                                        data-cat="攝影部">分派小組</button>
+                                                        data-cat="攝影部">聯絡部門</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -313,12 +313,12 @@
                                                 <td>張先生 & 吳小姐</td>
                                                 <td>場地佈置</td>
                                                 <td>2026-11-05</td>
-                                                <td><span class="badge bg-info text-dark">一般</span></td>
+                                                <td><span class="badge bg-warning text-dark">審核中</span></td>
                                                 <td class="pe-4 text-end">
-                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
-                                                        data-bs-toggle="modal" data-bs-target="#assignTaskModal"
+                                                    <button class="btn btn-sm btn-outline-info shadow-sm btn-contact"
+                                                        data-bs-toggle="modal" data-bs-target="#contactDeptModal"
                                                         data-req="#REQ-0307" data-client="張先生 & 吳小姐" data-type="場地佈置"
-                                                        data-cat="佈置部">分派小組</button>
+                                                        data-cat="佈置部">聯絡部門</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -326,12 +326,12 @@
                                                 <td>陳先生 & 黃小姐</td>
                                                 <td>全套婚顧企劃</td>
                                                 <td>2026-09-30</td>
-                                                <td><span class="badge bg-secondary">逾期</span></td>
+                                                <td><span class="badge bg-success">已完成</span></td>
                                                 <td class="pe-4 text-end">
-                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
-                                                        data-bs-toggle="modal" data-bs-target="#assignTaskModal"
+                                                    <button class="btn btn-sm btn-outline-info shadow-sm btn-contact"
+                                                        data-bs-toggle="modal" data-bs-target="#contactDeptModal"
                                                         data-req="#REQ-0308" data-client="陳先生 & 黃小姐" data-type="全套婚顧企劃"
-                                                        data-cat="企劃部">分派小組</button>
+                                                        data-cat="企劃部">聯絡部門</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -339,7 +339,7 @@
                                                 <td>周先生 & 劉小姐</td>
                                                 <td>單純造型</td>
                                                 <td>2027-01-10</td>
-                                                <td><span class="badge bg-warning text-dark">新進件</span></td>
+                                                <td><span class="badge bg-secondary">待處理</span></td>
                                                 <td class="pe-4 text-end">
                                                     <button class="btn btn-sm btn-primary shadow-sm btn-assign"
                                                         data-bs-toggle="modal" data-bs-target="#assignTaskModal"
@@ -352,12 +352,12 @@
                                                 <td>許先生 & 郭小姐</td>
                                                 <td>單純攝影</td>
                                                 <td>2026-10-15</td>
-                                                <td><span class="badge bg-danger">急件</span></td>
+                                                <td><span class="badge bg-info text-dark">進行中</span></td>
                                                 <td class="pe-4 text-end">
-                                                    <button class="btn btn-sm btn-primary shadow-sm btn-assign"
-                                                        data-bs-toggle="modal" data-bs-target="#assignTaskModal"
+                                                    <button class="btn btn-sm btn-outline-info shadow-sm btn-contact"
+                                                        data-bs-toggle="modal" data-bs-target="#contactDeptModal"
                                                         data-req="#REQ-0310" data-client="許先生 & 郭小姐" data-type="單純攝影"
-                                                        data-cat="攝影部">分派小組</button>
+                                                        data-cat="攝影部">聯絡部門</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -497,6 +497,7 @@
         </main>
     </div>
 
+    <!-- 分派任務 Modal -->
     <div class="modal fade" id="assignTaskModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content border-0 shadow">
@@ -554,6 +555,43 @@
         </div>
     </div>
 
+    <!-- 聯絡部門 Modal -->
+    <div class="modal fade" id="contactDeptModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title fw-bold">聯絡部門</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label text-muted small">客戶與專案</label>
+                            <input type="text" class="form-control bg-light fw-bold" id="contact-client" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted small">任務類型</label>
+                            <input type="text" class="form-control bg-light" id="contact-type" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted small">相關部門</label>
+                            <input type="text" class="form-control bg-light" id="contact-cat" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">訊息內容 <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="contact-message" rows="4" placeholder="請輸入您要傳達給相關部門的訊息..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-info px-4 shadow-sm">送出訊息</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 退回任務 Modal -->
     <div class="modal fade" id="rejectTaskModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content border-0 shadow">
@@ -601,6 +639,30 @@
                     document.getElementById('assign-cat').value = cat;
                     document.getElementById('assign-dept-badge').innerHTML = '<i class="bi bi-building me-2"></i>' + cat;
                 });
+            });
+
+            // 動態綁定：聯絡部門 Modal
+            const contactButtons = document.querySelectorAll('.btn-contact');
+            contactButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const req = this.getAttribute('data-req');
+                    const client = this.getAttribute('data-client');
+                    const type = this.getAttribute('data-type');
+                    const cat = this.getAttribute('data-cat');
+
+                    document.getElementById('contact-client').value = req + ' (' + client + ')';
+                    document.getElementById('contact-type').value = type;
+                    document.getElementById('contact-cat').value = cat;
+                });
+            });
+
+            // 隱藏已完成列的聯絡按鈕
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const badge = row.querySelector('td:nth-child(5) .badge');
+                if (badge && badge.textContent.trim() === '已完成') {
+                    const btn = row.querySelector('.btn-contact');
+                    if (btn) btn.remove();
+                }
             });
 
             // 動態綁定：退回任務 Modal

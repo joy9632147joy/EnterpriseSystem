@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -51,7 +51,7 @@
                     src="../Img/smile.jpg" />
                 <div class="menu-category p-0 m-0">
                     <div class="text-white font-medium">Joy</div>
-                    <div class="text-xs text-gray-400 mt-1">PM 權限</div>
+                    <div class="text-xs text-gray-400 mt-1">員工</div>
                 </div>
             </div>
         </div>
@@ -145,131 +145,127 @@
                 <!-- Page Header -->
                 <div class="flex items-center justify-between">
                     <div>
-                        <h2 class="text-2xl font-bold tracking-tight">部門任務看板</h2>
-                        <p class="text-slate-500 text-sm mt-1">追蹤所有進行中及已完成的部門任務</p>
+                        <h2 class="text-2xl font-bold tracking-tight">任務看板</h2>
+                        <p class="text-slate-500 text-sm mt-1">追蹤所有進行中及已完成的任務</p>
                     </div>
                 </div>
                 <!-- Ongoing Projects Section -->
                 <section>
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold">場地組 - 進行中任務 (4)</h3>
+                        <h3 class="text-lg font-bold">進行中任務 (4)</h3>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         <!-- Card 1 -->
                         <div
-                            class="bg-white dark:bg-slate-900 border rounded-xl p-5 shadow-sm flex flex-col h-full border-2 border-red-500">
-                            <div class="flex justify-between items-start mb-3">
-                                <span
-                                    class="px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold rounded">緊急</span>
-                                <div class="flex items-center -space-x-2">
-                                    <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHmowoODGONqXrZqzMpg5ePK8F0QUxfEzVrViE3qnNFc6d1zCE3EKV4HnP50qIESLOu_GDB_aS3A7gkKsANlsORRtDtgY9bgVkWseIdLcPPGHlHDYALDqyNh9OECNfzuHTCa7FAeg2H7ixS1CA3USjhudz5pJdsm0xll5S6DfqhwDvG-Y1gxO3Ty3h8trSDKct-VeQ15yeHE1-SG8JteU2nMuLmfN7cRCJoCpnkrVkhtOCHiYCv2HDkscBJxjld_eP3ubNxlX_SSw" />
-                                    <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWosNZjSX31shkm_GqEgwm-QzJchsgZR3Icp2Ob3nnBEHfJBzGsRZqw-ocbIzfc6jwV-ojiWwhRlUeORVHFk1gtSpiGjSnRaIoRlF80uCJjO0HoPuf2gUC3A21UmIkLJCbaaCMmzNhd2ZJ-qHvTytcRsEMD5G1NUKhkpryx2-mT8D1CpBOJrlONa16E0LBCz2CJQJa3BF9h95BJspZcL_NIwsh6VTgFKAdTByy1NQSA7XT2khcsFnLohuhoQFdquCBRZrKJN1Zol4" />
-                                    <div
-                                        class="size-6 rounded-full border border-white dark:border-slate-900 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[8px] font-bold">
-                                        +2</div>
-                                </div>
+                            class="bg-white dark:bg-slate-900 border-2 border-red-500 rounded-xl p-5 shadow-sm flex flex-col h-full ring-2 ring-red-500 ring-opacity-50">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="text-base font-bold">美式戶外場地佈置 - 陽明山莊</h4>
+                                <span class="px-2 py-0.5 bg-red-100 text-red-600 text-[10px] font-bold rounded">即將過期</span>
                             </div>
-                            <h4 class="text-base font-bold mb-1">美式戶外場地佈置 - 陽明山莊</h4>
-                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-4">
-                                <span class="material-symbols-outlined text-sm">person</span> 王小明 &amp; 李美玲
+                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-4">
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">person</span> 王小明 &amp; 李美玲
+                                </div>
+                                <div class="flex items-center gap-1 text-red-600 font-semibold">
+                                    <span class="material-symbols-outlined text-sm">calendar_clock</span> 截止：2026.03.12
+                                </div>
                             </div>
                             <div class="flex-1 mb-6">
                                 <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
                                     任務詳情</h5>
                                 <p class="text-xs text-slate-500 leading-relaxed">場地佈置確認、花藝清單校對、燈光音響租借聯繫。</p>
                             </div>
-                            <div class="flex gap-2 w-full mt-auto relative">
-                                <div class="relative flex-1 group">
-                                    <button id="btn-report-issue"
-                                        class="w-full px-3 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-red-100 hover:text-red-600 rounded-lg text-xs font-bold transition-colors">
-                                        回報問題
+                            <div class="flex flex-col space-y-2 mt-4">
+                                <button onclick="openChatModal('task_123')"
+                                    class="w-full flex items-center justify-center py-2 px-4 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors">
+                                    <span class="material-icons text-sm mr-2">forum</span>
+                                    聯繫業務 / 留言紀錄
+                                </button>
+
+                                <div class="flex space-x-2">
+                                    <button onclick="openUploadModal('task_123')"
+                                        class="flex-1 flex items-center justify-center py-2 px-4 border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
+                                        <span class="material-icons text-sm mr-2">upload_file</span>
+                                        上傳成果
                                     </button>
-                                    <span
-                                        class="absolute -top-2 -right-1 bg-red-500 text-white text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管示範</span>
-                                </div>
-                                <div class="relative flex-[2] group">
-                                    <button id="btn-submit-task"
-                                        class="w-full py-2 bg-primary hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition-colors shadow-md">
-                                        審核並提交任務
+                                    <button onclick="confirmTask('task_123')"
+                                        class="flex-1 py-2 px-4 bg-primary text-white rounded-xl hover:bg-blue-600 shadow-md transition-colors">
+                                        提交審核
                                     </button>
-                                    <span
-                                        class="absolute -top-2 -right-1 bg-blue-700 text-white text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管示範</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 2 -->
                         <div
                             class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm flex flex-col h-full">
-                            <div class="flex justify-end items-start mb-3">
-                                <div class="flex items-center -space-x-2">
-                                    <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMlfrO3AE2DEkzlkG2Tci6TZ2pigeuKW1G41xbHVymmbu-U26iL3hpMgWZQHFQxEDc3iKda9FDYiThr_G_EsehVeEp3i51yguh5JhoVm6WUPJbDioet_1XznnRdCFMOTHqtp-lJiIj5yo44CjqFPbW88FqLRAg2doeD2bcbTANCPVgnR-tCerxftMVaSAnuzaQMIwig4LNarDnKmWZCqFTyPebpukshFT9IRIer2RjXhY0HPbLxMb2Bcr2d-MeOSzUNyT79bEcY-o" />
-                                    <img class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6iMPCUGq4fCZ7d2eDO9U4Q00-DmUcxYXJ57TVWa_KGV26U99Am42O_PQx8hcAQrNUWE1jlm7kIBT-ZzsChsTOSNr44VwHbxXqKTsHeeSkYznEJ-bJwM5QUtgSW01_q9ON8G2nL4UeG854ZA-mujopZwfBzeGLZ0Ia_hkCx5CXKZnh2P7Fdhtg90-3WZlyK_1nIgTCQkDh4d8x3dXV4qnlRQM8ql7dja4EbjhsUGRsGKgYty6sw889EYEDRVYTSAscHEZtZmZRABc" />
-                                </div>
-                            </div>
                             <h4 class="text-base font-bold mb-1">飯店宴客流程規劃 - 台北君悅</h4>
-                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-4">
-                                <span class="material-symbols-outlined text-sm">person</span> 張偉強 &amp; 林雅婷
+                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-4">
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">person</span> 張偉強 &amp; 林雅婷
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">event</span> 截止：2026.03.25
+                                </div>
                             </div>
                             <div class="flex-1 mb-6">
                                 <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">
                                     任務詳情</h5>
                                 <p class="text-xs text-slate-500 leading-relaxed">婚宴流程表審核、菜單確認、司儀腳本對稿。</p>
                             </div>
-                            <div class="flex gap-2 w-full mt-auto relative">
-                                <div class="relative flex-1 group">
-                                    <button
-                                        class="w-full px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-lg text-xs font-bold cursor-not-allowed">回報問題</button>
-                                    <span
-                                        class="absolute -top-2 -right-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管權限</span>
-                                </div>
-                                <div class="relative flex-[2] group">
-                                    <button
-                                        class="w-full py-2 bg-primary/50 text-white/70 rounded-lg text-xs font-bold cursor-not-allowed">提交任務</button>
-                                    <span
-                                        class="absolute -top-2 -right-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管權限</span>
+                            <div class="flex flex-col space-y-2 mt-4">
+                                <button onclick="openChatModal('task_123')"
+                                    class="w-full flex items-center justify-center py-2 px-4 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors">
+                                    <span class="material-icons text-sm mr-2">forum</span>
+                                    聯繫業務 / 留言紀錄
+                                </button>
+
+                                <div class="flex space-x-2">
+                                    <button onclick="openUploadModal('task_123')"
+                                        class="flex-1 flex items-center justify-center py-2 px-4 border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
+                                        <span class="material-icons text-sm mr-2">upload_file</span>
+                                        上傳成果
+                                    </button>
+                                    <button onclick="confirmTask('task_123')"
+                                        class="flex-1 py-2 px-4 bg-primary text-white rounded-xl hover:bg-blue-600 shadow-md transition-colors">
+                                        提交審核
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 3: Cross-departmental -->
                         <div
-                            class="bg-white dark:bg-slate-900 border rounded-xl p-5 shadow-sm flex flex-col h-full border-2 border-primary">
-                            <div class="flex justify-between items-start mb-3">
-                                <span
-                                    class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold rounded">跨部門</span>
-                                <div class="flex items-center -space-x-2">
-                                    <img alt="Staff 1"
-                                        class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtvL56-tG0762yXyN4_H_A_hC37X-93tC-tP_D4k_t7z67W0K_Xp8HnFj8z6D_t_u_K_p_F_q_r_s_t_u_v_w_x_y_z" />
-                                    <img alt="Staff 2"
-                                        class="size-6 rounded-full border border-white dark:border-slate-900"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z" />
-                                </div>
-                            </div>
+                            class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm flex flex-col h-full">
                             <h4 class="text-base font-bold mb-1">中式婚禮傳統禮俗諮詢</h4>
-                            <div class="flex items-center gap-1 text-xs text-slate-500 mb-2">
-                                <span class="material-symbols-outlined text-sm">person</span> 陳大文 &amp;趙小蘭
+                            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-2">
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">person</span> 陳大文 &amp; 趙小蘭
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">event</span> 截止：2026.04.05
+                                </div>
                             </div>
                             <!-- Progress Bar -->
                             <div class="flex-1 mb-6">
                                 <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">任務詳情</h5>
                                 <p class="text-xs text-slate-500 leading-relaxed">統整南北禮俗差異、準備訂婚儀式清單、長輩溝通建議方案。</p>
                             </div>
-                            <div class="flex gap-2 w-full mt-auto relative">
-                                <div class="relative flex-1 group">
-                                    <button
-                                        class="w-full px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-lg text-xs font-bold cursor-not-allowed">回報問題</button>
-                                    <span
-                                        class="absolute -top-2 -right-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管權限</span>
-                                </div>
-                                <div class="relative flex-[2] group">
-                                    <button
-                                        class="w-full py-2 bg-primary/50 text-white/70 rounded-lg text-xs font-bold cursor-not-allowed">提交任務</button>
-                                    <span
-                                        class="absolute -top-2 -right-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-[8px] px-1 rounded border border-white/20 scale-90 whitespace-nowrap shadow-sm">主管權限</span>
+                            <div class="flex flex-col space-y-2 mt-4">
+                                <button onclick="openChatModal('task_123')"
+                                    class="w-full flex items-center justify-center py-2 px-4 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors">
+                                    <span class="material-icons text-sm mr-2">forum</span>
+                                    聯繫業務 / 留言紀錄
+                                </button>
+
+                                <div class="flex space-x-2">
+                                    <button onclick="openUploadModal('task_123')"
+                                        class="flex-1 flex items-center justify-center py-2 px-4 border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
+                                        <span class="material-icons text-sm mr-2">upload_file</span>
+                                        上傳成果
+                                    </button>
+                                    <button onclick="confirmTask('task_123')"
+                                        class="flex-1 py-2 px-4 bg-primary text-white rounded-xl hover:bg-blue-600 shadow-md transition-colors">
+                                        提交審核
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +274,7 @@
                 <!-- Completed Projects Table -->
                 <section>
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold">部門已完成任務紀錄</h3>
+                        <h3 class="text-lg font-bold">已完成任務紀錄</h3>
                     </div>
                     <div
                         class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
@@ -289,36 +285,26 @@
                                     <th class="px-6 py-4">婚禮名稱</th>
                                     <th class="px-6 py-4">客戶名稱</th>
                                     <th class="px-6 py-4">日期</th>
-                                    <th class="px-6 py-4">狀態</th>
+
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">森林系主題婚禮 - 台中新社</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">許志榮 & 陳思妤</td>
-                                    <td class="px-6 py-4 text-slate-500">2024.03.15</td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
-                                    </td>
+
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">精緻小型午茶派對 - 故宮晶華</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">廖健宏 & 黃曉芬</td>
                                     <td class="px-6 py-4 text-slate-500">2024.02.28</td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
-                                    </td>
+
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">古典莊園世紀婚禮 - 高雄漢來</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">林書豪 & 吳嘉嘉</td>
                                     <td class="px-6 py-4 text-slate-500">2024.01.10</td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">已圓滿</span>
-                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -381,72 +367,116 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // 建立通用彈出視窗的 HTML 結構
-            const modalHtml = `
-    <div id="adminActionModal" class="fixed inset-0 z-[110] flex items-center justify-center hidden bg-gray-900/60 backdrop-blur-sm transition-opacity">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[400px] max-w-[90%] transform transition-all p-6 border border-gray-100 dark:border-gray-700">
-            <div class="text-center">
-                <div id="modal-icon-bg" class="w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">
-                    <span id="modal-icon" class="material-icons text-3xl"></span>
+            // 將原有的 modalHtml 改為支援留言板與上傳兩種模式
+            const chatModalHtml = `
+<div id="chatModal" class="fixed inset-0 z-[110] flex items-center justify-center hidden bg-gray-900/60 backdrop-blur-sm">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[450px] max-w-[95%] flex flex-col h-[500px]">
+        <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+            <h3 class="font-bold text-lg text-gray-900">任務協調留言板</h3>
+            <button onclick="closeChatModal()" class="text-gray-400 hover:text-gray-600">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        
+        <div id="chat-content" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div class="flex flex-col items-start">
+                <span class="text-[10px] text-gray-500 mb-1">業務 - 王小明 10:30</span>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%] text-sm text-gray-700">
+                    這場婚禮的色調改為粉櫻色，請確認佈置材料。
                 </div>
-                <h3 id="modal-title" class="text-xl font-bold text-gray-900 dark:text-white mb-2"></h3>
-                <p id="modal-desc" class="text-sm text-gray-500 dark:text-gray-400 mb-6"></p>
-                
-                <div class="mb-6 text-left">
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2">主管批註 / 說明</label>
-                    <textarea id="modal-input" class="w-full bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-primary focus:border-primary" rows="3" placeholder="請輸入處理內容..."></textarea>
-                </div>
-
-                <div class="flex space-x-3">
-                    <button onclick="closeAdminModal()" class="flex-1 py-2.5 px-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-200 transition-colors">返回</button>
-                    <button id="modal-confirm-btn" class="flex-1 py-2.5 px-4 text-white rounded-xl font-medium shadow-md transition-colors"></button>
+            </div>
+            <div class="flex flex-col items-end">
+                <span class="text-[10px] text-gray-500 mb-1">本人 11:15</span>
+                <div class="bg-primary p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%] text-sm text-white">
+                    收到，已與供應商確認材料庫存。
                 </div>
             </div>
         </div>
-    </div>`;
 
+        <div class="p-4 border-t border-gray-100">
+            <div class="flex items-center space-x-2">
+                <input type="text" placeholder="輸入訊息..." class="flex-1 border-gray-200 rounded-xl text-sm focus:ring-primary">
+                <button class="p-2 bg-primary text-white rounded-xl hover:bg-blue-600">
+                    <span class="material-icons">send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+            const uploadModalHtml = `
+<div id="uploadModal" class="fixed inset-0 z-[110] flex items-center justify-center hidden bg-gray-900/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl p-6 w-[400px]">
+        <h3 class="text-xl font-bold mb-4">上傳任務成果</h3>
+        <p class="text-sm text-gray-500 mb-6">檔案上傳後將由業務進行審核，確認無誤後任務才會結案。</p>
+        
+        <div class="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center hover:border-primary transition-colors cursor-pointer mb-6">
+            <input type="file" id="file-input" class="hidden">
+            <label for="file-input" class="cursor-pointer">
+                <span class="material-icons text-4xl text-gray-300 mb-2">cloud_upload</span>
+                <p class="text-sm text-gray-600">點擊或拖拽檔案至此</p>
+                <p id="file-name" class="text-xs text-primary mt-2 font-medium"></p>
+            </label>
+        </div>
+
+        <div class="flex space-x-3">
+            <button onclick="closeUploadModal()" class="flex-1 py-2 text-gray-500 font-medium">取消</button>
+            <button class="flex-1 py-2 bg-primary text-white rounded-xl font-medium">確認上傳</button>
+        </div>
+    </div>
+</div>`;
+
+            const modalHtml = chatModalHtml + uploadModalHtml;
             document.body.insertAdjacentHTML('beforeend', modalHtml);
 
-            const modal = document.getElementById('adminActionModal');
-            const mTitle = document.getElementById('modal-title');
-            const mDesc = document.getElementById('modal-desc');
-            const mIcon = document.getElementById('modal-icon');
-            const mIconBg = document.getElementById('modal-icon-bg');
-            const mBtn = document.getElementById('modal-confirm-btn');
-
-            // 開啟彈窗函式
-            function openAdminModal(type) {
-                modal.classList.remove('hidden');
-                if (type === 'report') {
-                    mTitle.innerText = "回報異常狀況";
-                    mDesc.innerText = "針對「陽明山莊」任務標記異常，系統將通知相關人員。";
-                    mIcon.innerText = "report_problem";
-                    mIconBg.className = "w-16 h-16 rounded-full bg-red-50 text-red-500 mx-auto flex items-center justify-center mb-4";
-                    mBtn.innerText = "確認回報";
-                    mBtn.className = "flex-1 py-2.5 px-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium shadow-md transition-colors";
-                } else {
-                    mTitle.innerText = "任務結案審核";
-                    mDesc.innerText = "您正在以主管權限核准「陽明山莊」佈置任務，確認後將移至已完成紀錄。";
-                    mIcon.innerText = "verified";
-                    mIconBg.className = "w-16 h-16 rounded-full bg-green-50 text-green-500 mx-auto flex items-center justify-center mb-4";
-                    mBtn.innerText = "核准結案";
-                    mBtn.className = "flex-1 py-2.5 px-4 bg-primary hover:bg-blue-600 text-white rounded-xl font-medium shadow-md transition-colors";
-                }
-            }
-
-            window.closeAdminModal = function () {
-                modal.classList.add('hidden');
+            // 留言板控制
+            window.openChatModal = function (taskId) {
+                document.getElementById('chatModal').classList.remove('hidden');
             };
 
-            // 綁定事件
-            document.getElementById('btn-report-issue').addEventListener('click', () => openAdminModal('report'));
-            document.getElementById('btn-submit-task').addEventListener('click', () => openAdminModal('submit'));
+            window.closeChatModal = function () {
+                document.getElementById('chatModal').classList.add('hidden');
+            };
 
-            // 模擬送出後的反饋
-            mBtn.addEventListener('click', () => {
-                alert("操作已成功！(此為示範功能)");
-                closeAdminModal();
+            // 上傳彈窗控制
+            window.openUploadModal = function (taskId) {
+                document.getElementById('uploadModal').classList.remove('hidden');
+                // 重置上傳狀態
+                const fileInput = document.getElementById('file-input');
+                const fileNameDisplay = document.getElementById('file-name');
+                if (fileInput) fileInput.value = "";
+                if (fileNameDisplay) fileNameDisplay.innerText = "";
+            };
+
+            window.closeUploadModal = function () {
+                document.getElementById('uploadModal').classList.add('hidden');
+            };
+
+            // 當檔案選擇改變時更新文字
+            document.addEventListener('change', function (e) {
+                if (e.target && e.target.id === 'file-input') {
+                    const fileName = e.target.files[0] ? e.target.files[0].name : "點擊上傳或拖放檔案";
+                    const display = document.getElementById('file-name');
+                    if (display) {
+                        display.innerText = fileName;
+                    }
+                }
             });
+
+            // 任務主頁彈窗控制 (整合進 confirmTask)
+            window.confirmTask = function (taskId) {
+                if (confirm("確定要將此任務成果提交給業務審核嗎？")) {
+                    alert("任務已成功送出審核！");
+                }
+            };
+
+            // 留言傳送模擬
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('button') && e.target.closest('div')?.classList.contains('bg-white') && e.target.innerHTML.includes('send')) {
+                    alert('訊息已送出！');
+                }
+            });
+
         });
     </script>
 </body>
