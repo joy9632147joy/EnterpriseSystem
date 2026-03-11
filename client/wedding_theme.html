@@ -267,10 +267,25 @@
                 grid-row: 1;
             }
 
-            .mosaic-exotic .tile:nth-child(2) { grid-column: 1; grid-row: 2; }
-            .mosaic-exotic .tile:nth-child(3) { grid-column: 2; grid-row: 2; }
-            .mosaic-exotic .tile:nth-child(4) { grid-column: 1; grid-row: 3; }
-            .mosaic-exotic .tile:nth-child(5) { grid-column: 2; grid-row: 3; }
+            .mosaic-exotic .tile:nth-child(2) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .mosaic-exotic .tile:nth-child(3) {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .mosaic-exotic .tile:nth-child(4) {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .mosaic-exotic .tile:nth-child(5) {
+                grid-column: 2;
+                grid-row: 3;
+            }
         }
 
         .tile {
@@ -536,8 +551,13 @@
         }
 
         @keyframes lbIn {
-            from { opacity: 0 }
-            to { opacity: 1 }
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
         }
 
         .lb-inner {
@@ -622,10 +642,21 @@
             color: rgba(255, 255, 255, 0.95);
         }
 
-        .lb-prev { left: 24px; }
-        .lb-prev:hover { transform: translateY(-50%) translateX(-3px); }
-        .lb-next { right: 24px; }
-        .lb-next:hover { transform: translateY(-50%) translateX(3px); }
+        .lb-prev {
+            left: 24px;
+        }
+
+        .lb-prev:hover {
+            transform: translateY(-50%) translateX(-3px);
+        }
+
+        .lb-next {
+            right: 24px;
+        }
+
+        .lb-next:hover {
+            transform: translateY(-50%) translateX(3px);
+        }
 
         @media(max-width:767px) {
             .lb-btn {
@@ -640,13 +671,17 @@
                 left: calc(50% - 52px);
             }
 
-            .lb-prev:hover { transform: none; }
+            .lb-prev:hover {
+                transform: none;
+            }
 
             .lb-next {
                 right: calc(50% - 52px);
             }
 
-            .lb-next:hover { transform: none; }
+            .lb-next:hover {
+                transform: none;
+            }
 
             .lb-img-wrap {
                 max-width: 92vw;
@@ -688,7 +723,9 @@
             transition: background .25s, border-color .25s, transform .25s;
         }
 
-        .lb-close .material-symbols-outlined { font-size: 20px; }
+        .lb-close .material-symbols-outlined {
+            font-size: 20px;
+        }
 
         .lb-close:hover {
             background: rgba(197, 160, 89, 0.2);
@@ -708,7 +745,9 @@
         }
 
         @media(max-width:767px) {
-            .lb-dots { bottom: 20px; }
+            .lb-dots {
+                bottom: 20px;
+            }
         }
 
         .lb-dot {
@@ -767,10 +806,14 @@
             justify-content: center;
         }
 
-        .theme-nav-inner::-webkit-scrollbar { display: none; }
+        .theme-nav-inner::-webkit-scrollbar {
+            display: none;
+        }
 
         @media(min-width:992px) {
-            .theme-nav-inner { padding: 0 40px; }
+            .theme-nav-inner {
+                padding: 0 40px;
+            }
         }
 
         .theme-pill {
@@ -817,14 +860,18 @@
             transition: width .4s ease;
         }
 
-        .theme-pill:hover { color: var(--text-main); }
+        .theme-pill:hover {
+            color: var(--text-main);
+        }
 
         .theme-pill.active {
             color: var(--text-main);
             font-weight: 500;
         }
 
-        .theme-pill.active::after { width: 55%; }
+        .theme-pill.active::after {
+            width: 55%;
+        }
 
         .theme-pill-divider {
             width: 1px;
@@ -867,7 +914,9 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
@@ -895,7 +944,8 @@
             <div id="mobileUserMenu"
                 style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
                 <p id="mobileWelcome"
-                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;"></p>
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
                 <a href="./customer_system.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
@@ -965,7 +1015,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+        <div class="footer-bottom">© 2026 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <!-- 至頂按鈕 -->
@@ -1151,16 +1201,6 @@
                     const el = getSectionEl(t.id);
                     if (el) el.classList.toggle('active', target === 'all' || t.id === target);
                 });
-                if (target !== 'all') {
-                    setTimeout(() => {
-                        const el = getSectionEl(target);
-                        if (el) {
-                            const navH = navbar.getBoundingClientRect().height;
-                            const navH2 = themeNav.getBoundingClientRect().height;
-                            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - navH2 - 16, behavior: 'smooth' });
-                        }
-                    }, 50);
-                }
                 document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
                 setTimeout(triggerAnim, 80);
             }

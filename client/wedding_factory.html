@@ -235,7 +235,6 @@
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
@@ -277,7 +276,6 @@
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
             <a class="navbar-brand" href="./index.html">
@@ -292,7 +290,6 @@
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
 
-            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
             <div id="mobileUserMenu"
                 style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
                 <p id="mobileWelcome"
@@ -304,7 +301,6 @@
                     style="padding:10px 0; display:block;">我的籌備進度</a>
             </div>
 
-            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -313,14 +309,12 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
 
-            <!-- 未登入顯示：會員登入在導覽選單下方 -->
             <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
 
-            <!-- 登出：最下方，登入後才顯示，紅字 -->
             <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
                 style="padding:14px 0; display:none; letter-spacing:0.08em;">
                 <span class="material-symbols-outlined"
@@ -330,7 +324,6 @@
         </div>
     </div>
     
-    <!-- hero -->
     <div class="page-wrap">
         <div class="page-hero has-bg">
             <p class="page-hero-eyebrow">Elite Partners</p>
@@ -350,9 +343,8 @@
         </div>
     </div>
 
-    <!-- footer -->
     <footer class="site-footer">
-        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+        <div class="footer-bottom">© 2026 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
@@ -381,7 +373,6 @@
     const PARTNERS = {
         venues: [
             {
-                // 圖片：飯店宴會廳、奢華燭光長桌 → 法式宮廷風格命名
                 name: 'Château Lumière',
                 url: '#',
                 img: 'https://template.canva.com/EAGxOI6TB0Y/1/0/1600w-IEo6i8WDC6M.jpg',
@@ -389,7 +380,6 @@
                 meta: [{ icon: 'workspace_premium', text: '五星飯店' }, { icon: 'location_on', text: '台北大同' }],
             },
             {
-                // 圖片：戶外草地、白色帳篷、自然光 → 輕盈自然風格命名
                 name: 'Verdure Estate',
                 url: '#',
                 img: 'https://template.canva.com/EAGv9X_Aa9g/1/0/1600w-oshdANmiHmk.jpg',
@@ -397,7 +387,6 @@
                 meta: [{ icon: 'nature_people', text: '森林秘境' }, { icon: 'location_on', text: '台中新社' }],
             },
             {
-                // 圖片：玻璃溫室、植物環繞、日光漫射 → 光影溫室風格命名
                 name: 'Soleil Glasshouse',
                 url: '#',
                 img: 'https://template.canva.com/EAGrJbaZVU4/1/0/1600w-IgfrLbcs0o0.jpg',
@@ -405,7 +394,6 @@
                 meta: [{ icon: 'wb_incandescent', text: '玻璃溫室' }, { icon: 'location_on', text: '台北信義' }],
             },
             {
-                // 圖片：海景、白色礁岩、藍天 → 地中海度假命名
                 name: 'Azure Cove',
                 url: '#',
                 img: 'https://template.canva.com/EAF5mL0GhEk/2/0/1600w-8LI8rgA6dKk.jpg',
@@ -413,7 +401,6 @@
                 meta: [{ icon: 'waves', text: '海景渡假' }, { icon: 'location_on', text: '屏東墾丁' }],
             },
             {
-                // 圖片：歐式拱廊、石柱莊園 → 英式莊園命名
                 name: 'Ashford Manor',
                 url: '#',
                 img: 'https://template.canva.com/EAFWyOgNGeA/1/0/1600w-aY81QyOw8hQ.jpg',
@@ -421,7 +408,6 @@
                 meta: [{ icon: 'account_balance', text: '歐式莊園' }, { icon: 'location_on', text: '南投' }],
             },
             {
-                // 圖片：白牆藝廊、極簡挑高空間 → 當代藝術空間命名
                 name: 'The White Gallery',
                 url: '#',
                 img: 'https://template.canva.com/EAFG-OE67WE/1/0/1600w-MxEbnLH5vmQ.jpg',
@@ -431,7 +417,6 @@
         ],
         gown: [
             {
-                // 圖片：純白高訂蕾絲長裙，工作室燈光 → 法式高定命名
                 name: 'Maison Blanche',
                 url: '#',
                 img: 'https://template.canva.com/EAGP-xUw1CA/1/0/1600w-suFmuyMKYYs.jpg',
@@ -439,7 +424,6 @@
                 meta: [{ icon: 'workspace_premium', text: '高訂系列' }, { icon: 'location_on', text: '台北大安' }],
             },
             {
-                // 圖片：輕薄飄逸婚紗、自然光 → 仙氣輕盈命名
                 name: 'Plume Bridal',
                 url: '#',
                 img: 'https://template.canva.com/EAGhhkc-nTc/1/0/1600w-1GazXRbJKOY.jpg',
@@ -447,7 +431,6 @@
                 meta: [{ icon: 'styler', text: '輕婚紗' }, { icon: 'location_on', text: '台中西屯' }],
             },
             {
-                // 圖片：古董蕾絲、收腰剪裁、復古感 → 法式古董命名
                 name: 'Dentelle & Co.',
                 url: '#',
                 img: 'https://template.canva.com/EAE1cUuY26E/2/1/1600w-tyUrx0odhpI.jpg',
@@ -455,7 +438,6 @@
                 meta: [{ icon: 'dry_cleaning', text: '法式古董' }, { icon: 'location_on', text: '台北中山' }],
             },
             {
-                // 圖片：俐落線條、極簡白色禮服 → 現代極簡命名
                 name: 'Ligne Pure',
                 url: '#',
                 img: 'https://template.canva.com/EAGPZjiH9Mk/1/0/1600w-w5bnWMRfX6g.jpg',
@@ -463,7 +445,6 @@
                 meta: [{ icon: 'auto_awesome', text: '極簡俐落' }, { icon: 'location_on', text: '高雄鼓山' }],
             },
             {
-                // 圖片：歐美風格展示間、多款禮服陳列 → 歐美精選命名
                 name: 'The Vow Atelier',
                 url: '#',
                 img: 'https://template.canva.com/EAFMGznsS_U/3/0/1600w-kCRpIPeR7gs.jpg',
@@ -473,7 +454,6 @@
         ],
         suit: [
             {
-                // 圖片：深色西裝特寫、手工縫線細節 → 訂製工坊命名
                 name: 'Bespoke & Sons',
                 url: '#',
                 img: 'https://template.canva.com/EAG8cJt_G-E/1/0/1600w-Xtfo4STILEs.jpg',
@@ -481,7 +461,6 @@
                 meta: [{ icon: 'content_cut', text: 'Bespoke' }, { icon: 'location_on', text: '台北信義' }],
             },
             {
-                // 圖片：英倫格紋、挺立剪裁、木質陳設 → 英倫傳統命名
                 name: 'Savile & Grey',
                 url: '#',
                 img: 'https://template.canva.com/EAGT7E-WatA/1/0/1600w-bcE23LJrh-E.jpg',
@@ -489,7 +468,6 @@
                 meta: [{ icon: 'checkroom', text: '英式挺拔' }, { icon: 'location_on', text: '台中西區' }],
             },
             {
-                // 圖片：義式軟肩西裝、米白色調、工作室感 → 義式精工命名
                 name: 'Sarto Milano',
                 url: '#',
                 img: 'https://template.canva.com/EAGLyUJc5H4/1/0/1600w-2nyBc7l0Jno.jpg',
@@ -497,7 +475,6 @@
                 meta: [{ icon: 'styler', text: '義式軟襯' }, { icon: 'location_on', text: '台北大安' }],
             },
             {
-                // 圖片：深藍休閒西裝、美式放鬆感 → 美式休閒命名
                 name: 'Hudson & Clark',
                 url: '#',
                 img: 'https://template.canva.com/EAGTSR0Ee2M/3/0/1600w-8-QmXl7zT2w.jpg',
@@ -505,7 +482,6 @@
                 meta: [{ icon: 'auto_fix_high', text: '美式休閒' }, { icon: 'location_on', text: '高雄前鎮' }],
             },
             {
-                // 圖片：商務俐落西裝、正式感 → 商務正裝命名
                 name: 'Formal House',
                 url: '#',
                 img: 'https://template.canva.com/EAEtp5W_CyY/1/0/1600w-cwgo3WI-GeM.jpg',
@@ -515,7 +491,6 @@
         ],
         cake: [
             {
-                // 圖片：法式甜點塔、馬卡龍、精緻糕點盤 → 法式甜點命名
                 name: 'Dorée Pâtisserie',
                 url: '#',
                 img: 'https://template.canva.com/EAGOfHef_gI/1/0/1600w-rIBMFUlEJuU.jpg',
@@ -523,7 +498,6 @@
                 meta: [{ icon: 'cake', text: '法式甜點' }, { icon: 'location_on', text: '台北松山' }],
             },
             {
-                // 圖片：巧克力禮盒、黑金配色包裝 → 頂級巧克力命名
                 name: 'Noir Chocolat',
                 url: '#',
                 img: 'https://template.canva.com/EAG9W39UyQI/1/0/1600w-YMB60P3Dncs.jpg',
@@ -531,7 +505,6 @@
                 meta: [{ icon: 'redeem', text: '頂級黑可可' }, { icon: 'location_on', text: '台北大安' }],
             },
             {
-                // 圖片：千層派、精緻法式餅盒 → 烘焙工坊命名
                 name: 'Feuilletine',
                 url: '#',
                 img: 'https://template.canva.com/EAGZiSwIeuA/1/0/1600w-LgQK4ov4kL8.jpg',
@@ -539,7 +512,6 @@
                 meta: [{ icon: 'bakery_dining', text: '千層酥盒' }, { icon: 'location_on', text: '台中南屯' }],
             },
             {
-                // 圖片：緞帶木盒禮盒、精裝喜餅 → 禮品工坊命名
                 name: 'Ruban & Box',
                 url: '#',
                 img: 'https://template.canva.com/EAEffFvayWk/2/0/1600w-WSoy1fXxu7w.jpg',
@@ -547,7 +519,6 @@
                 meta: [{ icon: 'inventory_2', text: '木盒緞帶' }, { icon: 'location_on', text: '高雄新興' }],
             },
             {
-                // 圖片：植物系蛋糕、花草裝飾、清新色調 → 純植物命名
                 name: 'Botanica Sweets',
                 url: '#',
                 img: 'https://template.canva.com/EAGtk7Qzz-0/1/0/1600w-eXru8YFTK2k.jpg',
@@ -557,7 +528,6 @@
         ],
         gift: [
             {
-                // 圖片：香氛蠟燭、奶油色包裝、極簡質感 → 生活香氛命名
                 name: 'Lumière Douce',
                 url: '#',
                 img: 'https://template.canva.com/EAGGgm7vhqs/1/0/1600w-GEoIfPdojXY.jpg',
@@ -565,7 +535,6 @@
                 meta: [{ icon: 'soap', text: '香氛蠟燭' }, { icon: 'location_on', text: '台北' }],
             },
             {
-                // 圖片：永生花束、乾燥花組合 → 花藝工坊命名
                 name: 'Ever & Bloom',
                 url: '#',
                 img: 'https://template.canva.com/EAGsiPAov4g/1/0/1280w-E_xXeCKPBz0.jpg',
@@ -573,7 +542,6 @@
                 meta: [{ icon: 'local_florist', text: '永生花束' }, { icon: 'location_on', text: '台中' }],
             },
             {
-                // 圖片：黃銅刻印名片夾、金屬小物 → 金工刻印命名
                 name: 'Engrave & Co.',
                 url: '#',
                 img: 'https://template.canva.com/EAE94_gxFDQ/1/0/1600w-xJpOsExYs6I.jpg',
@@ -581,7 +549,6 @@
                 meta: [{ icon: 'edit', text: '黃銅刻印' }, { icon: 'location_on', text: '高雄' }],
             },
             {
-                // 圖片：茶葉罐、典雅包裝盒 → 茶葉禮品命名（保留品茶文化，不強套西式）
                 name: 'Feuille de Thé',
                 url: '#',
                 img: 'https://template.canva.com/EAGLupy4DbQ/1/0/1600w-CTZOPZ4Un_U.jpg',
@@ -589,7 +556,6 @@
                 meta: [{ icon: 'emoji_food_beverage', text: '百年茶莊' }, { icon: 'location_on', text: '南投' }],
             },
             {
-                // 圖片：水晶對杯、透明禮盒 → 水晶禮品命名
                 name: 'Cristal & Verre',
                 url: '#',
                 img: 'https://template.canva.com/EAExlsxLhCI/1/0/1600w-m9t1d2IazRk.jpg',
@@ -717,14 +683,17 @@
         }
 
         bindFilterBtns();
-        triggerVisible();
 
+        // ── 修改這裡：預設載入與網址參數判斷 ──
         const urlParams = new URLSearchParams(window.location.search);
         const catFromUrl = urlParams.get('cat');
-        if (catFromUrl) {
-            setActive(catFromUrl);
-            applyFilter(catFromUrl);
-        }
+        
+        // 如果網址有參數就吃參數，沒有的話預設為 'venues' (婚禮場地)
+        const initialCat = catFromUrl ? catFromUrl : 'venues';
+        
+        // 立刻套用初始類別的 Active 樣式與篩選
+        setActive(initialCat);
+        applyFilter(initialCat);
     });
     </script>
 </body>
