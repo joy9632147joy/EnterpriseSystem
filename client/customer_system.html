@@ -5,6 +5,13 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>DREAM VENUES - 專屬方案擬定</title>
+
+    <script>
+        if (!sessionStorage.getItem('dv_username')) {
+            alert('親愛的賓客您好，請先登入會員以查看您的專屬婚禮提案！');
+            window.location.href = './index.html'; 
+        }
+    </script>
     
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
@@ -13,11 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="global.css">
+    <script src="./login.js"></script>
 
     <style>
-        /* =========================================
-           諮詢系統專屬樣式 (深淺玫瑰色系)
-           ========================================= */
         :root {
             --accent-gold: #C5A059; 
             --rose-dark: #C28E8E;  
@@ -124,7 +129,7 @@
         .option-badge {
             font-size: 10px;
             background: var(--rose-dark);
-            color: var(--white);
+            color: #fff;
             padding: 4px 10px;
             border-radius: 5px;
             font-weight: bold;
@@ -162,13 +167,12 @@
         .check-item:hover { border-color: var(--rose-dark); }
         .check-item input[type="checkbox"] { margin-right: 15px; accent-color: var(--rose-dark); width: 18px; height: 18px; }
 
-        /* 價格標示樣式 */
         .price-tag {
             font-size: 11px;
             color: var(--accent-gold);
             font-family: var(--font-sans);
             font-weight: 500;
-            margin-left: auto; /* 靠右對齊 */
+            margin-left: auto; 
             padding-left: 10px;
         }
 
@@ -190,6 +194,24 @@
             cursor: pointer;
         }
         .sub-addon-item input { margin-right: 10px; accent-color: var(--rose-dark); width: 16px; height: 16px; }
+
+        .decor-group-title {
+            font-size: 13px; 
+            font-weight: bold; 
+            color: var(--rose-dark); 
+            margin-bottom: 12px; 
+            border-left: 3px solid var(--rose-dark); 
+            padding-left: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .decor-group-title span {
+            font-weight: normal; 
+            font-size: 11px; 
+            color: var(--text-muted); 
+            margin-left: 6px;
+            font-family: var(--font-sans);
+        }
 
         .form-control-custom {
             width: 100%;
@@ -240,9 +262,8 @@
         .btn-prev { background: transparent; color: var(--text-muted); }
         .btn-prev:hover { color: var(--rose-dark); }
         .btn-next { background: var(--rose-dark); color: var(--pure-white); box-shadow: 0 4px 15px rgba(194, 142, 142, 0.3); }
-        .btn-next:hover { filter: brightness(0.95); transform: translateY(-2px); }
+        .btn-next:hover { filter: brightness(0.95); transform: translateY(-2px); color: var(--pure-white); }
 
-        /* 即時總額浮動區塊 */
         .realtime-total-box {
             background: #FDF8F8;
             border: 2px solid var(--rose-dark);
@@ -254,18 +275,75 @@
             margin-top: 40px;
             box-shadow: 0 10px 30px rgba(194, 142, 142, 0.1);
         }
+
+        .section-divider {
+            text-align: center;
+            margin: 50px 0 40px;
+            position: relative;
+        }
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            border-top: 1px dashed var(--border-grey);
+            z-index: 1;
+        }
+        .section-divider span {
+            position: relative;
+            z-index: 2;
+            background: var(--soft-grey);
+            padding: 8px 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            border-radius: 50px;
+        }
+
+        .edit-info-btn {
+            background: transparent;
+            border: 1px solid var(--rose-dark);
+            color: var(--rose-dark);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .edit-info-btn:hover {
+            background: rgba(194, 142, 142, 0.1);
+        }
+        .edit-info-btn.active {
+            background: var(--rose-dark);
+            color: white;
+        }
+
+        .edit-info-btn.cancel-btn {
+            border-color: #B0A8A0;
+            color: #8C867F;
+        }
+        .edit-info-btn.cancel-btn:hover {
+            background: rgba(176, 168, 160, 0.1);
+            color: #736E68;
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu">
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMenuDesktop">
@@ -274,40 +352,82 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
                     <div class="d-flex align-items-center gap-2">
                         <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined" style="color:var(--text-muted); font-size:20px;">search</button>
+                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
+                            style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
-                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <a class="nav-link nav-link-item active-page" href="#" id="userDropdownBtn"
+                            data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./my_wedding.html">我的婚禮</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End Wedding Journal</span></div>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="navbar-nav gap-0 mt-3">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+
+            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
+            <div id="mobileUserMenu"
+                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
+                <p id="mobileWelcome"
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+            </div>
+
+            <!-- 導覽選單 -->
+            <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./contact.html">聯絡我們</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
+
+            <!-- 未登入顯示：會員登入在導覽選單下方 -->
+            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                會員登入
+            </a>
+
+            <!-- 登出：最下方，登入後才顯示，紅字 -->
+            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                style="padding:14px 0; display:none; letter-spacing:0.08em;">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
+                登出
+            </a>
         </div>
     </div>
 
@@ -316,7 +436,7 @@
             
             <div class="project-header">
                 <span class="status-badge"><i class="fa-solid fa-pen-nib" style="margin-right: 5px;"></i> Proposal Draft</span>
-                <h1 class="serif" style="font-size: 28px; margin-bottom: 12px;">專屬婚禮提案審閱</h1>
+                <h1 class="serif" style="font-size: 28px; margin-bottom: 12px;">專屬婚禮提案規劃</h1>
                 <p style="font-size: 13px; color: var(--text-muted); letter-spacing: 1px;">
                     顧問已為您準備好初步藍圖，請依照步驟完成專屬細節規劃。
                 </p>
@@ -349,24 +469,59 @@
                             </span>
                         </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                            <div><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>新人姓名</label><input type="text" class="form-control-custom" value="Joy & Kevin" readonly></div>
-                            <div><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>聯絡手機</label><input type="tel" class="form-control-custom" value="0912-345-678" readonly></div>
-                            <div style="grid-column: span 2;"><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>電子郵件</label><input type="email" class="form-control-custom" value="joy.wedding@example.com" readonly></div>
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>新人姓名 Name</label>
+                                <input type="text" class="form-control-custom" value="Joy & Kevin" readonly>
+                            </div>
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>聯絡手機 Phone</label>
+                                <input type="tel" class="form-control-custom" value="0912-345-678" readonly>
+                            </div>
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>LINE ID</label>
+                                <input type="text" class="form-control-custom" value="joy_wedding_123" readonly>
+                            </div>
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;"><i class="fa-solid fa-lock" style="font-size: 9px; margin-right: 4px;"></i>電子郵件 Email</label>
+                                <input type="email" class="form-control-custom" value="joy.wedding@example.com" readonly>
+                            </div>
                         </div>
                         <p style="font-size: 11px; color: #A09C95; margin-top: 15px; text-align: right;">※ 基本資料如需修改，請洽專屬顧問為您調整。</p>
                     </div>
+
                     <div class="interview-box">
                         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
                             <div style="display: flex; align-items: center;">
                                 <i class="fa-regular fa-calendar-check" style="font-size: 22px; color: var(--rose-dark); margin-right: 12px;"></i>
                                 <h3 class="serif" style="margin: 0; font-size: 1.3rem;">婚宴資訊</h3>
                             </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button type="button" id="cancelEditBtn" class="edit-info-btn cancel-btn" style="display: none;">
+                                    取消
+                                </button>
+                                <button type="button" id="editWeddingInfoBtn" class="edit-info-btn">
+                                    修改
+                                </button>
+                            </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                            <div><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">預計婚期</label><input type="date" class="form-control-custom" value="2026-10-15"></div>
-                            <div><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">賓客規模</label><input type="text" class="form-control-custom" value="20-25桌"></div>
-                            <div style="grid-column: span 2;"><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">宴客場地</label><input type="text" class="form-control-custom" placeholder="請輸入您屬意的飯店或場地 (若尚未決定可留空)"></div>
-                            <div style="grid-column: span 2;"><label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">婚宴備註</label><textarea class="form-control-custom" style="min-height: 80px;" placeholder="例如：不喜歡花、是否有特殊忌諱等..."></textarea></div>
+                        
+                        <div id="weddingInfoFields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">預計婚期 Wedding Date</label>
+                                <input type="date" class="form-control-custom editable-field" value="2026-10-15" readonly>
+                            </div>
+                            <div>
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">賓客規模 (人數) Guest Scale</label>
+                                <input type="number" class="form-control-custom editable-field" value="250" placeholder="請輸入預計人數" readonly>
+                            </div>
+                            <div style="grid-column: span 2;">
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">宴客場地 Venue</label>
+                                <input type="text" class="form-control-custom editable-field" value="東方文華酒店" placeholder="請輸入您屬意的飯店或場地 (若尚未決定可留空)" readonly>
+                            </div>
+                            <div style="grid-column: span 2;">
+                                <label style="font-size: 11px; color: var(--text-muted); font-weight: bold; letter-spacing: 1px;">婚宴備註 Notes</label>
+                                <textarea class="form-control-custom editable-field" style="min-height: 80px;" placeholder="例如：全素桌需求、是否有特殊忌諱等..." readonly>全素桌 2 桌，需要戶外證婚場地規劃。</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -379,18 +534,25 @@
                 </div>
                 <div style="margin-top: 30px;">
 
-                    <div class="interview-box" style="border-color: var(--rose-dark); background: #FDF8F8; padding: 30px 40px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
-                            <div style="flex: 1; min-width: 250px;">
-                                <span class="option-badge">核心必選方案</span>
-                                <h3 class="serif" style="margin-bottom: 8px; font-size: 1.4rem;">A方案｜婚宴全時統籌</h3>
-                                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.6;">包含專屬婚禮管家、期程規劃、場地勘驗、多方廠商整合與宴會當日全場控管。</p>
-                            </div>
-                            <div style="text-align: right; margin-top: 10px;">
-                                <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; letter-spacing: 2px;">專案基底費用</div>
-                                <div style="font-size: 22px; color: var(--rose-dark); font-weight: bold; font-family: var(--font-sans);">NT$ 43,800</div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 class="decor-group-title" style="border-left-color: var(--accent-gold); color: var(--accent-gold);">👑 專案核心基底 <span>Core Base Plan</span></h4>
+                        <div class="interview-box" style="border: 2px solid var(--accent-gold); background: #FCFAF5; padding: 30px 40px; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 250px;">
+                                    <span class="option-badge" style="background: var(--accent-gold);">核心必選</span>
+                                    <h3 class="serif" style="margin-bottom: 8px; font-size: 1.4rem;">A方案｜婚宴全時統籌</h3>
+                                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0; line-height: 1.6;">包含婚禮統籌、期程規劃、場勘與資源整合，並於婚禮當日配置專業助理一名，確保流程執行之高品質與高效率。</p>
+                                </div>
+                                <div style="text-align: right; margin-top: 10px;">
+                                    <div style="font-size: 11px; color: var(--accent-gold); font-weight: bold; letter-spacing: 2px;">專案基底費用</div>
+                                    <div style="font-size: 22px; color: var(--accent-gold); font-weight: bold; font-family: var(--font-sans);">NT$ 43,800</div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="section-divider">
+                        <span>自由加值選配 Add-on Services</span>
                     </div>
 
                     <div class="interview-box">
@@ -399,41 +561,26 @@
                             <span style="font-size: 11px; color: var(--text-muted);">自由加選</span>
                         </div>
                         <div class="check-grid">
-                            <label class="check-item" id="makeup-main-label">
-                                <input type="checkbox" id="makeup-main-checkbox" data-category="團隊" data-price="18000" onchange="toggleMakeupAddons()">
-                                <span>專業新娘秘書 (新娘妝髮)</span>
-                                <span class="price-tag">+NT$ 18,000</span>
-                            </label>
                             
                             <label class="check-item">
-                                <input type="checkbox" data-category="團隊" class="normal-service" data-price="18000">
-                                <span>婚禮企劃主持人</span>
-                                <span class="price-tag">+NT$ 18,000</span>
+                                <input type="checkbox" class="group-main-trigger" data-target="makeup-addons" data-category="團隊" data-price="0">
+                                <span>專業造型師</span>
                             </label>
-                            <label class="check-item">
-                                <input type="checkbox" data-category="團隊" class="normal-service" data-price="18000">
-                                <span>平面/動態紀實攝影師</span>
-                                <span class="price-tag">+NT$ 18,000</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox" data-category="團隊" class="normal-service" data-price="18000">
-                                <span>燈光音響與影音場控</span>
-                                <span class="price-tag">+NT$ 18,000</span>
-                            </label>
-                            
+
                             <div class="sub-addon-box" id="makeup-addons">
-                                <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 新娘秘書附屬加購</div>
+                                <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 造型服務細項 (請勾選需要服務的對象)</div>
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                                    <label class="sub-addon-item">
-                                        <input type="checkbox" class="sub-addon-checkbox" data-category="妝髮加購" data-price="1200">
-                                        <span>新郎專屬妝髮造型 <span style="color:var(--accent-gold); font-weight:500; font-family:var(--font-sans); margin-left:5px;">(+NT$ 1,200)</span></span>
-                                    </label>
-                                    <label class="sub-addon-item">
-                                        <input type="checkbox" class="sub-addon-checkbox" data-category="妝髮加購" data-price="2500">
-                                        <span>主婚人/親友單妝髮 <span style="color:var(--accent-gold); font-weight:500; font-family:var(--font-sans); margin-left:5px;">(+NT$ 2,500)</span></span>
-                                    </label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="18000"><span>新娘妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="1200"><span>新郎專屬妝髮造型 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 1,200)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>主婚人妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
+                                    <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="團隊加購" data-price="2500"><span>親友妝髮 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 2,500)</span></span></label>
                                 </div>
                             </div>
+                            
+                            <label class="check-item"><input type="checkbox" data-category="團隊" data-price="18000"><span>婚禮企劃主持人</span><span class="price-tag">+NT$ 18,000</span></label>
+                            <label class="check-item"><input type="checkbox" data-category="團隊" data-price="18000"><span>平面/動態紀實攝影師</span><span class="price-tag">+NT$ 18,000</span></label>
+                            <label class="check-item"><input type="checkbox" data-category="團隊" data-price="18000"><span>燈光音響與影音場控</span><span class="price-tag">+NT$ 18,000</span></label>
+                            
                         </div>
                     </div>
 
@@ -443,43 +590,89 @@
                             <span style="font-size: 11px; color: var(--text-muted);">自由加選</span>
                         </div>
                         <div class="check-grid">
-                            <label class="check-item">
-                                <input type="checkbox" data-category="儀式" class="normal-service" data-price="15800">
-                                <span>文定儀式引導與司儀</span>
-                                <span class="price-tag">+NT$ 15,800</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox" data-category="儀式" class="normal-service" data-price="15800">
-                                <span>迎娶儀式流程控管</span>
-                                <span class="price-tag">+NT$ 15,800</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox" data-category="儀式" class="normal-service" data-price="15800">
-                                <span>戶外/室內證婚規劃</span>
-                                <span class="price-tag">+NT$ 15,800</span>
-                            </label>
+                            <label class="check-item"><input type="checkbox" data-category="儀式" data-price="15800"><span>文定儀式引導與司儀</span><span class="price-tag">+NT$ 15,800</span></label>
+                            <label class="check-item"><input type="checkbox" data-category="儀式" data-price="15800"><span>迎娶儀式流程控管</span><span class="price-tag">+NT$ 15,800</span></label>
+                            <label class="check-item"><input type="checkbox" data-category="儀式" data-price="15800"><span>戶外/室內證婚規劃</span><span class="price-tag">+NT$ 15,800</span></label>
                         </div>
                     </div>
                     
                     <div class="interview-box">
-                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;">
-                            <h3 class="serif" style="margin: 0;">D方案｜客製化視覺佈置</h3>
-                            <span style="font-size: 11px; color: var(--text-muted);">自由加選</span>
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 25px;">
+                            <h3 class="serif" style="margin: 0;">D方案｜客製化視覺與空間佈置</h3>
+                            <span style="font-size: 11px; color: var(--text-muted);">多維度自由加選</span>
                         </div>
-                        <div class="check-grid">
-                            <label class="check-item">
-                                <input type="checkbox" data-category="佈置" class="normal-service" data-price="30000">
-                                <span>全鮮花主題佈置</span>
-                                <span class="price-tag">+NT$ 30,000</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox" data-category="佈置" class="normal-service" data-price="30000">
-                                <span>客製化專屬視覺設計</span>
-                                <span class="price-tag">+NT$ 30,000</span>
-                            </label>
+
+                        <div class="mb-4 pb-2" style="border-bottom: 1px dashed var(--border-grey);">
+                            <h4 class="decor-group-title">🌸 迎賓與拍照區 <span>Welcome & Gallery Area</span></h4>
+                            <div class="check-grid">
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-welcome" data-category="佈置" data-price="35000"><span>全鮮花主題拍照背板</span><span class="price-tag">+NT$ 35,000</span></label>
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-welcome" data-category="佈置" data-price="25000"><span>極簡立體結構拍照區</span><span class="price-tag">+NT$ 25,000</span></label>
+                                
+                                <div class="sub-addon-box" id="addon-welcome">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 迎賓區延伸加購</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="6000"><span>精緻相簿與收禮桌佈置 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="4500"><span>客製化迎賓立牌/指引牌 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 4,500)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="8500"><span>互動式拍立得留言區 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 8,500)</span></span></label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="margin-top: 15px;">
-                            <textarea class="form-control-custom" style="min-height: 80px;" placeholder="您對佈置有什麼想像嗎？例如：喜歡白綠色系、想要大氣的拍照背板..."></textarea>
+
+                        <div class="mb-4 pb-2" style="border-bottom: 1px dashed var(--border-grey);">
+                            <h4 class="decor-group-title">🍽️ 宴客桌景與舞台 <span>Banquet Tablescape & Stage</span></h4>
+                            <div class="check-grid">
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-banquet" data-category="佈置" data-price="12000"><span>主桌奢華花藝設計</span><span class="price-tag">+NT$ 12,000</span></label>
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-banquet" data-category="佈置" data-price="15000"><span>舞台主視覺Logo與地貼</span><span class="price-tag">+NT$ 15,000</span></label>
+                                
+                                <div class="sub-addon-box" id="addon-banquet">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 宴客空間延伸加購</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="24000"><span>客桌微型花藝裝飾 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 24,000/20桌估)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="18000"><span>紅毯走道/進場兩側花柱 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 18,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="35000"><span>懸吊式空中花藝/星空燈串 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 35,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="3600"><span>主桌/新人椅背專屬花藝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 3,600)</span></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 pb-2" style="border-bottom: 1px dashed var(--border-grey);">
+                            <h4 class="decor-group-title">🕊️ 戶外證婚/儀式空間 <span>Ceremony Space</span></h4>
+                            <div class="check-grid">
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-ceremony" data-category="佈置" data-price="28000"><span>經典美式證婚拱門/花亭</span><span class="price-tag">+NT$ 28,000</span></label>
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-ceremony" data-category="佈置" data-price="32000"><span>無邊際地排花佈置</span><span class="price-tag">+NT$ 32,000</span></label>
+                                
+                                <div class="sub-addon-box" id="addon-ceremony">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 儀式空間延伸加購</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="12000"><span>觀禮座椅兩側走道花 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 12,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="6000"><span>花瓣步道/浪漫撒花機 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="15000"><span>迎賓冷泡茶/微醺調酒Bar <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 15,000)</span></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <h4 class="decor-group-title">📜 品牌級平面視覺 <span>Personalized Print & Branding</span></h4>
+                            <div class="check-grid">
+                                <label class="check-item"><input type="checkbox" class="group-main-trigger" data-target="addon-print" data-category="佈置" data-price="12000"><span>婚禮主視覺Logo與色盤提案</span><span class="price-tag">+NT$ 12,000</span></label>
+                                
+                                <div class="sub-addon-box" id="addon-print">
+                                    <div style="font-size: 11px; color: var(--rose-dark); font-weight: bold; margin-bottom: 12px; letter-spacing: 1px;"><i class="fa-solid fa-plus"></i> 視覺設計延伸加購</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="8000"><span>客製化喜帖設計與印製 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 8,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="6000"><span>專屬菜單、桌卡與座位圖 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 6,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="5000"><span>位上禮/伴手禮客製包裝 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 5,000)</span></span></label>
+                                        <label class="sub-addon-item"><input type="checkbox" class="sub-addon-checkbox" data-category="佈置加購" data-price="9000"><span>婚禮日報/迎賓報紙設計 <span style="color:var(--accent-gold); font-family:var(--font-sans); margin-left:4px;">(+NT$ 9,000)</span></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <textarea id="phase2-notes" class="form-control-custom" style="min-height: 80px;" placeholder="您對整場婚禮的視覺有什麼想像嗎？例如：喜歡白綠色系、想要大氣的拍照背板、不喜歡百合花..."></textarea>
                         </div>
                     </div>
 
@@ -515,7 +708,7 @@
                         </div>
                         
                         <div style="padding-bottom: 15px; margin-bottom: 15px;">
-                            <span style="color: var(--text-muted); font-weight: bold; font-size: 11px; letter-spacing: 1px;">附加專業團隊與儀式服務：</span>
+                            <span style="color: var(--text-muted); font-weight: bold; font-size: 11px; letter-spacing: 1px;">附加專業團隊與客製化服務：</span>
                             <ul id="summary-services" style="margin: 10px 0 0 0; color: var(--text-main); padding: 0; list-style: none;">
                                 </ul>
                         </div>
@@ -539,19 +732,19 @@
                         <i class="fa-solid fa-handshake-angle" style="font-size: 60px; color: var(--rose-dark); margin-bottom: 20px;"></i>
                         <h3 class="serif" style="margin-bottom: 15px; color: var(--rose-dark);">顧問正在為您擬定專屬合約</h3>
                         <p style="font-size: 13px; color: var(--text-muted); max-width: 450px; margin: 0 auto 30px; line-height: 1.8;">
-                            非常感謝您的填寫！我們已經收到您的婚禮需求藍圖。<br>
-                            顧問會於 24 小時內與您聯繫確認報價細節。<br>
+                            非常感謝您的耐心填寫！我們已經收到您的婚禮需求藍圖。<br>
+                            顧問會於 24 小時內與您聯繫確認細節與報價。<br>
                             一旦確認無誤，即可進行線上簽約並開啟您的專屬婚禮儀表板。
                         </p>
-                        <a href="./index.html" class="consult-btn" style="display:inline-block; text-decoration:none; border:1px solid var(--border-grey); background:var(--pure-white); color:var(--text-main);">回首頁逛逛</a>
+                        <a href="./customer_progress.html" class="consult-btn" style="display:inline-block; text-decoration:none; border:1px solid var(--border-grey); background:var(--pure-white); color:var(--text-main);">前往籌備進度</a>
                     </div>
                 </div>
             </section>
 
             <div class="consult-actions" id="action-buttons">
-                <button class="consult-btn btn-prev" id="prevBtn" onclick="changeStep(-1)">← 上一步</button>
+                <button class="consult-btn btn-prev" id="prevBtn" onclick="changeStep(-1)">← 返回上一步</button>
                 <div style="font-size: 10px; font-weight: bold; letter-spacing: 2px; color: var(--rose-dark);">PLANNING PROGRESS</div>
-                <button class="consult-btn btn-next" id="nextBtn" onclick="changeStep(1)">下一步 →</button>
+                <button class="consult-btn btn-next" id="nextBtn" onclick="changeStep(1)">前往下一步驟 →</button>
             </div>
         </div>
     </main>
@@ -562,6 +755,19 @@
         </div>
     </footer>
 
+    <div class="modal fade" id="saveSuccessModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content" style="border:none; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                <div class="modal-body text-center" style="padding: 40px 20px;">
+                    <i class="fa-regular fa-circle-check" style="font-size: 55px; color: var(--rose-dark); margin-bottom: 15px;"></i>
+                    <h4 class="serif" style="margin-bottom: 10px; color: var(--text-main); font-size: 1.2rem;">資料已儲存</h4>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 25px;">您的婚宴資訊已成功更新！</p>
+                    <button type="button" class="consult-btn" style="background: var(--rose-dark); color: white; border: none; padding: 8px 30px;" data-bs-dismiss="modal">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
         <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
             <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
@@ -571,13 +777,41 @@
     </div>
 
     <script>
-        const BASE_PRICE = 43800; // A方案基底費用
+        // ─── 登入狀態管理 ───
+        (function () {
+            const savedUsername = sessionStorage.getItem('dv_username');
+            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
+            const loginLinkMobile = document.getElementById('loginLinkMobile');
+            const userDropdownWrap = document.getElementById('userDropdownWrap');
+            const userDropdownBtn = document.getElementById('userDropdownBtn');
+            const mobileUserMenu = document.getElementById('mobileUserMenu');
+            const mobileWelcome = document.getElementById('mobileWelcome');
 
-        // --- 試算總金額的核心函式 ---
+            if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
+            if (userDropdownWrap) {
+                userDropdownWrap.style.display = 'block';
+                if (userDropdownBtn) userDropdownBtn.textContent = `歡迎, ${savedUsername} ▾`;
+            }
+            if (loginLinkMobile) loginLinkMobile.style.display = 'none';
+            if (mobileUserMenu) mobileUserMenu.classList.add('visible');
+            if (mobileWelcome) mobileWelcome.textContent = `歡迎, ${savedUsername}`;
+
+            document.getElementById('logoutBtn')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                window.location.href = './index.html';
+            });
+            document.getElementById('logoutBtnMobile')?.addEventListener('click', e => {
+                e.preventDefault();
+                sessionStorage.removeItem('dv_username');
+                window.location.href = './index.html';
+            });
+        })();
+        
+        const BASE_PRICE = 43800; 
+
         function calculateTotal() {
             let total = BASE_PRICE;
-            
-            // 抓取所有打勾的項目 (包含主項目與子項目)
             const checkedBoxes = document.querySelectorAll('.check-item input[type="checkbox"]:checked, .sub-addon-checkbox:checked');
             
             checkedBoxes.forEach(box => {
@@ -585,45 +819,94 @@
                 total += price;
             });
 
-            // 更新 Phase 2 底部的即時顯示
             document.getElementById('realtime-total-display').innerText = 'NT$ ' + total.toLocaleString();
             return total;
         }
 
-        // --- 監聽所有 Checkbox，只要點擊就重新計算 ---
-        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
-            box.addEventListener('change', calculateTotal);
-        });
-
-        // --- 新秘附加選項的展開邏輯 ---
-        function toggleMakeupAddons() {
-            const mainCheckbox = document.getElementById('makeup-main-checkbox');
-            const mainLabel = document.getElementById('makeup-main-label');
-            const addonBox = document.getElementById('makeup-addons');
-            const addonCheckboxes = document.querySelectorAll('.sub-addon-checkbox');
-
-            if (mainCheckbox.checked) {
-                mainLabel.classList.add('active');
-                addonBox.style.display = 'block'; 
-            } else {
-                mainLabel.classList.remove('active');
-                addonBox.style.display = 'none'; 
-                // 若取消主選項，連帶取消子選項
-                addonCheckboxes.forEach(cb => cb.checked = false);
-            }
-            calculateTotal(); // 更新總額
-        }
-
-        // 普通項目的點擊變色效果
-        document.querySelectorAll('.normal-service').forEach(cb => {
+        document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
             cb.addEventListener('change', function() {
                 if(this.checked) this.parentElement.classList.add('active');
                 else this.parentElement.classList.remove('active');
+                calculateTotal();
             });
         });
 
+        document.querySelectorAll('.sub-addon-checkbox').forEach(cb => {
+            cb.addEventListener('change', calculateTotal);
+        });
+
+        document.querySelectorAll('.group-main-trigger').forEach(trigger => {
+            trigger.addEventListener('change', function() {
+                const targetId = this.getAttribute('data-target');
+                const addonBox = document.getElementById(targetId);
+                if(addonBox) {
+                    const allTriggers = document.querySelectorAll(`.group-main-trigger[data-target="${targetId}"]`);
+                    const isAnyChecked = Array.from(allTriggers).some(t => t.checked);
+
+                    if(isAnyChecked) {
+                        addonBox.style.display = 'block'; 
+                    } else {
+                        addonBox.style.display = 'none'; 
+                        addonBox.querySelectorAll('.sub-addon-checkbox').forEach(cb => {
+                            cb.checked = false;
+                        });
+                        calculateTotal();
+                    }
+                }
+            });
+        });
+
+        // ==========================================
+        // 婚宴資訊 修改與唯讀切換邏輯 (結合 Modal 顯示)
+        // ==========================================
+        const editInfoBtn = document.getElementById('editWeddingInfoBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const editableFields = document.querySelectorAll('.editable-field');
+        let isEditing = false;
+        let originalValues = []; 
+
+        if (editInfoBtn) {
+            editInfoBtn.addEventListener('click', function() {
+                if (!isEditing) {
+                    // 進入編輯狀態
+                    isEditing = true;
+                    originalValues = Array.from(editableFields).map(field => field.value);
+                    editableFields.forEach(field => field.removeAttribute('readonly'));
+                    this.textContent = '儲存';
+                    this.classList.add('active');
+                    cancelEditBtn.style.display = 'inline-flex';
+                } else {
+                    // 離開編輯狀態 (儲存)
+                    isEditing = false;
+                    editableFields.forEach(field => field.setAttribute('readonly', true));
+                    this.textContent = '修改';
+                    this.classList.remove('active');
+                    cancelEditBtn.style.display = 'none';
+                    
+                    // 呼叫 Bootstrap Modal 顯示儲存成功
+                    const saveModal = new bootstrap.Modal(document.getElementById('saveSuccessModal'));
+                    saveModal.show();
+                }
+            });
+        }
+
+        if (cancelEditBtn) {
+            cancelEditBtn.addEventListener('click', function() {
+                isEditing = false;
+                editableFields.forEach((field, index) => {
+                    field.value = originalValues[index];
+                    field.setAttribute('readonly', true);
+                });
+                editInfoBtn.textContent = '修改';
+                editInfoBtn.classList.remove('active');
+                this.style.display = 'none';
+            });
+        }
+
+        // ==========================================
         // 步驟控制邏輯
-        let current = 2; 
+        // ==========================================
+        let current = 1; 
         const totalSteps = 4;
 
         function updateUI() {
@@ -645,54 +928,65 @@
             document.getElementById('progress-2').style.width = current >= 3 ? '100%' : '0%';
             document.getElementById('progress-3').style.width = current === 4 ? '100%' : '0%';
 
-            // ==========================================
-            // 動態生成第 3 步的「專屬需求報價清單」
-            // ==========================================
             if (current === 3) {
                 const summaryServices = document.getElementById('summary-services');
                 summaryServices.innerHTML = ''; 
                 let hasAddons = false;
 
-                // 抓取所有打勾的主服務
                 const mainCheckboxes = document.querySelectorAll('.check-item input[type="checkbox"]:checked');
                 
                 mainCheckboxes.forEach(box => {
-                    hasAddons = true;
-                    // 抓取服務名稱 (去除文字內的原本價格標示，以求乾淨)
                     let serviceName = box.nextElementSibling.innerText;
                     const price = parseInt(box.getAttribute('data-price') || 0);
                     const category = box.getAttribute('data-category'); 
                     
-                    let htmlString = `
-                        <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
-                                    <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
-                                    <span style="font-size: 14px;">${serviceName}</span>
-                                </div>
-                                <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
-                            </div>`;
+                    let htmlString = '';
                     
-                    // 處理新秘的子選項
-                    if(box.id === 'makeup-main-checkbox') {
-                        const subAddons = document.querySelectorAll('.sub-addon-checkbox:checked');
+                    if (box.classList.contains('group-main-trigger')) {
+                        const targetId = box.getAttribute('data-target');
+                        const subAddons = document.querySelectorAll(`#${targetId} .sub-addon-checkbox:checked`);
+                        
                         if(subAddons.length > 0) {
-                            htmlString += `<ul style="margin: 6px 0 0 45px; padding: 0; list-style: none; font-size: 13px; color: var(--text-muted);">`;
+                            hasAddons = true;
+                            htmlString += `
+                                <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div>
+                                            <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
+                                            <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
+                                            <span style="font-size: 14px;">${serviceName}</span>
+                                        </div>
+                                        <span style="font-family: var(--font-sans); color: var(--text-main);">${price > 0 ? 'NT$ ' + price.toLocaleString() : ''}</span>
+                                    </div>
+                                    <ul style="margin: 6px 0 0 45px; padding: 0; list-style: none; font-size: 13px; color: var(--text-muted);">`;
+                            
                             subAddons.forEach(sub => {
-                                // 抓取子項目的乾淨名稱 (例如：新郎專屬妝髮造型)
                                 let subName = sub.nextElementSibling.innerText.split(' (+')[0];
                                 let subPrice = parseInt(sub.getAttribute('data-price') || 0);
                                 htmlString += `
                                     <li style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                                        <span>↳ 包含：${subName}</span>
+                                        <span>↳ 包含加購：${subName}</span>
                                         <span style="font-family: var(--font-sans);">NT$ ${subPrice.toLocaleString()}</span>
                                     </li>`;
                             });
-                            htmlString += `</ul>`;
+                            
+                            htmlString += `</ul></li>`;
                         }
+                    } else {
+                        hasAddons = true;
+                        htmlString += `
+                            <li style="margin-bottom: 12px; display: flex; flex-direction: column;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <i class="fa-solid fa-check" style="color: var(--rose-dark); margin-right: 8px;"></i>
+                                        <span style="font-size:10px; background:var(--white); border:1px solid var(--border-grey); padding:2px 6px; border-radius:4px; margin-right:8px; color:var(--text-muted);">${category}</span>
+                                        <span style="font-size: 14px;">${serviceName}</span>
+                                    </div>
+                                    <span style="font-family: var(--font-sans); color: var(--text-main);">NT$ ${price.toLocaleString()}</span>
+                                </div>
+                            </li>`;
                     }
-                    htmlString += `</li>`;
+                    
                     summaryServices.innerHTML += htmlString;
                 });
 
@@ -700,7 +994,6 @@
                     summaryServices.innerHTML = '<li style="color: #A09C95; font-size: 13px; margin-bottom: 10px;">未加選任何額外服務，僅保留核心統籌。</li>';
                 }
 
-                // 更新第 3 步底部的總額
                 const finalTotal = calculateTotal();
                 document.getElementById('summary-total-display').innerText = 'NT$ ' + finalTotal.toLocaleString();
             }
@@ -730,27 +1023,6 @@
 
         function submitProposal() { changeStep(1); }
 
-        // 會員登入 (保持原樣)
-        document.addEventListener('DOMContentLoaded', () => {
-            const loginModal    = document.getElementById('loginModal');
-            const loginSubmit   = document.getElementById('loginSubmit');
-            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
-            const userDropdownWrap = document.getElementById('userDropdownWrap');
-            const userDropdownBtn  = document.getElementById('userDropdownBtn');
-            const savedUsername = sessionStorage.getItem('dv_username');
-            if (savedUsername) { updateNav(savedUsername); }
-            if(loginLinkDesktop) { loginLinkDesktop.addEventListener('click', e => { e.preventDefault(); loginModal.style.display = 'flex'; }); }
-            loginModal.addEventListener('click', e => { if (e.target === loginModal) loginModal.style.display = 'none'; });
-            loginSubmit.addEventListener('click', () => {
-                const nameInput = document.getElementById('loginName').value.trim();
-                if (nameInput) { sessionStorage.setItem('dv_username', nameInput); loginModal.style.display = 'none'; updateNav(nameInput); }
-            });
-            function updateNav(username) {
-                if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
-                if (userDropdownWrap) { userDropdownWrap.style.display = 'block'; userDropdownBtn.textContent = `歡迎, ${username} ▾`; }
-            }
-            document.getElementById('logoutBtn')?.addEventListener('click', e => { e.preventDefault(); sessionStorage.removeItem('dv_username'); location.reload(); });
-        });
     </script>
 </body>
 </html>

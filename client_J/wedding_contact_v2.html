@@ -4,20 +4,18 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>DREAM VENUES - 聯絡我們</title>
+    <title>預約專屬諮詢 | BOOK YOUR CONSULTATION</title>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="../client/global.css">
+    <script src="../js/bootstrap.bundle.js"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script src="./global.js"></script>
-    <script src="./login.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../client/global.js"></script>
 
     <style>
         /* ── LAYOUT ── */
@@ -39,109 +37,95 @@
             }
         }
 
-        /* ── PAGE TAB BAR (懸浮膠囊設計) ── */
-        .page-tab-wrapper {
+        /* ── PAGE TAB BAR ── */
+        .page-tab-bar {
             position: sticky;
-            top: 100px;
-            /* 剛好躲在 Navbar 下方 */
-            z-index: 90;
+            top: 80px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-grey);
             display: flex;
             justify-content: center;
-            margin-top: 16px;
-            pointer-events: none;
-            /* 讓兩側透明區域不阻擋點擊 */
             transition: top 0.4s ease-in-out;
         }
 
-        .page-tab-wrapper.nav-hidden {
-            top: 20px;
-        }
-
-        .page-tab-bar {
-            pointer-events: auto;
-            /* 恢復選單本身的點擊 */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 8px;
-            border-radius: 50px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(197, 160, 89, 0.15);
-            display: flex;
-            gap: 4px;
+        .page-tab-bar.nav-hidden {
+            top: 0;
         }
 
         .page-tab {
-            padding: 12px 32px;
-            border-radius: 40px;
-            font-size: 13px;
+            position: relative;
+            padding: 20px 56px;
+            font-size: 12px;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
             color: var(--text-muted);
             background: transparent;
             border: none;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .page-tab.active {
+        .page-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
             background: var(--accent-gold);
-            color: #ffffff;
-            box-shadow: 0 4px 16px rgba(197, 160, 89, 0.25);
+            transform: scaleX(0);
+            transition: transform 0.35s ease;
         }
 
-        .page-tab:hover:not(.active) {
+        .page-tab.active {
+            color: var(--text-main);
+        }
+
+        .page-tab.active::after {
+            transform: scaleX(1);
+        }
+
+        .page-tab:hover {
             color: var(--accent-gold);
-            background: rgba(197, 160, 89, 0.05);
         }
 
         .page-tab .material-symbols-outlined {
             font-size: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .page-tab.active .material-symbols-outlined {
-            transform: scale(1.1);
         }
 
         @media (max-width: 575px) {
             .page-tab {
-                padding: 10px 16px;
+                padding: 16px 28px;
                 font-size: 11px;
-                letter-spacing: 0.1em;
-            }
-
-            .page-tab .material-symbols-outlined {
-                display: none;
-                /* 手機版隱藏 icon 保持清爽 */
+                letter-spacing: 0.15em;
             }
         }
 
         /* ── FORM CARD ── */
         .contact-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 50px 60px;
-            margin: auto auto auto auto;
-            max-width: 100vh;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--accent-gold);
-            position: relative;
+            border: 1px solid var(--border-grey);
+            border-top: 3px solid var(--accent-gold);
+            border-radius: 16px;
+            background: var(--pure-white);
+            padding: 56px 60px 64px;
+            box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.07);
         }
 
         @media (max-width: 767px) {
             .contact-card {
-                padding: 40px 24px;
-                margin: auto 16px 40px 16px;
-                max-width: calc(100% - 32px);
+                padding: 40px 28px 48px;
             }
         }
 
         @media (max-width: 575px) {
             .contact-card {
-                padding: auto 16px;
+                padding: 32px 20px 40px;
             }
         }
 
@@ -603,7 +587,7 @@
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -611,7 +595,7 @@
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
@@ -620,10 +604,10 @@
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <a class="navbar-brand" href="./index.html">
+            <div>
                 <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
-            </a>
+            </div>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
@@ -631,42 +615,28 @@
                 <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
-
-            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
-            <div id="mobileUserMenu"
-                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
-                <p id="mobileWelcome"
-                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
-                </p>
-                <a href="./customer_system.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
-                <a href="./customer_progress.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的籌備進度</a>
-            </div>
-
-            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-
-            <!-- 未登入顯示：會員登入在導覽選單下方 -->
-            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
+            <a href="#" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-
-            <!-- 登出：最下方，登入後才顯示，紅字 -->
-            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
-                style="padding:14px 0; display:none; letter-spacing:0.08em;">
-                <span class="material-symbols-outlined"
-                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
-                登出
-            </a>
+            <div id="mobileUserMenu">
+                <p id="mobileWelcome"
+                    style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
+                <a href="./my_wedding.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
+            </div>
         </div>
     </div>
 
@@ -682,21 +652,19 @@
         </div>
 
         <!-- ─── Tab 切換列 ─── -->
-        <div class="page-tab-wrapper">
-            <div class="page-tab-bar">
-                <button class="page-tab" :class="{ active: activeTab === 'booking' }" @click="activeTab = 'booking'">
-                    <span class="material-symbols-outlined">edit_calendar</span>
-                    預約諮詢
-                </button>
-                <button class="page-tab" :class="{ active: activeTab === 'faq' }" @click="activeTab = 'faq'">
-                    <span class="material-symbols-outlined">help_outline</span>
-                    常見問題
-                </button>
-                <button class="page-tab" :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">
-                    <span class="material-symbols-outlined">location_on</span>
-                    公司資訊
-                </button>
-            </div>
+        <div class="page-tab-bar">
+            <button class="page-tab" :class="{ active: activeTab === 'booking' }" @click="activeTab = 'booking'">
+                <span class="material-symbols-outlined">edit_calendar</span>
+                預約諮詢
+            </button>
+            <button class="page-tab" :class="{ active: activeTab === 'faq' }" @click="activeTab = 'faq'">
+                <span class="material-symbols-outlined">help_outline</span>
+                常見問題
+            </button>
+            <button class="page-tab" :class="{ active: activeTab === 'info' }" @click="activeTab = 'info'">
+                <span class="material-symbols-outlined">location_on</span>
+                公司資訊
+            </button>
         </div>
 
         <!-- ─── Content Wrap ─── -->
@@ -940,6 +908,20 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
+    <!-- 模擬登入 -->
+    <div id="loginModal"
+        style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
+        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
+            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)"
+                style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
+            <div style="text-align:right;">
+                <button id="loginSubmit"
+                    style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 回到頂部按鈕 -->
     <button id="backToTop" class="back-to-top">
         <span class="material-symbols-outlined">arrow_upward</span>
@@ -964,7 +946,7 @@
                     additional_notes: ''
                 });
 
-                const availableStyles = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代', '異國風情'];
+                const availableStyles = ['美式戶外', '奢華飯店', '極簡現代', '經典歐式', '中式當代', '森林系', '異國風情'];
                 const availableServices = [
                     { icon: 'groups', title: '婚禮團隊', en: 'Wedding Team' },
                     { icon: 'event', title: '儀式規劃', en: 'Ceremony Planning' },
@@ -1030,7 +1012,7 @@
         // ── 導覽列滾動隱藏 ──
         document.addEventListener('DOMContentLoaded', () => {
             const navbar = document.querySelector('.navbar');
-            const tabBar = document.querySelector('.page-tab-wrapper');
+            const tabBar = document.querySelector('.page-tab-bar');
 
             if (navbar) {
                 let lastScrollTop = 0;

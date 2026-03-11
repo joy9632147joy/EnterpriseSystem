@@ -8,317 +8,28 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="./global.css">
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script src="./global.js"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
+
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="./global.js"></script>
+    <script src="./login.js"></script>
+
     <style>
-        /* ── FIX 1: 防止頁面水平溢出 ── */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100vw;
-        }
-
-        /* slide */
-        .hs-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 1.2s ease;
-            pointer-events: none;
-        }
-
-        .hs-slide.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .hs-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.06);
-            transition: transform 7s ease;
-            filter: brightness(.48) saturate(.82);
-        }
-
-        .hs-slide.active img {
-            transform: scale(1);
-        }
-
-        /* gradient */
-        .hs-slide::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg,
-                    rgba(8, 6, 4, .72) 0%,
-                    rgba(0, 0, 0, .1) 50%,
-                    transparent 100%),
-                linear-gradient(to top, rgba(8, 6, 4, .88) 0%, transparent 45%);
-        }
-
-        /* slide content */
-        .hs-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 2;
-            padding: 0 56px 56px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        @media(max-width:767px) {
-            .hs-content {
-                padding: 0 24px 40px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-        }
-
-
-        .hs-num {
-            font-size: 9px;
-            letter-spacing: .5em;
-            color: rgba(197, 160, 89, .65);
-            font-weight: 500;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .hs-rule {
-            width: 0;
-            height: 1px;
-            background: var(--accent-gold);
-            margin-bottom: 12px;
-            transition: width .8s ease .3s;
-        }
-
-        .hs-slide.active .hs-rule {
-            width: 32px;
-        }
-
-        .hs-eyebrow {
-            font-size: 9px;
-            letter-spacing: .45em;
-            text-transform: uppercase;
-            color: rgba(197, 160, 89, .8);
-            display: block;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(12px);
-            transition: opacity .7s ease .4s, transform .7s ease .4s;
-        }
-
-        .hs-slide.active .hs-eyebrow {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hs-title {
-            font-family: var(--font-serif);
-            font-size: clamp(32px, 5vw, 72px);
-            font-weight: 300;
-            color: white;
-            line-height: 1.05;
-            letter-spacing: .03em;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity .8s ease .5s, transform .8s ease .5s;
-        }
-
-        .hs-slide.active .hs-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hs-desc {
-            font-size: 12px;
-            color: rgba(255, 255, 255, .5);
-            letter-spacing: .12em;
-            line-height: 1.9;
-            margin-top: 16px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity .7s ease .65s, transform .7s ease .65s;
-        }
-
-        .hs-slide.active .hs-desc {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hs-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 28px;
-            font-size: 9px;
-            letter-spacing: .4em;
-            text-transform: uppercase;
-            color: white;
-            border-bottom: 1px solid rgba(197, 160, 89, .45);
-            padding-bottom: 4px;
-            text-decoration: none;
-            width: fit-content;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity .6s ease .8s, transform .6s ease .8s, color .3s, border-color .3s;
-        }
-
-        .hs-slide.active .hs-cta {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hs-cta:hover {
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
-
-        /* right side: index pills */
-        .hs-right {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            align-items: flex-end;
-            flex-shrink: 0;
-        }
-
-        @media(max-width:767px) {
-            .hs-right {
-                flex-direction: row;
-                gap: 0;
-                align-items: flex-end;
-            }
-        }
-
-        .hs-pill {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            font-family: var(--font-sans);
-            text-align: right;
-            opacity: .38;
-            transition: opacity .4s;
-        }
-
-        .hs-pill:hover {
-            opacity: .65;
-        }
-
-        .hs-pill.active {
-            opacity: 1;
-        }
-
-        .hs-pill-name {
-            font-size: 10px;
-            letter-spacing: .2em;
-            color: white;
-            white-space: nowrap;
-            transition: color .3s;
-        }
-
-        @media(max-width:767px) {
-            .hs-pill-name {
-                display: none;
-            }
-        }
-
-        .hs-pill.active .hs-pill-name {
-            color: var(--accent-gold);
-        }
-
-        .hs-pill-line {
-            width: 20px;
-            height: 1px;
-            background: rgba(255, 255, 255, .35);
-            transition: width .4s, background .4s;
-            flex-shrink: 0;
-        }
-
-        .hs-pill.active .hs-pill-line {
-            width: 36px;
-            background: var(--accent-gold);
-        }
-
-        /* progress bar */
-        .hs-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 3;
-            height: 1.5px;
-            background: rgba(255, 255, 255, .1);
-        }
-
-        .hs-progress-bar {
-            height: 100%;
-            width: 0%;
-            background: var(--accent-gold);
-            transition: width linear;
-        }
-
-        /* top label */
-        .hs-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 3;
-            padding: 40px 56px;
-            pointer-events: none;
-        }
-
-        @media(max-width:767px) {
-            .hs-header {
-                padding: 28px 24px;
-            }
-        }
-
-        .hs-header-eyebrow {
-            font-size: 9px;
-            letter-spacing: .55em;
-            color: rgba(197, 160, 89, .75);
-            text-transform: uppercase;
-            font-weight: 500;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .hs-header-title {
-            font-family: var(--font-serif);
-            font-size: clamp(20px, 2.4vw, 32px);
-            font-weight: 300;
-            color: white;
-            letter-spacing: .06em;
-        }
-
-        /* THEME SECTIONS */
         .themes-wrap {
             max-width: 1520px;
             margin: 0 auto;
-            padding: 0 60px 80px;
-            /* ── FIX 1b: 防止 mosaic grid 溢出 ── */
+            padding: 60px 60px 80px;
             box-sizing: border-box;
             width: 100%;
         }
 
         @media(max-width:767px) {
             .themes-wrap {
-                padding: 0 16px 80px;
+                padding: 48px 16px 80px;
             }
         }
 
@@ -340,7 +51,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            margin-bottom: 56px;
+            margin-bottom: 24px;
         }
 
         @media(max-width:767px) {
@@ -385,8 +96,6 @@
             }
         }
 
-        /* ── Mosaic grids ── */
-        /* ── FIX 1c: 所有 mosaic 加 width:100% box-sizing:border-box ── */
         .mosaic-forest,
         .mosaic-vintage,
         .mosaic-chapel,
@@ -520,7 +229,6 @@
             }
         }
 
-        /* ── Tile base ── */
         .tile {
             position: relative;
             overflow: hidden;
@@ -528,7 +236,7 @@
             opacity: 0;
             transform: translateY(16px);
             transition: opacity .7s ease, transform .7s ease;
-            min-width: 0; /* FIX: 防止 grid 子項目溢出 */
+            min-width: 0;
         }
 
         .tile.vis {
@@ -630,7 +338,6 @@
             opacity: 1;
         }
 
-        /* zoom hint */
         .tile-zoom {
             position: absolute;
             top: 12px;
@@ -655,7 +362,6 @@
             opacity: 1;
         }
 
-        /* text tile */
         .tile-text-panel {
             background: #1A1A18;
             display: flex;
@@ -690,7 +396,6 @@
             margin-bottom: 20px;
         }
 
-        /* ── Detail strip ── */
         .detail-strip {
             display: flex;
             gap: 6px;
@@ -708,7 +413,6 @@
             background: white;
             border: 1px solid var(--border-grey);
             padding: 24px 20px;
-            transition: border-color .3s, box-shadow .3s;
             cursor: pointer;
             opacity: 0;
             transform: translateY(14px);
@@ -769,17 +473,17 @@
         }
 
         /* ════ LIGHTBOX ════ */
-        /* ── FIX 3: Lightbox 修正 ── */
         .lb-overlay {
             position: fixed;
             inset: 0;
             z-index: 9000;
-            background: rgba(8, 7, 5, .97);
+            background: rgba(6, 4, 2, 0.92);
             display: none;
             align-items: center;
             justify-content: center;
-            /* 點擊背景關閉 — overlay 本身接收 click */
             cursor: pointer;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
 
         .lb-overlay.open {
@@ -788,8 +492,13 @@
         }
 
         @keyframes lbIn {
-            from { opacity: 0 }
-            to   { opacity: 1 }
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
         }
 
         .lb-inner {
@@ -799,7 +508,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* FIX: pointer-events none 讓 overlay 背景 click 可穿透到 overlay */
             pointer-events: none;
         }
 
@@ -807,9 +515,8 @@
             position: relative;
             max-width: 86vw;
             max-height: 82vh;
-            /* FIX: 恢復 pointer-events */
             pointer-events: auto;
-            cursor: default; /* 圖片區不顯示關閉游標 */
+            cursor: default;
         }
 
         .lb-img-wrap img {
@@ -847,135 +554,206 @@
             margin-top: 4px;
         }
 
-        /* FIX: lb-btn pointer-events auto + z-index 確保可點 */
+        /* ── Nav arrows：圓形，與 index.html 一致 ── */
         .lb-btn {
-            position: absolute;
+            position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(255, 255, 255, .1);
-            color: rgba(255, 255, 255, .65);
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 9002;
-            transition: background .3s, color .3s, border-color .3s;
-            font-size: 20px;
+            transition: background .25s, border-color .25s, transform .25s;
             pointer-events: auto;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .lb-btn .material-symbols-outlined {
+            font-size: 22px;
         }
 
         .lb-btn:hover {
-            background: rgba(197, 160, 89, .18);
-            color: var(--accent-gold);
-            border-color: rgba(197, 160, 89, .4);
+            background: rgba(197, 160, 89, 0.18);
+            border-color: rgba(197, 160, 89, 0.45);
+            color: rgba(255, 255, 255, 0.95);
         }
 
-        .lb-prev { left: 20px; }
-        .lb-next { right: 20px; }
+        .lb-prev {
+            left: 24px;
+        }
 
+        .lb-prev:hover {
+            transform: translateY(-50%) translateX(-3px);
+        }
+
+        .lb-next {
+            right: 24px;
+        }
+
+        .lb-next:hover {
+            transform: translateY(-50%) translateX(3px);
+        }
+
+        /* 手機版：移至照片下方中央 */
         @media(max-width:767px) {
             .lb-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
+                width: 40px;
+                height: 40px;
+                top: auto;
+                bottom: 72px;
+                transform: none;
             }
-            .lb-prev { left: 6px; }
-            .lb-next { right: 6px; }
+
+            .lb-prev {
+                left: calc(50% - 52px);
+            }
+
+            .lb-prev:hover {
+                transform: none;
+            }
+
+            .lb-next {
+                right: calc(50% - 52px);
+            }
+
+            .lb-next:hover {
+                transform: none;
+            }
+
+            /* 修復 iPhone 12 (390px) 圖片被裁切問題：
+               頂部：計數器 ~56px、底部：箭頭 72px + dots 48px ≈ 留出 140px */
+            .lb-img-wrap {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
+
+            .lb-img-wrap img {
+                max-width: 92vw;
+                max-height: calc(100dvh - 160px);
+            }
         }
 
-        /* FIX: lb-close z-index 最高，pointer-events auto */
+        /* 針對極小螢幕 (height ≤ 700px，如 iPhone SE / 12 mini) 再縮一點 */
+        @media(max-width:767px) and (max-height:700px) {
+            .lb-img-wrap {
+                max-height: calc(100dvh - 180px);
+            }
+
+            .lb-img-wrap img {
+                max-height: calc(100dvh - 180px);
+            }
+        }
+
         .lb-close {
             position: fixed;
-            top: 20px;
-            right: 24px;
+            top: 24px;
+            right: 28px;
             z-index: 9010;
-            background: rgba(0,0,0,.35);
-            border: 1px solid rgba(255,255,255,.15);
-            cursor: pointer;
-            color: rgba(255, 255, 255, .75);
-            font-size: 22px;
-            transition: color .3s, background .3s;
-            pointer-events: auto;
             width: 44px;
             height: 44px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: auto;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+
+        .lb-close .material-symbols-outlined {
+            font-size: 20px;
         }
 
         .lb-close:hover {
-            color: white;
-            background: rgba(197,160,89,.25);
+            background: rgba(197, 160, 89, 0.2);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: rotate(90deg);
         }
 
         .lb-dots {
-            position: absolute;
-            bottom: 46px;
+            position: fixed;
+            bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 7px;
+            gap: 8px;
             pointer-events: auto;
             z-index: 9003;
         }
 
+        @media(max-width:767px) {
+            .lb-dots {
+                bottom: 20px;
+            }
+        }
+
         .lb-dot {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .22);
+            background: rgba(255, 255, 255, 0.25);
             cursor: pointer;
             transition: background .3s, transform .3s;
         }
 
         .lb-dot.active {
             background: var(--accent-gold);
-            transform: scale(1.5);
+            transform: scale(1.4);
         }
 
         .lb-counter {
-            position: absolute;
-            bottom: 24px;
+            position: fixed;
+            top: 32px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 10px;
-            letter-spacing: .3em;
-            color: rgba(255, 255, 255, .28);
+            letter-spacing: .4em;
+            color: rgba(197, 160, 89, 0.6);
             pointer-events: none;
             z-index: 9003;
+            white-space: nowrap;
         }
 
-        /* ── THEME NAV (sticky, minimal) ── */
         .theme-nav {
-            position: sticky;
+            position: relative;
             top: 80px;
             z-index: 99;
-            background: #fff;
-            border-bottom: 1px solid var(--border-grey);
+            background: rgba(250, 246, 240, 0.6);
+            /* 半透明奶白 */
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+            /* 邊框換成極淡金色 */
+            margin-top: -70px;
         }
 
-        @media(max-width:991.98px) {
+        @media(max-width:767px) {
             .theme-nav {
-                top: 64px;
+                top: 60px;
+                margin-top: -50px;
             }
         }
 
         .theme-nav-inner {
             max-width: 1520px;
             margin: 0 auto;
-            /* ── FIX 2: 手機版左右 padding，確保最後按鈕可點 ── */
             padding: 0 16px;
             display: flex;
             align-items: center;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            justify-content: center;
         }
 
-        /* FIX 2: 移除 ::after pseudo，改用 padding-right 確保滾動到底 */
         .theme-nav-inner::-webkit-scrollbar {
             display: none;
         }
@@ -990,9 +768,9 @@
             flex-shrink: 0;
             background: none;
             border: none;
-            padding: 16px 16px;
-            font-size: 11px;
-            letter-spacing: .15em;
+            padding: 16px 10px;
+            font-size: 12px;
+            letter-spacing: .06em;
             text-transform: uppercase;
             color: var(--text-muted);
             cursor: pointer;
@@ -1002,9 +780,18 @@
             font-family: var(--font-sans);
         }
 
+        @media(min-width:576px) {
+            .theme-pill {
+                padding: 18px 14px;
+                font-size: 13px;
+                letter-spacing: .10em;
+            }
+        }
+
         @media(min-width:992px) {
             .theme-pill {
-                padding: 20px 24px;
+                padding: 16px 24px;
+                font-size: 14px;
                 letter-spacing: .18em;
             }
         }
@@ -1070,7 +857,18 @@
                         <button id="search-btn" class="btn p-0 material-symbols-outlined"
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
-                    <a class="nav-link nav-link-item" href="client_login.html">會員登入</a>
+                    <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
@@ -1079,10 +877,10 @@
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div>
+            <a class="navbar-brand" href="./index.html">
                 <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
-            </div>
+            </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
@@ -1090,6 +888,20 @@
                 <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
+
+            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
+            <div id="mobileUserMenu"
+                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
+                <p id="mobileWelcome"
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+            </div>
+
+            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -1097,270 +909,49 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-            <a href="client_login.html" class="offcanvas-login">
+
+            <!-- 未登入顯示：會員登入在導覽選單下方 -->
+            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
+
+            <!-- 登出：最下方，登入後才顯示，紅字 -->
+            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                style="padding:14px 0; display:none; letter-spacing:0.08em;">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
+                登出
+            </a>
         </div>
     </div>
 
-    <!-- 主體 -->
-    <div class="page-wrap">
-        <!-- 頁面標題 -->
-        <div class="page-hero">
-            <p class="page-hero-eyebrow">Elite Partners</p>
+    <!-- hero -->
+    <div class="page-wrap ">
+        <div class="page-hero has-bg">
+            <p class="page-hero-eyebrow">Wedding Theme</p>
             <h1 class="page-hero-title">婚禮主題</h1>
             <div class="page-hero-line"></div>
             <p class="page-hero-sub">嚴選業界頂尖職人，為您的婚禮成就無瑕品質</p>
         </div>
 
-        <!-- THEME NAV (sticky) -->
+        <!-- THEME NAV (sticky, JS 動態產生) -->
         <nav class="theme-nav" id="themeNav">
-            <div class="theme-nav-inner">
-                <button class="theme-pill" data-target="forest">森林系</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="vintage">美式復古</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="chapel">西式教堂</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="chinese">中式老宅</button>
-                <div class="theme-pill-divider"></div>
-                <button class="theme-pill" data-target="minimal">極簡現代</button>
-            </div>
+            <div class="theme-nav-inner" id="themeNavInner"></div>
         </nav>
 
-        <!-- THEME SECTIONS -->
-        <div class="themes-wrap">
-
-            <!-- 森林系 -->
-            <section class="theme-section active" id="sec-forest">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Forest · Nature · Organic</span>
-                        <h2 class="section-title">森林系</h2>
-                    </div>
-                    <p class="section-desc">枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景</p>
-                </div>
-                <div class="mosaic-forest">
-                    <div class="tile" data-lb="forest" data-idx="0" data-name="山間祕境婚宴" data-label="Featured Venue">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&fit=crop"
-                            alt="森林主圖">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Venue</span>
-                            <p class="tile-name">山間祕境婚宴</p><span class="tile-sub">Cedar Hall · 台北烏來</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="forest" data-idx="1" data-name="自然系花藝佈置" data-label="Florals">
-                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80&fit=crop"
-                            alt="花藝">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Florals</span>
-                            <p class="tile-name tile-name-small">自然系花藝佈置</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="forest" data-idx="2" data-name="戶外儀式區" data-label="Ceremony">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=80&fit=crop"
-                            alt="儀式">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Ceremony</span>
-                            <p class="tile-name tile-name-small">戶外儀式區</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="forest" data-idx="3" data-name="晚宴燈光氛圍" data-label="Reception">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17d7dc783f06?w=700&q=80&fit=crop"
-                            alt="宴席">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Reception</span>
-                            <p class="tile-name tile-name-small">晚宴燈光氛圍</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="forest" data-idx="4" data-name="綠葉桌花細節" data-label="Details">
-                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80&fit=crop"
-                            alt="細節">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Details</span>
-                            <p class="tile-name tile-name-small">綠葉桌花細節</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </section>
-
-            <!-- 美式復古 -->
-            <section class="theme-section active" id="sec-vintage">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Americana · Rustic · Vintage</span>
-                        <h2 class="section-title">美式復古</h2>
-                    </div>
-                    <p class="section-desc">穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面</p>
-                </div>
-                <div class="mosaic-vintage">
-                    <div class="tile" data-lb="vintage" data-idx="0" data-name="穀倉婚禮" data-label="Barn Wedding">
-                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=900&q=80&fit=crop"
-                            alt="穀倉">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Barn Wedding</span>
-                            <p class="tile-name">穀倉婚禮</p><span class="tile-sub">Rustic Barn · 宜蘭</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="vintage" data-idx="1" data-name="長桌宴席佈置" data-label="Tablescape">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=80&fit=crop"
-                            alt="長桌">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Tablescape</span>
-                            <p class="tile-name tile-name-small">長桌宴席佈置</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="vintage" data-idx="2" data-name="復古婚紗造型" data-label="Bridal">
-                        <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80&fit=crop"
-                            alt="婚紗">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Bridal</span>
-                            <p class="tile-name tile-name-small">復古婚紗造型</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </section>
-
-            <!-- 西式教堂 -->
-            <section class="theme-section active" id="sec-chapel">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Chapel · Cathedral · Timeless</span>
-                        <h2 class="section-title">西式教堂</h2>
-                    </div>
-                    <p class="section-desc">彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證</p>
-                </div>
-                <div class="mosaic-chapel">
-                    <div class="tile" data-lb="chapel" data-idx="0" data-name="教堂側廊光影" data-label="Interior">
-                        <img src="https://images.unsplash.com/photo-1543738435-59d1e5a3ef1b?w=700&q=80&fit=crop"
-                            alt="教堂側廊">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Interior</span>
-                            <p class="tile-name tile-name-small">教堂側廊光影</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chapel" data-idx="1" data-name="純白教堂誓約" data-label="Featured Chapel">
-                        <img src="https://images.unsplash.com/photo-1519741347686-c1e331fcde27?w=900&q=80&fit=crop"
-                            alt="教堂走道">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Chapel</span>
-                            <p class="tile-name">純白教堂誓約</p><span class="tile-sub">Chapel blanc · 台南</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chapel" data-idx="2" data-name="白玫瑰花道" data-label="Florals">
-                        <img src="https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop"
-                            alt="花道">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Florals</span>
-                            <p class="tile-name tile-name-small">白玫瑰花道</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </section>
-
-            <!-- 中式老宅 -->
-            <section class="theme-section active" id="sec-chinese">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Chinese Heritage · Courtyard · Ink</span>
-                        <h2 class="section-title">中式老宅</h2>
-                    </div>
-                    <p class="section-desc">紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生</p>
-                </div>
-                <div class="mosaic-chinese">
-                    <div class="tile" data-lb="chinese" data-idx="0" data-name="古韻院落婚宴" data-label="Courtyard Venue">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80&fit=crop"
-                            alt="院落">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Courtyard Venue</span>
-                            <p class="tile-name">古韻院落婚宴</p><span class="tile-sub">Heritage House · 台南老街</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="chinese" data-idx="1" data-name="漆器與囍字擺設" data-label="Details">
-                        <img src="https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&q=80&fit=crop"
-                            alt="細節">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Details</span>
-                            <p class="tile-name tile-name-small">漆器與囍字擺設</p>
-                        </div>
-                    </div>
-                    <div class="tile tile-text-panel tile-text">
-                        <div class="panel-gold-line"></div>
-                        <p class="panel-quote">「執子之手<br>與子偕老」</p>
-                        <span class="panel-en">A Vow Across Lifetimes</span>
-                    </div>
-                    <div class="tile" data-lb="chinese" data-idx="2" data-name="紅木圓桌宴席" data-label="Banquet">
-                        <img src="https://images.unsplash.com/photo-1569521843991-e45bfbbb2fd3?w=700&q=80&fit=crop"
-                            alt="宴席">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Banquet</span>
-                            <p class="tile-name tile-name-small">紅木圓桌宴席</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </section>
-
-            <!-- 極簡現代 -->
-            <section class="theme-section active" id="sec-minimal">
-                <div class="section-header">
-                    <div><span class="section-eyebrow">Minimal · Modern · Editorial</span>
-                        <h2 class="section-title">極簡現代</h2>
-                    </div>
-                    <p class="section-desc">Less is more<br>讓空間本身成為最有力量的表達</p>
-                </div>
-                <div class="mosaic-minimal">
-                    <div class="tile" data-lb="minimal" data-idx="0" data-name="建築感白盒子婚宴" data-label="Featured Venue">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=80&fit=crop"
-                            alt="極簡">
-                        <div class="tile-accent-corner"></div>
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Featured Venue</span>
-                            <p class="tile-name">建築感白盒子婚宴</p><span class="tile-sub">White Box Studio · 台北信義</span><a
-                                class="tile-cta" href="#">探索場地</a>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="minimal" data-idx="1" data-name="單支芒草桌花" data-label="Tablescape">
-                        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=700&q=80&fit=crop"
-                            alt="桌花">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Tablescape</span>
-                            <p class="tile-name tile-name-small">單支芒草桌花</p>
-                        </div>
-                    </div>
-                    <div class="tile" data-lb="minimal" data-idx="2" data-name="俐落婚紗輪廓" data-label="Bridal">
-                        <img src="https://images.unsplash.com/photo-1606216795235-2d3b0d1f8e67?w=700&q=80&fit=crop"
-                            alt="婚紗">
-                        <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
-                        <div class="tile-overlay"><span class="tile-label">Bridal</span>
-                            <p class="tile-name tile-name-small">俐落婚紗輪廓</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </section>
-
-        </div>
+        <!-- THEME SECTIONS (JS 動態產生) -->
+        <div class="themes-wrap" id="themesWrap"></div>
     </div>
 
     <!-- LIGHTBOX -->
     <div class="lb-overlay" id="lbOverlay">
-        <!-- FIX: lb-close 移到 overlay 直接子層，fixed 定位，確保不被 lb-inner 遮住 -->
         <button class="lb-close" id="lbClose" title="關閉">
             <span class="material-symbols-outlined">close</span>
         </button>
+        <div class="lb-counter" id="lbCounter"></div>
         <div class="lb-inner">
-            <button class="lb-btn lb-prev" id="lbPrev"><span
-                    class="material-symbols-outlined">chevron_left</span></button>
             <div class="lb-img-wrap" id="lbImgWrap">
                 <img id="lbImg" src="" alt="">
                 <div class="lb-caption">
@@ -1368,11 +959,10 @@
                     <p class="lb-caption-label" id="lbLabel"></p>
                 </div>
             </div>
-            <button class="lb-btn lb-next" id="lbNext"><span
-                    class="material-symbols-outlined">chevron_right</span></button>
         </div>
+        <button class="lb-btn lb-prev" id="lbPrev"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button class="lb-btn lb-next" id="lbNext"><span class="material-symbols-outlined">chevron_right</span></button>
         <div class="lb-dots" id="lbDots"></div>
-        <div class="lb-counter" id="lbCounter"></div>
     </div>
 
     <!-- FOOTER -->
@@ -1380,55 +970,176 @@
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
+
     <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>
 
     <script>
+        const THEMES = [
+            {
+                id: 'forest',
+                label: '森林系',
+                eyebrow: 'Forest · Nature · Organic',
+                desc: '枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景',
+                mosaic: 'mosaic-forest',
+                tiles: [
+                    { img: 'https://i.pinimg.com/1200x/25/19/9c/25199c5a5e7f25e4d0682b39e4c7ee16.jpg', name: '山間祕境婚宴', label: 'Featured Venue', sub: 'Cedar Hall · 台北烏來', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/1200x/1a/59/93/1a5993bffcce0c5090ac3d4320aaa5e0.jpg', name: '自然系花藝佈置', label: 'Florals' },
+                    { img: 'https://i.pinimg.com/1200x/2b/81/74/2b81749de349f1699156dcca1bf910c0.jpg', name: '戶外儀式區', label: 'Ceremony' },
+                    { img: 'https://i.pinimg.com/736x/ab/27/6d/ab276d9976cb0065d86d9cd6ee6a871a.jpg', name: '晚宴燈光氛圍', label: 'Reception' },
+                    { img: 'https://i.pinimg.com/736x/45/62/60/456260c1129e597dbbe5159370b01d41.jpg', name: '綠葉桌花細節', label: 'Details' },
+                ]
+            },
+            {
+                id: 'vintage',
+                label: '美式復古',
+                eyebrow: 'Americana · Rustic · Vintage',
+                desc: '穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面',
+                mosaic: 'mosaic-vintage',
+                tiles: [
+                    { img: 'https://i.pinimg.com/736x/03/83/4e/03834e35abe51fed8838f5d9cc46f138.jpg', name: '復古建築', label: 'Barn Wedding', sub: 'Rustic Barn · 宜蘭', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/54/bf/66/54bf66dc24f8641f2b53f7ac3ac6bf70.jpg', name: '沉穩復古', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/736x/e3/8f/39/e38f39230ed22c4ce844c110e7b5e6bd.jpg', name: '復古婚紗造型', label: 'Bridal' },
+                ]
+            },
+            {
+                id: 'chapel',
+                label: '西式教堂',
+                eyebrow: 'Chapel · Cathedral · Timeless',
+                desc: '彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證',
+                mosaic: 'mosaic-chapel',
+                tiles: [
+                    { img: 'https://i.pinimg.com/736x/df/0c/fb/df0cfb7adc15d26017a2a5b0a64621f0.jpg', name: '教堂側廊光影', label: 'Interior' },
+                    { img: 'https://i.pinimg.com/736x/dd/22/53/dd22536014a8902886dd10b546db318a.jpg', name: '純白教堂誓約', label: 'Featured Chapel', sub: 'Chapel blanc · 台南', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/1c/4d/8b/1c4d8b140e34709cde57d11c82ee7556.jpg', name: '教堂', label: 'Florals' },
+                ]
+            },
+            {
+                id: 'chinese',
+                label: '中式老宅',
+                eyebrow: 'Chinese Heritage · Courtyard · Ink',
+                desc: '紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生',
+                mosaic: 'mosaic-chinese',
+                textPanel: { after: 1, quote: '「執子之手<br>與子偕老」', en: 'A Vow Across Lifetimes' },
+                tiles: [
+                    { img: 'https://images.pexels.com/photos/13111964/pexels-photo-13111964.jpeg', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
+                    { img: 'https://images.pexels.com/photos/35018683/pexels-photo-35018683.jpeg', name: '漆器與囍字擺設', label: 'Details' },
+                    { img: 'https://images.pexels.com/photos/4066903/pexels-photo-4066903.jpeg', name: '紅木圓桌宴席', label: 'Banquet' },
+                ]
+            },
+            {
+                id: 'minimal',
+                label: '極簡現代',
+                eyebrow: 'Minimal · Modern · Editorial',
+                desc: 'Less is more<br>讓空間本身成為最有力量的表達',
+                mosaic: 'mosaic-minimal',
+                tiles: [
+                    { img: 'https://i.pinimg.com/736x/ba/f7/25/baf7250521d4efbfbd026bfcb4fe6687.jpg', name: '建築感白盒子婚宴', label: 'Featured Venue', sub: 'White Box Studio · 台北信義', featured: true, cta: '#' },
+                    { img: 'https://i.pinimg.com/736x/b5/e3/79/b5e3796fb3fb2c36ad01c70cb2f6bea4.jpg', name: '單支芒草桌花', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/736x/34/0b/e8/340be80d146a6c5a18de0bbe20116d76.jpg', name: '俐落婚紗輪廓', label: 'Bridal' },
+                ]
+            },
+        ];
+
+        function renderTile(tile, galleryId, idx) {
+            const featuredCorner = tile.featured ? '<div class="tile-accent-corner"></div>' : '';
+            const ctaBtn = tile.featured && tile.cta
+                ? `<a class="tile-cta" href="${tile.cta}">探索場地</a>` : '';
+            const subLine = tile.sub ? `<span class="tile-sub">${tile.sub}</span>` : '';
+            const nameClass = tile.featured ? 'tile-name' : 'tile-name tile-name-small';
+
+            return /*html*/`
+        <div class="tile" data-lb="${galleryId}" data-idx="${idx}" data-name="${tile.name}" data-label="${tile.label}">
+            <img src="${tile.img}" alt="${tile.name}" loading="lazy">
+            ${featuredCorner}
+            <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
+            <div class="tile-overlay">
+                <span class="tile-label">${tile.label}</span>
+                <p class="${nameClass}">${tile.name}</p>
+                ${subLine}
+                ${ctaBtn}
+            </div>
+        </div>`;
+        }
+
+        function renderTextPanel(panel) {
+            return /*html*/`
+        <div class="tile tile-text-panel tile-text">
+            <div class="panel-gold-line"></div>
+            <p class="panel-quote">${panel.quote}</p>
+            <span class="panel-en">${panel.en}</span>
+        </div>`;
+        }
+
+        function renderMosaic(theme) {
+            let tilesHTML = '';
+            theme.tiles.forEach((tile, idx) => {
+                tilesHTML += renderTile(tile, theme.id, idx);
+                if (theme.textPanel && idx === theme.textPanel.after - 1) {
+                    tilesHTML += renderTextPanel(theme.textPanel);
+                }
+            });
+            return `<div class="${theme.mosaic}">${tilesHTML}</div>`;
+        }
+
+        function renderThemeSection(theme) {
+            return /*html*/`
+        <section class="theme-section active" id="sec-${theme.id}">
+            <div class="section-header">
+                <div>
+                    <span class="section-eyebrow">${theme.eyebrow}</span>
+                    <h2 class="section-title">${theme.label}</h2>
+                </div>
+                <p class="section-desc">${theme.desc}</p>
+            </div>
+            ${renderMosaic(theme)}
+        </section>`;
+        }
+
+        function renderAll() {
+            const navInner = document.getElementById('themeNavInner');
+            const themesWrap = document.getElementById('themesWrap');
+
+            navInner.innerHTML = THEMES.map((t, i) =>
+                (i > 0 ? '<div class="theme-pill-divider"></div>' : '') +
+                `<button class="theme-pill" data-target="${t.id}">${t.label}</button>`
+            ).join('');
+
+            themesWrap.innerHTML = THEMES.map(renderThemeSection).join('');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            renderAll();
 
-            /* ── Navbar ── */
             const navbar = document.querySelector('.navbar');
-            const themeNav = document.getElementById('themeNav');
             let lastST = 0;
-
-            function syncThemeNavTop() {
-                themeNav.style.top = navbar.getBoundingClientRect().height + 'px';
-            }
-            syncThemeNavTop();
-            window.addEventListener('resize', syncThemeNavTop);
 
             window.addEventListener('scroll', () => {
                 const st = window.pageYOffset;
                 if (Math.abs(lastST - st) <= 8) return;
                 const hiding = st > lastST && st > 80;
                 navbar.classList.toggle('nav-hidden', hiding);
-                themeNav.style.top = hiding ? '0px' : navbar.getBoundingClientRect().height + 'px';
                 lastST = st;
             });
+
             document.addEventListener('mousemove', e => {
-                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); syncThemeNavTop(); }
+                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); }
             });
 
-            /* ── Theme nav pills ── */
-            const pills = document.querySelectorAll('.theme-pill');
-            const sections = {
-                forest: document.getElementById('sec-forest'),
-                vintage: document.getElementById('sec-vintage'),
-                chapel: document.getElementById('sec-chapel'),
-                chinese: document.getElementById('sec-chinese'),
-                minimal: document.getElementById('sec-minimal'),
-            };
+            function getPills() { return document.querySelectorAll('.theme-pill'); }
+            function getSectionEl(id) { return document.getElementById('sec-' + id); }
 
             function showTheme(target) {
-                pills.forEach(p => p.classList.toggle('active', p.dataset.target === target));
-                if (target === 'all') {
-                    Object.values(sections).forEach(s => s.classList.add('active'));
-                } else {
-                    Object.entries(sections).forEach(([k, el]) => el.classList.toggle('active', k === target));
+                getPills().forEach(p => p.classList.toggle('active', p.dataset.target === target));
+                THEMES.forEach(t => {
+                    const el = getSectionEl(t.id);
+                    if (el) el.classList.toggle('active', target === 'all' || t.id === target);
+                });
+                if (target !== 'all') {
                     setTimeout(() => {
-                        const el = sections[target];
+                        const el = getSectionEl(target);
                         if (el) {
                             const navH = navbar.getBoundingClientRect().height;
                             const navH2 = themeNav.getBoundingClientRect().height;
@@ -1440,7 +1151,10 @@
                 setTimeout(triggerAnim, 80);
             }
 
-            pills.forEach(p => p.addEventListener('click', () => showTheme(p.dataset.target)));
+            document.getElementById('themeNavInner').addEventListener('click', e => {
+                const pill = e.target.closest('.theme-pill');
+                if (pill) showTheme(pill.dataset.target);
+            });
 
             /* ── Lightbox ── */
             const overlay = document.getElementById('lbOverlay');
@@ -1464,17 +1178,8 @@
 
             let curG = null, curI = 0;
 
-            function openLb(g, i) {
-                curG = g; curI = i;
-                renderLb();
-                overlay.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeLb() {
-                overlay.classList.remove('open');
-                document.body.style.overflow = '';
-            }
+            function openLb(g, i) { curG = g; curI = i; renderLb(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function closeLb() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
 
             function renderLb() {
                 const item = galleries[curG][curI];
@@ -1483,7 +1188,7 @@
                     lbImg.src = item.src;
                     lbName.textContent = item.name;
                     lbLabel.textContent = item.label;
-                    lbCounter.textContent = (curI + 1) + ' / ' + galleries[curG].length;
+                    lbCounter.textContent = String(curI + 1).padStart(2, '0') + ' / ' + String(galleries[curG].length).padStart(2, '0');
                     lbImg.classList.remove('fade');
                 }, 200);
                 lbDots.innerHTML = '';
@@ -1495,21 +1200,12 @@
                 });
             }
 
-            function navLb(dir) {
-                curI = (curI + dir + galleries[curG].length) % galleries[curG].length;
-                renderLb();
-            }
+            function navLb(dir) { curI = (curI + dir + galleries[curG].length) % galleries[curG].length; renderLb(); }
 
-            document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
-            document.getElementById('lbNext').addEventListener('click', () => navLb(1));
+            document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+            document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navLb(1); });
             document.getElementById('lbClose').addEventListener('click', closeLb);
-
-            /* ── FIX 3: 點擊背景（overlay 本身）關閉 lightbox ── */
-            overlay.addEventListener('click', e => {
-                // 只有直接點 overlay 背景才關閉（不是點圖片、按鈕、dots 等）
-                if (e.target === overlay) closeLb();
-            });
-
+            overlay.addEventListener('click', e => { if (e.target === overlay) closeLb(); });
             document.addEventListener('keydown', e => {
                 if (!overlay.classList.contains('open')) return;
                 if (e.key === 'ArrowLeft') navLb(-1);
@@ -1517,7 +1213,6 @@
                 if (e.key === 'Escape') closeLb();
             });
 
-            /* Touch swipe */
             let lbTX = null;
             overlay.addEventListener('touchstart', e => { lbTX = e.touches[0].clientX; }, { passive: true });
             overlay.addEventListener('touchend', e => {
@@ -1527,14 +1222,12 @@
                 lbTX = null;
             });
 
-            document.querySelectorAll('.tile[data-lb]').forEach(tile => {
-                tile.addEventListener('click', e => {
-                    if (e.target.closest('.tile-cta')) return;
-                    openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
-                });
+            document.getElementById('themesWrap').addEventListener('click', e => {
+                const tile = e.target.closest('.tile[data-lb]');
+                if (!tile || e.target.closest('.tile-cta')) return;
+                openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
             });
 
-            /* ── Scroll reveal ── */
             function triggerAnim() {
                 const obs = new IntersectionObserver(entries => {
                     entries.forEach((e, i) => {
