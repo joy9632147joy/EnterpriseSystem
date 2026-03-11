@@ -19,6 +19,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
+    <script src="./login.js"></script>
+
     <style>
         /* ─── 專屬頁面變數與背景 ─── */
         body {
@@ -391,6 +393,7 @@
 
 <body>
 
+    <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
@@ -416,10 +419,9 @@
                             style="color:var(--text-muted); font-size:20px;">search</button>
                     </div>
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
-                        <a class="nav-link nav-link-item active-page" href="#" id="userDropdownBtn"
-                            data-bs-toggle="dropdown">歡迎</a>
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -427,18 +429,19 @@
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="./index.html" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div>
+            <a class="navbar-brand" href="./index.html">
                 <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
-            </div>
+            </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
@@ -446,28 +449,42 @@
                 <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
-            <ul class="navbar-nav gap-0" id="navMenuList">
-                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">婚禮團隊</a></li>
+
+            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
+            <div id="mobileUserMenu"
+                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
+                <p id="mobileWelcome"
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+            </div>
+
+            <!-- 導覽選單 -->
+            <ul class="navbar-nav gap-0">
+                <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-            <a href="./index.html" class="offcanvas-login" id="loginLinkMobile">
+
+            <!-- 未登入顯示：會員登入在導覽選單下方 -->
+            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-            <div id="mobileUserMenu">
-                <p id="mobileWelcome"
-                    style="font-size:18px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./customer_system.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的婚禮</a>
-                <a href="./customer_progress.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的籌備進度</a>
-                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
-            </div>
+
+            <!-- 登出：最下方，登入後才顯示，紅字 -->
+            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                style="padding:14px 0; display:none; letter-spacing:0.08em;">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
+                登出
+            </a>
         </div>
     </div>
 
@@ -660,36 +677,7 @@
     </button>
 
     <script>
-        // ─── 登入狀態管理（sessionStorage 跨頁面保持） ───
-        (function () {
-            const savedUsername = sessionStorage.getItem('dv_username');
-            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
-            const loginLinkMobile = document.getElementById('loginLinkMobile');
-            const userDropdownWrap = document.getElementById('userDropdownWrap');
-            const userDropdownBtn = document.getElementById('userDropdownBtn');
-            const mobileUserMenu = document.getElementById('mobileUserMenu');
-            const mobileWelcome = document.getElementById('mobileWelcome');
-
-            if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
-            if (userDropdownWrap) {
-                userDropdownWrap.style.display = 'block';
-                if (userDropdownBtn) userDropdownBtn.textContent = `歡迎, ${savedUsername} ▾`;
-            }
-            if (loginLinkMobile) loginLinkMobile.style.display = 'none';
-            if (mobileUserMenu) mobileUserMenu.classList.add('visible');
-            if (mobileWelcome) mobileWelcome.textContent = `歡迎, ${savedUsername}`;
-
-            document.getElementById('logoutBtn')?.addEventListener('click', e => {
-                e.preventDefault();
-                sessionStorage.removeItem('dv_username');
-                window.location.href = './index.html';
-            });
-            document.getElementById('logoutBtnMobile')?.addEventListener('click', e => {
-                e.preventDefault();
-                sessionStorage.removeItem('dv_username');
-                window.location.href = './index.html';
-            });
-        })();
+        
 
         // ─── Vue 3 綁定資料 ───
         const { createApp, reactive, onMounted, computed } = Vue;

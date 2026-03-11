@@ -8,17 +8,16 @@
 
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="./global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="./global.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
+    <script src="./login.js"></script>
+    
     <style>
         .content-wrap {
-            max-width: 1320px;
-            /* 從 1520px 縮小 */
+            max-width: 1520px;
             margin: 0 auto;
             display: flex;
             align-items: flex-start;
@@ -26,27 +25,20 @@
         }
 
         @media (max-width: 991.98px) {
-            .content-wrap {
-                flex-direction: column;
-                padding: 0 20px 80px;
-            }
+            .content-wrap { flex-direction: column; padding: 0 20px 80px; }
         }
 
         .sidebar {
             width: 180px;
             flex-shrink: 0;
-            padding-top: 24px;
+            padding-top: 35px;
             position: sticky;
             top: 96px;
             max-height: calc(100vh - 96px);
             overflow-y: auto;
         }
 
-        @media (max-width: 991.98px) {
-            .sidebar {
-                display: none;
-            }
-        }
+        @media (max-width: 991.98px) { .sidebar { display: none; } }
 
         .sidebar-title {
             font-size: 16px;
@@ -77,62 +69,41 @@
             text-align: left;
         }
 
-        .filter-btn:hover {
-            color: var(--text-main);
-        }
-
-        .filter-btn.active {
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .filter-btn.active .filter-dot {
-            background: var(--accent-gold);
-        }
+        .filter-btn:hover { color: var(--text-main); }
+        .filter-btn.active { color: var(--text-main); font-weight: 500; }
+        .filter-btn.active .filter-dot { background: var(--accent-gold); }
 
         .filter-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: transparent;
-            transition: background 0.25s;
-            flex-shrink: 0;
+            width: 5px; height: 5px; border-radius: 50%;
+            background: transparent; transition: background 0.25s; flex-shrink: 0;
         }
 
-        .mobile-filter-bar {
-            display: none;
-        }
+        .mobile-filter-bar { display: none; }
 
         @media (max-width: 991.98px) {
             .mobile-filter-bar {
                 display: flex;
                 flex-wrap: nowrap;
                 gap: 6px;
-                padding: 10px 8px;
-                border-bottom: 1px solid var(--border-grey);
-                background: #fafaf8;
+                padding: 16px 12px;
+                background: faf7f2;
                 width: 100%;
                 box-sizing: border-box;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
             }
-
-            .mobile-filter-bar .mobile-filter-chip {
-                flex: 1;
-                text-align: center;
-                padding: 8px 2px;
-            }
-
-            .page-wrap {
-                padding-top: 0;
-            }
+            .mobile-filter-bar::-webkit-scrollbar { display: none; }
+            .mobile-filter-bar .mobile-filter-chip { flex: 1; text-align: center; padding: 8px 4px; }
         }
 
         .mobile-filter-chip {
             flex-shrink: 0;
             border: 1px solid var(--border-grey);
             background: white;
-            padding: 8px 12px;
+            padding: 8px 20px;
             font-size: 11px;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             color: var(--text-muted);
             cursor: pointer;
             transition: all 0.25s;
@@ -145,58 +116,32 @@
             background: rgba(197, 160, 89, 0.06);
         }
 
-        .grid-area {
-            flex: 1;
-            padding-left: 80px;
-            padding-top: 24px;
-        }
+        .grid-area { flex: 1; padding-left: 56px; padding-top: 35px; }
 
-        @media (max-width: 991.98px) {
-            .grid-area {
-                padding-left: 0;
-                padding-top: 24px;
-            }
-        }
+        @media (max-width: 991.98px) { .grid-area { padding-left: 0; padding-top: 24px; } }
 
         .category-header {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
             margin-bottom: 24px;
-            /* 從 40px 縮小 */
             padding-bottom: 12px;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            /* 加上極淡的金色底線定錨 */
         }
 
         .category-label {
-            font-size: 9px;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            font-weight: 500;
-            display: block;
-            margin-bottom: 8px;
+            font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+            color: var(--accent-gold); font-weight: 500; display: block; margin-bottom: 8px;
         }
 
-        .category-title {
-            font-family: var(--font-serif);
-            font-size: 28px;
-            font-weight: 300;
-        }
+        .category-title { font-family: var(--font-serif); font-size: 28px; font-weight: 300; }
 
         .result-count {
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
-            text-transform: uppercase;
+            font-size: 10px; letter-spacing: 0.2em;
+            color: var(--text-muted); text-transform: uppercase;
         }
 
-        .category-divider {
-            border: none;
-            border-top: 1px solid var(--border-grey);
-            margin: 72px 0;
-        }
+        .category-divider { border: none; border-top: 1px solid var(--border-grey); margin: 72px 0; }
 
         .partner-grid {
             display: grid;
@@ -681,7 +626,7 @@
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
+   <!-- ─── 導覽列 ─── -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
@@ -717,20 +662,19 @@
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="#" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
     </nav>
 
-
     <!-- ─── 手機版 Offcanvas ─── -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div>
+            <a class="navbar-brand" href="./index.html">
                 <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
-            </div>
+            </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
@@ -738,6 +682,20 @@
                 <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
+
+            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
+            <div id="mobileUserMenu"
+                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
+                <p id="mobileWelcome"
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+            </div>
+
+            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -745,24 +703,24 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-            <a href="#" class="offcanvas-login" id="loginLinkMobile">
+
+            <!-- 未登入顯示：會員登入在導覽選單下方 -->
+            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-            <div id="mobileUserMenu">
-                <p id="mobileWelcome"
-                    style="font-size:12px; letter-spacing:0.1em; color:var(--accent-gold); margin-bottom:12px;"></p>
-                <a href="./customer_system.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
-                <a href="./customer_progress.html" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block;">我的籌備進度</a>
-                <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
-                    style="padding:10px 0; display:block; color:var(--text-muted);">登出</a>
-            </div>
+
+            <!-- 登出：最下方，登入後才顯示，紅字 -->
+            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                style="padding:14px 0; display:none; letter-spacing:0.08em;">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
+                登出
+            </a>
         </div>
     </div>
-
+    
     <!-- hero -->
     <div class="page-wrap">
         <div class="page-hero has-bg">
@@ -789,20 +747,6 @@
     <footer class="site-footer">
         <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
-
-    <!-- 模擬登入 -->
-    <div id="loginModal"
-        style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
-        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
-            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
-            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)"
-                style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
-            <div style="text-align:right;">
-                <button id="loginSubmit"
-                    style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button>
-            </div>
-        </div>
-    </div>
 
     <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">

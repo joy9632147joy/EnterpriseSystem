@@ -71,6 +71,12 @@
                     class="material-icons text-orange-400 mr-3 group-hover:scale-110 transition-transform">calendar_month</span>
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">預約管理</div>
             </a>
+            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
+                href="project.html">
+                <span
+                    class="material-icons text-indigo-400 mr-3 group-hover:scale-110 transition-transform">account_tree</span>
+                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">專案管理</div>
+            </a>
             <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
                 href="quest_staff.html">
                 <span
@@ -382,6 +388,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // 建立通用彈出視窗的 HTML 結構
+            // 在您的 script 標籤中找到 modalHtml 並更新如下：
             const modalHtml = `
     <div id="adminActionModal" class="fixed inset-0 z-[110] flex items-center justify-center hidden bg-gray-900/60 backdrop-blur-sm transition-opacity">
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[400px] max-w-[90%] transform transition-all p-6 border border-gray-100 dark:border-gray-700">
@@ -392,9 +399,20 @@
                 <h3 id="modal-title" class="text-xl font-bold text-gray-900 dark:text-white mb-2"></h3>
                 <p id="modal-desc" class="text-sm text-gray-500 dark:text-gray-400 mb-6"></p>
                 
-                <div class="mb-6 text-left">
+                <div class="mb-4 text-left">
                     <label class="block text-xs font-bold text-gray-400 uppercase mb-2">主管批註 / 說明</label>
-                    <textarea id="modal-input" class="w-full bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-primary focus:border-primary" rows="3" placeholder="請輸入處理內容..."></textarea>
+                    <textarea id="modal-input" class="w-full bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-primary focus:border-primary" rows="2" placeholder="請輸入處理內容..."></textarea>
+                </div>
+
+                <div id="upload-section" class="mb-6 text-left">
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2">相關附件 (選填)</label>
+                    <div class="relative group">
+                        <input type="file" id="task-file-input" class="hidden" />
+                        <label for="task-file-input" class="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl cursor-pointer hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all">
+                            <span class="material-icons text-gray-400 group-hover:text-primary mr-2">upload_file</span>
+                            <span id="file-name-display" class="text-xs text-gray-500 group-hover:text-primary">點擊上傳或拖放檔案</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="flex space-x-3">
@@ -414,25 +432,52 @@
             const mIconBg = document.getElementById('modal-icon-bg');
             const mBtn = document.getElementById('modal-confirm-btn');
 
+            // 當檔案選擇改變時更新文字
+            document.addEventListener('change', function (e) {
+                if (e.target && e.target.id === 'task-file-input') {
+                    const fileName = e.target.files[0] ? e.target.files[0].name : "點擊上傳或拖放檔案";
+                    const display = document.getElementById('file-name-display');
+                    if (display) {
+                        display.innerText = fileName;
+                        display.classList.add('text-primary', 'font-medium');
+                    }
+                }
+            });
+
             // 開啟彈窗函式
             function openAdminModal(type) {
                 modal.classList.remove('hidden');
+                const uploadSection = document.getElementById('upload-section');
+                const fileInput = document.getElementById('task-file-input');
+                const fileNameDisplay = document.getElementById('file-name-display');
+
+                // 重置上傳狀態
+                if (fileInput) fileInput.value = "";
+                if (fileNameDisplay) {
+                    fileNameDisplay.innerText = "點擊上傳或拖放檔案";
+                    fileNameDisplay.classList.remove('text-primary', 'font-medium');
+                }
                 if (type === 'report') {
-                    mTitle.innerText = "回報異常狀況";
-                    mDesc.innerText = "針對「陽明山莊」任務標記異常，系統將通知相關人員。";
+                    // ...如果是主管要註記異常...
+                    mTitle.innerText = "部門異常註記";
+                    mDesc.innerText = "此動作將記錄部門執行過程中的突發狀況，供 PM 追蹤。";
                     mIcon.innerText = "report_problem";
                     mIconBg.className = "w-16 h-16 rounded-full bg-red-50 text-red-500 mx-auto flex items-center justify-center mb-4";
                     mBtn.innerText = "確認回報";
                     mBtn.className = "flex-1 py-2.5 px-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium shadow-md transition-colors";
                 } else {
-                    mTitle.innerText = "任務結案審核";
-                    mDesc.innerText = "您正在以主管權限核准「陽明山莊」佈置任務，確認後將移至已完成紀錄。";
+                    // ...如果是主管要核准或結案...
+                    mTitle.innerText = "部門任務確認";
+                    mDesc.innerText = "確認此部門任務已完成處理，相關附件將同步給 PM 與客戶。";
                     mIcon.innerText = "verified";
                     mIconBg.className = "w-16 h-16 rounded-full bg-green-50 text-green-500 mx-auto flex items-center justify-center mb-4";
                     mBtn.innerText = "核准結案";
                     mBtn.className = "flex-1 py-2.5 px-4 bg-primary hover:bg-blue-600 text-white rounded-xl font-medium shadow-md transition-colors";
                 }
+
             }
+
+
 
             window.closeAdminModal = function () {
                 modal.classList.add('hidden');
