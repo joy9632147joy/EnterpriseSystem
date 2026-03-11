@@ -83,12 +83,6 @@
                     class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理</div>
             </a>
-            <a class="flex items-center px-6 py-3.5 text-gray-400 hover:bg-sidebar-hover hover:text-white transition-colors group border-r-4 border-transparent hover:border-[#1ABB9C]"
-                href="quest_pm.html">
-                <span
-                    class="material-icons text-green-400 mr-3 group-hover:scale-110 transition-transform">assignment</span>
-                <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">任務管理-PM(待整合)</div>
-            </a>
 
             <div class="menu-category px-6 pt-5 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
                 系統設定</div>
@@ -133,236 +127,184 @@
             </div>
         </header>
 
-        <main
-            class="flex-1 overflow-x-hidden overflow-y-auto bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800 p-6 lg:p-8">
-            <div class="w-full max-w-[1600px] mx-auto space-y-8">
-
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                        <span class="material-icons text-indigo-500 mr-3 text-3xl">dashboard</span>
-                        專案總覽看板
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div
-                            class="glass-card rounded-2xl p-6 shadow-sm border-l-4 border-indigo-500 flex items-center justify-between">
-                            <div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">目前進行中專案</p>
-                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-1">3 <span
-                                        class="text-base font-medium text-gray-500">件</span></p>
-                            </div>
-                            <div
-                                class="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/30 rounded-full flex items-center justify-center text-indigo-500">
-                                <span class="material-icons text-2xl">autorenew</span>
-                            </div>
+<main class="flex-1 overflow-x-hidden overflow-y-auto bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800 p-6 lg:p-8">
+            <div class="w-full max-w-[1600px] mx-auto space-y-6">
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-2">
+                    <div class="glass-card rounded-2xl p-5 shadow-sm border-l-4 border-indigo-500 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">執行中專案</p>
+                            <p class="text-3xl font-black text-gray-800 dark:text-white mt-1">24</p>
                         </div>
-                        <div
-                            class="glass-card rounded-2xl p-6 shadow-sm border-l-4 border-green-500 flex items-center justify-between">
-                            <div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">本月已結案</p>
-                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-1">2 <span
-                                        class="text-base font-medium text-gray-500">件</span></p>
-                            </div>
-                            <div
-                                class="w-12 h-12 bg-green-50 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-500">
-                                <span class="material-icons text-2xl">task_alt</span>
-                            </div>
+                        <div class="w-10 h-10 bg-indigo-50 dark:bg-indigo-900/30 rounded-full flex items-center justify-center text-indigo-500"><span class="material-icons text-xl">account_tree</span></div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 shadow-sm border-l-4 border-red-500 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">進度延遲 / 需注意</p>
+                            <p class="text-3xl font-black text-red-600 dark:text-red-400 mt-1">3</p>
                         </div>
-                        <div
-                            class="glass-card rounded-2xl p-6 shadow-sm border-l-4 border-orange-500 flex items-center justify-between">
-                            <div>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">即將到期 (30天內)</p>
-                                <p class="text-3xl font-bold text-gray-800 dark:text-white mt-1">1 <span
-                                        class="text-base font-medium text-gray-500">件</span></p>
-                            </div>
-                            <div
-                                class="w-12 h-12 bg-orange-50 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-500">
-                                <span class="material-icons text-2xl">notification_important</span>
-                            </div>
+                        <div class="w-10 h-10 bg-red-50 dark:bg-red-900/30 rounded-full flex items-center justify-center text-red-500"><span class="material-icons text-xl">warning_amber</span></div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 shadow-sm border-l-4 border-amber-500 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">本月即將結案</p>
+                            <p class="text-3xl font-black text-amber-600 dark:text-amber-400 mt-1">5</p>
                         </div>
+                        <div class="w-10 h-10 bg-amber-50 dark:bg-amber-900/30 rounded-full flex items-center justify-center text-amber-500"><span class="material-icons text-xl">event_available</span></div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-5 shadow-sm border-l-4 border-green-500 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">本年度已完成</p>
+                            <p class="text-3xl font-black text-gray-800 dark:text-white mt-1">42</p>
+                        </div>
+                        <div class="w-10 h-10 bg-green-50 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-500"><span class="material-icons text-xl">task_alt</span></div>
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 mr-2 animate-pulse"></span> 進行中專案
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                        <div
-                            class="glass-card rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-transform shadow-sm hover:shadow-lg flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <span
-                                    class="bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 text-xs font-bold px-3 py-1 rounded-full border border-blue-200 dark:border-blue-800/50">進行中</span>
-                                <span
-                                    class="text-gray-500 dark:text-gray-400 text-xs font-medium flex items-center bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded-md">
-                                    <span class="material-icons text-[14px] mr-1 text-orange-500">event</span> 婚期:
-                                    2026-10-15
-                                </span>
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-1">陳志明 & 林春嬌</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-5">#WED-20261015 | 美式戶外婚禮</p>
-
-                            <div class="mb-5 flex-1">
-                                <div class="flex justify-between text-sm mb-1.5">
-                                    <span class="font-bold text-gray-700 dark:text-gray-300">整體進度</span>
-                                    <span class="font-bold text-indigo-600 dark:text-indigo-400">75%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-gradient-to-r from-indigo-500 to-blue-500 h-2.5 rounded-full"
-                                        style="width: 75%"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex space-x-3">
-                                <input type="file" id="file-upload-input" class="hidden" multiple
-                                    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png">
-
-                                <button id="upload-doc-btn"
-                                    class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 flex items-center shadow-sm transition-colors">
-                                    <span class="material-icons text-[18px] mr-2">upload_file</span> 文件上傳
-                                </button>
-                            </div>
+                <div class="glass-card rounded-t-2xl px-6 py-4 flex flex-col lg:flex-row justify-between items-center gap-4 border-b border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center space-x-2 overflow-x-auto w-full lg:w-auto custom-scrollbar pb-1 lg:pb-0">
+                        <button class="px-4 py-2 bg-gray-800 text-white dark:bg-gray-100 dark:text-gray-900 rounded-lg text-sm font-bold shadow-sm whitespace-nowrap">全部專案 (24)</button>
+                        <button class="px-4 py-2 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">進行中 (19)</button>
+                        <button class="px-4 py-2 bg-transparent text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">需注意 (3)</button>
+                        <button class="px-4 py-2 bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">已結案 (42)</button>
+                    </div>
+                    <div class="flex items-center w-full lg:w-auto space-x-3">
+                        <div class="relative w-full lg:w-64">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><span class="material-icons text-sm">search</span></span>
+                            <input class="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="搜尋專案編號或客戶名稱..." type="text" />
                         </div>
-
-                        <div
-                            class="glass-card rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-transform shadow-sm hover:shadow-lg flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <span
-                                    class="bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 text-xs font-bold px-3 py-1 rounded-full border border-blue-200 dark:border-blue-800/50">進行中</span>
-                                <span
-                                    class="text-gray-500 dark:text-gray-400 text-xs font-medium flex items-center bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded-md border border-red-200">
-                                    <span class="material-icons text-[14px] mr-1 text-red-500">event</span> 婚期:
-                                    2026-04-20
-                                </span>
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-1">王大同 & 李雪</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-5">#WED-20260420 | 經典室內宴會</p>
-
-                            <div class="mb-5 flex-1">
-                                <div class="flex justify-between text-sm mb-1.5">
-                                    <span class="font-bold text-gray-700 dark:text-gray-300">整體進度</span>
-                                    <span class="font-bold text-indigo-600 dark:text-indigo-400">90%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-gradient-to-r from-indigo-500 to-blue-500 h-2.5 rounded-full"
-                                        style="width: 90%"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex space-x-3">
-                                <input type="file" id="file-upload-input" class="hidden" multiple
-                                    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png">
-
-                                <button id="upload-doc-btn"
-                                    class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 flex items-center shadow-sm transition-colors">
-                                    <span class="material-icons text-[18px] mr-2">upload_file</span> 文件上傳
-                                </button>
-                            </div>
-                        </div>
-
-                        <div
-                            class="glass-card rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-transform shadow-sm hover:shadow-lg flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <span
-                                    class="bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-200 dark:border-purple-800/50">剛啟動</span>
-                                <span
-                                    class="text-gray-500 dark:text-gray-400 text-xs font-medium flex items-center bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded-md">
-                                    <span class="material-icons text-[14px] mr-1 text-gray-400">event</span> 婚期:
-                                    2026-12-25
-                                </span>
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-1">張建國 & 吳美麗</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-5">#WED-20261225 | 奢華金迷主題</p>
-
-                            <div class="mb-5 flex-1">
-                                <div class="flex justify-between text-sm mb-1.5">
-                                    <span class="font-bold text-gray-700 dark:text-gray-300">整體進度</span>
-                                    <span class="font-bold text-indigo-600 dark:text-indigo-400">10%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-gradient-to-r from-indigo-500 to-blue-500 h-2.5 rounded-full"
-                                        style="width: 10%"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex space-x-3">
-                                <input type="file" id="file-upload-input" class="hidden" multiple
-                                    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png">
-
-                                <button id="upload-doc-btn"
-                                    class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 flex items-center shadow-sm transition-colors">
-                                    <span class="material-icons text-[18px] mr-2">upload_file</span> 文件上傳
-                                </button>
-                            </div>
-                        </div>
-
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-lg shadow-sm transition-colors flex-shrink-0" title="建立新專案">
+                            <span class="material-icons text-[20px]">add</span>
+                        </button>
                     </div>
                 </div>
 
-                <div class="mt-8">
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center">
-                        <span class="material-icons text-green-500 mr-2">task_alt</span> 已結案專案歷史
-                    </h3>
-                    <div class="glass-card rounded-2xl overflow-hidden shadow-sm">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr
-                                        class="bg-gray-50/80 dark:bg-gray-800/80 border-b border-gray-200 dark:border-gray-700">
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            專案編號 / 新人姓名</th>
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            婚禮方案</th>
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            婚期 / 結案日</th>
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            狀態</th>
-                                        <th
-                                            class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">
-                                            操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-100 dark:divide-gray-700/50">
-                                    <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-colors">
-                                        <td class="px-6 py-4">
-                                            <div class="font-bold text-gray-800 dark:text-gray-200">林宥嘉 & 丁文琪</div>
-                                            <div class="text-xs text-gray-500 mt-1">#WED-20260110</div>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">清新森系 - 戶外包套</td>
-                                        <td class="px-6 py-4">
-                                            <div class="text-sm text-gray-700 dark:text-gray-300">2026-01-10</div>
-                                            <div class="text-xs text-gray-400 mt-1">結案: 2026-01-15</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 text-xs font-bold px-2.5 py-1 rounded border border-gray-200 dark:border-gray-600">已歸檔</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-right">
-                                            <button
-                                                class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 text-sm font-medium">查看存檔</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-colors">
-                                        <td class="px-6 py-4">
-                                            <div class="font-bold text-gray-800 dark:text-gray-200">黃曉明 & 楊穎</div>
-                                            <div class="text-xs text-gray-500 mt-1">#WED-20251120</div>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">極簡美學 - 室內宴會</td>
-                                        <td class="px-6 py-4">
-                                            <div class="text-sm text-gray-700 dark:text-gray-300">2025-11-20</div>
-                                            <div class="text-xs text-gray-400 mt-1">結案: 2025-11-25</div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 text-xs font-bold px-2.5 py-1 rounded border border-gray-200 dark:border-gray-600">已歸檔</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-right">
-                                            <button
-                                                class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 text-sm font-medium">查看存檔</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="glass-card rounded-b-2xl shadow-sm overflow-hidden mt-0 border-t-0">
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-gray-50 dark:bg-gray-800/80 border-b border-gray-200 dark:border-gray-700">
+                                    <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-1/4">專案編號 / 客戶</th>
+                                    <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-1/6">健康度</th>
+                                    <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-1/3">當前執行階段</th>
+                                    <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider w-1/6">預計婚期 (Deadline)</th>
+                                    <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-right w-[120px]">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 dark:divide-gray-700/50">
+                                
+                                <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-gray-900 dark:text-white text-base">陳志明 & 林春嬌</div>
+                                        <div class="text-xs text-gray-500 mt-1">#WED-20261015</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span> 進度正常
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">婚禮團隊協調</span>
+                                        <div class="text-xs text-gray-500 mt-1">進行中: 新秘試妝合約</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-gray-700 dark:text-gray-300 font-medium">2026-10-15</div>
+                                        <div class="text-xs text-gray-500 mt-1">剩餘 218 天</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <a href="project1.html" class="inline-flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                                            進入專案 <span class="material-icons text-[16px] ml-1">arrow_forward</span>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-red-50/30 dark:hover:bg-red-900/10 transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-gray-900 dark:text-white text-base">王大同 & 李雪</div>
+                                        <div class="text-xs text-gray-500 mt-1">#WED-20260420</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800/50">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5 animate-pulse"></span> 進度延遲
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">宴會企劃執行</span>
+                                        <div class="text-xs text-red-500 mt-1 font-medium">卡關: 菜色試菜確認未交</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-red-600 dark:text-red-400 font-bold">2026-04-20</div>
+                                        <div class="text-xs text-red-500 mt-1 font-medium">即將到期 (剩餘 40 天)</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <a href="project1.html" class="inline-flex items-center justify-center px-4 py-2 bg-red-500 border border-transparent rounded-lg text-sm font-bold text-white hover:bg-red-600 transition-colors shadow-sm">
+                                            緊急處理 <span class="material-icons text-[16px] ml-1">arrow_forward</span>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-gray-900 dark:text-white text-base">張建國 & 吳美麗</div>
+                                        <div class="text-xs text-gray-500 mt-1">#WED-20261225</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1.5"></span> 剛啟動
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">顧問統籌</span>
+                                        <div class="text-xs text-gray-500 mt-1">待處理: 建立籌備時程表</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-gray-700 dark:text-gray-300 font-medium">2026-12-25</div>
+                                        <div class="text-xs text-gray-500 mt-1">剩餘 289 天</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <a href="project1.html" class="inline-flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                                            進入專案 <span class="material-icons text-[16px] ml-1">arrow_forward</span>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-800/50 transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-gray-900 dark:text-white text-base">劉德華 & Angelababy</div>
+                                        <div class="text-xs text-gray-500 mt-1">#WED-20260808</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span> 進度正常
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">場地佈置</span>
+                                        <div class="text-xs text-gray-500 mt-1">進行中: 視覺提案定稿</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-gray-700 dark:text-gray-300 font-medium">2026-08-08</div>
+                                        <div class="text-xs text-gray-500 mt-1">剩餘 150 天</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <a href="project1.html" class="inline-flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                                            進入專案 <span class="material-icons text-[16px] ml-1">arrow_forward</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-between">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">顯示 1 到 4 筆，共 24 筆進行中專案</span>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-400 bg-gray-50 dark:bg-gray-700 cursor-not-allowed" disabled>上一頁</button>
+                            <button class="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm font-medium shadow-sm">1</button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors">2</button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors">...</button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors">6</button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors">下一頁</button>
                         </div>
                     </div>
                 </div>
