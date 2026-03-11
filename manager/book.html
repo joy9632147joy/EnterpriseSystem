@@ -137,6 +137,14 @@
         <main class="flex-1 flex flex-col overflow-hidden">
             <div class="flex-1 overflow-auto p-8">
                 <div class="w-full space-y-8">
+                    
+                    <div class="flex justify-between items-center bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+                        <button onclick="toggleModal('modal-create-customer')" class="bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg font-medium transition-colors shadow-sm flex items-center">
+                            <span class="material-icons text-sm mr-2">person_add</span>
+                            建立客戶資料
+                        </button>
+                    </div>
+
                     <section>
                         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">新進預約</h2>
                         <div
@@ -274,6 +282,72 @@
             </div>
         </main>
     </div>
+
+    <div class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+        id="modal-create-customer">
+        <div class="relative w-full max-w-2xl mx-auto my-6">
+            <div class="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+                
+                <div class="flex items-start justify-between p-6 border-b border-solid border-gray-200 dark:border-gray-700 rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                        <span class="material-icons text-primary mr-2">person_add</span> 建立新客戶資料
+                    </h3>
+                    <button class="p-1 ml-auto bg-transparent border-0 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                        onclick="toggleModal('modal-create-customer')">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+
+                <div class="relative p-6 flex-auto space-y-5 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">客戶姓名 (新郎/新娘)</label>
+                            <input type="text" placeholder="例如：陳志明 & 林春嬌"
+                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">聯絡電話</label>
+                            <input type="tel" placeholder="例如：0912-345-678"
+                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">電子郵件</label>
+                            <input type="email" placeholder="example@email.com"
+                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">預計婚期</label>
+                            <input type="date"
+                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">安排預約諮詢時間</label>
+                            <input type="datetime-local"
+                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">初步需求與備註</label>
+                            <textarea rows="3" placeholder="請輸入客戶的初步需求或需要特別注意的事項..."
+                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm py-2 px-3 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end p-6 border-t border-solid border-gray-200 dark:border-gray-700 rounded-b space-x-3 bg-gray-50/50 dark:bg-gray-800">
+                    <button class="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                        type="button" onclick="toggleModal('modal-create-customer')">
+                        取消
+                    </button>
+                    <button class="bg-primary hover:bg-blue-600 text-white px-7 py-2.5 rounded-lg font-medium transition-colors shadow-sm flex items-center"
+                        type="button" onclick="toggleModal('modal-create-customer')">
+                        <span class="material-icons text-sm mr-2">add_circle</span>
+                        建立資料
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-create-customer-backdrop"></div>
 
     <div class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
         id="modal-modify">
@@ -505,11 +579,8 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
     <div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-modify-backdrop"></div>
+
     <div class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
         id="modal-details">
         <div class="relative w-full max-w-lg mx-auto my-6">
