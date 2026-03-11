@@ -738,6 +738,21 @@
                                     <input class="lux-input" placeholder="wedding@example.com" type="email"
                                         v-model="form.email" required />
                                 </div>
+
+                                <div class="col-md-6 contact-field">
+                                    <label class="contact-label">期望諮詢日期 Consultation Date <span
+                                            class="text-danger">*</span></label>
+                                    <input class="lux-input" type="date" v-model="form.consultation_date" required />
+                                </div>
+                                <div class="col-md-6 contact-field">
+                                    <label class="contact-label">期望時段 Preferred Time <span
+                                            class="text-danger">*</span></label>
+                                    <select class="lux-input" v-model="form.consultation_time" required>
+                                        <option value="上午 10:00-12:00">上午 10:00 - 12:00</option>
+                                        <option value="下午 14:00-17:00">下午 14:00 - 17:00</option>
+                                        <option value="晚上 18:00-20:00">晚上 18:00 - 20:00</option>
+                                    </select>
+                                </div>
                             </div>
                         </section>
 
@@ -957,6 +972,8 @@
                     phone: '',
                     line_id: '',
                     email: '',
+                    consultation_date: '',              // 🌟 新增這行：綁定諮詢日期
+                    consultation_time: '下午 14:00-17:00', // 🌟 新增這行：綁定諮詢時段 (給予預設值)
                     wedding_date: '',
                     guest_scale: '50人以下',
                     services: [],
