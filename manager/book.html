@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -127,117 +127,318 @@
             </div>
         </header>
 
-       <main class="flex-1 flex flex-col overflow-hidden">
-            <div class="flex-1 overflow-auto p-8">
-                <div class="max-w-7xl mx-auto space-y-6">
+<main class="flex-1 flex flex-col overflow-hidden">
+            <div class="flex-1 overflow-auto p-5">
+                <div class="max-w-[1600px] mx-auto space-y-4">
 
-                    <div class="flex justify-end mb-4">
+                    <div class="flex justify-start mb-2">
                         <button onclick="toggleModal('modal-create-customer')"
-                            class="bg-primary hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold transition-all shadow-md flex items-center">
-                            <span class="material-icons text-base mr-2">person_add</span>
+                            class="bg-primary hover:bg-blue-600 text-white px-5 py-2 rounded-lg font-bold transition-all shadow-md flex items-center text-sm">
+                            <span class="material-icons text-base mr-1.5">person_add</span>
                             建立客戶資料
                         </button>
                     </div>
 
                     <section>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center">
+                                <span class="w-1.5 h-4 bg-primary rounded-full mr-2"></span>新進預約表單
+                            </h3>
+                            <div class="flex space-x-2">
+                                <button onclick="scrollCards(-1)" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm text-gray-600 dark:text-gray-300">
+                                    <span class="material-icons text-sm">chevron_left</span>
+                                </button>
+                                <button onclick="scrollCards(1)" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm text-gray-600 dark:text-gray-300">
+                                    <span class="material-icons text-sm">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
 
-                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                        <style>
+                            #card-slider::-webkit-scrollbar { display: none; }
+                            #card-slider { -ms-overflow-style: none; scrollbar-width: none; }
+                        </style>
+
+                        <div id="card-slider" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 pt-1 px-1 -mx-1">
+                            
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
                                 <div class="p-4 flex-1">
                                     <div class="flex justify-between items-center mb-2">
-                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
-                                        <span class="text-[10px] text-gray-400 font-medium">2026-03-03 14:20</span>
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-03 14:20</span>
                                     </div>
-                                    <h4 class="text-base font-bold text-gray-900 dark:text-white mb-3">陳志明 & 林春嬌</h4>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">陳志明 & 林春嬌</h4>
                                     <div class="space-y-1.5">
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium">0912-345-678</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium">chihming_01</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">example@wedding.com</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium">2026-10-15</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium">150 人</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">東方文華酒店</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium">浪漫花園</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0912-345-678</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">chihming_01</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">c.ming@gmail.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-10-15</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">150 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">東方文華酒店</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">森林系</span></div>
                                     </div>
-                                    <div class="mt-3 p-2.5 bg-gray-50 dark:bg-gray-900/40 rounded-lg text-[11px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
-                                        "希望能有草地證婚儀式，預算在 60-80 萬之間。"
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "希望能有草地證婚儀式，預算 60-80 萬。"
                                     </div>
                                 </div>
                                 <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
-                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-xs font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
-                                    <button class="flex-1 py-2.5 text-xs font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
                                 </div>
                             </div>
 
-                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
                                 <div class="p-4 flex-1">
                                     <div class="flex justify-between items-center mb-2">
-                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
-                                        <span class="text-[10px] text-gray-400 font-medium">2026-03-04 09:15</span>
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-04 09:15</span>
                                     </div>
-                                    <h4 class="text-base font-bold text-gray-900 dark:text-white mb-3">王大同 & 李雪</h4>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">王大同 & 李雪</h4>
                                     <div class="space-y-1.5">
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium">0955-123-456</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium">snow_lee99</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">snow@test.com</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium">2026-12-24</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium">300 人</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">台北君悅酒店</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium">奢華璀璨</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0955-123-456</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">snow_lee99</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">snow@test.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-12-24</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">300 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">台北君悅酒店</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">奢華璀璨</span></div>
                                     </div>
-                                    <div class="mt-3 p-2.5 bg-gray-50 dark:bg-gray-900/40 rounded-lg text-[11px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
                                         "需要完整的婚禮樂團與燈光秀。"
                                     </div>
                                 </div>
                                 <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
-                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-xs font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
-                                    <button class="flex-1 py-2.5 text-xs font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
                                 </div>
                             </div>
 
-                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
                                 <div class="p-4 flex-1">
                                     <div class="flex justify-between items-center mb-2">
-                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
-                                        <span class="text-[10px] text-gray-400 font-medium">2026-03-05 16:40</span>
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-05 16:40</span>
                                     </div>
-                                    <h4 class="text-base font-bold text-gray-900 dark:text-white mb-3">張建國 & 吳美麗</h4>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">張建國 & 吳美麗</h4>
                                     <div class="space-y-1.5">
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium">0988-999-888</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium">wu_beauty</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">wu.b@gmail.com</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium">2026-11-11</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium">50 人</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">未定</span></div>
-                                        <div class="text-[11px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium">極簡美學</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0988-999-888</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">wu_beauty</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">wu.b@gmail.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-11-11</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">50 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">未定 (請推薦)</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">極簡現代</span></div>
                                     </div>
-                                    <div class="mt-3 p-2.5 bg-gray-50 dark:bg-gray-900/40 rounded-lg text-[11px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
                                         "想辦小型的家宴就好，不需要繁雜的儀式。"
                                     </div>
                                 </div>
                                 <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
-                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-xs font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
-                                    <button class="flex-1 py-2.5 text-xs font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-06 10:00</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">李柏宇 & 張婷婷</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0922-111-222</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">ting_chang</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">ting@mail.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-09-20</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">200 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">台北萬豪酒店</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">西式教堂</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "希望能在教堂完成證婚儀式。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-06 11:30</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">楊家豪 & 陳怡君</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0977-888-777</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">yang_123</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">yang123@yahoo.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2027-01-15</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">120 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">圓山大飯店</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">中式老宅</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "長輩希望能有傳統奉茶儀式與中式背板。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-07 14:00</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">趙子龍 & 高圓圓</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0900-100-200</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">zhao_yy</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">zhao@work.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-10-10</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">250 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">W Taipei</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">異國風情</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "希望能有雙儀式完整統籌規劃。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-08 09:45</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">林宇軒 & 吳沛珊</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0987-654-321</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">lin_wu2026</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">peishan@gmail.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-12-12</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">80 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">私廚包場</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">極簡美學</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "我們喜歡簡單的綠色植物佈置。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-09 13:20</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">陳冠宇 & 許佳欣</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0911-222-333</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">chen_hsu</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">hsu.wedding@line.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-11-25</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">160 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">未定</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">浪漫花園</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "希望能用空拍機記錄儀式畫面。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-10 15:10</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">鄭柏翰 & 林心怡</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0933-444-555</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">cheng_lin</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">cheng123@abc.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2027-02-14</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">220 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">晶華酒店</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">美式復古</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "想客製化專屬的婚禮 Logo 和喜帖。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
+                                </div>
+                            </div>
+
+                            <div class="snap-start shrink-0 w-[calc(20%-12.8px)] min-w-[240px] bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden hover:shadow-md transition-shadow">
+                                <div class="p-4 flex-1">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">待指派</span>
+                                        <span class="text-[9px] text-gray-400 font-medium">2026-03-11 16:55</span>
+                                    </div>
+                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3 truncate">劉家維 & 蔡佳玲</h4>
+                                    <div class="space-y-1.5">
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">聯絡手機</span><span class="dark:text-gray-300 font-medium truncate">0966-777-888</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">LINE ID</span><span class="dark:text-gray-300 font-medium truncate">liu_tsai</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">電子郵件</span><span class="dark:text-gray-300 font-medium truncate">liu.jia@yahoo.com</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">預計婚期</span><span class="dark:text-gray-300 font-medium truncate">2026-10-30</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">賓客規模</span><span class="dark:text-gray-300 font-medium truncate">180 人</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">宴客場地</span><span class="dark:text-gray-300 font-medium truncate">大直典華</span></div>
+                                        <div class="text-[10px] flex items-center"><span class="text-gray-400 w-14 shrink-0 font-medium">視覺定調</span><span class="dark:text-gray-300 font-medium truncate">西式教堂</span></div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-gray-50 dark:bg-gray-900/40 rounded text-[10px] text-gray-500 leading-relaxed italic border border-gray-100 dark:border-gray-700 line-clamp-2">
+                                        "希望整體氛圍輕鬆愉快，像派對一樣。"
+                                    </div>
+                                </div>
+                                <div class="flex border-t border-gray-100 dark:border-gray-700 bg-gray-50/30">
+                                    <button onclick="toggleModal('modal-modify')" class="flex-1 py-2.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 border-r border-gray-100 dark:border-gray-700 transition-colors">查看需求</button>
+                                    <button class="flex-1 py-2.5 text-[11px] font-bold text-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">接案處理</button>
                                 </div>
                             </div>
 
                         </div>
                     </section>
 
-                    <section class="mt-10">
-                        <div class="flex items-center mb-4">
-                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">最近處理歷史</h3>
+                    <section class="mt-6">
+                        <div class="flex items-center mb-3">
+                            <h3 class="text-sm font-bold text-gray-900 dark:text-white">最近處理歷史</h3>
                         </div>
                         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700">
-                            <div class="p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer">
+                            <div class="p-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer" onclick="toggleModal('modal-details')">
                                 <div class="flex items-center space-x-12">
                                     <div class="min-w-[120px]">
-                                        <p class="text-sm font-bold text-gray-900 dark:text-white">林小華 & 王大美</p>
+                                        <p class="text-[13px] font-bold text-gray-900 dark:text-white">林小華 & 王大美</p>
                                         <p class="text-[10px] text-gray-400">2026-03-01 處理</p>
                                     </div>
-                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">已轉簽約</span>
-                                    <p class="hidden md:block text-xs text-gray-500">方案：經典室內婚禮包套</p>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">已轉簽約</span>
+                                    <p class="hidden md:block text-[11px] text-gray-500">方案：經典室內婚禮包套</p>
                                 </div>
-                                <span class="material-icons text-gray-300">chevron_right</span>
+                                <span class="material-icons text-gray-300 text-sm">chevron_right</span>
                             </div>
                         </div>
                     </section>
@@ -249,63 +450,65 @@
     <div class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
         id="modal-create-customer">
         <div class="relative w-full max-w-2xl mx-auto my-6 px-4">
-            <div class="border-0 rounded-2xl shadow-xl relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
-                <div class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">建立新客戶諮詢</h3>
+            <div class="border-0 rounded-xl shadow-xl relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+                <div class="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">建立新客戶諮詢</h3>
                     <button class="text-gray-400 hover:text-gray-600" onclick="toggleModal('modal-create-customer')">
-                        <span class="material-icons">close</span>
+                        <span class="material-icons text-xl">close</span>
                     </button>
                 </div>
 
-                <div class="relative p-6 flex-auto space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="relative p-5 flex-auto space-y-5 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">新人姓名 Name</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">新人姓名 Name</label>
                             <input type="text" placeholder="例如：陳志明 & 林春嬌" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary focus:border-primary">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">聯絡手機 Phone</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">聯絡手機 Phone</label>
                             <input type="tel" placeholder="0912-345-678" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">LINE ID</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">LINE ID</label>
                             <input type="text" placeholder="ID 帳號" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">電子郵件 Email</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">電子郵件 Email</label>
                             <input type="email" placeholder="example@wedding.com" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">預計婚期 Wedding Date</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">預計婚期 Wedding Date</label>
                             <input type="date" value="2026-10-15" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">賓客規模 (人數)</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">賓客規模 (人數) Guest Scale</label>
                             <input type="number" placeholder="例如: 150" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">宴客場地 Venue</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">宴客場地 Venue</label>
                             <input type="text" placeholder="例如：東方文華酒店" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 focus:ring-primary">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">專屬視覺定調 Theme</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-2">專屬視覺定調 Theme Preference</label>
                             <div class="flex flex-wrap gap-2">
                                 <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer" checked><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">森林系</span></label>
                                 <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer"><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">美式復古</span></label>
+                                <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer"><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">西式教堂</span></label>
+                                <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer"><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">中式老宅</span></label>
                                 <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer"><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">極簡現代</span></label>
-                                <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer"><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">浪漫花園</span></label>
+                                <label class="cursor-pointer"><input type="radio" name="theme" class="hidden peer"><span class="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 peer-checked:bg-primary peer-checked:text-white transition-all inline-block font-medium">異國風情</span></label>
                             </div>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">婚宴備註 Notes</label>
+                            <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">婚宴備註 Notes</label>
                             <textarea rows="3" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2 px-3 resize-none focus:ring-primary focus:border-primary" placeholder="輸入特殊需求..."></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-6 border-t border-gray-100 dark:border-gray-700 flex justify-end space-x-3 bg-gray-50/50 dark:bg-gray-800/50 rounded-b-xl">
-                    <button class="px-6 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" onclick="toggleModal('modal-create-customer')">取消</button>
-                    <button class="bg-primary text-white px-8 py-2 rounded-lg font-bold shadow-md hover:bg-blue-600 transition-colors" onclick="toggleModal('modal-create-customer')">建立資料</button>
+                <div class="p-5 border-t border-gray-100 dark:border-gray-700 flex justify-end space-x-3 bg-gray-50/50 dark:bg-gray-800/50 rounded-b-xl">
+                    <button class="px-5 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" onclick="toggleModal('modal-create-customer')">取消</button>
+                    <button class="bg-primary text-white px-6 py-2 rounded-lg font-bold shadow-md hover:bg-blue-600 transition-colors" onclick="toggleModal('modal-create-customer')">建立資料</button>
                 </div>
             </div>
         </div>
@@ -328,102 +531,92 @@
 
                     <div>
                         <h4 class="text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                            <span class="material-icons text-primary mr-2 text-xl">groups</span> B方案｜專業婚禮團隊
+                            <span class="material-icons text-primary mr-2 text-xl">groups</span> B方案｜婚禮團隊
                         </h4>
                         <div class="space-y-3">
                             
                             <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" checked>
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="main-makeup" onchange="toggleSubItems(this, 'sub-makeup')" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer" checked>
                                     <div class="ml-3 flex-1">
                                         <div class="flex justify-between items-center">
-                                            <span class="text-sm font-bold text-gray-800 dark:text-gray-200">1. 新秘造型師</span>
-                                            <span class="text-xs font-bold text-primary">+NT$ 18,000</span>
+                                            <label for="main-makeup" class="text-sm font-bold text-gray-800 dark:text-gray-200 cursor-pointer">1. 新秘造型師</label>
+                                            <span class="text-[11px] font-bold text-primary">+NT$ 18,000</span>
                                         </div>
-                                        <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600">
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary">
-                                                新郎妝髮造型 (+NT$ 5,000)
+                                        <div id="sub-makeup" class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600 transition-opacity">
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary"> 新郎妝髮造型 (+5000)
                                             </label>
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked>
-                                                主婚人/親友妝髮 (+NT$ 2,000)
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked> 主婚人/親友妝髮 (+2000)
                                             </label>
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
 
                             <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" checked>
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="main-host" onchange="toggleSubItems(this, 'sub-host')" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer" checked>
                                     <div class="ml-3 flex-1">
                                         <div class="flex justify-between items-center">
-                                            <span class="text-sm font-bold text-gray-800 dark:text-gray-200">2. 婚禮企劃主持人</span>
-                                            <span class="text-xs font-bold text-primary">+NT$ 18,000</span>
+                                            <label for="main-host" class="text-sm font-bold text-gray-800 dark:text-gray-200 cursor-pointer">2. 婚禮企劃主持人</label>
+                                            <span class="text-[11px] font-bold text-primary">+NT$ 18,000</span>
                                         </div>
-                                        <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600">
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary">
-                                                品牌總監級主持人 (+NT$ 2,000)
+                                        <div id="sub-host" class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600 transition-opacity">
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="radio" name="host-level" class="mr-2 border-gray-300 text-primary focus:ring-primary"> 品牌總監級主持人 (+2000)
                                             </label>
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked>
-                                                專業婚禮主持人 (+NT$ 0)
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="radio" name="host-level" class="mr-2 border-gray-300 text-primary focus:ring-primary" checked> 專業婚禮主持人 (+0)
                                             </label>
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
 
                             <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" checked>
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="main-photo" onchange="toggleSubItems(this, 'sub-photo')" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer" checked>
                                     <div class="ml-3 flex-1">
                                         <div class="flex justify-between items-center">
-                                            <span class="text-sm font-bold text-gray-800 dark:text-gray-200">3. 平面/動態紀實攝影師</span>
-                                            <span class="text-xs font-bold text-primary">+NT$ 18,000</span>
+                                            <label for="main-photo" class="text-sm font-bold text-gray-800 dark:text-gray-200 cursor-pointer">3. 平面/動態紀實攝影師</label>
+                                            <span class="text-[11px] font-bold text-primary">+NT$ 18,000</span>
                                         </div>
-                                        <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600">
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary">
-                                                SDE 當日快剪快播 (+NT$ 15,000)
+                                        <div id="sub-photo" class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600 transition-opacity">
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary"> SDE 當日快剪快播 (+15,000)
                                             </label>
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked>
-                                                雙機位拍攝 (+NT$ 12,000)
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked> 雙機位拍攝 (+12,000)
                                             </label>
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary">
-                                                類婚紗與全家福專屬引導拍攝 (+NT$ 5,000)
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary"> 類婚紗與全家福專屬引導拍攝 (+5,000)
                                             </label>
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked>
-                                                空拍機壯闊空景拍攝 (+NT$ 6,000)
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary" checked> 空拍機壯闊空景拍攝 (+6,000)
                                             </label>
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
 
                             <div class="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-4 border border-gray-100 dark:border-gray-700">
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" checked>
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="main-audio" onchange="toggleSubItems(this, 'sub-audio')" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer" checked>
                                     <div class="ml-3 flex-1">
                                         <div class="flex justify-between items-center">
-                                            <span class="text-sm font-bold text-gray-800 dark:text-gray-200">4. 燈光音響與影音場控</span>
-                                            <span class="text-xs font-bold text-primary">+NT$ 18,000</span>
+                                            <label for="main-audio" class="text-sm font-bold text-gray-800 dark:text-gray-200 cursor-pointer">4. 燈光音響與影音場控</label>
+                                            <span class="text-[11px] font-bold text-primary">+NT$ 18,000</span>
                                         </div>
-                                        <div class="mt-3 pl-2 border-l-2 border-gray-200 dark:border-gray-600">
-                                            <label class="flex items-center text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary transition-colors">
-                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary">
-                                                專業 LIVE Band 音響工程系統 (+NT$ 15,000)
+                                        <div id="sub-audio" class="mt-2 pl-2 border-l-2 border-gray-200 dark:border-gray-600 transition-opacity">
+                                            <label class="flex items-center text-[11px] text-gray-600 dark:text-gray-400 cursor-pointer hover:text-primary">
+                                                <input type="checkbox" class="mr-2 rounded border-gray-300 text-primary focus:ring-primary"> 專業 LIVE Band 音響工程系統 (+15,000)
                                             </label>
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -431,7 +624,7 @@
                         <h4 class="text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                             <span class="material-icons text-primary mr-2 text-xl">favorite</span> C方案｜儀式規劃執行
                         </h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gray-50 dark:bg-gray-900/50 p-5 rounded-xl border border-gray-100 dark:border-gray-700">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
                             <label class="flex items-center cursor-pointer p-2 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-600">
                                 <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3">
                                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">文定儀式引導與司儀</span>
@@ -457,64 +650,117 @@
                         </h4>
                         <div class="space-y-3">
                             <label class="flex items-start bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-primary transition-colors group">
-                                <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3" checked>
+                                <input type="checkbox" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3" checked>
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-bold text-gray-800 dark:text-gray-200 group-hover:text-primary transition-colors">迎賓與拍照區主題設計</span>
-                                        <span class="text-xs font-bold text-primary">+NT$ 35,000</span>
+                                        <span class="text-[11px] font-bold text-primary">+NT$ 35,000</span>
                                     </div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">包含：迎賓指引、收禮桌佈置、大型拍照背板或立體結構。</p>
+                                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">包含：迎賓指引、收禮桌佈置、大型拍照背板或立體結構。</p>
                                 </div>
                             </label>
                             <label class="flex items-start bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-primary transition-colors group">
-                                <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3" checked>
+                                <input type="checkbox" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3" checked>
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-bold text-gray-800 dark:text-gray-200 group-hover:text-primary transition-colors">宴客桌景與舞台視覺</span>
-                                        <span class="text-xs font-bold text-primary">+NT$ 20,000</span>
+                                        <span class="text-[11px] font-bold text-primary">+NT$ 20,000</span>
                                     </div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">包含：主客桌花藝、專屬椅背裝飾、舞台 Logo 與地貼設計。</p>
+                                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">包含：主客桌花藝、專屬椅背裝飾、舞台 Logo 與地貼設計。</p>
                                 </div>
                             </label>
                             <label class="flex items-start bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-primary transition-colors group">
-                                <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                                <input type="checkbox" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-bold text-gray-800 dark:text-gray-200 group-hover:text-primary transition-colors">鮮花花藝佈置</span>
-                                        <span class="text-xs font-bold text-primary">+NT$ 25,000</span>
+                                        <span class="text-[11px] font-bold text-primary">+NT$ 25,000</span>
                                     </div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">包含：鮮花拱門/無邊際地排花、觀禮走道佈置。</p>
+                                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">包含：鮮花拱門/無邊際地排花、觀禮走道佈置。</p>
                                 </div>
                             </label>
                             <label class="flex items-start bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-100 dark:border-gray-700 cursor-pointer hover:border-primary transition-colors group">
-                                <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                                <input type="checkbox" class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary mr-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-bold text-gray-800 dark:text-gray-200 group-hover:text-primary transition-colors">品牌級平面視覺套組</span>
-                                        <span class="text-xs font-bold text-primary">+NT$ 15,000</span>
+                                        <span class="text-[11px] font-bold text-primary">+NT$ 15,000</span>
                                     </div>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">包含：專屬婚禮 Logo、客製喜帖、菜單、桌卡與歡迎牌設計。</p>
+                                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">包含：專屬婚禮 Logo、客製喜帖、菜單、桌卡與歡迎牌設計。</p>
                                 </div>
                             </label>
                         </div>
                     </div>
 
+                    <div class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+                        <h4 class="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center">
+                            <span class="material-icons text-primary mr-2 text-xl">edit_note</span> 婚宴備註 Notes
+                        </h4>
+                        <textarea rows="3" class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-sm py-2.5 px-3 resize-none focus:ring-primary focus:border-primary text-gray-700 dark:text-gray-300" placeholder="輸入客戶的特殊需求或補充說明..."></textarea>
+                    </div>
+
                 </div>
 
-                <div class="p-6 border-t border-gray-100 dark:border-gray-700 flex justify-end space-x-3 bg-gray-50/50 dark:bg-gray-800/50 rounded-b-2xl">
-                    <button class="px-6 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" onclick="toggleModal('modal-modify')">取消修改</button>
-                    <button class="bg-primary text-white px-8 py-2 rounded-lg font-bold shadow-md hover:bg-blue-600 transition-colors" onclick="toggleModal('modal-modify')">儲存需求設定</button>
+                <div class="p-5 border-t border-gray-100 dark:border-gray-700 flex justify-end space-x-3 bg-gray-50/50 dark:bg-gray-800/50 rounded-b-xl">
+                    <button class="px-5 py-2 text-sm font-medium text-gray-500 hover:text-gray-700" onclick="toggleModal('modal-modify')">取消修改</button>
+                    <button class="bg-primary text-white px-6 py-2 rounded-lg font-bold shadow-md hover:bg-blue-600 transition-colors" onclick="toggleModal('modal-modify')">儲存需求設定</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-modify-backdrop"></div>
 
+    <div class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+        id="modal-details">
+        <div class="relative w-full max-w-lg mx-auto my-6 px-4">
+            <div class="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+                <div class="flex items-center justify-between p-5 rounded-t border-b border-gray-100 dark:border-gray-700">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">詳細需求紀錄書</h3>
+                    <button class="text-gray-400 hover:text-gray-600" onclick="toggleModal('modal-details')">
+                        <span class="material-icons text-xl">close</span>
+                    </button>
+                </div>
+                <div class="p-6 text-center">
+                    <p class="text-sm text-gray-500">已轉交簽約處理，紀錄已封存。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-details-backdrop"></div>
+
     <script>
         function toggleModal(modalID) {
             document.getElementById(modalID).classList.toggle("hidden");
             const backdrop = document.getElementById(modalID + "-backdrop");
             if (backdrop) backdrop.classList.toggle("hidden");
+        }
+
+        // 控制卡片左右滑動
+        function scrollCards(direction) {
+            const container = document.getElementById('card-slider');
+            const scrollAmount = container.clientWidth * 0.8; 
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // 控制大項與細項的連動邏輯
+        function toggleSubItems(mainCheckbox, subContainerId) {
+            const container = document.getElementById(subContainerId);
+            if (!container) return;
+            
+            const inputs = container.querySelectorAll('input');
+            
+            if (mainCheckbox.checked) {
+                // 如果大項勾選，恢復細項可點選狀態 (移除透明度與禁用點擊)
+                container.classList.remove('opacity-50', 'pointer-events-none');
+                inputs.forEach(input => input.disabled = false);
+            } else {
+                // 如果大項取消勾選，細項變灰、禁止點擊並清空選取
+                container.classList.add('opacity-50', 'pointer-events-none');
+                inputs.forEach(input => {
+                    input.disabled = true;
+                    input.checked = false;
+                });
+            }
         }
     </script>
 </body>
