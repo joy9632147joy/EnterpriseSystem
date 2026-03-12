@@ -760,10 +760,7 @@
             </div>
             
             <h3 class="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">確定要駁回此任務嗎？</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 text-center mb-5">駁回後，任務將退回給負責人重新執行。您可以在下方填寫退回的原因或修改建議：</p>
-            
-            <textarea id="reject-reason" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-white rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-none mb-6 shadow-inner" rows="3" placeholder="請輸入駁回原因 (選填)..."></textarea>
-            
+            <p class="text-sm text-gray-500 dark:text-gray-400 text-center mb-5">駁回後，任務將重新指派負責人</p>
             <div class="flex space-x-3">
                 <button onclick="closeRejectModal()" class="flex-1 py-2.5 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl text-sm font-bold transition-colors">取消</button>
                 <button onclick="confirmRejectTask()" class="flex-1 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-bold shadow-sm transition-colors flex items-center justify-center">
@@ -954,8 +951,13 @@
                         badge.textContent = '已完成';
                     }
 
-                    // D. 隱藏審核按鈕
-                    this.style.display = 'none';
+                    // D. 隱藏審核按鈕群組 (連同駁回按鈕一起隱藏)
+                    const btnGroup = this.closest('.flex.space-x-2');
+                    if(btnGroup) {
+                        btnGroup.style.display = 'none';
+                    } else {
+                        this.style.display = 'none';
+                    }
 
                     // E. 將「查看成果」按鈕變成「查看紀錄」
                     if (btnViewResult) btnViewResult.textContent = '查看紀錄';
@@ -1048,29 +1050,57 @@
                 if(currentRejectCard) {
                     const reason = document.getElementById('reject-reason').value;
 
-                    // UI 即時變更：將卡片退回「進行中 (被駁回)」狀態
-                    // 1. 左側圓點變回藍色
+                    // UI 即時變更：因資料庫限制，將卡片退回「待指派」狀態
+                    // 1. 左側圓點變回灰色
                     const dot = currentRejectCard.querySelector('.task-dot');
-                    if(dot) dot.className = 'absolute -left-[13px] top-2 w-6 h-6 rounded-full bg-blue-500 border-4 border-white dark:border-gray-800 shadow-[0_0_0_3px_rgba(59,130,246,0.2)] task-dot';
+                    if(dot) dot.className = 'absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800 shadow-sm task-dot';
                     
-                    // 2. 卡片背景變回藍色
+                    // 2. 卡片背景變回灰色/白色 (移除黃色風格)
                     const cardBg = currentRejectCard.querySelector('.task-card-bg');
-                    if(cardBg) cardBg.className = 'bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl p-5 border border-blue-200 dark:border-blue-800/50 shadow-sm relative overflow-hidden task-card-bg';
+                    if(cardBg) cardBg.className = 'bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden transition-all task-card-bg';
                     
-                    // 3. 狀態標籤變成紅色的「已駁回」
+                    // 3. 狀態標籤變成灰色的「待指派」
                     const badge = currentRejectCard.querySelector('.status-badge');
                     if(badge) {
-                        badge.className = 'status-badge text-xs font-bold text-red-700 bg-red-100 dark:bg-red-900/40 dark:text-red-400 px-2.5 py-0.5 rounded-full animate-pulse';
-                        badge.textContent = '已駁回 (重新執行)';
+                        badge.className = 'status-badge text-xs font-bold text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-gray-600';
+                        badge.textContent = '待指派';
                     }
 
-                    // 4. 隱藏審核按鈕群組
+                    // 4. 隱藏原本的審核與駁回按鈕群組
                     const btnContainer = currentRejectCard.querySelector('.flex.space-x-2');
                     if(btnContainer) btnContainer.style.display = 'none';
 
+                    // 5. (選用) 加入紅色警告小標籤，提示這個是「被退回重派」的
+                    if(cardBg && !cardBg.querySelector('.bg-red-500.text-white')) {
+                        const rejectAlert = document.createElement('div');
+                        rejectAlert.className = 'absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10';
+                        rejectAlert.textContent = '已駁回，需重派';
+                        cardBg.appendChild(rejectAlert);
+                    }
+
+                    // 6. 替換負責人區塊，變回可操作的「指派按鈕」
+                    const taskNameEl = currentRejectCard.querySelector('h4');
+                    const taskName = taskNameEl ? taskNameEl.textContent : '未知任務';
+                    
+                    // 找出「查看成果」的整個底部區塊並替換
+                    const bottomArea = currentRejectCard.querySelector('.mt-3.bg-white, .flex.justify-between.items-center.border-t');
+                    if (bottomArea) {
+                        bottomArea.outerHTML = `
+                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
+                                <div class="flex items-center text-red-500 font-bold">
+                                    <span class="material-icons text-[16px] mr-1">person_off</span>
+                                    <span class="text-sm">被駁回，尚未指派</span>
+                                </div>
+                                <button class="btn-assign bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm flex items-center" data-task="${taskName}" data-category="重新指派">
+                                    <span class="material-icons text-[16px] mr-1.5">person_add_alt</span> 重新指派
+                                </button>
+                            </div>
+                        `;
+                    }
+
                     // 模擬送出成功提示
                     setTimeout(() => {
-                        alert(`已駁回任務！系統將通知負責人重新處理。\n備註內容：${reason || '無'}`);
+                        alert(`已駁回任務！任務狀態已退回為「待指派」。\n備註內容：${reason || '無'}`);
                     }, 100);
                 }
                 closeRejectModal();
