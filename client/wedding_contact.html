@@ -595,19 +595,13 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
-                    <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                            style="color:var(--text-muted); font-size:20px;">search</button>
-                    </div>
+                    
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
@@ -627,24 +621,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
-            <div class="offcanvas-search">
-                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
-                <input type="text" placeholder="搜尋場地或職人...">
-            </div>
 
-            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
             <div id="mobileUserMenu"
                 style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
                 <p id="mobileWelcome"
-                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
-                </p>
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;"></p>
                 <a href="./customer_system.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
             </div>
 
-            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -653,14 +640,12 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
 
-            <!-- 未登入顯示：會員登入在導覽選單下方 -->
             <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
 
-            <!-- 登出：最下方，登入後才顯示，紅字 -->
             <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
                 style="padding:14px 0; display:none; letter-spacing:0.08em;">
                 <span class="material-symbols-outlined"
@@ -669,6 +654,7 @@
             </a>
         </div>
     </div>
+
 
     <!-- ─── Vue App Root ─── -->
     <div class="page-wrap" id="app">
@@ -742,7 +728,7 @@
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">期望諮詢日期 Consultation Date <span
                                             class="text-danger">*</span></label>
-                                    <input class="lux-input" type="date" v-model="form.consultation_date" required />
+                                    <input class="lux-input" type="date" v-model="form.consultation_date" :min="today" required />
                                 </div>
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">期望時段 Preferred Time <span
@@ -768,7 +754,7 @@
                             <div class="row g-4">
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">預定婚期 Wedding Date</label>
-                                    <input class="lux-input" type="date" v-model="form.wedding_date" />
+                                    <input class="lux-input" type="date" v-model="form.wedding_date" :min="today" />
                                 </div>
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">賓客規模 Guest Scale</label>
@@ -952,7 +938,7 @@
 
     <!-- ─── Footer ─── -->
     <footer class="site-footer">
-        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+        <div class="footer-bottom">© 2026 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <!-- 回到頂部按鈕 -->
@@ -980,6 +966,9 @@
                     styles: [],
                     additional_notes: ''
                 });
+
+                // 禁止選擇過去日期（含今天）
+                const today = new Date(Date.now() + 86400000).toISOString().split('T')[0];
 
                 const availableStyles = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代', '異國風情'];
                 const availableServices = [
@@ -1039,7 +1028,8 @@
                     form, availableStyles, availableServices,
                     toggleStyle, toggleService, submitForm,
                     activeTab,
-                    categories, activeCategory, filteredFaqs, toggleFaq
+                    categories, activeCategory, filteredFaqs, toggleFaq,
+                    today
                 };
             }
         }).mount('#app');
