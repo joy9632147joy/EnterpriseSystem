@@ -14,8 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <!-- 引入 Vue 3 用作前端資料綁定 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -178,7 +180,7 @@
                     class="mr-4 text-gray-400 hover:text-white focus:outline-none p-1 rounded-md hover:bg-gray-700 transition-colors">
                     <span class="material-icons">menu</span>
                 </button>
-                <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">諮詢單總覽</h1>
+                <h1 class="text-xl font-bold tracking-wider text-gray-100 hidden sm:block">諮詢單管理</h1>
             </div>
 
             <div class="flex items-center space-x-4">
@@ -257,7 +259,7 @@
                                         <div class="text-xs text-gray-500 mt-1">{{ item.created_date }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="font-medium text-gray-900">{{ item.client_name }}</div>
+                                        <div class="font-medium text-gray-900">{{ item.name }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-gray-600">{{ item.phone }}</td>
                                     <td class="px-6 py-4">
@@ -340,7 +342,7 @@
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <div class="readonly-label">客戶姓名</div>
-                                <div class="readonly-value flex items-center">{{ selectedItem.client_name }}</div>
+                                <div class="readonly-value flex items-center">{{ selectedItem.name }}</div>
                             </div>
                             <div>
                                 <div class="readonly-label">聯絡電話</div>
@@ -366,7 +368,7 @@
                             </div>
                             <div>
                                 <div class="readonly-label">期望時段</div>
-                                <div class="readonly-value flex items-center">{{ selectedItem.consultation_time || '未定'
+                                <div class="readonly-value flex items-center">{{ selectedItem.preferred_time || '未定'
                                     }}</div>
                             </div>
                             <div>
@@ -419,7 +421,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">更改狀態 <span class="text-xs text-gray-500">#{{ selectedItem ? selectedItem.id : '' }}</span></h5>
+                    <h5 class="modal-title">更改狀態 <span class="text-xs text-gray-500">#{{ selectedItem ? selectedItem.id
+                            : '' }}</span></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -437,7 +440,7 @@
         </div>
     </div>
 
-<!-- 載入 Bootstrap JS 用於 Offcanvas & Modal -->
+    <!-- 載入 Bootstrap JS 用於 Offcanvas & Modal -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -448,35 +451,7 @@
                 return {
                     searchQuery: '',
                     statusFilter: 'all',
-
-                    // 模擬從資料庫 / API 拿到的諮詢單資料
-                    consultations: [
-                        {
-                            id: 'C2403-001', created_date: '2026-03-05 14:30', client_name: '王大明', phone: '0912-345-678', line_id: 'wangdm88', email: 'wang@example.com',
-                            wedding_date: '2026-10-15', guest_scale: '50 - 150人 (溫馨婚禮)', styles: ['美式戶外'], services: ['全程統籌', '場地佈置'], additional_notes: '希望能有戶外草皮的場地推薦。',
-                            consultation_date: '2026-03-20', consultation_time: '下午 14:00-17:00',
-                            status: 'pending'
-                        },
-                        {
-                            id: 'C2403-002', created_date: '2026-03-05 16:15', client_name: '林心如', phone: '0988-777-666', line_id: 'ruby_lin', email: 'ruby@example.com',
-                            wedding_date: '2026-12-25', guest_scale: '150 - 300人 (豪華盛宴)', styles: ['奢華飯店', '經典歐式'], services: ['全程統籌', '婚禮紀錄', '新娘秘書'], additional_notes: '主要是看中你們家大亨小傳的風格，想先了解細節。',
-                            consultation_date: '2026-03-22', consultation_time: '上午 10:00-12:00',
-                            status: 'pending'
-                        },
-                        {
-                            id: 'C2403-003', created_date: '2026-03-06 09:20', client_name: '陳建志', phone: '0933-222-111', line_id: '', email: 'chen.jc@gmail.com',
-                            wedding_date: '未定', guest_scale: '50人以下 (精緻派對)', styles: ['極簡現代'], services: ['場地佈置'], additional_notes: '只需單純晚宴主持，預估桌數 20 桌。',
-                            consultation_date: '2026-03-25', consultation_time: '晚上 18:00-20:00',
-                            status: 'confirmed'
-                        },
-                        {
-                            id: 'C2403-004', created_date: '2026-03-06 11:45', client_name: '張惠妹', phone: '0955-444-333', line_id: 'amei_123', email: 'amei@music.tw',
-                            wedding_date: '2027-01-01', guest_scale: '未定', styles: ['森林系'], services: ['全程統籌', '婚禮紀錄'], additional_notes: '暫時先詢問。',
-                            consultation_date: '2026-04-10', consultation_time: '',
-                            status: 'cancelled'
-                        }
-                    ],
-
+                    consultations: [], // 清空假資料，改由 API 載入
                     selectedItem: null,
                     editForm: {
                         status: ''
@@ -489,98 +464,137 @@
                 filteredConsultations() {
                     let result = this.consultations;
 
-                    // 1. 狀態篩選
+                    // 1. 狀態篩選 (注意這裡改對應中文狀態)
                     if (this.statusFilter !== 'all') {
-                        result = result.filter(c => c.status === this.statusFilter);
+                        const statusMap = {
+                            'pending': '待處理',
+                            'confirmed': '轉預約',
+                            'cancelled': '無效單'
+                        };
+                        result = result.filter(c => c.status === statusMap[this.statusFilter]);
                     }
 
                     // 2. 關鍵字搜尋
                     if (this.searchQuery.trim() !== '') {
                         const kw = this.searchQuery.toLowerCase();
                         result = result.filter(c => {
-                            const servicesMatch = c.services.join(',').toLowerCase().includes(kw);
+                            const servicesMatch = (c.services || []).join(',').toLowerCase().includes(kw);
                             const stylesMatch = (c.styles || []).join(',').toLowerCase().includes(kw);
-                            return c.id.toLowerCase().includes(kw) ||
-                                c.client_name.toLowerCase().includes(kw) ||
-                                c.phone.includes(kw) ||
-                                servicesMatch ||
-                                stylesMatch;
+                            // 確保不為 null 才做 toString() 或 toLowerCase()
+                            const name = c.name ? c.name.toLowerCase() : '';
+                            const phone = c.phone || '';
+                            const id = c.id ? c.id.toString() : '';
+
+                            return id.includes(kw) || name.includes(kw) || phone.includes(kw) || servicesMatch || stylesMatch;
                         });
                     }
-
                     return result;
                 }
             },
             mounted() {
-                // 初始化 Offcanvas
+                // 初始化 Bootstrap 元件
                 const el = document.getElementById('consultationDetailPanel');
                 if (el && window.bootstrap) {
                     this.offcanvasInstance = new bootstrap.Offcanvas(el);
                 }
-                // 初始化狀態修改 Modal
                 const modalEl = document.getElementById('statusModal');
                 if (modalEl && window.bootstrap) {
                     this.modalInstance = new bootstrap.Modal(modalEl);
                 }
+
+                // 畫面載入時，立刻向 Spring Boot 要資料！
+                this.fetchConsultations();
             },
             methods: {
+                // 🚀 從後端獲取資料
+                fetchConsultations() {
+                    axios.get('http://localhost:8080/api/consultations')
+                        .then(response => {
+                            if (response.data.success) {
+                                // 資料轉換魔法：處理字串轉陣列、欄位名稱對齊
+                                this.consultations = response.data.data.map(item => ({
+                                    ...item,
+                                    // 將後端的駝峰命名，對應給前端使用的蛇底線命名
+                                    created_date: item.createdAt ? item.createdAt.substring(0, 16).replace('T', ' ') : '',
+                                    consultation_date: item.consultationDate,
+                                    preferred_time: item.preferredTime,
+                                    wedding_date: item.weddingDate,
+                                    guest_scale: item.guestScale,
+                                    line_id: item.lineId,
+                                    additional_notes: item.additionalNotes,
+                                    // 把 "森林系,美式復古" 轉回 ["森林系", "美式復古"]
+                                    styles: item.styles ? item.styles.split(',') : [],
+                                    services: item.services ? item.services.split(',') : []
+                                }));
+                            }
+                        })
+                        .catch(error => {
+                            console.error("無法載入諮詢單資料:", error);
+                            alert("載入資料失敗，請確認後端伺服器是否啟動。");
+                        });
+                },
+
+                // 狀態標籤的顯示文字與顏色 class 對應
                 getStatusLabel(status) {
-                    const map = {
-                        'pending': '待處理',
-                        'confirmed': '轉預約',
-                        'cancelled': '無效單'
-                    };
-                    return map[status] || status;
+                    return status || '未知';
                 },
                 getStatusClass(status) {
-                    return `status-${status}`;
+                    if (status === '待處理') return 'status-pending';
+                    if (status === '轉預約') return 'status-confirmed';
+                    if (status === '無效單') return 'status-cancelled';
+                    return 'status-pending'; // 預設
                 },
+
                 openDetailPanel(item) {
-                    // 若 modal 正在開啟，先關閉它
-                    if (this.modalInstance) {
-                        this.modalInstance.hide();
-                    }
-
-                    // 深拷貝，或者保留 reference 以便之後 save 覆蓋
+                    if (this.modalInstance) this.modalInstance.hide();
                     this.selectedItem = item;
-
-                    // 將選中項目的目前資料填入編輯表單
-                    this.editForm = {
-                        status: item.status
-                    };
-
-                    // 顯示面板
-                    if (this.offcanvasInstance) {
-                        this.offcanvasInstance.show();
-                    }
+                    if (this.offcanvasInstance) this.offcanvasInstance.show();
                 },
                 openStatusModal(item) {
-                    // 設定要編輯的項目與表單
                     this.selectedItem = item;
-                    this.editForm.status = item.status;
-                    if (this.modalInstance) {
-                        this.modalInstance.show();
-                    }
+                    // 由於 HTML 裡 select options 的 value 是英文，這裡要做個反向映射
+                    if (item.status === '待處理') this.editForm.status = 'pending';
+                    else if (item.status === '轉預約') this.editForm.status = 'confirmed';
+                    else if (item.status === '無效單') this.editForm.status = 'cancelled';
+
+                    if (this.modalInstance) this.modalInstance.show();
                 },
+
+                // 🚀 儲存並發送更新給後端
                 saveStatusModal() {
-                    if (this.selectedItem) {
-                        const index = this.consultations.findIndex(c => c.id === this.selectedItem.id);
-                        if (index !== -1) {
-                            this.consultations[index].status = this.editForm.status;
-                            alert('資料已成功更新！');
-                        }
-                    }
-                    this.selectedItem = null;
-                    if (this.modalInstance) {
-                        this.modalInstance.hide();
-                    }
+                    if (!this.selectedItem) return;
+
+                    // 將 select 的英文 value 轉回中文存入資料庫
+                    let newStatusStr = '';
+                    if (this.editForm.status === 'pending') newStatusStr = '待處理';
+                    if (this.editForm.status === 'confirmed') newStatusStr = '轉預約';
+                    if (this.editForm.status === 'cancelled') newStatusStr = '無效單';
+
+                    // 呼叫後端 API 更新狀態 (你需要準備一個 PUT 或 PATCH API)
+                    axios.put(`http://localhost:8080/api/consultations/${this.selectedItem.id}/status`, { status: newStatusStr })
+                        .then(response => {
+                            if (response.data.success) {
+                                // 更新成功，修改本地端 Vue 的資料以更新畫面
+                                const index = this.consultations.findIndex(c => c.id === this.selectedItem.id);
+                                if (index !== -1) {
+                                    this.consultations[index].status = newStatusStr;
+                                }
+                                alert('狀態已成功更新！');
+                            }
+                        })
+                        .catch(error => {
+                            console.error("更新失敗:", error);
+                            alert("狀態更新失敗，請稍後再試。");
+                        })
+                        .finally(() => {
+                            this.selectedItem = null;
+                            if (this.modalInstance) this.modalInstance.hide();
+                        });
                 },
                 cancelStatusModal() {
                     this.selectedItem = null;
                     this.editForm.status = '';
-                    if (this.modalInstance) {
-                        this.modalInstance.hide();
-                    }
+                    if (this.modalInstance) this.modalInstance.hide();
                 }
             }
         }).mount('#app');
