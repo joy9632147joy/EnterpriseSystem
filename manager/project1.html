@@ -96,8 +96,11 @@
 <body
     class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden">
 
+    <div id="sidebar-overlay"
+        class="fixed inset-0 bg-gray-900/50 z-20 lg:hidden backdrop-blur-sm transition-opacity hidden cursor-pointer">
+    </div>
     <aside id="sidebar"
-        class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden relative z-20">
+        class="w-64 transition-all duration-300 ease-in-out bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden z-30 fixed lg:relative -translate-x-full lg:translate-x-0">
         <div class="h-16 flex items-center justify-center">
             <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
             <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
@@ -335,14 +338,20 @@
                                         class="bg-amber-50/30 dark:bg-amber-900/10 rounded-2xl p-5 border border-amber-200 dark:border-amber-800/50 shadow-sm task-card-bg">
                                         <div class="flex justify-between items-start mb-3">
                                             <div>
-                                                <span class="status-badge text-xs font-bold text-amber-700 bg-amber-100 dark:bg-amber-900/40 dark:text-amber-400 px-2.5 py-0.5 rounded-full animate-pulse">待審核</span>
-                                                <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">確認攝影師與錄影師檔期</h4>
+                                                <span
+                                                    class="status-badge text-xs font-bold text-amber-700 bg-amber-100 dark:bg-amber-900/40 dark:text-amber-400 px-2.5 py-0.5 rounded-full animate-pulse">待審核</span>
+                                                <h4 class="text-lg font-bold text-gray-800 dark:text-white mt-2">
+                                                    確認攝影師與錄影師檔期</h4>
                                             </div>
                                             <div class="flex items-center space-x-2">
-                                                <button class="btn-reject bg-red-50 hover:bg-red-100 text-red-600 dark:bg-red-900/20 dark:hover:bg-red-900/40 dark:text-red-400 px-4 py-1.5 rounded-lg text-sm font-bold transition-colors shadow-sm" onclick="openRejectModal(this)">
+                                                <button
+                                                    class="btn-reject bg-red-50 hover:bg-red-100 text-red-600 dark:bg-red-900/20 dark:hover:bg-red-900/40 dark:text-red-400 px-4 py-1.5 rounded-lg text-sm font-bold transition-colors shadow-sm"
+                                                    onclick="openRejectModal(this)">
                                                     駁回
                                                 </button>
-                                                <button class="btn-approve bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed px-4 py-1.5 rounded-lg text-sm font-bold shadow-sm transition-colors" disabled title="請先點擊下方查看成果">
+                                                <button
+                                                    class="btn-approve bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed px-4 py-1.5 rounded-lg text-sm font-bold shadow-sm transition-colors"
+                                                    disabled title="請先點擊下方查看成果">
                                                     審核通過
                                                 </button>
                                             </div>
@@ -752,18 +761,23 @@
         </div>
     </div>
 
-    <div id="rejectModal" class="hidden fixed inset-0 z-[120] flex items-center justify-center bg-gray-900/60 backdrop-blur-sm transition-opacity">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[400px] max-w-[95%] transform transition-all border border-gray-100 dark:border-gray-700 flex flex-col p-6">
-            
-            <div class="flex items-center justify-center w-14 h-14 rounded-full bg-red-100 dark:bg-red-900/30 text-red-500 mb-4 mx-auto">
+    <div id="rejectModal"
+        class="hidden fixed inset-0 z-[120] flex items-center justify-center bg-gray-900/60 backdrop-blur-sm transition-opacity">
+        <div
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[400px] max-w-[95%] transform transition-all border border-gray-100 dark:border-gray-700 flex flex-col p-6">
+
+            <div
+                class="flex items-center justify-center w-14 h-14 rounded-full bg-red-100 dark:bg-red-900/30 text-red-500 mb-4 mx-auto">
                 <span class="material-icons text-3xl">warning</span>
             </div>
-            
+
             <h3 class="text-xl font-bold text-gray-900 dark:text-white text-center mb-2">確定要駁回此任務嗎？</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400 text-center mb-5">駁回後，任務將重新指派負責人</p>
             <div class="flex space-x-3">
-                <button onclick="closeRejectModal()" class="flex-1 py-2.5 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl text-sm font-bold transition-colors">取消</button>
-                <button onclick="confirmRejectTask()" class="flex-1 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-bold shadow-sm transition-colors flex items-center justify-center">
+                <button onclick="closeRejectModal()"
+                    class="flex-1 py-2.5 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl text-sm font-bold transition-colors">取消</button>
+                <button onclick="confirmRejectTask()"
+                    class="flex-1 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-bold shadow-sm transition-colors flex items-center justify-center">
                     <span class="material-icons text-[18px] mr-1.5">reply</span> 確認駁回
                 </button>
             </div>
@@ -953,7 +967,7 @@
 
                     // D. 隱藏審核按鈕群組 (連同駁回按鈕一起隱藏)
                     const btnGroup = this.closest('.flex.space-x-2');
-                    if(btnGroup) {
+                    if (btnGroup) {
                         btnGroup.style.display = 'none';
                     } else {
                         this.style.display = 'none';
@@ -1031,44 +1045,44 @@
                 }
             });
 
-            window.openRejectModal = function(btn) {
+            window.openRejectModal = function (btn) {
                 // 記錄是哪一張卡片觸發了駁回
                 currentRejectCard = btn.closest('.relative.pl-8');
                 document.getElementById('rejectModal').classList.remove('hidden');
                 // (已移除清空 reject-reason 的邏輯，因為欄位已經拔除)
             };
 
-            window.closeRejectModal = function() {
+            window.closeRejectModal = function () {
                 document.getElementById('rejectModal').classList.add('hidden');
                 currentRejectCard = null;
             };
 
-            window.confirmRejectTask = function() {
-                if(currentRejectCard) {
+            window.confirmRejectTask = function () {
+                if (currentRejectCard) {
                     // (已移除抓取 reject-reason 的邏輯)
 
                     // UI 即時變更：因資料庫限制，將卡片退回「待指派」狀態
                     // 1. 左側圓點變回灰色
                     const dot = currentRejectCard.querySelector('.task-dot');
-                    if(dot) dot.className = 'absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800 shadow-sm task-dot';
-                    
+                    if (dot) dot.className = 'absolute -left-[11px] top-2 w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 border-4 border-white dark:border-gray-800 shadow-sm task-dot';
+
                     // 2. 卡片背景變回灰色/白色 (移除黃色風格)
                     const cardBg = currentRejectCard.querySelector('.task-card-bg');
-                    if(cardBg) cardBg.className = 'bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden transition-all task-card-bg';
-                    
+                    if (cardBg) cardBg.className = 'bg-white dark:bg-gray-800/60 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden transition-all task-card-bg';
+
                     // 3. 狀態標籤變成灰色的「待指派」
                     const badge = currentRejectCard.querySelector('.status-badge');
-                    if(badge) {
+                    if (badge) {
                         badge.className = 'status-badge text-xs font-bold text-gray-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2.5 py-0.5 rounded-full border border-gray-200 dark:border-gray-600';
                         badge.textContent = '待指派';
                     }
 
                     // 4. 隱藏原本的審核與駁回按鈕群組
                     const btnContainer = currentRejectCard.querySelector('.flex.space-x-2');
-                    if(btnContainer) btnContainer.style.display = 'none';
+                    if (btnContainer) btnContainer.style.display = 'none';
 
                     // 5. 加入紅色警告小標籤，提示這個是「被退回重派」的
-                    if(cardBg && !cardBg.querySelector('.bg-red-500.text-white')) {
+                    if (cardBg && !cardBg.querySelector('.bg-red-500.text-white')) {
                         const rejectAlert = document.createElement('div');
                         rejectAlert.className = 'absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10';
                         rejectAlert.textContent = '已駁回，需重派';
@@ -1078,7 +1092,7 @@
                     // 6. 替換負責人區塊，變回可操作的「重新指派」按鈕 (帶有歷史屬性)
                     const taskNameEl = currentRejectCard.querySelector('h4');
                     const taskName = taskNameEl ? taskNameEl.textContent : '未知任務';
-                    
+
                     const bottomArea = currentRejectCard.querySelector('.mt-3.bg-white, .flex.justify-between.items-center.border-t');
                     if (bottomArea) {
                         bottomArea.outerHTML = `

@@ -112,9 +112,12 @@
     class="bg-gradient-to-br from-[#EEF2F6] to-[#E3E8EF] dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 h-screen flex overflow-hidden"
     id="app">
 
+    <div id="sidebar-overlay"
+        class="fixed inset-0 bg-gray-900/50 z-20 lg:hidden backdrop-blur-sm transition-opacity hidden cursor-pointer">
+    </div>
     <!-- Sidebar (繼承自 main_page) -->
     <aside id="sidebar"
-        class="w-64 transition-all duration-300 bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden relative z-20">
+        class="w-64 transition-all duration-300 ease-in-out bg-sidebar-bg flex flex-col h-full text-gray-300 flex-shrink-0 overflow-hidden z-30 fixed lg:relative -translate-x-full lg:translate-x-0">
         <div class="h-16 flex items-center justify-center">
             <span class="text-blue-500 font-bold text-2xl mr-2">ES</span>
             <div class="text-white font-bold text-lg tracking-wide menu-category p-0 m-0">Admin</div>
