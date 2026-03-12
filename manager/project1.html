@@ -1031,14 +1031,11 @@
                 }
             });
 
-            // ================= 駁回任務防呆 Modal 邏輯 =================
-            let currentRejectCard = null;
-
             window.openRejectModal = function(btn) {
                 // 記錄是哪一張卡片觸發了駁回
                 currentRejectCard = btn.closest('.relative.pl-8');
                 document.getElementById('rejectModal').classList.remove('hidden');
-                document.getElementById('reject-reason').value = ''; // 清空上次填寫的原因
+                // (已移除清空 reject-reason 的邏輯，因為欄位已經拔除)
             };
 
             window.closeRejectModal = function() {
@@ -1048,7 +1045,7 @@
 
             window.confirmRejectTask = function() {
                 if(currentRejectCard) {
-                    const reason = document.getElementById('reject-reason').value;
+                    // (已移除抓取 reject-reason 的邏輯)
 
                     // UI 即時變更：因資料庫限制，將卡片退回「待指派」狀態
                     // 1. 左側圓點變回灰色
@@ -1070,7 +1067,7 @@
                     const btnContainer = currentRejectCard.querySelector('.flex.space-x-2');
                     if(btnContainer) btnContainer.style.display = 'none';
 
-                    // 5. (選用) 加入紅色警告小標籤，提示這個是「被退回重派」的
+                    // 5. 加入紅色警告小標籤，提示這個是「被退回重派」的
                     if(cardBg && !cardBg.querySelector('.bg-red-500.text-white')) {
                         const rejectAlert = document.createElement('div');
                         rejectAlert.className = 'absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10';
@@ -1078,11 +1075,10 @@
                         cardBg.appendChild(rejectAlert);
                     }
 
-                    // 6. 替換負責人區塊，變回可操作的「指派按鈕」
+                    // 6. 替換負責人區塊，變回可操作的「重新指派」按鈕 (帶有歷史屬性)
                     const taskNameEl = currentRejectCard.querySelector('h4');
                     const taskName = taskNameEl ? taskNameEl.textContent : '未知任務';
                     
-                    // 找出「查看成果」的整個底部區塊並替換
                     const bottomArea = currentRejectCard.querySelector('.mt-3.bg-white, .flex.justify-between.items-center.border-t');
                     if (bottomArea) {
                         bottomArea.outerHTML = `
@@ -1091,16 +1087,20 @@
                                     <span class="material-icons text-[16px] mr-1">person_off</span>
                                     <span class="text-sm">被駁回，尚未指派</span>
                                 </div>
-                                <button class="btn-assign bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm flex items-center" data-task="${taskName}" data-category="重新指派">
+                                <button class="btn-assign bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors shadow-sm flex items-center" 
+                                    data-task="${taskName}" 
+                                    data-category="重新指派"
+                                    data-prev-assignees="emp3" 
+                                    data-prev-deadline="2026-03-20">
                                     <span class="material-icons text-[16px] mr-1.5">person_add_alt</span> 重新指派
                                 </button>
                             </div>
                         `;
                     }
 
-                    // 模擬送出成功提示
+                    // 模擬送出成功提示 (文字修改)
                     setTimeout(() => {
-                        alert(`已駁回任務！任務狀態已退回為「待指派」。\n備註內容：${reason || '無'}`);
+                        alert('已駁回任務！任務狀態已退回為「待指派」。\n請點擊「重新指派」來填寫交辦備註與修改負責人。');
                     }, 100);
                 }
                 closeRejectModal();
