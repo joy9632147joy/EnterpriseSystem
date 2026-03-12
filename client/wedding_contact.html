@@ -728,7 +728,7 @@
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">期望諮詢日期 Consultation Date <span
                                             class="text-danger">*</span></label>
-                                    <input class="lux-input" type="date" v-model="form.consultation_date" required />
+                                    <input class="lux-input" type="date" v-model="form.consultation_date" :min="today" required />
                                 </div>
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">期望時段 Preferred Time <span
@@ -754,7 +754,7 @@
                             <div class="row g-4">
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">預定婚期 Wedding Date</label>
-                                    <input class="lux-input" type="date" v-model="form.wedding_date" />
+                                    <input class="lux-input" type="date" v-model="form.wedding_date" :min="today" />
                                 </div>
                                 <div class="col-md-6 contact-field">
                                     <label class="contact-label">賓客規模 Guest Scale</label>
@@ -967,6 +967,9 @@
                     additional_notes: ''
                 });
 
+                // 禁止選擇過去日期（含今天）
+                const today = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+
                 const availableStyles = ['森林系', '美式復古', '西式教堂', '中式老宅', '極簡現代', '異國風情'];
                 const availableServices = [
                     { icon: 'groups', title: '婚禮團隊', en: 'Wedding Team' },
@@ -1025,7 +1028,8 @@
                     form, availableStyles, availableServices,
                     toggleStyle, toggleService, submitForm,
                     activeTab,
-                    categories, activeCategory, filteredFaqs, toggleFaq
+                    categories, activeCategory, filteredFaqs, toggleFaq,
+                    today
                 };
             }
         }).mount('#app');

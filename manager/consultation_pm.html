@@ -228,8 +228,7 @@
                             class="form-select text-sm border-gray-200 rounded-lg shadow-sm focus:ring-accent-gold focus:border-accent-gold w-full md:w-40 bg-white py-2">
                             <option value="all">顯示全部</option>
                             <option value="pending">待處理 (Pending)</option>
-                            <option value="contacting">聯絡中 (Contacting)</option>
-                            <option value="confirmed">已簽約 (Confirmed)</option>
+                            <option value="confirmed">轉預約 (Booking)</option>
                             <option value="cancelled">無效 / 取消 (Cancelled)</option>
                         </select>
                     </div>
@@ -255,10 +254,10 @@
                                     class="hover:bg-blue-50/30 transition-colors">
                                     <td class="px-6 py-4">
                                         <div class="font-medium text-gray-800">{{ item.id }}</div>
-                                        <div class="text-xs text-gray-500 mt-1">{{ item.date }}</div>
+                                        <div class="text-xs text-gray-500 mt-1">{{ item.created_date }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="font-medium text-gray-900">{{ item.name }}</div>
+                                        <div class="font-medium text-gray-900">{{ item.client_name }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-gray-600">{{ item.phone }}</td>
                                     <td class="px-6 py-4">
@@ -270,7 +269,8 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span :class="getStatusClass(item.status)" class="status-badge">
+                                        <span :class="getStatusClass(item.status) + ' status-badge cursor-pointer'"
+                                            @click="openStatusModal(item)" title="點擊編輯狀態">
                                             {{ getStatusLabel(item.status) }}
                                         </span>
                                     </td>
@@ -305,6 +305,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </main>
 
@@ -338,7 +340,7 @@
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <div class="readonly-label">客戶姓名</div>
-                                <div class="readonly-value flex items-center">{{ selectedItem.name }}</div>
+                                <div class="readonly-value flex items-center">{{ selectedItem.client_name }}</div>
                             </div>
                             <div>
                                 <div class="readonly-label">聯絡電話</div>
@@ -349,7 +351,7 @@
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <div class="readonly-label">Line ID</div>
-                                <div class="readonly-value flex items-center">{{ selectedItem.lineId || '未提供' }}</div>
+                                <div class="readonly-value flex items-center">{{ selectedItem.line_id || '未提供' }}</div>
                             </div>
                             <div>
                                 <div class="readonly-label">Email</div>
@@ -359,14 +361,23 @@
 
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
+                                <div class="readonly-label">期望諮詢日期</div>
+                                <div class="readonly-value flex items-center">{{ selectedItem.consultation_date}}</div>
+                            </div>
+                            <div>
+                                <div class="readonly-label">期望時段</div>
+                                <div class="readonly-value flex items-center">{{ selectedItem.consultation_time || '未定'
+                                    }}</div>
+                            </div>
+                            <div>
                                 <div class="readonly-label">預計婚期 (檔期)</div>
-                                <div class="readonly-value flex items-center">{{ selectedItem.weddingDate || '未定' }}
+                                <div class="readonly-value flex items-center">{{ selectedItem.wedding_date || '未定' }}
                                 </div>
                             </div>
                             <div>
                                 <div class="readonly-label">賓客規模</div>
                                 <div class="readonly-value flex items-center text-accent-gold font-medium">{{
-                                    selectedItem.guestScale || '未定' }}</div>
+                                    selectedItem.guest_scale || '未定' }}</div>
                             </div>
                         </div>
 
@@ -393,19 +404,40 @@
                         <div>
                             <div class="readonly-label">補充說明 / 其他需求</div>
                             <div class="readonly-value whitespace-pre-line" style="min-height: 4rem;">{{
-                                selectedItem.note || '無' }}</div>
+                                selectedItem.additional_notes || '無' }}</div>
                         </div>
                     </div>
-
 
                 </div>
 
             </div>
         </div>
-
     </div>
 
-    <!-- 載入 Bootstrap JS 用於 Offcanvas -->
+    <!-- 狀態變更 Modal -->
+    <div class="modal fade" id="statusModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">更改狀態 <span class="text-xs text-gray-500">#{{ selectedItem ? selectedItem.id : '' }}</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <select v-model="editForm.status" class="form-select w-full">
+                        <option value="pending">待處理</option>
+                        <option value="confirmed">轉預約</option>
+                        <option value="cancelled">無效單</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="cancelStatusModal">取消</button>
+                    <button type="button" class="btn btn-primary" @click="saveStatusModal">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 載入 Bootstrap JS 用於 Offcanvas & Modal -->
     <script src="../js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -420,34 +452,37 @@
                     // 模擬從資料庫 / API 拿到的諮詢單資料
                     consultations: [
                         {
-                            id: 'C2403-001', date: '2026-03-05 14:30', name: '王大明', phone: '0912-345-678', lineId: 'wangdm88', email: 'wang@example.com',
-                            weddingDate: '2026-10-15', guestScale: '50 - 150人 (溫馨婚禮)', styles: ['美式戶外'], services: ['全程統籌', '場地佈置'], note: '希望能有戶外草皮的場地推薦。',
-                            status: 'pending', pm: '', internalNote: ''
+                            id: 'C2403-001', created_date: '2026-03-05 14:30', client_name: '王大明', phone: '0912-345-678', line_id: 'wangdm88', email: 'wang@example.com',
+                            wedding_date: '2026-10-15', guest_scale: '50 - 150人 (溫馨婚禮)', styles: ['美式戶外'], services: ['全程統籌', '場地佈置'], additional_notes: '希望能有戶外草皮的場地推薦。',
+                            consultation_date: '2026-03-20', consultation_time: '下午 14:00-17:00',
+                            status: 'pending'
                         },
                         {
-                            id: 'C2403-002', date: '2026-03-05 16:15', name: '林心如', phone: '0988-777-666', lineId: 'ruby_lin', email: 'ruby@example.com',
-                            weddingDate: '2026-12-25', guestScale: '150 - 300人 (豪華盛宴)', styles: ['奢華飯店', '經典歐式'], services: ['全程統籌', '婚禮紀錄', '新娘秘書'], note: '主要是看中你們家大亨小傳的風格，想先了解細節。',
-                            status: 'contacting', pm: 'Joy', internalNote: '2026/03/06 去電，女方目前人在國外，預計下週二下午回撥討論細節。'
+                            id: 'C2403-002', created_date: '2026-03-05 16:15', client_name: '林心如', phone: '0988-777-666', line_id: 'ruby_lin', email: 'ruby@example.com',
+                            wedding_date: '2026-12-25', guest_scale: '150 - 300人 (豪華盛宴)', styles: ['奢華飯店', '經典歐式'], services: ['全程統籌', '婚禮紀錄', '新娘秘書'], additional_notes: '主要是看中你們家大亨小傳的風格，想先了解細節。',
+                            consultation_date: '2026-03-22', consultation_time: '上午 10:00-12:00',
+                            status: 'pending'
                         },
                         {
-                            id: 'C2403-003', date: '2026-03-06 09:20', name: '陳建志', phone: '0933-222-111', lineId: '', email: 'chen.jc@gmail.com',
-                            weddingDate: '未定', guestScale: '50人以下 (精緻派對)', styles: ['極簡現代'], services: ['場地佈置'], note: '只需單純晚宴主持，預估桌數 20 桌。',
-                            status: 'confirmed', pm: 'Ariel', internalNote: '已簽約，訂金已付。待後續交接企劃團隊。'
+                            id: 'C2403-003', created_date: '2026-03-06 09:20', client_name: '陳建志', phone: '0933-222-111', line_id: '', email: 'chen.jc@gmail.com',
+                            wedding_date: '未定', guest_scale: '50人以下 (精緻派對)', styles: ['極簡現代'], services: ['場地佈置'], additional_notes: '只需單純晚宴主持，預估桌數 20 桌。',
+                            consultation_date: '2026-03-25', consultation_time: '晚上 18:00-20:00',
+                            status: 'confirmed'
                         },
                         {
-                            id: 'C2403-004', date: '2026-03-06 11:45', name: '張惠妹', phone: '0955-444-333', lineId: 'amei_123', email: 'amei@music.tw',
-                            weddingDate: '2027-01-01', guestScale: '未定', styles: ['森林系'], services: ['全程統籌', '婚禮紀錄'], note: '暫時先詢問。',
-                            status: 'cancelled', pm: 'Joy', internalNote: '預定日期太遠先暫緩。'
+                            id: 'C2403-004', created_date: '2026-03-06 11:45', client_name: '張惠妹', phone: '0955-444-333', line_id: 'amei_123', email: 'amei@music.tw',
+                            wedding_date: '2027-01-01', guest_scale: '未定', styles: ['森林系'], services: ['全程統籌', '婚禮紀錄'], additional_notes: '暫時先詢問。',
+                            consultation_date: '2026-04-10', consultation_time: '',
+                            status: 'cancelled'
                         }
                     ],
 
                     selectedItem: null,
                     editForm: {
-                        status: '',
-                        pm: '',
-                        internalNote: ''
+                        status: ''
                     },
-                    offcanvasInstance: null
+                    offcanvasInstance: null,
+                    modalInstance: null
                 }
             },
             computed: {
@@ -466,7 +501,7 @@
                             const servicesMatch = c.services.join(',').toLowerCase().includes(kw);
                             const stylesMatch = (c.styles || []).join(',').toLowerCase().includes(kw);
                             return c.id.toLowerCase().includes(kw) ||
-                                c.name.toLowerCase().includes(kw) ||
+                                c.client_name.toLowerCase().includes(kw) ||
                                 c.phone.includes(kw) ||
                                 servicesMatch ||
                                 stylesMatch;
@@ -482,13 +517,17 @@
                 if (el && window.bootstrap) {
                     this.offcanvasInstance = new bootstrap.Offcanvas(el);
                 }
+                // 初始化狀態修改 Modal
+                const modalEl = document.getElementById('statusModal');
+                if (modalEl && window.bootstrap) {
+                    this.modalInstance = new bootstrap.Modal(modalEl);
+                }
             },
             methods: {
                 getStatusLabel(status) {
                     const map = {
                         'pending': '待處理',
-                        'contacting': '聯絡中',
-                        'confirmed': '已簽約',
+                        'confirmed': '轉預約',
                         'cancelled': '無效單'
                     };
                     return map[status] || status;
@@ -497,14 +536,17 @@
                     return `status-${status}`;
                 },
                 openDetailPanel(item) {
+                    // 若 modal 正在開啟，先關閉它
+                    if (this.modalInstance) {
+                        this.modalInstance.hide();
+                    }
+
                     // 深拷貝，或者保留 reference 以便之後 save 覆蓋
                     this.selectedItem = item;
 
                     // 將選中項目的目前資料填入編輯表單
                     this.editForm = {
-                        status: item.status,
-                        pm: item.pm,
-                        internalNote: item.internalNote
+                        status: item.status
                     };
 
                     // 顯示面板
@@ -512,25 +554,32 @@
                         this.offcanvasInstance.show();
                     }
                 },
-                saveChanges() {
-                    // 將表單資料寫回對應的 consultation 陣列中
+                openStatusModal(item) {
+                    // 設定要編輯的項目與表單
+                    this.selectedItem = item;
+                    this.editForm.status = item.status;
+                    if (this.modalInstance) {
+                        this.modalInstance.show();
+                    }
+                },
+                saveStatusModal() {
                     if (this.selectedItem) {
                         const index = this.consultations.findIndex(c => c.id === this.selectedItem.id);
                         if (index !== -1) {
                             this.consultations[index].status = this.editForm.status;
-                            this.consultations[index].pm = this.editForm.pm;
-                            this.consultations[index].internalNote = this.editForm.internalNote;
-
-                            // 這裡通常會加上發送 API 請求到後端的程式碼
-                            // axios.post('/api/consultations/update', this.consultations[index])...
-
                             alert('資料已成功更新！');
                         }
                     }
-
-                    // 關閉面板
-                    if (this.offcanvasInstance) {
-                        this.offcanvasInstance.hide();
+                    this.selectedItem = null;
+                    if (this.modalInstance) {
+                        this.modalInstance.hide();
+                    }
+                },
+                cancelStatusModal() {
+                    this.selectedItem = null;
+                    this.editForm.status = '';
+                    if (this.modalInstance) {
+                        this.modalInstance.hide();
                     }
                 }
             }
