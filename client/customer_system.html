@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="./global.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="global.css">
     <script src="./login.js"></script>
 
@@ -25,11 +27,14 @@
         .serif { font-family: var(--font-serif); }
         .page-wrap { padding-bottom: 120px; }
         .consult-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
-
-        .project-header { text-align: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border-grey); }
-        .status-badge { font-size: 10px; letter-spacing: 0.3em; background: #FDF8F8; color: var(--rose-dark); padding: 6px 14px; border-radius: 50px; font-weight: 600; display: inline-block; margin-bottom: 15px; text-transform: uppercase; }
-
-        .step-navbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; position: relative; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .page-hero-line{
+           
+            background: #C28E8E;
+            margin-bottom: 8px;
+        }
+        
+        .project-header { text-align: center; margin-bottom: 40px; padding-bottom: 30px; padding-top: 25px; border-bottom: 1px solid var(--border-grey); }
+        .status-badge { font-family: 'Cormorant Garamond', "Noto Serif TC", serif; font-style: italic; font-weight: 500; font-size: clamp(12px, 1.6vw, 13px); letter-spacing: 0.25em; color: var(--rose-dark); text-transform: uppercase; display: inline-block; margin-bottom: 15px; background: none; padding: 0; border-radius: 0; }        .step-navbar { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; position: relative; max-width: 700px; margin-left: auto; margin-right: auto; }
         .nav-item-step { position: relative; z-index: 2; flex: 0 0 auto; text-align: center; width: 90px; }
         .nav-circle { width: 32px; height: 32px; background: var(--pure-white); border: 2px solid var(--rose-light); color: var(--rose-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 13px; font-weight: bold; transition: all 0.4s ease; }
         .nav-label { font-size: 11px; color: var(--rose-light); letter-spacing: 1px; transition: 0.4s; font-weight: 500;}
@@ -216,13 +221,20 @@
     <main class="page-wrap">
         <div class="consult-wrap">
             
-            <div class="project-header">
+            <!-- <div class="project-header">
                 <span class="status-badge">Proposal Draft</span>
-                <h1 class="serif" style="font-size: 28px; margin-bottom: 12px;">專屬婚禮提案規劃</h1>
-                <p style="font-size: 13px; color: var(--text-muted); letter-spacing: 1px;">
-                    顧問已為您準備好初步藍圖，請依照步驟完成專屬細節規劃。
+                <h1 class="serif" style="font-size: 28px; margin-bottom: 12px; font-weight: 300; letter-spacing: 0.05em;">專屬婚禮提案規劃</h1>
+                <div class="page-hero-line"></div>
+                <p style="font-size: 13px; color: var(--text-muted); letter-spacing: 0.15em; font-family: var(--font-sans);">
+                顧問已為您準備好初步藍圖，請依照步驟完成專屬細節規劃。
                 </p>
-            </div>
+            </div> -->
+            <div class="page-hero has-bg" style="padding-top: 28px;">
+            <p class="page-hero-eyebrow" style="color: #C28E8E; ">Proposal Draft</p>
+            <h1 class="page-hero-title">專屬婚禮提案規劃</h1>
+            <div class="page-hero-line"></div>
+            <p class="page-hero-sub"style="margin-top: 8px;">顧問已為您準備好初步藍圖，請依照步驟完成專屬細節規劃。</p>
+        </div>
 
             <div class="step-navbar">
                 <div class="nav-item-step" id="nav-step-1"><div class="nav-circle">1</div><div class="nav-label">婚禮基本資訊</div></div>
