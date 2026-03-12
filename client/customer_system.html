@@ -137,7 +137,8 @@
                 <span class="brand-name">DREAM VENUES</span>
                 <span class="brand-sub">High-End Wedding Journal</span>
             </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu">
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-label="開啟選單">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMenuDesktop">
@@ -149,20 +150,17 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
-                    <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined" style="color:var(--text-muted); font-size:20px;">search</button>
-                    </div>
+                    
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
-                        <a class="nav-link nav-link-item active-page" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
+                        <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./customer_system.html">婚禮規劃</a></li>
+                            <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
-                    <a class="nav-link nav-link-item" href="./index.html" id="loginLinkDesktop">會員登入</a>
+                    <a class="nav-link nav-link-item" href="client_login.html" id="loginLinkDesktop">會員登入</a>
                 </div>
             </div>
         </div>
@@ -170,17 +168,48 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
-            <div><span class="brand-name" style="font-size:14px;">DREAM VENUES</span><span class="brand-sub">High-End Wedding Journal</span></div>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            <a class="navbar-brand" href="./index.html">
+                <span class="brand-name" style="font-size:14px;">DREAM VENUES</span>
+                <span class="brand-sub">High-End Wedding Journal</span>
+            </a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="navbar-nav gap-0 mt-3">
+            <div class="offcanvas-search">
+                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
+                <input type="text" placeholder="搜尋場地或職人...">
+            </div>
+
+            <div id="mobileUserMenu"
+                style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
+                <p id="mobileWelcome"
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;"></p>
+                <a href="./customer_system.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的婚禮規劃</a>
+                <a href="./customer_progress.html" class="nav-link nav-link-item"
+                    style="padding:10px 0; display:block;">我的籌備進度</a>
+            </div>
+
+            <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_theme.html">婚禮主題</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
+
+            <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
+                會員登入
+            </a>
+
+            <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
+                style="padding:14px 0; display:none; letter-spacing:0.08em;">
+                <span class="material-symbols-outlined"
+                    style="font-size:16px; vertical-align:middle; margin-right:6px;">logout</span>
+                登出
+            </a>
         </div>
     </div>
 
@@ -562,34 +591,8 @@
         </div>
     </div>
 
-    <div id="loginModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:10000;">
-        <div style="background:white;padding:2rem;max-width:360px;width:90%;box-shadow:0 0 20px rgba(0,0,0,0.3);">
-            <h3 style="margin-top:0;font-family:var(--font-serif);">會員登入</h3>
-            <input id="loginName" type="text" placeholder="輸入名稱 (e.g. Joy)" style="width:100%;padding:0.6rem;margin-bottom:1rem;border:1px solid #eee;font-size:14px;" />
-            <div style="text-align:right;"><button id="loginSubmit" style="padding:0.6rem 1.2rem;background:var(--accent-gold);color:white;border:none;cursor:pointer;letter-spacing:0.1em;font-size:12px;">登入</button></div>
-        </div>
-    </div>
 
     <script>
-        // ─── 登入狀態管理 ───
-        (function () {
-            const savedUsername = sessionStorage.getItem('dv_username');
-            const loginLinkDesktop = document.getElementById('loginLinkDesktop');
-            const userDropdownWrap = document.getElementById('userDropdownWrap');
-            const userDropdownBtn = document.getElementById('userDropdownBtn');
-
-            if (loginLinkDesktop) loginLinkDesktop.style.display = 'none';
-            if (userDropdownWrap) {
-                userDropdownWrap.style.display = 'block';
-                if (userDropdownBtn) userDropdownBtn.textContent = `歡迎, ${savedUsername} ▾`;
-            }
-
-            document.getElementById('logoutBtn')?.addEventListener('click', e => {
-                e.preventDefault();
-                sessionStorage.removeItem('dv_username');
-                window.location.href = './index.html';
-            });
-        })();
         
         const BASE_PRICE = 43800; 
 

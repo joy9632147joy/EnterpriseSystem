@@ -238,15 +238,8 @@
         }
 
         @keyframes hsBouce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(10px);
-            }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
         }
 
         /* ════ PARALLAX DIVIDER ════ */
@@ -343,10 +336,7 @@
                 grid-template-columns: repeat(3, 1fr);
                 gap: 56px 24px;
             }
-
-            .service-steps::before {
-                display: none;
-            }
+            .service-steps::before { display: none; }
         }
 
         @media(max-width:767px) {
@@ -390,7 +380,6 @@
                 transition: border-color 0.4s, transform 0.4s, background 0.4s;
                 z-index: 2;
             }
-
             .service-step:hover::before {
                 border-color: var(--accent-gold);
                 background: var(--accent-gold);
@@ -407,10 +396,7 @@
                 border-left: 1px dashed rgba(197, 160, 89, 0.4);
                 gap: 24px;
             }
-
-            .service-step:last-child {
-                border-left-color: transparent;
-            }
+            .service-step:last-child { border-left-color: transparent; }
         }
 
         .service-step-num {
@@ -445,14 +431,8 @@
         }
 
         @media(max-width:767px) {
-            .service-step-num {
-                font-size: 56px;
-                margin-top: 0;
-            }
-
-            .service-step-deco {
-                display: none;
-            }
+            .service-step-num { font-size: 56px; margin-top: 0; }
+            .service-step-deco { display: none; }
         }
 
         .service-step-title {
@@ -466,9 +446,7 @@
             transition: color 0.3s;
         }
 
-        .service-step:hover .service-step-title {
-            color: var(--accent-gold);
-        }
+        .service-step:hover .service-step-title { color: var(--accent-gold); }
 
         .service-step-sub {
             font-size: 12.5px;
@@ -477,7 +455,7 @@
             line-height: 1.8;
         }
 
-        /* ════ ABOUT（純文字版） ════ */
+        /* ════ ABOUT ════ */
         .about-section {
             background: #faf7f2;
             padding: 40px 0 8px;
@@ -507,9 +485,7 @@
             background: var(--accent-gold);
         }
 
-
-
-        /* ════ 精選照片牆（CSS 自動跑帶） ════ */
+        /* ════ 精選照片牆 ════ */
         .gallery-section {
             background: #faf7f2;
             padding: 80px 0 88px;
@@ -521,13 +497,11 @@
             padding: 0 40px 24px;
         }
 
-        /* 軌道容器 */
         .gallery-belt {
             position: relative;
             overflow: hidden;
         }
 
-        /* 左右漸層遮罩 */
         .gallery-belt::before,
         .gallery-belt::after {
             content: '';
@@ -549,7 +523,6 @@
             background: linear-gradient(to left, #faf7f2 0%, transparent 100%);
         }
 
-        /* 跑帶（兩排，反向） */
         .gallery-row {
             display: flex;
             gap: 16px;
@@ -558,36 +531,20 @@
             will-change: transform;
         }
 
-        .gallery-row-1 {
-            animation: beltLeft 55s linear infinite;
-        }
+        .gallery-row-1 { animation: beltLeft 55s linear infinite; }
 
-        /* hover 時暫停 */
-        .gallery-belt:hover .gallery-row-1 {
-            animation-play-state: paused;
-        }
+        .gallery-belt:hover .gallery-row-1 { animation-play-state: paused; }
 
         @keyframes beltLeft {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
         @keyframes beltRight {
-            from {
-                transform: translateX(-50%);
-            }
-
-            to {
-                transform: translateX(0);
-            }
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
         }
 
-        /* 單張圖 */
         .gallery-img {
             flex-shrink: 0;
             border-radius: 4px;
@@ -596,27 +553,11 @@
             cursor: pointer;
         }
 
-        /* 第一排高度統一，寬度各異 */
-        .gallery-row-1 .gallery-img {
-            height: 300px;
-        }
-
-        .gallery-row-1 .gallery-img:nth-child(4n+1) {
-            width: 240px;
-        }
-
-        .gallery-row-1 .gallery-img:nth-child(4n+2) {
-            width: 320px;
-        }
-
-        .gallery-row-1 .gallery-img:nth-child(4n+3) {
-            width: 200px;
-        }
-
-        .gallery-row-1 .gallery-img:nth-child(4n+4) {
-            width: 280px;
-        }
-
+        .gallery-row-1 .gallery-img { height: 300px; }
+        .gallery-row-1 .gallery-img:nth-child(4n+1) { width: 240px; }
+        .gallery-row-1 .gallery-img:nth-child(4n+2) { width: 320px; }
+        .gallery-row-1 .gallery-img:nth-child(4n+3) { width: 200px; }
+        .gallery-row-1 .gallery-img:nth-child(4n+4) { width: 280px; }
 
         .gallery-img img {
             width: 100%;
@@ -633,7 +574,6 @@
             transform: scale(1.05);
         }
 
-        /* hover 標籤 */
         .gallery-img-label {
             position: absolute;
             bottom: 0;
@@ -688,15 +628,11 @@
         }
 
         @media(max-width:991px) {
-            .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media(max-width:599px) {
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
 
         .customer-card {
@@ -861,7 +797,6 @@
             transform: scale(1);
         }
 
-        /* Caption */
         .lb-caption {
             position: absolute;
             bottom: -52px;
@@ -887,7 +822,6 @@
             letter-spacing: 0.1em;
         }
 
-        /* Close button */
         .lb-close {
             position: fixed;
             top: 24px;
@@ -916,7 +850,6 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Counter */
         .lb-counter {
             position: fixed;
             top: 32px;
@@ -929,7 +862,6 @@
             white-space: nowrap;
         }
 
-        /* Nav arrows */
         .lb-nav {
             position: fixed;
             top: 50%;
@@ -952,28 +884,16 @@
             border-color: rgba(197, 160, 89, 0.45);
         }
 
-        .lb-nav-prev {
-            left: 24px;
-        }
-
-        .lb-nav-prev:hover {
-            transform: translateY(-50%) translateX(-3px);
-        }
-
-        .lb-nav-next {
-            right: 24px;
-        }
-
-        .lb-nav-next:hover {
-            transform: translateY(-50%) translateX(3px);
-        }
+        .lb-nav-prev { left: 24px; }
+        .lb-nav-prev:hover { transform: translateY(-50%) translateX(-3px); }
+        .lb-nav-next { right: 24px; }
+        .lb-nav-next:hover { transform: translateY(-50%) translateX(3px); }
 
         .lb-nav .material-symbols-outlined {
             font-size: 22px;
             color: rgba(255, 255, 255, 0.75);
         }
 
-        /* Dot indicators */
         .lb-dots {
             position: fixed;
             bottom: 28px;
@@ -1006,45 +926,18 @@
                 bottom: 72px;
                 transform: none;
             }
-
-            .lb-nav-prev {
-                left: calc(50% - 52px);
-            }
-
-            .lb-nav-prev:hover {
-                transform: none;
-            }
-
-            .lb-nav-next {
-                right: calc(50% - 52px);
-            }
-
-            .lb-nav-next:hover {
-                transform: none;
-            }
-
-            .lb-img-wrap {
-                max-width: 92vw;
-                max-height: calc(100dvh - 160px);
-            }
-
-            .lb-img-wrap img {
-                max-height: calc(100dvh - 160px);
-            }
-
-            .lb-dots {
-                bottom: 20px;
-            }
+            .lb-nav-prev { left: calc(50% - 52px); }
+            .lb-nav-prev:hover { transform: none; }
+            .lb-nav-next { right: calc(50% - 52px); }
+            .lb-nav-next:hover { transform: none; }
+            .lb-img-wrap { max-width: 92vw; max-height: calc(100dvh - 160px); }
+            .lb-img-wrap img { max-height: calc(100dvh - 160px); }
+            .lb-dots { bottom: 20px; }
         }
 
         @media(max-width:767px) and (max-height:700px) {
-            .lb-img-wrap {
-                max-height: calc(100dvh - 180px);
-            }
-
-            .lb-img-wrap img {
-                max-height: calc(100dvh - 180px);
-            }
+            .lb-img-wrap { max-height: calc(100dvh - 180px); }
+            .lb-img-wrap img { max-height: calc(100dvh - 180px); }
         }
     </style>
 </head>
@@ -1070,19 +963,13 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
-                    <div class="d-flex align-items-center gap-2">
-                        <input id="search-input" type="text" placeholder="搜尋主題或場地...">
-                        <button id="search-btn" class="btn p-0 material-symbols-outlined"
-                            style="color:var(--text-muted); font-size:20px;">search</button>
-                    </div>
+                    
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
@@ -1107,19 +994,16 @@
                 <input type="text" placeholder="搜尋場地或職人...">
             </div>
 
-            <!-- 登入後顯示：歡迎 + 規劃 + 籌備 -->
             <div id="mobileUserMenu"
                 style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
                 <p id="mobileWelcome"
-                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
-                </p>
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;"></p>
                 <a href="./customer_system.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
             </div>
 
-            <!-- 導覽選單 -->
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -1128,14 +1012,12 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
 
-            <!-- 未登入顯示：會員登入在導覽選單下方 -->
             <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
 
-            <!-- 登出：最下方，登入後才顯示，紅字 -->
             <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
                 style="padding:14px 0; display:none; letter-spacing:0.08em;">
                 <span class="material-symbols-outlined"
@@ -1150,8 +1032,7 @@
         <!-- ════ HERO SLIDESHOW ════ -->
         <div class="hero-slideshow" id="heroSlideshow">
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1674232636474-0488df660ccb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="森林系婚禮">
+                <img src="https://images.unsplash.com/photo-1674232636474-0488df660ccb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="森林系婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">01 / 05</span>
@@ -1165,8 +1046,7 @@
                 </div>
             </div>
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1600&q=80&fit=crop&crop=center"
-                    alt="美式復古婚禮">
+                <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1600&q=80&fit=crop&crop=center" alt="美式復古婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">02 / 05</span>
@@ -1180,8 +1060,7 @@
                 </div>
             </div>
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80&fit=crop&crop=center"
-                    alt="西式教堂婚禮">
+                <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80&fit=crop&crop=center" alt="西式教堂婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">03 / 05</span>
@@ -1195,8 +1074,7 @@
                 </div>
             </div>
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&q=80&fit=crop&crop=center"
-                    alt="中式老宅婚禮">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1600&q=80&fit=crop&crop=center" alt="中式老宅婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">04 / 05</span>
@@ -1210,8 +1088,7 @@
                 </div>
             </div>
             <div class="hs-slide">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&fit=crop&crop=center"
-                    alt="極簡現代婚禮">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&fit=crop&crop=center" alt="極簡現代婚禮">
                 <div class="hs-content">
                     <div class="hs-left">
                         <span class="hs-num">05 / 05</span>
@@ -1232,19 +1109,15 @@
             </div>
         </div>
 
-
         <!-- ════ 服務流程 ════ -->
         <section class="service-section" id="main-content">
             <div class="service-inner">
                 <div class="text-center">
                     <div class="eyebrow-line" style="margin-bottom:8px;">
-                        <span
-                            style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">How
-                            It Works</span>
+                        <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">How It Works</span>
                     </div>
                     <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300;">服務流程</h3>
-                    <p
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
+                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
                         從初次相遇到留下完美回憶，我們全程陪伴</p>
                 </div>
                 <div class="service-steps">
@@ -1282,7 +1155,6 @@
             </div>
         </section>
 
-
         <!-- ════ PARALLAX DIVIDER ════ -->
         <div class="parallax-divider">
             <div class="parallax-bg" id="parallaxBg"></div>
@@ -1293,16 +1165,14 @@
                 <div class="pd-line"></div>
             </div>
         </div>
-        <!-- ════ 關於我們（純文字置中版） ════ -->
+
+        <!-- ════ 關於我們 ════ -->
         <section class="about-section">
             <div class="about-inner">
                 <div class="eyebrow-line" style="margin-bottom:8px;">
-                    <span
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">About
-                        Us</span>
+                    <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">About Us</span>
                 </div>
-                <h3
-                    style="font-family:var(--font-serif); font-size:clamp(20px,2.4vw,30px); font-weight:200; color:#2b2520; line-height:1.6; letter-spacing:0.06em; margin-bottom:24px;">
+                <h3 style="font-family:var(--font-serif); font-size:clamp(20px,2.4vw,30px); font-weight:300; color:#2b2520; line-height:1.6; letter-spacing:0.06em; margin-bottom:24px;">
                     讓每一段愛情<br>在最美的時刻被好好珍藏
                 </h3>
                 <p style="font-size:13.5px; line-height:2.2; color:#6a6053; letter-spacing:0.08em; margin-bottom:16px;">
@@ -1311,291 +1181,53 @@
                 <p style="font-size:13.5px; line-height:2.2; color:#6a6053; letter-spacing:0.08em; margin-bottom:40px;">
                     從初次諮詢到婚禮謝幕，我們秉持透明報價、細心溝通的原則，為每對新人量身規劃專屬的婚禮藍圖。婚禮不只是一場儀式，而是兩人攜手走向未來的最美起點。
                 </p>
-                <!-- 數字統計 -->
-                <div style="display:flex; justify-content:center; gap:56px; ">
+                <div style="display:flex; justify-content:center; gap:56px;">
                     <div style="text-align:center;">
-                        <span class="count-num" data-target="300"
-                            style="font-family:var(--font-serif);font-size:38px;font-weight:200;color:var(--accent-gold);display:block;line-height:1;">0<em
-                                style="font-style:normal;font-size:18px;opacity:0.7;">+</em></span>
-                        <p
-                            style="font-size:9px;letter-spacing:0.25em;color:#9c8e7f;margin:8px 0 0;text-transform:uppercase;">
-                            圓滿婚禮</p>
+                        <span class="count-num" data-target="300" style="font-family:var(--font-serif);font-size:38px;font-weight:200;color:var(--accent-gold);display:block;line-height:1;">0<em style="font-style:normal;font-size:18px;opacity:0.7;">+</em></span>
+                        <p style="font-size:9px;letter-spacing:0.25em;color:#9c8e7f;margin:8px 0 0;text-transform:uppercase;">圓滿婚禮</p>
                     </div>
                     <div style="text-align:center;">
-                        <span class="count-num" data-target="20"
-                            style="font-family:var(--font-serif);font-size:38px;font-weight:200;color:var(--accent-gold);display:block;line-height:1;">0<em
-                                style="font-style:normal;font-size:18px;opacity:0.7;">+</em></span>
-                        <p
-                            style="font-size:9px;letter-spacing:0.25em;color:#9c8e7f;margin:8px 0 0;text-transform:uppercase;">
-                            頂尖夥伴</p>
+                        <span class="count-num" data-target="20" style="font-family:var(--font-serif);font-size:38px;font-weight:200;color:var(--accent-gold);display:block;line-height:1;">0<em style="font-style:normal;font-size:18px;opacity:0.7;">+</em></span>
+                        <p style="font-size:9px;letter-spacing:0.25em;color:#9c8e7f;margin:8px 0 0;text-transform:uppercase;">頂尖夥伴</p>
                     </div>
                     <div style="text-align:center;">
-                        <span class="count-num" data-target="7"
-                            style="font-family:var(--font-serif);font-size:38px;font-weight:200;color:var(--accent-gold);display:block;line-height:1;">0<em
-                                style="font-style:normal;font-size:18px;opacity:0.7;">年</em></span>
-                        <p
-                            style="font-size:9px;letter-spacing:0.25em;color:#9c8e7f;margin:8px 0 0;text-transform:uppercase;">
-                            深耕產業</p>
+                        <span class="count-num" data-target="7" style="font-family:var(--font-serif);font-size:38px;font-weight:200;color:var(--accent-gold);display:block;line-height:1;">0<em style="font-style:normal;font-size:18px;opacity:0.7;">年</em></span>
+                        <p style="font-size:9px;letter-spacing:0.25em;color:#9c8e7f;margin:8px 0 0;text-transform:uppercase;">深耕產業</p>
                     </div>
                 </div>
             </div>
         </section>
-
-
 
         <!-- ════ 精選照片牆 ════ -->
         <section class="gallery-section">
             <div class="gallery-header">
                 <div class="eyebrow-line" style="margin-bottom:8px;">
-                    <span
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Gallery</span>
+                    <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Gallery</span>
                 </div>
-                <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; color:#2b2520;">每一幀，都是真實的幸福
-                </h3>
-                <p
-                    style="font-size:10px; letter-spacing:0.28em; color:#9c8e7f; text-transform:uppercase; margin-top:14px;">
-                    點擊放大 · 左右滑動瀏覽</p>
+                <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; color:#2b2520;">每一幀，都是真實的幸福</h3>
+                <p style="font-size:10px; letter-spacing:0.28em; color:#9c8e7f; text-transform:uppercase; margin-top:14px;">點擊放大 · 左右滑動瀏覽</p>
             </div>
             <div class="gallery-belt">
-                <div class="gallery-row gallery-row-1">
-                    <div class="gallery-img" data-index="0" data-tag="Forest · 2024.05" data-name="陳怡君 &amp; 王志偉">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=82&fit=crop"
-                            alt="陳怡君 & 王志偉" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Forest · 2024.05</span>
-                            <span class="gallery-img-name">陳怡君 & 王志偉</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="1" data-tag="Chapel · 2024.03" data-name="林美慧 &amp; 張宏傑">
-                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=82&fit=crop"
-                            alt="林美慧 & 張宏傑" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Chapel · 2024.03</span>
-                            <span class="gallery-img-name">林美慧 & 張宏傑</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="2" data-tag="Minimal · 2024.08" data-name="黃思穎 &amp; 李承翰">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=82&fit=crop"
-                            alt="黃思穎 & 李承翰" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Minimal · 2024.08</span>
-                            <span class="gallery-img-name">黃思穎 & 李承翰</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="3" data-tag="Vintage · 2024.06" data-name="許庭瑜 &amp; 蔡明宏">
-                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=82&fit=crop"
-                            alt="許庭瑜 & 蔡明宏" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Vintage · 2024.06</span>
-                            <span class="gallery-img-name">許庭瑜 & 蔡明宏</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="4" data-tag="Chinese · 2024.09" data-name="廖雨晴 &amp; 吳承澤">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=82&fit=crop"
-                            alt="廖雨晴 & 吳承澤" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Chinese · 2024.09</span>
-                            <span class="gallery-img-name">廖雨晴 & 吳承澤</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="5" data-tag="Outdoor · 2024.11" data-name="蘇依琳 &amp; 鄭家豪">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=82&fit=crop"
-                            alt="蘇依琳 & 鄭家豪" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Outdoor · 2024.11</span>
-                            <span class="gallery-img-name">蘇依琳 & 鄭家豪</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="6" data-tag="Romantic · 2024.10" data-name="吳雅婷 &amp; 陳建宇">
-                        <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=700&q=82&fit=crop"
-                            alt="吳雅婷 & 陳建宇" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Romantic · 2024.10</span>
-                            <span class="gallery-img-name">吳雅婷 & 陳建宇</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img" data-index="7" data-tag="Garden · 2023.12" data-name="江雅雯 &amp; 林俊傑">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&q=82&fit=crop"
-                            alt="江雅雯 & 林俊傑" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Garden · 2023.12</span>
-                            <span class="gallery-img-name">江雅雯 & 林俊傑</span>
-                        </div>
-                    </div>
-                    <!-- Duplicate set for seamless loop (no data-index so lightbox ignores them) -->
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=82&fit=crop"
-                            alt="陳怡君 & 王志偉" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Forest · 2024.05</span>
-                            <span class="gallery-img-name">陳怡君 & 王志偉</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=82&fit=crop"
-                            alt="林美慧 & 張宏傑" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Chapel · 2024.03</span>
-                            <span class="gallery-img-name">林美慧 & 張宏傑</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=82&fit=crop"
-                            alt="黃思穎 & 李承翰" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Minimal · 2024.08</span>
-                            <span class="gallery-img-name">黃思穎 & 李承翰</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=82&fit=crop"
-                            alt="許庭瑜 & 蔡明宏" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Vintage · 2024.06</span>
-                            <span class="gallery-img-name">許庭瑜 & 蔡明宏</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=82&fit=crop"
-                            alt="廖雨晴 & 吳承澤" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Chinese · 2024.09</span>
-                            <span class="gallery-img-name">廖雨晴 & 吳承澤</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=82&fit=crop"
-                            alt="蘇依琳 & 鄭家豪" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Outdoor · 2024.11</span>
-                            <span class="gallery-img-name">蘇依琳 & 鄭家豪</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=700&q=82&fit=crop"
-                            alt="吳雅婷 & 陳建宇" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Romantic · 2024.10</span>
-                            <span class="gallery-img-name">吳雅婷 & 陳建宇</span>
-                        </div>
-                    </div>
-                    <div class="gallery-img lb-clone">
-                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&q=82&fit=crop"
-                            alt="江雅雯 & 林俊傑" loading="lazy">
-                        <div class="gallery-img-label">
-                            <span class="gallery-img-tag">Garden · 2023.12</span>
-                            <span class="gallery-img-name">江雅雯 & 林俊傑</span>
-                        </div>
-                    </div>
+                <div class="gallery-row gallery-row-1" id="galleryContainer">
                 </div>
             </div>
         </section>
-
 
         <!-- ════ 客戶回饋 ════ -->
         <section class="testimonials-section">
             <div class="testimonials-inner">
                 <div class="text-center">
                     <div class="eyebrow-line" style="margin-bottom:8px;">
-                        <span
-                            style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Client
-                            Stories</span>
+                        <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Client Stories</span>
                     </div>
                     <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300;">真實故事，真心回饋</h3>
-                    <p
-                        style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
+                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
                         每段旅程，都始於一個「我願意」</p>
                 </div>
-                <div class="testimonials-grid">
-                    <div class="customer-card" data-delay="0"><span class="testi-quote-mark">"</span>
-                        <div class="testi-stars"><span class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span></div>
-                        <p class="testi-text">從場地選定到細節佈置，團隊都貼心照顧。婚禮當天我完全無須操心，只需要沉浸在幸福之中。那是我這輩子最美的一天。</p>
-                        <div class="testi-rule"></div>
-                        <div class="testi-author"><img class="testi-avatar"
-                                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&fit=crop&crop=face"
-                                alt="">
-                            <div><span class="testi-name">陳怡君 & 王志偉</span><span class="testi-meta">陽明山草原婚禮 ·
-                                    2024.05</span></div>
-                        </div>
-                    </div>
-                    <div class="customer-card" data-delay="120"><span class="testi-quote-mark">"</span>
-                        <div class="testi-stars"><span class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span></div>
-                        <p class="testi-text">我們期盼中式老宅的典雅能結合現代感，Dream Venues 完美詮釋了這個平衡。每個角落都美得像畫，賓客讚不絕口。</p>
-                        <div class="testi-rule"></div>
-                        <div class="testi-author"><img class="testi-avatar"
-                                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80&fit=crop&crop=face"
-                                alt="">
-                            <div><span class="testi-name">林美慧 & 張宏傑</span><span class="testi-meta">台南古厝婚宴 ·
-                                    2024.09</span></div>
-                        </div>
-                    </div>
-                    <div class="customer-card" data-delay="240"><span class="testi-quote-mark">"</span>
-                        <div class="testi-stars"><span class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span></div>
-                        <p class="testi-text">攝影團隊捕捉了充滿情感的瞬間，讓我們自己都驚訝有這麼多美好的畫面被記錄下來。相冊讓我每翻一次都好感動。</p>
-                        <div class="testi-rule"></div>
-                        <div class="testi-author"><img class="testi-avatar"
-                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80&fit=crop&crop=face"
-                                alt="">
-                            <div><span class="testi-name">黃思穎 & 李承翰</span><span class="testi-meta">花蓮縱谷婚禮 ·
-                                    2024.11</span></div>
-                        </div>
-                    </div>
-                    <div class="customer-card" data-delay="80"><span class="testi-quote-mark">"</span>
-                        <div class="testi-stars"><span class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span></div>
-                        <p class="testi-text">從初次諮詢到婚禮結束，企劃的耐心與細心讓我們非常放心，連突發狀況都迅速妥善處理，確保了婚禮的完美呈現。</p>
-                        <div class="testi-rule"></div>
-                        <div class="testi-author"><img class="testi-avatar"
-                                src="https://images.unsplash.com/photo-1521566652839-697aa473761a?w=80&q=80&fit=crop&crop=face"
-                                alt="">
-                            <div><span class="testi-name">許庭瑜 & 蔡明宏</span><span class="testi-meta">宜蘭花海婚宴 ·
-                                    2024.06</span></div>
-                        </div>
-                    </div>
-                    <div class="customer-card" data-delay="200"><span class="testi-quote-mark">"</span>
-                        <div class="testi-stars"><span class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span></div>
-                        <p class="testi-text">跨國異地籌備的壓力本來很大，但完善的線上諮詢與備案規劃，讓遠距籌備變得出乎意料地順暢與安心。</p>
-                        <div class="testi-rule"></div>
-                        <div class="testi-author"><img class="testi-avatar"
-                                src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=80&q=80&fit=crop&crop=face"
-                                alt="">
-                            <div><span class="testi-name">廖雨晴 & 吳承澤</span><span class="testi-meta">台中秘境花園 ·
-                                    2024.08</span></div>
-                        </div>
-                    </div>
-                    <div class="customer-card" data-delay="320"><span class="testi-quote-mark">"</span>
-                        <div class="testi-stars"><span class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span><span
-                                class="material-symbols-outlined">star</span></div>
-                        <p class="testi-text">空間佈置超乎想像！僅憑幾張靈感圖，就打造出比夢境更美的現場。走進禮堂的那一刻，真的是這輩子最值得的決定。</p>
-                        <div class="testi-rule"></div>
-                        <div class="testi-author"><img class="testi-avatar"
-                                src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=80&q=80&fit=crop&crop=face"
-                                alt="">
-                            <div><span class="testi-name">蘇依琳 & 鄭家豪</span><span class="testi-meta">南投清境婚禮 ·
-                                    2023.12</span></div>
-                        </div>
+                <!-- 評論卡片由 JS fetch reviews.json 動態產生 -->
+                <div class="testimonials-grid" id="reviewsGrid">
+                    <div id="reviewsLoading" style="grid-column:1/-1; text-align:center; padding:60px 0; color:var(--text-muted); font-size:12px; letter-spacing:0.2em;">
+                        載入中...
                     </div>
                 </div>
             </div>
@@ -1604,9 +1236,8 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-bottom">© 2024 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
+        <div class="footer-bottom">© 2026 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
-
 
     <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
@@ -1690,7 +1321,7 @@
                     }
                 });
             }, { threshold: 0.15 });
-            document.querySelectorAll('.service-step, .customer-card').forEach(el => scrollObserver.observe(el));
+            document.querySelectorAll('.service-step').forEach(el => scrollObserver.observe(el));
 
             // ── 數字計數動畫 ──
             const countObserver = new IntersectionObserver((entries) => {
@@ -1714,9 +1345,53 @@
             }, { threshold: 0.5 });
             document.querySelectorAll('.count-num').forEach(el => countObserver.observe(el));
 
+            // ════ 精選照片牆動態渲染 (JSON) ════
+            const galleryData = [
+                { src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=82&fit=crop", tag: "Forest · 2024.05", name: "陳怡君 & 王志偉" },
+                { src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=82&fit=crop", tag: "Chapel · 2024.03", name: "林美慧 & 張宏傑" },
+                { src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=82&fit=crop", tag: "Minimal · 2024.08", name: "黃思穎 & 李承翰" },
+                { src: "https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=700&q=82&fit=crop", tag: "Vintage · 2024.06", name: "許庭瑜 & 蔡明宏" },
+                { src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=82&fit=crop", tag: "Chinese · 2024.09", name: "廖雨晴 & 吳承澤" },
+                { src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=700&q=82&fit=crop", tag: "Outdoor · 2024.11", name: "蘇依琳 & 鄭家豪" },
+                { src: "https://images.unsplash.com/photo-1529636798458-92182e662485?w=700&q=82&fit=crop", tag: "Romantic · 2024.10", name: "吳雅婷 & 陳建宇" },
+                { src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&q=82&fit=crop", tag: "Garden · 2023.12", name: "江雅雯 & 林俊傑" }
+            ];
+
+            const galleryContainer = document.getElementById('galleryContainer');
+            if (galleryContainer) {
+                let galleryHTML = '';
+
+                // 1. 生成可點擊放大的原始照片
+                galleryData.forEach((item, index) => {
+                    galleryHTML += `
+                        <div class="gallery-img" data-index="${index}" data-tag="${item.tag}" data-name="${item.name}">
+                            <img src="${item.src}" alt="${item.name}" loading="lazy">
+                            <div class="gallery-img-label">
+                                <span class="gallery-img-tag">${item.tag}</span>
+                                <span class="gallery-img-name">${item.name}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // 2. 生成無縫輪播用的 Clone 照片 (不加上 data-index)
+                galleryData.forEach((item) => {
+                    galleryHTML += `
+                        <div class="gallery-img lb-clone">
+                            <img src="${item.src}" alt="${item.name}" loading="lazy">
+                            <div class="gallery-img-label">
+                                <span class="gallery-img-tag">${item.tag}</span>
+                                <span class="gallery-img-name">${item.name}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // 寫入 HTML
+                galleryContainer.innerHTML = galleryHTML;
+            }
 
             // ════ LIGHTBOX ════
-            // Collect unique images (non-clone items with data-index)
             const lbItems = [];
             document.querySelectorAll('.gallery-img[data-index]').forEach(el => {
                 lbItems.push({
@@ -1740,7 +1415,6 @@
             let lbCurrent = 0;
             const total = lbItems.length;
 
-            // Build dots
             lbItems.forEach((_, i) => {
                 const dot = document.createElement('div');
                 dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
@@ -1749,66 +1423,37 @@
             });
 
             function lbUpdateDots(idx) {
-                lbDots.querySelectorAll('.lb-dot').forEach((d, i) => {
-                    d.classList.toggle('active', i === idx);
-                });
+                lbDots.querySelectorAll('.lb-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
             }
 
             function lbShow(idx) {
                 lbCurrent = (idx + total) % total;
                 const item = lbItems[lbCurrent];
-
                 lbImg.classList.remove('lb-img-ready');
                 lbImg.src = '';
-
-                // Use high-res version
                 const hiRes = item.src.replace(/w=\d+/, 'w=1400').replace(/q=\d+/, 'q=90');
                 lbImg.alt = item.name;
                 lbTag.textContent = item.tag;
                 lbName.textContent = item.name;
                 lbCounter.textContent = String(lbCurrent + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
                 lbUpdateDots(lbCurrent);
-
                 const tmpImg = new Image();
-                tmpImg.onload = () => {
-                    lbImg.src = hiRes;
-                    requestAnimationFrame(() => requestAnimationFrame(() => lbImg.classList.add('lb-img-ready')));
-                };
-                tmpImg.onerror = () => {
-                    lbImg.src = item.src;
-                    requestAnimationFrame(() => requestAnimationFrame(() => lbImg.classList.add('lb-img-ready')));
-                };
+                tmpImg.onload = () => { lbImg.src = hiRes; requestAnimationFrame(() => requestAnimationFrame(() => lbImg.classList.add('lb-img-ready'))); };
+                tmpImg.onerror = () => { lbImg.src = item.src; requestAnimationFrame(() => requestAnimationFrame(() => lbImg.classList.add('lb-img-ready'))); };
                 tmpImg.src = hiRes;
             }
 
-            function lbOpen(idx) {
-                lbShow(idx);
-                lbOverlay.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
+            function lbOpen(idx) { lbShow(idx); lbOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            function lbCloseFn() { lbOverlay.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => { lbImg.src = ''; lbImg.classList.remove('lb-img-ready'); }, 350); }
 
-            function lbCloseFn() {
-                lbOverlay.classList.remove('open');
-                document.body.style.overflow = '';
-                setTimeout(() => { lbImg.src = ''; lbImg.classList.remove('lb-img-ready'); }, 350);
-            }
-
-            // Click on gallery images (only non-clones)
             document.querySelectorAll('.gallery-img[data-index]').forEach(el => {
                 el.addEventListener('click', () => lbOpen(parseInt(el.dataset.index)));
             });
 
-            // Nav buttons
             lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbCurrent - 1); });
             lbNext.addEventListener('click', (e) => { e.stopPropagation(); lbShow(lbCurrent + 1); });
             lbClose.addEventListener('click', lbCloseFn);
-
-            // Click backdrop to close
-            lbOverlay.addEventListener('click', (e) => {
-                if (e.target === lbOverlay || e.target.id === 'lbStage') lbCloseFn();
-            });
-
-            // Keyboard
+            lbOverlay.addEventListener('click', (e) => { if (e.target === lbOverlay || e.target.id === 'lbStage') lbCloseFn(); });
             document.addEventListener('keydown', (e) => {
                 if (!lbOverlay.classList.contains('open')) return;
                 if (e.key === 'ArrowLeft') lbShow(lbCurrent - 1);
@@ -1816,28 +1461,59 @@
                 else if (e.key === 'Escape') lbCloseFn();
             });
 
-            // Touch swipe on lightbox
             let lbTouchX = null;
-            lbImgWrap.addEventListener('touchstart', e => {
-                lbTouchX = e.touches[0].clientX;
-            }, { passive: true });
+            lbImgWrap.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
             lbImgWrap.addEventListener('touchend', e => {
                 if (lbTouchX === null) return;
                 const dx = e.changedTouches[0].clientX - lbTouchX;
                 if (Math.abs(dx) > 40) lbShow(lbCurrent + (dx < 0 ? 1 : -1));
                 lbTouchX = null;
             });
-
-            // Also allow swipe anywhere in overlay on mobile
-            lbOverlay.addEventListener('touchstart', e => {
-                lbTouchX = e.touches[0].clientX;
-            }, { passive: true });
+            lbOverlay.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
             lbOverlay.addEventListener('touchend', e => {
                 if (lbTouchX === null) return;
                 const dx = e.changedTouches[0].clientX - lbTouchX;
                 if (Math.abs(dx) > 40) lbShow(lbCurrent + (dx < 0 ? 1 : -1));
                 lbTouchX = null;
             });
+
+            // ════ fetch json ════
+            const REVIEW_DELAYS = [0, 120, 240, 80, 200, 320];
+
+            fetch('./customer_review.json')
+                .then(res => res.json())
+                .then(reviews => renderReviews(reviews.slice(-6)));
+
+            function renderReviews(reviews) {
+                const grid = document.getElementById('reviewsGrid');
+                const stars = '<span class="material-symbols-outlined">star</span>'.repeat(5);
+                grid.innerHTML = reviews.map((r, i) => /*html*/`
+                    <div class="customer-card" data-delay="${REVIEW_DELAYS[i] ?? 0}">
+                        <span class="testi-quote-mark">"</span>
+                        <div class="testi-stars">${stars}</div>
+                        <p class="testi-text">${r.text}</p>
+                        <div class="testi-rule"></div>
+                        <div class="testi-author">
+                            <img class="testi-avatar" src="${r.avatar}" alt="${r.name}">
+                            <div>
+                                <span class="testi-name">${r.name}</span>
+                                <span class="testi-meta">${r.meta}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // 掛上 scroll 動畫
+                const obs = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay) || 0);
+                            observer.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+                grid.querySelectorAll('.customer-card').forEach(el => obs.observe(el));
+            }
 
         });
     </script>
