@@ -135,7 +135,7 @@
             <div class="menu-category px-6 pt-2 pb-1 text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
                 GENERAL</div>
             <a class="flex items-center px-6 py-3.5 bg-sidebar-hover text-white transition-colors group border-r-4 border-[#1ABB9C]"
-                href="consultation_pm.html">
+                href="consultation.html">
                 <span
                     class="material-icons text-accent-gold mr-3 group-hover:scale-110 transition-transform">support_agent</span>
                 <div class="menu-category p-0 m-0 text-sm whitespace-nowrap">諮詢單管理</div>
@@ -215,14 +215,6 @@
 
                 <!-- 頂部操作列：搜尋與過濾 -->
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                    <div class="relative w-full md:w-96">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                            <span class="material-icons text-sm">search</span>
-                        </span>
-                        <input v-model="searchQuery"
-                            class="w-full bg-white border border-gray-200 rounded-full py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-accent-gold focus:border-transparent text-gray-800 placeholder-gray-400 shadow-sm transition-all"
-                            placeholder="搜尋單號、姓名、電話或需求..." type="text" />
-                    </div>
 
                     <div class="flex items-center gap-3 w-full md:w-auto">
                         <label class="text-sm text-gray-600 font-medium whitespace-nowrap">狀態篩選:</label>
@@ -234,6 +226,16 @@
                             <option value="cancelled">無效 / 取消 (Cancelled)</option>
                         </select>
                     </div>
+
+                    <div class="relative w-full md:w-96">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                            <span class="material-icons text-sm">search</span>
+                        </span>
+                        <input v-model="searchQuery"
+                            class="w-full bg-white border border-gray-200 rounded-full py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-accent-gold focus:border-transparent text-gray-800 placeholder-gray-400 shadow-sm transition-all"
+                            placeholder="搜尋單號、姓名、電話或需求..." type="text" />
+                    </div>
+
                 </div>
 
                 <!-- 諮詢單列表 Data Table -->
@@ -242,43 +244,75 @@
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr
-                                    class="bg-gray-50/80 border-b border-gray-200 text-gray-600 text-xs uppercase tracking-wider">
-                                    <th class="px-6 py-4 font-semibold">單號 / 日期</th>
-                                    <th class="px-6 py-4 font-semibold">客戶姓名</th>
-                                    <th class="px-6 py-4 font-semibold">聯絡電話</th>
-                                    <th class="px-6 py-4 font-semibold">需求服務</th>
-                                    <th class="px-6 py-4 font-semibold">狀態</th>
+                                    class="bg-gray-50/80 border-b border-gray-200 text-gray-600 text-xs uppercase tracking-wider select-none">
+                                    <th @click="sortBy('id')"
+                                        class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 transition-colors group">
+                                        單號
+                                        <span class="material-icons text-[14px] align-middle ml-1"
+                                            :class="sortKey === 'id' ? 'text-accent-gold' : 'text-gray-300 group-hover:text-gray-500'">
+                                            {{ sortKey === 'id' ? (sortOrder === 'asc' ? 'arrow_upward' :
+                                            'arrow_downward') : 'unfold_more' }}
+                                        </span>
+                                    </th>
+                                    <th @click="sortBy('created_date')"
+                                        class="px-6 py-4 font-semibold cursor-pointer hover:bg-gray-100 transition-colors group whitespace-nowrap">
+                                        建單日期
+                                        <span class="material-icons text-[14px] align-middle ml-1"
+                                            :class="sortKey === 'created_date' ? 'text-accent-gold' : 'text-gray-300 group-hover:text-gray-500'">
+                                            {{ sortKey === 'created_date' ? (sortOrder === 'asc' ? 'arrow_upward' :
+                                            'arrow_downward') : 'unfold_more' }}
+                                        </span>
+                                    </th>
+                                    <th class="px-6 py-4 font-semibold whitespace-nowrap">客戶姓名</th>
+
+                                    <th class="px-6 py-4 font-semibold hidden lg:table-cell">聯絡電話</th>
+                                    <th class="px-6 py-4 font-semibold w-1/4 hidden lg:table-cell">需求服務</th>
+
+                                    <th class="px-6 py-4 font-semibold text-center">狀態</th>
                                     <th class="px-6 py-4 font-semibold text-center">操作</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
-                                <tr v-for="item in filteredConsultations" :key="item.id"
+                                <tr v-for="item in paginatedData" :key="item.id"
                                     class="hover:bg-blue-50/30 transition-colors">
                                     <td class="px-6 py-4">
-                                        <div class="font-medium text-gray-800">{{ item.id }}</div>
-                                        <div class="text-xs text-gray-500 mt-1">{{ item.created_date }}</div>
+                                        <div class="font-bold text-gray-700">#{{ item.id }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="font-medium text-gray-900">{{ item.name }}</div>
+                                        <div class="text-sm text-gray-600 whitespace-nowrap">{{ item.created_date }}
+                                        </div>
                                     </td>
-                                    <td class="px-6 py-4 text-gray-600">{{ item.phone }}</td>
                                     <td class="px-6 py-4">
+                                        <div class="font-medium text-gray-900 whitespace-nowrap">{{ item.name }}</div>
+                                    </td>
+
+                                    <td
+                                        class="px-6 py-4 text-gray-600 text-sm font-mono hidden lg:table-cell whitespace-nowrap">
+                                        {{ formatPhone(item.phone) }}
+                                    </td>
+
+                                    <td class="px-6 py-4 hidden lg:table-cell">
                                         <div class="flex flex-wrap gap-1">
                                             <span v-for="srv in item.services" :key="srv"
-                                                class="px-2 py-0.5 bg-gray-100 text-gray-600 text-[11px] rounded">
+                                                class="px-2 py-0.5 bg-gray-100 text-gray-600 text-[11px] rounded border border-gray-200 whitespace-nowrap">
                                                 {{ srv }}
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <span :class="getStatusClass(item.status) + ' status-badge cursor-pointer'"
-                                            @click="openStatusModal(item)" title="點擊編輯狀態">
+
+                                    <td class="px-6 py-4 text-center">
+                                        <span
+                                            :class="getStatusClass(item.status) + ' status-badge cursor-pointer hover:opacity-80 transition-opacity inline-flex items-center gap-1'"
+                                            @click="openDetailPanel(item)" title="點擊編輯狀態">
+                                            <span class="material-icons text-[14px]">{{ getStatusIcon(item.status)
+                                                }}</span>
                                             {{ getStatusLabel(item.status) }}
                                         </span>
                                     </td>
+
                                     <td class="px-6 py-4 text-center">
                                         <button @click="openDetailPanel(item)"
-                                            class="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center justify-center mx-auto transition-colors px-3 py-1.5 rounded-lg hover:bg-blue-50">
+                                            class="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center justify-center mx-auto transition-colors px-3 py-1.5 rounded-lg hover:bg-blue-50 whitespace-nowrap">
                                             <span class="material-icons text-base mr-1">visibility</span> 檢視
                                         </button>
                                     </td>
@@ -293,17 +327,29 @@
                         </table>
                     </div>
 
-                    <!-- 分頁 (示意) -->
-                    <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
-                        <span class="text-sm text-gray-500">共 {{ filteredConsultations.length }} 筆資料</span>
-                        <div class="flex items-center gap-1 text-sm">
-                            <button
-                                class="px-3 py-1 border border-gray-200 bg-white rounded text-gray-400 hover:bg-gray-50 cursor-not-allowed"
-                                disabled>上一頁</button>
-                            <button
-                                class="px-3 py-1 border border-gray-200 bg-white text-accent-gold font-medium rounded">1</button>
-                            <button
-                                class="px-3 py-1 border border-gray-200 bg-white rounded text-gray-600 hover:bg-gray-50">下一頁</button>
+                    <!-- 分頁 -->
+                    <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex items-center justify-between"
+                        v-if="filteredConsultations.length > 0">
+                        <span class="text-sm text-gray-500">
+                            共 {{ filteredConsultations.length }} 筆資料 (第 {{ currentPage }} / {{ totalPages }} 頁)
+                        </span>
+                        <div class="flex items-center gap-2 text-sm">
+                            <button @click="prevPage" :disabled="currentPage === 1"
+                                :class="['px-3 py-1 border border-gray-200 rounded transition-colors', currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600 hover:bg-gray-50']">
+                                上一頁
+                            </button>
+
+                            <div class="flex items-center">
+                                <input type="number" :value="currentPage" @keyup.enter="jumpToPage($event.target.value)"
+                                    @blur="jumpToPage($event.target.value)" :max="totalPages" min="1"
+                                    class="w-14 text-center px-1 py-1 border border-accent-gold bg-accent-gold text-white font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                    title="輸入頁碼並按 Enter 跳轉" />
+                            </div>
+
+                            <button @click="nextPage" :disabled="currentPage === totalPages"
+                                :class="['px-3 py-1 border border-gray-200 rounded transition-colors', currentPage === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600 hover:bg-gray-50']">
+                                下一頁
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -412,29 +458,22 @@
 
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-    <!-- 狀態變更 Modal -->
-    <div class="modal fade" id="statusModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">更改狀態 <span class="text-xs text-gray-500">#{{ selectedItem ? selectedItem.id
-                            : '' }}</span></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <select v-model="editForm.status" class="form-select w-full">
-                        <option value="pending">待處理</option>
-                        <option value="confirmed">轉預約</option>
-                        <option value="cancelled">無效單</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="cancelStatusModal">取消</button>
-                    <button type="button" class="btn btn-primary" @click="saveStatusModal">儲存</button>
+                <div class="border-t border-gray-200 bg-white p-6 shrink-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+                    <h6 class="text-sm font-bold text-gray-800 tracking-wider mb-3 flex items-center uppercase">
+                        <span class="material-icons text-accent-gold text-lg mr-2">edit_note</span> 狀態管理
+                    </h6>
+                    <div class="flex items-center gap-3">
+                        <select v-model="editForm.status"
+                            class="form-select border-gray-300 rounded-lg focus:ring-accent-gold focus:border-accent-gold flex-1 py-2">
+                            <option value="待處理">待處理</option>
+                            <option value="轉預約">轉預約</option>
+                            <option value="無效單">無效單</option>
+                        </select>
+                        <button @click="updateStatusFromOffcanvas"
+                            class="btn bg-[#C5A059] hover:bg-[#B08D4D] text-white font-medium px-5 py-2 rounded-lg transition-colors flex items-center shadow-sm">
+                            <span class="material-icons text-sm mr-1">save</span> 儲存變更
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -451,20 +490,27 @@
                 return {
                     searchQuery: '',
                     statusFilter: 'all',
-                    consultations: [], // 清空假資料，改由 API 載入
+                    consultations: [],
                     selectedItem: null,
                     editForm: {
                         status: ''
                     },
                     offcanvasInstance: null,
-                    modalInstance: null
+                    modalInstance: null,
+                    // 🌟 新增分頁相關變數
+                    currentPage: 1,
+                    pageSize: 10, // 每頁顯示幾筆資料，你可以隨時調整
+                    // 🌟 新增：排序狀態紀錄
+                    sortKey: 'id',       // 預設以「單號」排序
+                    sortOrder: 'desc'    // 預設「倒序」 (最新的單在最上面)
+
                 }
             },
             computed: {
                 filteredConsultations() {
                     let result = this.consultations;
 
-                    // 1. 狀態篩選 (注意這裡改對應中文狀態)
+                    // 狀態篩選
                     if (this.statusFilter !== 'all') {
                         const statusMap = {
                             'pending': '待處理',
@@ -474,13 +520,12 @@
                         result = result.filter(c => c.status === statusMap[this.statusFilter]);
                     }
 
-                    // 2. 關鍵字搜尋
+                    // 關鍵字搜尋
                     if (this.searchQuery.trim() !== '') {
                         const kw = this.searchQuery.toLowerCase();
                         result = result.filter(c => {
                             const servicesMatch = (c.services || []).join(',').toLowerCase().includes(kw);
                             const stylesMatch = (c.styles || []).join(',').toLowerCase().includes(kw);
-                            // 確保不為 null 才做 toString() 或 toLowerCase()
                             const name = c.name ? c.name.toLowerCase() : '';
                             const phone = c.phone || '';
                             const id = c.id ? c.id.toString() : '';
@@ -489,6 +534,41 @@
                         });
                     }
                     return result;
+                },
+                // 🌟 新增：處理排序的 Computed 屬性
+                sortedConsultations() {
+                    let result = [...this.filteredConsultations]; // 複製一份陣列避免污染原資料
+
+                    if (this.sortKey) {
+                        result.sort((a, b) => {
+                            let modifier = this.sortOrder === 'asc' ? 1 : -1;
+
+                            // 針對 ID 做數值排序，針對日期做字串/時間排序
+                            if (a[this.sortKey] < b[this.sortKey]) return -1 * modifier;
+                            if (a[this.sortKey] > b[this.sortKey]) return 1 * modifier;
+                            return 0;
+                        });
+                    }
+                    return result;
+                },
+                // 🌟 總頁數改用 sortedConsultations 來算
+                totalPages() {
+                    return Math.ceil(this.sortedConsultations.length / this.pageSize) || 1;
+                },
+                // 🌟 分頁切割改從「排序後」的資料來切！
+                paginatedData() {
+                    const start = (this.currentPage - 1) * this.pageSize;
+                    const end = start + this.pageSize;
+                    return this.sortedConsultations.slice(start, end); // 這裡改用 sortedConsultations
+                }
+            },
+            watch: {
+                // 🌟 當搜尋條件或狀態過濾改變時，自動跳回第一頁
+                searchQuery() {
+                    this.currentPage = 1;
+                },
+                statusFilter() {
+                    this.currentPage = 1;
                 }
             },
             mounted() {
@@ -544,57 +624,105 @@
                     if (status === '無效單') return 'status-cancelled';
                     return 'status-pending'; // 預設
                 },
+                // 🌟 1. 狀態 Icon 對應邏輯
+                getStatusIcon(status) {
+                    if (status === '待處理') return 'schedule';         // 時鐘圖示
+                    if (status === '轉預約') return 'check_circle';     // 打勾圖示
+                    if (status === '無效單') return 'cancel';           // 叉叉圖示
+                    return 'help_outline'; // 預設
+                },
+                // 🌟 2. 電話號碼格式化邏輯
+                formatPhone(phone) {
+                    if (!phone) return '未提供';
+                    // 利用正則表達式，把 0912345678 轉換成 0912-345-678
+                    const cleaned = ('' + phone).replace(/\D/g, ''); // 先濾掉非數字的雜質
+                    const match = cleaned.match(/^(\d{4})(\d{3})(\d{3})$/);
+                    if (match) {
+                        return `${match[1]}-${match[2]}-${match[3]}`;
+                    }
+                    return phone; // 如果不是標準的 10 碼台灣手機，就維持原樣顯示
+                },
 
                 openDetailPanel(item) {
-                    if (this.modalInstance) this.modalInstance.hide();
                     this.selectedItem = item;
+                    // 打開面板時，將當前狀態同步到底部的 select 中 (注意我們現在直接存中文)
+                    this.editForm.status = item.status;
+
                     if (this.offcanvasInstance) this.offcanvasInstance.show();
                 },
-                openStatusModal(item) {
-                    this.selectedItem = item;
-                    // 由於 HTML 裡 select options 的 value 是英文，這裡要做個反向映射
-                    if (item.status === '待處理') this.editForm.status = 'pending';
-                    else if (item.status === '轉預約') this.editForm.status = 'confirmed';
-                    else if (item.status === '無效單') this.editForm.status = 'cancelled';
-
-                    if (this.modalInstance) this.modalInstance.show();
-                },
-
-                // 🚀 儲存並發送更新給後端
-                saveStatusModal() {
+                // 🌟 新增：直接從 Offcanvas 儲存狀態的方法
+                updateStatusFromOffcanvas() {
                     if (!this.selectedItem) return;
 
-                    // 將 select 的英文 value 轉回中文存入資料庫
-                    let newStatusStr = '';
-                    if (this.editForm.status === 'pending') newStatusStr = '待處理';
-                    if (this.editForm.status === 'confirmed') newStatusStr = '轉預約';
-                    if (this.editForm.status === 'cancelled') newStatusStr = '無效單';
+                    const newStatusStr = this.editForm.status;
 
-                    // 呼叫後端 API 更新狀態 (你需要準備一個 PUT 或 PATCH API)
+                    // 呼叫後端 API 更新狀態
                     axios.put(`http://localhost:8080/api/consultations/${this.selectedItem.id}/status`, { status: newStatusStr })
                         .then(response => {
                             if (response.data.success) {
-                                // 更新成功，修改本地端 Vue 的資料以更新畫面
+                                // 更新本地資料庫畫面
                                 const index = this.consultations.findIndex(c => c.id === this.selectedItem.id);
                                 if (index !== -1) {
                                     this.consultations[index].status = newStatusStr;
+                                    // 確保 selectedItem 的狀態也更新，這樣畫面上才不會有落差
+                                    this.selectedItem.status = newStatusStr;
                                 }
                                 alert('狀態已成功更新！');
+                                // 注意：更新完我們不自動關閉 Offcanvas，讓 PM 可以繼續看資料
                             }
                         })
                         .catch(error => {
                             console.error("更新失敗:", error);
                             alert("狀態更新失敗，請稍後再試。");
-                        })
-                        .finally(() => {
-                            this.selectedItem = null;
-                            if (this.modalInstance) this.modalInstance.hide();
                         });
                 },
-                cancelStatusModal() {
-                    this.selectedItem = null;
-                    this.editForm.status = '';
-                    if (this.modalInstance) this.modalInstance.hide();
+
+                // 🌟 新增：點擊表頭時觸發的排序切換方法
+                sortBy(key) {
+                    if (this.sortKey === key) {
+                        // 如果點擊同一個欄位，就切換正倒序
+                        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        // 如果點擊不同欄位，換目標並預設為正序
+                        this.sortKey = key;
+                        this.sortOrder = 'asc';
+                    }
+                    // 排序改變時，順便把頁碼切回第一頁，避免畫面錯亂
+                    this.currentPage = 1;
+                },
+                // 🌟 新增：輸入數字跳頁的防呆邏輯
+                jumpToPage(value) {
+                    let page = parseInt(value, 10);
+
+                    // 防呆 1：如果輸入的不是數字，或是小於 1，就跳回第 1 頁
+                    if (isNaN(page) || page < 1) {
+                        this.currentPage = 1;
+                    }
+                    // 防呆 2：如果輸入的數字大於總頁數，就跳到最後一頁
+                    else if (page > this.totalPages) {
+                        this.currentPage = this.totalPages;
+                    }
+                    // 正常情況：跳到輸入的頁碼
+                    else {
+                        this.currentPage = page;
+                    }
+
+                    // 強制更新畫面（避免使用者輸入無效數字時，輸入框沒有彈回正確數字）
+                    this.$forceUpdate();
+                },
+                // 🌟 新增分頁操作方法
+                nextPage() {
+                    if (this.currentPage < this.totalPages) {
+                        this.currentPage++;
+                    }
+                },
+                prevPage() {
+                    if (this.currentPage > 1) {
+                        this.currentPage--;
+                    }
+                },
+                goToPage(page) {
+                    this.currentPage = page;
                 }
             }
         }).mount('#app');
