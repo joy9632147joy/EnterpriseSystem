@@ -989,10 +989,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
-            <div class="offcanvas-search">
-                <span class="material-symbols-outlined" style="font-size:18px; color:var(--text-muted);">search</span>
-                <input type="text" placeholder="搜尋場地或職人...">
-            </div>
 
             <div id="mobileUserMenu"
                 style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
@@ -1117,7 +1113,7 @@
                         <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">How It Works</span>
                     </div>
                     <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300;">服務流程</h3>
-                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
+                    <p style="font-size:12px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
                         從初次相遇到留下完美回憶，我們全程陪伴</p>
                 </div>
                 <div class="service-steps">
@@ -1205,7 +1201,7 @@
                     <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Gallery</span>
                 </div>
                 <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300; color:#2b2520;">每一幀，都是真實的幸福</h3>
-                <p style="font-size:10px; letter-spacing:0.28em; color:#9c8e7f; text-transform:uppercase; margin-top:14px;">點擊放大 · 左右滑動瀏覽</p>
+                <p style="font-size:12px; letter-spacing:0.28em; color:#9c8e7f; text-transform:uppercase; margin-top:14px;">點擊放大 · 左右滑動瀏覽</p>
             </div>
             <div class="gallery-belt">
                 <div class="gallery-row gallery-row-1" id="galleryContainer">
@@ -1221,7 +1217,7 @@
                         <span style="font-size:10px; letter-spacing:0.3em; color:var(--accent-gold); text-transform:uppercase; font-weight:500;">Client Stories</span>
                     </div>
                     <h3 style="font-family:var(--font-serif); font-size:36px; font-weight:300;">真實故事，真心回饋</h3>
-                    <p style="font-size:10px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
+                    <p style="font-size:12px; letter-spacing:0.3em; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">
                         每段旅程，都始於一個「我願意」</p>
                 </div>
                 <!-- 評論卡片由 JS fetch reviews.json 動態產生 -->
@@ -1482,7 +1478,7 @@
 
             fetch('./customer_review.json')
                 .then(res => res.json())
-                .then(reviews => renderReviews(reviews.slice(-6)));
+                .then(reviews => renderReviews(reviews.slice(-6).reverse()));
 
             function renderReviews(reviews) {
                 const grid = document.getElementById('reviewsGrid');
