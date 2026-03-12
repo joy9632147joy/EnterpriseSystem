@@ -156,7 +156,8 @@
                             class="bg-white dark:bg-slate-900 border-2 border-red-500 rounded-xl p-5 shadow-sm flex flex-col h-full ring-2 ring-red-500 ring-opacity-50">
                             <div class="flex justify-between items-start mb-1">
                                 <h4 class="text-base font-bold">美式戶外場地佈置 - 陽明山莊</h4>
-                                <span class="px-2 py-0.5 bg-red-100 text-red-600 text-[10px] font-bold rounded">即將過期</span>
+                                <span
+                                    class="px-2 py-0.5 bg-red-100 text-red-600 text-[10px] font-bold rounded">即將過期</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-4">
                                 <div class="flex items-center gap-1">
@@ -267,10 +268,10 @@
                         </div>
                     </div>
                 </section>
-                <!-- Completed Projects Table -->
+                <!-- 任務提交紀錄 -->
                 <section>
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-bold">已完成任務紀錄</h3>
+                        <h3 class="text-lg font-bold">任務提交紀錄</h3>
                     </div>
                     <div
                         class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
@@ -281,26 +282,52 @@
                                     <th class="px-6 py-4">婚禮名稱</th>
                                     <th class="px-6 py-4">客戶名稱</th>
                                     <th class="px-6 py-4">日期</th>
-
+                                    <th class="px-6 py-4">狀態</th>
+                                    <th class="px-6 py-4">操作</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">森林系主題婚禮 - 台中新社</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">許志榮 & 陳思妤</td>
-
+                                    <td class="px-6 py-4 text-slate-500">2024.03.10</td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold rounded">審核中</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button onclick="openChatModal('task_101')" class="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 font-medium">
+                                            <span class="material-icons text-sm">forum</span>
+                                            查看留言紀錄
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">精緻小型午茶派對 - 故宮晶華</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">廖健宏 & 黃曉芬</td>
                                     <td class="px-6 py-4 text-slate-500">2024.02.28</td>
-
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded">已完成</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button onclick="openChatModal('task_102')" class="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 font-medium">
+                                            <span class="material-icons text-sm">forum</span>
+                                            查看留言紀錄
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td class="px-6 py-4 font-semibold">古典莊園世紀婚禮 - 高雄漢來</td>
                                     <td class="px-6 py-4 text-slate-600 dark:text-slate-400">林書豪 & 吳嘉嘉</td>
                                     <td class="px-6 py-4 text-slate-500">2024.01.10</td>
-
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded">已完成</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button onclick="openChatModal('task_103')" class="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 font-medium">
+                                            <span class="material-icons text-sm">forum</span>
+                                            查看留言紀錄
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
