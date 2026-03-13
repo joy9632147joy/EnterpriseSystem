@@ -18,7 +18,7 @@
     <script src="./global.js"></script>
     <script src="./login.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
+
     <style>
         /* 籌備進度版面 */
         .dashboard-wrap {
@@ -1086,17 +1086,18 @@
 
     <script>
 
-
         // ─── Vue 3 綁定資料 ───
-        const { createApp, reactive, onMounted, computed, ref } = Vue;
+        const { createApp, reactive, onMounted, computed, ref, nextTick } = Vue;
 
         createApp({
             setup() {
-                // 未來可用 Axios 串接 API 取得資料
+                const projectId = 1; // 💡 測試階段先寫死
+
+                // 完整保留 UI 假資料框架
                 const data = reactive({
-                    countdownDays: 25,
-                    weddingDate: '2026.04.10',
-                    pmName: '李宜瑾 (Tina)',
+                    countdownDays: 0,
+                    weddingDate: '載入中...',
+                    pmName: '載入中...',
                     progressPercent: 65,
                     payments: [
                         { title: '訂金 20%', status: 'PAID', dueDate: '' },
@@ -1105,9 +1106,9 @@
                     ],
                     documents: [
                         { name: '婚宴定案合約書.pdf', icon: 'description' },
-                        { name: '主視覺模擬圖_V2.jpg', icon: 'image' },
-                        { name: '第一期款項收據.pdf', icon: 'receipt_long' }
+                        { name: '主視覺模擬圖_V2.jpg', icon: 'image' }
                     ],
+                    // 🌟 這裡把原本的假資料加回來了，畫面才不會找不到資料報錯
                     phases: [
                         {
                             id: 1,
@@ -1177,127 +1178,127 @@
                     ]
                 });
 
-                // 1. 留言板陣列資料
-                const messages = reactive([
-                    {
-                        id: 1,
-                        sender: 'pm',
-                        senderName: '李宜瑾 (Tina)',
-                        text: '哈囉！為您更新一下進度：目前新娘秘書的檔期已經確認保留囉！接下來我們預計下週二來討論場地佈置的主色調，您可以先將喜歡的參考圖上傳或留言給我。',
-                        time: '2026-03-08 14:30'
-                    },
-                    {
-                        id: 2,
-                        sender: 'client',
-                        senderName: '王先生 & 陳小姐',
-                        text: '好的，辛苦了！我們目前比較偏好「莫蘭迪粉」或是「燕麥色」系，等我們整理好幾張照片再傳給妳參考喔！',
-                        time: '2026-03-09 09:15'
-                    }
-                ]);
-
+                // 留言板陣列資料 (先清空，等 API 塞進來)
+                const messages = reactive([]);
                 const newMessage = ref('');
-                const hasUnread = ref(true); // 🌟 預設設為 true，讓你一進畫面就看到呼吸燈效果
-                const selectedFiles = ref([]); // 🌟 改成陣列，用來存放多個檔案
+                const hasUnread = ref(true);
+                const selectedFiles = ref([]);
 
-                // 🌟 點擊按鈕時，清除未讀狀態
-                const clearUnread = () => {
-                    hasUnread.value = false;
+                const clearUnread = () => { hasUnread.value = false; };
+
+                // 🚀 核心：向後端撈取專案進度與留言紀錄
+                const fetchProjectProgress = () => {
+                    axios.get(`http://localhost:8080/api/customers/projects/${projectId}/progress`)
+                        .then(response => {
+                            const apiData = response.data;
+                            if (apiData.success) {
+                                const realData = apiData.data;
+                                // 1. 更新基本資料
+                                if (realData.pmName) data.pmName = realData.pmName;
+                                if (realData.weddingDate) {
+                                    data.weddingDate = realData.weddingDate.replace(/-/g, '.');
+                                    const today = new Date();
+                                    const wedding = new Date(realData.weddingDate);
+                                    const diffTime = Math.abs(wedding - today);
+                                    data.countdownDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                                }
+
+                                // 2. 更新留言板
+                                if (realData.timeline && realData.timeline.length > 0) {
+                                    messages.splice(0, messages.length);
+                                    realData.timeline.forEach(comm => {
+                                        const isClient = comm.createBy === realData.customerName || comm.createBy === 'CLIENT';
+                                        let mappedAttachments = [];
+                                        if (comm.documents && comm.documents.length > 0) {
+                                            mappedAttachments = comm.documents.map(doc => ({
+                                                name: doc.name,
+                                                type: doc.fileType || 'application/pdf',
+                                                url: doc.filePath || '#'
+                                            }));
+                                        }
+                                        messages.push({
+                                            id: comm.id,
+                                            sender: isClient ? 'client' : 'pm',
+                                            senderName: comm.createBy || (isClient ? '新人' : realData.pmName),
+                                            text: comm.content,
+                                            time: comm.createAt ? comm.createAt.replace('T', ' ').substring(0, 16) : '',
+                                            attachments: mappedAttachments
+                                        });
+                                    });
+                                    nextTick(() => {
+                                        const container = document.getElementById('boardContainer');
+                                        if (container) container.scrollTop = container.scrollHeight;
+                                    });
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error("無法載入進度:", error);
+                        });
                 };
 
-                // 🌟 處理多檔案選擇 (修正破圖問題)
+                // 處理檔案上傳預覽
                 const handleFileUpload = (event) => {
                     const files = Array.from(event.target.files);
                     if (files.length === 0) return;
-
                     files.forEach(file => {
-                        // 如果是圖片，等 FileReader 讀取完畢後再推進陣列
                         if (file.type.startsWith('image/')) {
                             const reader = new FileReader();
                             reader.onload = (e) => {
-                                selectedFiles.value.push({
-                                    file: file,
-                                    name: file.name,
-                                    type: file.type,
-                                    previewUrl: e.target.result // 確保此時已有 Base64 網址
-                                });
+                                selectedFiles.value.push({ file: file, name: file.name, type: file.type, previewUrl: e.target.result });
                             };
                             reader.readAsDataURL(file);
                         } else {
-                            // 非圖片檔案直接推進陣列
-                            selectedFiles.value.push({
-                                file: file,
-                                name: file.name,
-                                type: file.type,
-                                previewUrl: null
-                            });
+                            selectedFiles.value.push({ file: file, name: file.name, type: file.type, previewUrl: null });
                         }
                     });
-
-                    event.target.value = ''; // 清空 input 讓下次可選同一個檔
+                    event.target.value = '';
                 };
-
-                // 🌟 根據 Index 刪除指定的檔案
                 const removeSelectedFile = (index) => {
                     selectedFiles.value.splice(index, 1);
                 };
 
-                // 送出留言的方法
                 const postMessage = () => {
-                    // 如果沒文字且沒選檔案，不送出
                     if (!newMessage.value.trim() && selectedFiles.value.length === 0) return;
 
                     const now = new Date();
-                    const timeString = now.getFullYear() + '-' +
-                        String(now.getMonth() + 1).padStart(2, '0') + '-' +
-                        String(now.getDate()).padStart(2, '0') + ' ' +
-                        String(now.getHours()).padStart(2, '0') + ':' +
-                        String(now.getMinutes()).padStart(2, '0');
+                    const timeString = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
-                    // 🌟 處理多筆附件資料
                     let attachmentsData = [];
                     if (selectedFiles.value.length > 0) {
-                        attachmentsData = selectedFiles.value.map(f => ({
-                            name: f.name,
-                            type: f.type,
-                            url: f.previewUrl || '#'
-                        }));
+                        attachmentsData = selectedFiles.value.map(f => ({ name: f.name, type: f.type, url: f.previewUrl || '#' }));
                     }
 
                     messages.push({
                         id: Date.now(),
                         sender: 'client',
-                        senderName: '王先生 & 陳小姐',
+                        senderName: '新人 (測試)',
                         text: newMessage.value.trim(),
                         time: timeString,
-                        attachments: attachmentsData // 🌟 塞入陣列
+                        attachments: attachmentsData
                     });
-
-                    // 🌟 送出後清空文字與陣列
                     newMessage.value = '';
                     selectedFiles.value = [];
-
-                    setTimeout(() => {
+                    nextTick(() => {
                         const container = document.getElementById('boardContainer');
                         if (container) container.scrollTop = container.scrollHeight;
-                    }, 50);
+                    });
                 };
 
-                // 計算 SVG 圓環偏移量 (2 * PI * r)
+                // 🌟 圓環動畫計算加回來了
                 const dashOffset = computed(() => {
                     const circumference = 753.6;
                     return circumference - (data.progressPercent / 100) * circumference;
                 });
 
-                // 畫面掛載時觸發進度條畫圓圈的動畫
                 onMounted(() => {
+                    fetchProjectProgress();
                     let targetProgress = data.progressPercent;
                     data.progressPercent = 0;
-                    setTimeout(() => {
-                        data.progressPercent = targetProgress;
-                    }, 300);
+                    setTimeout(() => { data.progressPercent = targetProgress; }, 300);
                 });
 
-                // 分類對應圖示
+                // 🌟 取得圖示的函式加回來了
                 function getCatIcon(name) {
                     const map = {
                         '婚禮團隊協調': 'groups',
@@ -1309,22 +1310,13 @@
                 }
 
                 return {
-                    data,
-                    dashOffset,
-                    getCatIcon,
-                    hasUnread,
-                    clearUnread,
-                    messages,
-                    newMessage,
-                    postMessage,
-                    selectedFiles,
-                    handleFileUpload,
-                    removeSelectedFile
+                    data, dashOffset, getCatIcon, hasUnread, clearUnread,
+                    messages, newMessage, postMessage, selectedFiles,
+                    handleFileUpload, removeSelectedFile
                 }
             }
         }).mount('#app');
 
-        // 開啟討論區 Modal 時自動捲至最新留言
         document.getElementById('chatModal').addEventListener('shown.bs.modal', () => {
             const container = document.getElementById('boardContainer');
             if (container) container.scrollTop = container.scrollHeight;
