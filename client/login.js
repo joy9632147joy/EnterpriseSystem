@@ -71,7 +71,7 @@ async function performLoginAction() {
     if (!email || !pass) return alert('請完整填寫電子郵件與密碼');
 
     try {
-        // 1. 發送真實的 POST 請求給後端
+        // 1. POST 請求給後端
         const response = await fetch('http://localhost:8080/api/customer/login', {
             method: 'POST',
             headers: {
@@ -98,18 +98,20 @@ async function performLoginAction() {
 
         // 3. 儲存其他的非機密資訊 (例如用來顯示的 username)
         const storage = rememberMe ? localStorage : sessionStorage;
-        storage.setItem('dv_username', data.email); // 後端回傳的是 email
+
+        // 直接把從後端拿到的名字 (data.name) 存進 dv_username 裡 
+        // (如果因為某些原因沒有 name，就退而求其次用 email)
+        storage.setItem('dv_username', data.name || data.email);
         storage.setItem('dv_login_time', Date.now());
 
+        // 只有「記住我」的邏輯才跟 dv_remember_email 有關，不要跟 dv_username 混在一起
         if (rememberMe) {
             localStorage.setItem('dv_remember_email', email);
         } else {
             localStorage.removeItem('dv_remember_email');
         }
 
-        // 呼叫模態框顯示成功
-        showSuccessModal(data.email);
-
+        showSuccessModal(data.name || data.email);
         setTimeout(() => {
             window.location.href = './index.html';
         }, 1800);
