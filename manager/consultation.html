@@ -225,6 +225,7 @@
                             class="form-select text-sm border-gray-200 rounded-lg shadow-sm focus:ring-accent-gold focus:border-accent-gold w-full md:w-40 bg-white py-2">
                             <option value="all">顯示全部</option>
                             <option value="pending">待處理 (Pending)</option>
+                            <option value="contacted">已聯絡 (Contacted)</option>
                             <option value="confirmed">轉預約 (Booking)</option>
                             <option value="cancelled">無效 / 取消 (Cancelled)</option>
                         </select>
@@ -469,6 +470,7 @@
                         <select v-model="editForm.status"
                             class="form-select border-gray-300 rounded-lg focus:ring-accent-gold focus:border-accent-gold flex-1 py-2">
                             <option value="待處理">待處理</option>
+                            <option value="已聯絡">已聯絡</option>
                             <option value="轉預約">轉預約</option>
                             <option value="無效單">無效單</option>
                         </select>
@@ -517,6 +519,7 @@
                     if (this.statusFilter !== 'all') {
                         const statusMap = {
                             'pending': '待處理',
+                            'contacted': '已聯絡',
                             'confirmed': '轉預約',
                             'cancelled': '無效單'
                         };
@@ -623,6 +626,7 @@
                 },
                 getStatusClass(status) {
                     if (status === '待處理') return 'status-pending';
+                    if (status === '已聯絡') return 'status-contacting';
                     if (status === '轉預約') return 'status-confirmed';
                     if (status === '無效單') return 'status-cancelled';
                     return 'status-pending'; // 預設
@@ -630,6 +634,7 @@
                 // 🌟 1. 狀態 Icon 對應邏輯
                 getStatusIcon(status) {
                     if (status === '待處理') return 'schedule';         // 時鐘圖示
+                    if (status === '已聯絡') return 'call';             // 電話圖示
                     if (status === '轉預約') return 'check_circle';     // 打勾圖示
                     if (status === '無效單') return 'cancel';           // 叉叉圖示
                     return 'help_outline'; // 預設
