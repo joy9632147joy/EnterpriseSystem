@@ -96,198 +96,9 @@
             }
         }
 
-        .mosaic-forest,
-        .mosaic-vintage,
-        .mosaic-chapel,
-        .mosaic-chinese,
-        .mosaic-minimal,
-        .mosaic-exotic {
-            width: 100%;
-            box-sizing: border-box;
-            min-width: 0;
-        }
-
-        .mosaic-forest {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr 1fr;
-            grid-template-rows: 480px 320px;
-            gap: 6px;
-        }
-
-        .mosaic-forest .tile:nth-child(1) {
-            grid-row: 1/3;
-        }
-
-        @media(max-width:767px) {
-            .mosaic-forest {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 260px 185px 185px;
-            }
-
-            .mosaic-forest .tile:nth-child(1) {
-                grid-row: 1;
-                grid-column: 1/3;
-            }
-        }
-
-        .mosaic-vintage {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 560px;
-            gap: 6px;
-        }
-
-        .mosaic-vintage .tile:nth-child(2) {
-            margin-top: 48px;
-            align-self: stretch;
-        }
-
-        @media(max-width:767px) {
-            .mosaic-vintage {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 240px 240px;
-            }
-
-            .mosaic-vintage .tile:nth-child(2) {
-                margin-top: 0;
-            }
-
-            .mosaic-vintage .tile:nth-child(1) {
-                grid-column: 1/3;
-            }
-        }
-
-        .mosaic-chapel {
-            display: grid;
-            grid-template-columns: 1fr 1.8fr 1fr;
-            grid-template-rows: 600px;
-            gap: 6px;
-        }
-
-        @media(max-width:767px) {
-            .mosaic-chapel {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 260px 260px;
-            }
-
-            .mosaic-chapel .tile:nth-child(2) {
-                grid-column: 1/3;
-                grid-row: 1;
-            }
-
-            .mosaic-chapel .tile:nth-child(1) {
-                grid-row: 2;
-            }
-
-            .mosaic-chapel .tile:nth-child(3) {
-                grid-row: 2;
-            }
-        }
-
-        .mosaic-chinese {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 380px 280px;
-            gap: 6px;
-        }
-
-        .mosaic-chinese .tile-text {
-            grid-column: 2;
-            grid-row: 2;
-        }
-
-        @media(max-width:767px) {
-            .mosaic-chinese {
-                grid-template-columns: 1fr;
-                grid-template-rows: 260px 195px 210px;
-            }
-
-            .mosaic-chinese .tile-text {
-                grid-column: 1;
-                grid-row: 3;
-            }
-        }
-
-        .mosaic-minimal {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            grid-template-rows: 440px 260px;
-            gap: 6px;
-        }
-
-        .mosaic-minimal .tile:nth-child(1) {
-            grid-row: 1/3;
-        }
-
-        @media(max-width:767px) {
-            .mosaic-minimal {
-                grid-template-columns: 1fr;
-                grid-template-rows: 280px 195px 195px;
-            }
-
-            .mosaic-minimal .tile:nth-child(1) {
-                grid-row: 1;
-            }
-        }
-
-        /* ══════════════════════════════════════════
-           mosaic-exotic：橫幅全景 + 下方四宮格
-           第1張：全寬橫幅主視覺（海灘／儀式感）
-           第2~5張：等比四格並排
-        ══════════════════════════════════════════ */
-        .mosaic-exotic {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 420px 300px;
-            gap: 6px;
-        }
-
-        /* 第1張：橫跨全部4欄，高度飽滿 */
-        .mosaic-exotic .tile:nth-child(1) {
-            grid-column: 1 / 5;
-            grid-row: 1;
-        }
-
-        /* 第2~5張：各佔1欄，下方一排 */
-        .mosaic-exotic .tile:nth-child(2),
-        .mosaic-exotic .tile:nth-child(3),
-        .mosaic-exotic .tile:nth-child(4),
-        .mosaic-exotic .tile:nth-child(5) {
-            grid-row: 2;
-        }
-
-        @media(max-width:767px) {
-            .mosaic-exotic {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 240px 160px 160px;
-            }
-
-            .mosaic-exotic .tile:nth-child(1) {
-                grid-column: 1 / 3;
-                grid-row: 1;
-            }
-
-            .mosaic-exotic .tile:nth-child(2) {
-                grid-column: 1;
-                grid-row: 2;
-            }
-
-            .mosaic-exotic .tile:nth-child(3) {
-                grid-column: 2;
-                grid-row: 2;
-            }
-
-            .mosaic-exotic .tile:nth-child(4) {
-                grid-column: 1;
-                grid-row: 3;
-            }
-
-            .mosaic-exotic .tile:nth-child(5) {
-                grid-column: 2;
-                grid-row: 3;
-            }
-        }
-
+        /* ════════════════════════════════════════
+           SHARED TILE
+        ════════════════════════════════════════ */
         .tile {
             position: relative;
             overflow: hidden;
@@ -414,19 +225,20 @@
             font-size: 16px;
             opacity: 0;
             transition: opacity .4s;
-            border-radius: 0;
         }
 
         .tile:hover .tile-zoom {
             opacity: 1;
         }
 
+        /* text panel */
         .tile-text-panel {
             background: #1A1A18;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 40px 36px;
+            cursor: default;
         }
 
         .tile-text-panel .panel-quote {
@@ -455,88 +267,421 @@
             margin-bottom: 20px;
         }
 
-        .detail-strip {
-            display: flex;
+        /* ════════════════════════════════════════
+           MOSAIC — FOREST 森林系
+           上：原始 3欄 2行 (hero 跨行)
+           下：1大+2小 錯落，高低不齊
+        ════════════════════════════════════════ */
+        .mosaic-forest {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            grid-template-rows: 480px 320px;
             gap: 6px;
+        }
+
+        .mosaic-forest .tile:nth-child(1) {
+            grid-row: 1/3;
+        }
+
+        .mosaic-forest-ext {
             margin-top: 6px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            grid-template-rows: 380px 460px;
+            gap: 6px;
+        }
+
+        /* 第1張高跨兩行，右邊兩排錯開 */
+        .mosaic-forest-ext .tile:nth-child(1) {
+            grid-row: 1/3;
+        }
+
+        .mosaic-forest-ext .tile:nth-child(2) {
+            margin-top: 60px;
+        }
+
+        .mosaic-forest-ext .tile:nth-child(3) {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .mosaic-forest-ext .tile:nth-child(4) {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .mosaic-forest-ext .tile:nth-child(5) {
+            grid-column: 3;
+            grid-row: 2;
         }
 
         @media(max-width:767px) {
-            .detail-strip {
-                flex-wrap: wrap;
+            .mosaic-forest {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 260px 185px 185px;
+            }
+
+            .mosaic-forest .tile:nth-child(1) {
+                grid-row: 1;
+                grid-column: 1/3;
+            }
+
+            .mosaic-forest-ext {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 185px 185px 185px;
+            }
+
+            .mosaic-forest-ext .tile:nth-child(1) {
+                grid-row: 1;
+                grid-column: 1/3;
+            }
+
+            .mosaic-forest-ext .tile:nth-child(2) {
+                margin-top: 0;
             }
         }
 
-        .detail-card {
-            flex: 1;
-            background: white;
-            border: 1px solid var(--border-grey);
-            padding: 24px 20px;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .6s ease, transform .6s ease, border-color .3s, box-shadow .3s;
+        /* ════════════════════════════════════════
+           MOSAIC — VINTAGE 美式復古
+           上：原始 3欄等高
+           下：全寬橫幅 + 下方2欄拼接
+        ════════════════════════════════════════ */
+        .mosaic-vintage {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 560px;
+            gap: 6px;
         }
 
-        .detail-card.vis {
-            opacity: 1;
-            transform: translateY(0);
+        .mosaic-vintage .tile:nth-child(2) {
+            margin-top: 48px;
+            align-self: stretch;
         }
 
-        .detail-card:hover {
-            border-color: rgba(197, 160, 89, .4);
-            box-shadow: 0 8px 32px rgba(197, 160, 89, .08);
+        .mosaic-vintage-ext {
+            margin-top: 6px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 460px 300px;
+            gap: 6px;
+        }
+
+        /* 第1張全寬橫幅 */
+        .mosaic-vintage-ext .tile:nth-child(1) {
+            grid-column: 1/3;
         }
 
         @media(max-width:767px) {
-            .detail-card {
-                flex: 0 0 calc(50% - 3px);
+            .mosaic-vintage {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 240px 240px;
+            }
+
+            .mosaic-vintage .tile:nth-child(2) {
+                margin-top: 0;
+            }
+
+            .mosaic-vintage .tile:nth-child(1) {
+                grid-column: 1/3;
+            }
+
+            .mosaic-vintage-ext {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px 180px;
+            }
+
+            .mosaic-vintage-ext .tile:nth-child(1) {
+                grid-column: 1/3;
             }
         }
 
-        .detail-card-tag {
-            font-size: 8px;
-            letter-spacing: .35em;
+        /* ════════════════════════════════════════
+           MOSAIC — CHAPEL 西式教堂
+           上：原始 3欄 (1:1.8:1) 高欄
+           下：左寬右窄 + 右側豎圖 + 中間橫圖
+        ════════════════════════════════════════ */
+        .mosaic-chapel {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr 1fr;
+            grid-template-rows: 600px;
+            gap: 6px;
+        }
+
+        .mosaic-chapel-ext {
+            margin-top: 6px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 480px 340px;
+            gap: 6px;
+        }
+
+        /* 左大圖跨兩行 */
+        .mosaic-chapel-ext .tile:nth-child(1) {
+            grid-row: 1/3;
+        }
+
+        @media(max-width:767px) {
+            .mosaic-chapel {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 260px 260px;
+            }
+
+            .mosaic-chapel .tile:nth-child(2) {
+                grid-column: 1/3;
+                grid-row: 1;
+            }
+
+            .mosaic-chapel .tile:nth-child(1) {
+                grid-row: 2;
+            }
+
+            .mosaic-chapel .tile:nth-child(3) {
+                grid-row: 2;
+            }
+
+            .mosaic-chapel-ext {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 220px 180px 180px;
+            }
+
+            .mosaic-chapel-ext .tile:nth-child(1) {
+                grid-row: 1;
+                grid-column: 1/3;
+            }
+        }
+
+        /* ════════════════════════════════════════
+           MOSAIC — CHINESE 中式老宅
+           上：原始 2欄 2行 + 文字板
+           下：左文字板 + 右側 2張豎圖並排 + 底部全寬
+        ════════════════════════════════════════ */
+        .mosaic-chinese {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 380px 280px;
+            gap: 6px;
+        }
+
+        .mosaic-chinese .tile-text {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .mosaic-chinese-ext {
+            margin-top: 6px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 440px 280px;
+            gap: 6px;
+        }
+
+        /* 第1張左欄跨兩行（大豎圖） */
+        .mosaic-chinese-ext .tile:nth-child(1) {
+            grid-row: 1/3;
+        }
+
+        /* 底部最後一張跨右兩欄 */
+        .mosaic-chinese-ext .tile:nth-child(4) {
+            grid-column: 2/4;
+        }
+
+        @media(max-width:767px) {
+            .mosaic-chinese {
+                grid-template-columns: 1fr;
+                grid-template-rows: 260px 195px 210px;
+            }
+
+            .mosaic-chinese .tile-text {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .mosaic-chinese-ext {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 240px 200px 200px;
+            }
+
+            .mosaic-chinese-ext .tile:nth-child(1) {
+                grid-row: 1;
+                grid-column: 1/3;
+            }
+
+            .mosaic-chinese-ext .tile:nth-child(4) {
+                grid-column: 1/3;
+            }
+        }
+
+        .panel-dark {
+            background: #1A1A18;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 36px 32px;
+        }
+
+        .panel-dark .pd-eyebrow {
+            font-size: 9px;
+            letter-spacing: .4em;
             color: var(--accent-gold);
             text-transform: uppercase;
-            font-weight: 500;
+            margin-bottom: 16px;
         }
 
-        .detail-card-title {
+        .panel-dark .pd-quote {
             font-family: var(--font-serif);
-            font-size: 15px;
-            font-weight: 400;
-            margin-top: 8px;
-            line-height: 1.4;
+            font-size: 20px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, .85);
+            line-height: 1.9;
+            letter-spacing: .08em;
         }
 
-        .detail-card-desc {
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: .05em;
-            margin-top: 8px;
-            line-height: 1.7;
-        }
-
-        .detail-card-line {
-            width: 16px;
+        .panel-dark .pd-line {
+            width: 28px;
             height: 1px;
-            background: var(--border-grey);
-            margin-top: 16px;
-            transition: width .5s, background .5s;
-        }
-
-        .detail-card:hover .detail-card-line {
-            width: 36px;
             background: var(--accent-gold);
+            opacity: .5;
+            margin-top: 24px;
         }
 
-        /* ════ LIGHTBOX ════ */
+        /* ════════════════════════════════════════
+           MOSAIC — MINIMAL 極簡現代
+           上：原始 2欄 (2:1) hero 跨行
+           下：4格正方形等比網格
+        ════════════════════════════════════════ */
+        .mosaic-minimal {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 440px 260px;
+            gap: 6px;
+        }
+
+        .mosaic-minimal .tile:nth-child(1) {
+            grid-row: 1/3;
+        }
+
+        .mosaic-minimal-ext {
+            margin-top: 6px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 380px;
+            gap: 6px;
+        }
+
+        @media(max-width:767px) {
+            .mosaic-minimal {
+                grid-template-columns: 1fr;
+                grid-template-rows: 280px 195px 195px;
+            }
+
+            .mosaic-minimal .tile:nth-child(1) {
+                grid-row: 1;
+            }
+
+            .mosaic-minimal-ext {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 180px 180px;
+            }
+        }
+
+        /* ════════════════════════════════════════
+           MOSAIC — EXOTIC 異國風情
+           上：原始 全寬橫幅 + 4格
+           下：全寬橫幅收尾 + 左右分割
+        ════════════════════════════════════════ */
+        .mosaic-exotic {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 420px 300px;
+            gap: 6px;
+        }
+
+        .mosaic-exotic .tile:nth-child(1) {
+            grid-column: 1/5;
+            grid-row: 1;
+        }
+
+        .mosaic-exotic .tile:nth-child(2),
+        .mosaic-exotic .tile:nth-child(3),
+        .mosaic-exotic .tile:nth-child(4),
+        .mosaic-exotic .tile:nth-child(5) {
+            grid-row: 2;
+        }
+
+        .mosaic-exotic-ext {
+            margin-top: 6px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            grid-template-rows: 520px;
+            gap: 6px;
+        }
+
+        /* 左主圖高，右兩張上下排 */
+        .mosaic-exotic-ext .tile:nth-child(2),
+        .mosaic-exotic-ext .tile:nth-child(3) {
+            /* 右側兩張透過 nested grid */
+        }
+
+        .mosaic-exotic-ext-right {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 6px;
+            grid-column: 2 / 4;
+        }
+
+        .mosaic-exotic-ext-right .tile {
+            height: 100%;
+        }
+
+        @media(max-width:767px) {
+            .mosaic-exotic {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 240px 160px 160px;
+            }
+
+            .mosaic-exotic .tile:nth-child(1) {
+                grid-column: 1/3;
+                grid-row: 1;
+            }
+
+            .mosaic-exotic .tile:nth-child(2) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .mosaic-exotic .tile:nth-child(3) {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .mosaic-exotic .tile:nth-child(4) {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .mosaic-exotic .tile:nth-child(5) {
+                grid-column: 2;
+                grid-row: 3;
+            }
+
+            .mosaic-exotic-ext {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px 180px;
+            }
+
+            .mosaic-exotic-ext-right {
+                grid-column: 2/3;
+            }
+        }
+
+        /* ════════════════════════════════════════
+           LIGHTBOX
+        ════════════════════════════════════════ */
         .lb-overlay {
             position: fixed;
             inset: 0;
             z-index: 9000;
-            background: rgba(6, 4, 2, 0.92);
+            background: rgba(6, 4, 2, .92);
             display: none;
             align-items: center;
             justify-content: center;
@@ -619,8 +764,8 @@
             transform: translateY(-50%);
             width: 52px;
             height: 52px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -629,7 +774,7 @@
             z-index: 9002;
             transition: background .25s, border-color .25s, transform .25s;
             pointer-events: auto;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, .75);
         }
 
         .lb-btn .material-symbols-outlined {
@@ -637,9 +782,9 @@
         }
 
         .lb-btn:hover {
-            background: rgba(197, 160, 89, 0.18);
-            border-color: rgba(197, 160, 89, 0.45);
-            color: rgba(255, 255, 255, 0.95);
+            background: rgba(197, 160, 89, .18);
+            border-color: rgba(197, 160, 89, .45);
+            color: rgba(255, 255, 255, .95);
         }
 
         .lb-prev {
@@ -683,24 +828,10 @@
                 transform: none;
             }
 
-            .lb-img-wrap {
-                max-width: 92vw;
-                max-height: calc(100dvh - 160px);
-            }
-
+            .lb-img-wrap,
             .lb-img-wrap img {
                 max-width: 92vw;
                 max-height: calc(100dvh - 160px);
-            }
-        }
-
-        @media(max-width:767px) and (max-height:700px) {
-            .lb-img-wrap {
-                max-height: calc(100dvh - 180px);
-            }
-
-            .lb-img-wrap img {
-                max-height: calc(100dvh - 180px);
             }
         }
 
@@ -711,11 +842,11 @@
             z-index: 9010;
             width: 44px;
             height: 44px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .14);
             border-radius: 50%;
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, .8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -728,8 +859,8 @@
         }
 
         .lb-close:hover {
-            background: rgba(197, 160, 89, 0.2);
-            border-color: rgba(197, 160, 89, 0.5);
+            background: rgba(197, 160, 89, .2);
+            border-color: rgba(197, 160, 89, .5);
             transform: rotate(90deg);
         }
 
@@ -744,17 +875,11 @@
             z-index: 9003;
         }
 
-        @media(max-width:767px) {
-            .lb-dots {
-                bottom: 20px;
-            }
-        }
-
         .lb-dot {
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, .25);
             cursor: pointer;
             transition: background .3s, transform .3s;
         }
@@ -771,19 +896,20 @@
             transform: translateX(-50%);
             font-size: 10px;
             letter-spacing: .4em;
-            color: rgba(197, 160, 89, 0.6);
+            color: rgba(197, 160, 89, .6);
             pointer-events: none;
             z-index: 9003;
             white-space: nowrap;
         }
 
+        /* ════ THEME NAV ════ */
         .theme-nav {
             position: relative;
             top: 80px;
             z-index: 99;
-            background: rgba(250, 246, 240, 0.6);
+            background: rgba(250, 246, 240, .6);
             backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+            border-bottom: 1px solid rgba(197, 160, 89, .12);
             margin-top: -70px;
         }
 
@@ -884,7 +1010,7 @@
 
 <body>
 
-    <!-- ─── 導覽列 ─── -->
+    <!-- 導覽列 -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid" style="max-width:1600px; margin:0 auto;">
             <a class="navbar-brand" href="./index.html">
@@ -904,13 +1030,14 @@
                     <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
                 </ul>
                 <div class="navbar-tools d-none d-lg-flex align-items-center gap-3 ms-auto">
-                    
                     <div class="nav-item dropdown" id="userDropdownWrap" style="display:none;">
                         <a class="nav-link nav-link-item" href="#" id="userDropdownBtn" data-bs-toggle="dropdown">歡迎</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="./customer_system.html">我的婚禮規劃</a></li>
                             <li><a class="dropdown-item" href="./customer_progress.html">我的籌備進度</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">登出</a></li>
                         </ul>
                     </div>
@@ -920,7 +1047,7 @@
         </div>
     </nav>
 
-    <!-- ─── 手機版 Offcanvas ─── -->
+    <!-- 手機 Offcanvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="navMenu">
         <div class="offcanvas-header">
             <a class="navbar-brand" href="./index.html">
@@ -930,17 +1057,16 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button>
         </div>
         <div class="offcanvas-body">
-
             <div id="mobileUserMenu"
                 style="padding-bottom:12px; margin-bottom:4px; border-bottom:1px solid rgba(197,160,89,0.15);">
                 <p id="mobileWelcome"
-                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;"></p>
+                    style="font-size:15px; letter-spacing:0.12em; color:var(--accent-gold); margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                </p>
                 <a href="./customer_system.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的婚禮規劃</a>
                 <a href="./customer_progress.html" class="nav-link nav-link-item"
                     style="padding:10px 0; display:block;">我的籌備進度</a>
             </div>
-
             <ul class="navbar-nav gap-0">
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_team.html">專業團隊</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_plan.html">婚禮方案</a></li>
@@ -948,13 +1074,11 @@
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_factory.html">精選合作夥伴</a></li>
                 <li class="nav-item"><a class="nav-link nav-link-item" href="./wedding_contact.html">聯絡我們</a></li>
             </ul>
-
             <a href="./client_login.html" class="offcanvas-login" id="loginLinkMobile">
                 <span class="material-symbols-outlined"
                     style="font-size:16px; vertical-align:middle; margin-right:6px;">person</span>
                 會員登入
             </a>
-
             <a href="#" id="logoutBtnMobile" class="nav-link nav-link-item"
                 style="padding:14px 0; display:none; letter-spacing:0.08em;">
                 <span class="material-symbols-outlined"
@@ -964,8 +1088,7 @@
         </div>
     </div>
 
-
-    <!-- hero -->
+    <!-- page -->
     <div class="page-wrap">
         <div class="page-hero has-bg">
             <p class="page-hero-eyebrow">Wedding Theme</p>
@@ -974,20 +1097,16 @@
             <p class="page-hero-sub">探索婚禮的多種樣貌，讓每一種風格，都精準對接您的想像</p>
         </div>
 
-        <!-- THEME NAV -->
         <nav class="theme-nav" id="themeNav">
             <div class="theme-nav-inner" id="themeNavInner"></div>
         </nav>
 
-        <!-- THEME SECTIONS -->
         <div class="themes-wrap" id="themesWrap"></div>
     </div>
 
     <!-- LIGHTBOX -->
     <div class="lb-overlay" id="lbOverlay">
-        <button class="lb-close" id="lbClose" title="關閉">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+        <button class="lb-close" id="lbClose" title="關閉"><span class="material-symbols-outlined">close</span></button>
         <div class="lb-counter" id="lbCounter"></div>
         <div class="lb-inner">
             <div class="lb-img-wrap" id="lbImgWrap">
@@ -1003,21 +1122,20 @@
         <div class="lb-dots" id="lbDots"></div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-bottom">© 2026 DREAM VENUES WEDDING DESIGN. ALL RIGHTS RESERVED.</div>
     </footer>
-
-    <!-- 至頂按鈕 -->
     <button id="backToTop" class="back-to-top">
         <span class="material-symbols-outlined">arrow_upward</span>
     </button>
 
     <script>
+        /* ══════════════════════════════════════════
+           DATA — 每個主題分 tiles (原有) + extTiles (新增)
+        ══════════════════════════════════════════ */
         const THEMES = [
             {
-                id: 'forest',
-                label: '森林系',
+                id: 'forest', label: '森林系',
                 eyebrow: 'Forest · Nature · Organic',
                 desc: '枝葉交錯的婚禮秘境<br>讓光影與綠意成為最美的佈景',
                 mosaic: 'mosaic-forest',
@@ -1027,11 +1145,19 @@
                     { img: 'https://i.pinimg.com/1200x/2b/81/74/2b81749de349f1699156dcca1bf910c0.jpg', name: '戶外儀式區', label: 'Ceremony' },
                     { img: 'https://i.pinimg.com/736x/ab/27/6d/ab276d9976cb0065d86d9cd6ee6a871a.jpg', name: '晚宴燈光氛圍', label: 'Reception' },
                     { img: 'https://i.pinimg.com/736x/45/62/60/456260c1129e597dbbe5159370b01d41.jpg', name: '綠葉桌花細節', label: 'Details' },
-                ]
+                ],
+                extTiles: [
+                    // 新增 5 張 → mosaic-forest-ext：1大跨行 + 4小錯落
+                    { img: 'https://i.pinimg.com/1200x/6e/1f/aa/6e1faa2b3c4d5e6f7a8b9c0d1e2f3a4b.jpg', name: '林間苔蘚小徑', label: 'Pathway' },
+                    { img: 'https://i.pinimg.com/736x/b3/c4/d5/b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8.jpg', name: '木質質感餐桌', label: 'Tablescape' },
+                    { img: 'https://i.pinimg.com/1200x/c5/d6/e7/c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0.jpg', name: '樹冠光影儀式', label: 'Canopy' },
+                    { img: 'https://i.pinimg.com/736x/d7/e8/f9/d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2.jpg', name: '蕨葉捧花細節', label: 'Bouquet' },
+                    { img: 'https://i.pinimg.com/1200x/e9/f0/a1/e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4.jpg', name: '溪谷石板步道', label: 'Venue' },
+                ],
+                extType: 'forest'
             },
             {
-                id: 'vintage',
-                label: '美式復古',
+                id: 'vintage', label: '美式復古',
                 eyebrow: 'Americana · Rustic · Vintage',
                 desc: '穀倉木板與舊式燈泡<br>把每個瞬間變成老電影的畫面',
                 mosaic: 'mosaic-vintage',
@@ -1039,23 +1165,37 @@
                     { img: 'https://i.pinimg.com/736x/03/83/4e/03834e35abe51fed8838f5d9cc46f138.jpg', name: '復古建築', label: 'Barn Wedding', sub: 'Rustic Barn · 宜蘭', featured: true, cta: '#' },
                     { img: 'https://i.pinimg.com/736x/1a/6e/3f/1a6e3f64cf839ef3f49e2555a99c4ecd.jpg', name: '沉穩復古', label: 'Tablescape' },
                     { img: 'https://i.pinimg.com/736x/e3/8f/39/e38f39230ed22c4ce844c110e7b5e6bd.jpg', name: '復古婚紗造型', label: 'Bridal' },
-                ]
+                ],
+                extTiles: [
+                    // 新增 4 張 → 全寬橫幅 + 下2欄
+                    { img: 'https://i.pinimg.com/1200x/2f/3a/4b/2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c.jpg', name: '穀倉晚宴燈光全景', label: 'Reception' },
+                    { img: 'https://i.pinimg.com/736x/5b/6c/7d/5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e.jpg', name: '麻繩燈泡串飾', label: 'Lighting' },
+                    { img: 'https://i.pinimg.com/1200x/8e/9f/0a/8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b.jpg', name: '木桌復古花藝', label: 'Florals' },
+                ],
+                extType: 'vintage'
             },
             {
-                id: 'chapel',
-                label: '西式教堂',
+                id: 'chapel', label: '西式教堂',
                 eyebrow: 'Chapel · Cathedral · Timeless',
                 desc: '彩繪玻璃灑落的光<br>是最莊嚴也最浪漫的見證',
                 mosaic: 'mosaic-chapel',
                 tiles: [
                     { img: 'https://i.pinimg.com/736x/df/0c/fb/df0cfb7adc15d26017a2a5b0a64621f0.jpg', name: '教堂側廊光影', label: 'Interior' },
                     { img: 'https://i.pinimg.com/736x/dd/22/53/dd22536014a8902886dd10b546db318a.jpg', name: '純白教堂誓約', label: 'Featured Chapel', sub: 'Chapel blanc · 台南', featured: true, cta: '#' },
-                    { img: 'https://i.pinimg.com/736x/9e/54/3b/9e543ba414414d54b8c52aa736481e62.jpg', name: '教堂', label: 'Florals' },
-                ]
+                    { img: 'https://i.pinimg.com/736x/9e/54/3b/9e543ba414414d54b8c52aa736481e62.jpg', name: '聖壇花卉佈置', label: 'Florals' },
+                ],
+                extTiles: [
+                    // 新增 5 張 → 左大圖跨行 + 右上下 + 最右上下
+                    { img: 'https://i.pinimg.com/1200x/a1/b2/c3/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.jpg', name: '彩繪玻璃晨光', label: 'Stained Glass' },
+                    { img: 'https://i.pinimg.com/736x/c3/d4/e5/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8.jpg', name: '白色花環走道', label: 'Aisle' },
+                    { img: 'https://i.pinimg.com/1200x/e5/f6/a7/e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0.jpg', name: '蠟燭燭光晚宴', label: 'Candlelight' },
+                    { img: 'https://i.pinimg.com/736x/f7/a8/b9/f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2.jpg', name: '鐘樓外景', label: 'Exterior' },
+                    { img: 'https://i.pinimg.com/1200x/b0/c1/d2/b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5.jpg', name: '誓詞戒指特寫', label: 'Rings' },
+                ],
+                extType: 'chapel'
             },
             {
-                id: 'chinese',
-                label: '中式老宅',
+                id: 'chinese', label: '中式老宅',
                 eyebrow: 'Chinese Heritage · Courtyard · Ink',
                 desc: '紅燈籠與白牆灰瓦<br>讓傳統美學在當代婚禮中重生',
                 mosaic: 'mosaic-chinese',
@@ -1064,11 +1204,18 @@
                     { img: 'https://images.pexels.com/photos/13111964/pexels-photo-13111964.jpeg', name: '古韻院落婚宴', label: 'Courtyard Venue', sub: 'Heritage House · 台南老街', featured: true, cta: '#' },
                     { img: 'https://images.pexels.com/photos/35018683/pexels-photo-35018683.jpeg', name: '漆器與囍字擺設', label: 'Details' },
                     { img: 'https://images.pexels.com/photos/4066903/pexels-photo-4066903.jpeg', name: '紅木圓桌宴席', label: 'Banquet' },
-                ]
+                ],
+                extTiles: [
+                    // 新增 4 張 → 左文字板 + 右2豎圖 + 底全寬
+                    { img: 'https://images.pexels.com/photos/3014019/pexels-photo-3014019.jpeg', name: '紅燈籠迴廊', label: 'Lanterns' },
+                    { img: 'https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg', name: '旗袍新娘造型', label: 'Bridal' },
+                    { img: 'https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg', name: '院落花藝特寫', label: 'Florals' },
+                    { img: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg', name: '水墨書法喜帖', label: 'Stationery' },
+                ],
+                extType: 'chinese'
             },
             {
-                id: 'minimal',
-                label: '極簡現代',
+                id: 'minimal', label: '極簡現代',
                 eyebrow: 'Minimal · Modern · Editorial',
                 desc: 'Less is more<br>讓空間本身成為最有力量的表達',
                 mosaic: 'mosaic-minimal',
@@ -1076,11 +1223,18 @@
                     { img: 'https://i.pinimg.com/736x/ba/f7/25/baf7250521d4efbfbd026bfcb4fe6687.jpg', name: '建築感白盒子婚宴', label: 'Featured Venue', sub: 'White Box Studio · 台北信義', featured: true, cta: '#' },
                     { img: 'https://i.pinimg.com/1200x/f9/25/e4/f925e4909141a75c2d372d52503e1135.jpg', name: '單支芒草桌花', label: 'Tablescape' },
                     { img: 'https://i.pinimg.com/736x/34/0b/e8/340be80d146a6c5a18de0bbe20116d76.jpg', name: '俐落婚紗輪廓', label: 'Bridal' },
-                ]
+                ],
+                extTiles: [
+                    // 新增 4 張 → 4格正方形等比網格
+                    { img: 'https://i.pinimg.com/1200x/c9/d0/e1/c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4.jpg', name: '清水模質感牆面', label: 'Architecture' },
+                    { img: 'https://i.pinimg.com/736x/d2/e3/f4/d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7.jpg', name: '無彩花藝裝置', label: 'Florals' },
+                    { img: 'https://i.pinimg.com/1200x/e5/f6/a7/e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0.jpg', name: '極簡餐桌設定', label: 'Table Setting' },
+                    { img: 'https://i.pinimg.com/736x/f8/a9/b0/f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3.jpg', name: '黑白婚禮攝影', label: 'Photography' },
+                ],
+                extType: 'minimal'
             },
             {
-                id: 'exotic',
-                label: '異國風情',
+                id: 'exotic', label: '異國風情',
                 eyebrow: 'Tropical · Island · Destination',
                 desc: 'Escape to paradise<br>讓海島成為你們愛情故事的舞台',
                 mosaic: 'mosaic-exotic',
@@ -1090,54 +1244,105 @@
                     { img: 'https://i.pinimg.com/1200x/1a/c8/26/1ac82637cfb361647fd75fb14739ead5.jpg', name: '熱帶花卉拱門', label: 'Ceremony' },
                     { img: 'https://i.pinimg.com/1200x/69/43/2e/69432ecc602eb066d34e7ece8a605ec8.jpg', name: 'Bali 島嶼婚禮佈置', label: 'Florals' },
                     { img: 'https://i.pinimg.com/1200x/15/52/21/155221e08b284b2fd16ed51cf4cc3794.jpg', name: '馬爾地夫水上婚禮', label: 'Destination' },
-                ]
+                ],
+                extTiles: [
+                    // 新增 4 張 → 左主圖 + 右上下 + 全寬底
+                    { img: 'https://i.pinimg.com/1200x/3e/4f/50/3e4f50a1b2c3d4e5f6a7b8c9d0e1f2a3.jpg', name: '海島日落晚宴', label: 'Sunset Dinner' },
+                    { img: 'https://i.pinimg.com/736x/6a/7b/8c/6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d.jpg', name: '熱帶棕櫚庭院', label: 'Garden' },
+                    { img: 'https://i.pinimg.com/1200x/9d/0e/1f/9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a.jpg', name: '輕奢甜點台佈置', label: 'Dessert Table' },
+                    { img: 'https://i.pinimg.com/1200x/c0/d1/e2/c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5.jpg', name: '海灘儀式回眸', label: 'Ceremony' },
+                ],
+                extType: 'exotic'
             },
         ];
 
-        function renderTile(tile, galleryId, idx) {
-            const featuredCorner = tile.featured ? '<div class="tile-accent-corner"></div>' : '';
-            const ctaBtn = tile.featured && tile.cta
-                ? `<a class="tile-cta" href="${tile.cta}">探索場地</a>` : '';
-            const subLine = tile.sub ? `<span class="tile-sub">${tile.sub}</span>` : '';
-            const nameClass = tile.featured ? 'tile-name' : 'tile-name tile-name-small';
-
-            return /*html*/`
-        <div class="tile" data-lb="${galleryId}" data-idx="${idx}" data-name="${tile.name}" data-label="${tile.label}">
-            <img src="${tile.img}" alt="${tile.name}" loading="lazy">
-            ${featuredCorner}
+        /* ══ render helpers ══ */
+        function tile(t, gid, idx) {
+            const corner = t.featured ? '<div class="tile-accent-corner"></div>' : '';
+            const cta = t.featured && t.cta ? `<a class="tile-cta" href="${t.cta}">探索場地</a>` : '';
+            const sub = t.sub ? `<span class="tile-sub">${t.sub}</span>` : '';
+            const nc = t.featured ? 'tile-name' : 'tile-name tile-name-small';
+            return `<div class="tile" data-lb="${gid}" data-idx="${idx}" data-name="${t.name}" data-label="${t.label}">
+            <img src="${t.img}" alt="${t.name}" loading="lazy">
+            ${corner}
             <div class="tile-zoom"><span class="material-symbols-outlined">zoom_in</span></div>
             <div class="tile-overlay">
-                <span class="tile-label">${tile.label}</span>
-                <p class="${nameClass}">${tile.name}</p>
-                ${subLine}
-                ${ctaBtn}
-            </div>
-        </div>`;
+                <span class="tile-label">${t.label}</span>
+                <p class="${nc}">${t.name}</p>${sub}${cta}
+            </div></div>`;
         }
 
-        function renderTextPanel(panel) {
-            return /*html*/`
-        <div class="tile tile-text-panel tile-text">
+        function textPanel(p) {
+            return `<div class="tile tile-text-panel tile-text">
             <div class="panel-gold-line"></div>
-            <p class="panel-quote">${panel.quote}</p>
-            <span class="panel-en">${panel.en}</span>
-        </div>`;
+            <p class="panel-quote">${p.quote}</p>
+            <span class="panel-en">${p.en}</span></div>`;
+        }
+
+        /* 各主題 ext mosaic 的 HTML 結構不同 */
+        function renderExt(theme, startIdx) {
+            const ex = theme.extTiles;
+            if (!ex || !ex.length) return '';
+
+            const t = (i) => ex[i] ? tile(ex[i], theme.id, startIdx + i) : '';
+
+            if (theme.extType === 'forest') {
+                /* 1大(跨2行) + 右4格錯落 */
+                return `<div class="mosaic-forest-ext">
+                ${t(0)}${t(1)}${t(2)}${t(3)}${t(4)}
+            </div>`;
+            }
+            if (theme.extType === 'vintage') {
+                /* 全寬橫幅 + 下2欄 */
+                return `<div class="mosaic-vintage-ext">
+                ${t(0)}${t(1)}${t(2)}
+            </div>`;
+            }
+            if (theme.extType === 'chapel') {
+                /* 左大圖跨行 + 右上下 + 最右上下 */
+                return `<div class="mosaic-chapel-ext">
+                ${t(0)}${t(1)}${t(2)}${t(3)}${t(4)}
+            </div>`;
+            }
+            if (theme.extType === 'chinese') {
+                /* 左大豎圖跨行 + 右上2張 + 底全寬 */
+                return `<div class="mosaic-chinese-ext">
+                ${t(0)}${t(1)}${t(2)}${t(3)}
+            </div>`;
+            }
+            if (theme.extType === 'minimal') {
+                /* 4格正方形 */
+                return `<div class="mosaic-minimal-ext">
+                ${t(0)}${t(1)}${t(2)}${t(3)}
+            </div>`;
+            }
+            if (theme.extType === 'exotic') {
+                /* 左主圖 + 右2張上下 + 底全寬 */
+                return `<div class="mosaic-exotic-ext">
+                ${t(0)}
+                <div class="mosaic-exotic-ext-right">
+                    ${t(1)}${t(2)}
+                </div>
+                ${t(3)}
+            </div>`;
+            }
+            return '';
         }
 
         function renderMosaic(theme) {
             let tilesHTML = '';
-            theme.tiles.forEach((tile, idx) => {
-                tilesHTML += renderTile(tile, theme.id, idx);
-                if (theme.textPanel && idx === theme.textPanel.after - 1) {
-                    tilesHTML += renderTextPanel(theme.textPanel);
-                }
+            theme.tiles.forEach((tObj, idx) => {
+                tilesHTML += tile(tObj, theme.id, idx);
+                if (theme.textPanel && idx === theme.textPanel.after - 1) tilesHTML += textPanel(theme.textPanel);
             });
-            return `<div class="${theme.mosaic}">${tilesHTML}</div>`;
+            const main = `<div class="${theme.mosaic}">${tilesHTML}</div>`;
+            const extStartIdx = theme.tiles.length;
+            const ext = renderExt(theme, extStartIdx);
+            return main + ext;
         }
 
-        function renderThemeSection(theme) {
-            return /*html*/`
-        <section class="theme-section active" id="sec-${theme.id}">
+        function renderSection(theme) {
+            return `<section class="theme-section" id="sec-${theme.id}">
             <div class="section-header">
                 <div>
                     <span class="section-eyebrow">${theme.eyebrow}</span>
@@ -1152,91 +1357,95 @@
         function renderAll() {
             const navInner = document.getElementById('themeNavInner');
             const themesWrap = document.getElementById('themesWrap');
-
             navInner.innerHTML = THEMES.map((t, i) =>
                 (i > 0 ? '<div class="theme-pill-divider"></div>' : '') +
                 `<button class="theme-pill" data-target="${t.id}">${t.label}</button>`
             ).join('');
+            themesWrap.innerHTML = THEMES.map(renderSection).join('');
+            showTheme('forest');
+        }
 
-            themesWrap.innerHTML = THEMES.map(renderThemeSection).join('');
-            document.querySelectorAll('.theme-section').forEach(s => s.classList.remove('active'));
-            document.getElementById('sec-forest').classList.add('active');
-            document.querySelector('[data-target="forest"]').classList.add('active');
+        /* ══ gallery index: merge tiles + extTiles ══ */
+        function buildGalleries() {
+            const galleries = {};
+            THEMES.forEach(theme => {
+                const all = [...theme.tiles, ...(theme.extTiles || [])];
+                galleries[theme.id] = all.map(t => ({ src: t.img, name: t.name, label: t.label }));
+            });
+            return galleries;
+        }
+
+        function showTheme(target) {
+            document.querySelectorAll('.theme-pill').forEach(p => p.classList.toggle('active', p.dataset.target === target));
+            THEMES.forEach(t => {
+                const el = document.getElementById('sec-' + t.id);
+                if (el) el.classList.toggle('active', t.id === target);
+            });
+            document.querySelectorAll('.tile').forEach(el => el.classList.remove('vis'));
+            setTimeout(triggerAnim, 80);
+        }
+
+        function triggerAnim() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach((e, i) => {
+                    if (e.isIntersecting) {
+                        setTimeout(() => e.target.classList.add('vis'), i * 55);
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.06 });
+            document.querySelectorAll('.tile:not(.vis)').forEach(el => {
+                if (!el.classList.contains('tile-text-panel')) obs.observe(el);
+                else el.classList.add('vis');
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAll();
+            const galleries = buildGalleries();
 
+            /* scroll hide navbar */
             const navbar = document.querySelector('.navbar');
             let lastST = 0;
-
             window.addEventListener('scroll', () => {
                 const st = window.pageYOffset;
                 if (Math.abs(lastST - st) <= 8) return;
-                const hiding = st > lastST && st > 80;
-                navbar.classList.toggle('nav-hidden', hiding);
+                navbar.classList.toggle('nav-hidden', st > lastST && st > 80);
                 lastST = st;
             });
+            document.addEventListener('mousemove', e => { if (e.clientY < 50) navbar.classList.remove('nav-hidden'); });
 
-            document.addEventListener('mousemove', e => {
-                if (e.clientY < 50) { navbar.classList.remove('nav-hidden'); }
-            });
-
-            function getPills() { return document.querySelectorAll('.theme-pill'); }
-            function getSectionEl(id) { return document.getElementById('sec-' + id); }
-
-            function showTheme(target) {
-                getPills().forEach(p => p.classList.toggle('active', p.dataset.target === target));
-                THEMES.forEach(t => {
-                    const el = getSectionEl(t.id);
-                    if (el) el.classList.toggle('active', target === 'all' || t.id === target);
-                });
-                document.querySelectorAll('.tile,.detail-card').forEach(el => el.classList.remove('vis'));
-                setTimeout(triggerAnim, 80);
-            }
-
+            /* pill nav */
             document.getElementById('themeNavInner').addEventListener('click', e => {
                 const pill = e.target.closest('.theme-pill');
                 if (pill) showTheme(pill.dataset.target);
             });
 
-            /* ── Lightbox ── */
+            /* lightbox */
             const overlay = document.getElementById('lbOverlay');
             const lbImg = document.getElementById('lbImg');
             const lbName = document.getElementById('lbName');
             const lbLabel = document.getElementById('lbLabel');
             const lbDots = document.getElementById('lbDots');
             const lbCounter = document.getElementById('lbCounter');
-
-            const galleries = {};
-            document.querySelectorAll('.tile[data-lb]').forEach(tile => {
-                const g = tile.dataset.lb;
-                if (!galleries[g]) galleries[g] = [];
-                const img = tile.querySelector('img');
-                galleries[g][parseInt(tile.dataset.idx)] = {
-                    src: img ? img.src : '',
-                    name: tile.dataset.name || '',
-                    label: tile.dataset.label || ''
-                };
-            });
-
             let curG = null, curI = 0;
 
             function openLb(g, i) { curG = g; curI = i; renderLb(); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
             function closeLb() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
 
             function renderLb() {
-                const item = galleries[curG][curI];
+                const gal = galleries[curG];
+                const item = gal[curI];
                 lbImg.classList.add('fade');
                 setTimeout(() => {
                     lbImg.src = item.src;
                     lbName.textContent = item.name;
                     lbLabel.textContent = item.label;
-                    lbCounter.textContent = String(curI + 1).padStart(2, '0') + ' / ' + String(galleries[curG].length).padStart(2, '0');
+                    lbCounter.textContent = String(curI + 1).padStart(2, '0') + ' / ' + String(gal.length).padStart(2, '0');
                     lbImg.classList.remove('fade');
                 }, 200);
                 lbDots.innerHTML = '';
-                galleries[curG].forEach((_, i) => {
+                gal.forEach((_, i) => {
                     const d = document.createElement('div');
                     d.className = 'lb-dot' + (i === curI ? ' active' : '');
                     d.addEventListener('click', () => { curI = i; renderLb(); });
@@ -1266,24 +1475,12 @@
                 lbTX = null;
             });
 
+            /* tile click → lightbox (用 data-idx 對應 tiles+extTiles 合併後的 index) */
             document.getElementById('themesWrap').addEventListener('click', e => {
-                const tile = e.target.closest('.tile[data-lb]');
-                if (!tile || e.target.closest('.tile-cta')) return;
-                openLb(tile.dataset.lb, parseInt(tile.dataset.idx));
+                const t = e.target.closest('.tile[data-lb]');
+                if (!t || e.target.closest('.tile-cta')) return;
+                openLb(t.dataset.lb, parseInt(t.dataset.idx));
             });
-
-            function triggerAnim() {
-                const obs = new IntersectionObserver(entries => {
-                    entries.forEach((e, i) => {
-                        if (e.isIntersecting) {
-                            setTimeout(() => e.target.classList.add('vis'), i * 60);
-                            obs.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: 0.08 });
-                document.querySelectorAll('.tile:not(.vis),.detail-card:not(.vis)').forEach(el => obs.observe(el));
-            }
-            triggerAnim();
         });
     </script>
 </body>

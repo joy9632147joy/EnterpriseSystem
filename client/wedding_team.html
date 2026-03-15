@@ -911,32 +911,16 @@
             { id: 'makeup', label: '新娘造型師', eyebrow: 'Bridal Makeup · Hair' },
         ];
 
-        // ─── dept_id → catId 對應表（串 API 後用）───
-        // dept_id: 1=planner, 2=host, 3=photo, 4=sound, 5=makeup
-        const DEPT_MAP = { 1: 'planner', 2: 'host', 3: 'photo', 4: 'sound', 5: 'makeup' };
+        // ─── deptId → catId 對應表（對應後端 TeamDto.deptId）───
+        // deptId: 1=planner, 2=host, 3=photo, 4=sound, 5=makeup
+        const DEPT_MAP = { 1: 'planner', 5: 'host', 4: 'photo', 3: 'sound', 6: 'makeup' };
 
-        // ─── 靜態假資料（已停用，改由後端 API 提供）───
-        // const MEMBERS = { planner: [...], host: [...], ... };
-
-        // ─── MEMBERS 初始化（由 API 填入）───
+        // ─── 從 API 取得資料 ───
+        // API 回傳陣列，每筆包含 deptId, name, years, bio, styles, photoUrl（camelCase）
         const MEMBERS = {};
         CATEGORIES.forEach(cat => { MEMBERS[cat.id] = []; });
 
-        // ─── 串接後端 API：GET /api/team ───
-        // 後端 TeamDto 欄位（camelCase）：deptId, name, years, bio, styles, photoUrl
-        fetch('http://localhost:8080/api/team')
-            .then(res => res.json())
-            .then(rows => {
-                rows.forEach(row => {
-                    const catId = DEPT_MAP[row.deptId];   // deptId（camelCase）
-                    if (catId) MEMBERS[catId].push(row);
-                });
-                renderAll();
-                initPage();
-            })
-            .catch(err => console.error('無法載入團隊資料:', err));
-
-        // ─── 渲染卡片（欄位：photoUrl, name, years；不含 icon/tag）───
+        // ─── 渲染卡片（欄位：photo_url, name, years；不含 icon/tag）───
         // ── renderCard ──
         function renderCard(member, catId) {
             const cat = CATEGORIES.find(c => c.id === catId);
@@ -1000,7 +984,18 @@
 
         // ─── 篩選 + 動畫 + Modal ───
         document.addEventListener('DOMContentLoaded', () => {
-            renderAll();
+            fetch('http://localhost:8080/api/team')
+                .then(res => res.json())
+                .then(rows => {
+                    CATEGORIES.forEach(cat => { MEMBERS[cat.id] = []; });
+                    rows.forEach(row => {
+                        const catId = DEPT_MAP[row.deptId];
+                        if (catId) MEMBERS[catId].push(row);
+                    });
+                    renderAll();
+                    initPage();
+                })
+                .catch(err => console.error('載入團隊資料失敗:', err));
 
             const gridArea = document.getElementById('gridArea');
 
@@ -1053,10 +1048,12 @@
                 document.querySelectorAll('.partner-card:not(.visible)').forEach(c => obs.observe(c));
             }
 
-            bindFilters();
-            setActive('planner');
-            applyFilter('planner');
-            triggerVisible();
+            function initPage() {
+                bindFilters();
+                setActive('planner');
+                applyFilter('planner');
+                triggerVisible();
+            }
 
             // ─── PROFILE MODAL ───
             const backdrop = document.getElementById('profileBackdrop');
