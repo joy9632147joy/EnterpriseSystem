@@ -1044,8 +1044,13 @@
                             </div>
                         </div>
 
-                        <textarea class="form-control board-textarea mb-3" rows="3"
+                        <textarea class="form-control board-textarea mb-2" rows="3"
                             placeholder="有什麼想法或圖片想傳給顧問嗎？請在這裡留言..." v-model="newMessage"></textarea>
+
+                        <div
+                            style="font-size: 11px; color: #bbb; margin-bottom: 12px; margin-right: 4px; text-align: right;">
+                            * 支援圖片或 PDF/Word 文件，單一檔案上限 10MB
+                        </div>
 
                         <div class="d-flex justify-content-end align-items-center">
                             <span style="font-size: 13px; color: #aaa; margin-right: 16px;" class="d-none d-md-inline">
@@ -1054,14 +1059,14 @@
                             <div class="d-flex align-items-center" style="margin-right: 16px;">
                                 <input type="file" id="fileUploadInput" style="display: none;"
                                     @change="handleFileUpload" accept="image/*,.pdf,.doc,.docx" multiple>
-                                <label for="fileUploadInput" class="btn-attach" title="上傳圖片或檔案">
+                                <label for="fileUploadInput" class="btn-attach" title="上傳圖片或檔案 (上限10MB)">
                                     <span class="material-symbols-outlined">attach_file</span>
                                     <span class="hint-text d-none d-sm-inline">附加檔案</span>
                                 </label>
                             </div>
-                            <button class="btn" @click="postMessage"
+                            <button class="btn" @click="postMessage" :disabled="isSubmitting"
                                 style="background: var(--accent-gold); color: white; border-radius: 30px; font-size: 13px; letter-spacing: 0.15em; padding: 10px 28px; transition: all 0.3s;">
-                                送出留言
+                                {{ isSubmitting ? '傳送中...' : '送出留言' }}
                             </button>
                         </div>
                     </div>
@@ -1087,9 +1092,12 @@
         // ─── Vue 3 綁定資料 ───
         const { createApp, reactive, onMounted, computed, ref, nextTick } = Vue;
 
-        createApp({ 
+        createApp({
             setup() {
-                const projectId = 11; // 💡 測試階段先寫死
+                // 未來的寫法預告
+                const urlParams = new URLSearchParams(window.location.search);
+                const projectId = urlParams.get('id') || 1; // 💡 測試階段先寫死，抓不到就預設 1 
+                const isSubmitting = ref(false);
 
                 // 完整保留 UI 假資料框架
                 const data = reactive({
@@ -1216,11 +1224,18 @@
                                         const isClient = comm.createBy !== realData.pmName;
                                         let mappedAttachments = [];
                                         if (comm.documents && comm.documents.length > 0) {
-                                            mappedAttachments = comm.documents.map(doc => ({
-                                                name: doc.name,
-                                                type: doc.fileType || 'application/pdf',
-                                                url: doc.filePath || '#'
-                                            }));
+                                            mappedAttachments = comm.documents.map(doc => {
+                                                let fileUrl = doc.filePath || '#';
+                                                // 🌟 如果路徑是 /uploads 開頭，就強制幫它補上後端的網址與 Port！
+                                                if (fileUrl.startsWith('/uploads')) {
+                                                    fileUrl = 'http://localhost:8080' + fileUrl;
+                                                }
+                                                return {
+                                                    name: doc.name,
+                                                    type: doc.fileType || 'application/pdf',
+                                                    url: fileUrl
+                                                };
+                                            });
                                         }
                                         // 🌟 2. 然後把 messages.push 改成這樣：
                                         messages.push({
@@ -1244,11 +1259,22 @@
                         });
                 };
 
-                // 處理檔案上傳預覽
+                // 處理檔案上傳預覽 (含 10MB 即時攔截)
                 const handleFileUpload = (event) => {
                     const files = Array.from(event.target.files);
                     if (files.length === 0) return;
+
+                    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB 的位元組大小
+                    let hasOversizeFile = false; // 用來記錄這次有沒有抓到違規檔案
+
                     files.forEach(file => {
+                        // 🌟 1. 守門員檢查：如果單一檔案大於 10MB，標記起來並直接跳過！
+                        if (file.size > MAX_FILE_SIZE) {
+                            hasOversizeFile = true;
+                            return; // 提早結束這個檔案的處理，不放進 selectedFiles
+                        }
+
+                        // 🌟 2. 正常檔案的處理邏輯 (維持不變)
                         if (file.type.startsWith('image/')) {
                             const reader = new FileReader();
                             reader.onload = (e) => {
@@ -1259,37 +1285,72 @@
                             selectedFiles.value.push({ file: file, name: file.name, type: file.type, previewUrl: null });
                         }
                     });
+
+                    // 🌟 3. 如果剛剛有抓到過大的檔案，立刻跳出提示！
+                    if (hasOversizeFile) {
+                        alert("部分檔案超過 10MB 限制，已被自動取消選取喔！請挑選較小的圖片或文件。");
+                    }
+
+                    // 徹底清空 input 記憶，確保下次還能選同一個檔案
                     event.target.value = '';
                 };
+
                 const removeSelectedFile = (index) => {
                     selectedFiles.value.splice(index, 1);
                 };
 
                 const postMessage = () => {
+                    // 🌟 邏輯鎖：如果已經在傳送中了，直接擋掉後續的點擊！(專治連點狂魔)
+                    if (isSubmitting.value) return;
+
+                    // 防呆：如果沒打字也沒選檔案，就不執行
                     if (!newMessage.value.trim() && selectedFiles.value.length === 0) return;
 
-                    const now = new Date();
-                    const timeString = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + ' ' + String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+                    isSubmitting.value = true; // 🌟 開始傳送 (把鎖上了！)
 
-                    let attachmentsData = [];
-                    if (selectedFiles.value.length > 0) {
-                        attachmentsData = selectedFiles.value.map(f => ({ name: f.name, type: f.type, url: f.previewUrl || '#' }));
+                    // 🌟 1. 建立 FormData 物件 (用來打包文字與實體檔案)
+                    const formData = new FormData();
+
+                    // 🌟 2. 將身分與文字塞入包裹
+                    formData.append('createBy', '客戶'); // 直接告訴後端是客戶發言
+                    if (newMessage.value.trim()) {
+                        formData.append('content', newMessage.value.trim());
                     }
 
-                    messages.push({
-                        id: Date.now(),
-                        sender: 'client',
-                        senderName: data.customerName, // 🌟 直接帶入該專案的客戶名稱 (例如：曾文豪 & 林佳蓉)
-                        text: newMessage.value.trim(),
-                        time: timeString,
-                        attachments: attachmentsData
-                    });
-                    newMessage.value = '';
-                    selectedFiles.value = [];
-                    nextTick(() => {
-                        const container = document.getElementById('boardContainer');
-                        if (container) container.scrollTop = container.scrollHeight;
-                    });
+                    // 🌟 3. 將選擇的實體檔案一一塞入包裹 (對應後端的 @RequestParam("files"))
+                    if (selectedFiles.value.length > 0) {
+                        selectedFiles.value.forEach(item => {
+                            formData.append('files', item.file);
+                        });
+                    }
+
+                    // 🌟 4. 透過 Axios 發送 POST 請求
+                    axios.post(`http://localhost:8080/api/customers/projects/${projectId}/communication`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data' // 告訴後端：「嘿！我這包裡面有檔案喔！」
+                        }
+                    })
+                        .then(response => {
+                            if (response.data.success) {
+                                // 清空輸入框與附件預覽
+                                newMessage.value = '';
+                                selectedFiles.value = [];
+
+                                // 🌟 新增：徹底清空隱藏的 file input，避免無法重複選取同一個檔案
+                                const fileInput = document.getElementById('fileUploadInput');
+                                if (fileInput) fileInput.value = '';
+
+                                // 重新撈取最新進度，讓畫面立刻更新出剛剛送出的氣泡與圖檔！
+                                fetchProjectProgress();
+                            }
+                        })
+                        .catch(error => {
+                            console.error("留言發送失敗:", error);
+                            alert("留言發送失敗，請檢查網路連線或聯絡 DREAM VENUES 顧問！");
+                        })
+                        .finally(() => {
+                            isSubmitting.value = false; // 🌟 不管成功失敗，最後都解除鎖定
+                        });
                 };
 
                 // 🌟 圓環動畫計算加回來了
